@@ -274,6 +274,7 @@
             </section>
             <section class="panel">
               <h3>参数</h3>
+              <label class="toggle"><input id="nine-axis-follow" type="checkbox">鼠标跟随</label>
               <div id="nine-axis-pad" data-region="horizontal" tabindex="0" role="group" aria-label="头部角度" aria-describedby="nine-axis-pad-hint" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home">
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                   <path id="nine-axis-pad-plane" />
@@ -292,13 +293,14 @@
                 <div class="nine-param nine-angle-number"><label for="nine-axis-angle-y-number">角度 Y</label><input id="nine-axis-angle-y-number" type="number" step="any" value="0"></div>
                 <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys-y"></div></div>
               </div>
-              <div id="nine-axis-z" hidden>
+              <div id="nine-axis-z" aria-keyshortcuts="A D" hidden>
                 <div class="nine-param">
                   <label for="nine-axis-angle-z">角度 Z</label>
                   <input id="nine-axis-angle-z" type="range" min="0" max="0" step="1" value="0">
                   <output id="nine-axis-angle-z-value" for="nine-axis-angle-z">0°</output>
                 </div>
                 <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys-z"></div></div>
+                <p class="muted">A 左倾，D 右倾</p>
               </div>
               <p id="nine-axis-other-params" class="muted"></p>
             </section>

@@ -379,6 +379,62 @@ test('Z shortcuts use the authored roll limits and preserve the X and Y pose', a
   assert.deepEqual(keys.children, []);
 });
 
+test('mouse follow respects available poses; keyboard roll is scoped to the active preview', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const doc = composed(), panel = Object.create(HeadNineAxisPanel.prototype);
+  doc.headRoll = { pivot: [0, 0], parts: [doc.parts[0].id] };
+  doc.parameters!.push({ id: 'ParamAngleZ', min: -12, max: 12, keys: [-12, 0, 12] });
+  let frame: (() => void) | undefined;
+  let renders = 0;
+  for (const [key, value] of Object.entries({
+    document: { querySelector: () => null },
+    requestAnimationFrame: (callback: () => void) => { frame = callback; return 1; },
+    cancelAnimationFrame: () => { frame = undefined; },
+  })) {
+    const previous = Object.getOwnPropertyDescriptor(globalThis, key);
+    Object.defineProperty(globalThis, key, { configurable: true, value });
+    t.after(() => {
+      if (previous) Object.defineProperty(globalThis, key, previous);
+      else Reflect.deleteProperty(globalThis, key);
+    });
+  }
+  Object.assign(panel, {
+    doc, axes: nineAxisCapabilities(doc), active: true, following: false, value: 0, valueY: 0, valueZ: 0,
+    view: { getBoundingClientRect: () => ({ left: 50, top: 30, width: 320, height: 320 }) },
+    sync() { renders++; },
+  });
+  const pointer = { pointerType: 'mouse', clientX: 368, clientY: 126, buttons: 0 };
+  panel.trackPointer(pointer);
+  assert.deepEqual([panel.value, panel.valueY], [0, 0]);
+  panel.following = true;
+  panel.trackPointer(pointer);
+  panel.trackPointer({ ...pointer, clientX: 352 });
+  assert.equal(renders, 0);
+  frame!();
+  assert.equal(renders, 1);
+  assert.ok(panel.value > 0 && panel.valueY > 0);
+  assert.ok(Math.abs(panel.value / 30) <= headSideLimit(panel.valueY / 25));
+  const xy = [panel.value, panel.valueY];
+  let consumed = 0;
+  const press = (key: string, extra = {}) => panel.rollKeyDown({ key, preventDefault() { consumed++; }, ...extra });
+  press('a');
+  assert.deepEqual([panel.value, panel.valueY, panel.valueZ], [...xy, -1]);
+  press('D', { shiftKey: true });
+  assert.equal(panel.valueZ, 4);
+  press('d', { target: { isContentEditable: true } });
+  press('a', { ctrlKey: true });
+  panel.viewDrag = () => {};
+  press('d');
+  assert.equal(consumed, 2);
+  panel.viewDrag = null;
+  panel.valueZ = 11;
+  press('D', { shiftKey: true });
+  assert.equal(panel.valueZ, 12);
+  panel.active = false;
+  press('a');
+  assert.equal(panel.valueZ, 12);
+});
+
 test('workbench dragging inside excluded lobes follows the boundary tangent in all four quadrants', async () => {
   const { HeadNineAxisPanel } = await panelModule();
   for (const side of [-1, 1]) for (const pitch of [-1, 1]) {

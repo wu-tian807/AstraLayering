@@ -1,7 +1,7 @@
 import { validateHeadNineAxis, nineAxisCapabilities, headRollLimit, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
-import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headSideLimit } from '../head-motion.js';
+import { constrainHeadPoint, followHeadPointer, headPointerPosition, headPreviewAngles, headSideLimit } from '../head-motion.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -33,6 +33,11 @@ export class HeadNineAxisPanel {
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
     $('#nine-axis-angle-z').oninput = e => this.setRoll(e.target.valueAsNumber);
+    $('#nine-axis-follow').onchange = e => {
+      this.following = e.target.checked;
+      this.resetPointerFollow();
+      this.sync();
+    };
     this.pad = $('#nine-axis-pad');
     this.pad.addEventListener('pointerdown', e => this.padPointerDown(e));
     this.pad.addEventListener('pointermove', e => this.padPointerMove(e));
@@ -49,6 +54,13 @@ export class HeadNineAxisPanel {
     $('#nine-axis-fit').onclick = () => this.fit();
     this.view.addEventListener('wheel', e => this.wheel(e), { passive: false });
     this.view.addEventListener('pointerdown', e => this.pointerDown(e));
+    this.view.addEventListener('pointermove', e => this.trackPointer(e), { passive: true });
+    this.view.addEventListener('pointerleave', e => {
+      if (!this.following || !this.active || !this.doc || this.viewDrag || e.pointerType === 'touch') return;
+      this.resetPointerFollow();
+      this.setValue(0, 0);
+    });
+    document.addEventListener('keydown', e => this.rollKeyDown(e));
     new ResizeObserver(() => this.resize()).observe(this.view);
   }
   diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, level: this.level, selected: this.selected, edited: [...this.dirty],
@@ -75,6 +87,8 @@ export class HeadNineAxisPanel {
   }
   clear() {
     this.author = null;
+    this.resetPointerFollow();
+    this.viewDrag?.();
     this.endPadDrag();
     this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
     $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren();
@@ -102,6 +116,7 @@ export class HeadNineAxisPanel {
     this.configureLevel(); this.sync();
   }
   configureLevel() {
+    this.resetPointerFollow();
     this.mode = this.modes.find(mode => mode.id === this.level); this.axes = this.mode.axes;
     const ax = this.axes.x, ay = this.axes.y.min || this.axes.y.max ? this.axes.y : null;
     const keyButton = (k, set) => { const b = document.createElement('button'); b.textContent = (k > 0 ? '+' : '') + k; b.dataset.key = k; b.onclick = set; return b; };
@@ -149,6 +164,34 @@ export class HeadNineAxisPanel {
     const point = projectNineAxisAngles(this.axes, x, y, preferredAxis);
     if (point) { this.value = point.x; this.valueY = point.y; }
     this.sync();
+  }
+  trackPointer(e) {
+    if (!this.following || !this.active || !this.doc || e.pointerType === 'touch' || e.buttons || this.viewDrag) return;
+    const { left, top, width, height } = this.view.getBoundingClientRect();
+    if (!width || !height) return;
+    const pointer = headPointerPosition(e.clientX - left, e.clientY - top, width, height);
+    const current = normalizedAngles(this.axes, this.value, this.valueY);
+    const target = this.axes.plane ? followHeadPointer(pointer, current, this.followPrevious) : pointer;
+    this.followPrevious = pointer;
+    const { x, y } = headPreviewAngles(target, this.axes);
+    if (x === this.value && y === this.valueY) return;
+    this.value = x; this.valueY = y;
+    this.followFrame ??= requestAnimationFrame(() => { this.followFrame = undefined; this.sync(); });
+  }
+  resetPointerFollow() {
+    if (this.followFrame !== undefined) cancelAnimationFrame(this.followFrame);
+    this.followFrame = undefined; this.followPrevious = undefined;
+  }
+  rollKeyDown(e) {
+    const key = e.key.toLowerCase();
+    if ((key !== 'a' && key !== 'd') || e.defaultPrevented || e.isComposing || e.ctrlKey || e.metaKey || e.altKey ||
+        !this.active || this.viewDrag || this.padDrag) return;
+    const limit = headRollLimit(this.doc);
+    if (!limit || e.target?.isContentEditable || e.target?.closest?.('textarea, select, input:not([type="checkbox"]):not([type="radio"])') ||
+        $('dialog[open]')) return;
+    e.preventDefault();
+    const step = e.shiftKey ? 5 : 1;
+    this.setRoll(Math.max(-limit, Math.min(limit, this.valueZ + (key === 'a' ? -step : step))));
   }
   installPad() {
     const a = this.axes;
@@ -218,7 +261,7 @@ export class HeadNineAxisPanel {
   }
   // The keyform being edited: an X key while Y is 0, a Y key while X is 0, or a corner both are on.
   onKey() {
-    if (this.valueZ) return undefined;
+    if (this.following || this.valueZ) return undefined;
     const p = this.part(); if (!p) return undefined;
     if (this.mode && !this.mode.scope.has(p.id)) return undefined;
     if (p.id.startsWith('__kra__/')) return undefined;
@@ -265,7 +308,7 @@ export class HeadNineAxisPanel {
       const ys = (p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '') + (p.keyformsXY ? ` · 斜向 ${Object.keys(p.keyformsXY).length} 角` : '');
       const extra = [p.role === 'mask' ? '蒙版（不绘制，只裁切其他部件）' : '', clipLabel(p), p.status ?? ''].filter(Boolean).map(t => ' · ' + t).join('');
       $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${extra}`;
-      $('#nine-axis-edit-hint').textContent = this.valueZ ? '将角度 Z 归零后可编辑变形网格' : key === undefined ? /^neck(?:\/|$)/.test(p.id) ? '脖子保持固定；调整脸与它的覆盖衔接' : '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
+      $('#nine-axis-edit-hint').textContent = this.following ? '关闭鼠标跟随后可编辑网格' : this.valueZ ? '将角度 Z 归零后可编辑变形网格' : key === undefined ? /^neck(?:\/|$)/.test(p.id) ? '脖子保持固定；调整脸与它的覆盖衔接' : '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，尚未保存`;
@@ -293,7 +336,7 @@ export class HeadNineAxisPanel {
   }
   drawOverlay(x0, y0, s) {
     const p = this.part();
-    if (!p || this.valueZ || !this.showGrid || this.hidden.has(p.id) || !this.mode.scope.has(p.id)) { this.overlay.replaceChildren(); return; }
+    if (!p || this.following || this.valueZ || !this.showGrid || this.hidden.has(p.id) || !this.mode.scope.has(p.id)) { this.overlay.replaceChildren(); return; }
     const pts = evaluatePoints(this.doc, p, this.value, this.valueY), curve = evaluatePoints(this.doc, p, this.value, this.valueY, 5), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols * 5 + 1, at = i => `${((curve[i * 2] - x0) / s).toFixed(1)},${((curve[i * 2 + 1] - y0) / s).toFixed(1)} `;
     let d = '';
     for (let j = 0; j <= p.rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * 5 * c + i); }
@@ -304,7 +347,8 @@ export class HeadNineAxisPanel {
     this.overlay.replaceChildren(path, dots);
   }
   pointerDown(e) {
-    if (!this.doc) return;
+    if (!this.doc || e.button !== 0 || this.viewDrag) return;
+    this.resetPointerFollow();
     const index = e.target.dataset?.index, key = this.onKey(), p = this.part();
     const { s } = this.frame(), start = [e.clientX, e.clientY];
     this.view.setPointerCapture(e.pointerId);
@@ -319,8 +363,17 @@ export class HeadNineAxisPanel {
       if (index !== undefined) this.error('停在关键形上才能编辑控制点');
       const c = { ...this.cam }; move = ev => { this.cam.cx = c.cx - (ev.clientX - start[0]) * s; this.cam.cy = c.cy - (ev.clientY - start[1]) * s; this.draw(); };
     }
-    const up = () => { this.view.removeEventListener('pointermove', move); this.view.removeEventListener('pointerup', up); this.view.removeEventListener('pointercancel', up); this.sync(); };
-    this.view.addEventListener('pointermove', move); this.view.addEventListener('pointerup', up); this.view.addEventListener('pointercancel', up);
+    const endEvents = ['pointerup', 'pointercancel', 'lostpointercapture'];
+    const up = () => {
+      this.view.removeEventListener('pointermove', move);
+      for (const event of endEvents) this.view.removeEventListener(event, up);
+      this.viewDrag = null;
+      if (this.view.hasPointerCapture(e.pointerId)) this.view.releasePointerCapture(e.pointerId);
+      this.sync();
+    };
+    this.viewDrag = up;
+    this.view.addEventListener('pointermove', move);
+    for (const event of endEvents) this.view.addEventListener(event, up);
   }
   wheel(e) {
     if (!this.doc) return; e.preventDefault();
@@ -349,7 +402,7 @@ export class HeadNineAxisPanel {
     } catch (error) { this.error(error.message); }
   }
   async refresh() {
-    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag) return;
+    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.viewDrag) return;
     const project = this.project;
     this.refreshing = true;
     try {
@@ -358,7 +411,7 @@ export class HeadNineAxisPanel {
       const response = await fetch('./api/studio/project?' + query);
       if (!response.ok) return;
       const next = await response.json();
-      if (this.project !== project || !this.active || this.dirty.size || this.padDrag) return;
+      if (this.project !== project || !this.active || this.dirty.size || this.padDrag || this.viewDrag) return;
       if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
       const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
@@ -372,7 +425,7 @@ export class HeadNineAxisPanel {
     if (on === this.active) return;
     this.active = on; this.view.hidden = !on;
     clearInterval(this.refreshTimer);
-    if (!on) this.endPadDrag();
+    if (!on) { this.resetPointerFollow(); this.viewDrag?.(); this.endPadDrag(); }
     else { requestAnimationFrame(() => this.resize()); this.refreshTimer = setInterval(() => void this.refresh(), 4000); }
   }
 }
