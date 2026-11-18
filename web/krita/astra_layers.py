@@ -195,6 +195,32 @@ class Layers(Extension):
         if not session['doc'].exportImage(str(path), config):
             raise ValueError('Krita 未能导出合成图')
 
+    def preview(self, session, slices, outputs):
+        # Keep the native masks and groups. Only the paint ranges rendered
+        # between animated layers are temporarily filtered.
+        doc = session['doc']
+        modified = doc.modified()
+        paint = {row['id']: session['nodes'][row['id']] for row in session['rows'] if not row['group'] and not row['mask']}
+        visible = {key: node.visible() for key, node in paint.items()}
+        try:
+            for ids, path in zip(slices, outputs):
+                selected = set(ids)
+                for key, node in paint.items():
+                    show = visible[key] and key in selected
+                    if node.visible() != show:
+                        node.setVisible(show)
+                doc.refreshProjection()
+                doc.waitForDone()
+                self.render(session, Path(path))
+        finally:
+            for key, node in paint.items():
+                if node.visible() != visible[key]:
+                    node.setVisible(visible[key])
+            doc.refreshProjection()
+            doc.waitForDone()
+            doc.setModified(modified)
+        return {'rendered': len(outputs)}
+
     def surfaces(self, session, directory):
         """Read-only source-UV snapshot, with native isolated clipping islands.
 
@@ -323,6 +349,8 @@ class Layers(Extension):
         session = self.docs[key]
         if job['op'] == 'surfaces':
             return self.surfaces(session, Path(job['output']))
+        if job['op'] == 'preview':
+            return self.preview(session, job['slices'], job['outputs'])
         if job['op'] == 'close':
             session['doc'].setModified(False)
             session['doc'].close()

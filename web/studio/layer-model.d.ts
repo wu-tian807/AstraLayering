@@ -14,6 +14,10 @@ export type Layer = LayerState & {
 export const layerFields: string[];
 export function layerState(layers: LayerState[]): LayerState[];
 export function stateKey(layers: LayerState[]): string;
+export function poseLayerSlices(
+  layers: Array<{ id: string; visible: boolean; parentId?: string | null; uuid?: string; mask?: boolean; group?: boolean }>,
+  order: Map<string, number>,
+): Array<{ ids: string[]; order: number }>;
 export function layerTree<T extends Layer>(
   layers: T[],
   collapsed?: Set<string>,

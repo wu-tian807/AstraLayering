@@ -15,6 +15,7 @@ import { applyStepAction, applyTaskAction } from '../../.agents/skills/live2d-ma
 import { readStepSession, writeStepSession } from '../../.agents/skills/live2d-maker/shared/agents/step-session.ts';
 import { stepDeliveries } from '../../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { hairRounds, hairRoundLabel } from '../../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
+import { poseLayerSlices } from '../studio/layer-model.js';
 import { headSideLimit } from '../head-motion.js';
 
 async function fixture(t: any) {
@@ -326,6 +327,7 @@ async function panelModule() {
     .replace("'./nine-axis-model.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-model.js', import.meta.url).href))
     .replace("'./nine-axis-preview.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-preview.js', import.meta.url).href))
     .replace("'../head-motion.js'", JSON.stringify(new URL('../head-motion.js', import.meta.url).href))
+    .replace("'./layer-model.js'", JSON.stringify(new URL('../studio/layer-model.js', import.meta.url).href))
     .replace("'./nine-axis-render.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url).href));
   return import('data:text/javascript,' + encodeURIComponent(source));
 }
@@ -367,7 +369,7 @@ test('Z shortcuts use the authored roll limits and preserve the X and Y pose', a
   });
   const panel = Object.create(HeadNineAxisPanel.prototype), drawn: number[][] = [];
   Object.assign(panel, { doc, level: 'face', modes: [{ id: 'face', axes }], value: 8, valueY: 6, valueZ: 0,
-    installPad() {}, sync() { drawn.push([this.value, this.valueY, this.valueZ]); } });
+    installPad() {}, syncPose() { drawn.push([this.value, this.valueY, this.valueZ]); } });
   panel.configureLevel();
   const keys = element('#nine-axis-keys-z');
   assert.equal(element('#nine-axis-z').hidden, false);
@@ -402,7 +404,7 @@ test('mouse follow respects available poses and held roll keys move continuously
   Object.assign(panel, {
     doc, axes: nineAxisCapabilities(doc), active: true, following: false, value: 0, valueY: 0, valueZ: 0, rollKeys: new Set(),
     view: { getBoundingClientRect: () => ({ left: 50, top: 30, width: 320, height: 320 }) },
-    sync() { renders++; },
+    syncPose() { renders++; },
   });
   const advance = (time: number) => {
     const callback = frame;
@@ -421,6 +423,14 @@ test('mouse follow respects available poses and held roll keys move continuously
   assert.equal(renders, 1);
   assert.ok(panel.value > 0 && panel.valueY > 0);
   assert.ok(Math.abs(panel.value / 30) <= headSideLimit(panel.valueY / 25));
+  let previous = panel.valueY;
+  const edge = { ...pointer, clientX: 368 };
+  for (let y = 125; y >= 60; y--) {
+    panel.trackPointer({ ...edge, clientY: y });
+    assert.ok(Math.abs(panel.valueY - previous) < .3, 'moving vertically near the edge must not snap to an endpoint');
+    previous = panel.valueY;
+  }
+  advance(8);
   const xy = [panel.value, panel.valueY];
   let consumed = 0;
   const press = (key: string, extra = {}) => panel.rollKeyDown({ key, preventDefault() { consumed++; }, ...extra });
@@ -552,6 +562,49 @@ test('staged progress shows draft model and generated video before branches comp
   assert.equal(value.states['step04_angles/video'], 'done');
   assert.equal(value.states['step04_angles/model/up'], 'available');
   assert.equal(value.states.step04_angles, 'available');
+});
+
+test('focus camera interpolates and reaches the exact restore target', async () => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const panel = Object.create(HeadNineAxisPanel.prototype);
+  const from = { zoom: 2.5, pan: [-.5, 0] }, to = { zoom: 1, pan: [0, .4] };
+  Object.assign(panel, { stage: { ...from }, cameraMove: { from, to } });
+  panel.moveCamera(10);
+  assert.equal(panel.stage.zoom, from.zoom);
+  panel.moveCamera(140);
+  assert.ok(panel.stage.zoom < from.zoom && panel.stage.zoom > to.zoom);
+  panel.moveCamera(270);
+  assert.deepEqual(panel.stage, to);
+  assert.equal(panel.cameraMove, null);
+});
+
+test('focus hides only in preview, and eye edits made while focused survive restoring the view', async () => {
+  const { LayerPanel } = await import(new URL('../studio/layer-panel.js', import.meta.url).href);
+  const panel = Object.create(LayerPanel.prototype);
+  const layers = [
+    { id: 'foreground', visible: true },
+    { id: 'group', group: true, visible: true },
+    { id: 'front', visible: true, parentId: 'group' },
+    { id: 'mask', mask: true, visible: true, parentId: 'front' },
+    { id: 'middle', visible: true, parentId: 'group' },
+    { id: 'back', visible: true, parentId: 'group' },
+    { id: 'background', visible: true },
+  ];
+  Object.assign(panel, { layers, session: 'fixture', render() {}, queue() {}, undo: [] });
+  const order = new Map([['back', 0], ['front', 1]]);
+  assert.deepEqual(poseLayerSlices(panel.previewLayers(), order), [
+    { ids: ['background'], order: -.5 }, { ids: ['middle'], order: .5 }, { ids: ['foreground'], order: 1.5 },
+  ]);
+  panel.setFocus(new Set(['front', 'back']));
+  const eye = () => panel.previewLayers().map((row: { visible: boolean }) => row.visible);
+  assert.deepEqual(eye(), [false, true, true, true, false, true, false]);
+  assert.ok(layers.every(row => row.visible));
+  panel.setVisible('foreground', true);
+  assert.equal(eye()[0], true);
+  panel.setVisible('foreground', false);
+  panel.setFocus(null);
+  assert.deepEqual(eye(), [false, true, true, true, true, true, true]);
+  assert.equal(panel.undo.length, 1);
 });
 
 test('dynamic studio preview preserves angles and defers refresh during user edits or parameter dragging', async t => {

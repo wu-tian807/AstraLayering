@@ -361,8 +361,7 @@ vec4 studioShadowCoord() {
     this.lightingEnabled = enabled;
     this.setMode(this.mode);
   }
-  frame(width, height, exporting = false) {
-    this.deformation?.compose();
+  configureCamera(width, height, exporting = false) {
     const aspect = width / height,
       fit = exporting
         ? 1
@@ -378,8 +377,12 @@ vec4 studioShadowCoord() {
     this.camera.position.x = exporting ? 0 : this.pan[0];
     this.camera.position.y = exporting ? 0 : this.pan[1];
     this.camera.updateProjectionMatrix();
-    this.scene.updateMatrixWorld(true);
     this.camera.updateMatrixWorld(true);
+  }
+  frame(width, height, exporting = false) {
+    this.deformation?.compose();
+    this.configureCamera(width, height, exporting);
+    this.scene.updateMatrixWorld(true);
     this.depthUniforms.studioModelView.value.multiplyMatrices(
       this.camera.matrixWorldInverse,
       this.mesh.matrixWorld,
@@ -414,9 +417,23 @@ vec4 studioShadowCoord() {
       h = Math.max(1, Math.round(box.height * ratio));
     if (this.canvas.width !== w || this.canvas.height !== h)
       this.renderer.setSize(w, h, false);
-    this.frame(w, h);
+    if (this.layerPreview) this.configureCamera(w, h);
+    if (!this.layerPreview?.()) this.frame(w, h);
     this.canvas.style.backgroundColor = this.settings.background;
     this.onRender?.();
+  }
+  canvasFrame() {
+    const { w, h } = this.source, camera = this.camera, scale = h / 2;
+    return { x0: w / 2 + (camera.position.x + camera.left) * scale,
+      y0: h / 2 - (camera.position.y + camera.top) * scale,
+      width: (camera.right - camera.left) * scale, height: (camera.top - camera.bottom) * scale };
+  }
+  focusCamera({ x, y, width, height }) {
+    const bounds = this.canvas.getBoundingClientRect(), aspect = bounds.width / bounds.height;
+    const { w, h } = this.source;
+    const fit = Math.max(1.1, 1.1 * w / h / aspect);
+    return { zoom: Math.min(40, fit * h / (1.15 * Math.max(height, width / aspect))),
+      pan: [(x + width / 2 - w / 2) * 2 / h, (h / 2 - y - height / 2) * 2 / h] };
   }
   screenToWorld(x, y) {
     const b = this.canvas.getBoundingClientRect();

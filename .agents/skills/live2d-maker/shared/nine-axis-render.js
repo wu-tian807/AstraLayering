@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { evaluatePoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
+import { evaluatePoints, rollEvaluatedPoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
 
 // The head nine-axis drawing, shared by the workbench panel and the agents'
 // view_nine_axis tool, so an agent sees exactly what the workbench shows.
@@ -29,15 +29,34 @@ export function shownParts(doc, level, { hidden = new Set(), masks = new Set(), 
 }
 
 export class HeadNineAxisRenderer {
-  constructor(canvas) {
-    this.renderer = new THREE.WebGLRenderer({ canvas, alpha: true, premultipliedAlpha: true, antialias: true });
-    this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+  staticLayers = [];
+  constructor(canvas, renderer) {
+    this.renderer = renderer ?? new THREE.WebGLRenderer({ canvas, alpha: true, premultipliedAlpha: true, antialias: true });
+    if (!renderer) this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1); this.meshes = new Map(); this.targets = new Map(); this.scene = null; this.doc = null;
   }
   clear() {
+    this.setStaticLayers([]);
+    this.xyPose = null;
     for (const m of this.meshes.values()) { m.geometry.dispose(); m.material.uniforms.map.value.dispose(); m.material.dispose(); }
     for (const t of this.targets.values()) t.dispose();
     this.meshes = new Map(); this.targets.clear(); this.scene = null; this.doc = null; this.renderer.clear();
+  }
+  setStaticLayers(layers) {
+    for (const m of this.staticLayers) {
+      this.scene.remove(m);
+      m.material.map.image.close?.();
+      m.geometry.dispose(); m.material.map.dispose(); m.material.dispose();
+    }
+    this.staticLayers = layers.map(({ image, order, x, y }) => {
+      const texture = new THREE.Texture(image);
+      texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace; texture.needsUpdate = true;
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(image.width, image.height), new THREE.MeshBasicMaterial({
+        map: texture, transparent: true, depthTest: false, depthWrite: false, toneMapped: false, side: THREE.DoubleSide,
+      }));
+      m.position.set(x + image.width / 2, y + image.height / 2, 0); m.renderOrder = order;
+      this.scene.add(m); return m;
+    });
   }
   install(doc, images) {
     this.doc = doc; this.scene = new THREE.Scene();
@@ -56,22 +75,28 @@ export class HeadNineAxisRenderer {
   }
   // Draw the canvas-space window [x0, y0, x0 + width, y0 + height] at angles (x, y, z).
   // shown: the part ids drawn; dim(part) scales a drawn part's alpha.
-  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0) {
+  // A pose-only preview can reuse the grid. Authoring draws always re-evaluate it.
+  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0, { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1 } = {}) {
     if (!this.doc) return;
+    if (!reuseXY || !this.xyPose || this.xyPose.x !== x || this.xyPose.y !== y) this.xyPose = { x, y, points: new Map() };
+    const { points } = this.xyPose;
     Object.assign(this.camera, { left: x0, right: x0 + width, top: y0, bottom: y0 + height }); this.camera.updateProjectionMatrix();
     // Clip sources take effect whether or not they are shown or in the level.
     const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
-      const m = this.meshes.get(p.id), pts = evaluatePoints(this.doc, p, x, y, SUB, z), pos = m.geometry.attributes.position.array;
+      let base = points.get(p.id);
+      if (!base) { base = evaluatePoints(this.doc, p, x, y, SUB); points.set(p.id, base); }
+      const m = this.meshes.get(p.id), pts = rollEvaluatedPoints(this.doc, p, base, z), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
       m.geometry.attributes.position.needsUpdate = true;
       const u = m.material.uniforms, mask = p.role === 'mask';
       u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * dim(p);
-      u.paintOpacity.value = p.shadow?.opacity ?? 1;
+      u.paintOpacity.value = opacity(p);
     }
     const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map(clipped.map(p => [clipKey(p), p.clip.by]));
     for (const [key, t] of this.targets) if (!keys.has(key)) { t.dispose(); this.targets.delete(key); }
+    for (const m of this.staticLayers) m.visible = false;
     for (const [key, by] of keys) {
       let t = this.targets.get(key);
       if (!t) this.targets.set(key, t = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false }));
@@ -84,6 +109,7 @@ export class HeadNineAxisRenderer {
       this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
     }
     this.renderer.setRenderTarget(null);
+    for (const m of this.staticLayers) m.visible = true;
     for (const p of this.doc.parts) {
       const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
       m.material.blendSrc = p.shadow?.blendMode === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;

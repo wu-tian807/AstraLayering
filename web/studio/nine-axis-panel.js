@@ -2,6 +2,7 @@ import { validateHeadNineAxis, nineAxisCapabilities, headRollLimit, keyformAt, k
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
 import { constrainHeadPoint, followHeadPointer, headPointerPosition, headPreviewAngles, headSideLimit } from '../head-motion.js';
+import { layerTree, poseLayerSlices } from './layer-model.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -26,11 +27,13 @@ export function projectNineAxisAngles(axes, x, y, preferredAxis) {
   return { x, y };
 }
 export class HeadNineAxisPanel {
-  constructor({ error }) {
-    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.valueZ = 0; this.level = 'face'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set();
+  constructor({ error, stage, layers, reloadProject }) {
+    Object.assign(this, { error, stage, layers, reloadProject }); this.epoch = 0; this.value = 0; this.valueY = 0; this.valueZ = 0; this.level = 'face'; this.selected = null; this.shownMasks = new Set();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
     this.rollKeys = new Set();
-    this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
+    this.canvas = stage.canvas; this.overlay = $('#nine-axis-overlay'); this.view = stage.canvas.parentElement;
+    this.view3 = new HeadNineAxisRenderer(this.canvas, stage.renderer);
+    stage.layerPreview = () => this.present();
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
     $('#nine-axis-angle-z').oninput = e => this.setRoll(e.target.valueAsNumber);
@@ -52,8 +55,8 @@ export class HeadNineAxisPanel {
     $('#nine-axis-reset').onclick = () => this.resetKeyform();
     $('#nine-axis-restore').onclick = () => this.project && void this.load(this.project, true);
     $('#nine-axis-save').onclick = () => void this.save();
-    $('#nine-axis-fit').onclick = () => this.fit();
-    this.view.addEventListener('wheel', e => this.wheel(e), { passive: false });
+    $('#nine-axis-focus').onclick = () => this.toggleFocus();
+    $('#nine-axis-focus-hide').onchange = e => this.layers.setFocus(e.target.checked ? this.focus?.keep : null);
     this.view.addEventListener('pointerdown', e => this.pointerDown(e));
     this.view.addEventListener('pointermove', e => this.trackPointer(e), { passive: true });
     this.view.addEventListener('pointerleave', e => {
@@ -65,9 +68,9 @@ export class HeadNineAxisPanel {
     document.addEventListener('keyup', e => this.rollKeyUp(e));
     window.addEventListener('blur', () => this.stopKeyboardRoll());
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.stopKeyboardRoll(); });
-    new ResizeObserver(() => this.resize()).observe(this.view);
   }
-  diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, level: this.level, selected: this.selected, edited: [...this.dirty],
+  diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, valueZ: this.valueZ, level: this.level, selected: this.selected, edited: [...this.dirty],
+    focused: !!this.focus, movingCamera: !!this.cameraMove, layerPreviewReady: !!this.sliceReady,
     modes: this.modes?.map(({id, available, axes}) => ({id, available, ...axes})),
     matrix: this.doc ? { region: this.axes.region, x: this.axes.x, y: this.axes.y, completeCorners: this.axes.plane, dragging: !!this.padDrag } : null }; }
   async load(project, force = false) {
@@ -93,14 +96,16 @@ export class HeadNineAxisPanel {
     this.author = null;
     this.resetPointerFollow();
     this.stopKeyboardRoll();
+    this.exitFocus(false);
+    this.sliceKey = undefined; this.sliceReady = false;
     this.viewDrag?.();
     this.endPadDrag();
-    this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.hidden.clear(); this.shownMasks.clear();
+    this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.shownMasks.clear();
     $('#nine-axis-tree').replaceChildren(); $('#nine-axis-controls').hidden = true; this.overlay.replaceChildren();
+    this.syncFocus(); this.draw();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
   install(doc, images, allowPlane = true) {
-    this.view3 ??= new HeadNineAxisRenderer(this.canvas);
     this.doc = doc; this.view3.install(doc, images);
     this.allowPlane = allowPlane;
     this.modes = nineAxisPreviewModes(doc, allowPlane);
@@ -112,13 +117,13 @@ export class HeadNineAxisPanel {
     this.configureLevel();
     $('#nine-axis-notes').textContent = doc.notes ?? '';
     $('#nine-axis-controls').hidden = false; this.status(`${doc.deformers.length} 个组变形器 · ${doc.parts.length} 个部件`);
-    this.fit(); this.buildTree(); this.sync();
+    this.buildTree(); this.sync(); this.updateLayers();
   }
   selectLevel(level) {
     if (!this.modes?.some(mode => mode.id === level && mode.available)) return;
     this.endPadDrag();
     this.levelSelection = { ...this.levelSelection, level }; this.level = level;
-    this.configureLevel(); this.sync();
+    this.configureLevel(); this.sync(); this.updateLayers();
   }
   configureLevel() {
     this.resetPointerFollow();
@@ -148,11 +153,11 @@ export class HeadNineAxisPanel {
     const make = p => {
       const row = document.createElement('div'); row.className = 'nine-part'; row.dataset.part = p.id;
       const tag = [warps.has(p.id) ? '父变形器' : '', p.role === 'mask' ? '蒙版' : '', clipLabel(p)].filter(Boolean).join(' · ');
-      row.innerHTML = `<input type="checkbox" ${p.role === 'mask' ? 'title="显示蒙版"' : 'checked title="显示"'}><span>${esc(p.name ?? short(p.id))}</span><em>${esc(tag)}</em>`;
+      row.innerHTML = `${p.role === 'mask' ? '<input type="checkbox" title="预览变形蒙版">' : ''}<span>${esc(p.name ?? short(p.id))}</span><em>${esc(tag)}</em>`;
       row.onclick = e => { if (e.target.tagName !== 'INPUT') this.select(p.id); };
-      row.querySelector('input').onchange = e => {
-        if (p.role === 'mask') e.target.checked ? this.shownMasks.add(p.id) : this.shownMasks.delete(p.id);
-        else for (const id of descendants(this.doc, p.id)) e.target.checked ? this.hidden.delete(id) : this.hidden.add(id);
+      const mask = row.querySelector('input');
+      if (mask) mask.onchange = e => {
+        e.target.checked ? this.shownMasks.add(p.id) : this.shownMasks.delete(p.id);
         this.draw();
       };
       const children = all.filter(n => n.parent === p.id);
@@ -164,10 +169,14 @@ export class HeadNineAxisPanel {
   }
   select(id) { this.selected = this.selected === id ? null : id; this.sync(); }
   setRoll(value) {
+    if (this.changeRoll(value)) this.syncPose();
+  }
+  changeRoll(value) {
     const limit = headRollLimit(this.doc);
     const next = Math.max(-limit, Math.min(limit, value));
-    if (next === this.valueZ) return;
-    this.valueZ = next; this.sync();
+    if (next === this.valueZ) return false;
+    this.valueZ = next;
+    return true;
   }
   setValue(x, y = this.valueY, preferredAxis) {
     if (!this.doc) return;
@@ -180,17 +189,16 @@ export class HeadNineAxisPanel {
     const { left, top, width, height } = this.view.getBoundingClientRect();
     if (!width || !height) return;
     const pointer = headPointerPosition(e.clientX - left, e.clientY - top, width, height);
-    const current = normalizedAngles(this.axes, this.value, this.valueY);
-    const target = this.axes.plane ? followHeadPointer(pointer, current, this.followPrevious) : pointer;
-    this.followPrevious = pointer;
+    const target = this.axes.plane ? constrainHeadPoint(pointer) : pointer;
     const { x, y } = headPreviewAngles(target, this.axes);
     if (x === this.value && y === this.valueY) return;
     this.value = x; this.valueY = y;
-    this.followFrame ??= requestAnimationFrame(() => { this.followFrame = undefined; this.sync(); });
+    this.pointerChanged = true;
+    this.schedulePoseFrame();
   }
   resetPointerFollow() {
-    if (this.followFrame !== undefined) cancelAnimationFrame(this.followFrame);
-    this.followFrame = undefined; this.followPrevious = undefined;
+    this.pointerChanged = false;
+    this.cancelIdlePoseFrame();
   }
   rollInputBlocked(target) {
     return !this.active || this.viewDrag || this.padDrag || target?.isContentEditable ||
@@ -206,26 +214,40 @@ export class HeadNineAxisPanel {
     this.rollKeys.add(key);
     this.rollFast = e.shiftKey;
     if (this.rollKeys.size === 1) this.setRoll(this.valueZ + (key === 'a' ? -1 : 1) * (this.rollFast ? 5 : 1));
-    this.rollFrame ??= requestAnimationFrame(time => this.updateKeyboardRoll(time));
+    this.schedulePoseFrame();
   }
   rollKeyUp(e) {
     const key = e.key.toLowerCase();
     if (key === 'shift') this.rollFast = false;
     if (this.rollKeys.delete(key) && !this.rollKeys.size) this.stopKeyboardRoll();
   }
-  updateKeyboardRoll(time) {
-    this.rollFrame = undefined;
-    if (this.rollInputBlocked(document.activeElement) || !headRollLimit(this.doc)) { this.stopKeyboardRoll(); return; }
-    const seconds = Math.min(time - (this.rollTime ?? time), 50) / 1000;
-    this.rollTime = time;
-    const direction = Number(this.rollKeys.has('d')) - Number(this.rollKeys.has('a'));
-    this.setRoll(this.valueZ + direction * seconds * (this.rollFast ? 72 : 36));
-    this.rollFrame = requestAnimationFrame(time => this.updateKeyboardRoll(time));
+  schedulePoseFrame() {
+    this.poseFrame ??= requestAnimationFrame(time => this.updatePoseFrame(time));
+  }
+  updatePoseFrame(time) {
+    this.poseFrame = undefined;
+    const roll = this.valueZ, pointerChanged = this.pointerChanged;
+    this.pointerChanged = false;
+    if (this.rollKeys.size && (this.rollInputBlocked(document.activeElement) || !headRollLimit(this.doc))) this.stopKeyboardRoll();
+    if (this.rollKeys.size) {
+      const seconds = Math.min(time - (this.rollTime ?? time), 50) / 1000;
+      this.rollTime = time;
+      const direction = Number(this.rollKeys.has('d')) - Number(this.rollKeys.has('a'));
+      this.changeRoll(roll + direction * seconds * (this.rollFast ? 72 : 36));
+    }
+    const cameraChanged = this.moveCamera(time);
+    if (pointerChanged || roll !== this.valueZ || cameraChanged) this.syncPose();
+    if (this.rollKeys.size || this.cameraMove) this.schedulePoseFrame();
+  }
+  cancelIdlePoseFrame() {
+    if (this.rollKeys?.size || this.pointerChanged || this.cameraMove || this.poseFrame === undefined) return;
+    cancelAnimationFrame(this.poseFrame);
+    this.poseFrame = undefined;
   }
   stopKeyboardRoll() {
     this.rollKeys.clear();
-    if (this.rollFrame !== undefined) cancelAnimationFrame(this.rollFrame);
-    this.rollFrame = undefined; this.rollTime = undefined;
+    this.rollTime = undefined;
+    this.cancelIdlePoseFrame();
   }
   installPad() {
     const a = this.axes;
@@ -307,7 +329,11 @@ export class HeadNineAxisPanel {
     return p.keyformsXY?.[key] ? { forms: p.keyformsXY, key, label: `XY ${sign(x)} ${sign(y)}` } : undefined;
   }
   part() { return this.doc && nodes(this.doc).find(p => p.id === this.selected); }
-  sync() {
+  syncPose() {
+    if (!this.doc) return;
+    this.syncAngles(); this.syncSelection(); this.draw({ reuseXY: true });
+  }
+  syncAngles() {
     if (!this.doc) return;
     $('#nine-axis-angle-number').value = this.value;
     $('#nine-axis-angle-y-number').value = this.valueY;
@@ -319,13 +345,6 @@ export class HeadNineAxisPanel {
     const hud = (id, v) => `${id} ${v > 0 ? '+' : ''}${v.toFixed(1)}`;
     $('#nine-axis-hud').textContent = hud('ParamAngleX', this.value) + ($('#nine-axis-y').hidden ? '' : ' · ' + hud('ParamAngleY', this.valueY))
       + ($('#nine-axis-z').hidden ? '' : ' · ' + hud('ParamAngleZ', this.valueZ));
-    for (const b of document.querySelectorAll('[data-nine-level]')) {
-      const mode = this.modes.find(mode => mode.id === b.dataset.nineLevel);
-      b.disabled = !mode?.available;
-      b.classList.toggle('active', mode?.available && mode.id === this.level);
-      b.setAttribute('aria-pressed', String(!!mode?.available && mode.id === this.level));
-      b.title = mode?.available ? mode.title : '尚无此组合的制作数据';
-    }
     for (const b of $('#nine-axis-keys').children) b.classList.toggle('active', !this.valueY && Number(b.dataset.key) === this.value);
     for (const b of $('#nine-axis-keys-y').children) b.classList.toggle('active', !this.value && Number(b.dataset.key) === this.valueY);
     for (const b of $('#nine-axis-keys-z').children) {
@@ -333,8 +352,8 @@ export class HeadNineAxisPanel {
       b.classList.toggle('active', active);
       b.setAttribute('aria-pressed', String(active));
     }
-    const visible = new Set(levelParts(this.doc, this.level).map(p => p.id));
-    for (const row of document.querySelectorAll('.nine-part')) { row.classList.toggle('selected', row.dataset.part === this.selected); row.classList.toggle('outside', ![...descendants(this.doc, row.dataset.part)].some(id => visible.has(id))); row.classList.toggle('edited', this.dirty.has(row.dataset.part)); }
+  }
+  syncSelection() {
     const p = this.part(), key = this.onKey();
     $('#nine-axis-selection').hidden = !p;
     if (p) {
@@ -345,32 +364,151 @@ export class HeadNineAxisPanel {
       $('#nine-axis-edit-hint').textContent = this.following ? '关闭鼠标跟随后可编辑网格' : this.valueZ ? '将角度 Z 归零后可编辑变形网格' : key === undefined ? /^neck(?:\/|$)/.test(p.id) ? '脖子保持固定；调整脸与它的覆盖衔接' : '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
+  }
+  sync() {
+    if (!this.doc) return;
+    this.syncFocus();
+    this.syncAngles(); this.syncSelection();
+    for (const b of document.querySelectorAll('[data-nine-level]')) {
+      const mode = this.modes.find(mode => mode.id === b.dataset.nineLevel);
+      b.disabled = !mode?.available;
+      b.classList.toggle('active', mode?.available && mode.id === this.level);
+      b.setAttribute('aria-pressed', String(!!mode?.available && mode.id === this.level));
+      b.title = mode?.available ? mode.title : '尚无此组合的制作数据';
+    }
+    const visible = new Set(levelParts(this.doc, this.level).map(p => p.id));
+    for (const row of document.querySelectorAll('.nine-part')) { row.classList.toggle('selected', row.dataset.part === this.selected); row.classList.toggle('outside', ![...descendants(this.doc, row.dataset.part)].some(id => visible.has(id))); row.classList.toggle('edited', this.dirty.has(row.dataset.part)); }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，尚未保存`;
     $('#nine-axis-save').disabled = !this.dirty.size;
     this.draw();
   }
-  resize() {
-    if (!this.view3) return;
-    const r = this.view.getBoundingClientRect(); if (!r.width || !r.height) return;
-    this.view3.renderer.setPixelRatio(devicePixelRatio); this.view3.renderer.setSize(r.width, r.height, false); this.draw();
+  updateLayers() {
+    this.syncFocus();
+    if (!this.inSharedPreview || !this.doc) return;
+    const rows = this.layers.previewLayers();
+    const owner = this.layers.owner?.project;
+    if (owner?.folder !== this.project?.folder || owner?.files?.document?.path !== this.doc.source?.document) {
+      this.nativeRows = null; this.sliceReady = false; this.sliceKey = undefined;
+      return;
+    }
+    this.nativeRows = new Map(layerTree(rows).map(row => [row.uuid || row.id, row]));
+    if (!this.layers.session || this.layers.pending) { this.draw(); return; }
+    const order = new Map(this.doc.parts.flatMap((part, index) => part.uuid && part.role !== 'mask' &&
+      this.mode.scope.has(part.id) && authoredPreviewPart(part) ? [[part.uuid, index]] : []));
+    const slices = poseLayerSlices(rows, order);
+    const key = JSON.stringify([this.layers.session, this.layers.revision, slices]);
+    if (key === this.sliceKey) { this.draw(); return; }
+    this.sliceKey = key; this.sliceReady = !slices.length;
+    this.view3.setStaticLayers([]);
+    if (!slices.length) { this.draw(); return; }
+    void this.layers.poseLayers(slices.map(slice => slice.ids)).then(async layers => {
+      if (this.sliceKey !== key) return;
+      const images = await Promise.all(layers.map(async ({ url, x, y }, i) => {
+        const response = await fetch(url);
+        if (!response.ok) throw Error('图层预览读取失败');
+        const image = await createImageBitmap(await response.blob(), { premultiplyAlpha: 'none' });
+        return { image, x, y, order: slices[i].order };
+      }));
+      if (this.sliceKey !== key) { for (const { image } of images) image.close(); return; }
+      this.view3.setStaticLayers(images);
+      this.sliceReady = true;
+      this.draw();
+    }).catch(error => {
+      if (this.sliceKey === key) { this.sliceKey = undefined; this.error(error.message); }
+    });
+    this.draw();
   }
-  fit() { if (!this.doc) return; const v = this.doc.view ?? { x: 0, y: 0, width: this.doc.canvas[0], height: this.doc.canvas[1] }; this.cam = { cx: v.x + v.width / 2, cy: v.y + v.height / 2, span: Math.max(v.width, v.height) }; this.draw(); }
-  frame() {
-    const r = this.view.getBoundingClientRect(), s = this.cam.span / Math.min(r.width, r.height);
-    return { r, s, x0: this.cam.cx - r.width * s / 2, y0: this.cam.cy - r.height * s / 2 };
+  syncFocus() {
+    const button = $('#nine-axis-focus');
+    button.hidden = !this.inSharedPreview || !this.doc;
+    button.disabled = !this.stage.source;
+    button.textContent = this.focus ? '退出聚焦' : this.selected ? '聚焦选中部件' : '聚焦头部';
+    button.setAttribute('aria-pressed', String(!!this.focus));
+    $('#nine-axis-focus-layers').hidden = button.hidden || !this.focus || !this.layers.session;
+    $('#nine-axis-focus-hide').checked = !!this.layers.focus;
   }
-  draw() {
-    if (!this.doc || !this.active || !this.view3) return;
-    const { r, s, x0, y0 } = this.frame(); if (!r.width) return;
-    const sel = this.selected, isolate = $('#nine-axis-isolate').checked, affected = sel ? descendants(this.doc, sel) : new Set();
-    const shown = new Set([...shownParts(this.doc, this.level, { hidden: this.hidden, masks: this.shownMasks, selected: sel })]
-      .filter(id => this.mode.scope.has(id) && authoredPreviewPart({id})));
-    this.view3.draw({ x0, y0, width: r.width * s, height: r.height * s }, this.value, this.valueY, shown, p => sel && !affected.has(p.id) && isolate ? .35 : 1, this.valueZ);
-    this.drawOverlay(x0, y0, s);
+  toggleFocus() {
+    if (this.focus) { this.exitFocus(); return; }
+    if (!this.doc || !this.stage.source) return;
+    const selected = this.selected ? descendants(this.doc, this.selected) : this.mode.scope;
+    const parts = this.doc.parts.filter(part => selected.has(part.id) && (this.selected || authoredPreviewPart(part)));
+    const keep = new Set(parts.flatMap(part => [part.uuid, ...(part.clip?.by ?? []).map(id => this.doc.parts.find(p => p.id === id)?.uuid)]).filter(Boolean));
+    let rect = this.doc.view ?? { x: 0, y: 0, width: this.doc.canvas[0], height: this.doc.canvas[1] };
+    if (this.selected && parts.length) {
+      let x = Infinity, y = Infinity, right = -Infinity, bottom = -Infinity;
+      for (const part of parts) {
+        const points = evaluatePoints(this.doc, part, this.value, this.valueY, 1, this.valueZ);
+        for (let i = 0; i < points.length; i += 2) {
+          x = Math.min(x, points[i]); y = Math.min(y, points[i + 1]);
+          right = Math.max(right, points[i]); bottom = Math.max(bottom, points[i + 1]);
+        }
+      }
+      rect = { x, y, width: Math.max(1, right - x), height: Math.max(1, bottom - y) };
+    }
+    this.focus = { home: this.cameraMove?.to ?? { zoom: this.stage.zoom, pan: [...this.stage.pan] }, keep };
+    this.animateCamera(this.stage.focusCamera(rect));
+    this.syncFocus();
+  }
+  exitFocus(animate = true) {
+    const target = this.focus?.home ?? this.cameraMove?.to;
+    this.focus = null; this.cameraMove = null;
+    if (!target) return;
+    if (this.layers.focus) this.layers.setFocus(null);
+    if (animate) this.animateCamera(target);
+    else { this.stage.zoom = target.zoom; this.stage.pan = target.pan; this.cancelIdlePoseFrame(); }
+    this.syncFocus();
+  }
+  animateCamera(to) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      this.stage.zoom = to.zoom; this.stage.pan = to.pan; this.draw({ reuseXY: true });
+      return;
+    }
+    this.cameraMove = { from: { zoom: this.stage.zoom, pan: [...this.stage.pan] }, to };
+    this.schedulePoseFrame();
+  }
+  interruptCamera() {
+    this.cameraMove = null;
+    this.cancelIdlePoseFrame();
+  }
+  moveCamera(now) {
+    const move = this.cameraMove;
+    if (!move) return false;
+    move.start ??= now;
+    const t = Math.min(1, (now - move.start) / 260), ease = t * t * (3 - 2 * t);
+    this.stage.zoom = Math.exp(Math.log(move.from.zoom) * (1 - ease) + Math.log(move.to.zoom) * ease);
+    this.stage.pan = move.from.pan.map((value, i) => value + (move.to.pan[i] - value) * ease);
+    if (t === 1) { this.stage.zoom = move.to.zoom; this.stage.pan = move.to.pan; this.cameraMove = null; }
+    return true;
+  }
+  draw({ reuseXY = false } = {}) {
+    if (!this.inSharedPreview) return;
+    this.reuseXY = reuseXY;
+    this.stage.render();
+  }
+  present() {
+    if (!this.inSharedPreview || !this.doc) return false;
+    const frame = this.stage.canvasFrame(), { width } = this.view.getBoundingClientRect();
+    if (this.active && width) this.drawOverlay(frame.x0, frame.y0, frame.width / width);
+    const reuseXY = this.reuseXY ?? true; this.reuseXY = undefined;
+    if (!(this.value || this.valueY || this.valueZ || this.layers.focus || (this.active && this.shownMasks.size))) return false;
+    if (this.layers.session && !this.sliceReady) return false;
+    const visible = shownParts(this.doc, this.level, this.active ? { masks: this.shownMasks, selected: this.selected } : {});
+    const shown = new Set(this.doc.parts.filter(part => visible.has(part.id) && this.mode.scope.has(part.id) && authoredPreviewPart(part) &&
+      this.layerVisible(part)).map(part => part.id));
+    this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY,
+      opacity: part => (this.nativeRows?.get(part.uuid)?.opacity ?? (part.shadow?.opacity ?? 1) * 255) / 255 });
+    return true;
+  }
+  layerVisible(part) {
+    const row = this.nativeRows?.get(part.uuid);
+    return part.role === 'mask' || !row || (row.visible && !row.inheritedHidden);
   }
   drawOverlay(x0, y0, s) {
     const p = this.part();
-    if (!p || this.following || this.valueZ || !this.showGrid || this.hidden.has(p.id) || !this.mode.scope.has(p.id)) { this.overlay.replaceChildren(); return; }
+    if (!p || this.following || this.valueZ || !this.showGrid || !this.layerVisible(p) || !this.mode.scope.has(p.id)) {
+      if (this.overlay.firstChild) this.overlay.replaceChildren();
+      return;
+    }
     const pts = evaluatePoints(this.doc, p, this.value, this.valueY), curve = evaluatePoints(this.doc, p, this.value, this.valueY, 5), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols * 5 + 1, at = i => `${((curve[i * 2] - x0) / s).toFixed(1)},${((curve[i * 2 + 1] - y0) / s).toFixed(1)} `;
     let d = '';
     for (let j = 0; j <= p.rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * 5 * c + i); }
@@ -381,22 +519,18 @@ export class HeadNineAxisPanel {
     this.overlay.replaceChildren(path, dots);
   }
   pointerDown(e) {
-    if (!this.doc || e.button !== 0 || this.viewDrag) return;
-    this.resetPointerFollow();
+    if (!this.doc || !this.active || e.button !== 0 || this.viewDrag || e.target.dataset?.index === undefined) return;
     const index = e.target.dataset?.index, key = this.onKey(), p = this.part();
-    const { s } = this.frame(), start = [e.clientX, e.clientY];
+    if (!p || key === undefined) return;
+    this.resetPointerFollow();
+    e.preventDefault();
+    const s = this.stage.canvasFrame().width / this.view.getBoundingClientRect().width, start = [e.clientX, e.clientY];
     this.view.setPointerCapture(e.pointerId);
-    let move;
-    if (index !== undefined && p && key !== undefined) {
-      const name = String(key.key), from = key.forms[name].map(q => [...q]), id = p.id + '@' + key.label;
-      this.original ??= new Map(); if (!this.original.has(id)) this.original.set(id, from);
-      const world = from.map(([px, py]) => parentPoint(this.doc, p, this.value, this.valueY, px, py));
-      move = ev => { const moved = dragKeyform(world, Number(index), (ev.clientX - start[0]) * s, (ev.clientY - start[1]) * s, this.radius);
-        key.forms[name] = moved.map(([px, py]) => parentPoint(this.doc, p, this.value, this.valueY, px, py, true)); this.dirty.add(p.id); this.draw(); };
-    } else {
-      if (index !== undefined) this.error('停在关键形上才能编辑控制点');
-      const c = { ...this.cam }; move = ev => { this.cam.cx = c.cx - (ev.clientX - start[0]) * s; this.cam.cy = c.cy - (ev.clientY - start[1]) * s; this.draw(); };
-    }
+    const name = String(key.key), from = key.forms[name].map(q => [...q]), id = p.id + '@' + key.label;
+    this.original ??= new Map(); if (!this.original.has(id)) this.original.set(id, from);
+    const world = from.map(([px, py]) => parentPoint(this.doc, p, this.value, this.valueY, px, py));
+    const move = ev => { const moved = dragKeyform(world, Number(index), (ev.clientX - start[0]) * s, (ev.clientY - start[1]) * s, this.radius);
+      key.forms[name] = moved.map(([px, py]) => parentPoint(this.doc, p, this.value, this.valueY, px, py, true)); this.dirty.add(p.id); this.draw(); };
     const endEvents = ['pointerup', 'pointercancel', 'lostpointercapture'];
     const up = () => {
       this.view.removeEventListener('pointermove', move);
@@ -408,11 +542,6 @@ export class HeadNineAxisPanel {
     this.viewDrag = up;
     this.view.addEventListener('pointermove', move);
     for (const event of endEvents) this.view.addEventListener(event, up);
-  }
-  wheel(e) {
-    if (!this.doc) return; e.preventDefault();
-    const { r, s, x0, y0 } = this.frame(), px = x0 + (e.clientX - r.left) * s, py = y0 + (e.clientY - r.top) * s, f = Math.exp(e.deltaY * .0015);
-    this.cam.span *= f; this.cam.cx = px + (this.cam.cx - px) * f; this.cam.cy = py + (this.cam.cy - py) * f; this.draw();
   }
   resetKeyform() {
     const p = this.part(), key = this.onKey(); if (!p || key === undefined) return;
@@ -436,7 +565,7 @@ export class HeadNineAxisPanel {
     } catch (error) { this.error(error.message); }
   }
   async refresh() {
-    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.viewDrag) return;
+    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.viewDrag || this.layers?.pending) return;
     const project = this.project;
     this.refreshing = true;
     try {
@@ -446,6 +575,12 @@ export class HeadNineAxisPanel {
       if (!response.ok) return;
       const next = await response.json();
       if (this.project !== project || !this.active || this.dirty.size || this.padDrag || this.viewDrag) return;
+      const previousKra = this.layers?.owner?.project?.files?.document, nextKra = next.files?.document;
+      if (previousKra && nextKra && (previousKra.path !== nextKra.path || previousKra.version !== nextKra.version)) {
+        if (this.layers.undo.length || this.focus || this.layers.pending) this.status('KRA 有新版本，已保留当前视图和图层改动');
+        else await this.reloadProject(next);
+        return;
+      }
       if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
       const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
@@ -455,11 +590,14 @@ export class HeadNineAxisPanel {
     } catch (error) { if (this.project === project) this.status('动态预览更新失败：' + error.message); }
     finally { this.refreshing = false; }
   }
-  activate(on) {
-    if (on === this.active) return;
-    this.active = on; this.view.hidden = !on;
+  activate(on, inSharedPreview = on) {
+    if (on === this.active && inSharedPreview === this.inSharedPreview) return;
+    this.active = on; this.inSharedPreview = inSharedPreview;
+    $('#nine-axis-view').hidden = !on;
     clearInterval(this.refreshTimer);
     if (!on) { this.resetPointerFollow(); this.stopKeyboardRoll(); this.viewDrag?.(); this.endPadDrag(); }
-    else { requestAnimationFrame(() => this.resize()); this.refreshTimer = setInterval(() => void this.refresh(), 4000); }
+    else this.refreshTimer = setInterval(() => void this.refresh(), 4000);
+    if (!inSharedPreview) this.exitFocus(false);
+    this.updateLayers(); this.stage.render();
   }
 }

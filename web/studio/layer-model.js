@@ -13,6 +13,43 @@ export function layerState(layers) {
 export function stateKey(layers) {
   return JSON.stringify(layerState(layers));
 }
+
+export function focusSuppression(layers, keep) {
+  const byId = new Map(layers.map(layer => [layer.id, layer])), shown = new Set(keep);
+  for (const id of keep) {
+    for (let row = byId.get(id); row?.parentId; row = byId.get(row.parentId)) shown.add(row.parentId);
+  }
+  return new Set(layers.filter(row => !row.mask && !shown.has(row.id)).map(row => row.id));
+}
+
+export function revealFocusedLayer(layers, suppressed, id) {
+  const byId = new Map(layers.map(layer => [layer.id, layer]));
+  for (let row = byId.get(id); row; row = byId.get(row.parentId)) suppressed.delete(row.id);
+  if (!byId.get(id)?.group) return;
+  for (const row of layers) {
+    for (let parent = row.parentId; parent; parent = byId.get(parent)?.parentId) {
+      if (parent === id) { suppressed.delete(row.id); break; }
+    }
+  }
+}
+
+// Native layers that are between two animated layers must retain their
+// painter's order. Krita composites each such range with its masks intact.
+export function poseLayerSlices(layers, order) {
+  const chunks = [], visible = layerTree(layers);
+  let pending = [];
+  for (const row of visible.reverse()) {
+    if (!row.visible || row.inheritedHidden || row.mask || row.group) continue;
+    const before = order.get(row.uuid || row.id);
+    if (before === undefined) pending.push(row.id);
+    else if (pending.length) {
+      chunks.push({ ids: pending, order: before - 0.5 });
+      pending = [];
+    }
+  }
+  if (pending.length) chunks.push({ ids: pending, order: order.size ? Math.max(...order.values()) + 0.5 : 0 });
+  return chunks;
+}
 export function layerTree(layers, collapsed = new Set(), query = "") {
   const byId = new Map(layers.map((l) => [l.id, l]));
   const matched = new Set();

@@ -159,6 +159,8 @@
           </div>
           <span class="divider"></span><button id="fit">适应</button
           ><button id="actual">100%</button><span id="zoom">100%</span>
+          <button id="nine-axis-focus" aria-pressed="false" hidden>聚焦头部</button>
+          <label id="nine-axis-focus-layers" class="toggle" hidden><input id="nine-axis-focus-hide" type="checkbox">隐藏关注范围外图层</label>
         </div>
         <div class="viewport" id="drop-zone">
           <canvas id="stage" aria-label="角色光照预览"></canvas>
@@ -200,7 +202,6 @@
             <div class="light-guide">拖动灯位 · Alt + 滚轮调整前后</div>
           </div>
           <div id="nine-axis-view" hidden>
-            <canvas id="nine-axis-canvas" aria-label="头部九轴预览"></canvas>
             <svg id="nine-axis-overlay" width="100%" height="100%"></svg>
             <span id="nine-axis-hud"></span>
           </div>
@@ -305,14 +306,13 @@
               <p id="nine-axis-other-params" class="muted"></p>
             </section>
             <section class="panel">
-              <div class="panel-heading"><h3>变形器</h3><button id="nine-axis-fit">适应</button></div>
+              <div class="panel-heading"><h3>变形器</h3></div>
               <div id="nine-axis-tree" aria-label="变形器"></div>
             </section>
             <section class="panel" id="nine-axis-selection" hidden>
               <h3 id="nine-axis-selected-name"></h3>
               <p id="nine-axis-selected-info" class="muted"></p>
               <label class="toggle"><input id="nine-axis-grid" type="checkbox" checked>显示变形网格</label>
-              <label class="toggle"><input id="nine-axis-isolate" type="checkbox" checked>淡化其他部件</label>
               <div class="nine-param"><span>软选择</span><input id="nine-axis-radius" type="range" min="0" max="160" step="2" value="40"><span id="nine-axis-radius-value">40 px</span></div>
               <p id="nine-axis-edit-hint" class="muted"></p>
               <button id="nine-axis-reset">还原该关键形</button>

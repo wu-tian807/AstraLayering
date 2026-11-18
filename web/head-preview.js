@@ -1,7 +1,7 @@
 import { validateHeadNineAxis, evaluatePoints } from './studio/nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './studio/nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './studio/nine-axis-preview.js';
-import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headPointerPosition } from './head-motion.js';
+import { constrainHeadPoint, headPreviewAngles, headPointerPosition } from './head-motion.js';
 
 // One read-only thumbnail, using the same project selection and renderer as
 // Studio. The workflow's existing refresh supplies new intermediate products.
@@ -11,9 +11,9 @@ export class HeadPreview {
     document.addEventListener('pointermove', event => {
       if (!this.doc || document.hidden || event.pointerType === 'touch') return;
       const pointer = headPointerPosition(event.clientX, event.clientY, innerWidth, innerHeight);
-      this.target = followHeadPointer(pointer, this.target, this.pointer); this.pointer = pointer; this.animate();
+      this.target = constrainHeadPoint(pointer); this.animate();
     }, { passive: true });
-    document.addEventListener('pointerleave', () => { this.pointer = null; this.target = { x: 0, y: 0 }; this.animate(); });
+    document.addEventListener('pointerleave', () => { this.target = { x: 0, y: 0 }; this.animate(); });
     document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(this.frame); this.frame = null; } else this.animate(); });
   }
   async update(element, folder) {
@@ -131,6 +131,6 @@ export class HeadPreview {
     cancelAnimationFrame(this.frame); this.frame = null; this.observer?.disconnect();
     this.renderer?.clear(); this.renderer?.renderer.dispose(); this.renderer = null;
     this.images?.forEach(image => image.close()); this.images = null; this.doc = null; this.version = null; this.size = null; this.view = null;
-    this.available = false; this.modes = []; this.pointer = null; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
+    this.available = false; this.modes = []; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
   }
 }

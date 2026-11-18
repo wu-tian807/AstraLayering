@@ -346,15 +346,19 @@ export function headRollLimit(doc) {
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
   const local = [preparedWarp(node, keyformAt(node, x, y))], samples = refine(lattice(node), node.cols, node.rows, subdivision), out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
   for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
-  if (z && Number.isFinite(z) && doc.headRoll?.parts.includes(node.id)) {
-    const [cx, cy] = doc.headRoll.pivot, limit = headRollLimit(doc);
-    const angle = Math.max(-limit, Math.min(limit, z)) * Math.PI / 180;
-    const cos = Math.cos(angle), sin = Math.sin(angle);
-    for (let i = 0; i < out.length; i += 2) {
-      const dx = out[i] - cx, dy = out[i + 1] - cy;
-      out[i] = cx + cos * dx - sin * dy;
-      out[i + 1] = cy + sin * dx + cos * dy;
-    }
+  return rollEvaluatedPoints(doc, node, out, z);
+}
+
+// Roll the final X/Y pose around the neck contact without changing the input.
+export function rollEvaluatedPoints(doc, node, points, z) {
+  if (!z || !Number.isFinite(z) || !doc.headRoll?.parts.includes(node.id)) return points;
+  const [cx, cy] = doc.headRoll.pivot, limit = headRollLimit(doc);
+  const angle = Math.max(-limit, Math.min(limit, z)) * Math.PI / 180;
+  const cos = Math.cos(angle), sin = Math.sin(angle), out = new Float32Array(points.length);
+  for (let i = 0; i < points.length; i += 2) {
+    const dx = points[i] - cx, dy = points[i + 1] - cy;
+    out[i] = cx + cos * dx - sin * dy;
+    out[i + 1] = cy + sin * dx + cos * dy;
   }
   return out;
 }
