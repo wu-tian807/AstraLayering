@@ -241,7 +241,7 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
   const root = '/task';
   const hasPaths = (prompt: string, paths: string[]) => {
     for (const path of paths) assert.ok(prompt.includes(join(root, 'nine-axis', path)), path);
-    assert.doesNotMatch(prompt, /\{(?:uri:|reference:|group_id\})/);
+    assert.doesNotMatch(prompt, /\{(?:uri:|reference:|[a-z][a-z0-9_]*\})/);
   };
 
   const axis = stepKnowledge('nine-axis', 'step04_angles');
@@ -272,7 +272,6 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
   hasPaths(angleXYPrompt(root), ['step04_angles/model/deformers.json', 'step06_angle-xy/linear.json']);
   hasPaths(viewFramesPrompt(root), ['step02_video/left.mp4', 'step02_video/up.mp4', 'step02_video/down.mp4']);
   hasPaths(cornerFramesPrompt(root), ['step04_angles/video/left-up.mp4', 'step04_angles/video/left-down.mp4']);
-  assert.ok(viewFramesPrompt(root).includes(stepKnowledge('nine-axis', 'step02_video').reference('angles.json')));
 });
 
 test('完整脸部流程后只制作前发首轮，保留头发步骤等待同一会话的下一轮', { timeout: 30_000 }, async t => {

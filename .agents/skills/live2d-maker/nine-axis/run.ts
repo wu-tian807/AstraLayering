@@ -5,7 +5,7 @@ import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promis
 import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { renderKnowledge, selectKnowledge, stepKnowledge, type KnowledgeRole } from '../shared/knowledge.ts';
+import { renderKnowledge, selectKnowledge, stepKnowledge, type KnowledgeRole, type KnowledgeValues } from '../shared/knowledge.ts';
 import { runSection, stepName } from '../shared/step-section.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { AgentDispatcher, type AgentResult, type AgentTask } from '../shared/agents/dispatcher.ts';
@@ -25,7 +25,7 @@ import { buildAngleXY, checkCornerReferences, corners, finishAngleXY, writeLinea
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
-import { headPitchDirections, headPitchStage, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
+import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
 import { finishHeadRoll } from './head-roll.ts';
 import { HEAD_ROLL_LIMIT } from '../shared/nine-axis-model.js';
 import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
@@ -34,7 +34,7 @@ import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
 import { readUpstream } from './continuation.ts';
-import { angleScale } from './angles.ts';
+import { angleScale, angleValues } from './angles.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
@@ -83,26 +83,29 @@ export const videoPrompt = (view?: ViewY) => stepKnowledge('nine-axis', 'step02_
 export const videoPrompts = (): VideoPrompts => ({ turn: videoPrompt(), ...Object.fromEntries(viewsY.map(view => [view, videoPrompt(view)])) as Record<ViewY, string> });
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
-const stepPrompt = (step: string, taskRoot: string, group?: string) =>
-  stepKnowledge('nine-axis', step).render('main', group === undefined ? {} : { group_id: group }, { taskRoot, group }).trim();
+const stepPrompt = (step: string, taskRoot: string, { group, values = {} }: { group?: string; values?: KnowledgeValues } = {}) =>
+  stepKnowledge('nine-axis', step).render('main', group === undefined ? values : { ...values, group_id: group }, { taskRoot, group }).trim();
 
-export const axisPrompt = (taskRoot: string, group: AxisGroup) => stepPrompt('step04_angles', taskRoot, group);
-export const outlinePrompt = (taskRoot: string, group: AxisGroup | Corner) => stepPrompt('step04_outline', taskRoot, group);
-export const viewFramesPrompt = (taskRoot: string) => stepPrompt('step03_frames', taskRoot);
-export const cornerFramesPrompt = (taskRoot: string) => stepPrompt('step05_frames', taskRoot);
-export const angleXYPrompt = (taskRoot: string) => stepPrompt('step06_angle-xy', taskRoot);
-export const jawLinePrompt = (taskRoot: string) => stepPrompt('step07_jaw-line', taskRoot);
-export const accessoriesPrompt = (taskRoot: string) => stepPrompt('step09_head-accessories', taskRoot);
-export const headPitchPrompt = (taskRoot: string, direction: HeadPitchDirection) => stepPrompt('step10_head-pitch', taskRoot, direction);
-export const headCornersPrompt = (taskRoot: string) => stepPrompt('step11_head-angle-xy', taskRoot);
+export const axisPrompt = (taskRoot: string, group: AxisGroup) => stepPrompt('step04_angles', taskRoot, { group, values: angleValues() });
+export const outlinePrompt = (taskRoot: string, group: AxisGroup | Corner) => stepPrompt('step04_outline', taskRoot, { group });
+export const viewFramesPrompt = (taskRoot: string) => stepPrompt('step03_frames', taskRoot, { values: angleValues() });
+export const cornerFramesPrompt = (taskRoot: string) => stepPrompt('step05_frames', taskRoot, { values: angleValues() });
+export const angleXYPrompt = (taskRoot: string) => stepPrompt('step06_angle-xy', taskRoot, { values: angleValues() });
+export const jawLinePrompt = (taskRoot: string) => stepPrompt('step07_jaw-line', taskRoot, { values: angleValues() });
+export const accessoriesPrompt = (taskRoot: string) => stepPrompt('step09_head-accessories', taskRoot, { values: angleValues() });
+export const headPitchPrompt = (taskRoot: string, group: HeadPitchDirection) => stepPrompt('step10_head-pitch', taskRoot, {
+  group, values: { target_angle: String(headPitchAngle(group, angleScale())) },
+});
+export const headCornersPrompt = (taskRoot: string) => stepPrompt('step11_head-angle-xy', taskRoot, { values: angleValues() });
 
 export const hairPrompt = (taskRoot: string, round: HairRound = 'front') => {
   // Only the first round uses the step initial. Later rounds keep the same
   // workspace and thread and receive the file selected by workflow progress.
-  if (round === 'front') return stepPrompt('step08_hair', taskRoot);
+  const values = angleValues();
+  if (round === 'front') return stepPrompt('step08_hair', taskRoot, { values });
   const knowledge = stepKnowledge('nine-axis', 'step08_hair');
   return renderKnowledge(readFileSync(join(knowledge.directory, 'prompts', `${hairRoundLabel(round)}制作.md`), 'utf8'),
-    {}, { taskRoot, section: 'nine-axis' }).trim();
+    values, { taskRoot, section: 'nine-axis' }).trim();
 };
 
 type Agents = Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>;
