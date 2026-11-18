@@ -578,6 +578,35 @@ test('focus camera interpolates and reaches the exact restore target', async () 
   assert.equal(panel.cameraMove, null);
 });
 
+test('the fit control restores its default action when the head preview closes', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const fit = { textContent: '适应', setAttribute() {}, removeAttribute() {} };
+  const hide = { hidden: true };
+  const elements: Record<string, object> = { '#fit': fit, '#nine-axis-focus-layers': hide };
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  Object.defineProperty(globalThis, 'document', { configurable: true, value: {
+    querySelector: (selector: string) => elements[selector] ?? {},
+  } });
+  t.after(() => {
+    if (previous) Object.defineProperty(globalThis, 'document', previous);
+    else Reflect.deleteProperty(globalThis, 'document');
+  });
+  const panel = Object.create(HeadNineAxisPanel.prototype);
+  const stage = { source: {}, zoom: 2, pan: [.1, .2], render() {} };
+  const layers = { session: 'fixture', focus: new Set(['body']) as Set<string> | null, setFocus(keep: null) { this.focus = keep; } };
+  Object.assign(panel, { active: true, inSharedPreview: true, doc: {}, stage, layers, rollKeys: new Set(),
+    focus: { home: { zoom: 1, pan: [0, 0] } }, updateLayers: () => panel.syncFocus() });
+  panel.syncFocus();
+  assert.equal(fit.textContent, '退出聚焦');
+  assert.equal(hide.hidden, false);
+  panel.activate(false, true);
+  assert.equal(panel.canFocus, false);
+  assert.equal(fit.textContent, '适应');
+  assert.equal(hide.hidden, true);
+  assert.equal(layers.focus, null);
+  assert.deepEqual([stage.zoom, stage.pan], [1, [0, 0]]);
+});
+
 test('focus hides only in preview, and eye edits made while focused survive restoring the view', async () => {
   const { LayerPanel } = await import(new URL('../studio/layer-panel.js', import.meta.url).href);
   const panel = Object.create(LayerPanel.prototype);

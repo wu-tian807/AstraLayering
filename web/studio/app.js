@@ -520,6 +520,10 @@ $("#drop-zone").addEventListener(
   { passive: false },
 );
 $("#fit").onclick = () => {
+  if (nineAxis?.canFocus) {
+    nineAxis.toggleFocus();
+    return;
+  }
   nineAxis?.interruptCamera();
   stage.zoom = 1;
   stage.pan = [0, 0];

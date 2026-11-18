@@ -55,7 +55,6 @@ export class HeadNineAxisPanel {
     $('#nine-axis-reset').onclick = () => this.resetKeyform();
     $('#nine-axis-restore').onclick = () => this.project && void this.load(this.project, true);
     $('#nine-axis-save').onclick = () => void this.save();
-    $('#nine-axis-focus').onclick = () => this.toggleFocus();
     $('#nine-axis-focus-hide').onchange = e => this.layers.setFocus(e.target.checked ? this.focus?.keep : null);
     this.view.addEventListener('pointerdown', e => this.pointerDown(e));
     this.view.addEventListener('pointermove', e => this.trackPointer(e), { passive: true });
@@ -418,18 +417,18 @@ export class HeadNineAxisPanel {
     });
     this.draw();
   }
+  get canFocus() { return this.active && !!this.doc && !!this.stage.source; }
   syncFocus() {
-    const button = $('#nine-axis-focus');
-    button.hidden = !this.inSharedPreview || !this.doc;
-    button.disabled = !this.stage.source;
-    button.textContent = this.focus ? '退出聚焦' : this.selected ? '聚焦选中部件' : '聚焦头部';
-    button.setAttribute('aria-pressed', String(!!this.focus));
-    $('#nine-axis-focus-layers').hidden = button.hidden || !this.focus || !this.layers.session;
+    const button = $('#fit'), canFocus = this.canFocus;
+    button.textContent = canFocus ? (this.focus ? '退出聚焦' : this.selected ? '聚焦选中部件' : '聚焦头部') : '适应';
+    if (canFocus) button.setAttribute('aria-pressed', String(!!this.focus));
+    else button.removeAttribute('aria-pressed');
+    $('#nine-axis-focus-layers').hidden = !canFocus || !this.focus || !this.layers.session;
     $('#nine-axis-focus-hide').checked = !!this.layers.focus;
   }
   toggleFocus() {
+    if (!this.canFocus) return;
     if (this.focus) { this.exitFocus(); return; }
-    if (!this.doc || !this.stage.source) return;
     const selected = this.selected ? descendants(this.doc, this.selected) : this.mode.scope;
     const parts = this.doc.parts.filter(part => selected.has(part.id) && (this.selected || authoredPreviewPart(part)));
     const keep = new Set(parts.flatMap(part => [part.uuid, ...(part.clip?.by ?? []).map(id => this.doc.parts.find(p => p.id === id)?.uuid)]).filter(Boolean));
@@ -595,9 +594,10 @@ export class HeadNineAxisPanel {
     this.active = on; this.inSharedPreview = inSharedPreview;
     $('#nine-axis-view').hidden = !on;
     clearInterval(this.refreshTimer);
-    if (!on) { this.resetPointerFollow(); this.stopKeyboardRoll(); this.viewDrag?.(); this.endPadDrag(); }
-    else this.refreshTimer = setInterval(() => void this.refresh(), 4000);
-    if (!inSharedPreview) this.exitFocus(false);
+    if (!on) {
+      this.resetPointerFollow(); this.stopKeyboardRoll(); this.viewDrag?.(); this.endPadDrag();
+      this.exitFocus(false);
+    } else this.refreshTimer = setInterval(() => void this.refresh(), 4000);
     this.updateLayers(); this.stage.render();
   }
 }
