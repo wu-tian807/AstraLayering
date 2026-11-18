@@ -73,14 +73,12 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
   const effective = Object.fromEntries(Object.entries(configurationSources(file,env,runtimeDefaults).effective).filter((entry): entry is [string, string] => entry[1] !== undefined));
   delete effective.codex_path;
   delete effective.layering_codex_path;
+  delete effective.agv_patch;
+  delete effective.agv_unlimited_response_header_timeout;
   const get = (name: string) => effective[name]?.trim();
   const selected=(name:string)=>sources.effective[name]?.trim();
   const flag = get('custom_provider');
   if (flag && !['true', 'false', '1', '0'].includes(flag)) throw new Error('custom_provider 只能为 true 或 false。');
-  if (get('agv_patch')) throw new Error('agv_patch 已改名为 agv_unlimited_response_header_timeout，请在 .env 中改用新名称。');
-  const agvPatch = get('agv_unlimited_response_header_timeout');
-  if (agvPatch && !['true', 'false'].includes(agvPatch)) throw new Error('agv_unlimited_response_header_timeout 只能为 true 或 false。');
-  if (agvPatch) effective.agv_unlimited_response_header_timeout = agvPatch;
   // Normalized here so a bad value fails before any section starts.
   effective[kritaLimitKey] = String(kritaLimit(effective, defaults));
   const config: NonNullable<CodexOptions['config']> = {};

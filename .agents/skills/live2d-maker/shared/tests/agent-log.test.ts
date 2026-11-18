@@ -27,7 +27,7 @@ test('concurrent agents and raster steps write the same task log, retaining inde
   }
 });
 
-test('native diagnostics reach workflow.log and an ignored update switch reports a failure', async t => {
+test('native diagnostics reach workflow.log without treating an updater notice as a failure', async t => {
   const root = await mkdtemp(join(tmpdir(), 'layering-native-log-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const log = await AgentLog.create(join(root, 'clothing-part-layering/agents'), '衣服返修', {});
@@ -36,7 +36,8 @@ test('native diagnostics reach workflow.log and an ignored update switch reports
   await followNativeLog(native, log, message => errors.push(message)).close();
   const text = await readFile(join(root, 'workflow.log'), 'utf8');
   assert.match(text, /timeout awaiting response headers/);
-  assert.equal(errors.length, 1); assert.match(errors[0], /禁用自动更新未生效/);
+  assert.match(text, /Spawned background update process/);
+  assert.deepEqual(errors, []);
   await assert.rejects(readFile(native), { code: 'ENOENT' });
 });
 
