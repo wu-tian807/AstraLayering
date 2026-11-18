@@ -24,7 +24,7 @@
     "nine-axis": "node nine-axis/run.ts"
   },
   "dependencies": {
-    "@openai/codex-sdk": "0.161.0",
+    "@openai/codex-sdk": "0.170.0",
     "@xmldom/xmldom": "0.9.12",
     "cross-spawn": "7.0.6",
     "fflate": "0.8.2",

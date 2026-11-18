@@ -11,7 +11,7 @@ import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 import { runCommand, watchOutput, type Command } from './process.ts';
 import { withRust } from './rust.ts';
 
-export const codexCommit = '979011409de0a60b52f179721948e65531d26144';
+export const codexCommit = '29eb79e9866b3262a777fdf8195c1b9e63684c91';
 // building: called once before waiting for or running a build, which can take many minutes.
 type Options = { source?: string; jobs?: number; root?: string; env?: NodeJS.ProcessEnv; progress?: (message: string) => void; building?: () => void };
 type Services = { run?: Command; rust?: typeof withRust; companion?: () => string; platform?: NodeJS.Platform };
@@ -36,7 +36,7 @@ async function missingToolchain(run: Command, env: NodeJS.ProcessEnv, platform: 
   if (platform === 'win32') {
     // Cargo finds MSVC through the Visual Studio installer even when cl.exe is not on PATH.
     const vswhere = join(env['ProgramFiles(x86)'] ?? 'C:\\Program Files (x86)', 'Microsoft Visual Studio', 'Installer', 'vswhere.exe');
-    const installed = await run(vswhere, ['-latest', '-products', '*', '-requires', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', '-property', 'installationPath'], { env })
+    const installed = await run(vswhere, ['-latest', '-prerelease', '-products', '*', '-requires', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', '-property', 'installationPath'], { env })
       .then(path => !!path.trim(), () => false);
     return installed || await works('cl', []) ? undefined : '未找到 MSVC（cl.exe）';
   }
@@ -126,7 +126,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
       else {
         const stage = join(root, 'source-clone');
         await rm(stage, { recursive: true, force: true });
-        await exec('git', ['clone', '--progress', '--no-checkout', '--depth', '1', '--branch', 'rust-v0.161.0',
+        await exec('git', ['clone', '--progress', '--no-checkout', '--depth', '1', '--branch', 'rust-v0.170.0',
           'https://github.com/openai/codex.git', stage], root, watchOutput('下载 Codex 源码', progress, log));
         await exec('git', ['checkout', '--progress', '--detach', codexCommit], stage, watchOutput('检出 Codex 源码', progress, log));
         await rename(stage, source);
@@ -158,8 +158,12 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     } else if (!(await readFile(stamp)).equals(bytes)) throw new Error('补丁缓存不一致；未覆盖现有源码。');
     await (services.rust ?? withRust)(env, async toolchain => {
       const start = await stat(log).then(info => info.size, () => 0);
+      // Cargo’s bundled Git can fail on the deeply nested V8 submodules on Windows.
+      const buildEnv = platform === 'win32'
+        ? pinnedGit({ ...toolchain.env, CARGO_NET_GIT_FETCH_WITH_CLI: 'true' })
+        : toolchain.env;
       await run(toolchain.cargo, [...toolchain.prefix, 'build', '-p', 'codex-cli', '--bin', 'codex', '--profile', 'dev-small',
-        '--jobs', String(jobs), '--target-dir', join(root, 'target')], { cwd: join(source, 'codex-rs'), env: toolchain.env, log,
+        '--jobs', String(jobs), '--target-dir', join(root, 'target')], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
         ...watchOutput('编译 Codex 补丁', progress, log, { every: 30_000 }) })
         .catch(async error => {
           const found = await missingToolInLog(log, start);

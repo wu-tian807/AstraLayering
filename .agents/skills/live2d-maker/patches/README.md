@@ -44,7 +44,9 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ## 原生 Codex 补丁
 
-固定官方 `rust-v0.161.0`，提交 `979011409de0a60b52f179721948e65531d26144`。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
+固定官方 `rust-v0.170.0`，提交 `29eb79e9866b3262a777fdf8195c1b9e63684c91`。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
+
+构建目标为 Codex CLI。Code Mode Host 来自同版本官方 SDK 随附的二进制，构建工作区无需再次编译 Host 或下载它专用的 V8 源码。
 
 ### 补丁入口与缓存校验
 

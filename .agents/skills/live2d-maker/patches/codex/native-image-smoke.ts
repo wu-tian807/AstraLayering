@@ -4,13 +4,14 @@ import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { parseArgs } from 'node:util';
 import sharp from 'sharp';
 import { AgentDispatcher } from '../../shared/agents/dispatcher.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { stepKnowledge } from '../../shared/knowledge.ts';
 import { textResult } from '../../shared/codex/function-tools.ts';
+import { toolDefinition } from '../../shared/codex/tool-config.ts';
 import { readDefaultConfiguration } from '../../shared/default-configuration.ts';
 
 const { values } = parseArgs({ options: { codex: { type: 'string' }, case: { type: 'string' } } });
@@ -18,8 +19,12 @@ if (!values.codex) throw new Error('请用 --codex 指定构建返回的实际�
 if (values.case && !['disabled', 'repair', 'openai', 'gemini'].includes(values.case)) throw new Error('--case 必须为 disabled、repair、openai 或 gemini');
 const root = await mkdtemp(join(tmpdir(), 'layering-native-image-smoke-'));
 const png = await sharp({ create: { width: 32, height: 48, channels: 4, background: '#d1479580' } }).png().toBuffer();
-const nanoPng = await sharp({ create: { width: 32, height: 48, channels: 3, background: '#09f20a' } })
-  .composite([{ input: Buffer.from('<svg width="32" height="48"><rect x="8" y="8" width="16" height="32" fill="#414141"/></svg>') }]).png().toBuffer();
+function nanoObservation(background: string) {
+  return sharp({ create: { width: 32, height: 48, channels: 3, background } })
+    .composite([{ input: Buffer.from('<svg width="32" height="48"><rect x="8" y="8" width="16" height="32" fill="#414141"/></svg>') }]).png().toBuffer();
+}
+const nanoPng = await nanoObservation('#00ff00');
+const counterpartPng = await nanoObservation('#ffffff');
 const picture = join(root, 'input.png'); await writeFile(picture, png);
 let turn = 0, generation = 0, protocol = 'openai';
 const imageCalls: string[] = [];
@@ -65,11 +70,18 @@ const server = createServer(async (req, res) => {
       assert.equal(req.url, '/images/v1beta/models/gemini-nano-banana-2.1:generateContent');
       assert.equal(req.headers['x-goog-api-key'], 'image-fixture');
       const parts = JSON.parse(bytes.toString()).contents[0].parts;
-      assert.ok(parts[0].text.startsWith('Original image prompt\n\n'));
-      assert.match(parts[0].text, /背景使用高纯度纯色 #00FF00/);
-      assert.equal(parts.length, generation ? 2 : 1);
-      if (generation) assert.deepEqual(Buffer.from(parts[1].inlineData.data, 'base64'), png);
-      res.end(JSON.stringify({ candidates: [{ content: { parts: [{ inlineData: { data: nanoPng.toString('base64') } }] } }] }));
+      const replacingBackground = generation % 2 === 1;
+      const references = parts.slice(1).map((part: { inlineData: { data: string } }) => Buffer.from(part.inlineData.data, 'base64'));
+      if (replacingBackground) {
+        assert.deepEqual(references, [nanoPng]);
+        assert.match(parts[0].text, /#FFFFFF/i);
+      } else {
+        assert.ok(parts[0].text.replaceAll('\r\n', '\n').startsWith('Original image prompt\n\n'));
+        assert.match(parts[0].text, /#00FF00/i);
+        assert.deepEqual(references, generation ? [png] : []);
+      }
+      const image = replacingBackground ? counterpartPng : nanoPng;
+      res.end(JSON.stringify({ candidates: [{ content: { parts: [{ inlineData: { data: image.toString('base64') } }] } }] }));
     } else {
       assert.equal(req.headers.authorization, 'Bearer image-fixture');
       if (generation) {
@@ -108,7 +120,11 @@ try {
         let painted = 0;
         const knowledge = stepKnowledge('raster-layering', 'step01');
         const tools = [{ name: 'krita', description: 'Local drawing fixture.', inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-          execute: async () => { painted++; return textResult('painted'); } }];
+          execute: async () => { painted++; return textResult('painted'); } },
+          ...['edit_groups', 'edit_occlusion'].map(name => ({
+            ...toolDefinition(name),
+            execute: async () => assert.fail('unexpected tool invocation: ' + name),
+          }))];
         const task = { name: 'drawing fixture', prompt: 'Use Krita, then finish.', timeoutMs: 30_000 };
         const first = await session.run({ ...task, step: 'raster_step01', tools: knowledge.tools('main', tools) });
         assert.ok(first.threadId);
@@ -139,9 +155,10 @@ try {
       }
       const result = await session.run({ step: 'part_simplify', name: 'native fixture', prompt: 'Run the simulated image fixture.',
         imageGeneration: true, timeoutMs: 90_000 });
-      assert.equal(generation, 2); assert.equal(result.images.length, 2);
+      assert.equal(generation, protocol === 'gemini' ? 4 : 2); assert.equal(result.images.length, 2);
       for (const image of result.images) {
-        assert.ok(image.savedPath.startsWith(join(directory, 'step05_simplified/workspace/generated') + '/'));
+        const output = relative(join(directory, 'step05_simplified/workspace/generated'), image.savedPath);
+        assert.ok(output && !isAbsolute(output) && output.split(sep)[0] !== '..');
         assert.equal((await sharp(image.savedPath).metadata()).hasAlpha, true);
         if (protocol === 'openai') assert.deepEqual(await sharp(image.savedPath).raw().toBuffer(), await sharp(png).raw().toBuffer());
         else {
@@ -156,4 +173,4 @@ try {
       console.log(JSON.stringify({ protocol, passed: true, images: result.images.length, resumed: true, imageCalls }));
     } finally { await session.close(); }
   }
-} finally { server.closeAllConnections(); await new Promise<void>(done => server.close(() => done())); await rm(root, { recursive: true, force: true }); }
+} finally { server.closeAllConnections(); await new Promise<void>(done => server.close(() => done())); await rm(root, { recursive: true, force: true, maxRetries: 6, retryDelay: 150 }); }
