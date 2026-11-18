@@ -180,6 +180,7 @@ const live = new Set<SectionKrita>();
 export const kritaRecordFile = 'krita.json';
 
 export type SectionKritaOptions = { section: string; krita: string; env?: NodeJS.ProcessEnv; record?: string; readyTimeoutMs?: number;
+  plugin?: { module: string; source: string };
   // Where the machine-wide slot locks live (tests).
   slotsDirectory?: string };
 
@@ -304,11 +305,12 @@ export class SectionKrita {
     const bridge = join(root, 'bridge');
     let displayName: string | undefined, running: Running | undefined;
     try {
-      const { resource, env: privateEnv } = await preparePrivateKrita(root, 'astra_bridge', bridgePlugin, inherited);
+      const { module, source } = this.options.plugin ?? { module: 'astra_bridge', source: bridgePlugin };
+      const { resource, env: privateEnv } = await preparePrivateKrita(root, module, source, inherited);
       const env: NodeJS.ProcessEnv = { ...privateEnv, ASTRA_KRITA_BRIDGE: bridge };
       let executable = krita;
       if (process.platform === 'win32') {
-        await ensureWindowsKritaPlugin(await windowsKritaConfigDirectory(), 'astra_bridge');
+        await ensureWindowsKritaPlugin(await windowsKritaConfigDirectory(), module);
         executable = await prepareWindowsKritaApplication(root, krita, resource);
         // Windows Qt reads native Known Folders. Keep the real user preferences;
         // plugin code, resources and bridge jobs remain section-private.

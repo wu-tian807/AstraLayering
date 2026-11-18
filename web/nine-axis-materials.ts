@@ -18,8 +18,8 @@ export class NineAxisMaterials {
   private snapshots = new Map<string, { root: string; built: MaterialBuilt }>();
   private resolvers = new Map<string, KraMaterials>();
   private closed = false;
-  private executable: (root: string) => Promise<string>;
-  constructor(executable: (root: string) => Promise<string>) { this.executable = executable; }
+  private readonly executable: () => string | undefined;
+  constructor(executable: () => string | undefined) { this.executable = executable; }
   async get(root: string, path: string) {
     if (this.closed) throw Error('九轴预览已关闭');
     if (!nineAxisDeformerPaths.has(path)) throw Error('只能预览已知的九轴模型');
@@ -36,8 +36,9 @@ export class NineAxisMaterials {
       // The material cache is checked before acquiring a Krita slot. Serialize
       // exports so concurrent tabs never launch competing private processes.
       const operation = this.queue.catch(() => {}).then(async () => {
-        const executable = await this.executable(root);
         if (this.closed) throw Error('九轴预览已关闭');
+        const executable = this.executable();
+        if (!executable) throw Error('请先在全局设置中选择 Krita');
         const instance = new SectionKrita({ section: join(root, '.cache/nine-axis-preview'), krita: executable });
         this.instances.add(instance);
         try { return await nativeMaterialExport(async () => instance)(...args); }

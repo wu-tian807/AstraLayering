@@ -77,4 +77,4 @@ Linux 使用当前显示环境；无桌面时安装 Xvfb，程序启动共享虚
 
 ## 按需功能
 
-[模型与生图配置](model-presets.md) · [网页原生图层配置](../../../../web/README.md#原生合成服务配置linux) · [工作台、巡检与恢复](../workflow/README.md)
+[模型与生图配置](model-presets.md) · [网页原生图层配置](../../../../web/README.md#原生合成服务配置) · [工作台、巡检与恢复](../workflow/README.md)

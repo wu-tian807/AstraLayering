@@ -174,14 +174,11 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
     }
     return { directory, default: settings.directory, projects };
   }
-  const compositor = new LayerCompositor(root);
+  const studioKrita = () => settings.krita;
+  const compositor = new LayerCompositor(studioKrita);
   const thumbnails = new SVGThumbnails();
   const kraPreviews = new KRAPreviews();
-  const nineMaterials = new NineAxisMaterials(async directory => {
-    const saved = await readRun(directory), executable = saved?.krita || settings.krita || process.env.ASTRA_STUDIO_KRITA;
-    if (!executable) throw Error('从 KRA 生成九轴预览需要配置 Krita');
-    return executable;
-  });
+  const nineMaterials = new NineAxisMaterials(studioKrita);
   const server = createServer(async (request, response) => {
     const url = new URL(request.url ?? '/', 'http://localhost'), path = url.pathname;
     const requestDir = settings.directory;
@@ -198,7 +195,11 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         if (path.startsWith('/api/studio/layers/')) {
           if (path === '/api/studio/layers/open') {
-            const document = await compositor.create(request, url.searchParams.get('format') ?? '');
+            const opening = new AbortController();
+            const cancel = () => opening.abort(new Error('已取消打开图层'));
+            response.once('close', cancel);
+            const document = await compositor.create(request, url.searchParams.get('format') ?? '', opening.signal)
+              .finally(() => response.off('close', cancel));
             if (response.destroyed) { await compositor.closeDocument(document.session); return; }
             response.once('close', () => {
               if (!response.writableFinished) void compositor.closeDocument(document.session).catch(() => {});

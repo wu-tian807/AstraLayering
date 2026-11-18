@@ -148,7 +148,7 @@ export class LayerPanel {
       );
       if (epoch !== this.epoch) return;
       if (!availability.available)
-        throw Error("图层只读 · 未配置 Krita 合成服务");
+        throw Error("图层只读 · 请在全局设置中选择 Krita");
       const r = await fetch(
         "./api/studio/layers/open?format=" +
           owner.name.split(".").at(-1).toLowerCase(),
