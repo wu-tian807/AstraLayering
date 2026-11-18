@@ -927,14 +927,8 @@ function bind() {
  document.querySelectorAll('[data-section-toggle]').forEach(b=>b.onclick=()=>toggle(state.collapsedSections,Number(b.dataset.sectionToggle)));
  document.querySelectorAll('[data-step-toggle]').forEach(b=>b.onclick=()=>toggle(state.collapsedSteps,b.dataset.stepToggle));
  document.querySelectorAll('[data-phase-toggle]').forEach(b=>b.onclick=()=>toggle(state.collapsedPhases,b.dataset.phaseToggle));
- const revealGroup=index=>{
-  const viewport=document.querySelector('.flow-scroll'),node=document.querySelector(`[data-node="${index}:layers"]`);
-  const bounds=node.getBoundingClientRect(),view=viewport.getBoundingClientRect();
-  viewport.scrollLeft+=bounds.left-view.left-20;
-  const [min,max]=laneRange();viewport.scrollTop=Math.min(max,Math.max(min,viewport.scrollTop+bounds.top-view.top-20));
- };
- document.querySelectorAll('[data-tree-group]').forEach(b=>b.onclick=()=>{const index=b.dataset.treeStage;groupViews[index].selected=b.dataset.treeGroup;state.inspect=false;render();revealGroup(index);});
- document.querySelectorAll('[data-group-toggle]').forEach(b=>b.onclick=()=>{const index=b.dataset.groupToggle;groupViews[index].open=!groupViews[index].open;render();if(groupViews[index].open)revealGroup(index);});
+ document.querySelectorAll('[data-tree-group]').forEach(b=>b.onclick=()=>{const index=b.dataset.treeStage;groupViews[index].selected=b.dataset.treeGroup;state.inspect=false;render();});
+ document.querySelectorAll('[data-group-toggle]').forEach(b=>b.onclick=()=>{const index=b.dataset.groupToggle;groupViews[index].open=!groupViews[index].open;render();});
  document.querySelectorAll('[data-tree-expand]').forEach(b=>b.onclick=()=>{const view=groupViews[b.dataset.treeStage],id=b.dataset.treeExpand;view.expanded.has(id)?view.expanded.delete(id):view.expanded.add(id);render();});
  document.querySelectorAll('[data-expand-all]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.expandAll),view=groupViews[i];view.depth=-1;view.search='';view.expanded=new Set(flat(sectionTree(i)).filter(node=>node.groups?.length).map(node=>node.id));render();});
  document.querySelectorAll('[data-tree-depth]').forEach(select=>select.onchange=()=>{groupViews[select.dataset.treeDepth].depth=Number(select.value);render();});

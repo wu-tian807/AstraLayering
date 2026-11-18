@@ -58,6 +58,50 @@ test('flow preview retains the right edge, manual zoom and a middle position acr
     assert.deepEqual(errors, []);
   });
 
+test('selecting a part and expanding its group details preserve the flow viewport', { timeout: 20_000 }, async t => {
+  const root = await mkdtemp(join(tmpdir(), 'part-viewport-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const section = join(root, 'case/part-layering');
+  await mkdir(section, { recursive: true });
+  await writeFile(join(section, 'groups.json'), JSON.stringify({ groups: [{ id: 'face', groups: [
+    { id: 'face/upper_lip', kind: 'part', groups: [] },
+  ] }] }));
+  const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
+  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
+  const browser = await chromium.launch({ headless: true }).catch(error => {
+    if (!String(error).includes("Executable doesn't exist")) throw error;
+    t.skip('Install the Playwright Chromium browser to run viewport checks.'); return null;
+  });
+  if (!browser) return;
+  t.after(() => browser.close());
+  const page = await browser.newPage({ viewport: { width: 1500, height: 950 } });
+  await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
+  await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview`);
+  const viewport = page.locator('.flow-scroll'), card = viewport.locator('[data-node="0:layers"]');
+  const expandTree = card.locator('[data-tree-expand="face"]');
+  await expandTree.waitFor({ timeout: 5000 });
+  const initial = await viewport.evaluate(element => {
+    const card = element.querySelector('[data-node="0:layers"]')!;
+    element.scrollLeft += card.getBoundingClientRect().left - element.getBoundingClientRect().left - 160;
+    return element.scrollLeft;
+  });
+  assert.ok(initial > 0);
+  const assertPosition = async () => assert.ok(Math.abs(await viewport.evaluate(el => el.scrollLeft) - initial) < 2);
+  await expandTree.click();
+  assert.equal(await expandTree.getAttribute('aria-expanded'), 'false');
+  await expandTree.click();
+  assert.equal(await expandTree.getAttribute('aria-expanded'), 'true');
+  await assertPosition();
+  await card.locator('[data-tree-group="face/upper_lip"]').click();
+  assert.equal(await card.locator('.cycle-context b').textContent(), 'face/upper_lip');
+  await assertPosition();
+  const toggleDetails = card.locator('.cycle-context [data-group-toggle]');
+  await toggleDetails.click();
+  assert.equal(await toggleDetails.getAttribute('aria-expanded'), 'true');
+  await assertPosition();
+});
+
 test('nine-axis branches show flat task rows with one workbench entry and accessible outputs', { timeout: 20_000 }, async t => {
   const root = await mkdtemp(join(tmpdir(), 'nine-axis-layout-'));
   t.after(() => rm(root, { recursive: true, force: true }));
