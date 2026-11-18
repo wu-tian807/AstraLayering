@@ -1014,7 +1014,7 @@ canvas.disturb { cursor: crosshair; }
 .nine-points.editable circle:hover { fill: #ffcf5a; }
 #nine-axis-hud { position: absolute; left: 10px; top: 8px; padding: 3px 7px; border-radius: 4px; background: #000a; color: #cfe3ff; font-variant-numeric: tabular-nums; pointer-events: none; }
 .nine-levels { display: grid; grid-template-columns: repeat(3,1fr); }
-.nine-levels button.active, #nine-axis-keys button.active, #nine-axis-keys-y button.active, #nine-axis-keys-xy button.active { background: #414b66; border-color: #596e97; }
+.nine-levels button.active, .nine-keys button.active { background: #414b66; border-color: #596e97; }
 .nine-param { display: grid; grid-template-columns: 48px 1fr 64px; gap: 6px; align-items: center; margin: 6px 0; }
 .nine-angle-number { grid-template-columns: 48px minmax(0, 1fr); }
 .nine-angle-number input { width: 100%; min-width: 0; font-variant-numeric: tabular-nums; }
@@ -1039,8 +1039,8 @@ canvas.disturb { cursor: crosshair; }
 #nine-axis-pad-handle { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; border: 2px solid #e4f3ff; border-radius: 50%; background: #4383b8; box-shadow: 0 0 0 3px #172b4299; transform: translate(-50%, -50%); pointer-events: none; }
 #nine-axis-pad-hint { font-size: 11px; }
 .nine-keys { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-#nine-axis-keys, #nine-axis-keys-y, #nine-axis-keys-xy { display: flex; flex-wrap: wrap; gap: 4px; }
-#nine-axis-keys button, #nine-axis-keys-y button, #nine-axis-keys-xy button { min-width: 38px; }
+.nine-keys > div { display: flex; flex-wrap: wrap; gap: 4px; }
+.nine-keys button { min-width: 38px; }
 #nine-axis-tree { max-height: 340px; overflow: auto; border: 1px solid var(--line); border-radius: 4px; padding: 4px; }
 #nine-axis-tree summary { cursor: pointer; padding: 2px 0; color: #c3cad8; }
 #nine-axis-tree .nine-group { margin-left: 12px; }
