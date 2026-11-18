@@ -1,3 +1,5 @@
+import { nineAxisGroups } from './nine-axis.ts';
+
 // Steps whose prompts and tools come from knowledge/<section>/<step>/agent.json.
 // The code decides whether a step has a review; `required` names the tools a
 // role cannot deliver without, `references` the files the program itself reads
@@ -6,6 +8,8 @@ export type KnowledgeStep = {
   section: string; step: string;
   required?: readonly string[];
   references?: readonly string[];
+  /** Exhaustive groups selected by the workflow when resolving prompts. */
+  promptGroups?: readonly string[];
   review?: { required?: readonly string[] };
 };
 
@@ -31,7 +35,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step02_video', references: ['angles.json'] },
   { section: 'nine-axis', step: 'step03_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step04_outline', required: ['preview_svg'] },
-  { section: 'nine-axis', step: 'step04_angles', required: ['preview_svg', 'fit_nine_axis'] },
+  { section: 'nine-axis', step: 'step04_angles', promptGroups: nineAxisGroups, required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step05_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step06_angle-xy', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },

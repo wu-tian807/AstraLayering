@@ -4,10 +4,11 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test } from 'node:test';
 import { setTimeout as delay } from 'node:timers/promises';
-import { defaultKnowledgeDirectory, knowledgeDirectory, useKnowledge, stepKnowledge, runtimePrompt, renderKnowledge } from '../knowledge.ts';
+import { checkKnowledge, defaultKnowledgeDirectory, knowledgeDirectory, useKnowledge, stepKnowledge, runtimePrompt, renderKnowledge } from '../knowledge.ts';
 import { toolDefinition } from '../codex/tool-config.ts';
 import { textResult } from '../codex/function-tools.ts';
 import { VisualContext } from '../../patches/shared/visual-context.ts';
+import { temporaryKnowledge } from './knowledge-fixture.ts';
 
 async function fixture(t: any) {
   const root=await mkdtemp(join(tmpdir(),'knowledge-binding-')), previous=knowledgeDirectory();
@@ -69,6 +70,25 @@ test('head knowledge uses the explicit namespace, resolves its shared prompts an
   assert.equal(step.tools('main', provided)[0].description, 'head tool');
   await f.put(join(root, 'head-nine-axis/step03_frames/tools/view_bitmap/description.md'), 'step tool');
   assert.equal(step.tools('main', provided)[0].description, 'step tool');
+});
+
+test('known prompt groups can supply every direction without a default file', async t => {
+  const root = await temporaryKnowledge(t);
+  const step = stepKnowledge('nine-axis', 'step04_angles', root);
+  const defaultPrompt = join(step.directory, 'prompts/方向任务.md');
+  await assert.rejects(readFile(defaultPrompt), { code: 'ENOENT' });
+
+  checkKnowledge(root);
+  const down = join(step.directory, 'prompts/groups/down/方向任务.md');
+  await rm(down);
+  assert.throws(() => checkKnowledge(root), { message: '先验知识缺少文件：' + down });
+  assert.throws(() => step.render('main', { group_id: 'down' }, { taskRoot: '/task', group: 'down' }),
+    { message: '先验知识缺少文件：' + down });
+  assert.doesNotThrow(() => step.render('main', { group_id: 'up' }, { taskRoot: '/task', group: 'up' }));
+
+  await writeFile(defaultPrompt, 'shared direction task');
+  checkKnowledge(root);
+  assert.ok(step.files('main', 'down').includes(defaultPrompt));
 });
 
 test('head-only documents are registered from their migrated owner, with no copies under shared', async () => {
