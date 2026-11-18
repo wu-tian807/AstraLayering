@@ -1,6 +1,7 @@
 {
   "main": {
     "initial": [
+      "prompts/单轴输入.md",
       "prompts/方向任务.md",
       "head-nine-axis/prompts/face-contour.md",
       "prompts/补全先验.md",

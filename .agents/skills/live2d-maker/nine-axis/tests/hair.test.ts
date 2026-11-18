@@ -450,8 +450,8 @@ test(`old completed hair: ${scope} ${action} dispatches remaining only and prese
 });
 
 test('remaining prompt receives current inputs and scope accepts arbitrary hair structures while excluding context and accessories',()=>{
-  const prompt=hairPrompt({document:'/task/current.kra',color:''} as any,'/task','remaining');
-  for(const path of ['/task/current.kra','/task/nine-axis/step08_hair/hair.json','/task/nine-axis/step03_frames/left.png'])assert.ok(prompt.includes(path));
+  const prompt=hairPrompt('/task', 'remaining');
+  for(const path of ['/task/nine-axis/step08_hair/character-nine-axis.kra','/task/nine-axis/step08_hair/hair.json','/task/nine-axis/step03_frames/left.png'])assert.ok(prompt.includes(path));
   assert.doesNotMatch(prompt,/\{uri:|\{document\}/);
   const scope=hairPreviewScope('remaining');
   for(const id of ['hair/braid','hair/cowlick','hair/free_form_bundle','hair/custom-uuid/strand','hair/bangs/shadow','hair/side_hair/extra_temples']){
@@ -532,12 +532,12 @@ test('side edits and preservation protect completed front geometry and native pi
 });
 
 test('front prompt is a single-round task using the owned KRA',()=>{
-  const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:'/task/nine-axis/step08_hair/character-nine-axis.png'} as any,'/task');
+  const prompt=hairPrompt('/task');
   assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
 });
 
 test('side prompt inherits current KRA, keeps front initial separate and uses edge with color inspection',()=>{
-  const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','side');
+  const prompt=hairPrompt('/task', 'side');
   assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('side');
   for(const id of ['face/face_base','hair/bangs','hair/bangs/shadow','hair/side_hair/left','hair/side_hair/shadow'])assert.ok(scope.includes({id,partId:id,level:id.startsWith('face')?'face':'hair'}));
@@ -564,7 +564,7 @@ test('hair progress rejects out-of-order, duplicate and skipped rounds',async t=
 });
 
 test('back prompt prioritizes reference motion and conditional KRA edits, with cumulative head-hair preview',()=>{
-  const prompt=hairPrompt({document:'/task/nine-axis/step08_hair/character-nine-axis.kra',color:''} as any,'/task','back');
+  const prompt=hairPrompt('/task', 'back');
   assert.match(prompt,/step08_hair\/character-nine-axis.kra/);
   const scope=hairPreviewScope('back');
   for(const id of ['face/face_base',...hairIds.slice(0,3),'hair/back_hair/shadow','hair/bangs/shadow'])assert.ok(scope.includes({id,partId:id,level:id.startsWith('face')?'face':'hair'}));

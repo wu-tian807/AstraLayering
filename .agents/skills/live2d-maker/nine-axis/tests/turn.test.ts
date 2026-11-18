@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { zipSync, strToU8 } from 'fflate';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
-import { angleXYPrompt, angleYPrompt, viewFramesPrompt, cornerFramesPrompt, cornerOutlinePrompt, createFitHead, headPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { angleXYPrompt, axisPrompt, viewFramesPrompt, cornerFramesPrompt, createFitHead, hairPrompt, headCornersPrompt, headPitchPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
 import { axisGroups, type AxisGroup } from '../axis-groups.ts';
@@ -20,6 +20,9 @@ import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
 import { stepKnowledge } from '../../shared/knowledge.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
+import { kraContents, kraLayers } from '../../shadow/delivery.ts';
+import { hairPreviewScope, readHairProgress, type HairRound } from '../hair.ts';
+import type { MaterialLoader } from '../kra-materials.ts';
 
 // Most tests inject production handlers; startup still receives an explicit
 // executable and checker so missing-dependency failures cannot hide their assertions.
@@ -29,13 +32,29 @@ const runWithFFmpeg: typeof runWorkflow = (options, dependencies = {}) => runWor
 
 const rect = (w: number, h: number, x: number, y: number, rw: number, rh: number) =>
   `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><rect x="${x}" y="${y}" width="${rw}" height="${rh}" fill="#000"/></svg>`;
+const originalLayers = ['face/face_base', 'face/eye_left', 'face/ear_right', 'face/ear_left', 'hair/bangs', 'hair/side_hair/left'];
+const jawLayers = ['face/jaw_mask', 'face/jaw_line'];
+const layerUuids = new Map([...originalLayers, ...jawLayers].map((id, i) =>
+  [id, `00000000-0000-4000-8000-${String(i + 1).padStart(12, '0')}`] as const));
+const layerUuid = (id: string) => {
+  const uuid = layerUuids.get(id);
+  assert.ok(uuid, `missing fixture layer ${id}`);
+  return uuid;
+};
+
+async function writeFixtureKra(path: string, merged: Uint8Array, layerIds: string[]) {
+  const layers = layerIds.toReversed().map(id =>
+    `<layer name="${id}" uuid="{${layerUuid(id)}}" nodetype="paintlayer" visible="1" opacity="255" compositeop="normal"/>`).join('');
+  await writeFile(path, zipSync({ 'maindoc.xml': strToU8(`<DOC><IMAGE><layers>${layers}</layers></IMAGE></DOC>`), 'mergedimage.png': merged }));
+}
+
 async function fixture(t: TestContext) {
   const root = await mkdtemp(join(tmpdir(), 'astra-nine-axis-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const task = join(root, 'case'), assembly = join(task, 'character-assembly/step01'), parts = join(task, 'part-layering/parts');
   await mkdir(assembly, { recursive: true }); await mkdir(parts, { recursive: true });
   await writeFile(join(assembly, 'character-assembled.png'), await sharp({ create: { width: 200, height: 400, channels: 4, background: { r: 200, g: 100, b: 50, alpha: 1 } } }).png().toBuffer());
-  await writeFile(join(assembly, 'character-assembled.kra'), zipSync({ 'maindoc.xml': strToU8('<DOC/>'), 'mergedimage.png': await readFile(join(assembly, 'character-assembled.png')) }));
+  await writeFixtureKra(join(assembly, 'character-assembled.kra'), await readFile(join(assembly, 'character-assembled.png')), originalLayers);
   await writeFile(join(assembly, '.completed'), JSON.stringify({ stamp: 'assembly-1', inputs: {} }));
   await writeFile(join(parts, 'face.svg'), rect(200, 400, 80, 60, 40, 50));
   await writeFile(join(parts, 'hair.svg'), rect(200, 400, 60, 30, 70, 70));
@@ -47,7 +66,7 @@ async function fixture(t: TestContext) {
 async function prepareNeutralFixture(directory: string, input: HeadInput, box: Box, taskRoot: string) {
   await writeFaceLeft(directory);
   const face: FaceLeft = JSON.parse(await readFile(join(directory, 'face-left.json'), 'utf8'));
-  face.parts = face.parts.map((p, order) => ({ ...p, uuid: `original-${p.id}`, parentUuid: 'original-root',
+  face.parts = face.parts.map((p, order) => ({ ...p, uuid: layerUuid(p.id), parentUuid: 'original-root',
     layerName: p.id, nodeType: 'paintlayer', order, stackPath: [order], visible: true, blendingMode: 'normal',
     keyforms: { '0': structuredClone(p.keyforms['0']), '-30': structuredClone(p.keyforms['0']) } }));
   await writeFile(join(directory, 'face-left.json'), JSON.stringify(face));
@@ -218,37 +237,42 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
-test('脸部步骤提示词以度数写出关键形', () => {
-  const head = { document: '/task/a.kra', color: '/task/a.png' } as Parameters<typeof headPrompt>[0];
-  const x = headPrompt(head, '/task'), up = angleYPrompt('/task', 'up'), down = angleYPrompt('/task', 'down'), xy = angleXYPrompt('/task'), jaw = jawLinePrompt(head, '/task');
-  assert.match(x, /X\s*=\s*-30\s*[、,，]\s*Y\s*=\s*0/);
-  assert.match(up, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*25/);
-  assert.match(down, /X\s*=\s*0\s*[、,，]\s*Y\s*=\s*-25/);
-  assert.match(xy, /\(X,Y\)=\(-30,25\)[\s\S]*\(-30,-25\)/);
-  assert.match(xy, /"-30,25"[\s\S]*"-30,-25"/);
-  assert.match(jaw, /"-30,25"/);
-  assert.match(jaw, /"invert": true/);
-  for (const [prompt, group] of [[x, 'left'], [up, 'up'], [down, 'down']] as const) {
-    assert.ok(prompt.includes(`/task/nine-axis/step04_angles/model/${group}/face-${group}.json`));
-    assert.ok(prompt.includes('/task/nine-axis/step01_preparation'));
-    assert.ok(prompt.includes(`/task/nine-axis/step03_frames/${group}.png`));
-    assert.ok(prompt.includes(`【${group} 先验】`) && prompt.includes(`/task/nine-axis/step04_angles/model/${group}/outline`));
-    const outline = outlinePrompt(head, '/task', group);
-    assert.ok(outline.includes(`/task/nine-axis/step03_frames/${group}.png`) && outline.includes(`/task/nine-axis/step04_angles/model/${group}/outline`));
+test('九轴提示词按方向装配，并从任务根解析参考与交付路径', () => {
+  const root = '/task';
+  const hasPaths = (prompt: string, paths: string[]) => {
+    for (const path of paths) assert.ok(prompt.includes(join(root, 'nine-axis', path)), path);
+    assert.doesNotMatch(prompt, /\{(?:uri:|reference:|group_id\})/);
+  };
+
+  const axis = stepKnowledge('nine-axis', 'step04_angles');
+  const trace = stepKnowledge('nine-axis', 'step04_outline');
+  for (const direction of ['left', 'up', 'down'] as const) {
+    const output = `step04_angles/model/${direction}`;
+    hasPaths(axisPrompt(root, direction), [
+      'step01_preparation/deformers.json', `step03_frames/${direction}.png`,
+      `step02_video/${direction}.mp4`, `${output}/outline`, `${output}/face-${direction}.json`,
+    ]);
+    assert.ok(axis.files('main', direction).includes(join(axis.directory, 'prompts/groups', direction, '方向任务.md')));
+    hasPaths(outlinePrompt(root, direction), [
+      `step03_frames/${direction}.png`, `step02_video/${direction}.mp4`, `${output}/outline`,
+    ]);
   }
-  assert.ok(xy.includes('/task/nine-axis/step04_angles/model/deformers.json'));
-  assert.ok(xy.includes('/task/nine-axis/step06_angle-xy/linear.json'));
-  assert.ok(xy.includes('【斜向先验】') && xy.includes('/task/nine-axis/step06_angle-xy/outline'));
-  const viewFrames = viewFramesPrompt('/task');
-  assert.ok(viewFrames.includes('path（指向规范化后的 <view>.png'));
-  for (const view of ['left', 'up', 'down']) assert.ok(viewFrames.includes(`/task/nine-axis/step02_video/${view}.mp4`));
-  const frames = cornerFramesPrompt('/task');
-  assert.ok(frames.includes('path（指向规范化后的 <corner>.png'));
-  for (const corner of ['left-up', 'left-down']) assert.ok(frames.includes(`/task/nine-axis/step04_angles/video/${corner}.mp4`));
-  const cornerOutlines = (['left-up', 'left-down'] as const).map(corner => cornerOutlinePrompt(head, '/task', corner));
-  for (const [i, corner] of (['left-up', 'left-down'] as const).entries())
-    assert.ok(cornerOutlines[i].includes(`【${corner}：`) && cornerOutlines[i].includes(`/task/nine-axis/step05_frames/${corner}.png`) && cornerOutlines[i].includes(`/task/nine-axis/step06_angle-xy/outline/${corner}`));
-  for (const prompt of [x, up, down, xy, jaw, viewFrames, frames, ...cornerOutlines]) assert.doesNotMatch(prompt, /\{(?:[\w-]+:)?[\w./\u4e00-\u9fff-]+\}/);
+
+  for (const corner of ['left-up', 'left-down'] as const) {
+    const prompt = outlinePrompt(root, corner);
+    hasPaths(prompt, [`step05_frames/${corner}.png`, `step04_angles/video/${corner}.mp4`, `step06_angle-xy/outline/${corner}`]);
+    assert.ok(trace.files('main', corner).includes(join(trace.directory, 'prompts/groups', corner, '帧与交付位置.md')));
+  }
+
+  for (const pitch of ['up', 'down'] as const) hasPaths(headPitchPrompt(root, pitch), [
+    `step10_head-pitch/${pitch}/head-${pitch}.json`, `step03_frames/${pitch}.png`, `step02_video/${pitch}.mp4`,
+  ]);
+  hasPaths(headCornersPrompt(root), ['step11_head-angle-xy/head-xy.json', 'step10_head-pitch/notes.md']);
+  hasPaths(jawLinePrompt(root), ['step06_angle-xy/deformers.json', 'step07_jaw-line/character-nine-axis.kra']);
+  hasPaths(angleXYPrompt(root), ['step04_angles/model/deformers.json', 'step06_angle-xy/linear.json']);
+  hasPaths(viewFramesPrompt(root), ['step02_video/left.mp4', 'step02_video/up.mp4', 'step02_video/down.mp4']);
+  hasPaths(cornerFramesPrompt(root), ['step04_angles/video/left-up.mp4', 'step04_angles/video/left-down.mp4']);
+  assert.ok(viewFramesPrompt(root).includes(stepKnowledge('nine-axis', 'step02_video').reference('angles.json')));
 });
 
 test('完整脸部流程后只制作前发首轮，保留头发步骤等待同一会话的下一轮', { timeout: 30_000 }, async t => {
@@ -329,42 +353,44 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     }
     await writeFile(join(directory, 'selected-frames.json'), JSON.stringify({ version: 1, frames }));
   };
+  const originalDocument = await readFile(join(task, 'character-assembly/step01/character-assembled.kra'));
   const fitJawLine = async (directory: string) => {
+    const document = join(directory, 'character-nine-axis.kra');
+    assert.deepEqual(await readFile(document), originalDocument);
+    await writeFixtureKra(document, kraContents(originalDocument).merged, [...originalLayers, ...jawLayers]);
     const upstream = await readUpstream(join(nine, 'step06_angle-xy'));
     const doc = startContinuation(upstream.doc, 'jaw');
     const base = doc.parts.find(p => p.id === 'face/face_base')!;
-    const fresh = (id: string, extra: object) => ({ ...structuredClone(base), id, uuid:'fixture-'+id, group:'jaw', ...extra });
+    const fresh = (id: string, extra: object) => ({ ...structuredClone(base), id, uuid: layerUuid(id), group:'jaw', ...extra });
     doc.parts.push(fresh('face/jaw_mask', { role: 'mask' }), fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }));
     await writeFile(join(directory, 'jaw.json'), JSON.stringify(doc));
   };
-  const deps = { environment: loadWorkflowEnvironment({}), generate, viewFramesHead: pickViews(ffmpeg), framesHead: pickCorners, prepareNeutral,
-    prepareHair: async (directory: string, upstream: string) => {
-      if(await access(join(directory,'hair.json')).then(()=>true,()=>false)) return;
-      await copyFile(join(upstream,'character-nine-axis.kra'),join(directory,'character-nine-axis.kra'));
-      const inherited=await readUpstream(upstream),doc=startContinuation(inherited.doc,'hair');
-      const {withDocument}=await import('../source.ts');
-      doc.source=withDocument(doc,task,join(directory,'character-nine-axis.kra')).source;
-      const front={...structuredClone(doc.parts.find(p=>p.id==='face/face_base')!),id:'hair/bangs',uuid:'fixture-bangs',level:'hair' as const};
-      delete front.keyformsY;delete front.keyformsXY;
-      doc.parts.push(front);doc.levels.push({id:'hair',includes:['face','hair']});
-      await writeFile(join(directory,'hair.json'),JSON.stringify(doc));
-      await writeFile(join(directory,'source.json'),JSON.stringify({sourceDocument:doc.source!.document}));
-      await writeBuilt(directory,{doc,textures:new Map()});
+  const materialize: MaterialLoader = async (_directory, built) => {
+    const doc = structuredClone(built.doc), textures = new Map<string, string>(), cache = join(task, '.test-materials');
+    await mkdir(cache, { recursive: true });
+    for (const [i, part] of doc.parts.entries()) {
+      const file = join(cache, `part-${i}.png`);
+      part.texture = `layers/part-${i}.png`;
+      await sharp({ create: { width: part.textureBounds[2], height: part.textureBounds[3], channels: 4, background: '#ffe4d2' } }).png().toFile(file);
+      textures.set(part.texture, file);
+    }
+    return { ...built, doc, textures };
+  };
+  const editHair = (directory: string, round: HairRound) =>
+    createContinuationEditTool(directory, join(nine, 'step07_jaw-line'), 'hair', undefined, task, materialize, hairPreviewScope(round));
+  const deps = {
+    environment: loadWorkflowEnvironment({}), generate, viewFramesHead: pickViews(ffmpeg), framesHead: pickCorners, prepareNeutral, materialize,
+    fitHair: async (directory: string, prompt: string) => {
+      assert.equal((await readHairProgress(directory)).next, 'front');
+      assert.equal(prompt, hairPrompt(task, 'front'));
+      await editHair(directory, 'front').execute({ operations: [
+        { action: 'add_part', part: { id: 'hair/bangs', uuid: layerUuid('hair/bangs'), level: 'hair', bbox: [60, 30, 130, 100] } },
+        { action: 'transform', id: 'hair/bangs', x: -30, translate: [-1, 0] },
+      ] }, new AbortController().signal);
+      await writeFile(join(directory, 'notes.md'), '前发首轮完成，等待侧发提示词');
     },
-    fitHair: async (directory: string) => {
-      await createContinuationEditTool(directory,join(nine,'step07_jaw-line'),'hair',undefined,task).execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[-1,0]}]},new AbortController().signal);
-      await writeFile(join(directory,'notes.md'),'前发首轮完成，等待侧发提示词');
-    },
-    materialize: async (_directory: string, built: import('../head.ts').Built) => {
-      const doc=structuredClone(built.doc),textures=new Map<string,string>(),cache=join(task,'.test-materials');await mkdir(cache,{recursive:true});
-      for(const [i,part] of doc.parts.entries()){
-        const file=join(cache,`part-${i}.png`);part.texture=`layers/part-${i}.png`;
-        await sharp({create:{width:part.textureBounds[2],height:part.textureBounds[3],channels:4,background:'#ffe4d2'}}).png().toFile(file);
-        textures.set(part.texture,file);
-      }
-      return {...built,doc,textures};
-    },
-    fitHead: fit('left'), fitUp: fit('up'), fitDown: fit('down'), fitAngleXY, fitJawLine };
+    fitHead: fit('left'), fitUp: fit('up'), fitDown: fit('down'), fitAngleXY, fitJawLine,
+  };
   assert.match(await runWithFFmpeg({ name: 'case', dir: root }, deps), /前发轮次已完成/);
   assert.deepEqual([...entered].sort(), ['down', 'left', 'up']);
   assert.deepEqual(fitted.sort(), ['down', 'left', 'up']);
@@ -397,8 +423,10 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
   assert.equal(source.sourceDocument, 'character-assembly/step01/character-assembled.kra');
   await assert.rejects(access(join(preparation, 'character-nine-axis.kra')), { code: 'ENOENT' });
   await assert.rejects(access(join(preparation, 'character-nine-axis.png')), { code: 'ENOENT' });
-  assert.deepEqual(await readFile(join(task, source.sourceDocument)), await readFile(join(task, 'character-assembly/step01/character-assembled.kra')));
-  assert.deepEqual(await readFile(join(nine, 'step07_jaw-line/character-nine-axis.kra')), await readFile(join(task, source.sourceDocument)));
+  assert.deepEqual(await readFile(join(task, source.sourceDocument)), originalDocument);
+  const jawDocument = join(nine, 'step07_jaw-line/character-nine-axis.kra');
+  const savedLayers = kraLayers(kraContents(await readFile(jawDocument)).xml);
+  for (const name of [...originalLayers, ...jawLayers]) assert.equal(savedLayers.get(layerUuid(name))?.name, name);
   const neutral = await readUpstream(preparation), merged = await readUpstream(axes);
   const independent = Object.fromEntries(await Promise.all(axisGroups.map(async group => [group, (await readUpstream(join(axes, group))).doc]))) as Record<AxisGroup, HeadNineAxis>;
   assert.deepEqual(merged.doc.parts.map(p => p.id), neutral.doc.parts.map(p => p.id));
@@ -439,12 +467,19 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     const current=(await readUpstream(output)).doc;
     for(const part of neutral.doc.parts){const next=current.parts.find(p=>p.id===part.id)!;assert.equal(next.uuid,part.uuid);assert.equal(next.texture,undefined);}
   }
-  assert.match(await runWithFFmpeg({ name: 'case', dir: root }, {...deps,fitHair:async(directory,prompt)=>{
-    assert.match(prompt,/继续制作两片侧发/);
-    const path=join(directory,'hair.json'),doc=JSON.parse(await readFile(path,'utf8'));
-    doc.parts.push({...structuredClone(doc.parts.find((p:any)=>p.id==='hair/bangs')),id:'hair/side_hair/left',uuid:'fixture-side'});
-    await writeFile(path,JSON.stringify(doc));await writeFile(join(directory,'notes.md'),'侧发完成，等待后发');
-  }}), /侧发轮次已完成/);
+  await runWithFFmpeg({ name: 'case', dir: root }, { ...deps, fitHair: async (directory, prompt) => {
+    assert.deepEqual((await readHairProgress(directory)).completed, ['front']);
+    assert.equal((await readHairProgress(directory)).next, 'side');
+    assert.equal(prompt, hairPrompt(task, 'side'));
+    await editHair(directory, 'side').execute({ operations: [
+      { action: 'add_part', part: { id: 'hair/side_hair/left', uuid: layerUuid('hair/side_hair/left'), level: 'hair', bbox: [50, 40, 75, 95] } },
+    ] }, new AbortController().signal);
+    await writeFile(join(directory, 'notes.md'), '侧发完成，等待后发');
+  } });
+  assert.deepEqual((await readHairProgress(join(nine, 'step08_hair'))).completed, ['front', 'side']);
+  assert.equal((await readHairProgress(join(nine, 'step08_hair'))).next, 'back');
+  assert.equal((await readStep(join(nine, 'step08_hair'))).status, 'running');
+  assert.equal((await readStep(join(nine, 'step09_head-accessories'))).status, 'absent');
   assert.equal(prompts.length, 5);
   assert.equal(fitted.length, 3);
   assert.equal(neutralPreparations, 1);

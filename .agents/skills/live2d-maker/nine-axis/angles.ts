@@ -24,10 +24,4 @@ export function angleScale(): AngleScale {
 // Keyform keys are the parameter values written as JSON keys ("-30", "30").
 export const angleKey = (value: number) => String(value);
 
-// What the prompts are filled with: parameter values (keys) and view magnitudes.
-export const angleValues = ({ x, y }: AngleScale = angleScale()) => ({
-  left_angle: angleKey(x[0]), right_angle: angleKey(x[1]), down_angle: angleKey(y[0]), up_angle: angleKey(y[1]),
-  left_degrees: String(x[1]), up_degrees: String(y[1]), down_degrees: String(-y[0]),
-});
-
 export const angleParameter = (id: string, name: string, [min, max]: [number, number]) => ({ id, name, min, max, default: 0, keys: [min, 0, max] });

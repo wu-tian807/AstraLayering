@@ -21,11 +21,11 @@ import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { finishViews, generateVideo, produceLeftVideo, producePitchVideos, produceCornerVideos, resolveTurnInput, runFrameSelection, checkSelectedFrames, turnViews, viewsY, type ViewY, type Box, type GenerateVideo, type TurnInput, type VideoPrompts } from './turn.ts';
 import { buildHead, finishHead, stepDocument, type Built, type HeadInput } from './head.ts';
 import { buildAngleY, finishAngleY } from './angle-y.ts';
-import { buildAngleXY, checkCornerReferences, cornerAngleValues, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
+import { buildAngleXY, checkCornerReferences, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
-import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
+import { headPitchDirections, headPitchStage, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
 import { finishHeadRoll } from './head-roll.ts';
 import { HEAD_ROLL_LIMIT } from '../shared/nine-axis-model.js';
 import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
@@ -33,8 +33,8 @@ import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
-import { readUpstream, type PitchStage } from './continuation.ts';
-import { angleScale, angleValues } from './angles.ts';
+import { readUpstream } from './continuation.ts';
+import { angleScale } from './angles.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
@@ -83,52 +83,27 @@ export const videoPrompt = (view?: ViewY) => stepKnowledge('nine-axis', 'step02_
 export const videoPrompts = (): VideoPrompts => ({ turn: videoPrompt(), ...Object.fromEntries(viewsY.map(view => [view, videoPrompt(view)])) as Record<ViewY, string> });
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
-// The visible outline is drawn by its own agent, before completion.
-export const outlineGroups: readonly AxisGroup[] = axisGroups;
-function axisValues(input: HeadInput, taskRoot: string, group: AxisGroup) {
-  const nine = join(taskRoot, 'nine-axis'), output = join(nine, 'step04_angles/model', group), scale = angleScale();
-  return {
-    ...angleValues(), group, document: input.document, color: input.color, output, neutral: join(nine, 'step01_preparation'),
-    reference_frame: join(nine, 'step03_frames', `${group}.png`), source_frame: join(nine, 'step02_video/upper-body.png'),
-    target_x: String(group === 'left' ? scale.x[0] : 0), target_y: String(group === 'up' ? scale.y[1] : group === 'down' ? scale.y[0] : 0),
-    reference_video: join(nine, 'step02_video', `${group}.mp4`), reference_frames: '', continuity_reference: '',
-    author_file: join(output, `face-${group}.json`), outline: join(output, 'outline'),
-  };
-}
-export function axisPrompt(input: HeadInput, taskRoot: string, group: AxisGroup): string {
-  return stepKnowledge('nine-axis', 'step04_angles').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
-}
-export const outlinePrompt = (input: HeadInput, taskRoot: string, group: AxisGroup) =>
-  stepKnowledge('nine-axis', 'step04_outline').render('main', axisValues(input, taskRoot, group), { taskRoot, group }).trim();
-// Each corner's outline uses the same outline step, against the frame chosen for that corner.
-export function cornerOutlinePrompt(input: HeadInput, taskRoot: string, corner: Corner) {
-  const nine = join(taskRoot, 'nine-axis'), corners = join(nine, 'step06_angle-xy');
-  return stepKnowledge('nine-axis', 'step04_outline').render('main', { ...axisValues(input, taskRoot, 'left'), group: corner,
-    reference_frame: join(nine, 'step05_frames', `${corner}.png`), reference_video: join(nine, 'step04_angles/video', `${corner}.mp4`), outline: join(corners, 'outline', corner) }, { taskRoot }).trim();
-}
-export const viewFramesPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step03_frames').render('main', angleValues(), { taskRoot }).trim();
-export const cornerFramesPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step05_frames').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
-export const headPrompt = (input: HeadInput, taskRoot: string) => axisPrompt(input, taskRoot, 'left');
-export const angleYPrompt = (taskRoot: string, stage: PitchStage) => axisPrompt({ document: '', color: '' } as HeadInput, taskRoot, stage);
-export const angleXYPrompt = (taskRoot: string) => stepKnowledge('nine-axis', 'step06_angle-xy').render('main', { ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
-export const jawLinePrompt = (input: HeadInput, taskRoot: string) => stepKnowledge('nine-axis', 'step07_jaw-line')
-  .render('main', { document: input.document, color: input.color, ...angleValues(), ...cornerAngleValues() }, { taskRoot }).trim();
-export const hairPrompt = (input: HeadInput, taskRoot: string, round: HairRound = 'front') => {
-  const knowledge=stepKnowledge('nine-axis','step08_hair');
-  const values={document:input.document,color:input.color,...angleValues(),...cornerAngleValues()};
-  // initial remains the first turn. Later hair rounds are workflow dispatches,
-  // not additional agent.json initials or separate step/thread identities.
-  return (round==='front' ? knowledge.render('main',values,{taskRoot}) : renderKnowledge(
-    readFileSync(join(knowledge.directory,'prompts',`${hairRoundLabel(round)}制作.md`),'utf8'),values,{taskRoot,section:'nine-axis'})).trim();
+const stepPrompt = (step: string, taskRoot: string, group?: string) =>
+  stepKnowledge('nine-axis', step).render('main', group === undefined ? {} : { group_id: group }, { taskRoot, group }).trim();
+
+export const axisPrompt = (taskRoot: string, group: AxisGroup) => stepPrompt('step04_angles', taskRoot, group);
+export const outlinePrompt = (taskRoot: string, group: AxisGroup | Corner) => stepPrompt('step04_outline', taskRoot, group);
+export const viewFramesPrompt = (taskRoot: string) => stepPrompt('step03_frames', taskRoot);
+export const cornerFramesPrompt = (taskRoot: string) => stepPrompt('step05_frames', taskRoot);
+export const angleXYPrompt = (taskRoot: string) => stepPrompt('step06_angle-xy', taskRoot);
+export const jawLinePrompt = (taskRoot: string) => stepPrompt('step07_jaw-line', taskRoot);
+export const accessoriesPrompt = (taskRoot: string) => stepPrompt('step09_head-accessories', taskRoot);
+export const headPitchPrompt = (taskRoot: string, direction: HeadPitchDirection) => stepPrompt('step10_head-pitch', taskRoot, direction);
+export const headCornersPrompt = (taskRoot: string) => stepPrompt('step11_head-angle-xy', taskRoot);
+
+export const hairPrompt = (taskRoot: string, round: HairRound = 'front') => {
+  // Only the first round uses the step initial. Later rounds keep the same
+  // workspace and thread and receive the file selected by workflow progress.
+  if (round === 'front') return stepPrompt('step08_hair', taskRoot);
+  const knowledge = stepKnowledge('nine-axis', 'step08_hair');
+  return renderKnowledge(readFileSync(join(knowledge.directory, 'prompts', `${hairRoundLabel(round)}制作.md`), 'utf8'),
+    {}, { taskRoot, section: 'nine-axis' }).trim();
 };
-export const accessoriesPrompt=(input:HeadInput,taskRoot:string)=>stepKnowledge('nine-axis','step09_head-accessories')
-  .render('main',{document:input.document,color:input.color,...angleValues()},{taskRoot}).trim();
-export const headPitchPrompt=(document:string,taskRoot:string,direction:HeadPitchDirection)=>stepKnowledge('nine-axis','step10_head-pitch')
-  .render('main',{document,direction_name:direction==='up'?'抬头':'低头',target_angle:String(headPitchAngle(direction,angleScale())),
-    author:join(taskRoot,'nine-axis/step10_head-pitch',direction,`head-${direction}.json`),
-    reference:join(taskRoot,'nine-axis/step03_frames',`${direction}.png`),video:join(taskRoot,'nine-axis/step02_video',`${direction}.mp4`)},{taskRoot}).trim();
-export const headCornersPrompt = (document: string, taskRoot: string) => stepKnowledge('nine-axis', 'step11_head-angle-xy')
-  .render('main', { document, ...angleValues() }, { taskRoot }).trim();
 
 type Agents = Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>;
 // One agent turn. With `session` the turn continues that step's saved thread;
@@ -391,10 +366,8 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         };
         if (step.id === 'step11_head-angle-xy') return async () => {
           const upstream = join(directory, 'step10_head-pitch');
-          if (options.dryRun) return preview(headCornersPrompt(join(directory, 'step09_head-accessories/character-nine-axis.kra'), task));
+          if (options.dryRun) return preview(headCornersPrompt(task));
           await headCornersUpstreamReady();
-          const { doc } = await readUpstream(upstream), document = await modelDocument(task, upstream, doc);
-          if (!document) throw Error('完整头部斜角缺少最新 KRA 来源');
           await seedHeadCorners(step.directory, upstream, task, scale);
           builds[step.id] = () => buildHeadCorners(step.directory, upstream, scale, materialize);
           const fit = dependencies.fitHeadCorners ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '完整头部四角', options.signal, directory));
@@ -402,16 +375,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
             await finishHeadCorners(step.directory, upstream, scale, materialize);
             await checkDelivery(step.id);
           };
-          await fit(step.directory, headCornersPrompt(document, task), verify);
+          await fit(step.directory, headCornersPrompt(task), verify);
           await verify();
           summary = 'nine-axis/step11_head-angle-xy：完整头部四角已完成';
         };
         if(step.id==='step10_head-pitch')return async()=>{
           const upstream=join(directory,'step09_head-accessories');
-          if(options.dryRun)return preview(headPitchDirections.filter(d=>!branch||d===branch).map(d=>headPitchPrompt(join(upstream,'character-nine-axis.kra'),task,d)).join('\n\n'));
+          if(options.dryRun)return preview(headPitchDirections.filter(d=>!branch||d===branch).map(d=>headPitchPrompt(task, d)).join('\n\n'));
           await headPitchUpstreamReady();
-          const {doc}=await readUpstream(upstream),document=await modelDocument(task,upstream,doc);
-          if(!document)throw Error('头部上下缺少最新 KRA 来源');
+          const { doc } = await readUpstream(upstream);
+          if (!await modelDocument(task, upstream, doc)) throw Error('头部上下缺少最新 KRA 来源');
           const finished=await runAxisGroups(step.directory,{
             async prepare(){},
             seed:(g,folder)=>seedHeadPitch(folder,upstream,task,g as HeadPitchDirection,scale),
@@ -428,7 +401,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
                 const built=await builds[id]();checkHeadPitchDelivery(built.doc,direction,scale);
                 await writeBuilt(folder,built);await checkDelivery(id);verified=true;
               };
-              await fit(folder,headPitchPrompt(document,task,direction),verify);
+              await fit(folder,headPitchPrompt(task, direction),verify);
               if(!verified)await verify();
               progress(`${id} 已完成，另一方向独立继续`);
             },
@@ -476,7 +449,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         };
         if (step.id === 'step04_angles') return async () => {
           const { head } = await getTurnInput();
-          if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(head, task, g), axisPrompt(head, task, g)]), videoPrompt()].join('\n\n'));
+          if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(task, g), axisPrompt(task, g)]), videoPrompt()].join('\n\n'));
           const selected = branch ? [branch as 'model' | 'video'] : [...nineAxisBranches];
           // The established group workflow handles both branches and the same
           // direction workflow handles the model's three independent authors.
@@ -500,9 +473,9 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
                     builds[id] = () => g === 'left' ? buildHead(folder, head, box, scale, task) : buildAngleY(folder, preparation, g, scale);
                     const injected = g === 'left' ? dependencies.fitHead : g === 'up' ? dependencies.fitUp : dependencies.fitDown;
                     const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(frames, `${g}.png`)), `${id}/outline`, `描边 ${g}`, options.signal, directory)));
-                    if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(head, task, g)); }
+                    if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(task, g)); }
                     const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${g}`, options.signal, directory));
-                    await fit(folder, axisPrompt(head, task, g), async () => checkAxisSource(preparation, await builds[id]()));
+                    await fit(folder, axisPrompt(task, g), async () => checkAxisSource(preparation, await builds[id]()));
                     if (g === 'left') await finishHead(folder, head, box, scale, task); else await finishAngleY(folder, preparation, g, scale);
                     await checkDelivery(id); progress(`${id} 已完成，其他分支独立继续`);
                   },
@@ -525,13 +498,12 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary = 'nine-axis/step05_frames 已完成：斜角参考帧';
         };
         if (step.id === 'step06_angle-xy') return async () => {
-          const { head } = await getTurnInput();
-          if (options.dryRun) return preview([...corners.map(c => cornerOutlinePrompt(head, task, c)), angleXYPrompt(task)].join('\n\n'));
+          if (options.dryRun) return preview([...corners.map(c => outlinePrompt(task, c)), angleXYPrompt(task)].join('\n\n'));
           await writeLinearCorners(xyDirectory, modelDirectory, scale); builds[step.id] = () => buildAngleXY(xyDirectory, modelDirectory, scale);
           const injected = Boolean(dependencies.fitAngleXY);
           const outlines = await Promise.allSettled(corners.map(async c => {
             const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(cornerFrames, `${c}.png`)), `${step.id}/outline/${c}`, `描边 ${c}`, options.signal, directory)));
-            if (outline) { const o = join(xyDirectory, 'outline', c); await mkdir(o, { recursive: true }); await outline(o, cornerOutlinePrompt(head, task, c)); }
+            if (outline) { const o = join(xyDirectory, 'outline', c); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(task, c)); }
           }));
           const failed = outlines.find(result => result.status === 'rejected');
           if (failed?.status === 'rejected') throw failed.reason;
@@ -545,7 +517,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const {next:round}=await readHairProgress(step.directory);
           if(round!=='front')await checkDelivery(step.id);
           if(round==='done') { summary='nine-axis/step08_hair：全部头发左右制作已完成'; return; }
-          if(options.dryRun) return preview(hairPrompt(hair,task,round));
+          if(options.dryRun) return preview(hairPrompt(task, round));
           await (dependencies.prepareHair ?? prepareHair)(step.directory,upstream,task,materialize,scale,options.signal);
           builds[step.id]=()=>buildHair(step.directory,upstream,scale,materialize);
           const before=await materialize(step.directory,await builds[step.id](),options.signal);
@@ -560,7 +532,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           };
           // Deliveries belong to the checked turn: a missing or empty product
           // gets the same two repair rounds before progress can advance.
-          await fit(step.directory,hairPrompt(hair,task,round),verify);
+          await fit(step.directory,hairPrompt(task, round),verify);
           if(!verified)await verify();
           await completeHairRound(step.directory,round);
           const next=(await readHairProgress(step.directory)).next;
@@ -569,7 +541,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if(step.id==='step09_head-accessories')return async()=>{
           const { input } = await getTurnInput();
           const accessories=stepDocument(input,step.directory),upstream=join(directory,'step08_hair');
-          if(options.dryRun)return preview(accessoriesPrompt(accessories,task));
+          if(options.dryRun)return preview(accessoriesPrompt(task));
           await accessoriesUpstreamReady();
           await (dependencies.prepareAccessories??prepareAccessories)(step.directory,upstream,task,materialize,scale,options.signal);
           builds[step.id]=()=>buildAccessories(step.directory,upstream,scale,materialize);
@@ -582,13 +554,13 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
             await writeFile(accessories.color,kraContents(await readFile(accessories.document)).merged);
             await finishAccessories(step.directory,upstream,scale,materialize);await checkDelivery(step.id);verified=true;
           };
-          await fit(step.directory,accessoriesPrompt(accessories,task),verify);if(!verified)await verify();
+          await fit(step.directory,accessoriesPrompt(task),verify);if(!verified)await verify();
           summary='nine-axis/step09_head-accessories：头部饰品左右形变与组合检查已完成';
         };
         return async () => {
           const { input, head } = await getTurnInput();
           const jaw = stepDocument(input, step.directory);
-          if (options.dryRun) return preview(jawLinePrompt(jaw, task));
+          if (options.dryRun) return preview(jawLinePrompt(task));
           if (!await exists(jaw.document)) {
             const upstream = JSON.parse(await readFile(join(xyDirectory, 'deformers.json'), 'utf8'));
             const document = await modelDocument(task, xyDirectory, upstream) ?? head.document;
@@ -596,7 +568,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           }
           builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale, materialize);
           const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));
-          await fit(step.directory, jawLinePrompt(jaw, task), async () => { await builds[step.id](); });
+          await fit(step.directory, jawLinePrompt(task), async () => { await builds[step.id](); });
           await writeFile(jaw.color, kraContents(await readFile(jaw.document)).merged);
           summary = `nine-axis/step07_jaw-line 已完成：${await finishJawLine(step.directory, xyDirectory, scale, materialize)} 个部件的下颌线与脖子`;
         };
