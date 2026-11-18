@@ -10,7 +10,7 @@
 
 | 选择 | LLM | 生图 |
 | --- | --- | --- |
-| 方案 1（默认） | 全部 `gpt-6.1-sol`，按职责分配力度，见下表 | `codex-native`，继承宿主内置生图工具 |
+| 方案 1（默认） | 主要职责使用 `gpt-6.2-sol`，补全越界评审使用 `gpt-6.1-terra`，力度见下表 | `codex-native`，继承宿主内置生图工具 |
 | 方案 2（混合） | GPT 准备、part 描线／review／去重及分析，Claude SVG 遮挡补全、栅格绘制、组装与阴影，详见下表 | 简化图用 GPT Image Sunburst；素体图和两套 part 遮挡补全参考用 Nano Banana 2.1，其余用 GPT Image Sunburst |
 | 自定义 | 在方案 1 或方案 2 上覆盖所需职责 | 按实际生图 agent 覆盖 |
 
@@ -20,21 +20,21 @@
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
-| 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.1-sol-medium` | `part_draw_agent_model` |
-| part 轮廓 review | `gpt-6.1-sol-medium` | `part_review_agent_model` |
-| 同层去重／重叠分析 | `gpt-6.1-sol-high` | `part_reduce_agent_model` |
-| SVG 遮挡补全 | `gpt-6.1-sol-high` | `part_completion_agent_model` |
+| 全部 preparation | `gpt-6.2-sol-low` | `preparation_agent_model` |
+| part 轮廓绘制与返修 | `gpt-6.2-sol-medium` | `part_draw_agent_model` |
+| part 轮廓 review | `gpt-6.2-sol-medium` | `part_review_agent_model` |
+| 同层去重／重叠分析 | `gpt-6.2-sol-high` | `part_reduce_agent_model` |
+| SVG 遮挡补全 | `gpt-6.2-sol-high` | `part_completion_agent_model` |
 | 补全越界独立评审（按需） | `gpt-6.1-terra-medium` | `part_completion_boundary_review_agent_model` |
-| 首次分组与后续细分组 | `gpt-6.1-sol-high` | `part_groups_agent_model` |
-| 最终深度分析 | `gpt-6.1-sol-high` | `part_depth_agent_model` |
-| raster step01 绘制与返修 | `gpt-6.1-sol-xhigh` | `raster_step01_agent_model` |
-| raster step01 review | `gpt-6.1-sol-xhigh` | `raster_step01_review_agent_model` |
-| raster step02 | `gpt-6.1-sol-medium` | `raster_step02_agent_model` |
-| raster step03（仅人物） | `gpt-6.1-sol-medium` | `raster_step03_agent_model` |
-| 穿戴组装 | `gpt-6.1-sol-xhigh` | `assembly_agent_model` |
-| 阴影 | `gpt-6.1-sol-medium` | `shadow_agent_model` |
-| 头部九轴（脸部、头发、头饰、上下与斜角共用） | `gpt-6.1-sol-xhigh` | `nine_axis_head_agent_model` |
+| 首次分组与后续细分组 | `gpt-6.2-sol-high` | `part_groups_agent_model` |
+| 最终深度分析 | `gpt-6.2-sol-high` | `part_depth_agent_model` |
+| raster step01 绘制与返修 | `gpt-6.2-sol-xhigh` | `raster_step01_agent_model` |
+| raster step01 review | `gpt-6.2-sol-xhigh` | `raster_step01_review_agent_model` |
+| raster step02 | `gpt-6.2-sol-medium` | `raster_step02_agent_model` |
+| raster step03（仅人物） | `gpt-6.2-sol-medium` | `raster_step03_agent_model` |
+| 穿戴组装 | `gpt-6.2-sol-xhigh` | `assembly_agent_model` |
+| 阴影 | `gpt-6.2-sol-medium` | `shadow_agent_model` |
+| 头部九轴（脸部、头发、头饰、上下与斜角共用） | `gpt-6.2-sol-xhigh` | `nine_axis_head_agent_model` |
 
 生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
@@ -48,13 +48,13 @@
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
-| 全部 preparation | `gpt-6.1-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.1-sol-xhigh` | `part_draw_agent_model` |
-| part 轮廓 review | `gpt-6.1-sol-xhigh` | `part_review_agent_model` |
-| 同层去重／重叠分析 | `gpt-6.1-sol-xhigh` | `part_reduce_agent_model` |
+| 全部 preparation | `gpt-6.2-sol-low` | `preparation_agent_model` |
+| part 轮廓绘制与返修 | `gpt-6.2-sol-xhigh` | `part_draw_agent_model` |
+| part 轮廓 review | `gpt-6.2-sol-xhigh` | `part_review_agent_model` |
+| 同层去重／重叠分析 | `gpt-6.2-sol-xhigh` | `part_reduce_agent_model` |
 | SVG 遮挡补全 | `claude-sonnet-5-5-xhigh` | `part_completion_agent_model` |
-| 首次分组与后续细分组 | `gpt-6.1-sol-xhigh` | `part_groups_agent_model` |
-| 最终深度分析 | `gpt-6.1-sol-xhigh` | `part_depth_agent_model` |
+| 首次分组与后续细分组 | `gpt-6.2-sol-xhigh` | `part_groups_agent_model` |
+| 最终深度分析 | `gpt-6.2-sol-xhigh` | `part_depth_agent_model` |
 | raster step01 绘制与返修 | `claude-opus-5-5-xhigh` | `raster_step01_agent_model` |
 | raster step01 review | `claude-sonnet-5-5-xhigh` | `raster_step01_review_agent_model` |
 | raster step02 | `claude-sonnet-5-5-xhigh` | `raster_step02_agent_model` |

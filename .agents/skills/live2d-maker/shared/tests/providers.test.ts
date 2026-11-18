@@ -151,10 +151,10 @@ test('only selected steps are validated, and all validation finishes before any 
     part_review_agent_model: 'claude-sonnet-5-5-high', codex_models: 'gpt-6-astra', claude_models: 'claude-sonnet-5-5' }, root), '/nonexistent/codex');
   settings.providers!.codex.models=['gpt-6-astra'];
   await preflightAgentSteps(settings, ['part_outline_review']);
-  assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.1-sol/);
+  assert.throws(() => validateProviderModel(settings.providers, settings.stepModels.part_outline, 'part_outline'), /part_outline.*gpt-6.2-sol/);
   await assert.rejects(preflightAgentSteps(settings, ['part_outline', 'part_outline_review']), /不在 codex_models/);
   const denied = withCodex(loadWorkflowEnvironment({ claude_path: '/nonexistent/claude',
-    codex_models: 'gpt-6.1-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root), '/nonexistent/codex');
+    codex_models: 'gpt-6.2-sol', part_review_agent_model: 'claude-sonnet-5-5-high', claude_models: 'claude-opus-5-5' }, root), '/nonexistent/codex');
   denied.providers!.claude.models=['claude-opus-5-5'];
   // First step passes its model list; second fails before probing the first CLI.
   await assert.rejects(preflightAgentSteps(denied, ['part_outline', 'part_outline_review']), /不在 claude_models/);

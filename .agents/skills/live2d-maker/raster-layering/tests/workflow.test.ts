@@ -164,7 +164,7 @@ test('已完成第一步的任务可按 name 预览第二步，显示实际输�
 test('直接读取上游；中断保留 .running、产物和 thread；只用 name 续跑', async t => {
   const f = await fixture(t);
   await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async request => {
-    assert.equal(request.model, 'gpt-6.1-sol');
+    assert.equal(request.model, 'gpt-6.2-sol');
     assert.equal(request.effort, 'xhigh');
     await readFile(join(f.output, 'step01/.running'));
     await request.onEvent({ type: 'thread.started', thread_id: 'thread-1' });
@@ -235,7 +235,7 @@ test('残留的旧管线 run.json 不被读取或改写；使用当前环境模�
   assert.equal(await threadOf(f.output), 'thread-1');
   const attempts = (await readFile(join(f.output, 'agents/steps/step01/attempts.jsonl'), 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   assert.equal(attempts.length, 2);
-  assert.equal(attempts[0].model, 'gpt-6.1-sol');
+  assert.equal(attempts[0].model, 'gpt-6.2-sol');
   assert.equal(attempts[1].model, 'gpt-6.1-sol'); assert.equal(attempts[1].effort, 'low');
 });
 
@@ -332,7 +332,7 @@ test('raster 使用指定模型与 reasoning；临时 error 等待 CLI 终态，
     onEvent: async e => { received.push(e.type); } };
   assert.deepEqual(await runAgent(request), complete);
   const protocol = await server.protocol();
-  assert.equal(protocol.find(message => message.method === 'thread/start').params.model, 'gpt-6.1-sol');
+  assert.equal(protocol.find(message => message.method === 'thread/start').params.model, 'gpt-6.2-sol');
   assert.equal(protocol.find(message => message.method === 'turn/start').params.effort, 'xhigh');
   assert.deepEqual(received, ['thread.started', 'item.completed']);
   const failed = await rasterAppServer(t, '', {}, 'failed');

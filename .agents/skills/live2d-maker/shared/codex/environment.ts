@@ -48,7 +48,7 @@ export type WorkflowEnvironment = {
 export function parseModel(value: string | undefined, fallback: ModelSelection, name: string): ModelSelection {
   if (!value?.trim()) return { ...fallback };
   const match = value.trim().match(/^(.+)-(none|minimal|low|medium|high|xhigh)$/);
-  if (!match || /\s/.test(match[1])) throw new Error(`${name} 必须为 <模型 ID>-<思考力度>，例如 gpt-6.1-sol-medium。`);
+  if (!match || /\s/.test(match[1])) throw new Error(`${name} 必须为 <模型 ID>-<思考力度>，例如 gpt-6.2-sol-medium。`);
   return { model: match[1], effort: match[2] as ModelSelection['effort'] };
 }
 

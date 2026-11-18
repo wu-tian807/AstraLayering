@@ -71,7 +71,7 @@ test('原生初始分组可裁剪放大回传图片、保存正式分组，开�
   assert.equal(initialize.params.capabilities.experimentalApi, true);
   const thread = protocol.find(item => item.method === 'thread/start');
   assert.equal(thread.params.cwd, join(directory, 'step08_initial/workspace'));
-  assert.equal(thread.params.model, 'gpt-6.1-sol');
+  assert.equal(thread.params.model, 'gpt-6.2-sol');
   assert.equal(thread.params.config['features.shell_tool'], true);
   assert.equal(thread.params.config['features.unified_exec'], true);
   assert.equal(thread.params.sandbox, 'danger-full-access');

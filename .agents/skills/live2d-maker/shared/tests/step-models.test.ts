@@ -46,7 +46,7 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   for (const step of ['part_initial_groups', 'part_children', 'clothing_initial_groups', 'clothing_children'] as const) {
     assert.equal(settings.stepModels[step].model, 'gemini-4-argon');
   }
-  assert.equal(settings.stepModels.part_occlusion.model, 'gpt-6.1-sol');
+  assert.equal(settings.stepModels.part_occlusion.model, 'gpt-6.2-sol');
   assert.deepEqual(settings.stepModels.clothing_occlusion, settings.stepModels.part_occlusion);
   for (const step of ['raster_step01', 'raster_step01_repair', 'clothing_raster_step01', 'clothing_raster_step01_repair'] as const) {
     assert.deepEqual(settings.stepModels[step], parseAgentModel('claude-opus-5-5-medium', 'fixture'));
@@ -54,9 +54,9 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   assert.deepEqual(settings.stepModels.raster_step01_review, parseAgentModel('gemini-4-argon-high', 'fixture'));
   assert.deepEqual(settings.stepModels.clothing_raster_step01_review, settings.stepModels.raster_step01_review);
   for (const [step, role] of Object.entries(stepModelSlots)) if (role === 'preparation') {
-    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel('gpt-6.1-sol-low', 'fixture'));
+    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel('gpt-6.2-sol-low', 'fixture'));
   }
-  assert.deepEqual(settings.stepModels.raster_step02, parseAgentModel('gpt-6.1-sol-medium', 'fixture'));
+  assert.deepEqual(settings.stepModels.raster_step02, parseAgentModel('gpt-6.2-sol-medium', 'fixture'));
   assert.deepEqual(settings.stepModels.nine_axis_head_pitch, settings.stepModels.nine_axis_head);
   assert.deepEqual(settings.stepModels.nine_axis_head_corners, settings.stepModels.nine_axis_head);
   assert.equal(Object.keys(settings.stepModels).length, Object.keys(stepDefaults).length);
@@ -115,7 +115,7 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
     raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
-    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`${role === 'part_completion_boundary_review' ? 'gpt-6.1-terra' : 'gpt-6.1-sol'}-${expected[role]}`, 'fixture'), step);
+    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`${role === 'part_completion_boundary_review' ? 'gpt-6.1-terra' : 'gpt-6.2-sol'}-${expected[role]}`, 'fixture'), step);
   }
   assert.deepEqual(settings.codex.config, {});
   assert.deepEqual(settings.imageApis, {});
@@ -134,9 +134,9 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   const settings = loadWorkflowEnvironment({}, root);
   const expected: Record<keyof typeof modelSlotDefaults, string> = {
     ...modelSlotDefaults,
-    preparation: 'gpt-6.1-sol-low',
-    part_draw: 'gpt-6.1-sol-xhigh', part_review: 'gpt-6.1-sol-xhigh', part_completion: 'claude-sonnet-5-5-xhigh',
-    part_groups: 'gpt-6.1-sol-xhigh', part_depth: 'gpt-6.1-sol-xhigh', part_reduce: 'gpt-6.1-sol-xhigh',
+    preparation: 'gpt-6.2-sol-low',
+    part_draw: 'gpt-6.2-sol-xhigh', part_review: 'gpt-6.2-sol-xhigh', part_completion: 'claude-sonnet-5-5-xhigh',
+    part_groups: 'gpt-6.2-sol-xhigh', part_depth: 'gpt-6.2-sol-xhigh', part_reduce: 'gpt-6.2-sol-xhigh',
     raster_step01: 'claude-opus-5-5-xhigh', raster_step01_review: 'claude-sonnet-5-5-xhigh',
     raster_step02: 'claude-sonnet-5-5-xhigh', raster_step03: 'claude-sonnet-5-5-xhigh',
     assembly: 'claude-sonnet-5-5-xhigh', shadow: 'claude-sonnet-5-5-xhigh', nine_axis_head: 'claude-sonnet-5-5-xhigh',
@@ -153,7 +153,7 @@ test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for sim
   assert.deepEqual(settings.codex.config, {});
   const custom = loadWorkflowEnvironment({ part_review_agent_model: 'claude-sonnet-5-5-xhigh', part_simplify_image_model: 'gpt-image-2.5-flare',
     openai_image_base_url: 'https://images.example/v1', openai_image_api_key: 'fixture' }, root);
-  assert.equal(custom.stepModels.part_outline_review.model, 'gpt-6.1-sol');
+  assert.equal(custom.stepModels.part_outline_review.model, 'gpt-6.2-sol');
   assert.deepEqual(custom.stepModels.clothing_outline_review, custom.stepModels.part_outline_review);
   assert.equal(custom.stepImages.part_simplify, 'gpt-image-2.5-sunburst');
   assert.equal(custom.stepImages.part_base_subject, 'gemini-nano-banana-2.1');
