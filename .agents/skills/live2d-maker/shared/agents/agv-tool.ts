@@ -1,5 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 // The native GenAI route cannot execute dynamic functions directly. Its terminal
 // invokes this helper; the gateway restores the original function and result.
@@ -15,5 +16,5 @@ try {
   await mkdir(directory, { recursive: true, mode: 0o700 });
   const path = join(directory, `${input.invocation}.json`);
   await writeFile(path, JSON.stringify({ name: input.name, result: rpc.result }), { mode: 0o600 });
-  process.stdout.write(`ASTRA_TOOL_RESULT:${path}\n`);
+  process.stdout.write(`ASTRA_TOOL_RESULT:${pathToFileURL(path).href.replaceAll("'", "%27")}\n`);
 } catch (error) { process.stderr.write(String(error) + '\n'); process.exitCode = 1; }

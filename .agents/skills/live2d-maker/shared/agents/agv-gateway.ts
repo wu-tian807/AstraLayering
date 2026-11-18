@@ -1,14 +1,14 @@
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { readFile, realpath } from 'node:fs/promises';
-import { relative, isAbsolute } from 'node:path';
+import { relative, isAbsolute, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import type { FunctionTool } from '../codex/function-tools.ts';
 import { imageBudget, VisualContext, readVisualSummary, visualErrorStatus } from '../../patches/shared/visual-context.ts';
 
 const helper = fileURLToPath(new URL('./agv-tool.ts', import.meta.url));
-const quote = (value: string) => "'" + value.replaceAll("'", "'\\''") + "'";
+const quote = (value: string) => "'" + value.replaceAll("'", process.platform === "win32" ? "''" : "'\\''") + "'";
 const resultMarker = /ASTRA_TOOL_RESULT:([^\s"'\\]+)/;
 export type GatewayEvent = { type: 'agv.gateway'; requestId: string; phase: 'started' | 'prepared' | 'headers' | 'first_body' | 'completed' | 'failed';
   path: string; elapsedMs: number; status?: number; upstreamRequestId?: string; aborted?: boolean; errorName?: string;
@@ -64,9 +64,9 @@ export async function prepareGenaiTools(body: any, tools: readonly FunctionTool[
       const response = part.functionResponse || part.function_response;
       const marker = response && resultMarker.exec(JSON.stringify(response.response));
       if (marker) {
-        const path = await realpath(marker[1]);
+        const path = await realpath(marker[1].startsWith('file:') ? fileURLToPath(marker[1]) : marker[1]);
         const rel = relative(root, path);
-        if (!rel || rel === '..' || rel.startsWith('../') || isAbsolute(rel)) throw new Error('工具结果不在任务记录目录内');
+        if (!rel || rel === '..' || rel.startsWith('..' + sep) || isAbsolute(rel)) throw new Error('工具结果不在任务记录目录内');
         const { name, result } = JSON.parse(await readFile(path, 'utf8'));
         const images = (result.content || []).filter((p: any) => p.type === 'image').map((p: any) => ({ inlineData: { mimeType: p.mimeType, data: p.data } }));
         parts.push({ functionResponse: { ...response, name, response: { output: (result.content || []).filter((p: any) => p.type === 'text').map((p: any) => p.text).join('\n'),
@@ -84,7 +84,8 @@ export function rewriteGenaiTools(event: any, tools: readonly FunctionTool[]) {
     if (!key || !tools.some(t => t.name === part[key].name)) continue;
     const call = part[key];
     const encoded = Buffer.from(JSON.stringify({ name: call.name, arguments: call.args || {}, invocation: randomUUID() })).toString('base64url');
-    part[key] = { ...call, name: 'run_command', args: { CommandLine: `${quote(process.execPath)} ${quote(helper)} ${encoded}`,
+    const launch = process.platform === 'win32' ? '& ' : '';
+    part[key] = { ...call, name: 'run_command', args: { CommandLine: `${launch}${quote(process.execPath)} ${quote(helper)} ${encoded}`,
       WaitMsBeforeAsync: 10000, toolSummary: `Call ${call.name}` } };
   }
   return event;

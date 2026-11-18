@@ -138,7 +138,7 @@ test('AGV gateway keeps HTTP failures and broken streams visible after flushing 
 });
 
 test('agv gateway retains original function schema, arguments, signatures, text and every returned image across turns', async t => {
-  const root = await mkdtemp(join(tmpdir(), 'agv-bridge-'));
+  const root = await mkdtemp(join(tmpdir(), 'agv bridge-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const results = join(root, '.run/case/agents/turn/bridge-results'); await mkdir(results, { recursive: true });
   const images = ['first-image', 'second-image'].map(s => Buffer.from(s).toString('base64'));
@@ -157,12 +157,15 @@ test('agv gateway retains original function schema, arguments, signatures, text 
   assert.deepEqual(request.tools[1].functionDeclarations[0], { name: tool.name, description: tool.description, parametersJsonSchema: tool.inputSchema });
   assert.equal(request.contents[0].parts[0].text, '完整任务提示词');
   const event = rewriteGenaiTools({ candidates: [{ content: { parts: [{ thoughtSignature: 'retain-signature', functionCall: { name: tool.name, args } }] } }] }, [tool]);
-  const part = event.candidates[0].content.parts[0], encoded = part.functionCall.args.CommandLine.split(' ').at(-1);
+  const part = event.candidates[0].content.parts[0], command = part.functionCall.args.CommandLine;
   assert.equal(part.thoughtSignature, 'retain-signature');
-  const output = await promisify(execFile)(process.execPath, [fileURLToPath(new URL('../agents/agv-tool.ts', import.meta.url)), encoded],
+  const [shell, ...shellArgs] = process.platform === 'win32'
+    ? ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command']
+    : ['/bin/sh', '-c'];
+  const output = await promisify(execFile)(shell, [...shellArgs, command],
     { env: { ...process.env, ...bridge.env, LAYERING_BRIDGE_RESULTS: results } });
-  const file = output.stdout.trim().slice('ASTRA_TOOL_RESULT:'.length);
-  assert.equal((await stat(file)).mode & 0o777, 0o600);
+  const file = fileURLToPath(output.stdout.trim().slice('ASTRA_TOOL_RESULT:'.length));
+  if (process.platform !== 'win32') assert.equal((await stat(file)).mode & 0o777, 0o600);
   assert.equal(JSON.parse(await readFile(file, 'utf8')).name, tool.name);
   const next: any = { contents: [{ role: 'model', parts: [part] }, { role: 'user', parts: [{ functionResponse: { id: 'function-id', name: 'run_command', response: { output: output.stdout } } }] }] };
   // Later stages need to restore history even when the image/drawing tool is no longer registered.
