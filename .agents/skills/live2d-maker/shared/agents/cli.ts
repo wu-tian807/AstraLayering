@@ -138,7 +138,8 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       }
     }
     mcpServer = await createMcpBridge(task.tools || [], signal, event => log.recordProtocol(event));
-    const mcp = { mcpServers: { layering: mcpServer.config } };
+    const layering = model.harness === 'claude' ? { ...mcpServer.config, alwaysLoad: true } : mcpServer.config;
+    const mcp = { mcpServers: { layering } };
     const budget = imageBudget(env, model.harness);
     const visual = new VisualContext({ directory: join(data, 'visual-context'), protocol: model.harness === 'agv' ? 'genai' : 'anthropic', budget,
       observe: async event => {
