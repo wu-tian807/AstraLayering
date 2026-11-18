@@ -48,13 +48,17 @@ export class HeadNineAxisRenderer {
       m.material.map.image.close?.();
       m.geometry.dispose(); m.material.map.dispose(); m.material.dispose();
     }
-    this.staticLayers = layers.map(({ image, order, x, y }) => {
+    this.staticLayers = layers.map(layer => {
+      const { image, order, bounds: [x, y, width, height] } = layer;
       const texture = new THREE.Texture(image);
       texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace; texture.needsUpdate = true;
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(image.width, image.height), new THREE.MeshBasicMaterial({
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({
         map: texture, transparent: true, depthTest: false, depthWrite: false, toneMapped: false, side: THREE.DoubleSide,
+        premultipliedAlpha: true, blendSrc: THREE.DstColorFactor, blendDst: THREE.OneMinusSrcAlphaFactor,
+        blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor,
       }));
-      m.position.set(x + image.width / 2, y + image.height / 2, 0); m.renderOrder = order;
+      m.position.set(x + width / 2, y + height / 2, 0); m.renderOrder = order;
+      m.userData.layer = layer;
       this.scene.add(m); return m;
     });
   }
@@ -76,7 +80,8 @@ export class HeadNineAxisRenderer {
   // Draw the canvas-space window [x0, y0, x0 + width, y0 + height] at angles (x, y, z).
   // shown: the part ids drawn; dim(part) scales a drawn part's alpha.
   // A pose-only preview can reuse the grid. Authoring draws always re-evaluate it.
-  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0, { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1 } = {}) {
+  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0,
+    { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1, deform = () => true, layerState = layer => layer } = {}) {
     if (!this.doc) return;
     if (!reuseXY || !this.xyPose || this.xyPose.x !== x || this.xyPose.y !== y) this.xyPose = { x, y, points: new Map() };
     const { points } = this.xyPose;
@@ -85,9 +90,10 @@ export class HeadNineAxisRenderer {
     const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
+      const moves = deform(p);
       let base = points.get(p.id);
-      if (!base) { base = evaluatePoints(this.doc, p, x, y, SUB); points.set(p.id, base); }
-      const m = this.meshes.get(p.id), pts = rollEvaluatedPoints(this.doc, p, base, z), pos = m.geometry.attributes.position.array;
+      if (!base) { base = evaluatePoints(this.doc, p, moves ? x : 0, moves ? y : 0, SUB); points.set(p.id, base); }
+      const m = this.meshes.get(p.id), pts = rollEvaluatedPoints(this.doc, p, base, moves ? z : 0), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
       m.geometry.attributes.position.needsUpdate = true;
       const u = m.material.uniforms, mask = p.role === 'mask';
@@ -109,7 +115,12 @@ export class HeadNineAxisRenderer {
       this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
     }
     this.renderer.setRenderTarget(null);
-    for (const m of this.staticLayers) m.visible = true;
+    for (const m of this.staticLayers) {
+      const layer = layerState(m.userData.layer);
+      m.visible = layer.visible;
+      m.material.opacity = layer.opacity / 255;
+      m.material.blending = layer.blend === 'multiply' ? THREE.CustomBlending : THREE.NormalBlending;
+    }
     for (const p of this.doc.parts) {
       const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
       m.material.blendSrc = p.shadow?.blendMode === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;

@@ -206,11 +206,6 @@ export class LayerPanel {
     if (row.visible === visible) this.render();
     else this.change(id, 'visible', visible);
   }
-  async poseLayers(slices) {
-    const session = this.session, revision = this.revision;
-    const result = await api('preview', { session, revision, slices });
-    return result.assets.map(({ kind, x, y }) => ({ x, y, url: './studio-layer-asset?' + new URLSearchParams({ session, revision, kind }) }));
-  }
   change(id, key, value, gesture = false) {
     const l = this.layers.find((l) => l.id === id);
     if (

@@ -6,7 +6,6 @@ import { setTimeout as delay } from "node:timers/promises";
 import type { IncomingMessage } from "node:http";
 import { unzipSync } from "fflate";
 import { readPsd, type Layer } from "ag-psd";
-import sharp from "sharp";
 import { atomicJSON } from "./files.ts";
 import { parseXml } from "../.agents/skills/live2d-maker/shared/xml.ts";
 import { SectionKrita } from "../.agents/skills/live2d-maker/shared/krita/section-krita.ts";
@@ -19,7 +18,6 @@ type Session = {
   touched: number;
   pixels: number;
   metadata?: any;
-  previews?: { revision: number; slicesKey: string; assets: { kind: string; x: number; y: number }[] }[];
 };
 export function validateDocument(bytes: Uint8Array, extension: string) {
   let width: number, height: number;
@@ -254,11 +252,6 @@ export class LayerCompositor {
   async asset(token: string, revision: number, kind: string) {
     const session = this.session(token);
     if (kind === "kra") return join(session.directory, "edited.kra");
-    if (kind.startsWith('pose-')) {
-      const file = kind + '.png';
-      if (!session.previews?.some(p => p.revision === revision && p.assets.some(asset => asset.kind === kind))) throw Error('图层预览已过期');
-      return join(session.directory, file);
-    }
     if (
       !Number.isSafeInteger(revision) ||
       revision < session.revision - 1 ||
@@ -267,40 +260,6 @@ export class LayerCompositor {
     )
       throw Error("此合成预览已过期");
     return join(session.directory, `frame-${revision}.png`);
-  }
-  async preview(value: any) {
-    return this.exclusive(async () => {
-      const session = this.session(value.session);
-      if (value.revision !== session.revision) throw Error('请等待当前图层更新完成');
-      const layers = new Set(session.metadata.layers.filter((l: any) => !l.group && !l.mask).map((l: any) => l.id));
-      const slices = value.slices;
-      if (!Array.isArray(slices) || !slices.length || slices.length > layers.size ||
-          slices.some(ids => !Array.isArray(ids) || !ids.length || ids.some(id => !layers.has(id)))) throw Error('图层预览范围无效');
-      const ids = slices.flat();
-      if (new Set(ids).size !== ids.length) throw Error('图层预览范围重叠');
-      const previews = session.previews ??= [], slicesKey = JSON.stringify(slices);
-      const cached = previews.find(p => p.revision === session.revision && p.slicesKey === slicesKey);
-      if (cached) return { assets: cached.assets };
-      const token = randomUUID();
-      const kinds = slices.map((_, i) => `pose-${token}-${i}`), files = kinds.map(kind => kind + '.png');
-      const assets = [];
-      try {
-        await this.command({ op: 'preview', session: value.session, slices,
-          outputs: files.map(file => join(session.directory, file)) });
-        for (const kind of kinds) {
-          const file = join(session.directory, kind + '.png');
-          const { data, info } = await sharp(file).trim({ background: '#00000000', threshold: 0 }).png().toBuffer({ resolveWithObject: true });
-          await writeFile(file, data);
-          assets.push({ kind, x: -(info.trimOffsetLeft ?? 0), y: -(info.trimOffsetTop ?? 0) });
-        }
-      } catch (error) {
-        await Promise.all(files.map(file => rm(join(session.directory, file), { force: true })));
-        throw error;
-      }
-      previews.push({ revision: session.revision, slicesKey, assets });
-      if (previews.length > 2) await Promise.all(previews.shift()!.assets.map(({ kind }) => rm(join(session.directory, kind + '.png'), { force: true })));
-      return { assets };
-    });
   }
   async surfaces(value: any) {
     return this.exclusive(async () => {

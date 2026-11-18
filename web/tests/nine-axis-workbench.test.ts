@@ -15,7 +15,6 @@ import { applyStepAction, applyTaskAction } from '../../.agents/skills/live2d-ma
 import { readStepSession, writeStepSession } from '../../.agents/skills/live2d-maker/shared/agents/step-session.ts';
 import { stepDeliveries } from '../../.agents/skills/live2d-maker/shared/step-deliveries.ts';
 import { hairRounds, hairRoundLabel } from '../../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
-import { poseLayerSlices } from '../studio/layer-model.js';
 import { headSideLimit } from '../head-motion.js';
 
 async function fixture(t: any) {
@@ -512,7 +511,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const { HeadNineAxisPanel, nineAxisCapabilities } = await panelModule(), doc = composed(), requested: string[] = [], installed: any[] = [];
   t.mock.method(globalThis, 'fetch', async (url: any) => {
     const path = new URL(String(url), 'http://local/').searchParams.get('path')!; requested.push(path);
-    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
+    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', studioLayers: [], textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
   });
   const previous = (globalThis as any).createImageBitmap;
   (globalThis as any).createImageBitmap = async () => ({});
@@ -520,7 +519,8 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const panel = Object.create(HeadNineAxisPanel.prototype);
   Object.assign(panel, { epoch: 0, doc: null as any, clear() { this.doc = null; }, status() {}, error(message: string) { assert.fail(message); },
     install(doc: any, images: any[], allowPlane: boolean) { this.doc = doc; installed.push({ doc, images, allowPlane }); } });
-  await panel.load({ folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.headDeformers, version: '1', stage: 'y' } });
+  const fixture = { folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.headDeformers, version: '1', stage: 'y' } };
+  await Promise.all([panel.load(fixture), panel.load(fixture)]);
   assert.deepEqual(installed[0].doc, doc);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], -15, 0)].slice(0, 2), [-1, 0]);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], 0, 12.5)].slice(0, 2), [0, -1]);
@@ -620,10 +620,6 @@ test('focus hides only in preview, and eye edits made while focused survive rest
     { id: 'background', visible: true },
   ];
   Object.assign(panel, { layers, session: 'fixture', render() {}, queue() {}, undo: [] });
-  const order = new Map([['back', 0], ['front', 1]]);
-  assert.deepEqual(poseLayerSlices(panel.previewLayers(), order), [
-    { ids: ['background'], order: -.5 }, { ids: ['middle'], order: .5 }, { ids: ['foreground'], order: 1.5 },
-  ]);
   panel.setFocus(new Set(['front', 'back']));
   const eye = () => panel.previewLayers().map((row: { visible: boolean }) => row.visible);
   assert.deepEqual(eye(), [false, true, true, true, false, true, false]);

@@ -208,7 +208,6 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           }
           const value = await body(request);
           if (path.endsWith('/edit')) json(await compositor.edit(value));
-          else if (path.endsWith('/preview')) json(await compositor.preview(value));
           else if (path.endsWith('/surfaces')) json(await compositor.surfaces(value));
           else if (path.endsWith('/export')) json(await compositor.export(value));
           else if (path.endsWith('/close')) json(await compositor.closeDocument(value.session));
@@ -414,19 +413,20 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       }
       if (path === '/studio-layer-asset') {
         const kind = url.searchParams.get('kind') ?? 'png';
-        if (!['png', 'kra'].includes(kind) && !/^pose-[a-f0-9-]+-\d+$/.test(kind)) throw Error('无效的图层产物');
+        if (!['png', 'kra'].includes(kind)) throw Error('无效的图层产物');
         const file = await compositor.asset(url.searchParams.get('session') ?? '', Number(url.searchParams.get('revision')), kind);
         await lstat(file);
         if (kind === 'kra') response.setHeader('Content-Disposition', 'attachment; filename="character-edited.kra"');
-        response.writeHead(200, { 'Content-Type': kind === 'kra' ? 'application/octet-stream' : 'image/png' });
+        response.writeHead(200, { 'Content-Type': kind === 'png' ? 'image/png' : 'application/octet-stream' });
         createReadStream(file).on('error', () => response.destroy()).pipe(response); return;
       }
       if (path === '/api/studio/nine-axis/materials' || path === '/api/studio/nine-axis/texture') {
         const { directory } = await studioFolder(url.searchParams.get('folder') ?? '');
         if (path.endsWith('/materials')) {
-          const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '');
+          const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '', url.searchParams.get('scene') === 'studio');
           json({ doc: built.doc, author: built.author, version: built.version, document: built.doc.source?.document, revision: built.sourceRevision,
-            textures: built.doc.parts.map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
+            studioLayers: built.studioLayers,
+            textures: [...built.doc.parts, ...(built.studioLayers ?? [])].map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
           return;
         }
         const file = nineMaterials.texture(directory, url.searchParams.get('key') ?? '', Number(url.searchParams.get('index')));

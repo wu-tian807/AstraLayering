@@ -1,8 +1,8 @@
 import { validateHeadNineAxis, nineAxisCapabilities, headRollLimit, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
-import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
+import { HeadNineAxisRenderer, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
 import { constrainHeadPoint, followHeadPointer, headPointerPosition, headPreviewAngles, headSideLimit } from '../head-motion.js';
-import { layerTree, poseLayerSlices } from './layer-model.js';
+import { layerTree } from './layer-model.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -69,34 +69,52 @@ export class HeadNineAxisPanel {
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.stopKeyboardRoll(); });
   }
   diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, valueZ: this.valueZ, level: this.level, selected: this.selected, edited: [...this.dirty],
-    focused: !!this.focus, movingCamera: !!this.cameraMove, layerPreviewReady: !!this.sliceReady,
+    focused: !!this.focus, movingCamera: !!this.cameraMove,
     modes: this.modes?.map(({id, available, axes}) => ({id, available, ...axes})),
     matrix: this.doc ? { region: this.axes.region, x: this.axes.x, y: this.axes.y, completeCorners: this.axes.plane, dragging: !!this.padDrag } : null }; }
   async load(project, force = false) {
-    const epoch = ++this.epoch, entry = project?.nineAxis;
-    if (!force && entry?.available && this.doc && this.project?.folder === project?.folder && this.project?.nineAxis?.path === entry?.path && this.version === entry?.version) return;
+    const entry = project?.nineAxis;
+    if (!force && entry?.available && (this.doc || this.loading) && this.project?.folder === project?.folder &&
+        this.project?.nineAxis?.path === entry.path && this.version === entry.version) return;
+    const epoch = ++this.epoch;
     if (this.project?.folder !== project?.folder) this.levelSelection = null;
     const pitchUnlocked=entry?.stage==='headPitch'&&this.project?.nineAxis?.stage!==entry.stage;
     this.project = project; this.version = entry?.version; this.clear();
+    this.loading = !!entry?.available;
     if (!entry?.available) { this.status(project ? `${project.displayName || project.name} 尚无头部九轴数据（${entry?.path ?? 'nine-axis/step01_preparation/deformers.json'}）` : '打开含头部九轴数据的项目后预览'); return; }
     this.status('正在读取头部九轴…');
     try {
-      const r = await fetch('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder: project.folder, path: entry.path })); if (!r.ok) throw Error((await r.json()).error ?? '头部九轴数据读取失败');
+      const r = await fetch('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder: project.folder, path: entry.path, scene: 'studio' })); if (!r.ok) throw Error((await r.json()).error ?? '头部九轴数据读取失败');
       const material = await r.json(), doc = validateHeadNineAxis(material.doc);
-      const images = await Promise.all(doc.parts.map(async (p, index) => { const b = await fetch(material.textures[index]); if (!b.ok) throw Error(p.id + '：贴图读取失败'); return createNineAxisBitmap(await b.blob()); }));
-      if (epoch !== this.epoch) return;
+      if (!Array.isArray(material.studioLayers)) throw Error('当前工作台服务版本较旧，无法读取共用图层。');
+      const readImage = async (index, label) => {
+        const b = await fetch(material.textures[index]);
+        if (!b.ok) throw Error(label + '：贴图读取失败');
+        return b.blob();
+      };
+      const [images, staticLayers] = await Promise.all([
+        Promise.all(doc.parts.map(async (p, index) => createNineAxisBitmap(await readImage(index, p.id)))),
+        Promise.all(material.studioLayers.map(async (layer, index) => ({ ...layer,
+          image: await createImageBitmap(await readImage(doc.parts.length + index, layer.uuid), { premultiplyAlpha: 'none' }) }))),
+      ]);
+      if (epoch !== this.epoch) {
+        for (const image of images) image.close();
+        for (const layer of staticLayers) layer.image.close();
+        return;
+      }
       // Preview availability follows each composition's delivered axes.
-      this.install(doc, images);
+      this.install(doc, images, true, staticLayers);
       if(pitchUnlocked&&!new URLSearchParams(location.search).has('nineLevel'))this.selectLevel('accessory');
       this.author = material.author; this.version = material.version;
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
+    finally { if (epoch === this.epoch) this.loading = false; }
   }
   clear() {
     this.author = null;
     this.resetPointerFollow();
     this.stopKeyboardRoll();
     this.exitFocus(false);
-    this.sliceKey = undefined; this.sliceReady = false;
+    this.nativeRows = null;
     this.viewDrag?.();
     this.endPadDrag();
     this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.shownMasks.clear();
@@ -104,8 +122,9 @@ export class HeadNineAxisPanel {
     this.syncFocus(); this.draw();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
-  install(doc, images, allowPlane = true) {
+  install(doc, images, allowPlane = true, staticLayers = []) {
     this.doc = doc; this.view3.install(doc, images);
+    this.view3.setStaticLayers(staticLayers);
     this.allowPlane = allowPlane;
     this.modes = nineAxisPreviewModes(doc, allowPlane);
     const selection = nextPreviewSelection(this.levelSelection, this.modes);
@@ -386,36 +405,9 @@ export class HeadNineAxisPanel {
     if (!this.inSharedPreview || !this.doc) return;
     const rows = this.layers.previewLayers();
     const owner = this.layers.owner?.project;
-    if (owner?.folder !== this.project?.folder || owner?.files?.document?.path !== this.doc.source?.document) {
-      this.nativeRows = null; this.sliceReady = false; this.sliceKey = undefined;
-      return;
-    }
-    this.nativeRows = new Map(layerTree(rows).map(row => [row.uuid || row.id, row]));
-    if (!this.layers.session || this.layers.pending) { this.draw(); return; }
-    const order = new Map(this.doc.parts.flatMap((part, index) => part.uuid && part.role !== 'mask' &&
-      this.mode.scope.has(part.id) && authoredPreviewPart(part) ? [[part.uuid, index]] : []));
-    const slices = poseLayerSlices(rows, order);
-    const key = JSON.stringify([this.layers.session, this.layers.revision, slices]);
-    if (key === this.sliceKey) { this.draw(); return; }
-    this.sliceKey = key; this.sliceReady = !slices.length;
-    this.view3.setStaticLayers([]);
-    if (!slices.length) { this.draw(); return; }
-    void this.layers.poseLayers(slices.map(slice => slice.ids)).then(async layers => {
-      if (this.sliceKey !== key) return;
-      const images = await Promise.all(layers.map(async ({ url, x, y }, i) => {
-        const response = await fetch(url);
-        if (!response.ok) throw Error('图层预览读取失败');
-        const image = await createImageBitmap(await response.blob(), { premultiplyAlpha: 'none' });
-        return { image, x, y, order: slices[i].order };
-      }));
-      if (this.sliceKey !== key) { for (const { image } of images) image.close(); return; }
-      this.view3.setStaticLayers(images);
-      this.sliceReady = true;
-      this.draw();
-    }).catch(error => {
-      if (this.sliceKey === key) { this.sliceKey = undefined; this.error(error.message); }
-    });
-    this.draw();
+    this.nativeRows = owner?.folder === this.project?.folder && owner?.files?.document?.path === this.doc.source?.document
+      ? new Map(layerTree(rows).map(row => [row.uuid || row.id, row])) : null;
+    this.draw({ reuseXY: true });
   }
   get canFocus() { return this.active && !!this.doc && !!this.stage.source; }
   syncFocus() {
@@ -490,12 +482,16 @@ export class HeadNineAxisPanel {
     if (this.active && width) this.drawOverlay(frame.x0, frame.y0, frame.width / width);
     const reuseXY = this.reuseXY ?? true; this.reuseXY = undefined;
     if (!(this.value || this.valueY || this.valueZ || this.layers.focus || (this.active && this.shownMasks.size))) return false;
-    if (this.layers.session && !this.sliceReady) return false;
-    const visible = shownParts(this.doc, this.level, this.active ? { masks: this.shownMasks, selected: this.selected } : {});
-    const shown = new Set(this.doc.parts.filter(part => visible.has(part.id) && this.mode.scope.has(part.id) && authoredPreviewPart(part) &&
-      this.layerVisible(part)).map(part => part.id));
+    const shown = new Set(this.doc.parts.filter(part => part.role === 'mask'
+      ? this.active && (part.id === this.selected || this.shownMasks.has(part.id))
+      : this.layerVisible(part)).map(part => part.id));
     this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY,
-      opacity: part => (this.nativeRows?.get(part.uuid)?.opacity ?? (part.shadow?.opacity ?? 1) * 255) / 255 });
+      opacity: part => (this.nativeRows?.get(part.uuid)?.opacity ?? (part.shadow?.opacity ?? 1) * 255) / 255,
+      deform: part => this.mode.scope.has(part.id) && authoredPreviewPart(part),
+      layerState: layer => {
+        const row = this.nativeRows?.get(layer.uuid);
+        return row ? { visible: row.visible && !row.inheritedHidden, opacity: row.opacity, blend: row.blend } : layer;
+      } });
     return true;
   }
   layerVisible(part) {
@@ -564,7 +560,7 @@ export class HeadNineAxisPanel {
     } catch (error) { this.error(error.message); }
   }
   async refresh() {
-    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.viewDrag || this.layers?.pending) return;
+    if (!this.active || this.loading || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.viewDrag || this.layers?.pending) return;
     const project = this.project;
     this.refreshing = true;
     try {
@@ -580,7 +576,7 @@ export class HeadNineAxisPanel {
         else await this.reloadProject(next);
         return;
       }
-      if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
+      if (next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
       const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
       const limit = headRollLimit(this.doc);
