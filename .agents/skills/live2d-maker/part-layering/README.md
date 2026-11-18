@@ -20,7 +20,7 @@ pnpm part-layering --name my-character --groups /绝对路径/selection.json --k
 
 ## 参考准备
 
-输出 `references/standard.png`、`simplified-subject.png`、`base-subject.png`。标准化选项默认关闭，开启后先判断姿态再按需调整：自然放松地正视站立，嘴部自然张开、双眼自然张开，双臂放松、手部自然位于身体两侧；已符合的开合幅度及姿态直接保留。原图保留在任务 `input/`。素体保留手套、鞋袜和各自饰件，主体衣装以临时连体服替换。步骤目录 `step01_original`～`step07_ready` 依次记录原图、选项、姿态、标准图、简化、素体与就绪，拆分步骤从 `step08_initial` 接续编号。
+输出 `references/standard.png`、`simplified-subject.png`、`base-subject.png`。标准化选项默认关闭，开启后先判断姿态再按需调整；原图保留在任务 `input/`。素体保留手套、鞋袜和各自饰件，主体衣装以临时连体服替换。步骤目录 `step01_original`～`step07_ready` 依次记录原图、选项、姿态、标准图、简化、素体与就绪，拆分步骤从 `step08_initial` 接续编号。
 
 简化与素体各由一个 preparation agent 完成“判断 → 复制或生图”。简化 agent 另收到画风参考 [简化参考图片.png](../knowledge/part-layering/step05_simplified/references/简化参考图片.png)（只比较画法），素体 agent 另收到连体服款式参考 [连体服参考.jpg](../knowledge/part-layering/step06_base/references/连体服参考.jpg)。图1画法已足够简单（平涂色块、边界清楚、细节概括，有无线稿均可）时，简化 agent 直接复用，只在半写实、厚涂或晕染明显时转换；当前画幅没有主体衣装、角色已是素体或已有合适的临时连体服时，素体 agent 直接复用。复制工具 `reuse_reference` 绑定当前参考与输出位置，PNG 原样复制，其他格式转换为 PNG；需要转换或换装时调用本步骤配置的生图工具。两份完整提示词为 [2-简化图片.md](../knowledge/part-layering/step05_simplified/prompts/2-简化图片.md)、[3-素体参考.md](../knowledge/part-layering/step06_base/prompts/3-素体参考.md)。
 
