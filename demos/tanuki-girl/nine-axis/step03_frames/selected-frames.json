@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "frames": {
+    "left": {
+      "video": "nine-axis/step02_video/left.mp4",
+      "path": "nine-axis/step03_frames/left.png",
+      "timeSeconds": 2.75,
+      "reason": "查看从正面到末段的运动，并加密比较2.00、2.50、2.75和3.00秒。此帧鼻口与下巴向画面左侧偏移，远侧脸颊收窄，视觉左转幅度接近30°，两眼、鼻口和下颌轮廓仍清楚；比3.00秒及以后更保守，没有明显滚转、推近或叠影。"
+    },
+    "up": {
+      "video": "nine-axis/step02_video/up.mp4",
+      "path": "nine-axis/step03_frames/up.png",
+      "timeSeconds": 1.5,
+      "reason": "对比正面及1.25、1.375、1.50、1.625、1.75秒候选后，改选1.50秒（第36帧）。这一帧已经能辨认抬头透视，同时比原1.75秒的下巴上移与新增露颈更轻，避免过高的单轴参考传入左上方向。保留原始裁框、尺度和位置，不通过平移图片或缩小Y参数补偿。",
+      "frameIndex": 36
+    },
+    "down": {
+      "video": "nine-axis/step02_video/down.mp4",
+      "path": "nine-axis/step03_frames/down.png",
+      "timeSeconds": 2.75,
+      "reason": "查看完整运动，并比较2.50、2.75、3.00、3.25和3.50秒。此帧头顶和刘海前移，眼鼻口随低头下移，下巴收近耳机上沿，视觉低头幅度接近25°且较保守；两眼和鼻口仍清楚，避开后段刘海遮眼加重、脸部明显变暗的帧，没有明显侧转、滚转、推近或叠影。"
+    }
+  }
+}

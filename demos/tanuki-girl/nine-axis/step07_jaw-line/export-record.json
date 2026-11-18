@@ -1,0 +1,416 @@
+{
+  "version": 2,
+  "document": "nine-axis/step07_jaw-line/character-nine-axis.kra",
+  "parts": [
+    {
+      "id": "face/ears/ear_left/ear_interior",
+      "uuid": "89e242ab-70e7-49e5-8e34-9a0217ddd7a8",
+      "textureBounds": [
+        796,
+        222,
+        82,
+        86
+      ]
+    },
+    {
+      "id": "face/ears/ear_right/ear_interior",
+      "uuid": "d29c58c9-62d0-4ccd-9424-799489bda31b",
+      "textureBounds": [
+        535,
+        221,
+        77,
+        82
+      ]
+    },
+    {
+      "id": "face/ears/ear_left/ear_fur",
+      "uuid": "d302e191-5c78-4817-845b-37da0de4f9a7",
+      "textureBounds": [
+        793,
+        240,
+        60,
+        70
+      ]
+    },
+    {
+      "id": "face/ears/ear_right/ear_fur",
+      "uuid": "734186c6-cabd-4cfd-b129-63d36fded11b",
+      "textureBounds": [
+        559,
+        240,
+        60,
+        65
+      ]
+    },
+    {
+      "id": "face/ears/ear_left/ear_shell",
+      "uuid": "445a25cf-073d-4062-9cb7-2dc2e5d1dca3",
+      "textureBounds": [
+        778,
+        205,
+        113,
+        116
+      ]
+    },
+    {
+      "id": "face/ears/ear_right/ear_shell",
+      "uuid": "ed1ff626-4500-4c1f-9bbf-09638b5b3c73",
+      "textureBounds": [
+        521,
+        205,
+        108,
+        117
+      ]
+    },
+    {
+      "id": "neck/upper",
+      "uuid": "bc512b52-9060-4892-9998-52d1c5178458",
+      "textureBounds": [
+        670,
+        440,
+        75,
+        51
+      ]
+    },
+    {
+      "id": "neck",
+      "uuid": "fbb36e58-b147-450f-ac71-d51de7bd2518",
+      "textureBounds": [
+        634,
+        491,
+        150,
+        144
+      ]
+    },
+    {
+      "id": "jaw/chin_to_neck",
+      "uuid": "eb18edd7-8d30-4197-839f-6131d2463351",
+      "textureBounds": [
+        595,
+        473,
+        218,
+        144
+      ]
+    },
+    {
+      "id": "face/face_base",
+      "uuid": "c73e48f3-03a2-4701-8caf-83063974965f",
+      "textureBounds": [
+        601,
+        304,
+        214,
+        236
+      ]
+    },
+    {
+      "id": "jaw/ink",
+      "uuid": "575779c0-ad31-4fb7-b764-069e93490cce",
+      "textureBounds": [
+        601,
+        304,
+        214,
+        236
+      ]
+    },
+    {
+      "id": "hair/cast/bangs_cast",
+      "uuid": "60087679-298f-421c-8b1a-4b710dc21fca",
+      "textureBounds": [
+        616,
+        188,
+        200,
+        261
+      ]
+    },
+    {
+      "id": "hair/cast/side_right_cast",
+      "uuid": "08060cff-3e90-407b-972e-283f8c6ce0fc",
+      "textureBounds": [
+        507,
+        283,
+        137,
+        218
+      ]
+    },
+    {
+      "id": "hair/cast/side_left_cast",
+      "uuid": "f30f28b6-7871-4e5a-b6f4-b495378e574b",
+      "textureBounds": [
+        764,
+        278,
+        138,
+        229
+      ]
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "uuid": "a2b1e6d8-0c5e-4ff7-9ca3-094cc209211f",
+      "textureBounds": [
+        696,
+        495,
+        25,
+        23
+      ]
+    },
+    {
+      "id": "face/mouth/tongue",
+      "uuid": "f177c810-bf3d-4225-8478-7cca431e2ae1",
+      "textureBounds": [
+        698,
+        502,
+        21,
+        17
+      ]
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "uuid": "f293a843-0915-4e81-82d8-32a6925c7a46",
+      "textureBounds": [
+        697,
+        510,
+        23,
+        9
+      ]
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "uuid": "0f2a79f4-14a7-4e68-aa64-22ca28d0833c",
+      "textureBounds": [
+        697,
+        496,
+        22,
+        9
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "uuid": "6b8f98e3-272a-4807-8774-4a219b6812f5",
+      "textureBounds": [
+        729,
+        415,
+        64,
+        43
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "uuid": "eae99bc1-fe42-40d9-8bc1-c077610d6d86",
+      "textureBounds": [
+        741,
+        406,
+        41,
+        52
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "uuid": "bb67c9fd-f337-4b8d-ad9a-8ab3190c595b",
+      "textureBounds": [
+        742,
+        421,
+        39,
+        37
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "uuid": "eb30337c-5a23-4028-af35-6e96094fabc8",
+      "textureBounds": [
+        621,
+        415,
+        64,
+        43
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "uuid": "338fcc39-a964-4c97-a3b3-16b60b7a3024",
+      "textureBounds": [
+        635,
+        410,
+        40,
+        48
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "uuid": "4473535e-3342-4b51-abb9-c2d8f0666128",
+      "textureBounds": [
+        635,
+        420,
+        39,
+        38
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "uuid": "ae6d9e09-a249-45b6-8e3b-b7db6f39dfe0",
+      "textureBounds": [
+        735,
+        404,
+        70,
+        40
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "uuid": "c9dff7e7-54ed-4e72-9521-c6e675a7ff93",
+      "textureBounds": [
+        612,
+        406,
+        63,
+        42
+      ]
+    },
+    {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "uuid": "1af80f46-0541-4e4a-95be-861b54363fc3",
+      "textureBounds": [
+        733,
+        400,
+        49,
+        10
+      ]
+    },
+    {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "uuid": "fe355f5b-523c-4571-8a0d-db85e0c60423",
+      "textureBounds": [
+        631,
+        400,
+        48,
+        12
+      ]
+    },
+    {
+      "id": "face/nose",
+      "uuid": "9715a843-db7d-435a-a8e3-b32f2dc56a6f",
+      "textureBounds": [
+        699,
+        460,
+        16,
+        18
+      ]
+    },
+    {
+      "id": "face/blush_left",
+      "uuid": "5e74d9a3-a429-4d63-8f05-67f72cf9e047",
+      "textureBounds": [
+        741,
+        461,
+        36,
+        29
+      ]
+    },
+    {
+      "id": "face/blush_right",
+      "uuid": "591e43a4-4e29-4e9a-bf37-a56199a73562",
+      "textureBounds": [
+        623,
+        464,
+        44,
+        28
+      ]
+    },
+    {
+      "id": "face/mouth/lower_lip",
+      "uuid": "3c68fb33-ff72-4f7e-967b-5780418a7453",
+      "textureBounds": [
+        696,
+        503,
+        25,
+        17
+      ]
+    },
+    {
+      "id": "face/mouth/upper_lip",
+      "uuid": "94eedc57-8397-46d7-b4df-d7f7d56c87fa",
+      "textureBounds": [
+        695,
+        493,
+        27,
+        17
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left::back",
+      "uuid": "06085fa6-f39d-49c6-bc1b-505f7840b94f",
+      "textureBounds": [
+        745,
+        349,
+        6,
+        4
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right::back",
+      "uuid": "739e209d-5633-4105-a477-bb4811a84f3a",
+      "textureBounds": [
+        617,
+        352,
+        41,
+        15
+      ]
+    },
+    {
+      "id": "hair/side_hair/side_hair_left",
+      "uuid": "bde7e205-6062-4346-a420-e78844b50ac5",
+      "textureBounds": [
+        724,
+        212,
+        205,
+        298
+      ]
+    },
+    {
+      "id": "hair/side_hair/side_hair_right",
+      "uuid": "ccf27b6d-49e0-40a9-9a4d-17c7bc104c41",
+      "textureBounds": [
+        489,
+        212,
+        199,
+        291
+      ]
+    },
+    {
+      "id": "hair/bangs",
+      "uuid": "e2e38ffb-ec15-4ab7-aebb-fe1b504dbb42",
+      "textureBounds": [
+        613,
+        199,
+        189,
+        249
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_left::front",
+      "uuid": "a2acf7ca-a935-4c2d-9e1a-a0bd319d3e41",
+      "textureBounds": [
+        733,
+        349,
+        81,
+        23
+      ]
+    },
+    {
+      "id": "face/eyebrows/eyebrow_right::front",
+      "uuid": "882c642c-c4d7-4ecc-b2ec-57e6fae5ed13",
+      "textureBounds": [
+        602,
+        352,
+        78,
+        20
+      ]
+    },
+    {
+      "id": "jaw/contact_mask",
+      "uuid": "5ed19e67-2409-4ed2-a39e-2a3f7ebdca2d",
+      "textureBounds": [
+        601,
+        304,
+        214,
+        258
+      ]
+    }
+  ]
+}

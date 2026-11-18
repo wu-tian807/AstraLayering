@@ -1,0 +1,251 @@
+{
+  "id": "warp/face_completion_xy",
+  "x": -30,
+  "y": 25,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "01-occluded",
+      "samples": 55,
+      "weight": 1,
+      "meanPixels": 2.2791857604836636,
+      "maxPixels": 5.436680080989159
+    },
+    {
+      "id": "02-occluded",
+      "samples": 31,
+      "weight": 1,
+      "meanPixels": 5.8076536960593375,
+      "maxPixels": 9.15907900318242
+    },
+    {
+      "id": "03-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.07600782781080799,
+      "maxPixels": 0.18772836154848987
+    },
+    {
+      "id": "04-occluded",
+      "samples": 23,
+      "weight": 1,
+      "meanPixels": 0.5389587335600611,
+      "maxPixels": 1.1680297243372935
+    },
+    {
+      "id": "05-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.0812497808172704,
+      "maxPixels": 0.2181188548706123
+    },
+    {
+      "id": "06-visible",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.08674996167108266,
+      "maxPixels": 0.27433436091705043
+    },
+    {
+      "id": "07-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.11863880178396174,
+      "maxPixels": 0.22170839523318472
+    },
+    {
+      "id": "08-visible",
+      "samples": 48,
+      "weight": 1,
+      "meanPixels": 0.09289975936629248,
+      "maxPixels": 0.2859506879394472
+    },
+    {
+      "id": "09-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.053623699956900826,
+      "maxPixels": 0.1248299941728059
+    },
+    {
+      "id": "10-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 3.8989835106454995,
+      "maxPixels": 5.566775512776238
+    },
+    {
+      "id": "11-occluded",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 1.7322120116771305,
+      "maxPixels": 4.475274199160342
+    },
+    {
+      "id": "12-occluded",
+      "samples": 40,
+      "weight": 1,
+      "meanPixels": 0.8813496596524883,
+      "maxPixels": 1.7284710687446174
+    },
+    {
+      "id": "13-occluded",
+      "samples": 47,
+      "weight": 1,
+      "meanPixels": 1.2377061440936952,
+      "maxPixels": 3.2969184426623332
+    }
+  ],
+  "after": [
+    {
+      "id": "01-occluded",
+      "samples": 55,
+      "weight": 1,
+      "meanPixels": 1.8626798714347157,
+      "maxPixels": 3.4319103221614937
+    },
+    {
+      "id": "02-occluded",
+      "samples": 31,
+      "weight": 1,
+      "meanPixels": 4.284229294994247,
+      "maxPixels": 7.322607745192998
+    },
+    {
+      "id": "03-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.07001376323077776,
+      "maxPixels": 0.17102868207020483
+    },
+    {
+      "id": "04-occluded",
+      "samples": 23,
+      "weight": 1,
+      "meanPixels": 0.5335247714168044,
+      "maxPixels": 1.0339936930924238
+    },
+    {
+      "id": "05-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.06387878613339804,
+      "maxPixels": 0.2013378615058831
+    },
+    {
+      "id": "06-visible",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.08364837632220903,
+      "maxPixels": 0.24275887071420335
+    },
+    {
+      "id": "07-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.11435076138824288,
+      "maxPixels": 0.2131931295429621
+    },
+    {
+      "id": "08-visible",
+      "samples": 48,
+      "weight": 1,
+      "meanPixels": 0.08897224845557256,
+      "maxPixels": 0.2692987254097589
+    },
+    {
+      "id": "09-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.05027060754311119,
+      "maxPixels": 0.12277535349474891
+    },
+    {
+      "id": "10-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 3.8413361189122353,
+      "maxPixels": 5.5741977923159265
+    },
+    {
+      "id": "11-occluded",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 1.3257999723491287,
+      "maxPixels": 3.8638931222621307
+    },
+    {
+      "id": "12-occluded",
+      "samples": 40,
+      "weight": 1,
+      "meanPixels": 0.5665925178889049,
+      "maxPixels": 1.241994301619969
+    },
+    {
+      "id": "13-occluded",
+      "samples": 47,
+      "weight": 1,
+      "meanPixels": 0.5979191313409369,
+      "maxPixels": 2.5154799779566535
+    }
+  ],
+  "controls": 169,
+  "smoothness": 0.0005,
+  "occludedWeightScale": 0.00010000000000000003,
+  "corner": "left-up",
+  "trace": "nine-axis/step06_angle-xy/left-up-face-trace.json",
+  "visibility": [
+    {
+      "id": "01-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "02-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "03-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "04-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "05-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "06-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "07-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "08-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "09-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "10-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "11-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "12-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "13-occluded",
+      "visibility": "occluded"
+    }
+  ]
+}

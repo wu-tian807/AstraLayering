@@ -1,0 +1,160 @@
+{
+  "id": "warp/face-down-base",
+  "x": 0,
+  "y": -25,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "forehead-left",
+      "samples": 82,
+      "weight": 1,
+      "meanPixels": 0.08169284770756884,
+      "maxPixels": 0.18274378645936826
+    },
+    {
+      "id": "cheek-left-hidden",
+      "samples": 45,
+      "weight": 1,
+      "meanPixels": 0.6112944960031854,
+      "maxPixels": 2.1679928512807303
+    },
+    {
+      "id": "jaw-left-upper",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.43460751898478517,
+      "maxPixels": 0.8900832971183804
+    },
+    {
+      "id": "jaw-left",
+      "samples": 37,
+      "weight": 1,
+      "meanPixels": 0.24111846927454111,
+      "maxPixels": 0.8900832971183804
+    },
+    {
+      "id": "chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.3649352321533144,
+      "maxPixels": 0.5052181748359426
+    },
+    {
+      "id": "jaw-right",
+      "samples": 43,
+      "weight": 1,
+      "meanPixels": 0.353964025854177,
+      "maxPixels": 0.8929772997896668
+    },
+    {
+      "id": "cheek-right-hidden",
+      "samples": 56,
+      "weight": 1,
+      "meanPixels": 0.3919000122883464,
+      "maxPixels": 1.073161973034673
+    },
+    {
+      "id": "forehead-right",
+      "samples": 87,
+      "weight": 1,
+      "meanPixels": 0.10008952123904483,
+      "maxPixels": 0.1771877165981875
+    }
+  ],
+  "after": [
+    {
+      "id": "forehead-left",
+      "samples": 82,
+      "weight": 1,
+      "meanPixels": 4.9607784412799,
+      "maxPixels": 5.8366125969251685
+    },
+    {
+      "id": "cheek-left-hidden",
+      "samples": 45,
+      "weight": 1,
+      "meanPixels": 2.731403193487228,
+      "maxPixels": 4.014124555723454
+    },
+    {
+      "id": "jaw-left-upper",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.23693544074872588,
+      "maxPixels": 0.6733777571361664
+    },
+    {
+      "id": "jaw-left",
+      "samples": 37,
+      "weight": 1,
+      "meanPixels": 0.251291572013571,
+      "maxPixels": 0.6733777571361664
+    },
+    {
+      "id": "chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.34637840240764745,
+      "maxPixels": 0.48551282351349806
+    },
+    {
+      "id": "jaw-right",
+      "samples": 43,
+      "weight": 1,
+      "meanPixels": 0.2408976766725202,
+      "maxPixels": 0.8395623730157885
+    },
+    {
+      "id": "cheek-right-hidden",
+      "samples": 56,
+      "weight": 1,
+      "meanPixels": 1.2606151217124768,
+      "maxPixels": 1.968506634247704
+    },
+    {
+      "id": "forehead-right",
+      "samples": 87,
+      "weight": 1,
+      "meanPixels": 2.1501297028913307,
+      "maxPixels": 3.2578371316913977
+    }
+  ],
+  "controls": 81,
+  "smoothness": 0.5,
+  "occludedWeightScale": 0.00010000000000000003,
+  "trace": "nine-axis/step04_angles/model/down/face-trace.json",
+  "visibility": [
+    {
+      "id": "forehead-left",
+      "visibility": "occluded"
+    },
+    {
+      "id": "cheek-left-hidden",
+      "visibility": "occluded"
+    },
+    {
+      "id": "jaw-left-upper",
+      "visibility": "visible"
+    },
+    {
+      "id": "jaw-left",
+      "visibility": "visible"
+    },
+    {
+      "id": "chin",
+      "visibility": "visible"
+    },
+    {
+      "id": "jaw-right",
+      "visibility": "visible"
+    },
+    {
+      "id": "cheek-right-hidden",
+      "visibility": "occluded"
+    },
+    {
+      "id": "forehead-right",
+      "visibility": "occluded"
+    }
+  ]
+}

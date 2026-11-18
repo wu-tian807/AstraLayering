@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "sourceDocument": "nine-axis/step09_head-accessories/character-nine-axis.kra",
+  "upstreamDocument": "nine-axis/step08_hair/character-nine-axis.kra",
+  "upstreamModel": "nine-axis/step08_hair/deformers.json"
+}

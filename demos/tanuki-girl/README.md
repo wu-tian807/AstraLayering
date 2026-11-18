@@ -1,10 +1,12 @@
-# 狸猫女孩：分层、组装与阴影
+# 狸猫女孩：分层、阴影与头部九轴
 
 ![阴影完成稿](shadow/step01_mask/character-shadowed.png)
 
 本版来自 `tanuki-raster-rerun-20261111`，人物 raster 重新制作后完成组装与阴影，于 2026-11-14 按 `pnpm export` 导出。画布为 1376 × 2048，衣服沿用同一角色已完成的分层工程。
 
-本版完成到阴影，九轴尚未制作。案例只包含本次正式产物、报告和完成记录；继续制作使用原运行任务。
+头部九轴在这份阴影稿上完成，覆盖脸、五官、头发和头饰的左右、上下、四角，以及 ±15° 的 Z 轴歪头。下方从左到右展示正面、左上和右下叠加 Z 轴。
+
+![狸猫女孩头部 Z 轴歪头](head-roll.gif)
 
 | 内容 | 文件 |
 | --- | --- |
@@ -15,5 +17,6 @@
 | 衣服分层 | [KRA](clothing-raster-layering/step01/clothing-depth.kra) · [PNG](clothing-raster-layering/step01/composite.png) |
 | 组装角色 | [KRA](character-assembly/step01/character-assembled.kra) · [PNG](character-assembly/step01/character-assembled.png) |
 | 阴影 | [KRA](shadow/step01_mask/character-shadowed.kra) · [PNG](shadow/step01_mask/character-shadowed.png) · [投影关系](shadow/step01_mask/shadows.json) |
+| 头部九轴 | [最新 KRA](nine-axis/step09_head-accessories/character-nine-axis.kra) · [变形模型](nine-axis/step12_head-roll/deformers.json) |
 
-从角色工作台“打开项目”选择本目录即可浏览。导出来源与文件清单见 [manifest.json](manifest.json)。
+从角色工作台“打开项目”选择本目录，切到“头部九轴”即可预览。Z 滑杆需要支持 Z 轴的版本。导出来源与文件清单见 [manifest.json](manifest.json)。

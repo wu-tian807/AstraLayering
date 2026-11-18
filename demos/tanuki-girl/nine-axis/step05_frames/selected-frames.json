@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "frames": {
+    "left-up": {
+      "video": "nine-axis/step04_angles/video/left-up.mp4",
+      "path": "nine-axis/step05_frames/left-up.png",
+      "frameIndex": 45,
+      "reason": "同画布、同比例并排对照 left 与 up，并比较 40、43、47、50 等邻帧：第45帧的远侧眼压缩、鼻尖左偏及侧脸可见宽度与 left 接近；眼鼻口的相对高度、下巴上提和颈部露出与 up 接近，同时满足左转与抬头参考。"
+    },
+    "left-down": {
+      "video": "nine-axis/step04_angles/video/left-down.mp4",
+      "path": "nine-axis/step05_frames/left-down.png",
+      "frameIndex": 45,
+      "reason": "同画布、同比例并排对照 left 与 down，并比较 40、43、47、50 等邻帧：第45帧的双眼透视、鼻尖左偏及侧脸轮廓与 left 接近；头顶和耳朵的俯视关系、下巴靠近耳机以及较短的颈部露出与 down 接近，同时满足左转与低头参考。"
+    }
+  }
+}

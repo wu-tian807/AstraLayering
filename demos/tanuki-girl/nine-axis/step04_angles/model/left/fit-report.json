@@ -1,0 +1,466 @@
+{
+  "id": "warp/face_base_left",
+  "x": -30,
+  "y": 0,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "face-00",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.4087879773508583,
+      "maxPixels": 1.2005230152411743
+    },
+    {
+      "id": "face-01",
+      "samples": 31,
+      "weight": 0.03,
+      "meanPixels": 0.8087773564170607,
+      "maxPixels": 2.101101569476835
+    },
+    {
+      "id": "face-02",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 0.6875431421646422,
+      "maxPixels": 2.101101569476835
+    },
+    {
+      "id": "face-03",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.35415341225113234,
+      "maxPixels": 0.5743122578882487
+    },
+    {
+      "id": "face-04",
+      "samples": 22,
+      "weight": 1,
+      "meanPixels": 0.17290452959715544,
+      "maxPixels": 0.5743122578882487
+    },
+    {
+      "id": "face-05",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.22478359963031108,
+      "maxPixels": 0.36395133342797054
+    },
+    {
+      "id": "face-06",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.4977914859084915,
+      "maxPixels": 2.999295062959727
+    },
+    {
+      "id": "face-07",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 2.1003555216277863,
+      "maxPixels": 2.999295062959727
+    },
+    {
+      "id": "face-08",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.504519858577428,
+      "maxPixels": 1.4749505432104963
+    },
+    {
+      "id": "face-09",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.23787120825261726,
+      "maxPixels": 0.30280697932407047
+    },
+    {
+      "id": "face-10",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.8742316592721404,
+      "maxPixels": 4.75556361017211
+    },
+    {
+      "id": "face-11",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 2.3298635396060248,
+      "maxPixels": 4.75556361017211
+    },
+    {
+      "id": "face-12",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 2.6993223124602936,
+      "maxPixels": 5.56500688968009
+    },
+    {
+      "id": "face-13",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 2.2955720219153033,
+      "maxPixels": 5.56500688968009
+    },
+    {
+      "id": "face-14",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 0.7659337459295281,
+      "maxPixels": 0.8671428092606233
+    },
+    {
+      "id": "face-15",
+      "samples": 17,
+      "weight": 1,
+      "meanPixels": 1.1209821642276854,
+      "maxPixels": 2.895774474667681
+    },
+    {
+      "id": "face-16",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 2.19140113927399,
+      "maxPixels": 2.921013620502467
+    },
+    {
+      "id": "face-17",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.9499440887484657,
+      "maxPixels": 1.5672300878800227
+    },
+    {
+      "id": "face-18",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.6257344295410188,
+      "maxPixels": 1.887208286645241
+    },
+    {
+      "id": "face-19",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.8493697724286785,
+      "maxPixels": 1.887208286645241
+    },
+    {
+      "id": "face-20",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.3594216128387667,
+      "maxPixels": 1.391573040012831
+    },
+    {
+      "id": "face-21",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.055950369665445046,
+      "maxPixels": 0.16638731862014908
+    },
+    {
+      "id": "face-22",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 0.056809510030009745,
+      "maxPixels": 0.17332824422643156
+    },
+    {
+      "id": "face-23",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 0.15358854046635995,
+      "maxPixels": 0.3286429041221058
+    },
+    {
+      "id": "face-24",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 0.14300083346699544,
+      "maxPixels": 0.6023229910331821
+    }
+  ],
+  "after": [
+    {
+      "id": "face-00",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 17.5097350060579,
+      "maxPixels": 22.34787160093945
+    },
+    {
+      "id": "face-01",
+      "samples": 31,
+      "weight": 0.03,
+      "meanPixels": 7.135496794993578,
+      "maxPixels": 12.667628848178259
+    },
+    {
+      "id": "face-02",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 1.59801214969454,
+      "maxPixels": 4.5723061194971555
+    },
+    {
+      "id": "face-03",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 0.3416242592748812,
+      "maxPixels": 0.4716575428269312
+    },
+    {
+      "id": "face-04",
+      "samples": 22,
+      "weight": 1,
+      "meanPixels": 0.12703654276886572,
+      "maxPixels": 0.34951492407597595
+    },
+    {
+      "id": "face-05",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.26181512336754337,
+      "maxPixels": 0.9886909767036296
+    },
+    {
+      "id": "face-06",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.5833288366650471,
+      "maxPixels": 1.1573029434845497
+    },
+    {
+      "id": "face-07",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.3921847984874153,
+      "maxPixels": 1.1573029434845497
+    },
+    {
+      "id": "face-08",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.21702133796197257,
+      "maxPixels": 0.4475792803038352
+    },
+    {
+      "id": "face-09",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.19065376768082237,
+      "maxPixels": 0.5885762915835322
+    },
+    {
+      "id": "face-10",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.8722059950248942,
+      "maxPixels": 2.469464781163578
+    },
+    {
+      "id": "face-11",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.6597231816631617,
+      "maxPixels": 2.6355304692968
+    },
+    {
+      "id": "face-12",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.6656253434815147,
+      "maxPixels": 2.9847013750580107
+    },
+    {
+      "id": "face-13",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 1.0278961248999794,
+      "maxPixels": 2.9847013750580107
+    },
+    {
+      "id": "face-14",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 0.2844320178807205,
+      "maxPixels": 0.7794257944467478
+    },
+    {
+      "id": "face-15",
+      "samples": 17,
+      "weight": 1,
+      "meanPixels": 0.1341815390828011,
+      "maxPixels": 0.37495275312392734
+    },
+    {
+      "id": "face-16",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 2.1245206232591527,
+      "maxPixels": 5.334581082798506
+    },
+    {
+      "id": "face-17",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 6.481706178551923,
+      "maxPixels": 7.072794681119188
+    },
+    {
+      "id": "face-18",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 12.008913662088993,
+      "maxPixels": 16.494253047527135
+    },
+    {
+      "id": "face-19",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 23.227151514754357,
+      "maxPixels": 29.707229006748914
+    },
+    {
+      "id": "face-20",
+      "samples": 21,
+      "weight": 0.03,
+      "meanPixels": 33.47858947749403,
+      "maxPixels": 37.805506271410536
+    },
+    {
+      "id": "face-21",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 39.23190580892444,
+      "maxPixels": 40.23979406823109
+    },
+    {
+      "id": "face-22",
+      "samples": 16,
+      "weight": 0.03,
+      "meanPixels": 39.980511860640696,
+      "maxPixels": 40.32760135080108
+    },
+    {
+      "id": "face-23",
+      "samples": 22,
+      "weight": 0.03,
+      "meanPixels": 36.274472677296956,
+      "maxPixels": 39.166403578135395
+    },
+    {
+      "id": "face-24",
+      "samples": 23,
+      "weight": 0.03,
+      "meanPixels": 27.607154434972266,
+      "maxPixels": 32.60445052056181
+    }
+  ],
+  "controls": 81,
+  "smoothness": 0.3,
+  "occludedWeightScale": 0.00010000000000000003,
+  "trace": "nine-axis/step04_angles/model/left/face-trace.json",
+  "visibility": [
+    {
+      "id": "face-00",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-01",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-02",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-03",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-04",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-05",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-06",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-07",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-08",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-09",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-10",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-11",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-12",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-13",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-14",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-15",
+      "visibility": "visible"
+    },
+    {
+      "id": "face-16",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-17",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-18",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-19",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-20",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-21",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-22",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-23",
+      "visibility": "occluded"
+    },
+    {
+      "id": "face-24",
+      "visibility": "occluded"
+    }
+  ]
+}
