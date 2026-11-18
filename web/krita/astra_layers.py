@@ -10,10 +10,12 @@ from pathlib import Path
 import os
 import json
 import traceback
+import faulthandler
 import re
 import hashlib
 
-ROOT = Path(os.environ['ASTRA_LAYER_BRIDGE']).resolve()
+ROOT = Path(os.environ['ASTRA_KRITA_BRIDGE']).resolve()
+faulthandler.enable()
 BLENDS = {'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten'}
 FIELDS = ('visible', 'opacity', 'blend', 'inheritAlpha', 'passThrough')
 
@@ -52,14 +54,17 @@ def thumbnail(node):
 class Layers(Extension):
     def setup(self):
         self.docs = {}
+        self.timer = None
+
+    def createActions(self, window):
+        if self.timer is not None:
+            return
+        ROOT.mkdir(parents=True, exist_ok=True)
         Krita.instance().setBatchmode(True)
         self.timer = QTimer()
         self.timer.timeout.connect(self.poll)
         self.timer.start(80)
-        atomic(ROOT / 'ready.json', {'version': Krita.instance().version()})
-
-    def createActions(self, window):
-        pass
+        atomic(ROOT / 'ready.json', {'pid': os.getpid(), 'version': Krita.instance().version()})
 
     def import_psd(self, doc, specs):
         def walk(parent, records):
@@ -343,13 +348,20 @@ class Layers(Extension):
             raise
 
     def poll(self):
+        if (ROOT / 'quit').exists():
+            self.timer.stop()
+            for session in self.docs.values():
+                session['doc'].close()
+            self.docs.clear()
+            Krita.instance().action('file_quit').trigger()
+            return
         path = ROOT / 'request.json'
         if not path.exists():
             return
         self.timer.stop()
         job = {}
         try:
-            job = json.loads(path.read_text())
+            job = json.loads(path.read_text(encoding='utf-8'))
             path.unlink()
             result = {'id': job['id'], 'ok': True, 'value': self.run(job)}
         except Exception as error:

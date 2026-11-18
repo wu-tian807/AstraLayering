@@ -34,6 +34,23 @@ async function bench(t: any, started: any[] = [], scans: { kritaScan?: ReturnTyp
 }
 const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 
+test('Studio layer editing follows the saved global Krita path', async t => {
+  const b = await bench(t);
+  const deploymentPath = process.env.ASTRA_STUDIO_KRITA;
+  process.env.ASTRA_STUDIO_KRITA = join(b.base, 'legacy-krita');
+  t.after(() => {
+    if (deploymentPath === undefined) delete process.env.ASTRA_STUDIO_KRITA;
+    else process.env.ASTRA_STUDIO_KRITA = deploymentPath;
+  });
+  const layers = async () => (await fetch(b.url + '/api/studio/layers')).json();
+  assert.deepEqual(await layers(), { available: false, engine: 'Krita' });
+  const krita = join(b.base, 'good-krita');
+  assert.equal((await b.post('settings', { directory: b.dir, krita })).status, 200);
+  assert.deepEqual(await layers(), { available: true, engine: 'Krita' });
+  assert.equal((await b.post('settings', { directory: b.dir, krita: '' })).status, 200);
+  assert.deepEqual(await layers(), { available: false, engine: 'Krita' });
+});
+
 test('both scan APIs use the same controls with separate states and stop on service close', async t => {
   const stops: string[] = [];
   const scanner = (name: string) => {

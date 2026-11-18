@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Service
-ServiceTypes=Krita/PythonPlugin
-X-KDE-Library=astra_layers
-X-Python-2-Compatible=false
-Name=Astra Layer Compositor
-Comment=Private fixed-operation document compositor

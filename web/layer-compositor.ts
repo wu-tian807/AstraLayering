@@ -1,15 +1,6 @@
-import { spawn, type ChildProcess } from "node:child_process";
-import {
-  mkdtemp,
-  mkdir,
-  cp,
-  writeFile,
-  readFile,
-  rm,
-  open,
-} from "node:fs/promises";
+import { mkdir, writeFile, readFile, rm } from "node:fs/promises";
 import { join } from "node:path";
-import { tmpdir } from "node:os";
+import { fileURLToPath } from "node:url";
 import { randomBytes, randomUUID } from "node:crypto";
 import { setTimeout as delay } from "node:timers/promises";
 import type { IncomingMessage } from "node:http";
@@ -17,6 +8,9 @@ import { unzipSync } from "fflate";
 import { readPsd, type Layer } from "ag-psd";
 import { atomicJSON } from "./files.ts";
 import { parseXml } from "../.agents/skills/live2d-maker/shared/xml.ts";
+import { SectionKrita } from "../.agents/skills/live2d-maker/shared/krita/section-krita.ts";
+
+const layersPlugin = fileURLToPath(new URL("./krita/astra_layers.py", import.meta.url));
 
 type Session = {
   directory: string;
@@ -101,147 +95,54 @@ export function psdStructure(bytes: Uint8Array) {
   return walk(doc.children || []);
 }
 export class LayerCompositor {
-  readonly available = !!process.env.ASTRA_STUDIO_KRITA;
   private sessions = new Map<string, Session>();
   private root = "";
-  private processes: ChildProcess[] = [];
+  private instance?: SectionKrita;
   private serial: Promise<unknown> = Promise.resolve();
-  private startup?: Promise<void>;
-  private closed = false;
+  private readonly closing = new AbortController();
   private timer = setInterval(() => {
     void this.exclusive(() => this.expire()).catch((error) =>
       console.error("Layer session cleanup:", error.message),
     );
   }, 60_000).unref();
-  private sourceRoot: string;
-  constructor(sourceRoot: string) {
-    this.sourceRoot = sourceRoot;
+  private readonly executable: () => string | undefined;
+  constructor(executable: () => string | undefined) {
+    this.executable = executable;
   }
+  get available() { return !!this.executable(); }
   private exclusive<T>(operation: () => Promise<T>): Promise<T> {
     const result = this.serial.then(operation);
     this.serial = result.catch(() => {});
     return result;
   }
-  private async start() {
-    if (this.closed) throw Error("图层服务已关闭");
-    if (!this.available)
-      throw Error("图层合成未配置，请配置 ASTRA_STUDIO_KRITA");
-    if (
-      this.processes.some((p) => p.exitCode !== null || p.signalCode !== null)
-    )
-      await this.stopNative();
-    if (!this.startup)
-      this.startup = this.launch().catch(async (error) => {
-        await this.stopNative();
-        throw error;
-      });
-    await this.startup;
-  }
-  private async launch() {
-    // Short isolated TMPDIR also prevents QtSingleApplication attaching to the
-    // user's running Krita. Never share its socket, settings, plugin queue or X11.
-    this.root = await mkdtemp(join(tmpdir(), "astra-layers-"));
-    for (const name of [
-      "config",
-      "share/krita/pykrita/astra_layers",
-      "runtime",
-      "tmp",
-      "docs",
-    ])
-      await mkdir(join(this.root, name), { recursive: true, mode: 0o700 });
-    await cp(
-      join(this.sourceRoot, "web/krita/astra_layers.py"),
-      join(this.root, "share/krita/pykrita/astra_layers/__init__.py"),
-    );
-    await cp(
-      join(this.sourceRoot, "web/krita/astra_layers.desktop"),
-      join(this.root, "share/krita/pykrita/astra_layers.desktop"),
-    );
-    await writeFile(
-      join(this.root, "config/kritarc"),
-      "[python]\nenable_astra_layers=true\n",
-    );
-    const log = await open(join(this.root, "native.log"), "a", 0o600);
-    try {
-      const x = spawn(
-        process.env.ASTRA_STUDIO_XVFB || "Xvfb",
-        ["-displayfd", "3", "-screen", "0", "1280x800x24", "-nolisten", "tcp"],
-        { stdio: ["ignore", log.fd, log.fd, "pipe"] },
-      );
-      this.processes.push(x);
-      const display = await new Promise<string>((accept, reject) => {
-        const timer = setTimeout(() => reject(Error("Xvfb 启动超时")), 10_000);
-        let buffer = "";
-        x.once("error", (error) => {
-          clearTimeout(timer);
-          reject(error);
-        });
-        x.stdio[3]!.on("data", (data) => {
-          buffer += data.toString();
-          if (/^\d+\n/.test(buffer)) {
-            clearTimeout(timer);
-            accept(buffer.trim());
-          }
-        });
-        x.once("exit", () => {
-          clearTimeout(timer);
-          reject(Error("Xvfb 未能启动"));
-        });
-      });
-      const env: NodeJS.ProcessEnv = {
-        ...process.env,
-        DISPLAY: ":" + display,
-        TMPDIR: join(this.root, "tmp"),
-        XDG_CONFIG_HOME: join(this.root, "config"),
-        XDG_DATA_HOME: join(this.root, "share"),
-        XDG_RUNTIME_DIR: join(this.root, "runtime"),
-        ASTRA_LAYER_BRIDGE: this.root,
-        FONTCONFIG_PATH: "/etc/fonts",
-        FONTCONFIG_FILE: "/etc/fonts/fonts.conf",
-      };
-      delete env.QT_QPA_PLATFORM;
-      if (process.env.ASTRA_STUDIO_KRITA_PYTHONHOME)
-        env.PYTHONHOME = process.env.ASTRA_STUDIO_KRITA_PYTHONHOME;
-      if (process.env.ASTRA_STUDIO_KRITA_PYTHONPATH)
-        env.PYTHONPATH = process.env.ASTRA_STUDIO_KRITA_PYTHONPATH;
-      const krita = spawn(
-        process.env.ASTRA_STUDIO_KRITA!,
-        ["--nosplash", "--resource-location", join(this.root, "share/krita")],
-        { env, stdio: ["ignore", log.fd, log.fd] },
-      );
-      this.processes.push(krita);
-      let spawnError: Error | undefined;
-      krita.once("error", (error) => {
-        spawnError = error;
-      });
-      // Cold resource/font initialization may exceed 40 seconds on the service
-      // host. Keep a bounded startup wait, separate from document operations.
-      const deadline = Date.now() + 90_000;
-      while (Date.now() < deadline) {
-        if (spawnError || krita.exitCode !== null || krita.signalCode !== null)
-          throw spawnError || Error("Krita 图层合成器未能启动");
-        try {
-          await readFile(join(this.root, "ready.json"));
-          return;
-        } catch (e) {
-          if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
-        }
-        await delay(100);
-      }
-      throw Error("Krita 图层合成器启动超时");
-    } finally {
-      await log.close();
-    }
+  private async start(signal: AbortSignal) {
+    if (this.closing.signal.aborted) throw Error("图层服务已关闭");
+    if (this.instance?.bridge) return;
+    const krita = this.executable();
+    if (!krita) throw Error("请先在全局设置中选择 Krita");
+    const instance = new SectionKrita({
+      section: "studio-layers",
+      krita,
+      plugin: { module: "astra_layers", source: layersPlugin },
+    });
+    this.instance = instance;
+    const startup = AbortSignal.any([signal, this.closing.signal]);
+    await instance.reserve(startup);
+    const { bridge } = await instance.start(startup);
+    if (!bridge) throw Error("Krita 图层合成器已退出");
+    this.root = bridge;
+    await mkdir(join(bridge, "docs"), { mode: 0o700 });
   }
   private async command(value: Record<string, unknown>) {
+    if (!this.instance?.bridge) {
+      await this.stopNative();
+      throw Error("图层合成器已退出，请重新打开文件");
+    }
     const id = randomUUID();
     await rm(join(this.root, "response.json"), { force: true });
     await atomicJSON(join(this.root, "request.json"), { ...value, id });
     for (let i = 0; i < 1200; i++) {
-      if (
-        this.closed ||
-        this.processes.some((p) => p.exitCode !== null || p.signalCode !== null)
-      ) {
+      if (this.closing.signal.aborted || !this.instance?.bridge) {
         await this.stopNative();
         throw Error("图层合成器已退出，请重新打开文件");
       }
@@ -273,11 +174,12 @@ export class LayerCompositor {
       if (Date.now() - value.touched > 30 * 60_000)
         await this.closeSession(key);
   }
-  async create(request: IncomingMessage, extension: string) {
+  async create(request: IncomingMessage, extension: string, signal: AbortSignal) {
     // Reserve capacity before buffering an upload; no discarded full-size decode.
     return this.exclusive(async () => {
-      await this.start();
+      if (this.instance && !this.instance.bridge) await this.stopNative();
       await this.expire();
+      if (!this.available) throw Error("请先在全局设置中选择 Krita");
       if (this.sessions.size >= 4)
         throw Error("打开的文件过多，请先关闭其他文件");
       const chunks: Buffer[] = [];
@@ -294,12 +196,14 @@ export class LayerCompositor {
         64_000_000
       )
         throw Error("已打开的画布总量过大，请先关闭其他文件");
-      const token = randomBytes(24).toString("hex"),
-        directory = join(this.root, "docs", token);
-      await mkdir(directory, { mode: 0o700 });
-      const input = join(directory, "source." + extension);
-      await writeFile(input, bytes, { mode: 0o600 });
+      const token = randomBytes(24).toString("hex");
+      let directory: string | undefined;
       try {
+        await this.start(signal);
+        directory = join(this.root, "docs", token);
+        await mkdir(directory, { mode: 0o700 });
+        const input = join(directory, "source." + extension);
+        await writeFile(input, bytes, { mode: 0o600 });
         const metadata = await this.command({
           op: "open",
           session: token,
@@ -316,7 +220,8 @@ export class LayerCompositor {
         });
         return { session: token, revision: 0, ...metadata };
       } catch (e) {
-        await rm(directory, { recursive: true, force: true });
+        if (this.sessions.size === 0) await this.stopNative();
+        else if (directory) await rm(directory, { recursive: true, force: true });
         throw e;
       }
     });
@@ -392,7 +297,8 @@ export class LayerCompositor {
       await this.command({ op: "close", session: token });
     } finally {
       this.sessions.delete(token);
-      await rm(session.directory, { recursive: true, force: true });
+      if (this.sessions.size === 0) await this.stopNative();
+      else await rm(session.directory, { recursive: true, force: true });
     }
   }
   closeDocument(token: string) {
@@ -402,35 +308,15 @@ export class LayerCompositor {
     });
   }
   private async stopNative() {
-    const processes = this.processes;
-    this.processes = [];
-    await Promise.all(
-      processes.map(
-        (p) =>
-          new Promise<void>((done) => {
-            if (!p.pid || p.exitCode !== null || p.signalCode !== null) {
-              done();
-              return;
-            }
-            const timer = setTimeout(() => {
-              p.kill("SIGKILL");
-            }, 2500);
-            p.once("exit", () => {
-              clearTimeout(timer);
-              done();
-            });
-            p.kill();
-          }),
-      ),
-    );
-    if (this.root) await rm(this.root, { recursive: true, force: true });
+    const instance = this.instance;
+    this.instance = undefined;
     this.root = "";
-    this.startup = undefined;
     this.sessions.clear();
+    await instance?.release();
   }
   private disposal?: Promise<void>;
   dispose() {
-    this.closed = true;
+    this.closing.abort(Error("图层服务已关闭"));
     clearInterval(this.timer);
     return (this.disposal ??= this.serial.then(() => this.stopNative()));
   }

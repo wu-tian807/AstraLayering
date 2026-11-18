@@ -118,19 +118,18 @@ nine_axis_view_video_model=doubao-seedance-2-5-260628
 
 “打开项目”中提供长飘带、裙摆布片和横向挂布示例。绑定草稿保存在本机，可继续调整。
 
-### 原生合成服务配置（Linux）
+### 原生合成服务配置
 
-安装带 Python 插件的 Krita 和 Xvfb，为网页进程配置：
+安装带 Python 插件的 Krita，然后在工作台的全局设置中选择该可执行文件。图层合成和九轴预览统一使用这个设置，并复用制作流程的 Krita 启动方式。
 
 ```sh
-export ASTRA_STUDIO_KRITA=/path/to/krita/AppRun
-# AppImage 解包版按实际路径配置；系统安装版通常无需这两项
+# Linux 上解包的 AppImage 如需指定 Python 路径，按实际目录设置
 export ASTRA_STUDIO_KRITA_PYTHONHOME=/path/to/krita/usr
 export ASTRA_STUDIO_KRITA_PYTHONPATH=/path/to/krita/usr/share/krita/pykrita:/path/to/krita/usr/lib/krita-python-libs
 pnpm web
 ```
 
-Xvfb 不在 PATH 时设置 `ASTRA_STUDIO_XVFB`。合成器按需启动，首次加载图层可能需要数十秒，期间先展示保存的合成图。
+无桌面的 Linux 使用 Xvfb。它不在 PATH 时设置 `ASTRA_STUDIO_XVFB`。合成器按需启动，首次加载图层期间先展示保存的合成图。
 
 ## 从项目自动加载
 
