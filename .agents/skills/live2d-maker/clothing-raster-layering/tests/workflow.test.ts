@@ -53,7 +53,7 @@ test('independent run directory, parts path normalization, and external-only pro
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
   assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), /Unknown option/);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: async () => assert.fail('dry run must not invoke Codex') });
-  assert.ok(prompt.includes('step02/clothing-soft-edges.kra'));
+  assert.ok(prompt.includes(join('step02', 'clothing-soft-edges.kra')));
   assert.ok(!prompt.includes('wearing-order.md') && !prompt.includes('character-dressup-base'));
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });
 });
@@ -63,14 +63,17 @@ test('each drawing stage starts its own thread; review completes before step01 m
   await runWorkflow(f.options, { ...f.deps, agent: async request => {
     requests.push(request);
     assert.equal(request.model, 'gpt-6.2-sol');
-    assert.equal(request.effort, request.step === 'clothing_raster_step02' ? 'medium' : 'xhigh');
     if (requests.length === 2) assert.equal(request.threadId, undefined);
     if (requests.length === 2) await assert.rejects(readFile(join(f.output, 'step01/.completed')), { code: 'ENOENT' });
     // step01's thread keeps step01's tools; step02 must start a thread with its own.
     if (requests.length === 3) assert.equal(request.threadId, undefined);
     return deliver(request, requests.length === 3 ? 'drawing-step02' : undefined);
   } });
-  assert.equal(requests.length, 3);
+  assert.deepEqual(requests.map(({ step, effort }) => [step, effort]), [
+    ['clothing_raster_step01', 'xhigh'],
+    ['clothing_raster_step01_review', 'high'],
+    ['clothing_raster_step02', 'medium'],
+  ]);
   assert.equal((await readStepSession(f.output, 'step02'))?.threadId, 'drawing-step02');
   await assert.rejects(readFile(join(f.output, 'run.json')), { code: 'ENOENT' });
   assert.equal((await readStepSession(f.output, 'step01'))?.threadId, 'drawing-1');

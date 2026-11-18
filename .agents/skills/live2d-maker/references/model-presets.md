@@ -1,73 +1,38 @@
 # 模型方案与配置
 
-配置保存在 skill 根目录 `.env`，对使用该安装的任务生效。双击启动器在 `.env` 不存在时按 `example.env` 创建；直接启动 Web 时先读取默认值，首次保存再创建。用户已选择方案 2 或自定义时沿用其选择，不重复询问。已有 `.env` 直接复用，用户要求切换或调整时才修改。
+配置保存在 skill 根目录 `.env`，对使用该安装的任务生效。双击启动器在 `.env` 不存在时按 `example.env` 创建；直接启动 Web 时先读取默认值，首次保存再创建。已有 `.env` 直接复用，用户要求切换或调整时才修改。
 
 完整仓库可在网页 **“管线配置 → 环境与模型”** 中选择模型、预览并保存 `.env`；界面与工作流共用配置解析器。独立 skill 或批量配置可按本页的配置键编辑文件。
 
-每套方案同时包含 **LLM** 和 **生图模型**：`<职责>_agent_model` 选择执行任务的语言模型与思考力度，`<步骤>_image_model` 选择该步骤调用的生图模型。LLM 按职责配置，人物与衣服共用；生图按实际步骤分别配置，完整键见下方[生图模型与配置键](#生图模型与配置键)。
+语言模型和生图分别配置。`<职责>_agent_model` 选择执行任务的语言模型与思考力度，`<步骤>_image_model` 选择该步骤调用的生图模型。LLM 按职责配置，人物与衣服共用；生图按实际步骤分别配置，完整键见下方[生图模型与配置键](#生图模型与配置键)。
 
-常规配置阅读两套方案与[生图配置键](#生图模型与配置键)；自定义接入时阅读 [CLI 与 provider](#cli-与-provider)和[生图执行](#生图执行与透明处理)，迁移或续跑时阅读[配置覆盖](#配置覆盖与旧键迁移)与[会话记录](#会话与记录)。
+常规配置见下方默认配置与[生图配置键](#生图模型与配置键)；自定义接入时阅读 [CLI 与 provider](#cli-与-provider)和[生图执行](#生图执行与透明处理)，迁移或续跑时阅读[配置覆盖](#配置覆盖与旧键迁移)与[会话记录](#会话与记录)。
 
-| 选择 | LLM | 生图 |
-| --- | --- | --- |
-| 方案 1（默认） | 主要职责使用 `gpt-6.2-sol`，补全越界评审使用 `gpt-6.1-terra`，力度见下表 | `codex-native`，继承宿主内置生图工具 |
-| 方案 2（混合） | GPT 准备、part 描线／review／去重及分析，Claude SVG 遮挡补全、栅格绘制、组装与阴影，详见下表 | 简化图用 GPT Image Sunburst；素体图和两套 part 遮挡补全参考用 Nano Banana 2.1，其余用 GPT Image Sunburst |
-| 自定义 | 在方案 1 或方案 2 上覆盖所需职责 | 按实际生图 agent 覆盖 |
+## 默认配置
 
-## 方案 1：默认配置
-
-[example.env](../example.env) 是默认配置的唯一来源，维护在 skill 内。启动器以它创建 `.env`，运行时缺省值与 WebUI 默认展示也读取它；修改默认模型或力度时统一更新此文件。安装目录缺少模板、模板缺字段或必要默认值为空时，启动直接报错。已有 `.env` 继续保留用户配置。人物与衣服共用以下语言模型职责；返修沿用对应绘制模型。
+[example.env](../example.env) 是默认配置的唯一来源，维护在 skill 内。启动器以它创建 `.env`，运行时缺省值与 WebUI 默认展示也读取它；修改默认模型或力度时统一更新此文件。安装目录缺少模板、模板缺字段或必要默认值为空时，启动直接报错。已有 `.env` 继续保留用户配置。人物与衣服共用模型职责，返修沿用对应绘制模型。Preparation 包括姿态与画风判断、标准化、简化、素体和纯衣服参考准备。
 
 | 职责 | 模型与力度 | `.env` 配置键 |
 | --- | --- | --- |
 | 全部 preparation | `gpt-6.2-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.2-sol-medium` | `part_draw_agent_model` |
-| part 轮廓 review | `gpt-6.2-sol-medium` | `part_review_agent_model` |
+| part 轮廓绘制与返修 | `gpt-6.2-astra-low` | `part_draw_agent_model` |
+| part 轮廓 review | `gpt-6.2-sol-low` | `part_review_agent_model` |
 | 同层去重／重叠分析 | `gpt-6.2-sol-high` | `part_reduce_agent_model` |
 | SVG 遮挡补全 | `gpt-6.2-sol-high` | `part_completion_agent_model` |
 | 补全越界独立评审（按需） | `gpt-6.1-terra-medium` | `part_completion_boundary_review_agent_model` |
 | 首次分组与后续细分组 | `gpt-6.2-sol-high` | `part_groups_agent_model` |
 | 最终深度分析 | `gpt-6.2-sol-high` | `part_depth_agent_model` |
 | raster step01 绘制与返修 | `gpt-6.2-sol-xhigh` | `raster_step01_agent_model` |
-| raster step01 review | `gpt-6.2-sol-xhigh` | `raster_step01_review_agent_model` |
+| raster step01 review | `gpt-6.2-sol-high` | `raster_step01_review_agent_model` |
 | raster step02 | `gpt-6.2-sol-medium` | `raster_step02_agent_model` |
 | raster step03（仅人物） | `gpt-6.2-sol-medium` | `raster_step03_agent_model` |
-| 穿戴组装 | `gpt-6.2-sol-xhigh` | `assembly_agent_model` |
+| 穿戴组装 | `gpt-6.2-sol-high` | `assembly_agent_model` |
 | 阴影 | `gpt-6.2-sol-medium` | `shadow_agent_model` |
 | 头部九轴（脸部、头发、头饰、上下与斜角共用） | `gpt-6.2-sol-xhigh` | `nine_axis_head_agent_model` |
 
 生图设置为 `default_image_model=codex-native`，全部步骤的生图覆盖键留空，继承宿主 Codex 内置生图工具。具体图像模型版本由宿主决定，复用当前 Codex 登录和 provider。逐步骤键与自定义服务配置见下方[生图表](#生图模型与配置键)。图片数 compact 留空时关闭，已有配置的启停与阈值保持原样。
 
 新安装直接以 `example.env` 创建 `.env`。模板默认值更新不改写已有 `.env`；显式职责配置、兼容旧键和启动环境回退继续生效，优先级见[配置覆盖与旧键迁移](#配置覆盖与旧键迁移)。
-
-## 方案 2：混合配置
-
-以 [example.env](../example.env) 为基础，按 [presets/optimized.env](../presets/optimized.env) 替换差异项；差异模板不能单独当作完整 `.env`，运行时只读取 skill 根目录 `.env`。
-
-人物与衣服共用以下语言模型职责；全部 preparation 包括姿态／画风判断、标准化、简化、素体和纯衣服参考准备。
-
-| 职责 | 模型与力度 | `.env` 配置键 |
-| --- | --- | --- |
-| 全部 preparation | `gpt-6.2-sol-low` | `preparation_agent_model` |
-| part 轮廓绘制与返修 | `gpt-6.2-sol-xhigh` | `part_draw_agent_model` |
-| part 轮廓 review | `gpt-6.2-sol-xhigh` | `part_review_agent_model` |
-| 同层去重／重叠分析 | `gpt-6.2-sol-xhigh` | `part_reduce_agent_model` |
-| SVG 遮挡补全 | `claude-sonnet-5-5-xhigh` | `part_completion_agent_model` |
-| 首次分组与后续细分组 | `gpt-6.2-sol-xhigh` | `part_groups_agent_model` |
-| 最终深度分析 | `gpt-6.2-sol-xhigh` | `part_depth_agent_model` |
-| raster step01 绘制与返修 | `claude-opus-5-5-xhigh` | `raster_step01_agent_model` |
-| raster step01 review | `claude-sonnet-5-5-xhigh` | `raster_step01_review_agent_model` |
-| raster step02 | `claude-sonnet-5-5-xhigh` | `raster_step02_agent_model` |
-| raster step03（仅人物） | `claude-sonnet-5-5-xhigh` | `raster_step03_agent_model` |
-| 穿戴组装 | `claude-sonnet-5-5-xhigh` | `assembly_agent_model` |
-| 阴影 | `claude-sonnet-5-5-xhigh` | `shadow_agent_model` |
-| 头部九轴（脸部、头发、头饰、上下与斜角共用） | `claude-sonnet-5-5-xhigh` | `nine_axis_head_agent_model` |
-
-SVG 合并由程序执行，不配置 LLM。步骤职责、绘图提示词、review 轮次和会话恢复规则保留原有实现。
-
-生图默认使用 `gpt-image-2.5-sunburst`，素体图及人物／衣服遮挡补全参考覆盖为 `gemini-nano-banana-2.1`。各步骤的显式值和继承关系见下方[生图表](#生图模型与配置键)。Sunburst 保留返回的原生透明通道；Nano 颜色素材通过共享后处理恢复透明度，细节见[生图执行与透明处理](#生图执行与透明处理)。
-
-启动前检查已有 Codex 与 Claude CLI、各自登录／模型授权，以及两种生图服务。复用已有凭据；缺失时请用户本地补充或确认自定义调整。
 
 ## 生图模型与配置键
 
@@ -90,24 +55,24 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 
 ### 全局默认与逐步骤覆盖
 
-**步骤键有值时使用该值，留空时继承 `default_image_model`。** 方案 1 将全局默认设为 `codex-native`；方案 2 将其设为 `gpt-image-2.5-sunburst`，再覆盖特定步骤。下表的“继承默认”表示该步骤键留空。
+**步骤键有值时使用该值，留空时继承 `default_image_model`。** 全局默认使用 `codex-native`。下表的“继承默认”表示该步骤键留空。
 
 生图能力由各步骤 agent.json 的 tools 中是否声明 imagegen 决定，.env 只选择已授权步骤使用的模型与服务。默认 review、step02、人物 step03 和组装不声明生图，已有这些步骤的旧模型键不能开启工具。自定义 knowledge 增删 imagegen 后，下次启动按实际声明解析对应的生图模型（未填写则继承默认），无需改代码里的能力列表。
 
-| 生图用途 | `.env` 配置键 | 方案 1 | 方案 2 |
-| --- | --- | --- | --- |
-| 全局默认 | `default_image_model` | `codex-native` | `gpt-image-2.5-sunburst` |
-| 人物姿态标准化 | `part_standardize_image_model` | 继承默认 | 继承默认 |
-| 简化穿衣角色参考 | `part_simplify_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
-| 人物素体参考 | `part_base_subject_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 纯衣服参考 | `clothing_preparation_image_model` | 继承默认 | `gpt-image-2.5-sunburst` |
-| 人物 part 遮挡补全辅助参考 | `part_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 衣服 part 遮挡补全辅助参考 | `clothing_completion_image_model` | 继承默认 | `gemini-nano-banana-2.1` |
-| 人物 raster step01 绘制 | `raster_step01_image_model` | 继承默认 | 继承默认 |
-| 人物 raster step01 返修 | `raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 绘制 | `clothing_raster_step01_image_model` | 继承默认 | 继承默认 |
-| 衣服 raster step01 返修 | `clothing_raster_step01_repair_image_model` | 继承默认 | 继承默认 |
-| 阴影法线／深度贴图 | `shadow_maps_image_model` | 继承默认 | 继承默认 |
+| 生图用途 | `.env` 配置键 | 默认选择 |
+| --- | --- | --- |
+| 全局默认 | `default_image_model` | `codex-native` |
+| 人物姿态标准化 | `part_standardize_image_model` | 继承默认 |
+| 简化穿衣角色参考 | `part_simplify_image_model` | 继承默认 |
+| 人物素体参考 | `part_base_subject_image_model` | 继承默认 |
+| 纯衣服参考 | `clothing_preparation_image_model` | 继承默认 |
+| 人物 part 遮挡补全辅助参考 | `part_completion_image_model` | 继承默认 |
+| 衣服 part 遮挡补全辅助参考 | `clothing_completion_image_model` | 继承默认 |
+| 人物 raster step01 绘制 | `raster_step01_image_model` | 继承默认 |
+| 人物 raster step01 返修 | `raster_step01_repair_image_model` | 继承默认 |
+| 衣服 raster step01 绘制 | `clothing_raster_step01_image_model` | 继承默认 |
+| 衣服 raster step01 返修 | `clothing_raster_step01_repair_image_model` | 继承默认 |
+| 阴影法线／深度贴图 | `shadow_maps_image_model` | 继承默认 |
 
 这些键只选择已声明生图能力的 agent 使用的模型，实际调用按对应步骤的任务要求执行，reviewer 仍只提交反馈。姿态标准化在开启 `standard` 且判断需要调整时执行；阴影 `mask` 分支在 Krita 制作原生蒙版，`shadow_maps_image_model` 用于 `normal-depth` 分支。法线／深度按数据纹理原样返回 RGB，完成时按原画恢复 alpha。
 
@@ -126,13 +91,13 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 
 ## 自定义
 
-以用户选择的方案 1 或方案 2 为基础，再确认要覆盖的 LLM 职责、模型与力度，或具体 agent 的生图模型等选项。仅修改选定的键；完整键与默认值见 [example.env](../example.env)，CLI、provider 与生图协议见[下方接入说明](#cli-与-provider)。其余职责沿用已有选择。
+以默认配置或已有配置为基础，选择要覆盖的 LLM 职责、模型和力度，或具体步骤的生图模型。仅修改选定的键；完整键与默认值见 [example.env](../example.env)，CLI、provider 与生图协议见[下方接入说明](#cli-与-provider)。其余职责沿用已有选择。
 
 生图选 `codex-native` 的步骤必须使用 Codex 模型；换成 Claude Code 或 Antigravity 时，该生图步骤也需要选择自定义生图服务。按最终配置检查实际所需的 CLI、登录和 API；入口或凭据缺失时展示具体问题，并请用户选择安装、登录或调整模型的方案。
 
-新安装复制基础模板；已有配置按方案替换选定键，保持每个键唯一。API URL、协议与密钥使用用户确认的服务，密钥在本地填写，不写进提示词、报告或 Git。非空 `.env` 配置优先于启动环境中的同名变量；空值表示未单独配置，才回退到启动环境及默认值。检查生效配置时说明实际来源；不修改用户全局 CLI 配置。
+新安装复制基础模板；已有配置只替换选定键，保持每个键唯一。API URL、协议与密钥使用用户确认的服务，密钥在本地填写，不写进提示词、报告或 Git。非空 `.env` 配置优先于启动环境中的同名变量；空值表示未单独配置，才回退到启动环境及默认值。检查生效配置时说明实际来源；不修改用户全局 CLI 配置。
 
-切换已有配置的方案时，只替换本次选择的模型与生图差异键；用户只要求调整语言模型时保留全部生图键。图片压缩阈值、CLI 路径、API 和显示环境沿用已有值。修改后执行 `pnpm env:check` 核对[实际生效值](../workflow/README.md#生效配置核对)；套餐调整不撤销用户已开启的图片保护。
+调整已有配置时，只替换选定的模型与生图键；用户只要求调整语言模型时保留全部生图键。图片压缩阈值、CLI 路径、API 和显示环境沿用已有值。修改后执行 `pnpm env:check` 核对[实际生效值](../workflow/README.md#生效配置核对)；套餐调整不撤销用户已开启的图片保护。
 
 ## CLI 与 provider
 
