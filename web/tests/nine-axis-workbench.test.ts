@@ -347,12 +347,44 @@ test('workbench angle inputs exclude side lobes while preserving all main poses 
   assert.equal(projectNineAxisAngles(axes, NaN, 0), null);
 });
 
+test('Z shortcuts use the authored roll limits and preserve the X and Y pose', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const doc = composed(), axes = nineAxisCapabilities(doc), elements = new Map<string, any>();
+  doc.headRoll = { pivot: [0, 0], parts: [doc.parts[0].id] };
+  doc.parameters!.push({ id: 'ParamAngleZ', min: -12, max: 12, keys: [-12, 0, 12] });
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  const element = (key: string) => {
+    if (!elements.has(key)) elements.set(key, { children: [], replaceChildren(...children: unknown[]) { this.children = children; } });
+    return elements.get(key);
+  };
+  Object.defineProperty(globalThis, 'document', { configurable: true, value: {
+    querySelector: element,
+    createElement: () => ({ dataset: {} }),
+  } });
+  t.after(() => {
+    if (previous) Object.defineProperty(globalThis, 'document', previous);
+    else Reflect.deleteProperty(globalThis, 'document');
+  });
+  const panel = Object.create(HeadNineAxisPanel.prototype), drawn: number[][] = [];
+  Object.assign(panel, { doc, level: 'face', modes: [{ id: 'face', axes }], value: 8, valueY: 6, valueZ: 0,
+    installPad() {}, sync() { drawn.push([this.value, this.valueY, this.valueZ]); } });
+  panel.configureLevel();
+  const keys = element('#nine-axis-keys-z');
+  assert.equal(element('#nine-axis-z').hidden, false);
+  for (const button of [keys.children[0], keys.children[2], keys.children[1]]) button.onclick();
+  assert.deepEqual(drawn, [[8, 6, -12], [8, 6, 12], [8, 6, 0]]);
+  delete doc.headRoll;
+  panel.configureLevel();
+  assert.equal(element('#nine-axis-z').hidden, true);
+  assert.deepEqual(keys.children, []);
+});
+
 test('workbench dragging inside excluded lobes follows the boundary tangent in all four quadrants', async () => {
   const { HeadNineAxisPanel } = await panelModule();
   for (const side of [-1, 1]) for (const pitch of [-1, 1]) {
     const panel = Object.create(HeadNineAxisPanel.prototype), doc = composed(), before = JSON.stringify(doc);
     Object.assign(panel, { doc, axes: nineAxisCapabilities(doc), value: 0, valueY: 0, padDrag: { id: 1, axis: null },
-      padCoordinates(event: any) { return { x: event.x, y: event.y }; }, stopSwing() {}, sync() {} });
+      padCoordinates(event: any) { return { x: event.x, y: event.y }; }, sync() {} });
     const move = (x: number, y: number) => panel.padPointerMove({ pointerId: 1, x, y });
     const onBoundary = () => assert.ok(Math.abs(Math.abs(panel.value / 30) - headSideLimit(panel.valueY / 25)) < 1e-12);
     move(side * 27, pitch * 5);
@@ -396,7 +428,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   (globalThis as any).createImageBitmap = async () => ({});
   t.after(() => { if (previous) (globalThis as any).createImageBitmap = previous; else delete (globalThis as any).createImageBitmap; });
   const panel = Object.create(HeadNineAxisPanel.prototype);
-  Object.assign(panel, { epoch: 0, doc: null as any, stopSwing() {}, clear() { this.doc = null; }, status() {}, error(message: string) { assert.fail(message); },
+  Object.assign(panel, { epoch: 0, doc: null as any, clear() { this.doc = null; }, status() {}, error(message: string) { assert.fail(message); },
     install(doc: any, images: any[], allowPlane: boolean) { this.doc = doc; installed.push({ doc, images, allowPlane }); } });
   await panel.load({ folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.headDeformers, version: '1', stage: 'y' } });
   assert.deepEqual(installed[0].doc, doc);
@@ -442,7 +474,7 @@ test('staged progress shows draft model and generated video before branches comp
   assert.equal(value.states.step04_angles, 'available');
 });
 
-test('dynamic studio preview preserves angles and defers refresh during user edits or swing', async t => {
+test('dynamic studio preview preserves angles and defers refresh during user edits or parameter dragging', async t => {
   const { HeadNineAxisPanel } = await panelModule();
   const previous = (globalThis as any).location;
   (globalThis as any).location = { search: '?nineStage=up' };
@@ -460,12 +492,12 @@ test('dynamic studio preview preserves angles and defers refresh during user edi
   await panel.refresh();
   assert.equal(installs, 1); assert.deepEqual([panel.value,panel.valueY], [0,12.5]);
   panel.dirty.add('local edit'); await panel.refresh();
-  panel.dirty.clear(); panel.raf = 1; await panel.refresh();
+  panel.dirty.clear(); panel.padDrag = { id: 1 }; await panel.refresh();
   assert.equal(requests,1);
-  panel.raf = 0;
-  t.mock.method(globalThis,'fetch',async () => { panel.raf = 1; return Response.json(initial); });
-  await panel.refresh(); assert.equal(installs,1, 'swing started during fetch also protects the current preview');
-  panel.raf = 0; panel.doc = null;
+  panel.padDrag = null;
+  t.mock.method(globalThis,'fetch',async () => { panel.padDrag = { id: 1 }; return Response.json(initial); });
+  await panel.refresh(); assert.equal(installs,1, 'a drag started during fetch also protects the current preview');
+  panel.padDrag = null; panel.doc = null;
   t.mock.method(globalThis,'fetch',async () => Response.json(panel.project));
   await panel.refresh(); assert.equal(installs,2, 'an interrupted model load retries even when its revision is unchanged');
 });

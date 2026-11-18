@@ -32,14 +32,7 @@ export class HeadNineAxisPanel {
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
-    $('#nine-axis-angle-z').oninput = e => {
-      this.valueZ = e.target.valueAsNumber;
-      this.sync();
-    };
-    for (const input of [$('#nine-axis-angle-number'), $('#nine-axis-angle-y-number')]) {
-      // Stop before typing/pasting begins; unfinished numbers commit on change.
-      for (const event of ['focus', 'input']) input.addEventListener(event, () => this.stopSwing());
-    }
+    $('#nine-axis-angle-z').oninput = e => this.setRoll(e.target.valueAsNumber);
     this.pad = $('#nine-axis-pad');
     this.pad.addEventListener('pointerdown', e => this.padPointerDown(e));
     this.pad.addEventListener('pointermove', e => this.padPointerMove(e));
@@ -47,11 +40,7 @@ export class HeadNineAxisPanel {
       if (this.padDrag?.id === e.pointerId) this.endPadDrag();
     });
     this.pad.addEventListener('keydown', e => this.padKeyDown(e));
-    for (const event of ['pointerdown', 'keydown', 'click', 'input']) $('#nine-axis-controls').addEventListener(event, e => {
-      if (e.target.id !== 'nine-axis-swing' && !e.target.closest('label')?.querySelector('#nine-axis-swing')) this.stopSwing();
-    });
     for (const b of document.querySelectorAll('[data-nine-level]')) b.onclick = () => this.selectLevel(b.dataset.nineLevel);
-    $('#nine-axis-swing').onchange = e => e.target.checked ? this.swing() : this.stopSwing();
     $('#nine-axis-grid').onchange = e => { this.showGrid = e.target.checked; this.draw(); };
     $('#nine-axis-radius').oninput = e => { this.radius = e.target.valueAsNumber; $('#nine-axis-radius-value').textContent = this.radius + ' px'; };
     $('#nine-axis-reset').onclick = () => this.resetKeyform();
@@ -64,10 +53,9 @@ export class HeadNineAxisPanel {
   }
   diagnostics() { return { loaded: !!this.doc, value: this.value, valueY: this.valueY, level: this.level, selected: this.selected, edited: [...this.dirty],
     modes: this.modes?.map(({id, available, axes}) => ({id, available, ...axes})),
-    matrix: this.doc ? { region: this.axes.region, x: this.axes.x, y: this.axes.y, completeCorners: this.axes.plane, dragging: !!this.padDrag } : null, swinging: !!this.raf }; }
+    matrix: this.doc ? { region: this.axes.region, x: this.axes.x, y: this.axes.y, completeCorners: this.axes.plane, dragging: !!this.padDrag } : null }; }
   async load(project, force = false) {
     const epoch = ++this.epoch, entry = project?.nineAxis;
-    this.stopSwing();
     if (!force && entry?.available && this.doc && this.project?.folder === project?.folder && this.project?.nineAxis?.path === entry?.path && this.version === entry?.version) return;
     if (this.project?.folder !== project?.folder) this.levelSelection = null;
     const pitchUnlocked=entry?.stage==='headPitch'&&this.project?.nineAxis?.stage!==entry.stage;
@@ -109,7 +97,7 @@ export class HeadNineAxisPanel {
   }
   selectLevel(level) {
     if (!this.modes?.some(mode => mode.id === level && mode.available)) return;
-    this.stopSwing(); this.endPadDrag();
+    this.endPadDrag();
     this.levelSelection = { ...this.levelSelection, level }; this.level = level;
     this.configureLevel(); this.sync();
   }
@@ -124,16 +112,12 @@ export class HeadNineAxisPanel {
     if (ay) {
       $('#nine-axis-keys-y').replaceChildren(...ay.keys.map(k => keyButton(k, () => this.setValue(0, k))));
     } else $('#nine-axis-keys-y').replaceChildren();
-    $('#nine-axis-xy').hidden = !this.axes.plane;
-    $('#nine-axis-keys-xy').replaceChildren(...this.axes.cornerKeys.map(key => {
-      const [x, y] = key.split(',').map(Number), b = document.createElement('button');
-      b.textContent = (x < 0 ? '左' : '右') + (y > 0 ? '上' : '下'); b.dataset.x = x; b.dataset.y = y;
-      b.onclick = () => this.setValue(x, y); return b;
-    }));
     this.installPad();
     const roll = headRollLimit(this.doc);
     $('#nine-axis-z').hidden = !roll;
     configure($('#nine-axis-angle-z'), { min: -roll, max: roll });
+    const rollKeys = roll ? [-roll, 0, roll] : [];
+    $('#nine-axis-keys-z').replaceChildren(...rollKeys.map(k => keyButton(k, () => this.setRoll(k))));
     const shown = new Set(['ParamAngleX', ...(ay ? ['ParamAngleY'] : []), ...(roll ? ['ParamAngleZ'] : [])]);
     $('#nine-axis-other-params').textContent = (this.doc.parameters ?? []).filter(q => !shown.has(q.id)).map(q => `${q.name}（${q.id}）${q.status ?? ''}`).join(' · ');
     const point = projectNineAxisAngles(this.axes, this.value, this.valueY);
@@ -159,8 +143,8 @@ export class HeadNineAxisPanel {
     $('#nine-axis-tree').replaceChildren(...all.filter(n => !n.parent).map(make));
   }
   select(id) { this.selected = this.selected === id ? null : id; this.sync(); }
-  setValue(x, y = this.valueY, preferredAxis, automatic = false) {
-    if (!automatic) this.stopSwing();
+  setRoll(value) { this.valueZ = value; this.sync(); }
+  setValue(x, y = this.valueY, preferredAxis) {
     if (!this.doc) return;
     const point = projectNineAxisAngles(this.axes, x, y, preferredAxis);
     if (point) { this.value = point.x; this.valueY = point.y; }
@@ -199,7 +183,7 @@ export class HeadNineAxisPanel {
   }
   padPointerDown(e) {
     if (!this.doc || e.button !== 0 || this.padDrag) return;
-    e.preventDefault(); e.stopPropagation(); this.stopSwing(); this.pad.focus({ preventScroll: true });
+    e.preventDefault(); e.stopPropagation(); this.pad.focus({ preventScroll: true });
     this.padDrag = { id: e.pointerId, axis: null }; this.pad.setPointerCapture(e.pointerId); this.padPointerMove(e);
   }
   padPointerMove(e) {
@@ -227,7 +211,7 @@ export class HeadNineAxisPanel {
     const step = e.altKey ? .1 : e.shiftKey ? 5 : 1;
     const arrows = { ArrowLeft: [-step, 0, 'x'], ArrowRight: [step, 0, 'x'], ArrowUp: [0, step, 'y'], ArrowDown: [0, -step, 'y'] };
     if (e.key === 'Home') { this.valueZ = 0; this.setValue(0, 0); }
-    else if (e.key === 'Escape') { this.stopSwing(); this.endPadDrag(); }
+    else if (e.key === 'Escape') this.endPadDrag();
     else if (arrows[e.key]) { const [x, y, axis] = arrows[e.key]; this.setValue(this.value + x, this.valueY + y, axis); }
     else return;
     e.preventDefault(); e.stopPropagation();
@@ -267,7 +251,11 @@ export class HeadNineAxisPanel {
     }
     for (const b of $('#nine-axis-keys').children) b.classList.toggle('active', !this.valueY && Number(b.dataset.key) === this.value);
     for (const b of $('#nine-axis-keys-y').children) b.classList.toggle('active', !this.value && Number(b.dataset.key) === this.valueY);
-    for (const b of $('#nine-axis-keys-xy').children) b.classList.toggle('active', Number(b.dataset.x) === this.value && Number(b.dataset.y) === this.valueY);
+    for (const b of $('#nine-axis-keys-z').children) {
+      const active = Number(b.dataset.key) === this.valueZ;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
+    }
     const visible = new Set(levelParts(this.doc, this.level).map(p => p.id));
     for (const row of document.querySelectorAll('.nine-part')) { row.classList.toggle('selected', row.dataset.part === this.selected); row.classList.toggle('outside', ![...descendants(this.doc, row.dataset.part)].some(id => visible.has(id))); row.classList.toggle('edited', this.dirty.has(row.dataset.part)); }
     const p = this.part(), key = this.onKey();
@@ -316,7 +304,6 @@ export class HeadNineAxisPanel {
     this.overlay.replaceChildren(path, dots);
   }
   pointerDown(e) {
-    this.stopSwing();
     if (!this.doc) return;
     const index = e.target.dataset?.index, key = this.onKey(), p = this.part();
     const { s } = this.frame(), start = [e.clientX, e.clientY];
@@ -336,7 +323,6 @@ export class HeadNineAxisPanel {
     this.view.addEventListener('pointermove', move); this.view.addEventListener('pointerup', up); this.view.addEventListener('pointercancel', up);
   }
   wheel(e) {
-    this.stopSwing();
     if (!this.doc) return; e.preventDefault();
     const { r, s, x0, y0 } = this.frame(), px = x0 + (e.clientX - r.left) * s, py = y0 + (e.clientY - r.top) * s, f = Math.exp(e.deltaY * .0015);
     this.cam.span *= f; this.cam.cx = px + (this.cam.cx - px) * f; this.cam.cy = py + (this.cam.cy - py) * f; this.draw();
@@ -362,10 +348,8 @@ export class HeadNineAxisPanel {
       this.version = saved.version; this.project.nineAxis.version = saved.version; this.dirty.clear(); this.original.clear(); this.sync(); this.status('九轴变形已保存');
     } catch (error) { this.error(error.message); }
   }
-  swing() { cancelAnimationFrame(this.raf); $('#nine-axis-swing').checked = true; const t0 = performance.now(); const tick = t => { const wave = Math.sin((t - t0) / 1000 * Math.PI * .5); this.setValue(wave * (wave < 0 ? -this.axes.x.min : this.axes.x.max), 0, 'x', true); this.raf = requestAnimationFrame(tick); }; this.raf = requestAnimationFrame(tick); }
-  stopSwing() { cancelAnimationFrame(this.raf); this.raf = 0; $('#nine-axis-swing').checked = false; }
   async refresh() {
-    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag || this.raf) return;
+    if (!this.active || this.refreshing || !this.project?.folder || this.dirty.size || this.padDrag) return;
     const project = this.project;
     this.refreshing = true;
     try {
@@ -374,7 +358,7 @@ export class HeadNineAxisPanel {
       const response = await fetch('./api/studio/project?' + query);
       if (!response.ok) return;
       const next = await response.json();
-      if (this.project !== project || !this.active || this.dirty.size || this.padDrag || this.raf) return;
+      if (this.project !== project || !this.active || this.dirty.size || this.padDrag) return;
       if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
       const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
@@ -388,7 +372,7 @@ export class HeadNineAxisPanel {
     if (on === this.active) return;
     this.active = on; this.view.hidden = !on;
     clearInterval(this.refreshTimer);
-    if (!on) { this.stopSwing(); this.endPadDrag(); }
+    if (!on) this.endPadDrag();
     else { requestAnimationFrame(() => this.resize()); this.refreshTimer = setInterval(() => void this.refresh(), 4000); }
   }
 }
