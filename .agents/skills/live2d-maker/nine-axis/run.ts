@@ -26,6 +26,8 @@ import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
 import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
+import { finishHeadRoll } from './head-roll.ts';
+import { HEAD_ROLL_LIMIT } from '../shared/nine-axis-model.js';
 import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
@@ -47,7 +49,7 @@ import type { AgentStep, Harness } from '../shared/agents/models.ts';
 import { checkOutlineFiles, runOutline } from './outline.ts';
 import sharp from 'sharp';
 import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
-import { nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
+import { headRollStep, nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
 import { upperBodyBox } from './turn.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 import { ffmpegEnvironment, type FFmpegCheck } from '../shared/ffmpeg.ts';
@@ -72,6 +74,7 @@ step08_hair：left/right，Y=0；同一 KRA、同一会话，每次操作派发�
 step09_head-accessories：基于已完成脸发制作 head_accessories 的 left/right，Y=0，连同关联投影检查最终遮挡。
 step10_head-pitch：从完整左右结果并发制作整个头部的 up/down；两个独立上下文，完成后由程序合并。可用 --step step10_head-pitch/up 或 down 选择分支。
 step11_head-angle-xy：在已有完整左右、上下的基础上，一个持续会话统一调整整个头部四角。
+step12_head-roll：从完整头部四角生成 ±${HEAD_ROLL_LIMIT}° 的 Z 轴倾斜。
 部件与 Warp 组织方式由实际工程决定，角度配置见 knowledge/head-nine-axis/step02_video/references/angles.json。
 `;
 
@@ -222,6 +225,8 @@ export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCh
   fitHeadPitch?:Partial<Record<HeadPitchDirection,FitHead>>;
   fitHeadCorners?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
+const isArtworkOnly = (step?: string) => ['step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy', headRollStep].includes(step ?? '');
+
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
   const requested = options.step?.split('/')[0], branch = options.step?.split('/')[1], group = options.step?.split('/')[2] as AxisGroup | undefined;
@@ -235,23 +240,28 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const angles = join(directory, 'step04_angles'), modelDirectory = join(angles, 'model'), cornerVideos = join(angles, 'video');
   const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
   const baseEnvironment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
-  const artworkOnly=requested==='step08_hair'||requested==='step09_head-accessories'||requested==='step10_head-pitch'||requested==='step11_head-angle-xy';
+  const artworkOnly = isArtworkOnly(requested);
   if (!options.dryRun && !dependencies.generate && !artworkOnly) requireVideoApi(baseEnvironment);
   const requestedFFmpeg = options.ffmpeg || baseEnvironment.codex.env?.ASTRA_STUDIO_FFMPEG;
   const ffmpeg = options.dryRun || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
     ffmpeg: requestedFFmpeg ? resolveInput(options.name, requestedFFmpeg, root) : undefined }, dependencies.ffmpegCheck);
   const environment = ffmpeg ? { ...baseEnvironment, codex: { ...baseEnvironment.codex,
     env: ffmpegEnvironment(ffmpeg.executable, baseEnvironment.codex.env) } } : baseEnvironment;
-  const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
-  const head: HeadInput = { ...input, document: input.document ?? input.color.replace(/\.png$/, '.kra') };
-  // Resume the neutral's declared source, including legacy tasks that already
-  // own a preparation copy. A retried child must keep its siblings' provenance.
-  const neutralPath = join(preparation, 'deformers.json');
-  if (await exists(neutralPath)) {
-    const neutral = JSON.parse(await readFile(neutralPath, 'utf8'));
-    if (neutral.source?.document) head.document = fromTaskPath(task, neutral.source.document);
-  }
-  if (input.document && await exists(join(preparation, 'source-composite.png'))) head.color = join(preparation, 'source-composite.png');
+  let turnInput: Promise<{ input: TurnInput; head: HeadInput }> | undefined;
+  const getTurnInput = () => turnInput ??= (async () => {
+    const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
+    const head: HeadInput = { ...input, document: input.document ?? input.color.replace(/\.png$/, '.kra') };
+    // Resume the neutral's declared source, including legacy tasks that already
+    // own a preparation copy. A retried child must keep its siblings' provenance.
+    const neutralPath = join(preparation, 'deformers.json');
+    if (await exists(neutralPath)) {
+      const neutral = JSON.parse(await readFile(neutralPath, 'utf8'));
+      if (neutral.source?.document) head.document = fromTaskPath(task, neutral.source.document);
+    }
+    if (input.document && await exists(join(preparation, 'source-composite.png'))) head.color = join(preparation, 'source-composite.png');
+    return { input, head };
+  })();
+  if (requested !== headRollStep) await getTurnInput();
   let summary = 'nine-axis 已完成（沿用已有结果）', sectionKrita: SectionKrita | undefined, agentPool: AgentDispatcher | undefined;
   const agents = (): Agents => {
     const pool = agentPool ??= new AgentDispatcher({ environment, cwd: directory, logDirectory: join(directory, 'agents'), progress, agentConcurrency: 3 });
@@ -305,6 +315,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         createContinuationEditTool(output,upstream,'accessories',scale,task,materialize,accessoryPreviewScope)];
     }
     if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task, materialize)];
+    const { head } = await getTurnInput();
     const box=await crop();
     const continuation = stage ? { stage, upstreamDirectory: preparation } : axis ? undefined : { stage: 'xy' as const, upstreamDirectory: upstream };
     const edit = axis === 'left' ? createHeadEditTool(output, head, box, scale, task, preparation) : createContinuationEditTool(output, upstream, stage ?? 'xy', scale, task, materialize);
@@ -345,10 +356,21 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     if ((await readStep(join(directory, 'step10_head-pitch'))).status !== 'completed') throw Error('请先完成完整头部上下，再制作斜角');
     await checkDelivery('step10_head-pitch');
   };
+  const rollUpstream = 'step11_head-angle-xy';
+  const headRollUpstreamReady = async () => {
+    if ((await readStep(join(directory, rollUpstream))).status !== 'completed') throw Error('请先完成完整头部四角，再生成头部 Z 轴');
+    await checkDelivery(rollUpstream);
+  };
   try {
     if(!options.dryRun&&steps.some(step=>step.number===8))await upgradeHairProgress(join(directory,'step08_hair'));
     await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
-      async check(){if(!options.dryRun){if(requested==='step09_head-accessories')await accessoriesUpstreamReady();if(requested==='step10_head-pitch')await headPitchUpstreamReady();if(requested==='step11_head-angle-xy')await headCornersUpstreamReady();}},
+      async check() {
+        if (options.dryRun) return;
+        if (requested === 'step09_head-accessories') await accessoriesUpstreamReady();
+        if (requested === 'step10_head-pitch') await headPitchUpstreamReady();
+        if (requested === 'step11_head-angle-xy') await headCornersUpstreamReady();
+        if (requested === headRollStep) await headRollUpstreamReady();
+      },
       async keep(step) {
         await checkDelivery(step.id);
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done')throw Error('头发轮次尚未全部完成，不能沿用整个步骤的完成标记');
@@ -361,6 +383,12 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       },
       async step(step, status) {
         if (status === 'completed') return;
+        if (step.id === headRollStep) return async () => {
+          if (options.dryRun) return preview(`从完整头部四角生成 ±${HEAD_ROLL_LIMIT}° 的 Z 轴倾斜`);
+          await headRollUpstreamReady();
+          await finishHeadRoll(step.directory, join(directory, rollUpstream), task);
+          summary = `nine-axis/${headRollStep}：头部 Z 轴已完成（±${HEAD_ROLL_LIMIT}°）`;
+        };
         if (step.id === 'step11_head-angle-xy') return async () => {
           const upstream = join(directory, 'step10_head-pitch');
           if (options.dryRun) return preview(headCornersPrompt(join(directory, 'step09_head-accessories/character-nine-axis.kra'), task));
@@ -409,6 +437,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary=finished?'nine-axis/step10_head-pitch：完整头部上下已完成并合并':`nine-axis/step10_head-pitch/${branch} 已完成，等待另一方向`;
         };
         if (step.id === 'step01_preparation') return async () => {
+          const { input, head } = await getTurnInput();
           if (options.dryRun) return preview('从上游原工程整理头部素材与投影关系，导出统一 neutral。');
           // Preparation only reads artwork. Keep the upstream KRA reference;
           // the saved projection is a derived snapshot, never a second master.
@@ -426,6 +455,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (step.id === 'step02_video') return async () => {
           const prompts = videoPrompts();
           if (options.dryRun) return preview([prompts.turn, prompts.up, prompts.down].join('\n\n'));
+          const { input, head } = await getTurnInput();
           const { model, generate } = video();
           // Read the saved KRA composite even when resuming after preparation.
           if (input.document) {
@@ -445,6 +475,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary = 'nine-axis/step03_frames 已完成：单轴参考帧';
         };
         if (step.id === 'step04_angles') return async () => {
+          const { head } = await getTurnInput();
           if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(head, task, g), axisPrompt(head, task, g)]), videoPrompt()].join('\n\n'));
           const selected = branch ? [branch as 'model' | 'video'] : [...nineAxisBranches];
           // The established group workflow handles both branches and the same
@@ -494,6 +525,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary = 'nine-axis/step05_frames 已完成：斜角参考帧';
         };
         if (step.id === 'step06_angle-xy') return async () => {
+          const { head } = await getTurnInput();
           if (options.dryRun) return preview([...corners.map(c => cornerOutlinePrompt(head, task, c)), angleXYPrompt(task)].join('\n\n'));
           await writeLinearCorners(xyDirectory, modelDirectory, scale); builds[step.id] = () => buildAngleXY(xyDirectory, modelDirectory, scale);
           const injected = Boolean(dependencies.fitAngleXY);
@@ -508,6 +540,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
         };
         if (step.id === 'step08_hair') return async () => {
+          const { input } = await getTurnInput();
           const hair=stepDocument(input,step.directory), upstream=join(directory,'step07_jaw-line');
           const {next:round}=await readHairProgress(step.directory);
           if(round!=='front')await checkDelivery(step.id);
@@ -534,6 +567,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary=next==='done'?'nine-axis/step08_hair：其余头发轮次已完成并保存，头发步骤完成':`nine-axis/step08_hair：${hairRoundLabel(round)}轮次已完成并保存，等待同一会话的${hairRoundLabel(next)}提示词`;
         };
         if(step.id==='step09_head-accessories')return async()=>{
+          const { input } = await getTurnInput();
           const accessories=stepDocument(input,step.directory),upstream=join(directory,'step08_hair');
           if(options.dryRun)return preview(accessoriesPrompt(accessories,task));
           await accessoriesUpstreamReady();
@@ -552,6 +586,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary='nine-axis/step09_head-accessories：头部饰品左右形变与组合检查已完成';
         };
         return async () => {
+          const { input, head } = await getTurnInput();
           const jaw = stepDocument(input, step.directory);
           if (options.dryRun) return preview(jawLinePrompt(jaw, task));
           if (!await exists(jaw.document)) {
@@ -591,7 +626,7 @@ if (import.meta.main) {
     if (args.help) { console.log(help); return; }
     selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
     const action = args.retry ? 'retry' : args.resume ? 'resume' : args.continue ? 'continue' : undefined;
-    const artworkOnly=['step08_hair','step09_head-accessories','step10_head-pitch','step11_head-angle-xy'].includes(args.step?.split('/')[0]??'');
+    const artworkOnly = isArtworkOnly(args.step?.split('/')[0]);
     const startupFFmpeg = args['dry-run'] || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
       ffmpeg: args.ffmpeg ? resolveInput(args.name!, args.ffmpeg, args.dir) : loadWorkflowEnvironment().codex.env?.ASTRA_STUDIO_FFMPEG });
     if (action) {

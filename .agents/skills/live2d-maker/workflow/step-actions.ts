@@ -9,7 +9,7 @@ import { occlusionPath } from '../shared/part/occlusion-plan.ts';
 import { artifactPath, draftPath } from '../shared/part/artifact-facts.ts';
 import { partSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
-import { nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, nineAxisPitchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
+import { headRollStep, nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, nineAxisPitchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
 import { upgradeHairProgress } from '../nine-axis/hair-progress.ts';
 
@@ -198,6 +198,7 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   const outside = outputs.filter(path => !within(root, path));
   if (outside.length) throw new Error(`${step} 的产物在管线目录之外（${outside.join('、')}），不能在此重试。`);
   for (const path of outputs) await rm(path, { force: true });
+  if (section === 'nine-axis' && step === 'step11_head-angle-xy') await rm(join(root, headRollStep), { recursive: true, force: true });
   await rm(stepDirectory, { recursive: true, force: true });
   await rm(join(root, 'agents', 'steps', step), { recursive: true, force: true });
   const attempts = await clearAgentAttempts(root, stepDirectory);

@@ -36,7 +36,8 @@ export const legacyNineAxisArtifacts = {
   angleXYDeformers: 'nine-axis/step06_angle-xy/deformers.json',
   jawLineDeformers: 'nine-axis/step07_jaw-line/deformers.json',
 } as const;
-export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy'] as const;
+export const headRollStep = 'step12_head-roll';
+export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_frames', 'step04_angles', 'step05_frames', 'step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy', headRollStep] as const;
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
@@ -77,6 +78,7 @@ export const nineAxisArtifacts = {
   headDownAuthor: 'nine-axis/step10_head-pitch/down/head-down.json', headDownDeformers: 'nine-axis/step10_head-pitch/down/deformers.json', headDownNotes: 'nine-axis/step10_head-pitch/down/notes.md',
   headCornersAuthor: 'nine-axis/step11_head-angle-xy/head-xy.json', headCornersDeformers: 'nine-axis/step11_head-angle-xy/deformers.json',
   headCornersSource: 'nine-axis/step11_head-angle-xy/source.json', headCornersNotes: 'nine-axis/step11_head-angle-xy/notes.md',
+  headRollDeformers: `nine-axis/${headRollStep}/deformers.json`,
 } as const;
 export const nineAxisStages = {
   neutral: nineAxisArtifacts.preparationDeformers,
@@ -85,6 +87,7 @@ export const nineAxisStages = {
   accessories: nineAxisArtifacts.accessoriesDeformers,
   headPitch: nineAxisArtifacts.headPitchDeformers,
   headCorners: nineAxisArtifacts.headCornersDeformers,
+  headRoll: nineAxisArtifacts.headRollDeformers,
 } as const;
 export const previousNineAxisStages = {
   x: previousNineAxisArtifacts.angleXDeformers, up: previousNineAxisArtifacts.angleUpDeformers,

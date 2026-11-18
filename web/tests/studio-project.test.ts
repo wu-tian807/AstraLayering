@@ -94,6 +94,15 @@ test('whole-head corner drafts become the latest model using the declared KRA an
   assert.equal(pitch.nineAxis.path, p.headPitchDeformers); assert.equal(pitch.files.document.path, p.accessoriesDocument);
   await f.put(p.accessoriesDocument, 'new saved KRA revision');
   assert.notEqual((await (await f.get()).json() as any).nineAxis.version, latest.nineAxis.version);
+  await f.put(p.headRollDeformers, model);
+  await f.put('nine-axis/step12_head-roll/.running', '');
+  assert.equal((await (await f.get()).json() as any).nineAxis.stage, 'headCorners');
+  await rm(join(f.project, 'nine-axis/step12_head-roll/.running'));
+  await f.put('nine-axis/step12_head-roll/.completed', '');
+  const rolled = await (await f.get()).json() as any;
+  assert.equal(rolled.nineAxis.path, p.headRollDeformers);
+  assert.equal(rolled.files.document.path, p.accessoriesDocument);
+  assert.equal((await (await f.get({ nineStage: 'headCorners' })).json() as any).nineAxis.path, p.headCornersDeformers);
 });
 
 test('accessories preview selects the newest owned KRA and keeps hair available',async t=>{
