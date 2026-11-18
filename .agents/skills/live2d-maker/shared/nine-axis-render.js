@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { evaluatePoints, rollEvaluatedPoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
+import { deformPoints, evaluatePoints, rollEvaluatedPoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
 
 // The head nine-axis drawing, shared by the workbench panel and the agents'
 // view_nine_axis tool, so an agent sees exactly what the workbench shows.
@@ -19,7 +19,40 @@ const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform flo
   + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
   + 'if(maskPass>0.5){gl_FragColor=vec4(c.a*paintOpacity);return;}float opacity=dim*paintOpacity;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
   + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0)*c.a,tint)*opacity,c.a*opacity);}';
-const clipKey = p => p.clip.by.join('|');
+const clipKey = clip => clip.by.join('|');
+function paintMesh(geometry, texture) {
+  const uniforms = { map: { value: texture }, dim: { value: 1 }, paintOpacity: { value: 1 }, clip: { value: null },
+    clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } };
+  const mesh = new THREE.Mesh(geometry, new THREE.ShaderMaterial({
+    uniforms, vertexShader, fragmentShader, transparent: true, depthTest: false, depthWrite: false,
+    side: THREE.DoubleSide, forceSinglePass: true, blending: THREE.CustomBlending, premultipliedAlpha: true,
+  }));
+  mesh.frustumCulled = false;
+  return mesh;
+}
+const paintTexture = (texture, premultiplyAlpha) => {
+  texture.flipY = false; texture.colorSpace = THREE.NoColorSpace; texture.premultiplyAlpha = premultiplyAlpha;
+  texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.minFilter = THREE.LinearMipmapLinearFilter; texture.magFilter = THREE.LinearFilter; texture.needsUpdate = true;
+  return texture;
+};
+function writePoints(mesh, points) {
+  const position = mesh.geometry.attributes.position, values = position.array;
+  for (let i = 0, k = 0; i < points.length; i += 2, k += 3) { values[k] = points[i]; values[k + 1] = points[i + 1]; }
+  position.needsUpdate = true;
+}
+
+function savedProjectionGeometry([x, y, width, height], caster) {
+  const grid = { bbox: [x, y, x + width, y + height], cols: caster.cols, rows: caster.rows };
+  const samples = refine(lattice(grid), grid.cols, grid.rows, SUB), uv = new Float32Array(samples.length);
+  for (let i = 0; i < samples.length; i += 2) { uv[i] = (samples[i] - x) / width; uv[i + 1] = (samples[i + 1] - y) / height; }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(samples.length / 2 * 3), 3));
+  geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  geometry.setIndex(new THREE.BufferAttribute(meshIndices(grid.cols * SUB, grid.rows * SUB), 1));
+  return { geometry, samples };
+}
+
 
 // Parts the workbench draws at a level: the level's parts minus hidden ones,
 // and a mask only when it is selected or shown (tinted).
@@ -45,22 +78,31 @@ export class HeadNineAxisRenderer {
   setStaticLayers(layers) {
     for (const m of this.staticLayers) {
       this.scene.remove(m);
-      m.material.map.image.close?.();
-      m.geometry.dispose(); m.material.map.dispose(); m.material.dispose();
+      this.meshes.delete(m.userData.id);
+      const texture = m.material.uniforms.map.value;
+      texture.image.close?.();
+      m.geometry.dispose(); texture.dispose(); m.material.dispose();
     }
+    const parts = this.doc?.parts ?? [];
     this.staticLayers = layers.map(layer => {
-      const { image, order, bounds: [x, y, width, height] } = layer;
-      const texture = new THREE.Texture(image);
-      texture.flipY = false; texture.colorSpace = THREE.SRGBColorSpace; texture.needsUpdate = true;
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(width, height), new THREE.MeshBasicMaterial({
-        map: texture, transparent: true, depthTest: false, depthWrite: false, toneMapped: false, side: THREE.DoubleSide,
-        premultipliedAlpha: true, blendSrc: THREE.DstColorFactor, blendDst: THREE.OneMinusSrcAlphaFactor,
-        blendSrcAlpha: THREE.ZeroFactor, blendDstAlpha: THREE.OneFactor,
-      }));
-      m.position.set(x + width / 2, y + height / 2, 0); m.renderOrder = order;
-      m.userData.layer = layer;
+      const { image, order, bounds: [x, y, width, height], projection } = layer;
+      const casters = parts.filter(part => !part.role && projection?.casters.includes(part.uuid));
+      const caster = projection?.casters.length === 1 && casters.length === 1 ? casters[0] : null;
+      const grid = caster && savedProjectionGeometry(layer.bounds, caster);
+      const m = paintMesh(grid ? grid.geometry : new THREE.PlaneGeometry(width, height), paintTexture(new THREE.Texture(image), false));
+      if (!grid) m.position.set(x + width / 2, y + height / 2, 0);
+      m.renderOrder = order;
+      Object.assign(m.userData, { id: '__studio__/' + layer.uuid, layer, caster, samples: grid?.samples });
+      this.meshes.set(m.userData.id, m);
       this.scene.add(m); return m;
     });
+    this.meshesByUuid = new Map();
+    for (const [id, mesh] of this.meshes) {
+      const uuid = mesh.userData.part?.uuid ?? mesh.userData.layer?.uuid;
+      if (!uuid || mesh.userData.part?.role === 'mask') continue;
+      if (!this.meshesByUuid.has(uuid)) this.meshesByUuid.set(uuid, []);
+      this.meshesByUuid.get(uuid).push(id);
+    }
   }
   install(doc, images) {
     this.doc = doc; this.scene = new THREE.Scene();
@@ -70,11 +112,15 @@ export class HeadNineAxisRenderer {
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(uv.length / 2 * 3), 3));
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
-      const t = new THREE.Texture(images[order]); t.flipY = false; t.colorSpace = THREE.NoColorSpace; t.premultiplyAlpha = false;
-      t.wrapS = t.wrapT = THREE.ClampToEdgeWrapping; t.minFilter = THREE.LinearMipmapLinearFilter; t.magFilter = THREE.LinearFilter; t.needsUpdate = true;
-      const m = new THREE.Mesh(g, new THREE.ShaderMaterial({ uniforms: { map: { value: t }, dim: { value: 1 }, paintOpacity: { value: p.shadow?.opacity ?? 1 }, clip: { value: null }, clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } }, vertexShader, fragmentShader,
-        transparent: true, depthTest: false, depthWrite: false, blending: THREE.CustomBlending, blendSrc: THREE.OneFactor, blendDst: THREE.OneMinusSrcAlphaFactor, premultipliedAlpha: true }));
-      m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
+      const t = paintTexture(new THREE.Texture(images[order]), false);
+      const m = paintMesh(g, t);
+      m.renderOrder = order; m.userData.part = p; this.scene.add(m); this.meshes.set(p.id, m);
+    });
+      const base = doc.parts[i], [x, y, w, h] = base.textureBounds;
+      if (!rasterPaint(base, images[i]) || !rasterPaint(overlay, images[i + 1]) || base.parent !== overlay.parent ||
+          !inside(overlay.textureBounds, [x, y, x + w, y + h]) ||
+          !inside(overlay.textureBounds, base.bbox) || !inside(overlay.textureBounds, overlay.bbox)) return [];
+      return [{ base, overlay, texture: null }];
     });
   }
   // Draw the canvas-space window [x0, y0, x0 + width, y0 + height] at angles (x, y, z).
@@ -86,23 +132,41 @@ export class HeadNineAxisRenderer {
     if (!reuseXY || !this.xyPose || this.xyPose.x !== x || this.xyPose.y !== y) this.xyPose = { x, y, points: new Map() };
     const { points } = this.xyPose;
     Object.assign(this.camera, { left: x0, right: x0 + width, top: y0, bottom: y0 + height }); this.camera.updateProjectionMatrix();
-    // Clip sources take effect whether or not they are shown or in the level.
-    const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
+    const visible = new Set(shown);
+    const clips = new Map(this.doc.parts.filter(p => p.role !== 'mask' && p.clip && shown.has(p.id)).map(p => [p.id, p.clip]));
+    for (const m of this.staticLayers) {
+      const state = layerState(m.userData.layer);
+      m.userData.state = state;
+      m.material.uniforms.paintOpacity.value = state.opacity / 255;
+      if (state.visible) visible.add(m.userData.id);
+    }
+    // Unauthored projections follow their caster and clip to the posed receivers.
+    for (const m of this.staticLayers) {
+      const { id, layer, caster, samples } = m.userData;
+      if (!layer.projection || !visible.has(id)) continue;
+      const by = layer.projection.receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
+      if (!by.length) { visible.delete(id); continue; }
+      clips.set(id, { by });
+      if (!caster) continue;
+      if (!deform(caster)) { writePoints(m, samples); continue; }
+      let base = points.get(id);
+      if (!base) { base = deformPoints(this.doc, caster, samples, x, y); points.set(id, base); }
+      writePoints(m, rollEvaluatedPoints(this.doc, caster, base, z));
+    }
+    const needed = new Set([...visible, ...[...clips.values()].flatMap(clip => clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
       const moves = deform(p);
       let base = points.get(p.id);
       if (!base) { base = evaluatePoints(this.doc, p, moves ? x : 0, moves ? y : 0, SUB); points.set(p.id, base); }
-      const m = this.meshes.get(p.id), pts = rollEvaluatedPoints(this.doc, p, base, moves ? z : 0), pos = m.geometry.attributes.position.array;
-      for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
-      m.geometry.attributes.position.needsUpdate = true;
+      const m = this.meshes.get(p.id);
+      writePoints(m, rollEvaluatedPoints(this.doc, p, base, moves ? z : 0));
       const u = m.material.uniforms, mask = p.role === 'mask';
       u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * dim(p);
       u.paintOpacity.value = opacity(p);
     }
-    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map(clipped.map(p => [clipKey(p), p.clip.by]));
+    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map([...clips.values()].map(clip => [clipKey(clip), clip.by]));
     for (const [key, t] of this.targets) if (!keys.has(key)) { t.dispose(); this.targets.delete(key); }
-    for (const m of this.staticLayers) m.visible = false;
     for (const [key, by] of keys) {
       let t = this.targets.get(key);
       if (!t) this.targets.set(key, t = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false }));
@@ -115,21 +179,18 @@ export class HeadNineAxisRenderer {
       this.renderer.setRenderTarget(t); this.renderer.render(this.scene, this.camera);
     }
     this.renderer.setRenderTarget(null);
-    for (const m of this.staticLayers) {
-      const layer = layerState(m.userData.layer);
-      m.visible = layer.visible;
-      m.material.opacity = layer.opacity / 255;
-      m.material.blending = layer.blend === 'multiply' ? THREE.CustomBlending : THREE.NormalBlending;
-    }
-    for (const p of this.doc.parts) {
-      const m = this.meshes.get(p.id), u = m.material.uniforms; m.visible = shown.has(p.id); u.maskPass.value = 0;
-      m.material.blendSrc = p.shadow?.blendMode === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;
+    for (const [id, m] of this.meshes) {
+      const { part, layer, state } = m.userData, u = m.material.uniforms, clip = clips.get(id);
+      const blend = part ? part.shadow?.blendMode : state.blend;
+      const shadow = part ? !!part.shadow : !!layer.projection || blend === 'multiply';
+      m.visible = visible.has(id); u.maskPass.value = 0;
+      m.material.blendSrc = blend === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;
       m.material.blendDst = THREE.OneMinusSrcAlphaFactor;
       // A receiver-clipped shadow shades existing paint without changing its silhouette.
-      m.material.blendSrcAlpha = p.shadow ? THREE.ZeroFactor : THREE.OneFactor;
-      m.material.blendDstAlpha = p.shadow ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
-      u.clipMode.value = shown.has(p.id) && p.clip && !(p.role === 'mask') ? (p.clip.invert ? 2 : 1) : 0;
-      if (u.clipMode.value) { u.clip.value = this.targets.get(clipKey(p)).texture; u.res.value.copy(size); }
+      m.material.blendSrcAlpha = shadow ? THREE.ZeroFactor : THREE.OneFactor;
+      m.material.blendDstAlpha = shadow ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
+      u.clipMode.value = clip ? (clip.invert ? 2 : 1) : 0;
+      if (clip) { u.clip.value = this.targets.get(clipKey(clip)).texture; u.res.value.copy(size); }
     }
     this.renderer.render(this.scene, this.camera);
   }

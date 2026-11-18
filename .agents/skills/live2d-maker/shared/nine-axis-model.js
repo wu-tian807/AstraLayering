@@ -343,10 +343,14 @@ export function headRollLimit(doc) {
   return doc?.headRoll ? doc.parameters?.find(p => p.id === 'ParamAngleZ')?.max ?? 0 : 0;
 }
 
-export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
-  const local = [preparedWarp(node, keyformAt(node, x, y))], samples = refine(lattice(node), node.cols, node.rows, subdivision), out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
+export function deformPoints(doc, node, samples, x, y) {
+  const local = [preparedWarp(node, keyformAt(node, x, y))], out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
   for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
-  return rollEvaluatedPoints(doc, node, out, z);
+  return out;
+}
+export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
+  const samples = refine(lattice(node), node.cols, node.rows, subdivision);
+  return rollEvaluatedPoints(doc, node, deformPoints(doc, node, samples, x, y), z);
 }
 
 // Roll the final X/Y pose around the neck contact without changing the input.

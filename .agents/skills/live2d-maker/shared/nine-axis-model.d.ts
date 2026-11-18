@@ -23,6 +23,7 @@ export function kraReferences<T>(doc: T): T;
 export const HEAD_ROLL_LIMIT: number;
 export function headRollLimit(doc?: HeadNineAxis): number;
 export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number, z?: number): Float32Array;
+export function deformPoints(doc: HeadNineAxis, node: WarpGrid, samples: Float32Array, x: number, y: number): Float32Array;
 export function rollEvaluatedPoints(doc: HeadNineAxis, node: WarpGrid, points: Float32Array, z: number): Float32Array;
 /** Independent source pose of one leaf, before current canvas Warp parents. */
 export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number): Point;

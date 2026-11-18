@@ -8,7 +8,7 @@ import { layerPartName } from '../shared/layer-names.ts';
 import { submitJob } from '../shared/krita/bridge/client.mjs';
 import type { SectionKrita } from '../shared/krita/section-krita.ts';
 import { lattice, validateHeadNineAxis, type HeadDeformer } from '../shared/nine-axis-model.js';
-import { headMaterialSelection, type MaterialSelection } from './materials.ts';
+import { headMaterialSelection, type MaterialSelection, type ProjectionBinding } from './materials.ts';
 import { modelDocument, withDocument } from './source.ts';
 import { prepareNeutralBridge } from './neutral.ts';
 import type { Built } from './head.ts';
@@ -18,7 +18,7 @@ export type MaterialRow = { id: string; uuid?: string; partId?: string; bounds?:
 export type ShadowContextPart = HeadDeformer & { shadowSource?: MaterialSelection };
 type Exported = MaterialRow & { bounds: Bounds };
 export type MaterialExport = (document: string, directory: string, rows: MaterialRow[], shadows: string[], signal?: AbortSignal) => Promise<Exported[]>;
-export type StudioPaintLayer = { uuid: string; texture: string; bounds: Bounds; order: number; visible: boolean; opacity: number; blend: string };
+export type StudioPaintLayer = { uuid: string; texture: string; bounds: Bounds; order: number; visible: boolean; opacity: number; blend: string; projection?: ProjectionBinding };
 export type MaterialBuilt = Built & { sourceDocument?: string; sourceRevision?: string; studioLayers?: StudioPaintLayer[] };
 export type MaterialLoader = (directory: string, built: Built, signal?: AbortSignal, context?: boolean | 'shadows') => Promise<MaterialBuilt>;
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
@@ -242,8 +242,10 @@ export class KraMaterials {
         for (let at: string = row.uuid; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') visible = false;
         const texture = 'studio/' + row.texture;
         textures.set(texture, join(cache, row.texture));
+        const projection = selection.projectionBindings.get(row.uuid);
         studioLayers.push({ uuid: row.uuid, texture, bounds: row.bounds, order: nativeOrder.get(row.uuid)!,
-          visible, opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal' });
+          visible, opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal',
+          ...(projection ? { projection } : {}) });
         continue;
       }
       let part = doc.parts.find(part => part.id === row.id);

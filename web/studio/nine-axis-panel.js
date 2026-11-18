@@ -95,7 +95,7 @@ export class HeadNineAxisPanel {
       const [images, staticLayers] = await Promise.all([
         Promise.all(doc.parts.map(async (p, index) => createNineAxisBitmap(await readImage(index, p.id)))),
         Promise.all(material.studioLayers.map(async (layer, index) => ({ ...layer,
-          image: await createImageBitmap(await readImage(doc.parts.length + index, layer.uuid), { premultiplyAlpha: 'none' }) }))),
+          image: await createNineAxisBitmap(await readImage(doc.parts.length + index, layer.uuid)) }))),
       ]);
       if (epoch !== this.epoch) {
         for (const image of images) image.close();
@@ -125,6 +125,7 @@ export class HeadNineAxisPanel {
   install(doc, images, allowPlane = true, staticLayers = []) {
     this.doc = doc; this.view3.install(doc, images);
     this.view3.setStaticLayers(staticLayers);
+    this.projections = staticLayers.filter(layer => layer.projection);
     this.allowPlane = allowPlane;
     this.modes = nineAxisPreviewModes(doc, allowPlane);
     const selection = nextPreviewSelection(this.levelSelection, this.modes);
@@ -424,6 +425,9 @@ export class HeadNineAxisPanel {
     const selected = this.selected ? descendants(this.doc, this.selected) : this.mode.scope;
     const parts = this.doc.parts.filter(part => selected.has(part.id) && (this.selected || authoredPreviewPart(part)));
     const keep = new Set(parts.flatMap(part => [part.uuid, ...(part.clip?.by ?? []).map(id => this.doc.parts.find(p => p.id === id)?.uuid)]).filter(Boolean));
+    for (const { uuid, projection } of this.projections ?? []) {
+      if (projection.casters.some(id => keep.has(id)) && projection.receivers.some(id => keep.has(id))) keep.add(uuid);
+    }
     let rect = this.doc.view ?? { x: 0, y: 0, width: this.doc.canvas[0], height: this.doc.canvas[1] };
     if (this.selected && parts.length) {
       let x = Infinity, y = Infinity, right = -Infinity, bottom = -Infinity;

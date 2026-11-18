@@ -4,6 +4,7 @@ import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { layerPartName, matchLayerPart } from '../shared/layer-names.ts';
 
 type Scope = 'face' | 'hair' | 'accessory';
+export type ProjectionBinding = { casters: string[]; receivers: string[] };
 export type MaterialSelection = {
   uuid: string; id: string; partId: string; scope: Scope; role?: 'shadow';
   casterPartId?: string; receiverPartIds?: string[]; receiverLayerUuids?: string[]; follow?: string;
@@ -83,5 +84,20 @@ export async function headMaterialSelection(document: string, taskRoot: string) 
     selected.set(key,{...previous,uuid:key,id:row.id,partId:row.partId,scope:row.scope,
       ...(row.materialRole==='shadow'?{role:'shadow',casterPartId:row.casterPartId,receiverPartIds:row.receiverPartIds??[],receiverLayerUuids:row.receiverLayerUuids??[],follow:row.follow}:{})});
   }
-  return { selections: [...selected.values()], shadowLayerUuids: [...new Set([...shadows.map((s: any) => uuid(s.shadowLayerUuid ?? '')),...[...selected.values()].filter(row=>row.role==='shadow').map(row=>row.uuid)])] };
+  const selections = [...selected.values()];
+  const projectionBindings = new Map<string, ProjectionBinding>();
+  for (const shadow of shadows) {
+    if (!shadow.shadowLayerUuid) continue;
+    projectionBindings.set(uuid(shadow.shadowLayerUuid), {
+      casters: (shadow.casterLayerUuids ?? []).map(uuid),
+      receivers: (shadow.receiverLayerUuids ?? []).map(uuid),
+    });
+  }
+  for (const row of selections) if (row.role === 'shadow' && !projectionBindings.has(row.uuid)) {
+    projectionBindings.set(row.uuid, {
+      casters: selections.filter(part => !part.role && part.partId === row.casterPartId).map(part => part.uuid),
+      receivers: (row.receiverLayerUuids ?? []).map(uuid),
+    });
+  }
+  return { selections, shadowLayerUuids: [...projectionBindings.keys()], projectionBindings };
 }

@@ -632,6 +632,41 @@ test('focus hides only in preview, and eye edits made while focused survive rest
   assert.equal(panel.undo.length, 1);
 });
 
+test('a saved projection follows its posed caster and clips to the posed receiver', async () => {
+  const path = new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url);
+  const { HeadNineAxisRenderer } = await import(path.href);
+  const doc = composed(), caster = doc.parts[0], passLayers: string[][] = [];
+  caster.uuid = 'caster-uuid';
+  doc.headRoll = { pivot: [0, 0], parts: [caster.id, 'receiver'] };
+  doc.parameters.push({ id: 'ParamAngleZ', min: -15, max: 15 });
+  const receiver = { ...structuredClone(caster), id: 'receiver', uuid: 'receiver-uuid' };
+  doc.parts.push(receiver);
+  const engine = {
+    getDrawingBufferSize: (size: any) => size.set(100, 100),
+    setRenderTarget() {},
+    render(scene: any) {
+      passLayers.push(scene.children.filter((mesh: any) => mesh.visible).map((mesh: any) => mesh.userData.part?.id ?? mesh.userData.id));
+    },
+  };
+  const renderer = new HeadNineAxisRenderer(null, engine), texture = { width: 1, height: 1 };
+  renderer.install(doc, doc.parts.map(() => texture));
+  renderer.setStaticLayers([{ uuid: 'cast', visible: true, blend: 'multiply', opacity: 100, bounds: [3, 4, 1, 1], order: 2, image: texture,
+    projection: { casters: [caster.uuid], receivers: [receiver.uuid] } }]);
+  const frame = { x0: 0, y0: 0, width: 100, height: 100 };
+  renderer.draw(frame, 30, 25, new Set([caster.id, receiver.id]), undefined, 15);
+  assert.deepEqual(passLayers, [[receiver.id], [caster.id, receiver.id, '__studio__/cast']]);
+  const mesh = renderer.meshes.get('__studio__/cast');
+  assert.equal(mesh.material.uniforms.clipMode.value, 1);
+  const [x, y] = mesh.geometry.attributes.position.array, angle = Math.PI / 12;
+  // Sample (3,4) takes the caster's (+2,-2) from independent X/Y source
+  // shapes, then rolls about the same pivot. The receiver has different X/Y.
+  assert.ok(Math.abs(x - (5 * Math.cos(angle) - 2 * Math.sin(angle))) < 1e-5);
+  assert.ok(Math.abs(y - (5 * Math.sin(angle) + 2 * Math.cos(angle))) < 1e-5);
+  passLayers.length = 0;
+  renderer.draw(frame, 0, 0, new Set([caster.id]), undefined, 15);
+  assert.deepEqual(passLayers, [[caster.id]]);
+});
+
 test('dynamic studio preview preserves angles and defers refresh during user edits or parameter dragging', async t => {
   const { HeadNineAxisPanel } = await panelModule();
   const previous = (globalThis as any).location;
