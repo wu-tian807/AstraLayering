@@ -1,0 +1,178 @@
+{
+  "id": "warp/face_up_base",
+  "x": 0,
+  "y": 25,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "forehead-left-temple",
+      "samples": 83,
+      "weight": 0.03,
+      "meanPixels": 0.15121725721698417,
+      "maxPixels": 1.552239851745687
+    },
+    {
+      "id": "left-cheek-under-hair",
+      "samples": 45,
+      "weight": 0.03,
+      "meanPixels": 1.1162928334800684,
+      "maxPixels": 2.3908893971859677
+    },
+    {
+      "id": "left-lower-cheek",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 0.808376668244522,
+      "maxPixels": 2.3908893971859677
+    },
+    {
+      "id": "left-jaw",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.5136889748588582,
+      "maxPixels": 1.8463347983666378
+    },
+    {
+      "id": "chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.0135043186670754,
+      "maxPixels": 1.8463347983666378
+    },
+    {
+      "id": "right-jaw",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.42227177747186617,
+      "maxPixels": 1.7538205723317428
+    },
+    {
+      "id": "right-lower-cheek",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.5099760410580183,
+      "maxPixels": 0.9715881946890583
+    },
+    {
+      "id": "right-cheek-under-hair",
+      "samples": 44,
+      "weight": 0.03,
+      "meanPixels": 0.7057428496431911,
+      "maxPixels": 1.7934366511597206
+    },
+    {
+      "id": "right-temple-forehead",
+      "samples": 89,
+      "weight": 0.03,
+      "meanPixels": 0.07596221649031787,
+      "maxPixels": 0.6732254231562153
+    }
+  ],
+  "after": [
+    {
+      "id": "forehead-left-temple",
+      "samples": 83,
+      "weight": 0.03,
+      "meanPixels": 10.471303311875037,
+      "maxPixels": 12.085018495190171
+    },
+    {
+      "id": "left-cheek-under-hair",
+      "samples": 45,
+      "weight": 0.03,
+      "meanPixels": 4.873445648535379,
+      "maxPixels": 8.450835912397753
+    },
+    {
+      "id": "left-lower-cheek",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 0.443458750079871,
+      "maxPixels": 1.070390545537619
+    },
+    {
+      "id": "left-jaw",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.5678788224375241,
+      "maxPixels": 1.7919844761627965
+    },
+    {
+      "id": "chin",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.9777622493667237,
+      "maxPixels": 1.7919844761627965
+    },
+    {
+      "id": "right-jaw",
+      "samples": 36,
+      "weight": 1,
+      "meanPixels": 0.4308737935696372,
+      "maxPixels": 1.6976180077468948
+    },
+    {
+      "id": "right-lower-cheek",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.2886460427326372,
+      "maxPixels": 0.6804531922977025
+    },
+    {
+      "id": "right-cheek-under-hair",
+      "samples": 44,
+      "weight": 0.03,
+      "meanPixels": 2.4900038925113077,
+      "maxPixels": 3.5199593759379715
+    },
+    {
+      "id": "right-temple-forehead",
+      "samples": 89,
+      "weight": 0.03,
+      "meanPixels": 5.968636602288899,
+      "maxPixels": 8.491796790468607
+    }
+  ],
+  "controls": 63,
+  "smoothness": 1,
+  "occludedWeightScale": 0.0010000000000000002,
+  "trace": "nine-axis/step04_angles/model/up/face-trace.json",
+  "visibility": [
+    {
+      "id": "forehead-left-temple",
+      "visibility": "occluded"
+    },
+    {
+      "id": "left-cheek-under-hair",
+      "visibility": "occluded"
+    },
+    {
+      "id": "left-lower-cheek",
+      "visibility": "visible"
+    },
+    {
+      "id": "left-jaw",
+      "visibility": "visible"
+    },
+    {
+      "id": "chin",
+      "visibility": "visible"
+    },
+    {
+      "id": "right-jaw",
+      "visibility": "visible"
+    },
+    {
+      "id": "right-lower-cheek",
+      "visibility": "visible"
+    },
+    {
+      "id": "right-cheek-under-hair",
+      "visibility": "occluded"
+    },
+    {
+      "id": "right-temple-forehead",
+      "visibility": "occluded"
+    }
+  ]
+}

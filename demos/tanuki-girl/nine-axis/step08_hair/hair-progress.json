@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "completed": [
+    "front",
+    "side",
+    "back",
+    "remaining"
+  ],
+  "next": "done"
+}

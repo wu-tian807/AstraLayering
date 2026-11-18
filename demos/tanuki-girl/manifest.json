@@ -1,9 +1,9 @@
 {
   "version": 1,
   "format": "live2d-export",
-  "name": "tanuki-raster-rerun-20261111",
+  "name": "tanuki-girl",
   "status": "completed",
-  "exportedAt": "2026-11-13T22:35:13.407Z",
+  "exportedAt": "2026-11-18T14:06:23.101Z",
   "files": {
     "character-assembly/step01/.completed": {
       "bytes": 0,
@@ -1061,9 +1061,449 @@
       "bytes": 8742,
       "sha256": "74b842dccd6d80de329940aaf7ae7323050e4b684146f80fbe410d775c406526"
     },
+    "head-roll.gif": {
+      "bytes": 3711790,
+      "sha256": "fe60e0b04676e872a6952162237f5573d7c86e276ac6e15a3478203cd9e640fc"
+    },
     "input/original.png": {
       "bytes": 2072573,
       "sha256": "7bd8a94260e4d6b27a815214c9d89304956a42589b16fea210b074d8895ac9a3"
+    },
+    "nine-axis/step01_preparation/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step01_preparation/crop.json": {
+      "bytes": 58,
+      "sha256": "51d96c3460706360d6a4ab6e187e50624d58c005e989345961946d8fcee54606"
+    },
+    "nine-axis/step01_preparation/deformers.json": {
+      "bytes": 53408,
+      "sha256": "21e9c38af720fb2cba95d16016f414a5ff25aeb8139f7289664cf9536eb4dd6a"
+    },
+    "nine-axis/step01_preparation/export-record.json": {
+      "bytes": 235412,
+      "sha256": "a33bcaf13c64de50f88e5710c72252a28c53cecbed9aecbc881f1efcd96ad3f2"
+    },
+    "nine-axis/step01_preparation/head_parts_manifest.json": {
+      "bytes": 43427,
+      "sha256": "f518f942ea866662a298b1c4397435a94976cc771e7dd6140ea2a1c22d8cb949"
+    },
+    "nine-axis/step01_preparation/source.json": {
+      "bytes": 154,
+      "sha256": "c4e43a63545273c916ce6fb0f47966dc2c117e0d9aaa556c54c148efb21603ba"
+    },
+    "nine-axis/step02_video/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step02_video/crop.json": {
+      "bytes": 340,
+      "sha256": "cbb38e6e2efc5bf845bfa9ece90197ef56422188dfc06d640705e2a13e7bac83"
+    },
+    "nine-axis/step02_video/down.mp4": {
+      "bytes": 2446767,
+      "sha256": "18ab5a3d7950d9828148f2aa70b91cbc9a9a35f67e44cdb13bc93b0b18865215"
+    },
+    "nine-axis/step02_video/left.mp4": {
+      "bytes": 3268925,
+      "sha256": "7c974fa6eaf978ecb3d57bd2a4ea0d2e638623378372397f2be4697e4085f7c8"
+    },
+    "nine-axis/step02_video/up.mp4": {
+      "bytes": 2343344,
+      "sha256": "c7fd82f943bad5569b603660c1170058a420ed2d99abad14ff50d66c0ba944ef"
+    },
+    "nine-axis/step02_video/upper-body.png": {
+      "bytes": 505156,
+      "sha256": "f2af40bd8e191e50af0f77b5cdb11192d21ac72baca2cce40485262b451bb8f1"
+    },
+    "nine-axis/step02_video/videos.json": {
+      "bytes": 5463,
+      "sha256": "c631381e521bf030d1e1e961af64afaf0df2b989b60af751c53d73dc3b807ae1"
+    },
+    "nine-axis/step03_frames/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step03_frames/down.png": {
+      "bytes": 596131,
+      "sha256": "e9b561726fc679b868034f9568f7fad64684bb5e0d7bb08b5d5e7654e5bb28f4"
+    },
+    "nine-axis/step03_frames/frames/down.png": {
+      "bytes": 723930,
+      "sha256": "9389cda6a794aca7cdf751bb6d8e569c86895c08b513bcb4b5217c9dd920837b"
+    },
+    "nine-axis/step03_frames/frames/left.png": {
+      "bytes": 753113,
+      "sha256": "7df8d7db44f283e09c5cd65d359ded3fb53f15c5f7e552aa51f838ff5caaaf63"
+    },
+    "nine-axis/step03_frames/frames/up.png": {
+      "bytes": 733454,
+      "sha256": "66f46da80503319257c88d7517b7dd158a25b326782e7dabd96aeb392cf16a39"
+    },
+    "nine-axis/step03_frames/left.png": {
+      "bytes": 623069,
+      "sha256": "e7404b4d74120c26a209c46e087fe2c34881d1058b82d9c87efc89cea43bf22c"
+    },
+    "nine-axis/step03_frames/selected-frames.json": {
+      "bytes": 1500,
+      "sha256": "a362c2a1085a92073f97bdf082bd91e76918e16a059f1d81a1236376faec3498"
+    },
+    "nine-axis/step03_frames/up.png": {
+      "bytes": 602445,
+      "sha256": "3aa4cc118e74ba7dc8428b5754fe7684de91f2c3c4b22472eec83f00a0aa34c9"
+    },
+    "nine-axis/step03_frames/views.json": {
+      "bytes": 1630,
+      "sha256": "af9cf5bfd4db232a25f00fa4e1ce50db9f00af348492f6e1eef9d1cd12cab27d"
+    },
+    "nine-axis/step04_angles/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/model/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/model/axis-sources.json": {
+      "bytes": 2146,
+      "sha256": "cd7eff955b6956e0bed1f53251a2690a4548dc170c9c6989e2503e5a412be3c9"
+    },
+    "nine-axis/step04_angles/model/deformers.json": {
+      "bytes": 334461,
+      "sha256": "e3fad5500774c50b6d0b924b167f5f694dff49c5cbaddb49be5e3b12dceadae3"
+    },
+    "nine-axis/step04_angles/model/down/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/model/down/deformers.json": {
+      "bytes": 81463,
+      "sha256": "cdb6aa80e408a62d90f4c482babe202d9b42e505cbf00c05114f6ccf3a3a2d3f"
+    },
+    "nine-axis/step04_angles/model/down/face-down.json": {
+      "bytes": 81463,
+      "sha256": "cdb6aa80e408a62d90f4c482babe202d9b42e505cbf00c05114f6ccf3a3a2d3f"
+    },
+    "nine-axis/step04_angles/model/down/face-trace.json": {
+      "bytes": 11876,
+      "sha256": "fadf12defe2e6ba2b2b3b0dc33fc1fd443e7b281e7107bd2696a8b61f66029b9"
+    },
+    "nine-axis/step04_angles/model/down/fit-report.json": {
+      "bytes": 3421,
+      "sha256": "4bdc692a82148361a8da2db2bb156c77bac00f49e91a813addef45172c887f53"
+    },
+    "nine-axis/step04_angles/model/down/source.json": {
+      "bytes": 154,
+      "sha256": "c4e43a63545273c916ce6fb0f47966dc2c117e0d9aaa556c54c148efb21603ba"
+    },
+    "nine-axis/step04_angles/model/left/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/model/left/deformers.json": {
+      "bytes": 71375,
+      "sha256": "3a16b8b35acbaa2977c85af65c0339cbd13246954e92cc68baeeff228e2c4eb1"
+    },
+    "nine-axis/step04_angles/model/left/face-left.json": {
+      "bytes": 67570,
+      "sha256": "25eb10c04a449257663e5be4990a4e78efa2085ea78ef741373a89529e5fdb34"
+    },
+    "nine-axis/step04_angles/model/left/face-trace.json": {
+      "bytes": 9782,
+      "sha256": "a1df3a1663d5b94f17203993c6843c905a4e48ce9ca2b00f19bd1a43a65b992c"
+    },
+    "nine-axis/step04_angles/model/left/fit-report.json": {
+      "bytes": 9726,
+      "sha256": "90f94fd87e6e34479d3ddeb645f4156ff2a136efadcc7d867ae6e1645c89a62f"
+    },
+    "nine-axis/step04_angles/model/left/source.json": {
+      "bytes": 197,
+      "sha256": "f7d1e34a0d55e5fcaab1d22c8319e91e3e751e91e6771b334c4873377065f087"
+    },
+    "nine-axis/step04_angles/model/merged/axis-sources.json": {
+      "bytes": 2146,
+      "sha256": "cd7eff955b6956e0bed1f53251a2690a4548dc170c9c6989e2503e5a412be3c9"
+    },
+    "nine-axis/step04_angles/model/merged/deformers.json": {
+      "bytes": 334461,
+      "sha256": "e3fad5500774c50b6d0b924b167f5f694dff49c5cbaddb49be5e3b12dceadae3"
+    },
+    "nine-axis/step04_angles/model/source.json": {
+      "bytes": 154,
+      "sha256": "c4e43a63545273c916ce6fb0f47966dc2c117e0d9aaa556c54c148efb21603ba"
+    },
+    "nine-axis/step04_angles/model/up/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/model/up/deformers.json": {
+      "bytes": 70979,
+      "sha256": "9627c0f5932495707a9d21ca531e0cab72443c92414dd93ede69f7a6855d9b9a"
+    },
+    "nine-axis/step04_angles/model/up/face-trace.json": {
+      "bytes": 11430,
+      "sha256": "82229045b38f1368a3c4eb6dd540107f304485a72c6240e437bdff881eef7bf2"
+    },
+    "nine-axis/step04_angles/model/up/face-up.json": {
+      "bytes": 70979,
+      "sha256": "9627c0f5932495707a9d21ca531e0cab72443c92414dd93ede69f7a6855d9b9a"
+    },
+    "nine-axis/step04_angles/model/up/fit-report.json": {
+      "bytes": 3909,
+      "sha256": "b8f503c702fe0bb057b38e69dac7438e1b0dcf8d6c95505ea5655570fd47e3a5"
+    },
+    "nine-axis/step04_angles/model/up/source.json": {
+      "bytes": 154,
+      "sha256": "c4e43a63545273c916ce6fb0f47966dc2c117e0d9aaa556c54c148efb21603ba"
+    },
+    "nine-axis/step04_angles/video/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step04_angles/video/left-down.mp4": {
+      "bytes": 4257463,
+      "sha256": "8b5ecb958d70bcb27627063e46537661a633b2af7057718c99fcb16a901ef23d"
+    },
+    "nine-axis/step04_angles/video/left-up.mp4": {
+      "bytes": 4059863,
+      "sha256": "b7be57b762813e0a5ef01cbf5e5ad2743b4fc104ea65659aec2bf650017439e1"
+    },
+    "nine-axis/step04_angles/video/videos.json": {
+      "bytes": 3729,
+      "sha256": "7bb543919106fca74e2e2f84efa78f3d26f1af52cf8b77d1c0d13846f279041e"
+    },
+    "nine-axis/step05_frames/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step05_frames/frames/left-down.png": {
+      "bytes": 868865,
+      "sha256": "0f4e4faf3f5b31f205e0fd63b6676d16359a855a3e31c94cec502f4a5d8358a4"
+    },
+    "nine-axis/step05_frames/frames/left-up.png": {
+      "bytes": 838552,
+      "sha256": "68bbc4495be8710e3acca4b9452908974c46d823168dbcf0702ea16fdb57896f"
+    },
+    "nine-axis/step05_frames/left-down.png": {
+      "bytes": 774401,
+      "sha256": "5e45a6b8bac8ce4b60b4def82e96ca80fa28e5260067b88418a75de5985040e2"
+    },
+    "nine-axis/step05_frames/left-up.png": {
+      "bytes": 717616,
+      "sha256": "3b069462a32fd8d1d1bb0666ab4d80fee7023ea00559b58f94078cfb3f43ed68"
+    },
+    "nine-axis/step05_frames/selected-frames.json": {
+      "bytes": 970,
+      "sha256": "9febca780ffbf821b8a90781de94c5076aec6d84335434c28e0270396734bdc3"
+    },
+    "nine-axis/step06_angle-xy/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step06_angle-xy/deformers.json": {
+      "bytes": 459441,
+      "sha256": "a1450046eedfec20beedd0412d342ee42e0930ff4a3d73735be921a4eb36f7c9"
+    },
+    "nine-axis/step06_angle-xy/face-xy.json": {
+      "bytes": 457528,
+      "sha256": "67c9ab1de11594d515bcea6cb246732464eed10798900e5d49fb131c9a33e1ad"
+    },
+    "nine-axis/step06_angle-xy/left-down-face-trace.json": {
+      "bytes": 10208,
+      "sha256": "e1165a15a29e930055c5380d8354c2017d8c0aeeebaa3f643a4b6fee1f659039"
+    },
+    "nine-axis/step06_angle-xy/left-down-fit-report.json": {
+      "bytes": 6123,
+      "sha256": "7af438e89378802a8233cd6dbd66a47cbd0fc3753838247a22a90b4012a50acf"
+    },
+    "nine-axis/step06_angle-xy/left-up-face-trace.json": {
+      "bytes": 7427,
+      "sha256": "5761f96f8e49555ab6f4c1a4d64fdcfdbcfb76fc845d3838c8b195f90c54eb7d"
+    },
+    "nine-axis/step06_angle-xy/left-up-fit-report.json": {
+      "bytes": 5351,
+      "sha256": "0d6bed7197444639ec948e4763b25c0aec70654a262074fbe1ce6b98f8e8ecc5"
+    },
+    "nine-axis/step06_angle-xy/linear.json": {
+      "bytes": 334488,
+      "sha256": "8322ee60255e55f84e1152b462bbf69dd4a1bda22f9863ff51c567623407d373"
+    },
+    "nine-axis/step07_jaw-line/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step07_jaw-line/character-nine-axis.kra": {
+      "bytes": 30932528,
+      "sha256": "98e158caee5e1814aba55e9afda174497e7c7543b3f6e6d3dd55764032ff44d7"
+    },
+    "nine-axis/step07_jaw-line/character-nine-axis.png": {
+      "bytes": 1325342,
+      "sha256": "f66bf8a24fda0fe3821f287f7f73f9f060e075a5e7671a9b716244757a8e460a"
+    },
+    "nine-axis/step07_jaw-line/deformers.json": {
+      "bytes": 887799,
+      "sha256": "1bfaa931a7c1db1a10f5eabc2014a5cd5657cf57307f30589a1cc028c4f868a6"
+    },
+    "nine-axis/step07_jaw-line/export-record.json": {
+      "bytes": 7849,
+      "sha256": "a9430b49fe68573193a59c1b16adf2cb1bc5918f08c000d9e553de80ad507660"
+    },
+    "nine-axis/step07_jaw-line/jaw.json": {
+      "bytes": 865796,
+      "sha256": "e22762bda234f333df35746a9a01821fffa4d38a081add4c33fe66adb130f88b"
+    },
+    "nine-axis/step08_hair/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step08_hair/character-nine-axis.kra": {
+      "bytes": 31070517,
+      "sha256": "48f80baf166fab6157aad9a82de79afe5bd6afcde5b72e8051f41a73c0f55faa"
+    },
+    "nine-axis/step08_hair/character-nine-axis.png": {
+      "bytes": 1325416,
+      "sha256": "8b83904cd64d6c423d7423a8119e077ec0b3b8dc01d6e15e3966da6e97194c31"
+    },
+    "nine-axis/step08_hair/deformers.json": {
+      "bytes": 1090836,
+      "sha256": "743acfbc27a76fcb2090e0b399c9274857ad7f21f5cb7dc4c3a33447767cc702"
+    },
+    "nine-axis/step08_hair/export-record.json": {
+      "bytes": 11832,
+      "sha256": "631c01708812a7290931fe1cafa542076f8f12f167cf72dfa231046e3f1821f0"
+    },
+    "nine-axis/step08_hair/hair-progress.json": {
+      "bytes": 112,
+      "sha256": "91dba3f9dcdd79345cf232f54a83c67a3dfd2d121dcd8ec6bb53032166df75d5"
+    },
+    "nine-axis/step08_hair/hair.json": {
+      "bytes": 1090836,
+      "sha256": "743acfbc27a76fcb2090e0b399c9274857ad7f21f5cb7dc4c3a33447767cc702"
+    },
+    "nine-axis/step08_hair/notes.md": {
+      "bytes": 26036,
+      "sha256": "7788d179049373e8735bafe548260dbd5d855df92b277033370e7010f7e49fba"
+    },
+    "nine-axis/step08_hair/source.json": {
+      "bytes": 226,
+      "sha256": "a93137fee20f3284f46dfbcefe042f957c3f9cf8017f9644c0199703217294e8"
+    },
+    "nine-axis/step09_head-accessories/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step09_head-accessories/accessories.json": {
+      "bytes": 1116371,
+      "sha256": "e7f208f9fa242c339bdb61a87cd919a6577f0cb82e0606be66ee7516ec4bd6f6"
+    },
+    "nine-axis/step09_head-accessories/character-nine-axis.kra": {
+      "bytes": 31175453,
+      "sha256": "6b8117963b7f282408cd79fa88016f3425d2d9c1f7f981da23347e2b77c6b453"
+    },
+    "nine-axis/step09_head-accessories/character-nine-axis.png": {
+      "bytes": 1313014,
+      "sha256": "99e98d8c28099763f209b2a41b6d24e9623626049a2a594518f375b94d2bfcd1"
+    },
+    "nine-axis/step09_head-accessories/deformers.json": {
+      "bytes": 1116371,
+      "sha256": "e7f208f9fa242c339bdb61a87cd919a6577f0cb82e0606be66ee7516ec4bd6f6"
+    },
+    "nine-axis/step09_head-accessories/export-record.json": {
+      "bytes": 17608,
+      "sha256": "129f86ecd0eb9b2cdc9ea1f55eb31ddaba1fcf58c1a951ca4c8346f2764b0cd1"
+    },
+    "nine-axis/step09_head-accessories/notes.md": {
+      "bytes": 9486,
+      "sha256": "fcc3bb082ac9dea28b6dcf6ad6cbce4af0f56d17f0133aaba31f2aeacd371a7e"
+    },
+    "nine-axis/step09_head-accessories/source.json": {
+      "bytes": 230,
+      "sha256": "c1f54c1f86f056da8d6d1a4d2a4592cd910936a243e3e738afbd42d23eb2de8a"
+    },
+    "nine-axis/step10_head-pitch/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step10_head-pitch/deformers.json": {
+      "bytes": 1205083,
+      "sha256": "ecc0b693f5e0055c53821a768024dc68d7cff53263b331fd6aae3ee576da0c06"
+    },
+    "nine-axis/step10_head-pitch/down/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step10_head-pitch/down/deformers.json": {
+      "bytes": 1174306,
+      "sha256": "e7d6419ed6185fe1ab7f94051f063d4209b93417df63c61f987be8892b347ed0"
+    },
+    "nine-axis/step10_head-pitch/down/head-down.json": {
+      "bytes": 1174306,
+      "sha256": "e7d6419ed6185fe1ab7f94051f063d4209b93417df63c61f987be8892b347ed0"
+    },
+    "nine-axis/step10_head-pitch/down/notes.md": {
+      "bytes": 6156,
+      "sha256": "f5818e9d865bceabdbbcb052379f2ee677c9312238595716d226a8b7b81fd93d"
+    },
+    "nine-axis/step10_head-pitch/down/source.json": {
+      "bytes": 158,
+      "sha256": "ed845623ee1b2ba720f02f499c04d665dbaa070ee4759d4675bef60111fbc951"
+    },
+    "nine-axis/step10_head-pitch/notes.md": {
+      "bytes": 12452,
+      "sha256": "936f3795d135c5871b364ef3375683d79dde5c5fadf7179457ccf07d545cfdf6"
+    },
+    "nine-axis/step10_head-pitch/source.json": {
+      "bytes": 268,
+      "sha256": "1eb45abc88683c501293dc2b3dc5042e9a66f73abb5235a5a510686e78834d94"
+    },
+    "nine-axis/step10_head-pitch/up/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step10_head-pitch/up/deformers.json": {
+      "bytes": 1166833,
+      "sha256": "8406d3ad14eee709fe425618d939c783a73003fab59cc65094f8077392345a8a"
+    },
+    "nine-axis/step10_head-pitch/up/head-up.json": {
+      "bytes": 1166833,
+      "sha256": "8406d3ad14eee709fe425618d939c783a73003fab59cc65094f8077392345a8a"
+    },
+    "nine-axis/step10_head-pitch/up/notes.md": {
+      "bytes": 6278,
+      "sha256": "1db0c8b5afcab5c81fc876ae9bced954681e29032507804df2c6481aa7f9e567"
+    },
+    "nine-axis/step10_head-pitch/up/source.json": {
+      "bytes": 158,
+      "sha256": "ed845623ee1b2ba720f02f499c04d665dbaa070ee4759d4675bef60111fbc951"
+    },
+    "nine-axis/step11_head-angle-xy/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step11_head-angle-xy/deformers.json": {
+      "bytes": 1515783,
+      "sha256": "8dfd84e82586ca6c38166effcb5ca0c47d6dc862612626f9afbf3bd417b065af"
+    },
+    "nine-axis/step11_head-angle-xy/head-xy.json": {
+      "bytes": 1515783,
+      "sha256": "8dfd84e82586ca6c38166effcb5ca0c47d6dc862612626f9afbf3bd417b065af"
+    },
+    "nine-axis/step11_head-angle-xy/notes.md": {
+      "bytes": 7908,
+      "sha256": "b4ca2cff883d3bb8d7b12682f67ee46d48005b96d49a9220b26efa22c05e707b"
+    },
+    "nine-axis/step11_head-angle-xy/source.json": {
+      "bytes": 152,
+      "sha256": "46f5eec954b378ca7d20575d5185c36fa8e02a53fe8e72b2c7c4ddb2415e8cfd"
+    },
+    "nine-axis/step12_head-roll/.completed": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nine-axis/step12_head-roll/deformers.json": {
+      "bytes": 1518362,
+      "sha256": "65f8e58fde98c6952efd3930f85f2438623aaf450a411982ed0855038596ddc7"
     },
     "part-layering/groups.json": {
       "bytes": 75544,
@@ -5330,20 +5770,20 @@
       "sha256": "8e8590865dd612b3cf875b69dc6204bf4523b651f6c53e306b27923ad15eb0b8"
     },
     "run.json": {
-      "bytes": 922,
-      "sha256": "b90ce797bc17b6b9adf10df0a38d00adebdffcf988fb427ec5ec231d7ef59706"
+      "bytes": 1026,
+      "sha256": "4f3bea05234c432f0e826016ca3dd89d280cd7ed7b9bd220cf239a7c13dd221e"
     },
     "shadow/step01_mask/.completed": {
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     "shadow/step01_mask/character-shadowed.kra": {
-      "bytes": 29878647,
-      "sha256": "67bc370a31a3ca1ce5172d3146240ec610d1e19a648857e1127fc59b4a04aafb"
+      "bytes": 29929378,
+      "sha256": "0a4ea38483a89c1f94c24922367715cf51e79d18588664a32cb36f656935bd63"
     },
     "shadow/step01_mask/character-shadowed.png": {
-      "bytes": 1329944,
-      "sha256": "4ef24b2b8fe81dd3a63641aa33a246f8f998d623ca170e9003825017d6825c2b"
+      "bytes": 1326307,
+      "sha256": "3539710af6a7c98fe0441f012fddcade60875f2471fb80f7deaa788d98c6a644"
     },
     "shadow/step01_mask/face-review.png": {
       "bytes": 864151,

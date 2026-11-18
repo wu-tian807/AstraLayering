@@ -1,0 +1,287 @@
+{
+  "id": "warp/face_completion_xy",
+  "x": -30,
+  "y": -25,
+  "units": "original canvas pixels",
+  "before": [
+    {
+      "id": "01-occluded",
+      "samples": 52,
+      "weight": 1,
+      "meanPixels": 24.396951453410512,
+      "maxPixels": 32.509333391142455
+    },
+    {
+      "id": "02-occluded",
+      "samples": 43,
+      "weight": 1,
+      "meanPixels": 17.288863279856994,
+      "maxPixels": 31.494272593215843
+    },
+    {
+      "id": "03-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 1.161623880299039,
+      "maxPixels": 1.500416388433182
+    },
+    {
+      "id": "04-visible",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.3025631791749875,
+      "maxPixels": 1.1842103690052472
+    },
+    {
+      "id": "05-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.788100915254929,
+      "maxPixels": 1.1842103690052472
+    },
+    {
+      "id": "06-visible",
+      "samples": 32,
+      "weight": 1,
+      "meanPixels": 0.2527851783940557,
+      "maxPixels": 1.1061898849168394
+    },
+    {
+      "id": "07-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.21311527203833458,
+      "maxPixels": 0.5410366173650036
+    },
+    {
+      "id": "08-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.18296691667165882,
+      "maxPixels": 0.43950375094115457
+    },
+    {
+      "id": "09-visible",
+      "samples": 41,
+      "weight": 1,
+      "meanPixels": 0.11690414567576772,
+      "maxPixels": 0.43950375094115457
+    },
+    {
+      "id": "10-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.04023012147499365,
+      "maxPixels": 0.14387316025285385
+    },
+    {
+      "id": "11-occluded",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 1.0571720353133331,
+      "maxPixels": 1.4648992648556578
+    },
+    {
+      "id": "12-occluded",
+      "samples": 27,
+      "weight": 1,
+      "meanPixels": 3.311874550685423,
+      "maxPixels": 7.791510611126324
+    },
+    {
+      "id": "13-occluded",
+      "samples": 29,
+      "weight": 1,
+      "meanPixels": 13.385359962975999,
+      "maxPixels": 15.97047606419941
+    },
+    {
+      "id": "14-occluded",
+      "samples": 21,
+      "weight": 1,
+      "meanPixels": 16.399869416848315,
+      "maxPixels": 16.61210883239592
+    },
+    {
+      "id": "15-occluded",
+      "samples": 47,
+      "weight": 1,
+      "meanPixels": 8.370139733110694,
+      "maxPixels": 16.61210883239592
+    }
+  ],
+  "after": [
+    {
+      "id": "01-occluded",
+      "samples": 52,
+      "weight": 1,
+      "meanPixels": 0.12711437203378437,
+      "maxPixels": 0.5337222853455854
+    },
+    {
+      "id": "02-occluded",
+      "samples": 43,
+      "weight": 1,
+      "meanPixels": 0.49053466271371093,
+      "maxPixels": 1.479529042417738
+    },
+    {
+      "id": "03-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.9746934557857834,
+      "maxPixels": 1.5070748149508386
+    },
+    {
+      "id": "04-visible",
+      "samples": 24,
+      "weight": 1,
+      "meanPixels": 0.2050444655843294,
+      "maxPixels": 1.0406833278010208
+    },
+    {
+      "id": "05-occluded",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.6612252094563215,
+      "maxPixels": 1.0406833278010208
+    },
+    {
+      "id": "06-visible",
+      "samples": 32,
+      "weight": 1,
+      "meanPixels": 0.1809254029314145,
+      "maxPixels": 0.9618508238176638
+    },
+    {
+      "id": "07-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.11951978983306306,
+      "maxPixels": 0.38083781752324813
+    },
+    {
+      "id": "08-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.1417569849758264,
+      "maxPixels": 0.3135122205140824
+    },
+    {
+      "id": "09-visible",
+      "samples": 41,
+      "weight": 1,
+      "meanPixels": 0.08293726153013044,
+      "maxPixels": 0.3135122205140824
+    },
+    {
+      "id": "10-visible",
+      "samples": 16,
+      "weight": 1,
+      "meanPixels": 0.025025710437581998,
+      "maxPixels": 0.05842728333948423
+    },
+    {
+      "id": "11-occluded",
+      "samples": 18,
+      "weight": 1,
+      "meanPixels": 0.2636004883155529,
+      "maxPixels": 0.4608825471613175
+    },
+    {
+      "id": "12-occluded",
+      "samples": 27,
+      "weight": 1,
+      "meanPixels": 0.22583872138684338,
+      "maxPixels": 0.3851335585442148
+    },
+    {
+      "id": "13-occluded",
+      "samples": 29,
+      "weight": 1,
+      "meanPixels": 0.37328284755583,
+      "maxPixels": 0.7508346910477034
+    },
+    {
+      "id": "14-occluded",
+      "samples": 21,
+      "weight": 1,
+      "meanPixels": 0.2406545030434676,
+      "maxPixels": 0.7236460752845861
+    },
+    {
+      "id": "15-occluded",
+      "samples": 47,
+      "weight": 1,
+      "meanPixels": 0.15939847096798812,
+      "maxPixels": 0.7236460752845861
+    }
+  ],
+  "controls": 169,
+  "smoothness": 0.0005,
+  "occludedWeightScale": 0.010000000000000002,
+  "corner": "left-down",
+  "trace": "nine-axis/step06_angle-xy/left-down-face-trace.json",
+  "visibility": [
+    {
+      "id": "01-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "02-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "03-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "04-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "05-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "06-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "07-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "08-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "09-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "10-visible",
+      "visibility": "visible"
+    },
+    {
+      "id": "11-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "12-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "13-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "14-occluded",
+      "visibility": "occluded"
+    },
+    {
+      "id": "15-occluded",
+      "visibility": "occluded"
+    }
+  ]
+}
