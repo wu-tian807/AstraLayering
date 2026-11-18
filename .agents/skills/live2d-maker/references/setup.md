@@ -44,7 +44,7 @@ pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 
 
 ## 模型 CLI 与生图
 
-默认方案使用 `gpt-6.1-sol` 和 Codex 内置生图。配置已有登录认证或 API，再运行 `pnpm env:check` 核对模型、CLI 路径和生图配置。
+默认方案使用 `gpt-6.2-sol` 和 Codex 内置生图。配置已有登录认证或 API，再运行 `pnpm env:check` 核对模型、CLI 路径和生图配置。
 
 ### CLI 准备与补丁构建
 

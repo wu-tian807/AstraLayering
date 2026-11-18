@@ -28,8 +28,8 @@ test('配置解析保留认证来源，.env 模型后缀是力度，.env 优先�
   const baseline = loadWorkflowEnvironment({ CODEX_HOME: '/existing/codex' }, root);
   assert.deepEqual(baseline.codex.config, {});
   assert.equal(baseline.codex.env!.CODEX_HOME, '/existing/codex');
-  assert.deepEqual(baseline.models.medium, { model: 'gpt-6.1-sol', effort: 'medium' });
-  assert.deepEqual(baseline.models.high, { model: 'gpt-6.1-sol', effort: 'xhigh' });
+  assert.deepEqual(baseline.models.medium, { model: 'gpt-6.2-sol', effort: 'medium' });
+  assert.deepEqual(baseline.models.high, { model: 'gpt-6.2-sol', effort: 'xhigh' });
   assert.equal(baseline.imageCompactThreshold, undefined);
   await writeFile(join(root, '.env'), 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\ncodex_path=bin/codex\n');
   const settings = loadWorkflowEnvironment({ medium_model: 'gpt-6.1-sol-medium' }, root);
@@ -56,7 +56,7 @@ test('removed layering_ configuration aliases cannot override current runtime se
   assert.equal(ignored.imageCompactThreshold, undefined);
   assert.equal(ignored.codex.env!.LAYERING_IMAGE_COMPACT_THRESHOLD, undefined);
   assert.equal(ignored.providers!.codex.connection, 'inherited');
-  assert.equal(ignored.stepModels.part_pose_judgment.model, 'gpt-6.1-sol');
+  assert.equal(ignored.stepModels.part_pose_judgment.model, 'gpt-6.2-sol');
   assert.equal(ignored.stepImages.part_standardize, 'codex-native');
   const configured = loadWorkflowEnvironment({codex_image_compact_threshold:'49', codex_api_key:'new-secret', codex_base_url:'https://new.example/v1',
     preparation_agent_model:'claude-haiku-5-5-low', default_image_model:'gpt-image-2.5-flare'}, root);
