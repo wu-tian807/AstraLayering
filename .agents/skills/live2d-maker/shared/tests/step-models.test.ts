@@ -109,13 +109,14 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   assert.equal(Object.keys(settings.stepModels).length, Object.keys(stepDefaults).length);
   assert.deepEqual(settings.stepModels, loadWorkflowEnvironment({}, await fixture(t)).stepModels);
   const expected: Record<keyof typeof modelSlotDefaults, string> = {
-    preparation: 'low', part_draw: 'medium', part_review: 'medium',
-    part_groups: 'high', part_reduce: 'high', part_completion: 'high', part_completion_boundary_review: 'medium', part_depth: 'high',
-    raster_step01: 'xhigh', raster_step01_review: 'xhigh', raster_step02: 'medium',
-    raster_step03: 'medium', assembly: 'xhigh', shadow: 'medium', nine_axis_head: 'xhigh',
+    preparation: 'gpt-6.2-sol-low', part_draw: 'gpt-6.2-astra-low', part_review: 'gpt-6.2-sol-low',
+    part_groups: 'gpt-6.2-sol-high', part_reduce: 'gpt-6.2-sol-high', part_completion: 'gpt-6.2-sol-high',
+    part_completion_boundary_review: 'gpt-6.1-terra-medium', part_depth: 'gpt-6.2-sol-high',
+    raster_step01: 'gpt-6.2-sol-xhigh', raster_step01_review: 'gpt-6.2-sol-high', raster_step02: 'gpt-6.2-sol-medium',
+    raster_step03: 'gpt-6.2-sol-medium', assembly: 'gpt-6.2-sol-high', shadow: 'gpt-6.2-sol-medium', nine_axis_head: 'gpt-6.2-sol-xhigh',
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
-    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(`${role === 'part_completion_boundary_review' ? 'gpt-6.1-terra' : 'gpt-6.2-sol'}-${expected[role]}`, 'fixture'), step);
+    assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(expected[role], 'fixture'), step);
   }
   assert.deepEqual(settings.codex.config, {});
   assert.deepEqual(settings.imageApis, {});

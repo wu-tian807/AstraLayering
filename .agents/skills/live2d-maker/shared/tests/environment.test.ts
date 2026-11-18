@@ -28,7 +28,7 @@ test('配置解析保留认证来源，.env 模型后缀是力度，.env 优先�
   const baseline = loadWorkflowEnvironment({ CODEX_HOME: '/existing/codex' }, root);
   assert.deepEqual(baseline.codex.config, {});
   assert.equal(baseline.codex.env!.CODEX_HOME, '/existing/codex');
-  assert.deepEqual(baseline.models.medium, { model: 'gpt-6.2-sol', effort: 'medium' });
+  assert.deepEqual(baseline.models.medium, { model: 'gpt-6.2-astra', effort: 'low' });
   assert.deepEqual(baseline.models.high, { model: 'gpt-6.2-sol', effort: 'xhigh' });
   assert.equal(baseline.imageCompactThreshold, undefined);
   await writeFile(join(root, '.env'), 'medium_model=gpt-6.1-sol-low\nhigh_model=gpt-6-astra-high\ncodex_path=bin/codex\n');

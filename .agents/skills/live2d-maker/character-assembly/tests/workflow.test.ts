@@ -81,7 +81,7 @@ test('只调一次组装 agent，只有 krita 工具且无 reviewer；完整交�
   const agent = async (request: AgentRequest) => {
     calls++;
     assert.equal(request.directory, f.output);
-    assert.equal(request.model, 'gpt-6.2-sol'); assert.equal(request.effort, 'xhigh');
+    assert.equal(request.model, 'gpt-6.2-sol'); assert.equal(request.effort, 'high');
     assert.equal(request.threadId, undefined);
     assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
 
