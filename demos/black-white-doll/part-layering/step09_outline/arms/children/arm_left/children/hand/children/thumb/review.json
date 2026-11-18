@@ -3,86 +3,46 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已读取本组及父组说明、候选 outline.svg、父组完成 hand.svg；先核对整图 blend，再以重叠选框 [690,698,34,32]、[695,718,28,39]、[696,708,22,24] 和指尖选框 [699,738,16,15] 做 8 倍参考、blend/edge 对照，覆盖指根、两侧指身、拇食指开口和圆钝指尖。\n本组归属正确：覆盖画面左侧独立可见的整段拇指；上端圆弧是伸入掌肉的局部连接余量，没有误包食指或填平真实开口。指根到指尖连续，主要位置、宽度、弯向和比例正确；指甲等内容已在联合实体范围内，无组件遗漏。轮廓单一干净，无孤点、碎片或无依据挖缝。当前父范围内没有确认的可修缺漏，不需要重画。本组父范围检查通过：outsideSamples=0、outsidePixels=0。\n上游范围限制，单独记录：拇指指身两侧约 x698–712、y719–744，参考连续灰色实体外缘在局部仍比红色轮廓稍宽，尤其画面左缘下段约 x700–702、y730–742 和开口侧约 x710–712、y723–741。证据为同一选框 [695,718,28,39] 的候选 edge（观察图 2026-10-25T12-14-09-071Z-7.png）与父稿 edge（同前缀 -10.png）：这两侧红线完全重合，参考残留的窄灰边处于父范围之外；指根选框也已对照父稿。候选已经沿父界截止，没有可在父内继续补入的对应空隙。恢复这些窄边须由上游扩大 hand.svg 容纳范围；本轮未补齐它们，不要求当前拇指越界，也不放宽父检查。其余当前允许范围内检查均通过，故本轮 pass。",
-      "candidateHash": "69a6f9841c576a3d2a08b8b5d1ade5ee259e5f1cc8f544d087fdb0eacb33eeee",
+      "feedback": "已核对本组及 hand 父组说明、原图、候选和父完成 SVG。整图定位后，以 [653,703,40,59] 覆盖完整拇指，并以 [658,704,32,29]、[657,724,26,37] 重叠放大核对指根、两侧边缘、拇食指遮挡接缝与圆钝指尖；已查看 blend、edge 和 SVG 独显。候选归属为画面右侧靠大腿的短拇指，未误包其后方长指及指间暗影；可见指身、含指甲的末端范围完整，外缘及指尖贴合参考，指根与掌部连接合理，无应保留的孔洞或分离组件遗漏，无碎片噪音。候选画布坐标正确，父范围检查 outsidePixels=0，符合未设置 allowOutsideParent 的父范围约束。未发现需要返修的问题。",
+      "candidateHash": "3f7eac553161f1178740b5d1d79e7b3bf104dc55d337f424186f39c4ee1a4a20",
       "observations": [
         {
           "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-1.png"
         },
         {
           "source": "part-layering/parts/arms/arm_left/hand.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-4.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-6.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-7.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-5.png"
         },
         {
-          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-8.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-9.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-10.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-11.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-13.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_left/children/hand/children/thumb/step01/observations/arms/arm_left/hand/thumb/2026-10-25T12-14-09-071Z-15.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/thumb/previews/2026-11-16T06-04-28-449Z-7.png"
         }
       ],
-      "updatedAt": "2026-10-25T12:36:13.648Z"
+      "updatedAt": "2026-11-16T06:30:24.435Z"
     }
   ]
 }

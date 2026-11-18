@@ -1,0 +1,323 @@
+{
+  "conclusion": "已修复",
+  "items": [
+    {
+      "number": 1,
+      "title": "白色前马尾内卷与长条开隙",
+      "ids": [
+        "hair/ponytail/ponytail_left/ponytail_front"
+      ],
+      "views": [
+        "R1"
+      ],
+      "result": "按原图恢复宽卷内侧的长条开隙、穿行细束及卷尖，清除侵入开隙的新增宽紫灰叉束。保留完整扎点、宽卷和隐藏根部；将局部生成的隐藏延续与原有发面接合。可见精细轮廓以原图本件取样为准，不再以粗色块二次裁切描边。最后用本件相邻发面取样修净内侧残留碎色和横向拼接，保留自身灰紫转面。",
+      "depth": "3；未增设马尾节点或消隐蒙版。"
+    },
+    {
+      "number": 2,
+      "title": "白色后马尾前绕细束及回接",
+      "ids": [
+        "hair/ponytail/ponytail_left/ponytail_back"
+      ],
+      "views": [
+        "R2"
+      ],
+      "result": "在原有生成发面上，用原生画笔沿细束自身走向画出灰紫双侧束缘和浅色束面，缩回错误的亮白粗线与钝厚端头，逐渐收细并接回后发面。两个分片分别独显且合看，连接处连续；低位宽卷仍在前卷之后。",
+      "depth": "预先标注的 1／5 保持：1 为后发面，5 仅为同件前绕细束。"
+    },
+    {
+      "number": 3,
+      "title": "黑侧发眼尾残笔与黑侧上眼睑尖钩",
+      "ids": [
+        "hair/side_hair/side_hair_right",
+        "face/eyes/eye_right/upper_eyelid"
+      ],
+      "views": [
+        "R3-hair",
+        "R3-eye"
+      ],
+      "result": "局部三色控制生成侧发自有发缘，遮挡眼尾的输入置灰；清掉侧发中的眼尾横条、台阶和肤色污染。眼尾完整细尖、钩形及收笔归上眼睑，按原图本件墨线取样修整，并剔除眼褶、虹膜和发丝的旁支残影。",
+      "depth": "侧发 66；上眼睑主体 43，真实压在侧发前的外眼尾 66.5。上游深度表已同步。"
+    },
+    {
+      "number": 4,
+      "title": "白侧发齿口与被截断的眼尾",
+      "ids": [
+        "hair/side_hair/side_hair_left",
+        "face/eyes/eye_left/upper_eyelid"
+      ],
+      "views": [
+        "R4-hair",
+        "R4-eye"
+      ],
+      "result": "用局部生成的自有发面修回连续发缘，去掉眼尾形齿口、浅孤点、灰紫短横及额外暖色细线。保留原眼尾尖端形状，将真实位于发前的外眼尾拆为同一上眼睑的普通绘画分片；眼白、虹膜和高光没有为补救交叉而改形。",
+      "depth": "侧发 65；上眼睑主体 42，外眼尾 65.5；无头发挖洞或透明度蒙版。"
+    },
+    {
+      "number": 5,
+      "title": "左手五指体积与取样接界",
+      "ids": [
+        "arms/arm_left/hand/little_finger",
+        "arms/arm_left/hand/ring_finger",
+        "arms/arm_left/hand/middle_finger",
+        "arms/arm_left/hand/index_finger",
+        "arms/arm_left/hand/thumb"
+      ],
+      "views": [
+        "R5-little_finger",
+        "R5-ring_finger",
+        "R5-middle_finger",
+        "R5-index_finger",
+        "R5-thumb"
+      ],
+      "result": "五件各自用原生画笔补画连续指体、红暗侧、浅亮正面及细描边；保留各自可用的原图指甲、指尖和远端笔触，清掉遮挡物墨线。柔笔沿指身方向融接根段和取样段，最后融顺拇指中段横向接色边。检查中发现掌层覆盖了应露出的拇指身，改为同件根部／前方指身双深度，指甲不再被掌层截断；掌部自身的远端脏暗也用掌面自身取样修净。",
+      "depth": "小指 14、无名指 16、中指 18、食指 20；拇指根 22／指身 24.5，手掌 24。"
+    },
+    {
+      "number": 6,
+      "title": "右手五指体积与根部衔接",
+      "ids": [
+        "arms/arm_right/hand/little_finger",
+        "arms/arm_right/hand/ring_finger",
+        "arms/arm_right/hand/middle_finger",
+        "arms/arm_right/hand/index_finger",
+        "arms/arm_right/hand/thumb"
+      ],
+      "views": [
+        "R6-little_finger",
+        "R6-ring_finger",
+        "R6-middle_finger",
+        "R6-index_finger",
+        "R6-thumb"
+      ],
+      "result": "逐指独立补画本件暗侧、亮面和完整边线，按右手实际朝向处理拇指与其余指的转面差异。保留本件指甲和指尖，剔除曾由原图宽选区带入的袜面、邻指及遮挡线；有杂片的试修已撤回，最终使用干净的原生指体并局部柔笔接色。融顺拇指中段接界，掌与拇指的真实交叉改以同件双深度处理。",
+      "depth": "小指 15、无名指 17、中指 19、食指 21；拇指根 23／指身 25.5，手掌 25。"
+    },
+    {
+      "number": 7,
+      "title": "躯干肩带、领口和两条衣缝",
+      "ids": [
+        "body/torso"
+      ],
+      "views": [
+        "R7"
+      ],
+      "result": "延续肩带内侧线至完整领口，修掉领口发虚、分叉及楔形补片；两侧衣缝沿参考切线接成连续曲线，并画至被胸部遮住的完整胸廓。补查并修好胸部下缘露出的衣缝接点，颜色和切线顺接原图可见段；没有在躯干重画一套胸部。",
+      "depth": "31；独立胸部仍为 32。"
+    },
+    {
+      "number": 8,
+      "title": "骨盆上方错位衣缝",
+      "ids": [
+        "pelvis"
+      ],
+      "views": [
+        "R8"
+      ],
+      "result": "在原有布面上用本件取样融掉断口周围的拼贴色，再沿两条原衣缝的方向补画连续细线，延续至完整上沿。默认腰腹的原有位置与服装边线保留。",
+      "depth": "12；腰腹遮挡保持原有层序。"
+    },
+    {
+      "number": 9,
+      "title": "颈部自有描边与肩颈切线",
+      "ids": [
+        "neck"
+      ],
+      "views": [
+        "R9"
+      ],
+      "result": "沿颈部自身形体补回两侧连续细描边和颈根的转面线，接顺肩颈切线，修去两侧凸口。原先清掉的下巴投影保持清除，颈部暗面只随本件体积延续。",
+      "depth": "30；与躯干 31、脸底 35 配合。"
+    },
+    {
+      "number": 10,
+      "title": "脸底误带颈线及下颌齿点",
+      "ids": [
+        "face/face_base"
+      ],
+      "views": [
+        "R10"
+      ],
+      "result": "清掉下颌两侧向下的颈线短钩和台阶，用原生细笔延续脸底自己的下颌曲线；颈侧线只留在颈层。下颌的尖度、走向与细线浓淡按原图保留。",
+      "depth": "35；没有把颈线复制进脸底。"
+    },
+    {
+      "number": 11,
+      "title": "左前臂、上臂描边与隐藏根段",
+      "ids": [
+        "arms/arm_left/forearm",
+        "arms/arm_left/upper_arm"
+      ],
+      "views": [
+        "R11-forearm",
+        "R11-upper_arm"
+      ],
+      "result": "以原可见曲线配准完整生成臂体，恢复前臂两侧原有细描边及抗锯齿，沿本件轮廓将根部和末端画完。用本件皮肤取样柔接肘部及肩根；隐藏肩根原有灰横条、硬白块和衣物形残笔已清掉，保留自身柔和红暗转面。",
+      "depth": "前臂 26、上臂 28；不扩大肤色面遮断口。"
+    },
+    {
+      "number": 12,
+      "title": "右前臂、上臂描边与根段拼接",
+      "ids": [
+        "arms/arm_right/forearm",
+        "arms/arm_right/upper_arm"
+      ],
+      "views": [
+        "R12-forearm",
+        "R12-upper_arm"
+      ],
+      "result": "按右臂原曲线修回细轮廓与抗锯齿，补完隐藏肩根及前臂根端的自有边线、肤色体积。融去楔形盖帽和跨臂横界，随后只取同臂干净皮肤修净隐藏肩根的灰线及硬色补片；原有手腕和手掌位置保留。",
+      "depth": "前臂 27、上臂 29；一般遮挡使用深度。"
+    },
+    {
+      "number": 13,
+      "title": "两腿内缘及裆底下方负形",
+      "ids": [
+        "legs/leg_left/leg",
+        "legs/leg_right/leg"
+      ],
+      "views": [
+        "R13-left",
+        "R13-right"
+      ],
+      "result": "按原图实际内侧腿缘修正两件完整腿体，恢复从服装裆底向下连续张开的腿间空隙，画顺内缘细线。保持腿根完整，不外移整条腿、不移动骨盆，也不挖透明缝。两腿 SVG 完成轮廓同步修正。",
+      "depth": "左腿 10、右腿 11，骨盆 12 保持。"
+    },
+    {
+      "number": 14,
+      "title": "左踝阶梯轮廓",
+      "ids": [
+        "legs/leg_left/leg"
+      ],
+      "views": [
+        "R14"
+      ],
+      "result": "重新配准既有生成袜面至平滑收窄的足踝曲线，修掉多级方阶与缺角；原生细笔画完踝侧描边及抗锯齿，并将可见袜色与补全部分作长距离柔接，避免新增横带。",
+      "depth": "10；袜面明暗、真实鞋带孔及鞋层位置保留。"
+    },
+    {
+      "number": 15,
+      "title": "右踝阶梯与宽度突变",
+      "ids": [
+        "legs/leg_right/leg"
+      ],
+      "views": [
+        "R15"
+      ],
+      "result": "按原图逐段接顺右踝内外缘，保留连续收窄方向，完整延续至鞋内的脚背和足端。恢复细边及柔和袜面过渡，修净方阶、凸块与补全色界。",
+      "depth": "11；没有只把缺角藏进鞋口。"
+    },
+    {
+      "number": 16,
+      "title": "左足补全过宽、鞋外露袜",
+      "ids": [
+        "legs/leg_left/leg"
+      ],
+      "views": [
+        "R16"
+      ],
+      "result": "将球状宽足修成与原鞋配合的完整窄足，接顺脚背、脚趾和足底曲线；保留原有生成袜面并按新足型配准及补画细轮廓。足端仍完整存在于鞋内，鞋帮两侧及双鞋之间不再露出旧袜色块。",
+      "depth": "腿足 10、原鞋身 71；不放大鞋、不裁成鞋窗。"
+    },
+    {
+      "number": 17,
+      "title": "右足与鞋帮配合",
+      "ids": [
+        "legs/leg_right/leg"
+      ],
+      "views": [
+        "R17"
+      ],
+      "result": "修正完整右足的宽度、脚背与足端，接回平滑足踝；保留原鞋体位置、鞋头和厚底形状，清除原鞋外侧及双鞋之间的宽足穿帮。上游完成轮廓和实际绘画一致。",
+      "depth": "腿足 11、原鞋身 72；无局部消隐蒙版。"
+    },
+    {
+      "number": 18,
+      "title": "后帮误复制前侧扣孔",
+      "ids": [
+        "legs/leg_right/shoes/rear_collar"
+      ],
+      "views": [
+        "R18"
+      ],
+      "result": "先删除后帮 SVG completion path 中错误的 evenodd 前扣孔，再在现有生成后帮上以本件皮革取样补成连续材质并融顺边线。单独隐藏腿层核查后帮无穿孔；前鞋身原有真实扣孔未改。",
+      "depth": "后帮 9、前鞋身 72 保持；只修改后帮本件的错误孔形。"
+    },
+    {
+      "number": 19,
+      "title": "白侧内飘带根部横截线",
+      "ids": [
+        "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner"
+      ],
+      "views": [
+        "R19"
+      ],
+      "result": "用红／黄／绿控制图局部重新生成完整根部，遮挡结体和头发置灰。保留原有下段带身与斜切带尾，将新根部按带身宽度和切线长距离融接，清掉横截亮边及灰色接带；纵向褶面连续。",
+      "depth": "59；不把结体覆盖界画成带面的横缝。"
+    },
+    {
+      "number": 20,
+      "title": "黑侧内飘带横贯黑接带",
+      "ids": [
+        "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner"
+      ],
+      "views": [
+        "R20"
+      ],
+      "result": "三色控制局部重画灰亮根段及其纵向褶面，融去横贯带宽的黑色接界和突然缩窄处。保留自身深色布面、纵褶和斜切尾，根部接色连续，不带入侧发或结体的投影轮廓。",
+      "depth": "61；保留本件原有归属。"
+    }
+  ],
+  "validation": {
+    "conclusion": "已修复",
+    "review": "raster-layering/step01/review-01.md",
+    "repairReport": "raster-layering/step01/repair-01.md.tmp",
+    "canvas": [
+      1086,
+      1448
+    ],
+    "logicalParts": 70,
+    "ordinaryPaintLayers": 75,
+    "nativeOpeningMasks": 10,
+    "reviewItems": 20,
+    "reviewedLogicalPartsInThreeViews": 70,
+    "reviewedMultiDepthPhysicalFragmentsInThreeViews": 10,
+    "originalPaintUUIDsRetained": 71,
+    "nonPonytailOriginalOwnersRetained": 66,
+    "repairedLogicalParts": 31,
+    "unchangedLogicalPaintings": 39,
+    "depthOrderValid": true,
+    "allSVGCurrentGroupBindingsValid": true,
+    "masksOnlyOnRealEyeMouthApertures": true,
+    "paintLayerInheritAlpha": false,
+    "apertureSelectionsPreserved": true,
+    "openingRetest": {
+      "nativeMasks": 10,
+      "paintingPixelsUnchanged": true,
+      "apertureSelectionsExactlyRestored": true,
+      "default": "reference-open",
+      "evidenceDirectory": "raster-layering/step01/repair-evidence/repair01/opening-controls"
+    },
+    "persistence": {
+      "layerTreeIdentical": true,
+      "paintAndMaskPixelsIdentical": true,
+      "compositePixelsIdentical": true,
+      "compositePixelSHA256": "684f41f882fa017624737fb3177da14ad7d827658a1b26f6302ddd2f74b39257"
+    },
+    "visualEvidence": "raster-layering/step01/repair-evidence/repair01/final-focus/index.json",
+    "logicalThreeViews": "raster-layering/step01/repair-evidence/repair01/final-all/index.json",
+    "physicalThreeViews": "raster-layering/step01/repair-evidence/repair01/physical-fragments/physical-index.json",
+    "hiddenReferenceCheck": "raster-layering/step01/hidden-reference-check.json",
+    "upstreamFingerprints": {
+      "groups.json": "2ab37e5da152002ce1d420c9ae1274614917058422984273c92196b842525bdb",
+      "occlusion.json": "0506aaacd9075f41908b991a23acf5690cea92391b6c6f72c06a9e7e1fbcbacf"
+    },
+    "deliverables": {
+      "kra": "raster-layering/step01/character-depth.kra",
+      "png": "raster-layering/step01/character-depth.png",
+      "kraSHA256": "7cb29690739f4e3f239d3a2f845d550a352ebfa313c35f998ff505dcfdf3076a",
+      "pngSHA256": "79db5d1c4a0627e21fdb7ceb0155e96e948d6e92f56d616e9b6f21cecd3b0c4f"
+    },
+    "numericChecksPurpose": "Only structure, persistence and unchanged-paint/control integrity; visual quality judged from images."
+  }
+}

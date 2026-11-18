@@ -1,0 +1,34 @@
+[
+  {
+    "id": "body/torso",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R7-R10/body__torso__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R7-R10/body__torso__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R7-R10/body__torso__full.png",
+    "highestDepth": 31,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R7-R10/body__torso__views.png"
+  },
+  {
+    "id": "pelvis",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R7-R10/pelvis__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R7-R10/pelvis__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R7-R10/pelvis__full.png",
+    "highestDepth": 12,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R7-R10/pelvis__views.png"
+  },
+  {
+    "id": "neck",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R7-R10/neck__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R7-R10/neck__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R7-R10/neck__full.png",
+    "highestDepth": 30,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R7-R10/neck__views.png"
+  },
+  {
+    "id": "face/face_base",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R7-R10/face__face_base__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R7-R10/face__face_base__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R7-R10/face__face_base__full.png",
+    "highestDepth": 35,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R7-R10/face__face_base__views.png"
+  }
+]

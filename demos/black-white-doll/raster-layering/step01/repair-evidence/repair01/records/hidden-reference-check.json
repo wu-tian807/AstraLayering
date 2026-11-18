@@ -1,0 +1,32 @@
+[
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "defaultOccluded": false,
+    "comparison": "raster-layering/step01/repair-evidence/repair01/hidden-reference-final/arms__arm_left__hand__little_finger__off.png",
+    "note": "Left little finger remains behind the palm. Eight shared antialias boundary pixels change on toggle; there is no independently exposed finger shape. Full part retained without a non-aperture mask.",
+    "noExposedIndependentContour": true,
+    "antialiasParticipation": {
+      "canvasBounds": [
+        692,
+        713,
+        3,
+        6
+      ],
+      "pixelCount": 8,
+      "maxRGBChannelDifference": 1,
+      "maxAlphaDifference": 2
+    }
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "defaultOccluded": true,
+    "comparison": "raster-layering/step01/repair-evidence/repair01/hidden-reference-final/arms__arm_right__hand__little_finger__off.png",
+    "note": "Toggle of logical owner(s), RGBA composite unchanged"
+  },
+  {
+    "id": "arms/arm_left/hand/ring_finger",
+    "defaultOccluded": true,
+    "comparison": "raster-layering/step01/repair-evidence/repair01/hidden-reference-final/arms__arm_left__hand__ring_finger__off.png",
+    "note": "Toggle of logical owner(s), RGBA composite unchanged"
+  }
+]

@@ -1,0 +1,474 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "name": "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface",
+    "uuid": "{97f63bbf-cdba-4e09-9ce7-9e33ea689fb1}",
+    "level": 1,
+    "region": "画面右侧马尾的外侧下垂后发面、内侧后方延伸、较低宽卷及底部回绕细梢；均在 hair/ponytail/ponytail_left/ponytail_front 的中央宽卷之后，并在 arms/arm_left/upper_arm、arms/arm_left/forearm 之后。与前方区域的分界沿同一外绕细束的两条束缘及其汇入外侧后发面的连接，不沿横向腰线或辅助填色划分。",
+    "reuseSources": [],
+    "generationSource": "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_a8a37b6552224618b21436f721984c23.png",
+    "note": "Redrawn as the current complete logical surface; original owned visible brushwork sampled locally. Same-part depth fragment.",
+    "originalPartId": "hair/ponytail/ponytail_left/ponytail_back",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_a8a37b6552224618b21436f721984c23.png"
+    ],
+    "repairs": [
+      {
+        "note": "同一 part 的预先标注深度 1/5；原生画笔补全细束，两片为普通绘画层，接缘连续。",
+        "evidence": "raster-layering/step01/workspace/front-sweep-paint-repair-v70.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+    "splitOrigin": "upstream-preannotated",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D1.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D1__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D1__full.png"
+  },
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "name": "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+    "uuid": "{21c33243-4378-486e-af36-6916afe1b117}",
+    "level": 5,
+    "region": "同一后发面所属的一条细窄外绕束，在画面约 x680–760、y425–503 从内侧斜向右下掠过中央宽卷；尤其 x716–756、y469–501 可见连续双侧束缘压过 hair/ponytail/ponytail_left/ponytail_front。该连续细束及其接入外侧后发面的局部在中央宽卷之前，仍在 arms/arm_left/forearm 后。按细束自身两侧边缘追踪，进入后发面处沿束缘汇合过渡；不得把整个低位宽卷抬前。",
+    "reuseSources": [],
+    "generationSource": "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_a8a37b6552224618b21436f721984c23.png",
+    "note": "Redrawn as the current complete logical surface; original owned visible brushwork sampled locally. Same-part depth fragment.",
+    "originalPartId": "hair/ponytail/ponytail_left/ponytail_back",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_a8a37b6552224618b21436f721984c23.png"
+    ],
+    "repairs": [
+      {
+        "note": "同一 part 的预先标注深度 1/5；原生画笔补全细束，两片为普通绘画层，接缘连续。",
+        "evidence": "raster-layering/step01/workspace/front-sweep-paint-repair-v70.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+    "splitOrigin": "upstream-preannotated",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D5.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D5__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/hair__ponytail__ponytail_left__ponytail_back__D5__full.png"
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "name": "D022.0 | arms/arm_left/hand/thumb | root_behind_palm",
+    "uuid": "{0da721a0-936e-483f-802b-060acea54fe9}",
+    "level": 22,
+    "region": "完整拇指近端圆根及掌下承接段，约 y702–720，沿拇指根与掌心相接的弯曲截面进入掌后；保留连续完整原生指体底画。",
+    "reuseSources": [],
+    "originalPartId": "arms/arm_left/hand/thumb",
+    "generationSources": [],
+    "repairs": [
+      {
+        "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+        "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__thumb__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D22.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D22__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D22__full.png"
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "name": "D023.0 | arms/arm_right/hand/thumb | root_behind_palm",
+    "uuid": "{b431a766-e0cf-4756-b5bb-7db516654159}",
+    "level": 23,
+    "region": "拇指完整近端圆根及掌下延续，约 y695–719，藏在本侧掌部 D025 后；不抬前完整补全圆根。",
+    "reuseSources": [],
+    "originalPartId": "arms/arm_right/hand/thumb",
+    "generationSources": [],
+    "repairs": [
+      {
+        "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+        "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__thumb__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__thumb__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D23.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D23__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D23__full.png"
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "name": "D024.5 | arms/arm_left/hand/thumb | front_finger",
+    "uuid": "{015927e5-ba89-4a67-8d46-e443548a96ba}",
+    "level": 24.5,
+    "region": "同一拇指由根部转出的可见指身、甲面和细外缘，约 x659–680、y719–755，在本侧掌部 D024 的补全前；前后分片沿 x664/y720 至 x680/y720 左右的根部曲线连续衔接。指身仍盖食指，不把整根圆头抬到掌前。",
+    "reuseSources": [],
+    "originalPartId": "arms/arm_left/hand/thumb",
+    "generationSources": [],
+    "repairs": [
+      {
+        "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+        "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__thumb__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D24.5.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D24.5__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_left__hand__thumb__D24.5__full.png"
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "name": "D025.5 | arms/arm_right/hand/thumb | front_finger",
+    "uuid": "{9d109ffc-ebfe-4fe5-abea-32c63216c36b}",
+    "level": 25.5,
+    "region": "同一拇指从掌侧转出的短指身、甲面与红暗外缘，约 x401–426、y714–755，位于 D025 掌补全前、食指前。根身分界沿约 x402/y714 至 x421/y720 的自然弯曲截面，两个分片连续同动。",
+    "reuseSources": [],
+    "originalPartId": "arms/arm_right/hand/thumb",
+    "generationSources": [],
+    "repairs": [
+      {
+        "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+        "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__thumb__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__thumb__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D25.5.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D25.5__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/arms__arm_right__hand__thumb__D25.5__full.png"
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "name": "D042.0 | face/eyes/eye_left/upper_eyelid | main_arc",
+    "uuid": "{0e0d66d6-a711-46ee-abb6-eee2a0abd8a2}",
+    "level": 42,
+    "region": "左上眼睑主体、上睫毛弧及发下连续部分，在眼白虹膜前、刘海和白侧发后；不把整只眼睑抬到头发前。",
+    "reuseSources": [],
+    "originalPartId": "face/eyes/eye_left/upper_eyelid",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+    ],
+    "repairs": [
+      {
+        "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+        "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D42.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D42__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D42__full.png"
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "name": "D043.0 | face/eyes/eye_right/upper_eyelid | main_arc",
+    "uuid": "{8689f19d-ec05-43f9-8f35-70a804dd539b}",
+    "level": 43,
+    "region": "右上眼睑主弧、上睫毛及发下延续，在眼白虹膜前、黑侧发和刘海后。",
+    "reuseSources": [],
+    "originalPartId": "face/eyes/eye_right/upper_eyelid",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+    ],
+    "repairs": [
+      {
+        "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+        "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_right__upper_eyelid__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__upper_eyelid__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D43.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D43__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D43__full.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "name": "D048.0 | face/eyebrows/eyebrow_left | under_hair",
+    "uuid": "{d32221bf-3766-450f-8410-748229a621fd}",
+    "level": 48,
+    "region": "完整左眉发下延续和两端被实发遮住的补全细弧，保留于脸前、白侧发与刘海后；约 x559 以左的细尾和参考不可见余量。",
+    "reuseSources": [],
+    "originalPartId": "face/eyebrows/eyebrow_left",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+    ],
+    "repairs": [
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png",
+    "splitOrigin": "repair02-observed-brow-hair-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D48.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D48__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D48__full.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "name": "D049.0 | face/eyebrows/eyebrow_right | under_hair",
+    "uuid": "{856910fe-47bf-42f8-a68d-f74f70b1cd6f}",
+    "level": 49,
+    "region": "右眉完整发下延续及参考被黑发遮住的极端余量，约 x479 以左、x522 以右的补全尾端，仍在黑侧发和刘海后。",
+    "reuseSources": [],
+    "originalPartId": "face/eyebrows/eyebrow_right",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+    ],
+    "repairs": [
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png",
+    "splitOrigin": "repair02-observed-brow-hair-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D49.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D49__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D49__full.png"
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "name": "D065.5 | face/eyes/eye_left/upper_eyelid | outer_corner",
+    "uuid": "{da4b2000-d9bd-49fd-a542-759ab4d0c165}",
+    "level": 65.5,
+    "region": "画面右眼外眦尖钩约 x603–619、y142–162，尤其 x610–617、y147–152 的细尖压在白侧发内缘之前。沿本件墨线内部与主体搭接，保留完整尖端和渐细收笔；同一逻辑上眼睑的普通绘画分片。",
+    "reuseSources": [],
+    "originalPartId": "face/eyes/eye_left/upper_eyelid",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+    ],
+    "repairs": [
+      {
+        "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+        "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+      },
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D65.5.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D65.5__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_left__upper_eyelid__D65.5__full.png"
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "name": "D066.5 | face/eyes/eye_right/upper_eyelid | outer_corner",
+    "uuid": "{c4298322-c043-410d-b944-d0cbc9624540}",
+    "level": 66.5,
+    "region": "画面左眼外眦尖钩约 x468–483、y145–164，特别 x469–477、y149–153 压在黑侧发自有内缘之前；沿本件墨线内部与主体连续接回，保持尖钩和浓淡收笔。",
+    "reuseSources": [],
+    "originalPartId": "face/eyes/eye_right/upper_eyelid",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+    ],
+    "repairs": [
+      {
+        "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+        "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+      },
+      {
+        "phase": "repair-01",
+        "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_right__upper_eyelid__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__upper_eyelid__solo.png",
+    "splitOrigin": "repair01-observed-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D66.5.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D66.5__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyes__eye_right__upper_eyelid__D66.5__full.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "name": "D067.1 | face/eyebrows/eyebrow_left | reference_visible_arc",
+    "uuid": "{9f5f79ba-a26e-43d3-8f75-a4b3cf3b103a}",
+    "level": 67.1,
+    "region": "原图画面右侧参考可见的左眉长弧，约 x559–601、y111–128；跨白侧发及刘海的可见线段在发前，按同一眉毛的普通绘画分片与发下段连续衔接，不移动整眉或改变细弧。",
+    "reuseSources": [],
+    "originalPartId": "face/eyebrows/eyebrow_left",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+    ],
+    "repairs": [
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png",
+    "splitOrigin": "repair02-observed-brow-hair-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D67.1.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D67.1__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_left__D67.1__full.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "name": "D067.2 | face/eyebrows/eyebrow_right | reference_visible_arc",
+    "uuid": "{b7d71c64-a823-4389-b951-546f730261dc}",
+    "level": 67.2,
+    "region": "原图画面左侧参考可见的右眉长弧，约 x479–522、y112–128；跨黑侧发和刘海的可见线段在发前，与同眉发下段连续。保留本侧独立弯向，不等形复制另一眉。",
+    "reuseSources": [],
+    "originalPartId": "face/eyebrows/eyebrow_right",
+    "generationSources": [
+      "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+    ],
+    "repairs": [
+      {
+        "phase": "repair-02",
+        "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+        "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png"
+      }
+    ],
+    "openingMasks": [],
+    "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png",
+    "splitOrigin": "repair02-observed-brow-hair-crossing",
+    "registrationOffset": [
+      0,
+      0
+    ],
+    "solo": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D67.2.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D67.2__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/physical-fragments/face__eyebrows__eyebrow_right__D67.2__full.png"
+  }
+]

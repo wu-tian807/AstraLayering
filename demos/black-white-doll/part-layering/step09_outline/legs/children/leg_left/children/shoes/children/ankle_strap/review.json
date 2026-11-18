@@ -1,0 +1,97 @@
+{
+  "groupId": "legs/leg_left/shoes/ankle_strap",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成整图定位，并以重叠选框 [565,1175,39,47]、[549,1209,62,49] 在 8 倍 blend/edge 下核对扣框、扣舌、开口、斜带、两侧露出段及鞋口接缝；另查看父组同区叠加与候选独显。部件归属及主要形体成立，无须整体重画；候选父范围检查通过（outsidePixels=0）。需要修改：画面左侧独立露出的窄带段，其朝向袜面的右侧内缘在约 x560–563、y1219–1234 处缩入红色带体，尤其上半段画得过窄，blend 中该内缘右侧仍有连续红色带料未覆盖。原图这段红带沿踝侧向下延伸，再接下方鞋口，并非袜面明暗。请保留现有外缘，沿原图红带与袜面的真实分界向右补足内缘，并连续接回下部弯折；补足区域在父完成轮廓内，属于当前组可修问题。证据：previews/2026-11-16T06-21-21-328Z-7.png（下半区 edge）、previews/2026-11-16T06-21-21-328Z-8.png（同区 blend），以及原图局部 bitmaps/f433718e-4385-4a3c-963e-dcbd029668d6.png，均位于本组 workspace。其余已核对区域未发现确定需要修改的归属、覆盖或噪音问题。",
+      "candidateHash": "03a982c1a9de90d8a97757d866cec0530066a56b9886763859e29a337734f226",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left/shoes.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-21-21-328Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:34:58.029Z",
+      "repairedCandidateHash": "ea3156626edd5374e96130e5b3c94f53cdd86894b4d259ba19a301a5d47bcbe8"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已依据原图独立核对本组归属，并查看父组完成稿。整图 blend 定位后，以 [547,1174,67,84] 全部局部叠加、[565,1175,39,48] 扣框/扣舌边缘图和 [549,1209,64,49] 下部带身/两侧接缝边缘图放大核对，选框重叠覆盖全部可见范围。踝前斜带、中空扣框及扣舌、画面左侧分离露出带段和右侧绕踝露出段均已覆盖；扣框真实开口及两带段间的袜面间隙保留，未误包鞋舌或鞋口。外缘、下端与鞋口/鞋舌的遮挡接缝贴合参考，未发现组件缺失、孤立噪点或形体归属混乱。SVG 独显轮廓干净；父范围四倍采样检查 outsidePixels=0，满足本组未设置 allowOutsideParent 的范围约束。图像证据：previews/2026-11-16T06-48-52-431Z-3.png（全组 blend）、previews/2026-11-16T06-48-52-431Z-4.png（扣框与开口 edge）、previews/2026-11-16T06-48-52-431Z-5.png（带身、两侧露出段及接缝 edge）、previews/2026-11-16T06-48-52-431Z-6.png（SVG 独显）。",
+      "candidateHash": "ea3156626edd5374e96130e5b3c94f53cdd86894b4d259ba19a301a5d47bcbe8",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left/shoes.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/ankle_strap/previews/2026-11-16T06-48-52-431Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:52:46.398Z"
+    }
+  ]
+}

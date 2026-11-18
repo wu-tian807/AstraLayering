@@ -1,0 +1,13 @@
+{
+  "id": "arms/arm_right/hand/middle_finger",
+  "source": "part-layering/parts/arms/arm_right/hand/middle_finger.svg",
+  "crop": {
+    "left": 381,
+    "top": 707,
+    "width": 50,
+    "height": 96
+  },
+  "scale": 4,
+  "reason": "Remove a local non-reference bulge/kink; retain original bend and distal point.",
+  "mask": "raster-layering/step01/workspace/repair02/inputs/right-middle-shape4.png"
+}

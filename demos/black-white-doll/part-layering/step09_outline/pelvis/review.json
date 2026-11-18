@@ -2,176 +2,47 @@
   "groupId": "pelvis",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已完成整图叠加及覆盖全组的重叠局部核对：上缘/腰胯过渡 [445,500,210,80]、左髋与大腿根 [415,540,140,155]、右髋与大腿根 [540,540,140,155]、胯底开口 [500,645,95,70]，并对外缘和胯底作 8 倍复核。pelvis 的部件归属与主要形体合理，无需整组重画；未发现独立组件遗漏、碎片或轮廓噪音。需修正以下两处可见边缘：\n1. 左侧腰胯外缘局部缩入：上段约 x=454–468、y=520–552，以及下段约 x=432–438、y=600–622。8 倍 edge/blend 显示红边落在参考连续深色外轮廓内侧，色块外仍留有属于本体的深色窄条；例如 y=520 候选从 x=467.7 开始，而参考深色外缘已在 x≈466；y≈621 候选 x≈432.9，参考深色外缘在 x≈432。请沿可靠的连续外轮廓局部向左补约 1 px，上段个别位置约 1.5 px，并同步修正端点与大腿根接缝的连接；保持已贴合的中段，不把外围彩色散点纳入。证据：局部 [449,512,32,48] 与 [425,550,42,80] 的 8 倍叠加/边缘图。\n2. 胯底伸入真实开口：约 x=539–554、y=681–684。参考胯底深色横缘下方已出现双腿间背景开口，候选却以 y=683.7 的水平底边及两端圆转折继续覆盖开口上部，8 倍 blend 中可见青色色块伸到真实外缘下方约 2–3 px。请将胯底中段和两端转折一起回收到参考开口上沿，局部上提约 2–3 px，准确衔接两侧大腿根并保留开口。证据：局部 [520,660,55,45] 的参考放大、edge 与 blend。此项是开口被误填，不是连体服内部明暗或最终着色问题。",
-      "candidateHash": "995722a418f139717747348070d1bcdb6f5f16c87ee1d64c07a5ba3a00c5ba83",
-      "observations": [
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T03-56-19-843Z-18.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T04:13:25.656Z",
-      "repairedCandidateHash": "a07caecc262282460fac4f3d67db88bac3fd3fd922d44c229a1fff5df7c4cab3"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已依据参考图与 groups.json 独立确认职责：本组覆盖肚脐附近以下的骨盆、臀胯可见联合范围，并下接两侧大腿根；临时连体服的腿口线及丝袜明暗属于联合色块内部，不作为本组外轮廓。完成整图 blend 定位，并以相互重叠的选框 [435,495,215,90]、[412,542,145,160]、[532,542,154,160] 在 4 倍下逐块核对参考、blend 与 edge；另以 [421,552,45,83]、[632,552,46,83]、[520,665,55,32] 在 8 倍下复核两侧外缘和胯部开口顶端。腰腹上接缝、两侧骨盆外缘、下接大腿根的连续区域及中央胯部边缘均已检查，主体位置、宽度和比例与参考对应，可见范围完整，胯间真实开口保留。未发现误认部件、误包相邻结构、独立组件遗漏、接缝漏画、可确认的边缘错位或碎片噪音；无需重画。本组无父组，无父范围限制。",
-      "candidateHash": "a07caecc262282460fac4f3d67db88bac3fd3fd922d44c229a1fff5df7c4cab3",
+      "feedback": "已读取 groups.json 中 pelvis 及相邻组职责、参考图和候选 SVG。pelvis 为顶层组，无父范围约束。先看全图 blend，再以重叠选框 [420,475,245,125]、[420,560,245,150] 的 4 倍 blend/edge 完整检查上接躯干处、左右腰髋外缘、两侧腿口及裆部，并以 [515,675,55,30] 的 8 倍 edge 检查裆底，最后检查 SVG 独显。参考中的可见下腹与连体服裆部已完整覆盖；上沿属于与 body 的连续区域分组边界，左右侧缘沿手臂遮挡边界闭合，腿口沿白色服装与深色腿部的真实分界，裆底保留短平底和两侧转角。左右分别核对后未发现可确认的越界、缩入、漏画、误包相邻结构或真实开口被填平。轮廓连续干净，无孤立碎片；无需重画或局部返修。",
+      "candidateHash": "74a0398f7d7eaceda9f7f31124f84e42ba1aa9c22080c0bad1a2c95d25379209",
       "observations": [
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-1.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-1.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-2.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-3.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-5.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-6.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-7.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/pelvis/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/pelvis/step01/observations/pelvis/2026-10-25T04-24-19-700Z-13.png"
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-15T19-17-20-520Z-7.png"
         }
       ],
-      "updatedAt": "2026-10-25T04:36:17.967Z"
+      "updatedAt": "2026-11-15T19:37:42.103Z"
     }
   ]
 }

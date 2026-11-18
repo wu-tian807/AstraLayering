@@ -1,0 +1,114 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__full.png",
+    "highestDepth": 5
+  },
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_front",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_front__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_front__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_front__full.png",
+    "highestDepth": 3
+  },
+  {
+    "id": "pelvis",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/pelvis__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/pelvis__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/pelvis__full.png",
+    "highestDepth": 12
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__middle_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__middle_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__middle_finger__full.png",
+    "highestDepth": 19
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__index_finger__full.png",
+    "highestDepth": 20
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__index_finger__full.png",
+    "highestDepth": 21
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__full.png",
+    "highestDepth": 24.5
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__palm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__palm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__palm__full.png",
+    "highestDepth": 24
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__palm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__palm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__palm__full.png",
+    "highestDepth": 25
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__upper_arm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__upper_arm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__upper_arm__full.png",
+    "highestDepth": 28
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__upper_arm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__upper_arm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__upper_arm__full.png",
+    "highestDepth": 29
+  },
+  {
+    "id": "body/torso",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/body__torso__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/body__torso__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/body__torso__full.png",
+    "highestDepth": 31
+  },
+  {
+    "id": "face/face_base",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/face__face_base__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/face__face_base__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/face__face_base__full.png",
+    "highestDepth": 35
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__full.png",
+    "highestDepth": 65.5
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__full.png",
+    "highestDepth": 67.1
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "solo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__full.png",
+    "highestDepth": 67.2
+  }
+]

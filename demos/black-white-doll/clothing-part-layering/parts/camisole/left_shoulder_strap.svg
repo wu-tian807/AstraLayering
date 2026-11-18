@@ -1,16 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="4e4cbdd03f1ca18e2a6453892d86ddcb5b4ebf73596752ca1550eac885a7baf8">
-  <g id="camisole-left-shoulder-strap-outline" data-group-path="camisole/left_shoulder_strap" fill="#32b8d2" stroke="none">
-    <path d="M 700,371
-      C 699,332 696,295 689,265
-      C 686,254 683.2,251 681.5,249.2
-      C 680,246.7 682.4,244.8 686,245.5
-      L 696,248.3
-      C 701,250.2 704,256 706,265
-      C 711,286 713,326 715,367
-      L 714.2555,367.1985
-      L 715,394
-      L 700,394
-      L 701.2970,370.6541
-      Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 684.0,296.0 L 713.5,296.0 C 714.0,305.5 714.6,315.0 715.0,321.5 C 715.2,325.0 713.4,326.4 710.5,326.5 L 690.2,327.0 C 686.9,327.1 685.2,325.8 685.0,322.5 C 684.6,314.8 684.3,305.0 684.0,296.0 Z" fill-rule="nonzero"/></g>
+  <g id="camisole-left-shoulder-strap" data-group-path="camisole/left_shoulder_strap" fill="#40b8b0" stroke="none">
+    <path d="M 684.1,304.2 C 683.5,269.5 681.4,219.6 678.4,181.0 C 677.8,171.8 680.0,167.5 685.0,167.7 C 694.1,167.3 699.5,171.7 702.5,185.3 C 708.6,215.9 711.8,263.9 713.9,302.8 L 698.8,311.2 Z"/>
   </g>
 </svg>

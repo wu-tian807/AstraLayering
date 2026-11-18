@@ -1,0 +1,58 @@
+{
+  "groupId": "face/eyes/eye_right/sclera",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选 SVG、父组完成 SVG，并完成整图 blend 定位；以重叠选框 [478,139,26,37]、[498,138,27,38] 的 8 倍 blend/edge 覆盖全部可见轮廓，另检查原图局部与 SVG 独显。本组眼白及连续开口底形归属正确：上缘约 (482,150)→(500,142)→(519,150) 贴合上眼睑内侧遮挡边界；画面左侧眼角、两侧眼白、右侧弧缘及下缘均已覆盖，没有误包分离下睫毛、眼褶或头发。下缘中央约 (495,171)–(511,172) 的局部浅色短边界有原图依据，已连入主体，未扩展为贯通下眼线。虹膜后方保持连续底形，无错误孔洞、孤立碎片或组件遗漏。候选在父组完成范围内，四倍范围检查 outsidePixels=0。全部检查通过，无须重画或返修。图像证据：previews/2026-11-16T05-13-01-554Z-3.png（完整局部 edge）、previews/2026-11-16T05-13-01-554Z-5.png（左半边缘）、previews/2026-11-16T05-13-01-554Z-7.png（右半边缘）、previews/2026-11-16T05-13-01-554Z-4.png（父组同区叠加）。",
+      "candidateHash": "00ba9ec03b31c295917164d16c4947908f8c0085f23b4f352ed67ee4e9f8619b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-16T05-13-01-554Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:17:14.754Z"
+    }
+  ]
+}

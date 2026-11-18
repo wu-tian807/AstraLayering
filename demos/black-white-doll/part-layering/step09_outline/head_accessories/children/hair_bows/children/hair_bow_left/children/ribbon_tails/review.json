@@ -1,0 +1,53 @@
+{
+  "groupId": "head_accessories/hair_bows/hair_bow_left/ribbon_tails",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组、父组及同级 bow_body 的说明，并查看父组完成 SVG。整图 blend 定位后，以重叠选框 [623,133,52,65]、[622,184,55,64] 的 8 倍 blend/edge 覆盖全部可见带身，另以 [635,176,30,55] 放大核对中央开口，以原图 [625,120,43,66] 核对根部归属，并检查 SVG 独显。两条黑色长飘带覆盖完整，根部沿结翼黑边下缘连接，内侧沿白色侧发及耳缘遮挡边界闭合；两带间狭长开口、外缘转向及错落斜切末端与原图吻合。未误包白色头发、短结翼或结翼边饰，未见孤立碎片或无依据孔洞。当前未设置 allowOutsideParent，四倍采样父范围检查通过（outsideSamples=0）；无须返修。",
+      "candidateHash": "321920c9e23a321a9a625f374a2327fe3c4bcc6ba3a5fafa16781c5ffe628ece",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/head_accessories/hair_bows/hair_bow_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/children/hair_bows/children/hair_bow_left/children/ribbon_tails/previews/2026-11-16T05-38-56-427Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:25:33.745Z"
+    }
+  ]
+}

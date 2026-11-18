@@ -1,0 +1,9 @@
+{
+  "generation": "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_7a8b5125088e41e5bc8ff55c702c4489.png",
+  "parts": [
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm"
+  ],
+  "reuse": "Right own arm interior uses mirrored generated pale-skin material, registered by x_source=1088-x; independent native layers and alpha silhouettes retained.",
+  "repair": "Only torso-contact ghost region replaced and feathered; real arm contours, shoulder and elbow retained."
+}

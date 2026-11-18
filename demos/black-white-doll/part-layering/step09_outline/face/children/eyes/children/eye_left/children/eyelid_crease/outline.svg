@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><defs><clipPath id="face-eyes-eye-left-eyelid-crease-region" clipPathUnits="userSpaceOnUse"><path d="M 554,125 H 591.5 V 131 L 590.3,134.8 C 578,134.9 569,139 560.4,146.1 H 554 Z"/></clipPath></defs><g clip-path="url(#face-eyes-eye-left-eyelid-crease-region)"><defs><clipPath id="face-eyes-eye-left-region" clipPathUnits="userSpaceOnUse"><rect x="540" y="115" width="90" height="70"/></clipPath></defs><g clip-path="url(#face-eyes-eye-left-region)"><g stroke="none" fill="#e9fc35"></g>
+  <g stroke="none" data-group-path="face/eyes/eye_left/eyelid_crease" id="eyelid-crease-outline" fill="#e9fc35">
+    
+    
+    
+    
+    
+    <path id="eye-fold-screen-right" transform="matrix(-1 0 0 1 1087 0)" d="M 496.5,132.5 C 507.5,132.4 517.5,136.1 523.9,142.4 C 524.6,143.1 525.1,143.9 525.4,144.6 C 517.7,137.9 508.8,134.2 497.1,134.1 Z"/>
+  </g>
+</g></g></svg>

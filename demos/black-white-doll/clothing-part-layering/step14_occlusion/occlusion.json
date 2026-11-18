@@ -1,0 +1,100 @@
+{
+  "version": 3,
+  "layers": [
+    {
+      "id": "camisole/left_shoulder_strap",
+      "levels": [
+        {
+          "level": 4,
+          "region": "角色左肩带（画面右侧 x677–715）的肩顶背向转折及紧接肩后的必要连接面；沿约 x680–701、y168–185 的肩顶横向转折连续分界，背向面退到肩后，前向长带归 level 11。只解释既有完整肩带中的背向连接职责，不新增整条背带，不把可见长带整体放到后层。"
+        },
+        {
+          "level": 11,
+          "region": "肩顶连续转折以下至画面右侧领缘的前向长带，主体约 x678–714、y175–311，连同既有延至 y327 的根部搭接；肩顶与 level 4 无断缝衔接。位于肩胸前、camisole/bodice 荷叶边之后，根部由该领缘覆盖。"
+        }
+      ],
+      "note": "完整 ID camisole/left_shoulder_strap 保持一件随动，两区域以肩顶由前转后的截面连接。level 4 背向连接在肩后，默认隐藏，仅保留现有 SVG 形体；其隐藏蒙版附着本区域并受肩部遮挡与领口开口限制，身体只作遮挡依据不列衣服层。level 11 前段默认显示；受控制衣片 camisole/left_shoulder_strap 的 y300–327 根部由控制衣片 camisole/bodice 的右侧荷叶领缘覆盖，使用实际前景遮挡，必要裁切蒙版附着肩带并随 camisole/bodice 领缘更新，不露出开口内的补全根部。左右肩带不相交，数值先后仅为统一唯一排序。"
+    },
+    {
+      "id": "camisole/right_shoulder_strap",
+      "levels": [
+        {
+          "level": 3,
+          "region": "角色右肩带（画面左侧 x374–410）的肩顶背向转折及紧接肩后的必要连接面；以约 x387–409、y168–185 的肩顶横截转折连续分界，背向面位于肩后，前向长带归 level 10。仅保留既有形体内必要背向连接，不扩造背视带。"
+        },
+        {
+          "level": 10,
+          "region": "从肩顶前向转折至画面左侧领缘的长带，主体约 x374–410、y175–310，包含已有延至 y327 的隐藏根部；与 level 3 沿肩顶截面连续。前段在肩胸前，根部在 camisole/bodice 荷叶领缘后。"
+        }
+      ],
+      "note": "完整 ID camisole/right_shoulder_strap 两区域共同运动。level 3 默认隐藏，附着本背向区域的显隐/肩部遮挡蒙版限制背向连接，不填领口或肩部开口；身体不是衣服 part。level 10 默认显示，受控制衣片 camisole/right_shoulder_strap 的 y299–327 根部由控制衣片 camisole/bodice 左侧荷叶领缘遮住，蒙版如有需要附着肩带并随该领缘变形，根部不在开口中外露。此关系与肩带前层低于 camisole/bodice 的统一深度相容。"
+    },
+    {
+      "id": "camisole/bodice",
+      "level": 12,
+      "note": "胸腹衣身、连体荷叶边及补全下摆整件同层默认显示：衣身在胸腹前，领缘覆盖 camisole/left_shoulder_strap 与 camisole/right_shoulder_strap 的前根部。荷叶边与衣身之间无其他独立物穿入，无需因翻折拆深度。受控制衣片 camisole/bodice 在中央领口及胸前由控制衣片 chest_bow/center_knot、chest_bow/left_loop、chest_bow/right_loop、chest_bow/left_tail、chest_bow/right_tail 覆盖；在腰部约 y683–730 的藏入下摆由控制衣片 pleated_skirt/waistband 的前段遮挡。全部保留完整搭接，默认通过前景衣片遮住；需要辅助裁切时蒙版附着 camisole/bodice，分别跟随上述完整 ID 对应轮廓，不把隐藏下摆删去或默认露出。领口敞口保持 SVG 原有空白，不填人体。"
+    },
+    {
+      "id": "chest_bow/center_knot",
+      "levels": [
+        {
+          "level": 15,
+          "region": "中央束结背侧绕至四个聚拢根部之后的必要隐藏连接面，局限约 x533–555、y366–390 的结心范围；沿结心左右侧缘由正面向背面连续转折，位于 camisole/bodice 中央领缘之前、四个结翼/带尾根部之后，与 level 20 正面属于同一束结。背面投影可与正面重合，不以横切半个可见结心替代背面。"
+        },
+        {
+          "level": 20,
+          "region": "约 x533–555、y366–390 的可见结心正面及前向束结面，覆盖左右结翼及左右带尾的聚拢根部；左右侧缘连续绕向 level 15。参考可见的完整正面轮廓留在此层，不将其侧边机械挖走。"
+        }
+      ],
+      "note": "受控制衣片 chest_bow/center_knot 的 level 15 背侧默认隐藏，附着本背侧区域的显隐蒙版限制其显示范围，位于控制衣片 chest_bow/left_loop、chest_bow/right_loop、chest_bow/left_tail、chest_bow/right_tail 聚拢根部之后、camisole/bodice 之前；仅保存现有束结职责所需背向连续，不新增可见背面。level 20 正面默认显示，作为控制衣片 chest_bow/center_knot 覆盖受控制衣片 chest_bow/left_loop、chest_bow/right_loop、chest_bow/left_tail、chest_bow/right_tail 在 x533–555、y369–389 的搭接根部；如需根部裁切蒙版，分别附着各根部衣片并跟随此正面，不整件隐藏四片。背面与正面共享锚点，前后深度夹住四根部，符合完整束结关系。"
+    },
+    {
+      "id": "chest_bow/left_loop",
+      "level": 19,
+      "note": "角色左结翼即画面右侧整翼，默认显示于 camisole/bodice 前，局部根部覆盖 chest_bow/left_tail 根部。受控制衣片 chest_bow/left_loop 向中央 x543–555、y370–386 的完整隐藏搭接由控制衣片 chest_bow/center_knot 的 level 20 正面遮住，位于其 level 15 背侧之前；需要根部裁切时蒙版附着 chest_bow/left_loop 并随结心正面。其自身折返没有独立衣片夹入，保持单深度。与 chest_bow/right_loop 的中央搭接亦藏于结心正面后，左右结翼排序不产生额外可见覆盖。"
+    },
+    {
+      "id": "chest_bow/right_loop",
+      "level": 18,
+      "note": "角色右结翼即画面左侧整翼，默认显示于 camisole/bodice 前，并覆盖 chest_bow/right_tail 的同侧根部。受控制衣片 chest_bow/right_loop 在中央 x530–545、y370–388 的搭接由控制衣片 chest_bow/center_knot 的 level 20 正面遮住，位于其 level 15 背侧之前；必要根部裁切蒙版附着 chest_bow/right_loop，随结心正面更新。折返褶面与整翼同层，无其他独立物插入。两结翼交汇仅在结心覆盖区，不按褶线增加深度。"
+    },
+    {
+      "id": "chest_bow/left_tail",
+      "level": 17,
+      "note": "角色左带尾即画面右侧完整下垂带，默认显示，整带在 camisole/bodice 前；上部 x547–570、y377–402 的隐藏接入由控制衣片 chest_bow/center_knot 的 level 20 正面及 chest_bow/left_loop 遮住，受控制衣片为 chest_bow/left_tail。带根在结心 level 15 背侧前；必要根部裁切蒙版附着本带尾，仅作用于根部并随结心、同侧结翼覆盖边界更新，不隐藏 y397–542 的自由长带。与 chest_bow/right_tail 间敞开区保持空白，两长带没有交叉，无需分深度。"
+    },
+    {
+      "id": "chest_bow/right_tail",
+      "level": 16,
+      "note": "角色右带尾即画面左侧完整下垂带，默认显示，整带在 camisole/bodice 前；根部 x519–542、y376–402 由控制衣片 chest_bow/center_knot 的 level 20 正面及 chest_bow/right_loop 遮住，受控制衣片为 chest_bow/right_tail。根部在结心 level 15 背侧前；必要裁切蒙版附着本带尾，局限于搭接根部并跟随结心、同侧结翼，不遮掉 y397–543 可见带身。与 chest_bow/left_tail 不交叉，完整单层即可，空隙不填充。"
+    },
+    {
+      "id": "pleated_skirt/waistband",
+      "levels": [
+        {
+          "level": 2,
+          "region": "环腰腰头两侧转向腰后的必要背向连接，沿画面左端约 x353–359、y684–741 与右端约 x724–730、y683–736 的侧向转折连续分界转至背面；仅为现有完整腰头的背向连接职责，默认不见，不另造横贯腰口的可见后腰带。位于腰部后，覆盖 pleated_skirt/skirt_body 的 level 1 后向褶根。"
+        },
+        {
+          "level": 14,
+          "region": "约 x353–730、y683–758 的完整可见前腰头，左右腰侧由前向后的转折与 level 2 连续。上沿覆盖 camisole/bodice 隐藏下摆，下沿覆盖 pleated_skirt/skirt_body 的 level 13 前褶根，位于腰腹之前。参考中可见的横向腰带正面全部保留在此层。"
+        }
+      ],
+      "note": "受控制衣片 pleated_skirt/waistband 的 level 2 后向连接默认隐藏，显隐蒙版附着本背向区域，依腰口及腰部遮挡限制，不在中央腰口新增实体；身体只作前后依据。level 14 前段默认显示，作为控制衣片 pleated_skirt/waistband 在约 y683–730 覆盖受控制衣片 camisole/bodice 的藏入下摆，在约 y721–758 覆盖受控制衣片 pleated_skirt/skirt_body 的前褶根。level 2 同样压住 skirt_body 的 level 1 后根。相关搭接裁切蒙版分别附着 camisole/bodice 与 pleated_skirt/skirt_body，随对应前/后腰头分片轮廓更新；默认隐藏的仅是被覆盖搭接和腰头背面，不隐藏前腰头整件。跨 camisole 与 pleated_skirt 分组的遮挡按此全局深度执行。"
+    },
+    {
+      "id": "pleated_skirt/skirt_body",
+      "levels": [
+        {
+          "level": 1,
+          "region": "裙身两侧向胯腿后绕行的必要背向连续面及后侧褶根；分界沿画面左腰侧约 x353、y741 经侧向裙身至左侧下摆端约 x158、y1229，以及右腰侧约 x729、y736 至右侧下摆端约 x928、y1229 的侧向转折连续下行。该分界指前后朝向转折，非按内部褶线切出后片；仅保留既有完整形体中必要隐藏连接，不增造背视裙面。位于胯腿后、pleated_skirt/waistband 的 level 2 后根之下。"
+        },
+        {
+          "level": 13,
+          "region": "参考所见完整前裙身，包括全部可见褶面及约 x158–928、y736–1323 的错落弧形下摆，连同向上延至约 y721 的已补全前褶根；左右侧向转折连续接 level 1，前裙面在胯腿前、pleated_skirt/waistband 的 level 14 前腰头后。不把任一可见侧褶或下摆台阶误归隐藏后层。"
+        }
+      ],
+      "note": "受控制衣片 pleated_skirt/skirt_body 的 level 1 背向连接默认隐藏，蒙版附着本背向区域并受胯腿遮挡及裙口/下摆边界限制，只保存已有必要连接；不将可见裙摆投影挖空，不填人体或新增内衬。level 13 前裙身默认显示，其上方约 y721–758 褶根由控制衣片 pleated_skirt/waistband 的 level 14 前段覆盖；level 1 后褶根由同一控制衣片的 level 2 背段覆盖。所需根部裁切蒙版分别附着本 part 对应前/后分片并跟随对应腰头轮廓，默认遮住搭接，不整体隐藏裙身。开口及下摆以下维持空白；前后分片共享完整裙身身份与摆动控制，内部褶叠无需额外插层。"
+    }
+  ]
+}

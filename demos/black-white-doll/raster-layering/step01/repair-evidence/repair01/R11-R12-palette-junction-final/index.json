@@ -1,0 +1,30 @@
+[
+  {
+    "id": "arms/arm_left/upper_arm",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__upper_arm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__upper_arm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__upper_arm__full.png",
+    "highestDepth": 28
+  },
+  {
+    "id": "arms/arm_left/forearm",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__forearm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__forearm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_left__forearm__full.png",
+    "highestDepth": 26
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__upper_arm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__upper_arm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__upper_arm__full.png",
+    "highestDepth": 29
+  },
+  {
+    "id": "arms/arm_right/forearm",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__forearm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__forearm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R11-R12-palette-junction-final/arms__arm_right__forearm__full.png",
+    "highestDepth": 27
+  }
+]

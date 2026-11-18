@@ -1,0 +1,93 @@
+{
+  "threeViews": [
+    {
+      "layer": "D16__chest_bow/right_tail__full",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D16-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D16-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D16-full.png"
+    },
+    {
+      "layer": "D17__chest_bow/left_tail__full",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D17-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D17-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D17-full.png"
+    },
+    {
+      "layer": "D18__chest_bow/right_loop__full",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D18-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D18-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D18-full.png"
+    },
+    {
+      "layer": "D19__chest_bow/left_loop__full",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D19-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D19-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D19-full.png"
+    },
+    {
+      "layer": "D20__chest_bow/center_knot__front",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D20-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D20-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D20-full.png"
+    },
+    {
+      "layer": "D15__chest_bow/center_knot__rear",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D15-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D15-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R1-D15-full.png"
+    },
+    {
+      "layer": "D10__camisole/right_shoulder_strap__front",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D10-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D10-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D10-full.png"
+    },
+    {
+      "layer": "D03__camisole/right_shoulder_strap__rear",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D03-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D03-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R2-D03-full.png"
+    },
+    {
+      "layer": "D11__camisole/left_shoulder_strap__front",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D11-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D11-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D11-full.png"
+    },
+    {
+      "layer": "D04__camisole/left_shoulder_strap__rear",
+      "single": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D04-single.png",
+      "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D04-upper-hidden.png",
+      "full": "clothing-raster-layering/step01/repair-evidence/repair01/R3-D04-full.png"
+    }
+  ],
+  "combined": [
+    {
+      "part": "R2",
+      "keys": [
+        "D03",
+        "D10"
+      ],
+      "maskEnabled": "clothing-raster-layering/step01/repair-evidence/repair01/R2-combined-mask-enabled.png",
+      "maskDisabled": "clothing-raster-layering/step01/repair-evidence/repair01/R2-combined-mask-disabled.png"
+    },
+    {
+      "part": "R3",
+      "keys": [
+        "D04",
+        "D11"
+      ],
+      "maskEnabled": "clothing-raster-layering/step01/repair-evidence/repair01/R3-combined-mask-enabled.png",
+      "maskDisabled": "clothing-raster-layering/step01/repair-evidence/repair01/R3-combined-mask-disabled.png"
+    },
+    {
+      "part": "R1",
+      "keys": [
+        "D15",
+        "D20"
+      ],
+      "maskEnabled": "clothing-raster-layering/step01/repair-evidence/repair01/R1-combined-mask-enabled.png",
+      "maskDisabled": "clothing-raster-layering/step01/repair-evidence/repair01/R1-combined-mask-disabled.png"
+    }
+  ]
+}

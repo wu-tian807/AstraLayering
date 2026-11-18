@@ -1,0 +1,9 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R2-native-continuous/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R2-native-continuous/hair__ponytail__ponytail_left__ponytail_back__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R2-native-continuous/hair__ponytail__ponytail_left__ponytail_back__full.png",
+    "highestDepth": 5
+  }
+]

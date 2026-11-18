@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="72a4eee4379e2750d8e21efd2c003618fb772f296d5a5f3690709df2f8b6e64c">
-  <g id="arms-arm-left-hand-thumb-outline" data-group-path="arms/arm_left/hand/thumb" fill="#58b8df" stroke="none">
-    <path d="M 697.2 714
-      C 696.4 710.5 698.2 704.1 701.4 702.9
-      C 705.5 701.4 711.4 705.8 712.5 712.9
-      C 710.1 719.2 710.1 728.4 710.7 736.5
-      C 710.9 742.4 709.2 747.5 705.8 748.3
-      C 702.9 748.7 701.2 744.1 700.8 738.4
-      C 700 731 699.7 727 697.2 714 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <g id="left-hand-thumb-outline" data-group-path="arms/arm_left/hand/thumb" fill="#e39b66" stroke="none">
+    <path d="M664.4 719.8 C669.1 715.1 677.5 709.9 685.3 709.3 C682.6 713.2 680.2 717.7 678.6 723 C676.8 729.2 674.7 738.5 672 746.6 C670.3 751.8 667.5 755.5 663.4 755 C659.7 754.6 658.9 750.7 659.8 745.8 C660.5 736.4 664.2 727.5 664.4 719.8 Z"/>
   </g>
 </svg>

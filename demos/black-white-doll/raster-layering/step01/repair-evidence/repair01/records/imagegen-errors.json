@@ -1,0 +1,23 @@
+[
+  {
+    "component": "arms/arm_left/hand/*",
+    "tool": "image_gen.imagegen",
+    "attempt": 1,
+    "inputImages": [
+      "raster-layering/step01/workspace/atlases/hand_left__sample.png",
+      "raster-layering/step01/workspace/atlases/hand_left__control.png"
+    ],
+    "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID f9e0c3ba-6921-4cf7-8cdd-159abc90d371. safety_violations=[sexual].\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"sexual\\\"\\n      ]\\n    }\\n  }\\n}\")"
+  },
+  {
+    "component": "arms/arm_left/hand/*",
+    "tool": "image_gen.imagegen",
+    "attempt": 2,
+    "recovery": "Clarified that the supplied isolated pieces are ordinary cartoon human fingers, thumb and palm for animation. Same hand-only input images, no whole character image.",
+    "inputImages": [
+      "raster-layering/step01/workspace/atlases/hand_left__sample.png",
+      "raster-layering/step01/workspace/atlases/hand_left__control.png"
+    ],
+    "error": "image generation failed: http 400 Bad Request: Some(\"{\\n  \\\"error\\\": {\\n    \\\"message\\\": \\\"Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID ccc0e533-2e97-4410-8e36-a0819f848252. safety_violations=[sexual].\\\",\\n    \\\"type\\\": \\\"image_generation_user_error\\\",\\n    \\\"param\\\": null,\\n    \\\"code\\\": \\\"moderation_blocked\\\",\\n    \\\"moderation_details\\\": {\\n      \\\"moderation_stage\\\": \\\"output\\\",\\n      \\\"categories\\\": [\\n        \\\"sexual\\\"\\n      ]\\n    }\\n  }\\n}\")"
+  }
+]

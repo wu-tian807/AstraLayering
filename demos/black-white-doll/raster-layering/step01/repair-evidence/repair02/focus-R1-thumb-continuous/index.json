@@ -1,0 +1,24 @@
+[
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R1-thumb-continuous/arms__arm_left__hand__thumb.png",
+    "box": [
+      650,
+      699,
+      52,
+      101,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R1-thumb-continuous/arms__arm_left__hand__palm.png",
+    "box": [
+      650,
+      699,
+      52,
+      101,
+      5
+    ]
+  }
+]

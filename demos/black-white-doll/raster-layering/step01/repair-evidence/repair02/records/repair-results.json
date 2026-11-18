@@ -1,0 +1,186 @@
+{
+  "conclusion": "已修复",
+  "items": [
+    {
+      "n": 1,
+      "title": "左掌—拇指水平切边",
+      "ids": [
+        "arms/arm_left/hand/palm",
+        "arms/arm_left/hand/thumb"
+      ],
+      "body": "分别在掌面和掌前拇指身的实际搭接处修复：掌面局部恢复本件浅肤色，拇指用自身可见取样与原生柔笔把近端亮面延续至隐藏根段，顺着指向接回红暗侧。撤回会带入其他边线的试取样；最终掌、拇指分片合看及默认组装没有原来的水平浅色贴片。指甲、指尖与位置保留。",
+      "depth": "掌24；拇指22／24.5保持。"
+    },
+    {
+      "n": 2,
+      "title": "右掌下缘、指根硬接及外缘顿点",
+      "ids": [
+        "arms/arm_right/hand/palm",
+        "arms/arm_right/hand/middle_finger",
+        "arms/arm_right/hand/index_finger"
+      ],
+      "body": "用本掌自身干净肤色清掉下缘收尾的暗点，按原图外侧弧线接回中指；原生柔笔沿两根长指自身方向延续浅亮正面和红暗侧，使指根逐渐转入指身。局部对齐掌缘反锯齿与真实手部外缘。原图取样试修中串入的邻指细线已经撤回，最终长指使用干净的原生体积绘画；追加融顺右食指中段的明暗接段。",
+      "depth": "掌25、中指19、食指21；掌前拇指23／25.5关系不变。"
+    },
+    {
+      "n": 3,
+      "title": "左食指补画段到远端的斜切接段",
+      "ids": [
+        "arms/arm_left/hand/index_finger"
+      ],
+      "body": "只在约y744–775的接点前后用原生细笔、柔笔沿指身延续红暗侧、浅亮面和两侧细边，使宽根到细身逐渐收窄，融掉原来的硬斜色界。没有重填整个指形；原远端笔触及指尖保留。",
+      "depth": "20不变。"
+    },
+    {
+      "n": 4,
+      "title": "右中指外缘鼓包与折点",
+      "ids": [
+        "arms/arm_right/hand/middle_finger"
+      ],
+      "body": "先修正本件SVG中约y750–781的局部外缘，将分段鼓出的曲线改为连续渐细曲线，保留末端位置和整体弯向。将现有绘画局部配准到新边缘，原生笔触接顺细描边、红暗侧及浅亮面；未借相邻指覆盖凸点。",
+      "depth": "19不变；同ID源SVG、缓存与当前绘画同步。"
+    },
+    {
+      "n": 5,
+      "title": "白前马尾底卷额外亮条、叉形亮束",
+      "ids": [
+        "hair/ponytail/ponytail_left/ponytail_front"
+      ],
+      "body": "以三色控制图局部重新生成下卷的连续发面，输入中遮挡物和件外区域置灰。保留成功生成的隐藏延续；在已有绘画上按原图本件取样恢复弯曲灰紫色带、细轮廓和收细方向，去掉额外竖向亮条和底部叉形亮束。生成与原笔触在根部柔接，长条开隙、正常穿行细束、扎点和主轮廓保留。",
+      "depth": "3不变。"
+    },
+    {
+      "n": 6,
+      "title": "白后马尾前绕束退化成淡紫线",
+      "ids": [
+        "hair/ponytail/ponytail_left/ponytail_back"
+      ],
+      "body": "在现有后发面上沿原有完整细束走向，用原生画笔画回双侧灰紫束缘、浅亮束面和过渡层，按各段实际宽度变化渐细收笔并接回后发面。按原尺寸核对束宽，再查看放大边线；不把低位宽卷抬到前面。",
+      "depth": "同件1／5保持；各片及合片均复查。"
+    },
+    {
+      "n": 7,
+      "title": "隐藏胸廓衣缝硬折与线宽接段",
+      "ids": [
+        "body/torso"
+      ],
+      "body": "用同一躯干布面的取样清掉旧折线，只重画两条隐藏衣缝。上接点到中段、再到下方原线使用连续切向的平滑曲线，线宽和灰紫浓淡逐渐变化；复查时发现的极短上接断段也已一起接好。完整胸廓、领口、肩带及原衣料渐变保留，breast没有改动。",
+      "depth": "躯干31、胸部32保持。"
+    },
+    {
+      "n": 8,
+      "title": "躯干—骨盆左衣缝粗细台阶",
+      "ids": [
+        "body/torso",
+        "pelvis"
+      ],
+      "body": "在约y504–537的局部跨层接点，分别按各自原生形体保留透明度，取回本件原图衣料和衣缝，统一中心线、切向、线宽、浓淡与线旁底色。整图原尺寸复查接点连续，没有移动躯干或骨盆。",
+      "depth": "躯干31、骨盆12保持。"
+    },
+    {
+      "n": 9,
+      "title": "左上臂躯干形残线和暗楔",
+      "ids": [
+        "arms/arm_left/upper_arm"
+      ],
+      "body": "将衣物接触残影区域列为黄色补全，遮挡物和其轮廓暗色在输入中置灰，局部生成连续臂面。仅替换受污染的内部区域并长距离融接原皮肤；清掉贴近真臂缘的残留尖线，再以原生细笔延续真实臂缘。正常肩根、肘端、外轮廓和自身体积保留。",
+      "depth": "28不变，一般遮挡仍由躯干31承担。"
+    },
+    {
+      "n": 10,
+      "title": "右上臂衣物交界残影",
+      "ids": [
+        "arms/arm_right/upper_arm"
+      ],
+      "body": "按本侧真实形体独立配准镜像的干净生成肤色材质，局部去掉臂面内部的衣料边线、深楔和假沟槽，柔接回原有皮肤。保留右臂自己的透明轮廓、肩端和肘部搭接，并补顺真正内缘；没有把整条内侧明暗抹平或增加显隐蒙版。",
+      "depth": "29不变。局部材质复用来源为左上臂新生成结果，几何与归属独立。"
+    },
+    {
+      "n": 11,
+      "title": "左眉参考可见长弧被白发遮掉",
+      "ids": [
+        "face/eyebrows/eyebrow_left"
+      ],
+      "body": "核对眉弧与白侧发、刘海交叉后，把参考可见长弧拆为同一眉的普通绘画前方分片，原发下延续仍在后层。补回旧绘画缺少的短小隐藏细尾，原绑定owner不再是空层。可见弧出现后，将原偏红褐的笔触按参考改回深色眉墨，严格保持原细弧透明度，不加粗；头发完整，没有眉线烘焙或透见蒙版。",
+      "depth": "48发下延续／67.1参考可见弧；已用edit_occlusion同步。"
+    },
+    {
+      "n": 12,
+      "title": "右眉被黑发遮成中央短横",
+      "ids": [
+        "face/eyebrows/eyebrow_right"
+      ],
+      "body": "保留本侧独立眉形，把参考可见眉头至眉尾的弧段拆到黑侧发和刘海前，发下端部余量仍保留原层。原生笔刷按参考修回深色眉墨，透明度、细弧粗细保持。没有复制另一侧的形状，也没有把眉线画进头发。",
+      "depth": "49发下延续／67.2参考可见弧；已用edit_occlusion同步。"
+    },
+    {
+      "n": 13,
+      "title": "画面左颊—下颌缺少描边",
+      "ids": [
+        "face/face_base"
+      ],
+      "body": "在脸底沿自身颊颌形体补回连续细描边，从发下延续到原有下颌线，接顺两个端点、线色和粗细；保留脸型和位置，不带入黑发、耳部或颈侧线。",
+      "depth": "脸底35；独立颈层30保持。"
+    },
+    {
+      "n": 14,
+      "title": "画面右颊线接下颌前中断",
+      "ids": [
+        "face/face_base"
+      ],
+      "body": "沿本侧真实脸缘继续画完细描边至发下，接回已有下颌墨线；脸宽、颌尖和位置保留，未把耳发轮廓或下巴投影补进脸底。独显和默认整图均检查连续性。",
+      "depth": "35不变。"
+    },
+    {
+      "n": 15,
+      "title": "左眼外眼尾回挑细钩缩短变直",
+      "ids": [
+        "face/eyes/eye_left/upper_eyelid"
+      ],
+      "body": "在外角分片的局部按原图同坐标取回本眼暖色墨线，分离白发／肤色背景，只保留与眼尾相连的本件色素，恢复向外再上挑的细钩、渐细末端及灰红抗锯齿尾。主弧与外角合看、原尺寸双眼并排及放大检查均已完成；眼白、虹膜层次、独立高光没有改动。",
+      "depth": "42／65.5保持；眼尾只归本眼上眼睑。"
+    }
+  ],
+  "validation": {
+    "conclusion": "已修复",
+    "phase": "repair-02",
+    "review": "raster-layering/step01/review-02.md",
+    "repair": "raster-layering/step01/repair-02.md.tmp",
+    "logicalParts": 70,
+    "ordinaryPaintLayers": 77,
+    "nativeOpeningMasks": 10,
+    "reviewItems": 15,
+    "modifiedLogicalParts": 16,
+    "originalPaintingOwnerUUIDsRetained": 75,
+    "unchangedLogicalPartPaintings": 54,
+    "originalMaskUUIDsRetained": true,
+    "allNativeApertureSelectionsPreserved": true,
+    "sourceGroupsUnchanged": true,
+    "allSVGCurrentGroupBindingsValid": true,
+    "depthOrderValid": true,
+    "unknownLayers": [],
+    "outOfAssignedBounds": [],
+    "exportCoverage": {
+      "logicalThreeViews": 70,
+      "multiDepthPhysicalThreeViews": 14,
+      "changedOwnerFourColumnSheets": 16
+    },
+    "reopening": {
+      "layerTreeIdentical": true,
+      "paintAndMaskPixelsIdentical": true,
+      "compositePixelsIdentical": true,
+      "compositePixelSHA256": "93565392ab0c66913abc346e76d7fac7dfb002377a142871ba66a9d048230205"
+    },
+    "upstreamFingerprints": {
+      "groups.json": "2ab37e5da152002ce1d420c9ae1274614917058422984273c92196b842525bdb",
+      "occlusion.json": "cd5e647b528456567cb42d5e7738c968289356c52d1d6fd97f6231daac87a88d"
+    },
+    "paintLayerInheritAlpha": false,
+    "deliveredKRA": "raster-layering/step01/character-depth.kra",
+    "deliveredPNG": "raster-layering/step01/character-depth.png",
+    "kraSHA256": "5c5a331c720f0da789c835f83229ceaddd8b7fb1ea463eda1ed42cba46acc564",
+    "pngSHA256": "f36788962145599dd1381489c3e16509b2c2ce4f84f636824ff8b6647354a502",
+    "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/index.json",
+    "persistenceOnly": "Hashes verify preservation/save integrity; visual repair judgement comes from images."
+  }
+}

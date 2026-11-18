@@ -1,0 +1,16 @@
+[
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_left__full.png",
+    "highestDepth": 67.1
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_right__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_right__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R11-R12-brows-final/face__eyebrows__eyebrow_right__full.png",
+    "highestDepth": 67.2
+  }
+]

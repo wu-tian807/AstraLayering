@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="0e28fee0f79f5c46848f494e2b7c024acbb7dcc9d2ca89e923204ee12c694fe8"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 390.8,364 L 405.8,364 C 405.8,376 405.9,386 406,394 L 391,394 C 390.9,386 390.8,376 390.8,364 Z" fill-rule="nonzero"/></g>
-  <g id="camisole-right-shoulder-strap-outline" data-group-path="camisole/right_shoulder_strap" fill="#32b8d2" stroke="none">
-    <path d="M 390,369
-      C 390,338 393,304 397,278
-      C 399,261 401,251 406,248
-      C 411,245 418,244 422,246
-      C 424,247 422,250 421,252
-      C 413,277 408,316 406,371 Z"/>
-    <path d="M 392,358 L 404,358 L 406,394 L 391,394 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 374.6,299.8 C 374.4,307.2 374.2,314.3 374.2,320.7 Q 374.2,324.8 378.5,325.4 L 391.4,326.7 Q 396.4,327.1 397.0,322.1 C 397.8,315.1 398.5,308.0 399.2,300.7 L 390.0,298.6 Z" fill-rule="nonzero"/></g>
+  <g id="camisole-right-shoulder-strap" data-group-path="camisole/right_shoulder_strap" fill="#40b8b0" stroke="none">
+    <path d="M 374.3,302.2 C 374.9,271.3 377.9,219.1 384.1,183.2 C 386.2,172.5 390.7,168.4 398.4,168.1 C 406.4,166.8 409.7,170.5 409.8,180.1 C 409.3,211.4 403.6,266.6 399.4,304.9 L 389.3,310.0 Z"/>
   </g>
 </svg>

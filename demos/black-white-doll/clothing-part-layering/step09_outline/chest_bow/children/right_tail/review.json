@@ -3,61 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "通过，无已核实需修改的问题。先独立查看纯衣服参考全图及胸前蝴蝶结放大图：本片归属为画面左侧单条连续下垂带尾，结环、结心、另一条带尾及两尾间露出的 camisole 不归本片。随后完成候选与父完成稿整体 blend、候选全片 6 倍 blend/edge/纯 SVG，以及根部和末端 8 倍 blend/edge 检查，覆盖全部可见区域。\n位置与证据：①根部约 x534–550、y457–469，从 knot 下缘接入并在 right_loop 下方露出；参考根部放大图 observations/review/chest_bow/right_tail/dd68d948-12b6-40e0-a604-5655dc3ac00b.png 与候选根部 edge 图 2026-10-25T23-16-08-605Z-8.png 显示，可见接入位置和斜向邻接正确，向结心及结环投影内保留的短距离隐藏搭接合理。②可见内缘从约 (549.5,461.1) 至 (534.8,597.8)，外缘从约 (533.8,468.6) 弯曲下行至 (506.1,583.4)；全片 edge 图 2026-10-25T23-16-08-605Z-4.png 显示两侧轮廓、宽度变化和垂落比例贴合参考，没有误包上衣、人体或另一条带尾。③自由末端约 (506.6,584.6) 至 (533.9,598.3)，末端 8 倍 edge 图 2026-10-25T23-16-08-605Z-10.png 显示斜切边和两端转角完整；下方浅色投影未计入带体，中央露衣空隙保留。本片没有参考可见的独立附件或薄纱开口遗漏。\n父范围与职责：候选可见两侧及末端复用父稿相应曲线，父范围检查 outsidePixels=0；未发现需扩大父稿才能解决的本片缺漏。note 已明确完整带体实体、与 knot/right_loop/left_tail 的分界、根部遮挡、胸前深度、共同锚点、独立摆动和必要隐藏搭接，职责传递完整。无需重画、边缘返修或 note 修正。纯色填充与参考布料配色、内褶及投影表现不作为缺陷。",
-      "candidateHash": "1be1941de954389a0ccfb72df8be011a547b677671c79fcbd93e2bcda50a5a02",
+      "feedback": "第1轮审查通过。已只读查看纯衣服参考、groups.json 中本 part 及父组 note、候选 SVG 和父完成 SVG，并完成全图 blend、覆盖整条带尾的局部4倍 blend、5倍 edge、4倍纯色独显及父稿局部叠加检查。\n独立归属：原参考中画面左侧从结心下方垂落、末端约为 (488.5,525.9) 至 (521.9,543) 的斜切长带属于角色自身右带尾；其下方浅灰区域是投影，不属于带尾实体。候选保留了该带尾的完整可见主体，未误包结翼、另一条带尾或上衣，亦未填充两带尾之间的敞开区域。\n轮廓与连接：x489–537、y384–543 范围内，外侧连续弧缘、内侧长边及斜切末端与参考吻合；上端至 y384 的少量延续位于结心和同侧结翼覆盖范围内，属于合理隐藏搭接。没有可见组件遗漏、真实开口错误或需要另拆的附件。note 已传递实体范围、与结心及结翼的前后关系、胸前覆盖关系、共同锚点和独立摆动职责。\n父范围检查：工具4倍采样 outsidePixels=0，候选完整包含于父稿。无需修改轮廓或 note。\n图像证据：局部边缘覆盖 clothing-part-layering\\step09_outline\\chest_bow\\children\\right_tail\\workspace\\previews\\2026-11-15T19-44-55-920Z-2.png；局部原图叠加 clothing-part-layering\\step09_outline\\chest_bow\\children\\right_tail\\workspace\\previews\\2026-11-15T19-44-55-920Z-3.png。",
+      "candidateHash": "a403172f7adc3c5b5e46b4dc6008675f5e881bded2a861efb55f8bfa2b938787",
       "observations": [
         {
-          "source": "clothing-part-layering/parts/chest_bow.svg",
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-1.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/previews/2026-11-15T19-44-55-920Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/previews/2026-11-15T19-44-55-920Z-2.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-2.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/previews/2026-11-15T19-44-55-920Z-3.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-3.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-4.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-5.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/previews/2026-11-15T19-44-55-920Z-4.png"
         },
         {
           "source": "clothing-part-layering/parts/chest_bow.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/right_tail/step01/observations/chest_bow/right_tail/2026-10-25T23-16-08-605Z-10.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/right_tail/previews/2026-11-15T19-44-55-920Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:21:57.780Z"
+      "updatedAt": "2026-11-15T20:01:07.612Z"
     }
   ]
 }

@@ -1,0 +1,391 @@
+{
+  "image": "raster-layering/step01/review-evidence/review01/current.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        656,
+        346,
+        88,
+        177
+      ],
+      "layers": [
+        "D003.0 | hair/ponytail/ponytail_left/ponytail_front"
+      ],
+      "description": "白色前马尾内卷内侧新增多条宽紫灰尖束，占据原图的长开隙；内侧束缘和卷尖形状改变。按参考重画可见内缘及开隙，保留本件完整根部与宽卷体积。",
+      "crop": [
+        644,
+        334,
+        112,
+        201
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R1-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R1-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        677,
+        422,
+        96,
+        86
+      ],
+      "layers": [
+        "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+        "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface"
+      ],
+      "description": "前绕细束变成亮白粗线，右端钝厚，双侧灰紫束缘与回接后发面的过渡不符原图。按原束宽、明暗及收尖重画，并与D001连续接顺。",
+      "crop": [
+        665,
+        410,
+        120,
+        110
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R2-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R2-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        465,
+        142,
+        26,
+        26
+      ],
+      "layers": [
+        "D043.0 | face/eyes/eye_right/upper_eyelid",
+        "D066.0 | hair/side_hair/side_hair_right"
+      ],
+      "description": "黑侧发保留横向眼尾墨线短条，上眼睑独显缺少相应细尖；合成眼尾附近留断开的暗点及台阶。清除发层中的眼尾，完整尖钩归眼睑。",
+      "crop": [
+        453,
+        130,
+        50,
+        50
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R3-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R3-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R3-comparison.png"
+      }
+    },
+    {
+      "id": "R4",
+      "bounds": [
+        605,
+        138,
+        21,
+        28
+      ],
+      "layers": [
+        "D042.0 | face/eyes/eye_left/upper_eyelid",
+        "D065.0 | hair/side_hair/side_hair_left"
+      ],
+      "description": "白侧发内缘按眼尾形成小齿口，眼睑细尖在合成中被截断，旁留浅灰孤点；原图眼尾是连续收尖。修正本件束缘和实际局部深度，不用透见蒙版。",
+      "crop": [
+        593,
+        126,
+        45,
+        52
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R4-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R4-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R4-comparison.png"
+      }
+    },
+    {
+      "id": "R5",
+      "bounds": [
+        657,
+        699,
+        45,
+        100
+      ],
+      "layers": [
+        "D014.0",
+        "D016.0",
+        "D018.0",
+        "D020.0",
+        "D022.0"
+      ],
+      "description": "角色左手各指补全根段呈浅肤色平片，若干取样接界有硬色差、轮廓阶梯，未延续原图指体明暗与描边。逐指画出暗侧、亮面和完整轮廓，保留原图指甲。",
+      "crop": [
+        645,
+        687,
+        69,
+        124
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R5-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R5-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R5-comparison.png"
+      }
+    },
+    {
+      "id": "R6",
+      "bounds": [
+        387,
+        692,
+        43,
+        106
+      ],
+      "layers": [
+        "D015.0",
+        "D017.0",
+        "D019.0",
+        "D021.0",
+        "D023.0"
+      ],
+      "description": "角色右手小指、无名指补全近似平片，食指和拇指等根段与原笔触出现硬接界及粗细变化。逐指重画体积与轮廓，融接取样段。",
+      "crop": [
+        375,
+        680,
+        67,
+        130
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R6-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R6-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R6-comparison.png"
+      }
+    },
+    {
+      "id": "R9",
+      "bounds": [
+        498,
+        220,
+        89,
+        69
+      ],
+      "layers": [
+        "D030.0 | neck",
+        "D031.0 | body/torso"
+      ],
+      "description": "颈部两侧自身描边被抹掉，颈根与肩部的接边有凸口，原图颈侧线连贯。补回颈部轮廓并接顺肩颈；继续保留已去掉的下巴投影。",
+      "crop": [
+        486,
+        208,
+        113,
+        93
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R9-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R9-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R9-comparison.png"
+      }
+    },
+    {
+      "id": "R10",
+      "bounds": [
+        509,
+        221,
+        70,
+        22
+      ],
+      "layers": [
+        "D035.0 | face/face_base",
+        "D030.0 | neck"
+      ],
+      "description": "脸底独显下颌两侧带有颈侧线的向下短竖钩，合成也见多余齿点。脸底只保留下颌自身连续线，颈线归颈层。",
+      "crop": [
+        497,
+        209,
+        94,
+        46
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R10-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R10-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R10-comparison.png"
+      }
+    },
+    {
+      "id": "R11",
+      "bounds": [
+        603,
+        281,
+        100,
+        396
+      ],
+      "layers": [
+        "D026.0 | arms/arm_left/forearm",
+        "D028.0 | arms/arm_left/upper_arm"
+      ],
+      "description": "左臂外轮廓多段描边被削薄成阶梯，前臂根有硬色块接界；上臂隐藏根端及末端描边未延续。沿原图可见边恢复笔触，补全区同样画完轮廓并融色。",
+      "crop": [
+        591,
+        269,
+        124,
+        420
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R11-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R11-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R11-comparison.png"
+      }
+    },
+    {
+      "id": "R12",
+      "bounds": [
+        384,
+        281,
+        100,
+        399
+      ],
+      "layers": [
+        "D027.0 | arms/arm_right/forearm",
+        "D029.0 | arms/arm_right/upper_arm"
+      ],
+      "description": "右臂可见外缘描边大量丢失，轮廓变成浅色台阶；补全根段与取样段色界和线条粗细突变。恢复连续轮廓及自然色调过渡。",
+      "crop": [
+        372,
+        269,
+        124,
+        423
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R12-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R12-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R12-comparison.png"
+      }
+    },
+    {
+      "id": "R13",
+      "bounds": [
+        525,
+        686,
+        36,
+        101
+      ],
+      "layers": [
+        "D010.0 | legs/leg_left/leg",
+        "D011.0 | legs/leg_right/leg"
+      ],
+      "description": "两腿根内侧过宽，原图从裆底向下连续打开的腿间空隙被闭合一段，随后突然以阶梯状打开。按原内侧腿缘重画形体、位置及连续轮廓。",
+      "crop": [
+        513,
+        674,
+        60,
+        125
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R13-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R13-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R13-comparison.png"
+      }
+    },
+    {
+      "id": "R14",
+      "bounds": [
+        550,
+        1164,
+        64,
+        104
+      ],
+      "layers": [
+        "D010.0 | legs/leg_left/leg"
+      ],
+      "description": "画面右踝轮廓多处横向台阶及缺角，原图为平滑收窄曲线。重画踝部轮廓与抗锯齿，保留袜面明暗。",
+      "crop": [
+        538,
+        1152,
+        88,
+        128
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R14-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R14-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R14-comparison.png"
+      }
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        472,
+        1164,
+        64,
+        105
+      ],
+      "layers": [
+        "D011.0 | legs/leg_right/leg"
+      ],
+      "description": "画面左踝内外缘出现多级直角台阶、宽度突变，原图边线平滑。按参考收窄曲线修形并续完整描边。",
+      "crop": [
+        460,
+        1152,
+        88,
+        129
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R15-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R15-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R15-comparison.png"
+      }
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        538,
+        1259,
+        89,
+        128
+      ],
+      "layers": [
+        "D010.0 | legs/leg_left/leg",
+        "D071.0 | legs/leg_left/shoes/shoe_body"
+      ],
+      "description": "补全左足过宽呈球状，从画面右鞋两侧、尤其两鞋之间露出棕色袜足；原图此处为鞋缘外背景。按鞋内足型重新配准与修形，不能另加隐藏蒙版。",
+      "crop": [
+        526,
+        1247,
+        113,
+        152
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R16-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R16-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R16-comparison.png"
+      }
+    },
+    {
+      "id": "R17",
+      "bounds": [
+        458,
+        1252,
+        88,
+        134
+      ],
+      "layers": [
+        "D011.0 | legs/leg_right/leg",
+        "D072.0 | legs/leg_right/shoes/shoe_body"
+      ],
+      "description": "补全右足在画面左鞋外缘及内侧露出棕色块，鞋帮未自然包住足部。修正完整足部轮廓和鞋足配合，保持原鞋体位置。",
+      "crop": [
+        446,
+        1240,
+        112,
+        158
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R17-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R17-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0a03ea9c-9d83-4c9d-b868-35898bc97a58/R17-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,92 @@
+{
+  "image": "clothing-raster-layering/step01/review-evidence/review01-inspection/composite-default.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "clothing-raster-layering/step01/review-evidence/review01-marked/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-evidence/review01-marked/regions.json",
+  "regions": [
+    {
+      "id": "R1",
+      "bounds": [
+        454,
+        365,
+        179,
+        180
+      ],
+      "layers": [
+        "D16__chest_bow/right_tail__full",
+        "D17__chest_bow/left_tail__full",
+        "D18__chest_bow/right_loop__full",
+        "D19__chest_bow/left_loop__full",
+        "D20__chest_bow/center_knot__front",
+        "D15__chest_bow/center_knot__rear"
+      ],
+      "description": "参考蝴蝶结有连续、清楚的深色外轮廓细线，当前两带尾长边及斜切末端近似布面直接截止，结翼外缘和结心侧缘描边也明显变淡、变软。逐件在原绘画层恢复参考粗细与深度的自身描边，并接续到各自隐藏根部；保留当前缎带明暗、折返内壁、独立层级、两带尾间透明开口和无衣身投影的状态。",
+      "crop": [
+        438,
+        349,
+        211,
+        212
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01-marked/R1-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01-marked/R1-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01-marked/R1-comparison.png"
+      }
+    },
+    {
+      "id": "R2",
+      "bounds": [
+        373,
+        167,
+        39,
+        143
+      ],
+      "layers": [
+        "D10__camisole/right_shoulder_strap__front",
+        "D03__camisole/right_shoulder_strap__rear"
+      ],
+      "description": "画面左肩带：参考肩顶和画面左侧长边有连续深色轮廓线，当前这些线减弱为浅灰软边，外轮廓线的强度与参考不符。沿自身肩顶和侧缘恢复深色细描边，接顺领缘遮挡前的可见段；同步保持前后分片肩顶笔触一致。保留现有白布渐变、窄带形体、完整隐藏根部及背向蒙版默认隐藏。",
+      "crop": [
+        357,
+        151,
+        71,
+        175
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01-marked/R2-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01-marked/R2-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01-marked/R2-comparison.png"
+      }
+    },
+    {
+      "id": "R3",
+      "bounds": [
+        677,
+        167,
+        39,
+        143
+      ],
+      "layers": [
+        "D11__camisole/left_shoulder_strap__front",
+        "D04__camisole/left_shoulder_strap__rear"
+      ],
+      "description": "画面右肩带：参考圆弧肩顶和画面右侧长边有清楚的深色描边，当前变成浅灰软边，肩顶及长边的轮廓线明显弱于参考。按参考恢复本件连续深色细线，并使前后肩顶分片对应笔触一致；保留现有布面明暗、领缘搭接、独立绘画层和透明领口。",
+      "crop": [
+        661,
+        151,
+        71,
+        175
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-evidence/review01-marked/R3-current.png",
+        "reference": "clothing-raster-layering/step01/review-evidence/review01-marked/R3-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-evidence/review01-marked/R3-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D031.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/ed734800-9cee-4cda-8c21-645edf8650c9/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/ed734800-9cee-4cda-8c21-645edf8650c9/regions.json",
+  "regions": [
+    {
+      "id": "R7",
+      "bounds": [
+        471,
+        314,
+        145,
+        118
+      ],
+      "layers": [
+        "D031.0 | body/torso"
+      ],
+      "description": "独显胸廓底形：两肩带内缘在胸上方中止，领口补线发虚；两条衣身结构线在约y414处断开且横向错位，周围有楔形浅色拼接边。应在本层连续画完领口、肩带与两侧结构线，融平色界；保留D032独立胸部。",
+      "crop": [
+        463,
+        306,
+        161,
+        134
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/ed734800-9cee-4cda-8c21-645edf8650c9/R7-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/ed734800-9cee-4cda-8c21-645edf8650c9/R7-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/ed734800-9cee-4cda-8c21-645edf8650c9/R7-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

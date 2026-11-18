@@ -1,0 +1,298 @@
+{
+  "document": "clothing-raster-layering/step01/clothing-depth.kra",
+  "width": 1086,
+  "height": 1448,
+  "sha256_before": "b94f229f20cc97113f9081e38a3390159e321b381198f2a79a98e4dc54a958e8",
+  "layers_bottom_to_top": [
+    {
+      "name": "D01__pleated_skirt/skirt_body__rear",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{af8e56aa-2234-4292-b10b-373647498880}')",
+      "visible": true,
+      "bounds": [
+        157,
+        721,
+        771,
+        516
+      ],
+      "children": [
+        {
+          "name": "default-hidden__rear-connection",
+          "type": "transparencymask",
+          "uuid": "PyQt5.QtCore.QUuid('{ff91a1f8-1f36-4a0a-90b4-6651a8818f9b}')",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D02__pleated_skirt/waistband__rear",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{2a07e5b5-f8b4-4d33-aa97-d822b502c1a9}')",
+      "visible": true,
+      "bounds": [
+        352,
+        682,
+        378,
+        64
+      ],
+      "children": [
+        {
+          "name": "default-hidden__rear-connection",
+          "type": "transparencymask",
+          "uuid": "PyQt5.QtCore.QUuid('{026dfc5e-1068-4464-a7cd-47dedd5c161e}')",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D03__camisole/right_shoulder_strap__rear",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{1e0a5dbd-95f8-45dd-95cb-dbb399bdf75f}')",
+      "visible": true,
+      "bounds": [
+        384,
+        167,
+        27,
+        18
+      ],
+      "children": [
+        {
+          "name": "default-hidden__rear-connection",
+          "type": "transparencymask",
+          "uuid": "PyQt5.QtCore.QUuid('{a9e70fed-b354-476a-bdce-1c6667ced5cf}')",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D04__camisole/left_shoulder_strap__rear",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{2b5b4e2a-9199-44f6-b95f-5d69f8712c13}')",
+      "visible": true,
+      "bounds": [
+        677,
+        167,
+        28,
+        18
+      ],
+      "children": [
+        {
+          "name": "default-hidden__rear-connection",
+          "type": "transparencymask",
+          "uuid": "PyQt5.QtCore.QUuid('{82b5278c-9092-4602-982b-466b395499e8}')",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D10__camisole/right_shoulder_strap__front",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{300a2f84-bdf7-4d6f-9177-e001fd030b3e}')",
+      "visible": true,
+      "bounds": [
+        373,
+        167,
+        38,
+        161
+      ],
+      "children": []
+    },
+    {
+      "name": "D11__camisole/left_shoulder_strap__front",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{6b123705-b765-41d6-a721-cb070e43a5d3}')",
+      "visible": true,
+      "bounds": [
+        677,
+        167,
+        39,
+        161
+      ],
+      "children": []
+    },
+    {
+      "name": "D12__camisole/bodice__full",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{6fa2babc-28ce-47da-913e-e3219416d00a}')",
+      "visible": true,
+      "bounds": [
+        312,
+        298,
+        463,
+        432
+      ],
+      "children": []
+    },
+    {
+      "name": "D13__pleated_skirt/skirt_body__front",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{8bcc4f36-818b-4d40-94b6-0ce0345a3ed5}')",
+      "visible": true,
+      "bounds": [
+        157,
+        721,
+        771,
+        603
+      ],
+      "children": []
+    },
+    {
+      "name": "D14__pleated_skirt/waistband__front",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{e98d938c-061c-4535-82b4-ecd090dded1d}')",
+      "visible": true,
+      "bounds": [
+        352,
+        682,
+        378,
+        77
+      ],
+      "children": []
+    },
+    {
+      "name": "D15__chest_bow/center_knot__rear",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{4ab5ad9d-4ee5-45dc-8442-c3452a6ae458}')",
+      "visible": true,
+      "bounds": [
+        533,
+        365,
+        22,
+        25
+      ],
+      "children": [
+        {
+          "name": "default-hidden__rear-connection",
+          "type": "transparencymask",
+          "uuid": "PyQt5.QtCore.QUuid('{ea4e8840-443e-48fe-bc54-d746e657ac4d}')",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D16__chest_bow/right_tail__full",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{b62c8330-3872-40a6-9a16-6bf1242e52e7}')",
+      "visible": true,
+      "bounds": [
+        488,
+        375,
+        55,
+        169
+      ],
+      "children": []
+    },
+    {
+      "name": "D17__chest_bow/left_tail__full",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{ba8fb229-834b-45df-a64a-f1dce9b081c7}')",
+      "visible": true,
+      "bounds": [
+        546,
+        376,
+        57,
+        167
+      ],
+      "children": []
+    },
+    {
+      "name": "D18__chest_bow/right_loop__full",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{400d169d-8f42-4d1e-a079-f430a866737a}')",
+      "visible": true,
+      "bounds": [
+        454,
+        368,
+        92,
+        61
+      ],
+      "children": []
+    },
+    {
+      "name": "D19__chest_bow/left_loop__full",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{e6dd8124-61a5-40ea-a423-2ba04bf83da7}')",
+      "visible": true,
+      "bounds": [
+        542,
+        368,
+        91,
+        59
+      ],
+      "children": []
+    },
+    {
+      "name": "D20__chest_bow/center_knot__front",
+      "type": "paintlayer",
+      "uuid": "PyQt5.QtCore.QUuid('{21218d8d-9965-41de-b7db-cc20150450f8}')",
+      "visible": true,
+      "bounds": [
+        533,
+        365,
+        22,
+        25
+      ],
+      "children": []
+    }
+  ],
+  "exports": [
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/composite-default.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/composite-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D01-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D01-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D01-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D01-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D02-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D02-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D02-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D02-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D03-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D03-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D03-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D03-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D04-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D04-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D04-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D04-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D10-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D10-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D11-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D11-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D12-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D12-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D13-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D13-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D14-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D14-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D15-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D15-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D15-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D15-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D16-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D16-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D17-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D17-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D18-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D18-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D19-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D19-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/solo-D20-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/upper-hidden-through-D20-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-pleated_skirt-skirt_body-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-pleated_skirt-skirt_body-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-pleated_skirt-waistband-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-pleated_skirt-waistband-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-camisole-right_shoulder_strap-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-camisole-right_shoulder_strap-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-camisole-left_shoulder_strap-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-camisole-left_shoulder_strap-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-camisole-bodice-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-center_knot-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-center_knot-masks-enabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-right_tail-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-left_tail-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-right_loop-masks-disabled.png",
+    "clothing-raster-layering/step01/review-evidence/review02-inspection/part-chest_bow-left_loop-masks-disabled.png"
+  ],
+  "sha256_after": "b94f229f20cc97113f9081e38a3390159e321b381198f2a79a98e4dc54a958e8"
+}

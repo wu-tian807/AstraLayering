@@ -1,0 +1,6 @@
+{
+  "groupId": "head_accessories/hair_bows",
+  "passed": true,
+  "note": "工具确认完整取出父稿独立形体：跳过补全与补全检查",
+  "reason": "whole-independent-geometry"
+}

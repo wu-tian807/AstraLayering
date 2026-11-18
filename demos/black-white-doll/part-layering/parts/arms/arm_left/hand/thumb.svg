@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="69a6f9841c576a3d2a08b8b5d1ade5ee259e5f1cc8f544d087fdb0eacb33eeee">
-  <g id="arms-arm-left-hand-thumb-outline" data-group-path="arms/arm_left/hand/thumb" fill="#58b8df" stroke="none">
-    <path d="M 697.2 714
-      C 696.4 710.5 698.2 704.1 701.4 702.9
-      C 705.5 701.4 711.4 705.8 712.5 712.9
-      C 710.1 719.2 710.1 728.4 710.7 736.5
-      C 710.9 742.4 709.2 747.5 705.8 748.3
-      C 702.9 748.7 701.2 744.1 700.8 738.4
-      C 700 731 699.7 727 697.2 714 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M664.4 719.8 C664.5 715.3 664.1 711.2 666.2 707.4 C668.6 703 674.2 701 679 702.5 C683.2 703.8 687.4 706.2 685.3 709.3 C684.2 710.9 683 712.6 682 714.5 C675.2 716.4 669.2 720.3 664.5 722.2 L664.4 719.8 Z" fill-rule="nonzero"/></g>
+  <g id="left-hand-thumb-outline" data-group-path="arms/arm_left/hand/thumb" fill="#e39b66" stroke="none">
+    <path d="M664.4 719.8 C669.1 715.1 677.5 709.9 685.3 709.3 C682.6 713.2 680.2 717.7 678.6 723 C676.8 729.2 674.7 738.5 672 746.6 C670.3 751.8 667.5 755.5 663.4 755 C659.7 754.6 658.9 750.7 659.8 745.8 C660.5 736.4 664.2 727.5 664.4 719.8 Z"/>
   </g>
 </svg>

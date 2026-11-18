@@ -1,241 +1,107 @@
-<svg data-depth-plan-sha256="f1aff0e504160b88f3782c4546bea99fb164402f599ebd258a4d319699ea7ce1" data-depth-preview="whole-parts" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1086" height="1448" viewBox="0 0 1086 1448" data-part-preview="1">
-<metadata id="part-preview-groups">{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;id&quot;:&quot;pleated_skirt/skirt_body&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;pleated_skirt/waistband&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/right_shoulder_strap&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/left_shoulder_strap&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/bodice&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/knot&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/right_tail&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/left_tail&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/right_loop&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/left_loop&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;}]}</metadata>
+<svg data-depth-plan-sha256="fa842ca9acbc00dfeb61ba45d98b819e4dd63fd9e0f1575e2a29be117565fb90" data-depth-preview="whole-parts" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1086" height="1448" viewBox="0 0 1086 1448" data-part-preview="1">
+<metadata id="part-preview-groups">{&quot;version&quot;:1,&quot;nodes&quot;:[{&quot;id&quot;:&quot;pleated_skirt/skirt_body&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;pleated_skirt/waistband&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/right_shoulder_strap&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/left_shoulder_strap&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;camisole/bodice&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/center_knot&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/right_tail&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/left_tail&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/right_loop&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;},{&quot;id&quot;:&quot;chest_bow/left_loop&quot;,&quot;parent&quot;:null,&quot;kind&quot;:&quot;part&quot;}]}</metadata>
 <g id="node-0" data-group-path="pleated_skirt/skirt_body" data-node-kind="part" data-name="skirt_body">
-<g id="part-source-0"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="6a2ac91a5d15906bb28e5b61b1364a06550f993da23d8d293991a59e24012ed6" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 378.6 764.5 C 379.6 756, 381 748, 382.4 741 C 430 751, 495 757, 553 757 C 611 757, 676 751, 721 741 C 722 748, 723 756, 724.2 764.5 L 724.6 771 C 690 777, 620 786.5, 553 786.5 C 488 786.5, 420 780, 380.5 771.5 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="pleated_skirt/skirt_body" fill="#16BCD0" stroke="none" id="part-source-0-outline-pleated-skirt-skirt-body">
-    <path d="M 376.2 766.2
-      C 420 774, 488 780.5, 553 780.5
-      C 617 780.5, 688 774, 726.6 767.2
-      C 745 789, 774 838, 806 895
-      C 853 978, 897 1061, 931 1143
-      C 922 1153, 907 1165, 894 1175
-      C 887 1177, 880 1178, 875 1181
-      L 878.4 1194.4
-      Q 878.7 1195.2, 877.7 1195.7
-      C 851 1208.5, 820.5 1220.2, 789 1230
-      C 785 1230, 784 1227, 781 1227
-      C 776 1227, 770 1228, 765 1230
-      L 766.8 1241.9
-      Q 767 1242.8, 766 1243.1
-      C 731.5 1252, 692 1258, 655 1261
-      Q 653.8 1261, 653.3 1259.7
-      L 651 1253
-      C 645 1252, 639 1252, 633 1253
-      L 632.8 1261.9
-      Q 632.8 1263.1, 631.5 1263.3
-      C 590 1268, 532 1269, 490 1265
-      Q 488.7 1264.8, 488.6 1263.5
-      L 487.6 1253
-      C 482 1252, 476 1252, 470 1253
-      L 468.1 1259.8
-      Q 467.8 1261.1, 466.5 1261.1
-      C 428 1259, 385 1252, 350 1243
-      Q 348.7 1242.7, 348.9 1241.2
-      L 350.6 1228.4
-      C 345 1226.5, 339 1225.7, 335 1227
-      L 331.6 1230.9
-      Q 330.7 1231.9, 329.2 1231.5
-      C 298 1225.5, 263 1214, 232.9 1201.8
-      Q 231.7 1201.3, 232.1 1200.1
-      L 237.9 1185.5
-      C 234 1183, 229 1180, 225.4 1180
-      C 222.5 1180, 221.2 1182, 217.7 1181.4
-      C 199.7 1170.5, 181 1157.5, 168.1 1148.2
-      Q 166.7 1147.2, 167.3 1145.8
-      C 198.6 1069.5, 244.3 984, 291.5 903
-      C 320.2 851, 349.4 804, 376.2 766.2 Z"/>
+<g id="part-source-0"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 358,725 C 438,747 637,747 726,721 Q 727,727 728.8253696,733.0685392 L 730,740 C 641,769 430,768 351,747 Q 355,737 358,725 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="pleated_skirt/skirt_body" fill="#22b8a2" stroke="none" id="part-source-0-pleated_skirt_skirt_body">
+    <path d="M 353.6921632,737.7117832
+      C 432,760 641,761 728.8253696,733.0685392
+      C 728.94908,734.00188 729.074,734.912 729.2,735.8
+      C 733.5,737.2 738,743 742.5,750
+      C 751.3,766.667 761,783.333 768.5,800
+      C 792.5,850 815.5,900 835.5,950
+      C 854.8,1000 872.2,1050 889.5,1100
+      C 903.8,1142.8 916.4,1185.6 927.5,1228.5
+      C 912,1243.2 894.7,1253.5 879.5,1263.2
+      L 876.5,1260.5 Q 875.6,1259.9 873.8,1260.7
+      L 870.5,1262 L 868.6,1271.7
+      C 840,1284.8 805,1293.5 769.1,1299.3
+      L 766.8,1290.5 L 756,1292.5 L 754.5,1302
+      C 715,1309 676,1314.2 636.3,1317.2
+      L 634,1309.5 L 620.2,1310 L 618.5,1318.5
+      C 576,1322.2 529,1324.3 482,1322.5
+      L 480.8,1313.6 C 475.4,1313.2 469.5,1313 464.6,1313
+      L 461.8,1321
+      C 423,1321 383,1317 346,1308.5
+      L 345,1299.3 L 332.5,1296.9 L 329,1304.5
+      C 294,1301.7 258,1292.8 230.5,1280.7
+      L 231.4,1271.4 L 220.2,1268.5 L 217.8,1272.5
+      C 196,1261 173,1245.7 157.7,1229.5
+      C 158.4,1220 160.8,1210 163.5,1200
+      C 171.8,1166.667 181.5,1133.333 192.5,1100
+      C 208.5,1050 227.5,1000 247.5,950
+      C 267.5,900 289.5,850 314.5,800
+      C 322.8,783.333 331.5,766.667 342.5,750
+      C 344.8,747.6 347.5,742 353.2,740.8
+      C 353.368,739.792 353.53204,738.76168 353.6921632,737.7117832 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-1" data-group-path="pleated_skirt/waistband" data-node-kind="part" data-name="waistband">
-<g id="part-source-1"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="560d544968fa66c9256ac0cbf03c750d12c7c8ad5d3a21921e692f022c602b00" x="0" y="0">
-  <g data-group-path="pleated_skirt/waistband" fill="#16BCD0" stroke="none" id="part-source-1-outline-pleated-skirt-waistband">
-    <path d="M 387 736 L 388 717.5
-      C 389 712, 391 707, 395 703.5
-      C 450 701.5, 500 700.8, 553 700.8
-      C 610 700.8, 665 701.5, 710 703.5
-      C 714 707, 716 712, 717 717.5
-      L 718 736 Z"/>
-    <path d="M 381.7 717.6
-      C 432 721.2, 495 723.6, 553 723.5
-      C 612 723.7, 674 721.8, 721.2 717.8
-      C 721.9 734, 723.35 752, 724.9 767.92817
-      C 707.34656 775.19575, 682.04842 778.16978, 653 780.3
-      C 623 782.3, 588 783, 553 782.9
-      C 519 782.9, 482 781.1, 449 778.3
-      C 420.73618 775.85047, 394.24756 772.24705, 378.9 767.15526
-      C 379.65 761, 380.4 754, 380.95 747
-      C 381.7 736.8, 382.3 725.3, 381.7 717.6 Z"/>
+<g id="part-source-1"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0">
+  <g data-group-path="pleated_skirt/waistband" fill="#22b8a2" stroke="none" id="part-source-1-pleated_skirt_waistband">
+    <path d="M 358.5,684.5
+      C 440,692 633,695 724.4,682.5
+      C 725.3,699.5 727.1,721 729.2,735.8
+      C 689,751.4 617.5,757.6 545,757.8
+      C 466,758.1 392.4,752.8 353.2,740.8
+      C 356,724 357.7,701 358.5,684.5 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-2" data-group-path="camisole/right_shoulder_strap" data-node-kind="part" data-name="right_shoulder_strap">
-<g id="part-source-2"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="0e28fee0f79f5c46848f494e2b7c024acbb7dcc9d2ca89e923204ee12c694fe8" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 390.8,364 L 405.8,364 C 405.8,376 405.9,386 406,394 L 391,394 C 390.9,386 390.8,376 390.8,364 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="camisole/right_shoulder_strap" fill="#32b8d2" stroke="none" id="part-source-2-camisole-right-shoulder-strap-outline">
-    <path d="M 390,369
-      C 390,338 393,304 397,278
-      C 399,261 401,251 406,248
-      C 411,245 418,244 422,246
-      C 424,247 422,250 421,252
-      C 413,277 408,316 406,371 Z"/>
-    <path d="M 392,358 L 404,358 L 406,394 L 391,394 Z"/>
+<g id="part-source-2"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 374.6,299.8 C 374.4,307.2 374.2,314.3 374.2,320.7 Q 374.2,324.8 378.5,325.4 L 391.4,326.7 Q 396.4,327.1 397.0,322.1 C 397.8,315.1 398.5,308.0 399.2,300.7 L 390.0,298.6 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="camisole/right_shoulder_strap" fill="#40b8b0" stroke="none" id="part-source-2-camisole-right-shoulder-strap">
+    <path d="M 374.3,302.2 C 374.9,271.3 377.9,219.1 384.1,183.2 C 386.2,172.5 390.7,168.4 398.4,168.1 C 406.4,166.8 409.7,170.5 409.8,180.1 C 409.3,211.4 403.6,266.6 399.4,304.9 L 389.3,310.0 Z"/>
   </g>
-</svg>
-</g>
+</svg></g>
 </g>
 <g id="node-3" data-group-path="camisole/left_shoulder_strap" data-node-kind="part" data-name="left_shoulder_strap">
-<g id="part-source-3"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="4e4cbdd03f1ca18e2a6453892d86ddcb5b4ebf73596752ca1550eac885a7baf8" x="0" y="0">
-  <g data-group-path="camisole/left_shoulder_strap" fill="#32b8d2" stroke="none" id="part-source-3-camisole-left-shoulder-strap-outline">
-    <path d="M 700,371
-      C 699,332 696,295 689,265
-      C 686,254 683.2,251 681.5,249.2
-      C 680,246.7 682.4,244.8 686,245.5
-      L 696,248.3
-      C 701,250.2 704,256 706,265
-      C 711,286 713,326 715,367
-      L 714.2555,367.1985
-      L 715,394
-      L 700,394
-      L 701.2970,370.6541
-      Z"/>
+<g id="part-source-3"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 684.0,296.0 L 713.5,296.0 C 714.0,305.5 714.6,315.0 715.0,321.5 C 715.2,325.0 713.4,326.4 710.5,326.5 L 690.2,327.0 C 686.9,327.1 685.2,325.8 685.0,322.5 C 684.6,314.8 684.3,305.0 684.0,296.0 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="camisole/left_shoulder_strap" fill="#40b8b0" stroke="none" id="part-source-3-camisole-left-shoulder-strap">
+    <path d="M 684.1,304.2 C 683.5,269.5 681.4,219.6 678.4,181.0 C 677.8,171.8 680.0,167.5 685.0,167.7 C 694.1,167.3 699.5,171.7 702.5,185.3 C 708.6,215.9 711.8,263.9 713.9,302.8 L 698.8,311.2 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-4" data-group-path="camisole/bodice" data-node-kind="part" data-name="bodice">
-<g id="part-source-4"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="e8a7fab5184e2f3b96b6565ad62b04513a147f01704f536957167e813168f986" x="0" y="0">
-  <g data-group-path="camisole/bodice" fill="#32b8d2" stroke="none" id="part-source-4-camisole-bodice-outline">
-    <path d="M 380,389
-      C 377,384 374,376 376,371
-      C 377,366 383,365 389,366
-      L 402,368
-      C 406,368 409,364 414,364
-      C 421,364 427,367 429,374
-      C 435,373 440,372 446,373
-      C 450.37323,373 454.1488,374.19532 457,376.25925
-      C 458.4,377.7 459.4,379.1 459.65,380.8
-      C 459.85,382 459.55,383.1 460,384.05
-      C 461.3,385.55 463.4,386.3 466,386.09561
-      C 469.18974,387.3812 472.85641,386.6906 477,386
-      C 488,388 496,393 499,399
-      C 499.33506,399.04188 499.66837,399.08727 500,399.13603
-      C 501.8,400.2 503.8,403.3 505.6,404.6
-      C 506.3,404.9 506.6,401.4 509,401.29038
-      C 513.11893,402.6224 517.05946,404.3112 521,406
-      C 528,409 533,412 535,417
-      C 540,416 545,420 547,425
-      C 551,427.5 557,427.5 562,426.5
-      C 565,421 569,417 573,417
-      C 573.6,417.2 574,417.2 574.7,416.9
-      C 575.3,416.5 575,414.5 576.2,412.9
-      C 576.7,411.9 577.6,410.5 579,409.15052
-      C 584.39869,404.93959 592.06816,402.31819 598,401
-      C 603,400 607,401 610,403
-      C 610,398 614,391 621,388
-      C 629,384 638,384 647,386
-      C 646,381 649,375 656,373
-      C 662.24078,370.65971 669.69866,369.53652 676,370.57989
-      C 677,370.8 678,372.6 679.6,373.7
-      C 680.4,373.7 681,372.4 681.8,371.8
-      C 682.6,370.6 683.3,369.5 684.5,367.98
-      C 687.80485,365.20606 691.63818,364.54606 696,366
-      C 702,368 708,367 716,366
-      C 722,365 727,367 729,372
-      C 731,377 727,383 726,389
-      C 740,416 752,452 755,481
-      C 759,508 753,533 747,556
-      C 740,583 734,610 732,633
-      C 730,647 733,659 737,672
-      C 740,681 746,690 742,696
-      C 738,702 727,712 721,718
-      C 675,720 616,723 558,723
-      C 498,723 437,721 385,717
-      C 376,711 365,702 363,696
-      C 360,690 365,676 369,661
-      C 372,649 372,639 371,630
-      C 368,600 361,570 352,542
-      C 346,522 344,506 347,481
-      C 350,455 364,420 380,389 Z"/>
-    <path d="M 392,700 L 714,700 L 715,744 C 680,750 620,753 558,753 C 498,753 438,750 391,744 Z" fill-rule="nonzero"/>
+<g id="part-source-4"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0">
+  <g data-group-path="camisole/bodice" fill="#40b8b0" stroke="none" id="part-source-4-camisole-bodice-outline">
+    <path d="M 360,678 C 466,690 618,690 724,678 L 725,711 Q 725,718 718,719 C 611,732 474,732 366,720 Q 359,719 359,712 Z"/>
+    <path d="M 373.8,299.3 C 364.7,298.4 357.1,301.5 353.2,307.8 C 349.9,312.7 354.2,321.4 355.5,326.0 C 353.5,328.5 352.7,331.1 351.3,333.5 C 345.2,337.0 339.1,340.4 336.7,344.7 C 335.1,350.4 338.5,359.0 335.5,367.7 C 321.3,391.6 313.4,412.5 312.9,435.7 C 311.7,458.9 318.4,482.0 326.0,505.0 C 335.8,532.9 346.0,565.3 347.0,591.3 C 347.3,612.7 342.5,632.5 335.4,647.3 C 331.4,654.7 338.3,663.0 346.2,670.6 L 358.5,683.7 L 359.2,691.4 C 468.0,702.3 617.8,702.8 725.6,690.2 L 725.8,682.5 C 738.6,670.5 753.5,659.2 750.3,650.2 C 740.7,630.3 738.0,614.3 740.2,588.3 C 742.8,559.5 750.0,532.0 758.9,505.0 C 768.2,477.0 775.2,454.5 773.9,432.5 C 772.6,410.1 766.6,389.9 755.3,370.4 C 751.6,360.8 749.9,355.7 751.3,349.3 C 753.0,342.8 747.5,339.2 742.3,336.7 C 738.1,334.2 738.5,332.0 736.6,329.6 C 737.4,323.9 738.7,315.4 737.2,310.1 C 733.3,304.3 722.5,300.3 713.8,300.7 C 706.1,298.8 696.8,297.6 687.8,302.7 C 684.3,304.3 682.9,304.6 682.6,307.6 C 682.4,309.4 684.0,310.3 679.8,311.3 C 676.4,312.2 674.0,311.3 674.2,309.4 C 675.0,306.6 671.0,305.0 667.2,305.1 C 655.0,305.0 647.5,307.4 645.0,313.5 C 642.8,320.6 645.3,324.2 638.6,325.2 C 631.7,325.8 633.4,317.4 627.0,317.8 C 618.0,316.9 606.0,320.5 606.2,327.2 C 606.4,331.8 608.4,337.5 602.2,339.2 C 596.6,340.4 598.9,332.6 590.4,332.9 C 583.0,332.5 573.4,336.7 569.2,341.0 C 566.5,343.7 569.2,348.3 568.7,350.5 C 565.3,351.7 564.4,344.8 560.8,347.7 C 558.5,349.1 556.5,350.2 557.3,353.6 C 558.1,358.5 553.2,355.8 548.5,355.9 C 545.1,356.0 541.9,358.2 539.7,356.5 C 537.5,355.0 538.7,352.8 534.2,349.4 C 529.9,344.7 528.1,347.5 528.4,350.5 C 528.0,352.4 525.8,351.7 523.9,351.1 C 524.3,347.8 525.1,343.6 522.5,340.5 C 517.6,334.7 504.0,329.9 497.5,332.4 C 493.0,333.4 493.8,336.0 491.2,338.1 C 488.3,339.7 486.5,337.1 486.7,334.4 C 488.0,325.1 478.4,319.6 469.4,318.4 C 461.9,316.8 456.2,318.7 449.7,323.4 C 446.2,325.4 443.0,324.6 444.0,317.1 C 442.2,309.6 433.4,305.6 424.0,305.1 C 416.7,304.8 418.2,308.7 416.7,310.8 C 415.0,311.9 412.0,311.8 411.1,311.1 C 406.3,301.3 401.5,298.0 395.1,299.1 C 389.7,300.3 387.2,305.6 382.9,305.4 C 379.7,305.1 378.8,302.0 373.8,299.3 Z"/>
   </g>
-</svg>
+</svg></g>
 </g>
-</g>
-<g id="node-5" data-group-path="chest_bow/knot" data-node-kind="part" data-name="knot">
-<g id="part-source-5"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="139d35fbe8ac59ad4fe177da93e8a50ffc9ee7ae17f081e165173bea43146bb4" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 542.2,443.2 Q 543.4,441.8 546.0,441.6 L 563.0,441.8 Q 565.6,441.9 566.8,443.4 C 566.2,448.0 565.4,453.0 564.4,457.6 Q 564.0,459.8 561.8,460.4 C 558.0,461.0 553.2,461.0 549.0,460.2 C 547.0,459.8 545.6,459.2 545.0,457.8 C 544.2,453.6 543.0,448.0 542.2,443.2 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="chest_bow/knot" fill="#00a6b8" stroke="none" id="part-source-5-chest_bow_knot_outline">
-    <path d="M 543.8,441.4
-      Q 544.6,439.6 546.5,439.7
-      L 562.5,439.9
-      Q 564.6,439.9 565.2,441.4
-      C 564.2,447.3 563.3,453.6 562.4,458.5
-      Q 562.2,460.5 561.0,461.3
-      C 557.0,462.0 553.3,462.0 549.5,461.1
-      C 547.9,460.9 547.1,460.3 546.6,458.9
-      C 545.8,453.9 544.8,447.3 543.8,441.4 Z"/>
+<g id="node-5" data-group-path="chest_bow/center_knot" data-node-kind="part" data-name="center_knot">
+<g id="part-source-5"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0">
+  <g data-group-path="chest_bow/center_knot" fill="#e74ca8" stroke="none" id="part-source-5-chest_bow_center_knot">
+    <path d="M 533.5 369.3 C 534 367.1 535.8 365.8 538.5 366 C 543 366.5 547.6 366.7 551.4 366.3 Q 554 366.9 554.5 369.4 C 553.2 375.5 552 382.1 551.3 388.8 C 546.5 388.2 541.5 388.2 536.7 388.8 C 536.3 382.1 535.4 375.4 533.5 369.3 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-6" data-group-path="chest_bow/right_tail" data-node-kind="part" data-name="right_tail">
-<g id="part-source-6"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="1be1941de954389a0ccfb72df8be011a547b677671c79fcbd93e2bcda50a5a02" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 533.8,468.6 C 536.3,462.1 538.8,455.5 541.6,448.2 Q 546.2,446.6 550.8,448.0 C 550.5,451.8 550.0,455.2 549.6,458.6 L 548.4,463.0 L 540.0,466.2 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="chest_bow/right_tail" fill="#00a6b8" stroke="none" id="part-source-6-chest_bow_right_tail_outline">
-    <path d="M 543.7,456.7
-      Q 546.4,456.4 549.6,457.6
-      L 549.5,461.1
-      C 546.2,483.2 541.2,528.9 534.8,597.8
-      Q 534.7,598.7 533.9,598.3
-      L 506.6,584.6
-      Q 505.9,584.2 506.1,583.4
-      C 510.4,544.1 521.5,500.7 533.8,468.6
-      C 536.2,464.5 540.0,460.3 543.7,456.7 Z"/>
+<g id="part-source-6"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 518.5 397.4 C 522.4 389.9 528.9 382.4 535.1 378.3 C 537.5 376.6 539.8 375.3 541.3 376.2 C 543.2 377.4 541.7 381.4 539.5 385 C 538.7 386.3 537.7 387.7 537 388.8 L 536.3 402 C 530 403 524 402.2 518.5 397.4 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="chest_bow/right_tail" fill="#e74ca8" stroke="none" id="part-source-6-chest_bow_right_tail">
+    <path d="M 533.5 384 L 537.1 384 L 537 388.8 C 536.1 412.8 533.4 438 531.1 460 C 528.5 485.6 525 515.9 521.9 543 L 488.5 525.9 C 491.5 496.1 499 458.7 507.6 430 C 511 418.2 514.3 407.4 518.5 397.4 C 521.3 391.8 526.3 387.2 533.5 384 Z"/>
   </g>
-</svg>
-</g>
+</svg></g>
 </g>
 <g id="node-7" data-group-path="chest_bow/left_tail" data-node-kind="part" data-name="left_tail">
-<g id="part-source-7"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="a0f1f0c0abd79b86229d57ce7a5df07f95e3aa7c9c57940fb9db1fe957afb36c" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 557.5,446.0 L 567.8,446.0 L 578.0,468.6 L 572.0,470.2 L 563.6,468.2 L 561.8,462.0 L 560.3,457.5 L 559.2,454.0 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="chest_bow/left_tail" fill="#00a6b8" stroke="none" id="part-source-7-chest_bow_left_tail_outline">
-    <path d="M 559.2,454.0
-      L 565.8,454.0
-      C 569.0,458.0 574.3,463.4 578.4,469.4
-      C 592.6,500.5 601.2,546.8 605.7,583.4
-      Q 605.8,584.0 605.0,584.6
-      L 578.3,598.4
-      Q 577.4,598.9 577.1,598.0
-      C 573.8,565.7 569.1,521.8 565.0,486.0
-      C 563.9,476.4 562.5,467.2 561.0,461.3
-      C 560.5,459.3 559.8,456.7 559.2,454.0 Z"/>
+<g id="part-source-7"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 546.8 379 C 546.2 377.4 547.5 376.6 549.2 376.8 Q 551.6 376.8 552.8 379 C 556 383.8 563.3 389 567.6 393.7 Q 568.8 395.4 569.6 397.3 L 566 402 C 562.1 395.4 556.8 391 551.2 390.8 C 550.7 385.6 548.4 382.3 546.8 379 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="chest_bow/left_tail" fill="#e74ca8" stroke="none" id="part-source-7-chest_bow_left_tail">
+    <path d="M 549.5 383.5 C 555 384.3 565.4 389.2 569.6 397.3 C 574.2 407.8 578.8 419.4 582.2 430 C 587.5 447.4 591 464.5 594.7 481 C 597.4 495.4 600 509.7 602.1 524.2 L 571.9 542.2 C 562.8 491.1 555 438.5 551 388.8 L 549.5 383.5 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-8" data-group-path="chest_bow/right_loop" data-node-kind="part" data-name="right_loop">
-<g id="part-source-8"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="e8df3ec02d0359a4aa6bdea74fc0d450e6111b91b09765684ae8df18d0e18a23" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 543.0,442.4 L 556.0,443.0 C 557.2,447.6 557.2,453.0 556.0,457.2 L 549.0,458.4 L 543.0,457.0 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="chest_bow/right_loop" fill="#00a6b8" stroke="none" id="part-source-8-chest_bow_right_loop_outline">
-    <path d="M 478.5,469.1
-      C 495.3,457.4 516.8,445.7 536.3,441.4
-      C 539.1,440.8 541.6,441.0 543.8,441.4
-      L 546.5,441.7
-      C 546.6,448.0 547.4,453.9 549.2,458.5
-      C 544.8,461.4 539.3,465.0 533.8,468.6
-      L 496.7,496.5
-      Q 495.4,497.7 494.4,496.3
-      C 489.1,489.4 483.2,480.5 478.1,471.5
-      Q 477.5,470.1 478.5,469.1 Z"/>
+<g id="part-source-8"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 530.5 370.2 C 535 370 539 370.8 542.4 372.3 Q 545 373.5 545 376.2 L 544.6 379.8 Q 544.4 382.5 541.8 383.2 C 538.6 384 534.4 385.9 530.7 388 L 528.2 379.1 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="chest_bow/right_loop" fill="#e74ca8" stroke="none" id="part-source-8-chest_bow_right_loop">
+    <path d="M 533.5 369.3 C 505.1 372 474.5 381.5 456.4 394.7 Q 454.5 396.2 455.6 398.2 C 459.8 407.2 465.7 416.9 472 426.3 Q 474.6 429.6 478.2 427.2 C 490 420.1 504.5 409.6 518.5 397.4 C 524.8 392 531.1 387.4 537.4 385.2 L 536.2 370.2 Z"/>
   </g>
 </svg></g>
 </g>
 <g id="node-9" data-group-path="chest_bow/left_loop" data-node-kind="part" data-name="left_loop">
-<g id="part-source-9"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="41c05d5743d80cb35c28a41d8e801fd48e8e8c0c46d307f35335609c06773e6b" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 566.0,441.8 L 559.2,442.4 Q 557.3,442.6 557.1,444.5 L 557.1,455.4 Q 557.3,457.4 559.2,458.0 L 562.4,459.4 L 567.0,458.6 Z" fill-rule="nonzero"/></g>
-  <g data-group-path="chest_bow/left_loop" fill="#00a6b8" stroke="none" id="part-source-9-chest_bow_left_loop_outline">
-    <path d="M 563.0,441.3
-      L 565.2,441.4
-      C 587.6,442.2 613.0,453.6 630.7,467.3
-      Q 632.1,468.2 631.4,469.6
-      C 627.2,479.3 621.5,489.4 616.4,495.8
-      Q 615.6,497.0 614.5,496.3
-      L 578.4,469.4
-      L 562.0,459.0
-      Q 560.5,458.3 560.8,456.0
-      C 561.4,450.8 562.1,445.5 563.0,441.3 Z"/>
+<g id="part-source-9"><svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" x="0" y="0"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 551.5 371 C 548.3 371.7 545.7 372.3 544.2 373.2 C 542.9 374 542.5 375.3 542.6 377.3 L 542.8 382.8 Q 543 385.2 545.2 385.6 C 547.2 385.9 549.7 385.3 552.4 385.1 L 554.5 378.3 Z" fill-rule="nonzero"/></g>
+  <g data-group-path="chest_bow/left_loop" fill="#e74ca8" stroke="none" id="part-source-9-chest_bow_left_loop">
+    <path d="M 548.8 371.5 C 550.7 370.5 552.7 369.7 554.5 369.4 C 581.6 369.3 613.4 380.6 630.4 392.3 Q 633 394 631.3 398 C 627 407.5 622 417 616.4 423.8 Q 614.5 427.5 610.3 425.5 C 596 419 581.5 406.8 569.6 397.3 C 562.5 391.7 555 387.1 548.8 385.1 Z"/>
   </g>
 </svg></g>
 </g>

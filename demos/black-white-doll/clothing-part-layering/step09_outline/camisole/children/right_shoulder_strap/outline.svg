@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="e4b808d5ffb6dd1ebc14c222175d35619322205ae36d8f0a47e6711431ae084a">
-  <g id="camisole-right-shoulder-strap-outline" data-group-path="camisole/right_shoulder_strap" fill="#32b8d2" stroke="none">
-    <path d="M 390,369
-      C 390,338 393,304 397,278
-      C 399,261 401,251 406,248
-      C 411,245 418,244 422,246
-      C 424,247 422,250 421,252
-      C 413,277 408,316 406,371 Z"/>
-    <path d="M 392,358 L 404,358 L 406,394 L 391,394 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <g id="camisole-right-shoulder-strap" data-group-path="camisole/right_shoulder_strap" fill="#40b8b0" stroke="none">
+    <path d="M 374.3,302.2 C 374.9,271.3 377.9,219.1 384.1,183.2 C 386.2,172.5 390.7,168.4 398.4,168.1 C 406.4,166.8 409.7,170.5 409.8,180.1 C 409.3,211.4 403.6,266.6 399.4,304.9 L 389.3,310.0 Z"/>
   </g>
 </svg>

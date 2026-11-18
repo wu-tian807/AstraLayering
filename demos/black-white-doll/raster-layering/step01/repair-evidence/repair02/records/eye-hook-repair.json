@@ -1,0 +1,12 @@
+{
+  "id": "face/eyes/eye_left/upper_eyelid",
+  "physicalDepth": 65.5,
+  "method": "Original same-coordinate warm eyelid ink locally matted from white-hair/skin background; connected thin return hook and antialiasing retained. Root and main arc unchanged.",
+  "localCanvasBox": [
+    611,
+    143,
+    13,
+    15
+  ],
+  "connectedPigmentPixels": 50
+}

@@ -1,0 +1,109 @@
+{
+  "source": "clothing-raster-layering/step01/clothing-depth.kra",
+  "sha256_before": "990a9b9627ce0bd68e1f116edb2386c4de442ad34acb2616d71e62f1fab3d037",
+  "sha256_after_close": "990a9b9627ce0bd68e1f116edb2386c4de442ad34acb2616d71e62f1fab3d037",
+  "unchanged": true,
+  "closed": true,
+  "restored_layer_and_mask_visibility": [
+    {
+      "name": "D01__pleated_skirt/skirt_body__rear",
+      "visible": true,
+      "masks": [
+        {
+          "name": "default-hidden__rear-connection",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D02__pleated_skirt/waistband__rear",
+      "visible": true,
+      "masks": [
+        {
+          "name": "default-hidden__rear-connection",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D03__camisole/right_shoulder_strap__rear",
+      "visible": true,
+      "masks": [
+        {
+          "name": "default-hidden__rear-connection",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D04__camisole/left_shoulder_strap__rear",
+      "visible": true,
+      "masks": [
+        {
+          "name": "default-hidden__rear-connection",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D10__camisole/right_shoulder_strap__front",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D11__camisole/left_shoulder_strap__front",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D12__camisole/bodice__full",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D13__pleated_skirt/skirt_body__front",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D14__pleated_skirt/waistband__front",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D15__chest_bow/center_knot__rear",
+      "visible": true,
+      "masks": [
+        {
+          "name": "default-hidden__rear-connection",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "D16__chest_bow/right_tail__full",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D17__chest_bow/left_tail__full",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D18__chest_bow/right_loop__full",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D19__chest_bow/left_loop__full",
+      "visible": true,
+      "masks": []
+    },
+    {
+      "name": "D20__chest_bow/center_knot__front",
+      "visible": true,
+      "masks": []
+    }
+  ]
+}

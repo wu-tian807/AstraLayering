@@ -1,90 +1,908 @@
 {
-  "version": 1,
-  "signature": "032c0df07d79c9337164c865607fecd83b725ccd3c107743b5eb6cacc18608dd",
+  "version": 2,
+  "signature": "97df7d1752ae6dd3f1278d2654f3a2ab744d082c0437f439c2bebdde290b5673",
   "passed": true,
-  "nativeVersion": "5.3.4.1 (git bd6e8d0)",
+  "nativeVersion": "5.3.1 (git 9069dbc)",
   "width": 1086,
   "height": 1448,
   "relations": [
     {
-      "id": "skirt-to-legs",
+      "id": "chin-to-neck",
       "bounds": [
-        386,
-        496,
-        318,
-        750
+        494,
+        210,
+        98,
+        78
       ],
-      "fullPaint": "relation-000/full-paint.png",
-      "receiver": "relation-000/receiver.png",
-      "clipBase": "relation-000/clip-base.png",
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-base.png",
       "frames": [
         {
           "offset": [
             0,
             0
           ],
-          "file": "relation-000/offset-00.png",
-          "clipped": "relation-000/clip-offset-00.png"
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-00.png"
         },
         {
           "offset": [
-            -14,
+            -5,
             0
           ],
-          "file": "relation-000/offset-01.png",
-          "clipped": "relation-000/clip-offset-01.png"
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-01.png"
         },
         {
           "offset": [
-            14,
+            5,
             0
           ],
-          "file": "relation-000/offset-02.png",
-          "clipped": "relation-000/clip-offset-02.png"
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-02.png"
         },
         {
           "offset": [
             0,
-            -10
+            6
           ],
-          "file": "relation-000/offset-03.png",
-          "clipped": "relation-000/clip-offset-03.png"
-        },
-        {
-          "offset": [
-            0,
-            14
-          ],
-          "file": "relation-000/offset-04.png",
-          "clipped": "relation-000/clip-offset-04.png"
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-03.png"
         }
       ],
-      "rawAlphaPixels": 39364,
-      "receiverIntersectionPixels": 34196,
-      "outsideReceiverPixels": 5168,
-      "review": "inspection/relation-000-review.png",
-      "nativeDirectory": "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753"
+      "rawAlphaPixels": 2704,
+      "receiverIntersectionPixels": 1563,
+      "outsideReceiverPixels": 1141,
+      "review": "shadow/step01_mask/inspection/relation-000-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "skirt-to-legs",
+      "bounds": [
+        367,
+        547,
+        356,
+        826
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -10,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            10,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            10
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 33649,
+      "receiverIntersectionPixels": 24343,
+      "outsideReceiverPixels": 9306,
+      "review": "shadow/step01_mask/inspection/relation-001-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "upper-lid-left",
+      "bounds": [
+        540,
+        129,
+        93,
+        43
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            4
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 1889,
+      "receiverIntersectionPixels": 425,
+      "outsideReceiverPixels": 1464,
+      "review": "shadow/step01_mask/inspection/relation-002-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "upper-lid-right",
+      "bounds": [
+        452,
+        129,
+        94,
+        43
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            4
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 1912,
+      "receiverIntersectionPixels": 422,
+      "outsideReceiverPixels": 1490,
+      "review": "shadow/step01_mask/inspection/relation-003-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "bangs-to-face",
+      "bounds": [
+        453,
+        62,
+        179,
+        177
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            5
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 10391,
+      "receiverIntersectionPixels": 7748,
+      "outsideReceiverPixels": 2643,
+      "review": "shadow/step01_mask/inspection/relation-004-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "side-hair-right-to-face",
+      "bounds": [
+        449,
+        66,
+        177,
+        173
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            4
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 1135,
+      "receiverIntersectionPixels": 956,
+      "outsideReceiverPixels": 179,
+      "review": "shadow/step01_mask/inspection/relation-005-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "side-hair-left-to-face",
+      "bounds": [
+        460,
+        66,
+        180,
+        173
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            4,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            4
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 1172,
+      "receiverIntersectionPixels": 858,
+      "outsideReceiverPixels": 314,
+      "review": "shadow/step01_mask/inspection/relation-006-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "clip-upper-to-bangs",
+      "bounds": [
+        472,
+        22,
+        145,
+        130
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -2,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            2,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 127,
+      "receiverIntersectionPixels": 110,
+      "outsideReceiverPixels": 17,
+      "review": "shadow/step01_mask/inspection/relation-007-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "clip-lower-to-bangs",
+      "bounds": [
+        472,
+        22,
+        152,
+        130
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -2,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            2,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 130,
+      "receiverIntersectionPixels": 91,
+      "outsideReceiverPixels": 39,
+      "review": "shadow/step01_mask/inspection/relation-008-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "bow-left-to-tail",
+      "bounds": [
+        628,
+        50,
+        196,
+        559
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 2295,
+      "receiverIntersectionPixels": 2248,
+      "outsideReceiverPixels": 47,
+      "review": "shadow/step01_mask/inspection/relation-009-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "bow-right-to-tail",
+      "bounds": [
+        261,
+        50,
+        189,
+        543
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            5,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-02.png"
+        },
+        {
+          "offset": [
+            0,
+            6
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-03.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-03.png"
+        }
+      ],
+      "rawAlphaPixels": 2295,
+      "receiverIntersectionPixels": 2182,
+      "outsideReceiverPixels": 113,
+      "review": "shadow/step01_mask/inspection/relation-010-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "chest-right_loop",
+      "bounds": [
+        457,
+        315,
+        172,
+        168
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -3,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            3,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 403,
+      "receiverIntersectionPixels": 403,
+      "outsideReceiverPixels": 0,
+      "review": "shadow/step01_mask/inspection/relation-011-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "chest-left_loop",
+      "bounds": [
+        457,
+        315,
+        172,
+        168
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -3,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            3,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 381,
+      "receiverIntersectionPixels": 381,
+      "outsideReceiverPixels": 0,
+      "review": "shadow/step01_mask/inspection/relation-012-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "chest-right_tail",
+      "bounds": [
+        457,
+        315,
+        172,
+        168
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -3,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            3,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 614,
+      "receiverIntersectionPixels": 614,
+      "outsideReceiverPixels": 0,
+      "review": "shadow/step01_mask/inspection/relation-013-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
+    },
+    {
+      "id": "chest-left_tail",
+      "bounds": [
+        457,
+        315,
+        172,
+        168
+      ],
+      "fullPaint": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/full-paint.png",
+      "receiver": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/receiver.png",
+      "clipBase": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-base.png",
+      "frames": [
+        {
+          "offset": [
+            0,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-00.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-00.png"
+        },
+        {
+          "offset": [
+            -3,
+            0
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-01.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-01.png"
+        },
+        {
+          "offset": [
+            3,
+            2
+          ],
+          "file": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-02.png",
+          "clipped": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-02.png"
+        }
+      ],
+      "rawAlphaPixels": 606,
+      "receiverIntersectionPixels": 606,
+      "outsideReceiverPixels": 0,
+      "review": "shadow/step01_mask/inspection/relation-014-review.png",
+      "nativeDirectory": "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b"
     }
   ],
-  "warnings": [],
+  "problems": [],
+  "warnings": [
+    "chest-right_loop：完整影层没有裁切外像素，请检查是否预裁死或确实适用",
+    "chest-left_loop：完整影层没有裁切外像素，请检查是否预裁死或确实适用",
+    "chest-right_tail：完整影层没有裁切外像素，请检查是否预裁死或确实适用",
+    "chest-left_tail：完整影层没有裁切外像素，请检查是否预裁死或确实适用"
+  ],
   "fileHashes": {
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/without-shadows.png": "583554e4b0e36c2d662ba3912caec4cd507e428b0001dae93b16837277956b55",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/native-final.png": "696286c6f247dd5ac667f1892caa9fe210fd987be711f44424104abd1c5ab288",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/full-paint.png": "81a5a8435954833823fdcd3db2c3101de0ad7820cf0710f3a985991f9f56536c",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/receiver.png": "76771801da9f4c86b585aa925e3d78bb2f75b0244110557bf0abb398511a48b1",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-base.png": "76771801da9f4c86b585aa925e3d78bb2f75b0244110557bf0abb398511a48b1",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/offset-00.png": "696286c6f247dd5ac667f1892caa9fe210fd987be711f44424104abd1c5ab288",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-offset-00.png": "bad108a486ba483c3a33ecea26d63641fa3bb34fae89a04fbeda02abe395a7fb",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/offset-01.png": "ba88c1260c7913bd2bb1d5d26158733d76cf86d15eeadbf65d8c67ab26c0c4cc",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-offset-01.png": "f820415ce8e5806dccdb73ce376557e24c1bdf949dc816a01e734b0d1f2dbb1d",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/offset-02.png": "e334968ead18a8e51ad0aecd62b3114da13fd50236377a596c21c9021faddf1f",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-offset-02.png": "b431cd8219d33f1b665cff280084a392c0d511e09645fcda8842df5f2ed19e51",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/offset-03.png": "b3fcb2c1d45d7d76a3c5ebbb4f34231f96682258d9d4ba98cde4baf95feaeb90",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-offset-03.png": "f3ada7b8a1e2c843514ce4e41bb6e3aa3a383ce0fd192b52d6923dde34b1575c",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/offset-04.png": "a3219c7f179e0928967b0a859830025fcd55af2f5bd31e97d2a6fe75ab9396b3",
-    "workspace/inspection/native-ea2ee570-1cf8-49ea-9a84-5f371d322753/relation-000/clip-offset-04.png": "cb519606aa2269af35ee2a9d779091db998a39f7557731003aaaf03cee0acba0",
-    "inspection/relation-000-review.png": "281572c2ed82cca3215bea6d4679358b2ac0eeb2d72d5252600365ea797299e2",
-    "inspection/overview.png": "413f840441dea24db1d0b2dd0ee757085c735e2d0cfeca4b9fe39b73417003da"
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/without-shadows.png": "7beb6e36a38a66db722b11434297786675f7be671a7e1e2c6d6b4232ef59e45d",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/native-final.png": "9200a7d279c57f75faf1105c285118ece4d3e95a1930a9299f376f05dbc7354f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/full-paint.png": "a3724abbe9353b50a54126dc2ed8a1a7a72280b3ff27366dae5a532aa2e0876e",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/receiver.png": "0d1cfed28c902689cdce50cc53fad9c9a2fee39c7fab38a401533ed2c0a82adb",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-base.png": "0d1cfed28c902689cdce50cc53fad9c9a2fee39c7fab38a401533ed2c0a82adb",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-00.png": "9200a7d279c57f75faf1105c285118ece4d3e95a1930a9299f376f05dbc7354f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-00.png": "795270ae6590eb1efd346d35ae7f997c0a3f04995b99cfb2a0ea1f325f3b5532",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-01.png": "557ebcf12466a8c8c6759c52e0fd825e6ddf0d9e3b85274351c32187d15a069f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-01.png": "3f576f6cba5c3ab514e6f681462923aee6f1038b4b8086a2ae0d547074215d02",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-02.png": "46b701b939bc60d78927b3fc3ddd5b7b98cd3d49b144b93beff9f0e3fa011628",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-02.png": "366c300e231d8467754df8712271f858220e6ae38f317fd5752564d2f8c470e3",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/offset-03.png": "5921e7c61d7d81548c8088a7fcfc01dcfa0050c9721a7929846e9d7705f826a4",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-000/clip-offset-03.png": "6485ffca8582dc9fbdc496d447756fec059c3503616258db5563fd109c65d78b",
+    "shadow/step01_mask/inspection/relation-000-review.png": "fbdc26549f9efd944c1e25ddf86368db35ba8c3152559fa085f96276d3d94522",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/full-paint.png": "1041aa4b3baead816402942d388ad94b38d77d26b8d58c5a2a0bf59cfa1a023c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/receiver.png": "9bc2672ce3a586c703464dc633383062477abb80711f9a767554c3d2e87a0418",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-base.png": "9bc2672ce3a586c703464dc633383062477abb80711f9a767554c3d2e87a0418",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-00.png": "289e2bcc814f4d65616ffee300b83253fbe6dfc5d9cd8dad3de2a290ee15522b",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-00.png": "64b2d802bd0bd9cf87b9de44acacaccdeffa562f5846352fb05abac3dc327239",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-01.png": "80cca20ea220512e77c4529d2228660623241cb8d94b545efd643ff46d7d2bda",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-01.png": "eb07f663bfb0b7c38f953dc78b7f0329bcdf96f8e4f1706ac4e919224fa2cfd5",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-02.png": "1c8819d6b65347f9afa4f7a0335afa490daee7306097e361a93b30a2ae51c6f5",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-02.png": "365e83c78472f83ac4f48769c755be506aed99680f871de7cdd573d4fc06eb80",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/offset-03.png": "317a9a8cd51c21c248b0df20f4a72064bce846d8e1c4fff2b0158e8324a6c358",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-001/clip-offset-03.png": "aec2f01daf7973622a4a3b0346db9a789e562631d98e610e0da36503ad5c35bb",
+    "shadow/step01_mask/inspection/relation-001-review.png": "fc4939bbb367bf86cc3a80b6b9c291c6ad844cf75b002077dc4d3785ed8cc3ee",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/full-paint.png": "8c806e27d8e4651d6e60df11a324ec1050f1081cc351a617cb2493cdc8700dae",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/receiver.png": "2ea01a74be6aeb7e6c58c81708bb3b1eaa2d77ed3b07c355fb2c0b8812bb1b59",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-base.png": "2ea01a74be6aeb7e6c58c81708bb3b1eaa2d77ed3b07c355fb2c0b8812bb1b59",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-00.png": "33132c845b8ae4fb541ba4617e12b5c79787e65cd16ab268e58c63a1dbf4e2b4",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-00.png": "423436d636ab042afb6f0db010b6b3f705cde5462e728487357f9542a83c0910",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-01.png": "fb4e42e2766d5740856c8cd364e01d8c943b886a20a2c95b423afa03e56d7355",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-01.png": "abe283d2672378d16c8d2fe06f32c074f90928f15d0dcc57400913c3ab8de961",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-02.png": "eeff1544a68f7c2e330f1d30cb05e157360662810cfab58332f4fcd7eb39756b",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-02.png": "2b9fb242b369e4d42bf53dd7a107f43ac39fd182bf313ce7cd5c63d11178fa94",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/offset-03.png": "5d8e2aacc3e4765d23f1f6b9278516ec06288ca62a0be387f8293a14a60b03de",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-002/clip-offset-03.png": "bc5abdae16654904e6786029caa1bacc8b12b1712360225a297692d02801ae47",
+    "shadow/step01_mask/inspection/relation-002-review.png": "46640ebfe5c763f6303926f1e76a64afb9e03e5d9040d4c28cd381eb366f067c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/full-paint.png": "ec96577e5c092cc21e1a17ca2db0d4e9cebc67d462c779cd73bab6e187a36326",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/receiver.png": "9fe6ca6164b59c7544e3fed0843a67fc3dd2294c6c6fafdd765e76966ad4afec",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-base.png": "9fe6ca6164b59c7544e3fed0843a67fc3dd2294c6c6fafdd765e76966ad4afec",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-00.png": "becd104e6278ef4ccd100c57e10e2acb103cd24258dacad14dbc45bf69c1b5fa",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-00.png": "b0be60b8bb5c4ccf3567dccd812c9fc3ef4d64defef334bd87d11896516d95e9",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-01.png": "a9cc686fa700882ac849f33ef4028ecf945951745561df3fdabd4a483905abd6",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-01.png": "b0565926b5232b2644d539c1f8ac6b24f049fe15f6f4a1be7f95f465e0ad540c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-02.png": "e34575b4b770f62572293ff7f45f5cd19101cd61b9774c6bba9b5d3505f10aa1",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-02.png": "4dde86af4461e96ec6c01ac852e937cf30e3f60685e5fb31795b89e061452f92",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/offset-03.png": "ccbb34f14953d39faf9002e49a69310135ad4eed67d19c52f1d43eebd0c7787b",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-003/clip-offset-03.png": "421a6e859b94a9899a269628e640d8a0edf8e2d0bcb776f899aef58367647a8f",
+    "shadow/step01_mask/inspection/relation-003-review.png": "8e3aead8483815b25019835e40e08f6fd086c14defbac9659f703e4811711c8f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/full-paint.png": "ff16a8257dbdec1b50fa9755364a429e3f07c47cc4e46b3fd0528fd10e04fe12",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/receiver.png": "2821748c8f2d8310feaa7359e89936d7483b44d727906bfe164d579119e20633",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-base.png": "addcac4fad485d439c4f2c19b2900d5e6fc792953d7edbeca2e8853f4852dfaf",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-00.png": "ff7507d0c4a42283d42d1be126f189e018a43ef18be199e151b95264544e5b75",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-00.png": "e1ac2ffc20d39fc3c534725655aa4a9df7edc8d6d3fca46292f0ba85d8f20f45",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-01.png": "58dd1bc0aa1d26a0d11afa7c1cc43012dcef81bd6e2be2bba418bfe407362ac8",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-01.png": "d86aba8e4b463b865350b58d7af5ba78bf26e1c2ef2ea53bbef30390c93345b8",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-02.png": "54ade3f76ff843f459a8ace2e1b737ab5c5a5981be53ca796063a6e1fbabcea2",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-02.png": "db58432165c1dd70ef7ba06408116117a4161d0518d4724a374783a0540b4078",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/offset-03.png": "2e16655ca67179a562e9e110497a08cd3f4201371f93fc02a0c88803af41b855",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-004/clip-offset-03.png": "2538b6b901a51b05a2e5be3f85e8c7f87346f2116cdb5c88102600cb675fdfb4",
+    "shadow/step01_mask/inspection/relation-004-review.png": "53e998b3df670502d9e7a04b48248af1dc68c62c6528e01a036dbe99ec39c6cd",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/full-paint.png": "504c9eac3101ca7791297be65b4e981e4ca42f761e67e0bce1a5a7e367d15bea",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/receiver.png": "71bdee02dd98cee7cb981dd4028531eb116e2ec3ba11492cb514ca5b907d1907",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-base.png": "978b0fc5cb3b911a2f51de78f0d4fcdddb22aab87e7fa91bb24168402fc01a7e",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-00.png": "a95b02d425090fb07138506d0a07a7408e02dc5648035a098a47275b8bbb7dcf",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-00.png": "f361833102041c369e6db3b6fa8fd54cfe5406c97605e5445aa999cc6a836e34",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-01.png": "0b30154f4019359c538b829afde7e2e9a5902a27a3ad7aea7458f6afd8c3cfe2",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-01.png": "eb83ff23ef6cdece2212f265caf527e04a593f0753c03e6d66bfa71c7b99f19f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-02.png": "8f4a72118a01d25294b4a42049f3fb01cd2e98f0267127100a22d61a4ecac821",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-02.png": "46264f920fdfafa4130ceb0017b787dfd69b6ca29649dcb39539364a9befb4f1",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/offset-03.png": "75e70cdd32b7ab45aefc5d414ea37bcfe82ad0e4b3af540064abf7f72d3a4b6c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-005/clip-offset-03.png": "a99c76540f3ee97b88d72453a5edcc2c2a523a721a69e6c839e06bd28303ea22",
+    "shadow/step01_mask/inspection/relation-005-review.png": "9b16c233cac975c2314fed27c8c79faf66d8a86d7dc8a4b9a97e9a51e16aabe5",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/full-paint.png": "90d3b7c5d6986a5f7005581070988515e52f262e5bb47cb422c0967e43ccbe14",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/receiver.png": "849b3b039f40af19387a7418b4bc962690beb3b9c9f0e8201d367924ed85c0b1",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-base.png": "a3bc5acbaae541a9eec588923351fb9fa026ad560d8aec0a0a9ddd195db3e56a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-00.png": "6791bb2a1259f92135a5550eed8e17f82b8d3cda82088ae2123fe596b0760f47",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-00.png": "d52cee01033ce5f9bee1f853be156a1f0b65ac6184817a4c0b03dc653b6bc2a5",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-01.png": "040d8acb04bc672966846ee4241e02dfa6835b81a7d75149e6a348304ef0b502",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-01.png": "5ad1b2079ff1fbf89d6473698f0a9a72ffab4bbcd867b4391176d0d4dc0cd192",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-02.png": "faf2a01552ec29ac40888a1a78e7c784ba61b49d4b5c63a92ca95e09fdeac93e",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-02.png": "fef635dcb09916131a74c9be7052b138e3bf3ffe061a7f0cd2c559a3a8dd8809",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/offset-03.png": "698e8a5bc5badf1ceb1ac2d60882ea91154b96436ee82acb788fcb30048efea3",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-006/clip-offset-03.png": "731c54dbbfe0fabeba9e57a7c03d4f37705933ce6fdda91ae2242a03e29b7e80",
+    "shadow/step01_mask/inspection/relation-006-review.png": "404f22e4c8ef1afef995a9b6ded6f58b124d7e3ca80157f61db09e8a65a2772a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/full-paint.png": "1c66c06610d7490b0df7faa70c5374b9d749c6e2ce5ee88cf8695dc4ac90b370",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/receiver.png": "0d09531f16b21548bbf5339e0280cef648f06df0baf0e91ece841ea2815d478a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-base.png": "0d09531f16b21548bbf5339e0280cef648f06df0baf0e91ece841ea2815d478a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-00.png": "b787fd0c7716af18c7f1854536dbd6142a9c3acabe9bbf662ccb459dc64597b3",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-00.png": "bb5bac9869ffc54ac830e97f618dafc538c823edcae7e60c09e4dcc9b6cc7e50",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-01.png": "cf1711ef73c0533a2101f3070eb896f9ca2fc17fd903efc59e6782d157ae627a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-01.png": "f8c7d72252d86f164856f196750aa8d5c9bde0fc84b43c0749fb7251ee11b04d",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/offset-02.png": "f11e7613889dec3d51623006d450a11db19f2a5371f8b8b93d06064fd6d3cdcc",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-007/clip-offset-02.png": "6d865cdc0fcea653bcd1e9406b649ef97846ac3f84f0fbc24a9895b8c38a9582",
+    "shadow/step01_mask/inspection/relation-007-review.png": "172dcd8002eeb5cedbef29266327540eb2bf032697c38c013fb274252d5e8f7c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/full-paint.png": "48ffbb85070d025928f4e4d3c521399f57cecc9dc1f226418e218ca5b583225c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/receiver.png": "50380d97af16a1b3a1a08de6ea20bb44209d6b685a2b6dd0bf45c96335ca646a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-base.png": "50380d97af16a1b3a1a08de6ea20bb44209d6b685a2b6dd0bf45c96335ca646a",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-00.png": "dbf4d9c947552baa219b839af790664b7fd89060e34323fdfb4c3f4c3f8d5da0",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-00.png": "21ef5df2f5f5df4f0f4d38782d241cc5a083cd72f65fc1df9219292399c68455",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-01.png": "86979283660e647f40dfb3bc22adca0174fa92f64fe2f066be20d60ce6dee7d7",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-01.png": "06e79e9cabaf7c983a593be9f4b6aa20dffa357b39941ef51d45db3ff372cd47",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/offset-02.png": "a590f508efdcf2ca20f6be0346b4c098b2f6c38517d45ffae5adfeb40cf04cc8",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-008/clip-offset-02.png": "575a78bd9cd38c6f91be39c504ed6c40f4f99557f12f79e7ef71f05f5e004524",
+    "shadow/step01_mask/inspection/relation-008-review.png": "5e3c2677282fc46534c6026772bdae8ea7e145613b62d07d1a33260290da3357",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/full-paint.png": "c52b1958f2d87ee9ca42b237285f4f7100d90662bdbee406bd323e5b1ed6ee1f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/receiver.png": "f81412ad4f9a204ee5c7a0edbb4b255db09611dbb3f3da9fa6c94156e3655fa3",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-base.png": "f81412ad4f9a204ee5c7a0edbb4b255db09611dbb3f3da9fa6c94156e3655fa3",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-00.png": "f9bcf152726c9d2a794247d46560590993da8e86880a4258f09629c022350277",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-00.png": "208a1a363519eb9cd0e7c6101c219e249ae258c3b933f8f87bd0b10264f7b9f7",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-01.png": "558b2e1b6b3f00b9cd937a0ca941dbd483c34f23a33cd75ed6618c947b929365",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-01.png": "6ccac2b74bc165fbb25c804c7410bdbcd3e24964d4a572c481d2987c7872c8cc",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-02.png": "cedaa1bc1c40cf6c39d2a289fdaa29753c636cecbdb0de623598c2e82ac0a81c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-02.png": "1c3d67d951ab228e78c7a2403c45daee2559a5ea9ef210346bba87b3e4cf584e",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/offset-03.png": "bbad7b09c3cd8ec79ed574822abb20a4cf34fa176c0456c84755d95144aa0fad",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-009/clip-offset-03.png": "0258a3e8e8542eff7d4b86512f6501a866482735453aedb728b1d93f775e71e6",
+    "shadow/step01_mask/inspection/relation-009-review.png": "bdb6f41958efc213e44b7c2ab4921eb15d193ed349f6044e3dcce797b967b810",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/full-paint.png": "9aeb0dd1b49295581317fd7abdc86fc63b9e831c662e3997a241e056365e1f9e",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/receiver.png": "1af6dad5038658db9453c37b0163b75bc35b0a3fc85613ebaa514ebafc615c86",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-base.png": "1af6dad5038658db9453c37b0163b75bc35b0a3fc85613ebaa514ebafc615c86",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-00.png": "7c536a40759e1e4d38d907fb2eebd71e382f4eb421414217a07293a08c54d0b0",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-00.png": "35373c0621c580050783bbb74851ee6f911c8007aa9d581924455f631cc17755",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-01.png": "9ed1d42dea82b9f202bb1193efc1fb2a68647b633f4c176637f4992541020097",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-01.png": "fc93ccc3a3461f70784960091550a738009c050cb957558e7979833e91ae63fe",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-02.png": "98756e962e4c3bed32e6a1d01d6f8fd958dcd6704ad03708e2ffec100ad57cff",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-02.png": "2f81bbf37188d231319c1e9a1f00dfbe9d9d6b7234fcd92b7bdca900ff415c2f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/offset-03.png": "cdf6e4a18a5d6db2b43d63bc570cdff30008e72329dccf545c5f851411443eec",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-010/clip-offset-03.png": "2cbd564e2870e1c9fd852dc5afff9d9c0378cc63ed157e83337c4103a90f6d51",
+    "shadow/step01_mask/inspection/relation-010-review.png": "43411675d2fb652a991f5e03f9d9500b8697597266813e02c940029c1c835396",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/full-paint.png": "d0d2583c35345d1390b318614d91477076eb949576403cddf86df169b6d5890f",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/receiver.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-base.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-00.png": "98756e962e4c3bed32e6a1d01d6f8fd958dcd6704ad03708e2ffec100ad57cff",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-00.png": "78c42c1740766f6e30a44d80f068e045b69d8a8513009c302c78df6cb4dd3c05",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-01.png": "2aacd58e8672acd8298981f9ffbb03e44889f84c59e807ec934bec77a4293ca2",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-01.png": "70e3ae096593d137c66ac29acb360c03678b6f282829db0d253ac26447571856",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/offset-02.png": "6b18fca3ca27c514ed81748143a0b3a8e79313072700a5b3d4322a88037ab4d2",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-011/clip-offset-02.png": "b61ddd62d76f068bd0a68d227e2b300912318ca39d1bf6b4cdb69bf44cdae463",
+    "shadow/step01_mask/inspection/relation-011-review.png": "82e8d86b64d60d154bce031c7299b39aa255b8298778b4c9747143b7996a6a79",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/full-paint.png": "00345cccf6b2b1dfdb6a62bb9d4590b8e619222db4b6309704a3dfded56298eb",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/receiver.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-base.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-00.png": "df67e89047bd2533f1e96c97998d263fee044afbcea47a64c64f6871b9e1732c",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-00.png": "fa0b21f7431350b5d6a457f19d078a547993c13d8f505de690ded7c38319cfd9",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-01.png": "c43fb1217262c61ac4d11fda4caff55ca54b07d18eef1883444f78130c710241",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-01.png": "9083b9288d07483bc228546367d2fc56f79151fd02f7559ef77eec94d603d995",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/offset-02.png": "4a68c48de3e7c8c6803b1247c6f6cf5807976c8703152faa3daef3518d2486a7",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-012/clip-offset-02.png": "755af7f87a302932521258395fc3289df4d5328f9b22cdb9bdaea369a2515ff1",
+    "shadow/step01_mask/inspection/relation-012-review.png": "e6c32b75a9995932bdb16ecd1095d4a6e87c5fe272024026431bd347cde45203",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/full-paint.png": "7e41f6213a63e15427258a82e22defc53cfb6aea0764dc24e3beac84b86b4bb7",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/receiver.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-base.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-00.png": "b5b082d78117d7b438cd9cca20a36ad3ca0c9c096a386dcbf6adce89508e4e2b",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-00.png": "75eccd9f228be70e314a56d1e9573e1191fa12801beb86928caa4588f9c0eef8",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-01.png": "f8eb1682a9879b5cda022ccdfeaddcf3cd6acf48e065dad05a9c88b8cdd0c537",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-01.png": "ace0e74f604ac79b01de382f2b196484f2cc5433a9c59df988127240a1ccca90",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/offset-02.png": "b252aab635e5a878cd7ed461af06cee670b78325ebc17a9feac8687028aa90c0",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-013/clip-offset-02.png": "48c590580198439242e7eab147f07b41046ef3476908f0d8c8b5832a55e92183",
+    "shadow/step01_mask/inspection/relation-013-review.png": "3ebff21c973e4809097cf1e711180ca4c465c44aba5131cffbb65e2cb4a27590",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/full-paint.png": "cd1b52c0bcd6c7249c2a1d511518139ed77f5c6e3250a91a690be0a9cb5320d8",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/receiver.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-base.png": "2659bac9333ce6085754ea87fe4dcdbd9eb87ca8b73d0f3071f29327c7274466",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-00.png": "ee99dfd51810a08a69e0eccf5a576af6dfefd67b488ef6eb617b40718416f017",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-00.png": "f0e461e1a1fdd58fa17213fa605f3fd9e068b17c53b08edf7aa55454ea0c16de",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-01.png": "b71ca1fe6e5f3bd6c1faa209daf93ebdb1f0c1920d8eade5e581b1ba7f7ade11",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-01.png": "0c35152e9f72a7d90a4af78507d1dd2f219af1f73cce2c2d9d91bb2305b30410",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/offset-02.png": "29aefe0bb9ccea835a2a03a15185b490597375ad2d0a254e87d8cd3af6e611cc",
+    "shadow/step01_mask/workspace/inspection/native-b5a25cd0-51f1-493c-868e-20e46bb9e35b/relation-014/clip-offset-02.png": "6de5de95e54451b6ec17c07d1ef9f7778b4460210c37ac8aae9263bf7a0b0869",
+    "shadow/step01_mask/inspection/relation-014-review.png": "c40520e4efad886d27b6cf6ec650a91746431bdb5659d27b2ddc8ef1a346f765",
+    "shadow/step01_mask/inspection/overview.png": "e11d26d49a04748e957564d3b38f7be17a3e6e95323bdfdf27980b6366cdfbd0"
   },
   "scope": "Native clipping and declared relative offsets; not physics or deformer animation. Raw intersection is before ancestor masks and final occluders."
 }

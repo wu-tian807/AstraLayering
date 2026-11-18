@@ -1,0 +1,23 @@
+[
+  {
+    "id": "arms/arm_right/hand/palm",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__palm__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__palm__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__palm__full.png",
+    "highestDepth": 25
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__middle_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__middle_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__middle_finger__full.png",
+    "highestDepth": 19
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R2-palm-finger-final/arms__arm_right__hand__index_finger__full.png",
+    "highestDepth": 21
+  }
+]

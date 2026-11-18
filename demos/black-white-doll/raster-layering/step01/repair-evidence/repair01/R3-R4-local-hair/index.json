@@ -1,0 +1,18 @@
+[
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_left__full.png",
+    "highestDepth": 65,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_left__views.png"
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_right__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_right__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_right__full.png",
+    "highestDepth": 66,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-local-hair/hair__side_hair__side_hair_right__views.png"
+  }
+]

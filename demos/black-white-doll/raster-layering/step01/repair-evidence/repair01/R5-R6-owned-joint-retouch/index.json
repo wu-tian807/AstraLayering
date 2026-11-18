@@ -1,0 +1,51 @@
+[
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__thumb__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__thumb__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__thumb__full.png",
+    "highestDepth": 24.5
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__thumb__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__thumb__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__thumb__full.png",
+    "highestDepth": 25.5
+  },
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__ring_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__ring_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__ring_finger__full.png",
+    "highestDepth": 17
+  },
+  {
+    "id": "arms/arm_left/hand/middle_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__middle_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__middle_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__middle_finger__full.png",
+    "highestDepth": 18
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__middle_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__middle_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__middle_finger__full.png",
+    "highestDepth": 19
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_left__hand__index_finger__full.png",
+    "highestDepth": 20
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-owned-joint-retouch/arms__arm_right__hand__index_finger__full.png",
+    "highestDepth": 21
+  }
+]

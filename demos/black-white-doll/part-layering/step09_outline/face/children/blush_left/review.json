@@ -1,0 +1,43 @@
+{
+  "groupId": "face/blush_left",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对整图叠加，并以 [550,164,66,40] 的 8 倍参考、blend、edge 覆盖本组全部可见区域，再以 [586,169,25,28] 放大核对外侧与白色侧发的接缝；同时查看父组 face 完成 SVG 的对应局部及候选独显。原图此处为角色左颊的连续粉红红晕及斜线，候选覆盖其明显可见范围，斜线已包含在色块内，无须本阶段另拆。外侧沿白色侧发遮挡边界闭合，内侧及下侧沿红晕渐淡范围收束；未发现误包邻接眼睛、头发、独立组件遗漏、真实孔洞填平或孤立碎片。候选完全处于父轮廓内，四倍采样越界为 0。未发现有明确图像依据的返修问题。",
+      "candidateHash": "0b811df2af271794ca7d1c6bde9326ede2356740dc06564c9a814f722d9e33a8",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_left/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/blush_left/previews/2026-11-16T02-12-36-103Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T02:30:43.025Z"
+    }
+  ]
+}

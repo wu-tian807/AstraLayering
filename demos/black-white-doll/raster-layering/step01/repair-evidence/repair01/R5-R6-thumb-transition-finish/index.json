@@ -1,0 +1,16 @@
+[
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_left__hand__thumb__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_left__hand__thumb__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_left__hand__thumb__full.png",
+    "highestDepth": 24.5
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_right__hand__thumb__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_right__hand__thumb__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-thumb-transition-finish/arms__arm_right__hand__thumb__full.png",
+    "highestDepth": 25.5
+  }
+]

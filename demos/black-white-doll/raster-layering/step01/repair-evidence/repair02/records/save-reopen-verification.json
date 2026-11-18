@@ -1,0 +1,980 @@
+{
+  "savedKRA": "raster-layering/step01/character-depth.kra",
+  "reopenedSameFile": true,
+  "layerTreeIdentical": true,
+  "paintAndMaskPixelsIdentical": true,
+  "compositePixelsIdentical": true,
+  "compositePixelSHA256": "93565392ab0c66913abc346e76d7fac7dfb002377a142871ba66a9d048230205",
+  "logicalParts": 70,
+  "ordinaryPaintLayers": 77,
+  "nativeOpeningMasks": 10,
+  "snapshot": {
+    "canvas": [
+      1086,
+      1448
+    ],
+    "colorModel": "RGBA",
+    "colorDepth": "U8",
+    "colorProfile": "sRGB-elle-V2-srgbtrc.icc",
+    "layers": [
+      {
+        "name": "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface",
+        "uuid": "{97f63bbf-cdba-4e09-9ce7-9e33ea689fb1}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "21396641c3a6dd89626ae171366d51d3071ecb135d94d7d43d9152aa8b5cf4dc",
+        "alphaLocked": false
+      },
+      {
+        "name": "D002.0 | hair/ponytail/ponytail_right/ponytail_back",
+        "uuid": "{c51a8a72-68f6-46a4-b3c4-019b4572ba2d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "002d07a7f0cb90d90ee183b0954208db4600193533245df6e9f91ae717c61408",
+        "alphaLocked": false
+      },
+      {
+        "name": "D003.0 | hair/ponytail/ponytail_left/ponytail_front",
+        "uuid": "{d57b889c-1e87-4bb7-ad0c-9813c75ad853}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "3debec7a6735d0a0d0f29f3840f95fb1f1d06c58fb81b47b334a7cc3626e2bab",
+        "alphaLocked": false
+      },
+      {
+        "name": "D004.0 | hair/ponytail/ponytail_right/ponytail_front",
+        "uuid": "{704ac90b-23ae-425c-8700-d65b179edb8b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "9592b988455718bfc5c6528c165179ce265b9c90d1362bc98b5831fd727e3e1e",
+        "alphaLocked": false
+      },
+      {
+        "name": "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+        "uuid": "{21c33243-4378-486e-af36-6916afe1b117}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6ca21549ba7f28113e79242c35c03747603a84df88ffdc1cd905cacdd0d7500c",
+        "alphaLocked": false
+      },
+      {
+        "name": "D006.0 | hair/hair_cap",
+        "uuid": "{94c4693b-9af1-4887-849b-a44c4e8ae1fa}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "d59c2ff7450b9f461a5694f2c52c5ffe8a20baff0f853549948d2c247ef9fab2",
+        "alphaLocked": false
+      },
+      {
+        "name": "D007.0 | legs/leg_left/shoes/collar_back",
+        "uuid": "{f81f5ff1-1813-4858-84e8-836e21a39123}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "bbc136937b287cb175db44557e399d947e14f5cfb1dbfe36c983bb1bb87d0cca",
+        "alphaLocked": false
+      },
+      {
+        "name": "D008.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+        "uuid": "{33bd2a01-497b-49b6-aa70-a900ef58bcb5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a3cc78e0ec3d9ee52add5e626a8e49e8946ef85f173e4b476c7ab1ebe68ea6f2",
+        "alphaLocked": false
+      },
+      {
+        "name": "D009.0 | legs/leg_right/shoes/rear_collar",
+        "uuid": "{955e9986-5704-44c4-bc4a-3857278ec12f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6503502e5f3f3e987bd72fb5299cb9a8d02829591c4796d3fd413ca8c1f4abcb",
+        "alphaLocked": false
+      },
+      {
+        "name": "D010.0 | legs/leg_left/leg",
+        "uuid": "{cefe2b59-92ac-4b75-92c1-23a71a91d23a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "0c495a39cbd94f50bf2ee652a7899568ee055ec8848e09d6baa8b06aa3d5a512",
+        "alphaLocked": false
+      },
+      {
+        "name": "D011.0 | legs/leg_right/leg",
+        "uuid": "{5f4aafde-aafd-4b83-9467-33e594de7f3b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "ea82dd813dc107d40040d444a72127441f4ac5d9d01f9522483454292cb02d46",
+        "alphaLocked": false
+      },
+      {
+        "name": "D012.0 | pelvis",
+        "uuid": "{b9061b38-ae00-46a4-96d4-509567f3dae9}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6a3e14f9744f20d70e85d8559176eba61ac9dea23015235b68c6f38a88fc0c90",
+        "alphaLocked": false
+      },
+      {
+        "name": "D014.0 | arms/arm_left/hand/little_finger",
+        "uuid": "{43a6cefa-c016-413f-b3f8-2e77901d9244}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "34f0bf156b4393a5bfef71a717f1f94df3b0d27f455ba3c4928ed0146d45bd66",
+        "alphaLocked": false
+      },
+      {
+        "name": "D015.0 | arms/arm_right/hand/little_finger",
+        "uuid": "{1c41aedd-be72-4586-a485-cedaed9115a7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "dbb747d1013b1cddb52b5ebdac6f87fb12e07ed0ef50746927058da8a8b2359a",
+        "alphaLocked": false
+      },
+      {
+        "name": "D016.0 | arms/arm_left/hand/ring_finger",
+        "uuid": "{bc4240c8-ca4b-4846-85b2-ad08825f7da2}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "4a7005dea1ac5d0b563eccaea6644d62999c2d97d693f0101c8e63110cbdf4d8",
+        "alphaLocked": false
+      },
+      {
+        "name": "D017.0 | arms/arm_right/hand/ring_finger",
+        "uuid": "{ac1ace21-7413-43bb-9e12-c1fd8000fbf7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "0bed8466a67cf6bbadb32a3e4a61d0737b8c43da31b6c67be76512d603f67582",
+        "alphaLocked": false
+      },
+      {
+        "name": "D018.0 | arms/arm_left/hand/middle_finger",
+        "uuid": "{70a48136-79a4-4fb3-89ff-618c1841d27b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "2ef16f3aeaa0efd4e0ca8f7a9a7912d42242ce6482a0d6fb02c1d85274092918",
+        "alphaLocked": false
+      },
+      {
+        "name": "D019.0 | arms/arm_right/hand/middle_finger",
+        "uuid": "{1d21298b-68e3-47b5-ae9e-e456892a274d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "5879a4cd9dbbce9755218e495febfad6401fa9dd86bf525a71d1191832d47c58",
+        "alphaLocked": false
+      },
+      {
+        "name": "D020.0 | arms/arm_left/hand/index_finger",
+        "uuid": "{a7f3b5a6-bd56-4178-848d-1d040d23ab61}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "5af9c9325d7f22874957963943f36c5b88808a66f8f8db946941da843abc7daf",
+        "alphaLocked": false
+      },
+      {
+        "name": "D021.0 | arms/arm_right/hand/index_finger",
+        "uuid": "{46a2f005-f975-479d-b963-0899922da2ba}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "09b5595e253d8eff6ae9b47fa160883cc6fb638be6a8dbb6d63f6f67cb6041b6",
+        "alphaLocked": false
+      },
+      {
+        "name": "D022.0 | arms/arm_left/hand/thumb | root_behind_palm",
+        "uuid": "{0da721a0-936e-483f-802b-060acea54fe9}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "94d828cbd27c861b21029054edc15239aea38ae633eab2083556677fa4ad641c",
+        "alphaLocked": false
+      },
+      {
+        "name": "D023.0 | arms/arm_right/hand/thumb | root_behind_palm",
+        "uuid": "{b431a766-e0cf-4756-b5bb-7db516654159}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6139c909e157335e0a4c048e58c9911201b61613609d653b1e347662a9afc145",
+        "alphaLocked": false
+      },
+      {
+        "name": "D024.0 | arms/arm_left/hand/palm",
+        "uuid": "{9e935d1f-a24a-450d-ae8b-e2a0206823f6}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "23505f7a1daba43f0b3f36c992022e2f9a39b464e60f87c3063078fcd1c9b251",
+        "alphaLocked": false
+      },
+      {
+        "name": "D024.5 | arms/arm_left/hand/thumb | front_finger",
+        "uuid": "{015927e5-ba89-4a67-8d46-e443548a96ba}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "cfc0e8b267e8a153f77dfa5c40b2436e4d8d2d4e647eadd5bb0b1e251cc0c7fa",
+        "alphaLocked": false
+      },
+      {
+        "name": "D025.0 | arms/arm_right/hand/palm",
+        "uuid": "{fedc19dc-c14c-49d3-9740-39837d6b2fad}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "77f0b18de5b61b22eefd8bcdb7d005a52a4a91649b5231c8e65c70d9f4520748",
+        "alphaLocked": false
+      },
+      {
+        "name": "D025.5 | arms/arm_right/hand/thumb | front_finger",
+        "uuid": "{9d109ffc-ebfe-4fe5-abea-32c63216c36b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "1571d5c322c400c0cb47db996a1e695d169b92baf4d7865c591266d62be92ac2",
+        "alphaLocked": false
+      },
+      {
+        "name": "D026.0 | arms/arm_left/forearm",
+        "uuid": "{b3aaaf3b-975b-49e6-ba87-29a5886811ed}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "9b268674044e701150e03bbb36c2dcd32303ce36a5e690050168aebfe98398ad",
+        "alphaLocked": false
+      },
+      {
+        "name": "D027.0 | arms/arm_right/forearm",
+        "uuid": "{77745b28-7235-486b-8afa-f3fbf816bd4a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "f06912ee3d1762ccfee57d20a498e22194b243e672206b43f689c4a96dbbdd53",
+        "alphaLocked": false
+      },
+      {
+        "name": "D028.0 | arms/arm_left/upper_arm",
+        "uuid": "{f10018ea-0b99-4738-a459-405dcb2c318f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "191ccb803d9140e87c86c3f41ba432fbb96b1b2c3499c0b6cd0ce17a9f168388",
+        "alphaLocked": false
+      },
+      {
+        "name": "D029.0 | arms/arm_right/upper_arm",
+        "uuid": "{4323d60b-9de3-43a0-ad2e-ed4b7505a560}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "bb55817953030d999795def540d09119627e6357c6ae8025749d64c46bd409c5",
+        "alphaLocked": false
+      },
+      {
+        "name": "D030.0 | neck",
+        "uuid": "{7c9213b7-ec58-4bbd-a966-2ec28be4c5ff}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "de3910a4b39413f0f40a057a341e8693768d772d3e0a2669c1d1c714f3f7ed11",
+        "alphaLocked": false
+      },
+      {
+        "name": "D031.0 | body/torso",
+        "uuid": "{facc9531-601b-4dcd-9af7-108430d288c3}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "5d5dc936a9edc01cac1288eede7aafcd9b4abe0724b33ba91759d837422d4a84",
+        "alphaLocked": false
+      },
+      {
+        "name": "D032.0 | body/breast",
+        "uuid": "{1961dad3-adb0-4599-96b0-ef2d4e295527}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "f9b6c0f50d9288578509e2a9209be2fdee25138b74fcc770fd93a7560e6d82c5",
+        "alphaLocked": false
+      },
+      {
+        "name": "D033.0 | face/ears/ear_left",
+        "uuid": "{7ef45aa6-e5e7-4a98-bfff-26dd2a2eae86}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "1bb0890726033213b2028a8f4eef3b8cdd4f8c1cd3cd9d5177330ce5321c2fdd",
+        "alphaLocked": false
+      },
+      {
+        "name": "D034.0 | face/ears/ear_right",
+        "uuid": "{f2b91761-c1f0-4adc-9a0b-25f7a7481322}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "e07d79aa5f46e441cfe8c419423ea304548b37bc889d869491c2b62977f605c8",
+        "alphaLocked": false
+      },
+      {
+        "name": "D035.0 | face/face_base",
+        "uuid": "{5120839e-f4ec-4fc8-9539-ecb251cfc63b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "d46772e0d0b4ddade8f89098348501af00d151261cebcab7e571eb4b06c5bdb5",
+        "alphaLocked": false
+      },
+      {
+        "name": "D036.0 | face/eyes/eye_left/sclera",
+        "uuid": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_left | shared aperture",
+            "uuid": "{2f703e78-ba71-4c64-b272-d340fb5b8d6a}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+          }
+        ],
+        "rawPixelsSHA256": "10ebed8e6ca4d7e5995db6faf5be0b55f4b7a726efa9e5e1f9c09758e81fd436",
+        "alphaLocked": false
+      },
+      {
+        "name": "D037.0 | face/eyes/eye_right/sclera",
+        "uuid": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_right | shared aperture",
+            "uuid": "{54b755d2-eced-433a-8527-9b960ca081b5}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+          }
+        ],
+        "rawPixelsSHA256": "d45846064bfc39aa97f345ee590bbf22207bad3abe11d6cfeeed8205815aa557",
+        "alphaLocked": false
+      },
+      {
+        "name": "D038.0 | face/eyes/eye_left/iris",
+        "uuid": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_left | shared aperture",
+            "uuid": "{e35b204c-17be-42d3-9431-da250ca1eedf}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+          }
+        ],
+        "rawPixelsSHA256": "4c75fc14d3f86ec6d7329c528b5d111e462dcdb272c013792127309355481a41",
+        "alphaLocked": false
+      },
+      {
+        "name": "D039.0 | face/eyes/eye_right/iris",
+        "uuid": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_right | shared aperture",
+            "uuid": "{9383eaf3-c36b-453b-a78c-39ee6bf7adee}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+          }
+        ],
+        "rawPixelsSHA256": "19a8c138bcbc61622ca9c119061230d1280330e3b0789d1613ec1f0c4e9b226c",
+        "alphaLocked": false
+      },
+      {
+        "name": "D040.0 | face/eyes/eye_left/highlight",
+        "uuid": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_left | shared aperture",
+            "uuid": "{c72fa4cd-dc6e-4d93-8267-0950c3e8ef93}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+          }
+        ],
+        "rawPixelsSHA256": "94c9426fea16ea9c4d73333729f9b90e464132e952a7e7ec52c816dc5a30b504",
+        "alphaLocked": false
+      },
+      {
+        "name": "D041.0 | face/eyes/eye_right/highlight",
+        "uuid": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | eye_right | shared aperture",
+            "uuid": "{f6b437ec-2d88-48fd-9604-cf03dde7b630}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+          }
+        ],
+        "rawPixelsSHA256": "40ef37a31f572cc22b04b28d6c8c67746119aa69c6f129af43600b2f3b209488",
+        "alphaLocked": false
+      },
+      {
+        "name": "D042.0 | face/eyes/eye_left/upper_eyelid | main_arc",
+        "uuid": "{0e0d66d6-a711-46ee-abb6-eee2a0abd8a2}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "e8badf82a9b43919eaf7b10f7d3b236b2d694f9279be0162b83587365c8e98f0",
+        "alphaLocked": false
+      },
+      {
+        "name": "D043.0 | face/eyes/eye_right/upper_eyelid | main_arc",
+        "uuid": "{8689f19d-ec05-43f9-8f35-70a804dd539b}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6d16ecc2710167b36690f11997fd04412c2e042eab38b4057b9f9d1eb5b196d9",
+        "alphaLocked": false
+      },
+      {
+        "name": "D044.0 | face/eyes/eye_left/lower_eyelashes",
+        "uuid": "{914ddc36-1348-41cb-87bc-7c853b002beb}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a87b61bb202d96bc2e68ce8d371c23efbac667e68ef719094a65db09b014fe92",
+        "alphaLocked": false
+      },
+      {
+        "name": "D045.0 | face/eyes/eye_right/lower_eyelashes",
+        "uuid": "{c716fdf1-2523-44a7-9ed7-79bbeb38b357}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "940322f11d65b7cee135fff2ceae7bad42b3cc3187cb6661a8519241656fc30e",
+        "alphaLocked": false
+      },
+      {
+        "name": "D046.0 | face/eyes/eye_left/eyelid_crease",
+        "uuid": "{9a787a45-40ed-4f18-91be-dba46cd1f213}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a378796a620bf36bf984b65164feb5d83cecd51b63519a3f92aaf8506370cc82",
+        "alphaLocked": false
+      },
+      {
+        "name": "D047.0 | face/eyes/eye_right/eyelid_crease",
+        "uuid": "{58270692-50f3-4801-a480-f4610f4c53da}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "4fca5205b41e6d59cfea82a2a6fab7d7b589cf87919f31013a75d3ab1bf7fa03",
+        "alphaLocked": false
+      },
+      {
+        "name": "D048.0 | face/eyebrows/eyebrow_left | under_hair",
+        "uuid": "{d32221bf-3766-450f-8410-748229a621fd}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "65c39488f996d80d02105642a6c3b9c474d57029ee1ae90af6c1a80069790a4b",
+        "alphaLocked": false
+      },
+      {
+        "name": "D049.0 | face/eyebrows/eyebrow_right | under_hair",
+        "uuid": "{856910fe-47bf-42f8-a68d-f74f70b1cd6f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "e42565199ad59ceec5224011d16224549e6d0e214776f1be620c9b51f1619ab4",
+        "alphaLocked": false
+      },
+      {
+        "name": "D050.0 | face/nose",
+        "uuid": "{aab8c80d-398a-45ce-aedc-976af0befae7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "325b568b4241dbd1d8267e9ddee049a7d49252889e150adb2c73818519d1d0c1",
+        "alphaLocked": false
+      },
+      {
+        "name": "D051.0 | face/blush_left",
+        "uuid": "{1f620ecb-977b-4b2e-9b58-baedb6970eb5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "00469da680be150febc2108ae6078bf5dee05ba8cd6fad65a002d340103ad721",
+        "alphaLocked": false
+      },
+      {
+        "name": "D052.0 | face/blush_right",
+        "uuid": "{aa0acd6d-b31c-4317-a00f-cec348df4558}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "e5bae6b42e0f1427393b6dc096f908258c147c7dc8de300fb38d9b7a25a2bb22",
+        "alphaLocked": false
+      },
+      {
+        "name": "D053.0 | face/mouth/mouth_interior",
+        "uuid": "{905b720d-3f33-49dc-b613-21464d968db2}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | mouth | shared aperture",
+            "uuid": "{d59f8575-e70c-4aa0-abae-b9e985258d31}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+          }
+        ],
+        "rawPixelsSHA256": "e6969dddf01aad75b43081292a148a78069ab8fd7d871df45658cd9a5bbb72ce",
+        "alphaLocked": false
+      },
+      {
+        "name": "D054.0 | face/mouth/lower_teeth",
+        "uuid": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | mouth | shared aperture",
+            "uuid": "{552e3474-ae73-4ba8-aed7-009a2be45c19}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+          }
+        ],
+        "rawPixelsSHA256": "af1ae1deb6df1eabdd2be8f556ddb90ca4b3e90240fe246b4305131f51c947ae",
+        "alphaLocked": false
+      },
+      {
+        "name": "D055.0 | face/mouth/tongue",
+        "uuid": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | mouth | shared aperture",
+            "uuid": "{e83b6cd2-3a28-4c18-8335-8562c7114bc7}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+          }
+        ],
+        "rawPixelsSHA256": "8ef9067396b25e309ab7d2633586b683354dd096b18a83881712f212ebf77ca6",
+        "alphaLocked": false
+      },
+      {
+        "name": "D056.0 | face/mouth/upper_teeth",
+        "uuid": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [
+          {
+            "name": "OPENING | mouth | shared aperture",
+            "uuid": "{3c23808f-8647-46ed-8650-fd7fe0f39797}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "blend": "normal",
+            "children": [],
+            "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+          }
+        ],
+        "rawPixelsSHA256": "88c5972e6948ee45ea307b0c36c5e8347a8792ef7b352affdee14e20ba5882a7",
+        "alphaLocked": false
+      },
+      {
+        "name": "D057.0 | face/mouth/upper_lip",
+        "uuid": "{e4879604-e0f1-495d-8266-a4bf9afcc88e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a1edcaf421478b8a8a20c60aa6b3eb0744646a694b20895448dfea1619077e00",
+        "alphaLocked": false
+      },
+      {
+        "name": "D058.0 | face/mouth/lower_lip",
+        "uuid": "{e8651430-d57d-4076-b308-8a825bd5cac1}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "d0dd18ac563a35729aaa53ee2e97084446be8d1ec346791f397a30b1536330c1",
+        "alphaLocked": false
+      },
+      {
+        "name": "D059.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+        "uuid": "{c823e52b-0f1d-4511-adb4-8ee2d7066a33}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a26115e0b5ee973625100f5cd215a38a8b84e7e1d7c0532af195e88fbc6ae531",
+        "alphaLocked": false
+      },
+      {
+        "name": "D060.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+        "uuid": "{f8313e75-669e-4097-87f6-58e9eb395548}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "ad45cd7803c518487eeb595b274a9868157759e2631b9702e55dfd677dfed7be",
+        "alphaLocked": false
+      },
+      {
+        "name": "D061.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+        "uuid": "{6fe1c271-2b7f-4ec7-9d57-6bd704a57b2a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "4c7672d9ec74b652714c2a90a57d6b4489644b370ad5f1a4073af50a28133647",
+        "alphaLocked": false
+      },
+      {
+        "name": "D062.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+        "uuid": "{ff19d310-cc7d-410b-b4b9-31ad38e4e39c}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a361df05198771e70bf6e18791580680238ed8f908317a2c8987868a79459627",
+        "alphaLocked": false
+      },
+      {
+        "name": "D063.0 | head_accessories/hair_bows/hair_bow_left/bow_body",
+        "uuid": "{85ec8913-cffb-413f-a79d-34c0736070b8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "420c0a549305f034e246d07096ed28c602335a5ab945d45ca533e9dd172a3b8a",
+        "alphaLocked": false
+      },
+      {
+        "name": "D064.0 | head_accessories/hair_bows/hair_bow_right/bow_body",
+        "uuid": "{6816993f-3e68-4555-8372-9fea1df67c6c}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a0abe111acdc9dcb282d265ba1abb15ba41daf9bb77200b80e2701f42993a4e2",
+        "alphaLocked": false
+      },
+      {
+        "name": "D065.0 | hair/side_hair/side_hair_left",
+        "uuid": "{5ff9fec7-57c1-4140-8880-2620c0f1d61a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "62ddd0c20af90e3c2028bd05af95ad399ae739a2d89190a2e789b739313cb938",
+        "alphaLocked": false
+      },
+      {
+        "name": "D065.5 | face/eyes/eye_left/upper_eyelid | outer_corner",
+        "uuid": "{da4b2000-d9bd-49fd-a542-759ab4d0c165}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "71cefb024e26ca9fb94c7c6aabab191f3b3c4a4d6ab31cc8e4c7a04ccb312466",
+        "alphaLocked": false
+      },
+      {
+        "name": "D066.0 | hair/side_hair/side_hair_right",
+        "uuid": "{f455cb05-e140-443f-aaa2-55f9be847b1e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "c6bb785f7207e11ba0465ebf43cad549552a816a327508994dee914f038ab1aa",
+        "alphaLocked": false
+      },
+      {
+        "name": "D066.5 | face/eyes/eye_right/upper_eyelid | outer_corner",
+        "uuid": "{c4298322-c043-410d-b944-d0cbc9624540}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "ccc4f865d6872df2d6871ab93152e25b95ae56ea74eaf7f81bd006fe630d37d9",
+        "alphaLocked": false
+      },
+      {
+        "name": "D067.0 | hair/bangs",
+        "uuid": "{02e3bf05-8979-471b-ba16-65a3278f0964}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "8c2c88c8a97a946befe73f22a39f8dd3655f292c18aa9fe48599f6e96323ac12",
+        "alphaLocked": false
+      },
+      {
+        "name": "D067.1 | face/eyebrows/eyebrow_left | reference_visible_arc",
+        "uuid": "{9f5f79ba-a26e-43d3-8f75-a4b3cf3b103a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "6ff22a98f5cb6a795e26bbb4271e5d46c7ad77641ac1773d892869ddab4d0a9f",
+        "alphaLocked": false
+      },
+      {
+        "name": "D067.2 | face/eyebrows/eyebrow_right | reference_visible_arc",
+        "uuid": "{b7d71c64-a823-4389-b951-546f730261dc}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "77ec7f1a44fd176c13ccf42e705899a344eb5ecf2d66b1e70271555f1f1b6bb2",
+        "alphaLocked": false
+      },
+      {
+        "name": "D068.0 | head_accessories/hair_clips/hair_clip_upper",
+        "uuid": "{e18850a5-af43-4a81-9a0c-ea918d8ed66c}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "a4faafdf8c590809ad9b318856dbc27c6a732757350711eb0077947e0a4c3245",
+        "alphaLocked": false
+      },
+      {
+        "name": "D069.0 | head_accessories/hair_clips/hair_clip_lower",
+        "uuid": "{9fd7575e-3753-4c54-9ba2-238ff98ddd1d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "71b14031566725569328a9fc1017cf142d5790809798db0e84896b4a1d59a750",
+        "alphaLocked": false
+      },
+      {
+        "name": "D070.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+        "uuid": "{ea86465c-5c11-4067-9d88-2c81286854d6}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "1062d7095322efe6807a1dff33f462de69649842f57560b8f9adc0ecad0a71b9",
+        "alphaLocked": false
+      },
+      {
+        "name": "D071.0 | legs/leg_left/shoes/shoe_body",
+        "uuid": "{1f2ec0b4-f30d-4cb4-a240-c3a6a35c1b5e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "146baeedae4c13e56d39adeaad37aa5efe684f92d2067bd48dfb24c9fbe17014",
+        "alphaLocked": false
+      },
+      {
+        "name": "D072.0 | legs/leg_right/shoes/shoe_body",
+        "uuid": "{9b22ae4f-7193-468d-abc4-b71337ede87f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "blend": "normal",
+        "children": [],
+        "rawPixelsSHA256": "4f495be91346693ba177c445b07ac14a82b7b70e364fb826ab028e9702216145",
+        "alphaLocked": false
+      }
+    ]
+  },
+  "proof": "raster-layering/step01/repair-evidence/repair02/reopen/reopened.png"
+}

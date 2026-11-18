@@ -1,0 +1,935 @@
+[
+  {
+    "key": "D001.0",
+    "name": "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface",
+    "uuid": "{97f63bbf-cdba-4e09-9ce7-9e33ea689fb1}",
+    "bounds": [
+      636,
+      50,
+      188,
+      559
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D001.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D001.0.png"
+  },
+  {
+    "key": "D002.0",
+    "name": "D002.0 | hair/ponytail/ponytail_right/ponytail_back",
+    "uuid": "{c51a8a72-68f6-46a4-b3c4-019b4572ba2d}",
+    "bounds": [
+      261,
+      50,
+      186,
+      543
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D002.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D002.0.png"
+  },
+  {
+    "key": "D003.0",
+    "name": "D003.0 | hair/ponytail/ponytail_left/ponytail_front",
+    "uuid": "{d57b889c-1e87-4bb7-ad0c-9813c75ad853}",
+    "bounds": [
+      636,
+      50,
+      129,
+      500
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D003.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D003.0.png"
+  },
+  {
+    "key": "D004.0",
+    "name": "D004.0 | hair/ponytail/ponytail_right/ponytail_front",
+    "uuid": "{704ac90b-23ae-425c-8700-d65b179edb8b}",
+    "bounds": [
+      308,
+      64,
+      126,
+      479
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D004.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D004.0.png"
+  },
+  {
+    "key": "D005.0",
+    "name": "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+    "uuid": "{21c33243-4378-486e-af36-6916afe1b117}",
+    "bounds": [
+      677,
+      422,
+      93,
+      80
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D005.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D005.0.png"
+  },
+  {
+    "key": "D006.0",
+    "name": "D006.0 | hair/hair_cap",
+    "uuid": "{94c4693b-9af1-4887-849b-a44c4e8ae1fa}",
+    "bounds": [
+      432,
+      0,
+      213,
+      237
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D006.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D006.0.png"
+  },
+  {
+    "key": "D007.0",
+    "name": "D007.0 | legs/leg_left/shoes/collar_back",
+    "uuid": "{f81f5ff1-1813-4858-84e8-836e21a39123}",
+    "bounds": [
+      551,
+      1228,
+      60,
+      89
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D007.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D007.0.png"
+  },
+  {
+    "key": "D008.0",
+    "name": "D008.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+    "uuid": "{33bd2a01-497b-49b6-aa70-a900ef58bcb5}",
+    "bounds": [
+      554,
+      1214,
+      52,
+      43
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D008.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D008.0.png"
+  },
+  {
+    "key": "D009.0",
+    "name": "D009.0 | legs/leg_right/shoes/rear_collar",
+    "uuid": "{955e9986-5704-44c4-bc4a-3857278ec12f}",
+    "bounds": [
+      478,
+      1212,
+      56,
+      49
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D009.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D009.0.png"
+  },
+  {
+    "key": "D010.0",
+    "name": "D010.0 | legs/leg_left/leg",
+    "uuid": "{cefe2b59-92ac-4b75-92c1-23a71a91d23a}",
+    "bounds": [
+      540,
+      548,
+      140,
+      837
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D010.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D010.0.png"
+  },
+  {
+    "key": "D011.0",
+    "name": "D011.0 | legs/leg_right/leg",
+    "uuid": "{5f4aafde-aafd-4b83-9467-33e594de7f3b}",
+    "bounds": [
+      406,
+      548,
+      139,
+      832
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D011.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D011.0.png"
+  },
+  {
+    "key": "D012.0",
+    "name": "D012.0 | pelvis",
+    "uuid": "{b9061b38-ae00-46a4-96d4-509567f3dae9}",
+    "bounds": [
+      437,
+      490,
+      211,
+      205
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D012.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D012.0.png"
+  },
+  {
+    "key": "D014.0",
+    "name": "D014.0 | arms/arm_left/hand/little_finger",
+    "uuid": "{43a6cefa-c016-413f-b3f8-2e77901d9244}",
+    "bounds": [
+      668,
+      712,
+      27,
+      65
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D014.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D014.0.png"
+  },
+  {
+    "key": "D015.0",
+    "name": "D015.0 | arms/arm_right/hand/little_finger",
+    "uuid": "{1c41aedd-be72-4586-a485-cedaed9115a7}",
+    "bounds": [
+      391,
+      718,
+      26,
+      59
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D015.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D015.0.png"
+  },
+  {
+    "key": "D016.0",
+    "name": "D016.0 | arms/arm_left/hand/ring_finger",
+    "uuid": "{bc4240c8-ca4b-4846-85b2-ad08825f7da2}",
+    "bounds": [
+      666,
+      715,
+      28,
+      72
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D016.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D016.0.png"
+  },
+  {
+    "key": "D017.0",
+    "name": "D017.0 | arms/arm_right/hand/ring_finger",
+    "uuid": "{ac1ace21-7413-43bb-9e12-c1fd8000fbf7}",
+    "bounds": [
+      391,
+      715,
+      31,
+      81
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D017.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D017.0.png"
+  },
+  {
+    "key": "D018.0",
+    "name": "D018.0 | arms/arm_left/hand/middle_finger",
+    "uuid": "{70a48136-79a4-4fb3-89ff-618c1841d27b}",
+    "bounds": [
+      661,
+      710,
+      37,
+      85
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D018.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D018.0.png"
+  },
+  {
+    "key": "D019.0",
+    "name": "D019.0 | arms/arm_right/hand/middle_finger",
+    "uuid": "{1d21298b-68e3-47b5-ae9e-e456892a274d}",
+    "bounds": [
+      388,
+      715,
+      35,
+      80
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D019.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D019.0.png"
+  },
+  {
+    "key": "D020.0",
+    "name": "D020.0 | arms/arm_left/hand/index_finger",
+    "uuid": "{a7f3b5a6-bd56-4178-848d-1d040d23ab61}",
+    "bounds": [
+      659,
+      710,
+      25,
+      77
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D020.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D020.0.png"
+  },
+  {
+    "key": "D021.0",
+    "name": "D021.0 | arms/arm_right/hand/index_finger",
+    "uuid": "{46a2f005-f975-479d-b963-0899922da2ba}",
+    "bounds": [
+      402,
+      709,
+      25,
+      78
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D021.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D021.0.png"
+  },
+  {
+    "key": "D022.0",
+    "name": "D022.0 | arms/arm_left/hand/thumb",
+    "uuid": "{0da721a0-936e-483f-802b-060acea54fe9}",
+    "bounds": [
+      658,
+      702,
+      28,
+      54
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D022.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D022.0.png"
+  },
+  {
+    "key": "D023.0",
+    "name": "D023.0 | arms/arm_right/hand/thumb",
+    "uuid": "{b431a766-e0cf-4756-b5bb-7db516654159}",
+    "bounds": [
+      396,
+      694,
+      31,
+      62
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D023.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D023.0.png"
+  },
+  {
+    "key": "D024.0",
+    "name": "D024.0 | arms/arm_left/hand/palm",
+    "uuid": "{9e935d1f-a24a-450d-ae8b-e2a0206823f6}",
+    "bounds": [
+      663,
+      651,
+      38,
+      81
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D024.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D024.0.png"
+  },
+  {
+    "key": "D025.0",
+    "name": "D025.0 | arms/arm_right/hand/palm",
+    "uuid": "{fedc19dc-c14c-49d3-9740-39837d6b2fad}",
+    "bounds": [
+      384,
+      642,
+      39,
+      97
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D025.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D025.0.png"
+  },
+  {
+    "key": "D026.0",
+    "name": "D026.0 | arms/arm_left/forearm",
+    "uuid": "{b3aaaf3b-975b-49e6-ba87-29a5886811ed}",
+    "bounds": [
+      625,
+      457,
+      75,
+      218
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D026.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D026.0.png"
+  },
+  {
+    "key": "D027.0",
+    "name": "D027.0 | arms/arm_right/forearm",
+    "uuid": "{77745b28-7235-486b-8afa-f3fbf816bd4a}",
+    "bounds": [
+      386,
+      479,
+      72,
+      198
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D027.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D027.0.png"
+  },
+  {
+    "key": "D028.0",
+    "name": "D028.0 | arms/arm_left/upper_arm",
+    "uuid": "{f10018ea-0b99-4738-a459-405dcb2c318f}",
+    "bounds": [
+      604,
+      283,
+      63,
+      205
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D028.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D028.0.png"
+  },
+  {
+    "key": "D029.0",
+    "name": "D029.0 | arms/arm_right/upper_arm",
+    "uuid": "{4323d60b-9de3-43a0-ad2e-ed4b7505a560}",
+    "bounds": [
+      413,
+      282,
+      68,
+      221
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D029.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D029.0.png"
+  },
+  {
+    "key": "D030.0",
+    "name": "D030.0 | neck",
+    "uuid": "{7c9213b7-ec58-4bbd-a966-2ec28be4c5ff}",
+    "bounds": [
+      498,
+      213,
+      88,
+      74
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D030.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D030.0.png"
+  },
+  {
+    "key": "D031.0",
+    "name": "D031.0 | body/torso",
+    "uuid": "{facc9531-601b-4dcd-9af7-108430d288c3}",
+    "bounds": [
+      428,
+      267,
+      228,
+      252
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D031.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D031.0.png"
+  },
+  {
+    "key": "D032.0",
+    "name": "D032.0 | body/breast",
+    "uuid": "{1961dad3-adb0-4599-96b0-ef2d4e295527}",
+    "bounds": [
+      460,
+      311,
+      164,
+      106
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D032.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D032.0.png"
+  },
+  {
+    "key": "D033.0",
+    "name": "D033.0 | face/ears/ear_left",
+    "uuid": "{7ef45aa6-e5e7-4a98-bfff-26dd2a2eae86}",
+    "bounds": [
+      607,
+      148,
+      34,
+      41
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D033.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D033.0.png"
+  },
+  {
+    "key": "D034.0",
+    "name": "D034.0 | face/ears/ear_right",
+    "uuid": "{f2b91761-c1f0-4adc-9a0b-25f7a7481322}",
+    "bounds": [
+      443,
+      144,
+      35,
+      45
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D034.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D034.0.png"
+  },
+  {
+    "key": "D035.0",
+    "name": "D035.0 | face/face_base",
+    "uuid": "{5120839e-f4ec-4fc8-9539-ecb251cfc63b}",
+    "bounds": [
+      460,
+      66,
+      166,
+      173
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D035.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D035.0.png"
+  },
+  {
+    "key": "D036.0",
+    "name": "D036.0 | face/eyes/eye_left/sclera",
+    "uuid": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+    "bounds": [
+      565,
+      141,
+      40,
+      31
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D036.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D036.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D036.0.png"
+  },
+  {
+    "key": "D037.0",
+    "name": "D037.0 | face/eyes/eye_right/sclera",
+    "uuid": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+    "bounds": [
+      481,
+      141,
+      39,
+      31
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D037.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D037.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D037.0.png"
+  },
+  {
+    "key": "D038.0",
+    "name": "D038.0 | face/eyes/eye_left/iris",
+    "uuid": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}",
+    "bounds": [
+      568,
+      143,
+      25,
+      29
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D038.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D038.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D038.0.png"
+  },
+  {
+    "key": "D039.0",
+    "name": "D039.0 | face/eyes/eye_right/iris",
+    "uuid": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}",
+    "bounds": [
+      493,
+      143,
+      25,
+      29
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D039.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D039.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D039.0.png"
+  },
+  {
+    "key": "D040.0",
+    "name": "D040.0 | face/eyes/eye_left/highlight",
+    "uuid": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}",
+    "bounds": [
+      570,
+      147,
+      23,
+      13
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D040.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D040.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D040.0.png"
+  },
+  {
+    "key": "D041.0",
+    "name": "D041.0 | face/eyes/eye_right/highlight",
+    "uuid": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}",
+    "bounds": [
+      495,
+      146,
+      22,
+      11
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D041.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D041.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D041.0.png"
+  },
+  {
+    "key": "D042.0",
+    "name": "D042.0 | face/eyes/eye_left/upper_eyelid",
+    "uuid": "{0e0d66d6-a711-46ee-abb6-eee2a0abd8a2}",
+    "bounds": [
+      564,
+      131,
+      54,
+      35
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D042.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D042.0.png"
+  },
+  {
+    "key": "D043.0",
+    "name": "D043.0 | face/eyes/eye_right/upper_eyelid",
+    "uuid": "{8689f19d-ec05-43f9-8f35-70a804dd539b}",
+    "bounds": [
+      471,
+      135,
+      51,
+      30
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D043.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D043.0.png"
+  },
+  {
+    "key": "D044.0",
+    "name": "D044.0 | face/eyes/eye_left/lower_eyelashes",
+    "uuid": "{914ddc36-1348-41cb-87bc-7c853b002beb}",
+    "bounds": [
+      592,
+      167,
+      6,
+      4
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D044.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D044.0.png"
+  },
+  {
+    "key": "D045.0",
+    "name": "D045.0 | face/eyes/eye_right/lower_eyelashes",
+    "uuid": "{c716fdf1-2523-44a7-9ed7-79bbeb38b357}",
+    "bounds": [
+      488,
+      167,
+      6,
+      3
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D045.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D045.0.png"
+  },
+  {
+    "key": "D046.0",
+    "name": "D046.0 | face/eyes/eye_left/eyelid_crease",
+    "uuid": "{9a787a45-40ed-4f18-91be-dba46cd1f213}",
+    "bounds": [
+      562,
+      132,
+      29,
+      13
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D046.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D046.0.png"
+  },
+  {
+    "key": "D047.0",
+    "name": "D047.0 | face/eyes/eye_right/eyelid_crease",
+    "uuid": "{58270692-50f3-4801-a480-f4610f4c53da}",
+    "bounds": [
+      488,
+      131,
+      36,
+      11
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D047.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D047.0.png"
+  },
+  {
+    "key": "D048.0",
+    "name": "D048.0 | face/eyebrows/eyebrow_left",
+    "uuid": "{d32221bf-3766-450f-8410-748229a621fd}",
+    "bounds": [
+      560,
+      113,
+      38,
+      10
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D048.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D048.0.png"
+  },
+  {
+    "key": "D049.0",
+    "name": "D049.0 | face/eyebrows/eyebrow_right",
+    "uuid": "{856910fe-47bf-42f8-a68d-f74f70b1cd6f}",
+    "bounds": [
+      478,
+      114,
+      44,
+      11
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D049.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D049.0.png"
+  },
+  {
+    "key": "D050.0",
+    "name": "D050.0 | face/nose",
+    "uuid": "{aab8c80d-398a-45ce-aedc-976af0befae7}",
+    "bounds": [
+      541,
+      174,
+      4,
+      9
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D050.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D050.0.png"
+  },
+  {
+    "key": "D051.0",
+    "name": "D051.0 | face/blush_left",
+    "uuid": "{1f620ecb-977b-4b2e-9b58-baedb6970eb5}",
+    "bounds": [
+      563,
+      173,
+      46,
+      22
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D051.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D051.0.png"
+  },
+  {
+    "key": "D052.0",
+    "name": "D052.0 | face/blush_right",
+    "uuid": "{aa0acd6d-b31c-4317-a00f-cec348df4558}",
+    "bounds": [
+      465,
+      163,
+      57,
+      29
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D052.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D052.0.png"
+  },
+  {
+    "key": "D053.0",
+    "name": "D053.0 | face/mouth/mouth_interior",
+    "uuid": "{905b720d-3f33-49dc-b613-21464d968db2}",
+    "bounds": [
+      524,
+      188,
+      39,
+      38
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D053.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D053.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D053.0.png"
+  },
+  {
+    "key": "D054.0",
+    "name": "D054.0 | face/mouth/lower_teeth",
+    "uuid": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}",
+    "bounds": [
+      528,
+      216,
+      30,
+      15
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D054.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D054.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D054.0.png"
+  },
+  {
+    "key": "D055.0",
+    "name": "D055.0 | face/mouth/tongue",
+    "uuid": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}",
+    "bounds": [
+      527,
+      202,
+      32,
+      21
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D055.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D055.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D055.0.png"
+  },
+  {
+    "key": "D056.0",
+    "name": "D056.0 | face/mouth/upper_teeth",
+    "uuid": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}",
+    "bounds": [
+      532,
+      188,
+      23,
+      9
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D056.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D056.0.png",
+    "soloMasksEnabled": "raster-layering/step01/review-evidence/review01/native/masked/D056.0.png"
+  },
+  {
+    "key": "D057.0",
+    "name": "D057.0 | face/mouth/upper_lip",
+    "uuid": "{e4879604-e0f1-495d-8266-a4bf9afcc88e}",
+    "bounds": [
+      522,
+      186,
+      43,
+      27
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D057.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D057.0.png"
+  },
+  {
+    "key": "D058.0",
+    "name": "D058.0 | face/mouth/lower_lip",
+    "uuid": "{e8651430-d57d-4076-b308-8a825bd5cac1}",
+    "bounds": [
+      516,
+      204,
+      54,
+      29
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D058.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D058.0.png"
+  },
+  {
+    "key": "D059.0",
+    "name": "D059.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+    "uuid": "{c823e52b-0f1d-4511-adb4-8ee2d7066a33}",
+    "bounds": [
+      624,
+      72,
+      32,
+      167
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D059.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D059.0.png"
+  },
+  {
+    "key": "D060.0",
+    "name": "D060.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+    "uuid": "{f8313e75-669e-4097-87f6-58e9eb395548}",
+    "bounds": [
+      628,
+      73,
+      39,
+      153
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D060.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D060.0.png"
+  },
+  {
+    "key": "D061.0",
+    "name": "D061.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+    "uuid": "{6fe1c271-2b7f-4ec7-9d57-6bd704a57b2a}",
+    "bounds": [
+      434,
+      96,
+      18,
+      144
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D061.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D061.0.png"
+  },
+  {
+    "key": "D062.0",
+    "name": "D062.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+    "uuid": "{ff19d310-cc7d-410b-b4b9-31ad38e4e39c}",
+    "bounds": [
+      423,
+      96,
+      28,
+      130
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D062.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D062.0.png"
+  },
+  {
+    "key": "D063.0",
+    "name": "D063.0 | head_accessories/hair_bows/hair_bow_left/bow_body",
+    "uuid": "{85ec8913-cffb-413f-a79d-34c0736070b8}",
+    "bounds": [
+      620,
+      23,
+      89,
+      125
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D063.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D063.0.png"
+  },
+  {
+    "key": "D064.0",
+    "name": "D064.0 | head_accessories/hair_bows/hair_bow_right/bow_body",
+    "uuid": "{6816993f-3e68-4555-8372-9fea1df67c6c}",
+    "bounds": [
+      370,
+      23,
+      97,
+      122
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D064.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D064.0.png"
+  },
+  {
+    "key": "D065.0",
+    "name": "D065.0 | hair/side_hair/side_hair_left",
+    "uuid": "{5ff9fec7-57c1-4140-8880-2620c0f1d61a}",
+    "bounds": [
+      540,
+      12,
+      106,
+      243
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D065.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D065.0.png"
+  },
+  {
+    "key": "D066.0",
+    "name": "D066.0 | hair/side_hair/side_hair_right",
+    "uuid": "{f455cb05-e140-443f-aaa2-55f9be847b1e}",
+    "bounds": [
+      439,
+      12,
+      103,
+      242
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D066.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D066.0.png"
+  },
+  {
+    "key": "D067.0",
+    "name": "D067.0 | hair/bangs",
+    "uuid": "{02e3bf05-8979-471b-ba16-65a3278f0964}",
+    "bounds": [
+      472,
+      22,
+      145,
+      130
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D067.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D067.0.png"
+  },
+  {
+    "key": "D068.0",
+    "name": "D068.0 | head_accessories/hair_clips/hair_clip_upper",
+    "uuid": "{e18850a5-af43-4a81-9a0c-ea918d8ed66c}",
+    "bounds": [
+      593,
+      78,
+      28,
+      29
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D068.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D068.0.png"
+  },
+  {
+    "key": "D069.0",
+    "name": "D069.0 | head_accessories/hair_clips/hair_clip_lower",
+    "uuid": "{9fd7575e-3753-4c54-9ba2-238ff98ddd1d}",
+    "bounds": [
+      600,
+      110,
+      23,
+      20
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D069.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D069.0.png"
+  },
+  {
+    "key": "D070.0",
+    "name": "D070.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+    "uuid": "{ea86465c-5c11-4067-9d88-2c81286854d6}",
+    "bounds": [
+      568,
+      1179,
+      39,
+      80
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D070.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D070.0.png"
+  },
+  {
+    "key": "D071.0",
+    "name": "D071.0 | legs/leg_left/shoes/shoe_body",
+    "uuid": "{1f2ec0b4-f30d-4cb4-a240-c3a6a35c1b5e}",
+    "bounds": [
+      542,
+      1235,
+      80,
+      173
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D071.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D071.0.png"
+  },
+  {
+    "key": "D072.0",
+    "name": "D072.0 | legs/leg_right/shoes/shoe_body",
+    "uuid": "{9b22ae4f-7193-468d-abc4-b71337ede87f}",
+    "bounds": [
+      463,
+      1210,
+      80,
+      198
+    ],
+    "soloMasksDisabled": "raster-layering/step01/review-evidence/review01/native/solo/D072.0.png",
+    "upperLayersHiddenMasksEnabled": "raster-layering/step01/review-evidence/review01/native/context/D072.0.png"
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "groupId": "face/eyes/eye_left/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已核对本组 note、参考图、候选及父组完成 SVG。整图 blend 定位后，以原图区域 [558,134,48,42] 检查整只眼及高光归属，并在 [565,143,32,21]、8 倍放大下逐一对照原图、blend、edge 与 SVG 独显，覆盖全部四处分离可见区域：上方白色亮斑（约 x578–581、y147–152）、靠鼻侧小亮点（约 x570–572、y155–157）、其下短亮条（约 x570–571、y159）及外侧横向亮条（约 x589–593、y155–157）。四处均有参考依据，位置、外缘、宽度及端部转向贴合；分离间隙保留，无组件遗漏、相邻眼白误包或无依据碎片。虹膜下部浅粉色为虹膜自身明暗，未误纳入本组。父组局部叠加确认四处均位于眼睛父轮廓内；四倍采样范围检查 outsideSamples=0。当前组无需重画或修边。",
+      "candidateHash": "94159899d0d0445e2b71a5ff69e21834a61cf7c877e99152d4e4419336c0f124",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-16T05-31-44-642Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-16T05-31-44-642Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-16T05-31-44-642Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-16T05-31-44-642Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-16T05-31-44-642Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:23:05.636Z"
+    }
+  ]
+}

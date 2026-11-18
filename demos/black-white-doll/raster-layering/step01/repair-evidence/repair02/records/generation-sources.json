@@ -1,0 +1,28 @@
+[
+  {
+    "part": "hair/ponytail/ponytail_left/ponytail_front",
+    "generated": "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_05a059f03e2a4656b3aedce6ae90fc2d.png",
+    "sample": "raster-layering/step01/workspace/repair02/inputs/white-curl-sample.png",
+    "control": "raster-layering/step01/workspace/repair02/inputs/white-curl-control.png",
+    "canvasBox": [
+      647,
+      459,
+      125,
+      100
+    ],
+    "use": "局部下卷补全材质；原图本件可见发流与精细轮廓局部取样保留。"
+  },
+  {
+    "part": "arms/arm_left/upper_arm",
+    "generated": "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_7a8b5125088e41e5bc8ff55c702c4489.png",
+    "sample": "raster-layering/step01/workspace/repair02/inputs/upper-arm-left-sample.png",
+    "control": "raster-layering/step01/workspace/repair02/inputs/upper-arm-left-control.png",
+    "canvasBox": [
+      600,
+      338,
+      55,
+      120
+    ],
+    "use": "只修衣物交界残影所在臂面；右上臂复用镜像材质并独立配准，保留两侧各自轮廓。"
+  }
+]

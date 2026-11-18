@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-evidence/review02/solo/D031.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/regions.json",
+  "regions": [
+    {
+      "id": "R7",
+      "bounds": [
+        496,
+        368,
+        91,
+        51
+      ],
+      "layers": [
+        "D031.0 | body/torso"
+      ],
+      "description": "隐藏乳房后检查，躯干两条补全衣缝在胸廓中段变为硬折的竖线，再急转回腰线，局部粗细浓淡也有接段。原图可见衣缝是圆滑连续曲线；需按躯干自身形体平顺延续线流、融接两端，保留完整衣料底形与明暗。",
+      "crop": [
+        484,
+        356,
+        115,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

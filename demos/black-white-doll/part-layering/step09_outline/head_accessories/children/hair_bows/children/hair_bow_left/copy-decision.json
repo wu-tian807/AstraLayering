@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "head_accessories/hair_bows/hair_bow_left",
+  "detectorVersion": 1,
+  "needsCompletion": false,
+  "reason": "whole-independent-geometry"
+}

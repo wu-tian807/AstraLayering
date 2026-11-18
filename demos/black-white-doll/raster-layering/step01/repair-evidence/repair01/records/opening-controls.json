@@ -1,0 +1,149 @@
+{
+  "masks": [
+    {
+      "id": "face/eyes/eye_left/sclera",
+      "ownerLayer": "D036.0 | face/eyes/eye_left/sclera",
+      "ownerUUID": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+      "mask": "OPENING | eye_left | shared aperture",
+      "maskUUID": "{2f703e78-ba71-4c64-b272-d340fb5b8d6a}",
+      "control": "eye_left",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{375c1a9d-1320-4dc4-8abc-43c92df1036d}",
+      "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+      "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+    },
+    {
+      "id": "face/eyes/eye_left/iris",
+      "ownerLayer": "D038.0 | face/eyes/eye_left/iris",
+      "ownerUUID": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}",
+      "mask": "OPENING | eye_left | shared aperture",
+      "maskUUID": "{e35b204c-17be-42d3-9431-da250ca1eedf}",
+      "control": "eye_left",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{cab5a696-c987-42ab-8c4a-9157a5fc2ae9}",
+      "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+      "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+    },
+    {
+      "id": "face/eyes/eye_left/highlight",
+      "ownerLayer": "D040.0 | face/eyes/eye_left/highlight",
+      "ownerUUID": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}",
+      "mask": "OPENING | eye_left | shared aperture",
+      "maskUUID": "{c72fa4cd-dc6e-4d93-8267-0950c3e8ef93}",
+      "control": "eye_left",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{f9980514-f549-468a-92fd-7b66522cdf46}",
+      "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+      "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+    },
+    {
+      "id": "face/eyes/eye_right/sclera",
+      "ownerLayer": "D037.0 | face/eyes/eye_right/sclera",
+      "ownerUUID": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+      "mask": "OPENING | eye_right | shared aperture",
+      "maskUUID": "{54b755d2-eced-433a-8527-9b960ca081b5}",
+      "control": "eye_right",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{b075dee8-54c0-4d60-a637-78c7cdd18507}",
+      "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+      "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+    },
+    {
+      "id": "face/eyes/eye_right/iris",
+      "ownerLayer": "D039.0 | face/eyes/eye_right/iris",
+      "ownerUUID": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}",
+      "mask": "OPENING | eye_right | shared aperture",
+      "maskUUID": "{9383eaf3-c36b-453b-a78c-39ee6bf7adee}",
+      "control": "eye_right",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{1ebbeb1e-db08-41f0-af42-4266794c2997}",
+      "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+      "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+    },
+    {
+      "id": "face/eyes/eye_right/highlight",
+      "ownerLayer": "D041.0 | face/eyes/eye_right/highlight",
+      "ownerUUID": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}",
+      "mask": "OPENING | eye_right | shared aperture",
+      "maskUUID": "{f6b437ec-2d88-48fd-9604-cf03dde7b630}",
+      "control": "eye_right",
+      "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{8addc4d7-3afc-4643-aa2e-fe2270f8e870}",
+      "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+      "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+    },
+    {
+      "id": "face/mouth/mouth_interior",
+      "ownerLayer": "D053.0 | face/mouth/mouth_interior",
+      "ownerUUID": "{905b720d-3f33-49dc-b613-21464d968db2}",
+      "mask": "OPENING | mouth | shared aperture",
+      "maskUUID": "{d59f8575-e70c-4aa0-abae-b9e985258d31}",
+      "control": "mouth",
+      "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{62975ee8-f2d6-429e-895a-705aa6e94847}",
+      "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+      "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+    },
+    {
+      "id": "face/mouth/lower_teeth",
+      "ownerLayer": "D054.0 | face/mouth/lower_teeth",
+      "ownerUUID": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}",
+      "mask": "OPENING | mouth | shared aperture",
+      "maskUUID": "{552e3474-ae73-4ba8-aed7-009a2be45c19}",
+      "control": "mouth",
+      "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{a87852d4-0663-402f-bf7d-fc06d9f8310b}",
+      "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+      "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+    },
+    {
+      "id": "face/mouth/tongue",
+      "ownerLayer": "D055.0 | face/mouth/tongue",
+      "ownerUUID": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}",
+      "mask": "OPENING | mouth | shared aperture",
+      "maskUUID": "{e83b6cd2-3a28-4c18-8335-8562c7114bc7}",
+      "control": "mouth",
+      "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{fa805fd2-79fa-415f-81b5-0cdf276120d2}",
+      "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+      "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+    },
+    {
+      "id": "face/mouth/upper_teeth",
+      "ownerLayer": "D056.0 | face/mouth/upper_teeth",
+      "ownerUUID": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}",
+      "mask": "OPENING | mouth | shared aperture",
+      "maskUUID": "{3c23808f-8647-46ed-8650-fd7fe0f39797}",
+      "control": "mouth",
+      "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+      "default": "Reference open pose; real aperture only",
+      "previousMaskUUID": "{a0eb95be-f0fc-4e9f-b439-565989d36d2e}",
+      "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+      "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+    }
+  ],
+  "paintUnchangedByControlTests": true,
+  "proofs": {
+    "disabled": "raster-layering/step01/repair-evidence/repair01/opening-controls/disabled-full-inner-content.png",
+    "open": "raster-layering/step01/repair-evidence/repair01/opening-controls/enabled-reference-open-content.png",
+    "closed": "raster-layering/step01/repair-evidence/repair01/opening-controls/closed-content.png",
+    "restored": "raster-layering/step01/repair-evidence/repair01/opening-controls/restored-default.png"
+  },
+  "repairNote": "Native eye/mouth aperture controls restored from original backup selections after depth reordering. Paint owner UUIDs unchanged; recreated mask UUIDs explicitly recorded.",
+  "finalRetest": {
+    "nativeMasks": 10,
+    "paintingPixelsUnchanged": true,
+    "apertureSelectionsExactlyRestored": true,
+    "default": "reference-open",
+    "evidenceDirectory": "raster-layering/step01/repair-evidence/repair01/opening-controls"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "face/eyes/eye_left",
+  "detectorVersion": 1,
+  "needsCompletion": false,
+  "reason": "whole-independent-geometry"
+}

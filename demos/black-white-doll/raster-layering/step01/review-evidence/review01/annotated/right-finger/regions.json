@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D021.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/c5aa224a-d821-4c27-9924-ed3cd496e680/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/c5aa224a-d821-4c27-9924-ed3cd496e680/regions.json",
+  "regions": [
+    {
+      "id": "R6",
+      "bounds": [
+        401,
+        708,
+        28,
+        81
+      ],
+      "layers": [
+        "D021.0 | arms/arm_right/hand/index_finger"
+      ],
+      "description": "右食指代表性独显：近均匀肤色指根在约y737转为红暗取样段，横向硬接界、边线错位明显，根部缺少原图指体转面。将上段画出完整立体明暗并沿原笔触融接，保持指尖细长走向。",
+      "crop": [
+        394,
+        701,
+        42,
+        95
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/c5aa224a-d821-4c27-9924-ed3cd496e680/R6-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/c5aa224a-d821-4c27-9924-ed3cd496e680/R6-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/c5aa224a-d821-4c27-9924-ed3cd496e680/R6-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,4 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="cd0c82430263f76f1da22bd9c235f18cb3cc595e5bd5ac5885cd3c05bd7ce963"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 489,152 C 485,151.8 480.5,152.8 476.5,155 C 472,157.2 468.8,161.5 467.6,167 C 466.5,172.5 468,179 471,184.5 C 473.5,189 476.8,193.5 481.5,196.3 C 485,198 489.5,198.8 493.5,197.8 C 495.5,197.2 497,193.5 497,187 C 497,176.5 496.2,166 494.6,159 C 493.8,155.6 491.6,152 489,152 Z" fill-rule="nonzero"/></g>
-  <desc>角色右耳在参考图中完全被画面左侧黑色侧发及邻近长发遮挡。本轮保留空的可见轮廓节点，隐藏耳形留给后续补全。</desc>
-  <g id="face-ear-right-outline" data-group-path="face/ear_right" fill="#40A9C9" stroke="none"/>
-</svg>

@@ -1,0 +1,50 @@
+{
+  "canvas": [
+    1086,
+    1448
+  ],
+  "layer_tree_preserved_on_reopen": true,
+  "projection_identical_on_reopen": true,
+  "projection_sha256": "6551f083c0fab824cc1699e2ed4692ed69f32e3fe65110787c4507fa1af812ac",
+  "paint_layers": 92,
+  "groups": 1,
+  "transparency_masks": 11,
+  "garment_paint_layers": 15,
+  "garment_masks": 0,
+  "garment_hidden_parts": [
+    "D01__pleated_skirt/skirt_body__rear",
+    "D02__pleated_skirt/waistband__rear",
+    "D03__camisole/right_shoulder_strap__rear",
+    "D04__camisole/left_shoulder_strap__rear",
+    "D15__chest_bow/center_knot__rear"
+  ],
+  "new_skin_mask_parent": "D031.0 | body/torso",
+  "png_transparent_corner": true,
+  "png_size": [
+    1086,
+    1448
+  ],
+  "native_mask_changed_torso_pixels": 696,
+  "native_mask_changed_composite_pixels": 22,
+  "mask_changed_bounds": [
+    456,
+    414,
+    631,
+    515
+  ],
+  "garment_partial_alpha_pixels_in_edge_region": 63644,
+  "visual_review": [
+    "overall",
+    "neck_and_straps",
+    "both_armholes",
+    "both_sides",
+    "waist",
+    "skirt_and_hands",
+    "skirt_and_legs",
+    "elbows",
+    "wrists",
+    "ankles",
+    "clothing_isolated",
+    "torso_mask_on_off"
+  ]
+}

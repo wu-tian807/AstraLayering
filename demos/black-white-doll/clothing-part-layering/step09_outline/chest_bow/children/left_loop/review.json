@@ -3,41 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成独立只读审查，未发现确定需要修改的问题。先由纯衣服参考确认本片为角色自身左侧、画面右侧的整只结环；可见折返带体和固定折面归本片，下垂 left_tail、结心可见包束面、周围 camisole 及浅灰投影不归本片。整体 blend 检查确认位置、展开方向及比例正确；局部 [550,432,94,79]、8 倍 blend/edge 与独显覆盖本片全部可见区域，逐段核对上缘约 (565,441) 至 (631,468)、外侧弧边至 (615,496)、下方斜边至 (578,469)，均贴合参考实体边缘，没有误收投影、衣身或其他衣片，也没有可见组件遗漏。根部另以 [544,436,44,45]、8 倍原图及 edge 核对：与 knot 的收拢边约 x562–565、y441–461，以及结心右下缘 (562,459) 至 (578,469) 的环/尾接入分界合理；候选伸入结心投影内的短距离覆盖为隐藏搭接，不应按可见像素交集裁掉。本片可见投影没有需要挖除的真实开口、薄纱或独立分离附件；内部褶纹及阴影属于后续栅格职责。父完成稿的整枚蝴蝶结局部叠加已核对，当前候选沿用其自由轮廓，范围检查 outsidePixels=0，未发现本片相关的父范围缺漏。note 已在终止 part 明确实体范围、相邻分界、位于 camisole/胸部之前、根部在 knot 包束面之后且回接之前、压住带尾根部、共同随动及必要隐藏搭接，符合参考的覆盖关系。图像证据：observations/review/chest_bow/left_loop/2026-10-25T23-18-59-664Z-1.png（整体叠加）、-2.png（全片边缘）、-3.png（全片叠加）、-4.png（父稿叠加）、-5.png（候选独显）、-6.png（根部边缘）；51464b8c-5579-4cb7-ab5f-fc707d79e173.png（根部原参考）。",
-      "candidateHash": "41c05d5743d80cb35c28a41d8e801fd48e8e8c0c46d307f35335609c06773e6b",
+      "feedback": "已从纯衣服参考独立确认：本 part 为画面右侧、角色自身左结翼，约 x551–633、y369–426，包含横向展开翼面及下缘同体折返；下方斜向长带属于 left_tail，折返中的暗部不是开口。已核对参考整图、局部放大、候选全图 blend、覆盖整个结翼的 6 倍 blend 与 8 倍 edge、SVG 独显及父完成稿局部叠加。候选上缘、外侧弧缘、下缘折返轮廓与参考吻合，未误包衣身、带尾或人体，未漏掉可见翼面；内端 x548.8–555、y371–385 的延伸为藏入结心后的合理搭接。note 已明确实体范围、结心后的根部、带尾根部之前的关系、共同随动及局部变形职责，无需修改。父范围检查通过（4 倍采样 outsideSamples=0）。未发现有图像依据的返修问题，无需重画。",
+      "candidateHash": "af576b8d4b6b7c2a311dbfb097c47e4045516ad693d98d365d36aa3293e382d9",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-1.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/previews/2026-11-15T19-47-26-041Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
           "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-2.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-3.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/previews/2026-11-15T19-47-26-041Z-2.png"
         },
         {
           "source": "clothing-part-layering/parts/chest_bow.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-4.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/previews/2026-11-15T19-47-26-041Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/previews/2026-11-15T19-47-26-041Z-4.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/children/left_loop/step01/observations/chest_bow/left_loop/2026-10-25T23-18-59-664Z-6.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/left_loop/previews/2026-11-15T19-47-26-041Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:25:42.132Z"
+      "updatedAt": "2026-11-15T20:02:10.042Z"
     }
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D012.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/752a4976-2106-4e32-b561-d14828a4cd49/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/752a4976-2106-4e32-b561-d14828a4cd49/regions.json",
+  "regions": [
+    {
+      "id": "R8",
+      "bounds": [
+        486,
+        505,
+        116,
+        34
+      ],
+      "layers": [
+        "D012.0 | pelvis"
+      ],
+      "description": "骨盆独显时，两条斜向衣缝约y517处同时断开，上下端横向错位，像两段贴接；原图同处为连续衣缝。逐条接顺位置、切线与线宽，将线条延续至完整上沿，保留默认组装中已平顺的腰部颜色。",
+      "crop": [
+        476,
+        495,
+        136,
+        54
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/752a4976-2106-4e32-b561-d14828a4cd49/R8-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/752a4976-2106-4e32-b561-d14828a4cd49/R8-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/752a4976-2106-4e32-b561-d14828a4cd49/R8-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

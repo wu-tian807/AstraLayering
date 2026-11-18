@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><g data-completion-additions="v1" fill="#58b8a9" stroke="none"><path d="M 492.6,132.68 C 493.7,132.50 495.1,132.37 496.6,132.41 L 497.0,134.005 C 495.7,133.98 494.3,133.94 492.8,134.05 Z" fill-rule="nonzero"/></g><defs><clipPath id="face-eyes-eye-right-eyelid-crease-region" clipPathUnits="userSpaceOnUse"><path d="M484 130 L492.7286 130 L493.1 132.6 L493.3 134 L493.7 136.5 L484 136.8 Z"/><path d="M495.45 130 L526 130 L526 145.8 C518.6 138.8 508.5 135.1 497.05 135.1 L496.7 134 L496.2 132.4 Z"/></clipPath></defs><g clip-path="url(#face-eyes-eye-right-eyelid-crease-region)"><defs><clipPath id="face-eyes-eye-right-region" clipPathUnits="userSpaceOnUse"><rect x="460" y="125" width="75" height="55"/></clipPath></defs><g clip-path="url(#face-eyes-eye-right-region)"><g stroke="none" fill="#37049d"></g>
+  <g stroke="none" data-group-path="face/eyes/eye_right/eyelid_crease" id="eyelid-crease-outline" fill="#37049d">
+    
+    
+    <path id="eye-fold-screen-left" d="M 487.6,134.3 C 489.2,133.5 491.1,132.9 493.1,132.6 L 493.3,134.0 C 491.1,134.2 489.2,134.7 487.9,135.2 Z
+      M 496.2,132.4 C 507.6,132.6 516.3,136.0 522.7,142.3 L 522.6,143.1 C 515.8,137.4 506.7,134.1 496.7,134.0 Z"/>
+    
+    
+    
+  </g>
+</g></g></svg>

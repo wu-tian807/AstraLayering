@@ -3,56 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成当前 face/mouth/tongue 全部可见区域的独立核对。先查看整图 blend 定位口内下半部，再以口部全框 [529,199,35,31]、相互重叠的上框 [533,208,26,13] 和下框 [533,215,26,12]，均按 8 倍查看参考、候选 blend 与 edge；同时查看父组 mouth 完成 SVG 的同局部叠加。\n参考在上方深粉口腔下明确呈现中央隆起、两侧回落的连续粉色舌面。候选约 x=537.7–555.4、y=212–223.6 的单一闭合形体覆盖该可见区域；顶部圆弧、左右侧缘转向、下部圆弧及与侧口缘和下口缘的接合均与参考软边范围贴合，未发现误包牙带、口缘或唇旁皮肤，也没有可见组件遗漏、无依据孔洞、挖缝或碎片噪音。参考柔和明暗过渡与最终着色不作为本轮缺陷。\n父范围四倍采样检查 pass：outsideSamples=0、outsidePixels=0。未发现需要当前组修改的问题或已确认的父范围限制；本轮通过。",
-      "candidateHash": "f8c8f416ddaf96e503252e752468c2a651580cbb84725a7663eda66eb5cd5740",
+      "feedback": "已读取 tongue、mouth 及同层说明，查看父完成 SVG；先整图 blend 定位，再以 [520,188,46,40]、8 倍放大覆盖本组全部可见区域，逐段对照参考、blend 与 edge，并检查 SVG 独显。参考中的粉色舌面为口腔下部连续区域：上缘左右隆起及中央浅凹、左右与暗色口腔相接的收口、下方与窄浅色牙面相接的弧边均已覆盖，候选边缘贴合可见分界；未将上方暗色内腔、上牙或下缘浅色牙面包入。舌沟、高光属于舌面内部表现，无需在本阶段拆分或挖孔。轮廓连续干净，无遗漏的分离组件、孤立碎片或无依据开口。候选画布坐标正确，父范围检查 outsidePixels=0，满足未启用 allowOutsideParent 的约束。本轮未发现确定需要修改的问题。",
+      "candidateHash": "56cfcaf59b9b283cf607dd2c534692ba3c5aa9f6758e85d8dabc45136d477467",
       "observations": [
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-16T04-08-23-097Z-1.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-16T04-08-23-097Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-16T04-08-23-097Z-3.png"
         },
         {
           "source": "part-layering/parts/face/mouth.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-16T04-08-23-097Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/tongue/step01/observations/face/mouth/tongue/2026-10-25T08-57-14-751Z-9.png"
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-16T04-08-23-097Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T09:52:49.606Z"
+      "updatedAt": "2026-11-16T04:36:20.849Z"
     }
   ]
 }

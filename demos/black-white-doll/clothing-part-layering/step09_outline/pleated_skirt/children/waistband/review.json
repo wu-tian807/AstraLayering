@@ -2,161 +2,37 @@
   "groupId": "pleated_skirt/waistband",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已从纯衣服参考独立确认本片归属，并完成整图 blend、腰头整体 svg/blend/edge，以及左、中、右重叠分区的 5 倍参考/blend/edge 检查；两侧进一步以 8 倍参考、blend 和 edge 核实。可见腰头整体位置、宽度比例、与上衣的交界、下沿连续裙身缝接线及完整实体覆盖均正确；父稿已有上伸隐藏搭接已完整保留，不是误包上衣。未见人体误包、可见组件遗漏、真实开口误填或独立附件缺失；note 的归属、邻接、区域前后关系与随动职责无须修改。当前不需要重画整个 waistband，仅须修正以下已经确认的局部外缘问题：\n\n1. 两侧可见外缘向衣料外多扩出窄条。画面左侧约 x376–382、y725–766 最明显：纯参考的实际衣料外缘在 y725 约 x382、y745 约 x381、y755 约 x380、y765 约 x379；候选曲线在其左侧约 1–3 原图像素。画面右侧约 x722–727、y735–767 同样向右多扩约 1–2 原图像素。8 倍 edge 中红线与实际衣料外缘之间有连续浅白间隙，8 倍 blend 则显示填色占入衣料外的窄带，属于几何覆盖偏宽。证据：observations/review/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-13.png（左侧 edge）、-15.png（左侧 blend）、-14.png（右侧 edge）、-16.png（右侧 blend）；对应独立原参考局部为 76bde39c-8fea-4677-a1ad-21b6ef57cd3a.png 和 b81bed54-70ab-4e72-8eaf-6a39a97110f0.png，均位于同一 observations 目录。修改要求：将可见左侧外缘局部向右收约 1–3 像素，右侧局部向左收约 1–2 像素，沿原参考衣料外轮廓连续贴合，并平滑衔接上衣下摆处及下沿两端；保留参考的真实外缘和完整腰头，不按内部明暗分面收缩。保持当前下沿缝接弧线与上伸隐藏搭接。两处均可在父范围内收边，虽然父稿共享同一偏宽外缘，也不构成需要扩大父稿的上游限制。修正后用同一局部 blend/edge 复核。",
-      "candidateHash": "e465959fc4d64dd74736f61d7151ffda40106602ba97cff4eab0fdcef301b1e7",
-      "observations": [
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-1.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-2.png"
-        },
-        {
-          "source": "clothing-part-layering/parts/pleated_skirt.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-3.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-4.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-11.png"
-        },
-        {
-          "source": "clothing-part-layering/parts/pleated_skirt.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-12.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-13.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-14.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-15.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-17-04-897Z-16.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T23:24:32.329Z",
-      "repairedCandidateHash": "560d544968fa66c9256ac0cbf03c750d12c7c8ad5d3a21921e692f022c602b00"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已完成独立审查，当前 waistband 候选通过，无确定需修改的问题，不需要重画。\n\n参考归属：先查看纯衣服参考及其腰部局部（crop [350,685,400,120]，3 倍），确认 camisole 可见下摆以下、裙身连续上根缝接线以上为完整宽腰头。腰头内部的亮暗面是同一衣片；没有可见独立附件、薄纱或真实镂空。缝线以下展开的裙布不属于本片。\n\n整体及覆盖：已查看候选与父完成 SVG 的整图 blend，并完整读取两份 SVG。候选只包含腰头及父稿登记的上伸隐藏衣料，没有误包裙身、上衣可见实体或人体；位置、宽高比例与参考腰部对应。上伸范围约 x387–718、y701–736 与父完成稿一致，属于藏入 camisole 下摆之后的合理搭接，不能按叠加中覆盖白色上衣的投影删掉。\n\n局部边界：以 crop [365,695,375,105] 的 4 倍 blend、edge 与 SVG 独显覆盖全部腰头；另用左右侧 crop [367,711,37,70]、[705,711,37,70] 的 8 倍参考与 edge，以及 crop [370,716,46,66]、[693,716,46,66] 的 8 倍 blend 逐处检查侧边和接缝转角。左右侧边及约 y767–783 的下弧缝接边与参考衣料边界贴合，未确认有可见组件或实体条带遗漏。中央 crop [430,716,245,73] 的 6 倍 edge 检查了完整中段下接缝；轮廓保持连续，没有把裙布褶面收入腰头。独显中两条路径联合为连续腰头实体，未见意外孔洞或分离碎片。\n\n父范围及 note：父稿局部 edge 已对照，候选四倍采样越界检查 outsideSamples=0。未发现需要扩大父边界才能解决的确定缺漏。note 已传递腰头与上衣、裙根的分界，前腰头及侧后接续的相对深度、腰胯共同随动、裙身相对摆动和隐藏搭接职责；完整腰环保留同一逻辑 part，后续多深度区域及 raster step01 承接的说明成立，无需因环绕穿插继续拆分。\n\n主要图像证据（本次审查预览）：observations/review/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-1.png（整图候选 blend）、-3.png（全腰头 4 倍 edge）、-4.png（全腰头 4 倍 blend）、-5.png（SVG 独显）、-6.png 与 -8.png（两侧 8 倍 edge）、-9.png 与 -10.png（两侧 8 倍 blend）、-11.png（中央接缝 6 倍 edge）、-7.png 与 -12.png（父稿局部 edge）。未修改候选或部件结构。",
-      "candidateHash": "560d544968fa66c9256ac0cbf03c750d12c7c8ad5d3a21921e692f022c602b00",
+      "feedback": "第 1 轮独立审查通过，无确定需要修改的问题。先从纯衣服参考确认本片为约 x353–730、y683–758 的连续腰头，再读取候选及父完成 SVG，并完成整图叠加、覆盖全片的 4 倍局部参考查看、blend、edge 与 SVG 独显。\n\n上缘（x358–724、y683–692）贴合上衣下摆与腰头的弧形交界；左右侧边分别连接约 (353,741)、(729,736)，位置及宽高比例吻合；下缘弧线由两侧降至中央约 y758，与腰头/裙身褶根接缝一致。未见误包上衣、裙身或人体，也未见遗漏可见组件、真实开口或分离附件。本片未显示需单列的薄纱、扣件或带尾。纯色独显轮廓连续，无异常孔洞。\n\n父范围四倍采样检查 outsidePixels=0；候选上缘与侧缘复用父轮廓，无上游范围限制。当前 part note 已传递完整腰头范围、上下相邻分界、遮住上衣下摆及裙身褶根的关系、腰侧连续前后深度分界、随腰胯共同运动及必要隐藏连接职责，无需修改说明或重画。\n\n全片局部边缘证据（原图窗口 x335、y670、410×105，4 倍）：\n\n",
+      "candidateHash": "350e58a5005f6cef0749cbc77aa150d8978b5d65b2939b91610fe40a84829812",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-1.png"
-        },
-        {
-          "source": "clothing-part-layering/parts/pleated_skirt.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-2.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-15T19-53-42-673Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
           "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-3.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-15T19-53-42-673Z-2.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-4.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-15T19-53-42-673Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/pleated_skirt.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-15T19-53-42-673Z-4.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/parts/pleated_skirt.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-11.png"
-        },
-        {
-          "source": "clothing-part-layering/parts/pleated_skirt.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/waistband/step01/observations/pleated_skirt/waistband/2026-10-25T23-27-40-404Z-12.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/waistband/previews/2026-11-15T19-53-42-673Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:30:20.248Z"
+      "updatedAt": "2026-11-15T20:09:08.678Z"
     }
   ]
 }

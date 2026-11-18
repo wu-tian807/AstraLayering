@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D059.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/1afda018-4845-4134-806b-489388a34de1/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/1afda018-4845-4134-806b-489388a34de1/regions.json",
+  "regions": [
+    {
+      "id": "R19",
+      "bounds": [
+        630,
+        126,
+        27,
+        37
+      ],
+      "layers": [
+        "D059.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner"
+      ],
+      "description": "内飘带隐藏根段与可见带身在约y139处出现黑色楔形硬界，右侧束缘形成台阶，材质高光突然改向。将两段按同一条带连续画完，接顺宽度与切线，去掉不属于自身褶面的硬暗边。",
+      "crop": [
+        620,
+        116,
+        47,
+        57
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/1afda018-4845-4134-806b-489388a34de1/R19-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/1afda018-4845-4134-806b-489388a34de1/R19-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/1afda018-4845-4134-806b-489388a34de1/R19-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

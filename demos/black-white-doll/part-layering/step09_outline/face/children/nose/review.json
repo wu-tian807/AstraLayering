@@ -2,106 +2,37 @@
   "groupId": "face/nose",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "1. 鼻点整体尺度与下端形体需返修（face/nose，约 x=545–548、y=190–196）。参考的灰褐色鼻点核心位于约 (546,192)，下方淡缘在 y≈194 附近消退，y=195–196 已是与周围连续的肤色；鼻点全域 [538,186,18,16] 的 8 倍原图、blend、edge，以及上下重叠选框 [541,188,12,7]、[541,191,12,8] 均显示，候选却延伸至 y=195.95，形成过长的下垂水滴尾端，将下方无鼻点依据的皮肤并入本部件。这使唯一鼻点的整体高度与形状偏大，并非填充颜色或后续柔化的问题。需重新描绘当前组这一枚鼻点的外轮廓，收回下端约 y=194.5–196 的多余区域，按参考鼻点及其确有依据的淡缘保持小巧、连续的局部形体；保持现有中线位置，不增加鼻梁或独立鼻影。\n已完成整图叠加、脸部位置选框 [478,140,140,110] 和完整鼻点边缘核对，未发现另外的可确认组件遗漏、误认或碎片噪音。父组 face.svg 已查看并在相同鼻部局部叠加核对；父范围检查 pass，outsideSamples=0。上述多余下端位于父内，属于当前组可修问题，没有已确认的上游范围限制。",
-      "candidateHash": "933a83e947671758cab66508b6bb34b352403ef343deb195473b7a44d45121a6",
+      "verdict": "pass",
+      "feedback": "已读取 face/nose 的 note、候选及父完成 SVG。先查看全图 blend 定位，再以参考裁剪 [514,155,58,40]、8 倍放大独立确认：本组可见区域仅为鼻点及其上方邻近高光，两者间有真实肤色间隙，无额外独立鼻梁线。以 [531,167,24,22]、8 倍的 blend、edge 和 SVG 独显完整核对两个区域的全部外缘：高光约 x541.4–544.6、y174.0–177.9，鼻点约 x541.6–543.8、y179.7–182.3，位置、宽高及转向贴合参考可辨范围；分离关系正确，没有误包周围肤色、组件遗漏、碎片噪音或需保留的孔洞。已查看父 SVG 同部位叠加，两个区域均位于父脸部范围内；工具四倍采样父范围检查 outsidePixels=0。通过。证据：；；；。",
+      "candidateHash": "3ecc0b3a73fa8888feb63f418d0a4076b68a7dfff324173ace74f422564ab78e",
       "observations": [
         {
           "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-16T02-07-48-101Z-1.png"
         },
         {
           "source": "part-layering/parts/face.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-16T02-07-48-101Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-4.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-16T02-07-48-101Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-6.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-16T02-07-48-101Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-7.png"
-        },
-        {
-          "source": "part-layering/parts/face.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T05-45-25-801Z-10.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-16T02-07-48-101Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T06:14:05.504Z",
-      "repairedCandidateHash": "41756f98761b22182343c735dd78cc755a66ca1aab18addaafd7eb32dedffeb4"
-    },
-    {
-      "verdict": "pass",
-      "feedback": "已读取 face/nose 说明、候选 outline.svg 及父组完成 ../../../../../parts/face.svg，并查看整图叠加。参考确认本组仅为脸部中线、嘴上方的一枚小鼻点及紧邻淡缘，不存在另需覆盖的独立鼻梁或鼻影组件。已用 [480,140,140,100] 参考上下文定位，并以 [536,182,24,24]、重叠选框 [541,186,13,15] 的 8 倍参考、blend 和 edge 核对鼻点全部可见范围及上、下、左、右边缘；同一区域也查看父组叠加。候选保持约 x=546、y=193 的小巧鼻点形体，淡缘与点连为一个连续色块，位置、比例及可见外缘与参考相符；周围肤色未被误并入，无组件遗漏、无孔洞、无孤立点或碎片，也无需要重画的归属或主要形体问题。纯色填充与参考柔和明暗的表现差异属于后续绘制。父范围检查 pass，outsideSamples=0、outsidePixels=0；本组无已确认的上游范围限制。",
-      "candidateHash": "41756f98761b22182343c735dd78cc755a66ca1aab18addaafd7eb32dedffeb4",
-      "observations": [
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-1.png"
-        },
-        {
-          "source": "part-layering/parts/face.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-4.png"
-        },
-        {
-          "source": "part-layering/parts/face.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/nose/step01/observations/face/nose/2026-10-25T06-48-42-896Z-7.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T07:11:26.979Z"
+      "updatedAt": "2026-11-16T02:27:22.710Z"
     }
   ]
 }

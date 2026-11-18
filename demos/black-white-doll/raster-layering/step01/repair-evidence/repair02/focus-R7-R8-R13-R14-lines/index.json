@@ -1,0 +1,35 @@
+[
+  {
+    "id": "body/torso",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R7-R8-R13-R14-lines/body__torso.png",
+    "box": [
+      477,
+      310,
+      134,
+      228,
+      3
+    ]
+  },
+  {
+    "id": "pelvis",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R7-R8-R13-R14-lines/pelvis.png",
+    "box": [
+      483,
+      493,
+      125,
+      48,
+      5
+    ]
+  },
+  {
+    "id": "face/face_base",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R7-R8-R13-R14-lines/face__face_base.png",
+    "box": [
+      472,
+      183,
+      148,
+      64,
+      4
+    ]
+  }
+]

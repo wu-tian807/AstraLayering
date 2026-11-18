@@ -1,0 +1,9 @@
+[
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R4-extra-owned-edge/hair__side_hair__side_hair_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R4-extra-owned-edge/hair__side_hair__side_hair_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R4-extra-owned-edge/hair__side_hair__side_hair_left__full.png",
+    "highestDepth": 65
+  }
+]

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><defs><clipPath id="head-accessories-hair-clips-hair-clip-upper-region" clipPathUnits="userSpaceOnUse"><rect x="588" y="73" width="38" height="35"/></clipPath></defs><g clip-path="url(#head-accessories-hair-clips-hair-clip-upper-region)"><g stroke="none" fill="#5a94a4"></g><defs><clipPath id="head-accessories-hair-clips-region" clipPathUnits="userSpaceOnUse"><path d="M 590,75 H 617 L 621,94 V 108 H 590 Z"/><path d="M 590,108 H 621 L 623,114 V 125 L 625,134 H 598 V 124 L 603.3,123.8 L 607.1,120.7 C 603.6,120.1 600.8,119.5 600.3,117.1 H 590 Z"/></clipPath></defs><g clip-path="url(#head-accessories-hair-clips-region)"><g stroke="none" fill="#5a94a4"></g>
+  <g stroke="none" data-group-path="head_accessories/hair_clips/hair_clip_upper" id="hair-clip-upper-outline" fill="#5a94a4">
+    
+    
+    
+    
+    <path id="cross-clip" d="M 610.5,77.9 Q 611.0,77.5 611.7,78.1 L 614.9,80.8 Q 615.8,81.5 615.1,82.7 L 609.4,91.0 L 619.2,99.0 Q 620.1,99.7 619.3,101.0 L 617.6,103.5 Q 617.3,104.1 616.4,103.4 L 607.2,95.4 L 601.0,105.1 Q 600.1,106.0 599.2,105.5 L 597.2,104.0 Q 596.6,103.4 597.4,102.1 L 603.4,91.3 L 593.6,85.5 Q 592.2,84.8 592.9,83.1 L 593.7,81.1 Q 594.2,79.6 595.5,80.6 L 601.9,84.3 L 603.1,86.1 L 604.6,87.4 L 609.9,78.6 Z"/>
+    
+  </g>
+</g></g></svg>

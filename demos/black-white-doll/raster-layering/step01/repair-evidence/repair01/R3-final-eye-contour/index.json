@@ -1,0 +1,16 @@
+[
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/face__eyes__eye_right__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/face__eyes__eye_right__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/face__eyes__eye_right__upper_eyelid__full.png",
+    "highestDepth": 66.5
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/hair__side_hair__side_hair_right__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/hair__side_hair__side_hair_right__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-final-eye-contour/hair__side_hair__side_hair_right__full.png",
+    "highestDepth": 66
+  }
+]

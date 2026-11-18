@@ -1,0 +1,84 @@
+{
+  "single": "clothing-raster-layering/step01/repair-evidence/repair02/R1-D12-single.png",
+  "upperHidden": "clothing-raster-layering/step01/repair-evidence/repair02/R1-upper-hidden.png",
+  "waistbandHidden": "clothing-raster-layering/step01/repair-evidence/repair02/R1-waistband-hidden.png",
+  "fullMaskEnabled": "clothing-raster-layering/step01/repair-evidence/repair02/R1-full-mask-enabled.png",
+  "fullMaskDisabled": "clothing-raster-layering/step01/repair-evidence/repair02/R1-full-mask-disabled.png",
+  "allLayers": [
+    {
+      "name": "D01__pleated_skirt/skirt_body__rear",
+      "file": "clothing-raster-layering/step01/evidence/solo-D01__pleated_skirt__skirt_body__rear.png",
+      "rawHash": "92ac760dc1c3920fdf5648617c38f1c695b41c31ac0bdd23410c9d9268bd6e9c"
+    },
+    {
+      "name": "D02__pleated_skirt/waistband__rear",
+      "file": "clothing-raster-layering/step01/evidence/solo-D02__pleated_skirt__waistband__rear.png",
+      "rawHash": "0b9951706dea9761d0268509f200a0599bd05c643e8fc2e381092c0ac8444446"
+    },
+    {
+      "name": "D03__camisole/right_shoulder_strap__rear",
+      "file": "clothing-raster-layering/step01/evidence/solo-D03__camisole__right_shoulder_strap__rear.png",
+      "rawHash": "fdb98a67f9b491371a1ca2c2f3f7309b0741af7a3d004386e3563bbeb654b778"
+    },
+    {
+      "name": "D04__camisole/left_shoulder_strap__rear",
+      "file": "clothing-raster-layering/step01/evidence/solo-D04__camisole__left_shoulder_strap__rear.png",
+      "rawHash": "83b22e971cd992bf677938f9406cd7140755a76679d9f86755ace5a2c1246a2e"
+    },
+    {
+      "name": "D10__camisole/right_shoulder_strap__front",
+      "file": "clothing-raster-layering/step01/evidence/solo-D10__camisole__right_shoulder_strap__front.png",
+      "rawHash": "d4a93278a0555852b35364380ff5394e0acac7435a8d7372db3d5b6ba0a44dc0"
+    },
+    {
+      "name": "D11__camisole/left_shoulder_strap__front",
+      "file": "clothing-raster-layering/step01/evidence/solo-D11__camisole__left_shoulder_strap__front.png",
+      "rawHash": "a66302d71392248a07beb449f200d51ce76c5111b740976e9d32ed9697248874"
+    },
+    {
+      "name": "D12__camisole/bodice__full",
+      "file": "clothing-raster-layering/step01/evidence/solo-D12__camisole__bodice__full.png",
+      "rawHash": "4d1512ce31fde03b55c5ed6d8c37fe572621055a9c5dec1db7cf52455b0c48f8"
+    },
+    {
+      "name": "D13__pleated_skirt/skirt_body__front",
+      "file": "clothing-raster-layering/step01/evidence/solo-D13__pleated_skirt__skirt_body__front.png",
+      "rawHash": "3d8094ea0fcf31aa132e94a3606555cea28cf1893a21c56377d1702f749787ed"
+    },
+    {
+      "name": "D14__pleated_skirt/waistband__front",
+      "file": "clothing-raster-layering/step01/evidence/solo-D14__pleated_skirt__waistband__front.png",
+      "rawHash": "9384ba43b37feb1a15f1ec83e96dd28bd892a6013f47d9b36ff8bb27b5ef45ad"
+    },
+    {
+      "name": "D15__chest_bow/center_knot__rear",
+      "file": "clothing-raster-layering/step01/evidence/solo-D15__chest_bow__center_knot__rear.png",
+      "rawHash": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5"
+    },
+    {
+      "name": "D16__chest_bow/right_tail__full",
+      "file": "clothing-raster-layering/step01/evidence/solo-D16__chest_bow__right_tail__full.png",
+      "rawHash": "dc88fff60598860a9986a7838c0f07516b5e00318f9304b2d78a0f6192731b84"
+    },
+    {
+      "name": "D17__chest_bow/left_tail__full",
+      "file": "clothing-raster-layering/step01/evidence/solo-D17__chest_bow__left_tail__full.png",
+      "rawHash": "b3a3763b789d13284c75e5c41262633c20b7036ebd135e1b7a0303737024ad02"
+    },
+    {
+      "name": "D18__chest_bow/right_loop__full",
+      "file": "clothing-raster-layering/step01/evidence/solo-D18__chest_bow__right_loop__full.png",
+      "rawHash": "33270ef9d89d7bdc6908546be9e6eedc13db670d1e127d850eb5651d048b5904"
+    },
+    {
+      "name": "D19__chest_bow/left_loop__full",
+      "file": "clothing-raster-layering/step01/evidence/solo-D19__chest_bow__left_loop__full.png",
+      "rawHash": "5cf3097faa555ee3baec87b39adee9250a5ed08f9aba964b5d391c3cc7aa0c62"
+    },
+    {
+      "name": "D20__chest_bow/center_knot__front",
+      "file": "clothing-raster-layering/step01/evidence/solo-D20__chest_bow__center_knot__front.png",
+      "rawHash": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5"
+    }
+  ]
+}

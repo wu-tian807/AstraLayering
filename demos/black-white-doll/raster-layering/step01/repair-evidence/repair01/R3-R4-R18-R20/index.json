@@ -1,0 +1,58 @@
+[
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_left__full.png",
+    "highestDepth": 65,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_left__views.png"
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_right__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_right__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_right__full.png",
+    "highestDepth": 66,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/hair__side_hair__side_hair_right__views.png"
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_left__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_left__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_left__upper_eyelid__full.png",
+    "highestDepth": 65.5,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_left__upper_eyelid__views.png"
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_right__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_right__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_right__upper_eyelid__full.png",
+    "highestDepth": 66.5,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/face__eyes__eye_right__upper_eyelid__views.png"
+  },
+  {
+    "id": "legs/leg_right/shoes/rear_collar",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/legs__leg_right__shoes__rear_collar__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/legs__leg_right__shoes__rear_collar__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/legs__leg_right__shoes__rear_collar__full.png",
+    "highestDepth": 9,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/legs__leg_right__shoes__rear_collar__views.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__full.png",
+    "highestDepth": 59,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__views.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__full.png",
+    "highestDepth": 61,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R3-R4-R18-R20/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__views.png"
+  }
+]

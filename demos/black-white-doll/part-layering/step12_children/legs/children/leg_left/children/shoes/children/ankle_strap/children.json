@@ -1,0 +1,18 @@
+{
+  "groupId": "legs/leg_left/shoes/ankle_strap",
+  "groups": [
+    {
+      "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+      "kind": "part",
+      "name": "ankle_strap_front",
+      "note": "角色左鞋踝带的可见前段，包含踝前斜向红色带身、上端中空扣框及扣舌，下端与鞋帮相接；不含鞋舌、鞋口或袜面。位于 leg 的踝部之前，与绕踝后段在侧面衔接。扣框、扣舌固定于这条短带，未见独立展开或长软悬挂结构，整体作为一个 part 随左足及鞋体运动，带身局部弯曲和转脚透视由同一网格承担，扣件保持形状，不按材质或明暗细分。"
+    },
+    {
+      "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+      "kind": "part",
+      "name": "ankle_strap_back",
+      "note": "同一红色踝带从两侧向踝后延续的完整后段，连接前段并与鞋帮邻接，不含另属 collar_back 的后侧鞋口。参考中踝侧有局部露出的带体，踝后中段被 leg 挡住，属于局部可见而非整体隐藏；当前完成 SVG 已包含踝后连续补全范围。后段位于 leg 之后，与前段共同夹住踝部，以支持转脚、俯仰时的显露及遮挡变化。整段作为一个 part 随左足及鞋体运动，不再按两侧露出片段、内外表面或明暗细分。"
+    }
+  ],
+  "note": "当前节点是左鞋完整的绕踝带扣带，前后带体之间夹有 leg 的踝部，因此直属拆为 ankle_strap_front 与 ankle_strap_back 两个 part，以承担前后层序和转脚时的遮挡变化。前段固定扣框及扣舌随带体保留，无额外独立控制依据。后段侧面局部可见，且当前完成轮廓已含被踝部遮住的连续范围，故不标记整体隐藏或超出父轮廓；鞋口、鞋身与腿袜仍归既有相邻节点。"
+}

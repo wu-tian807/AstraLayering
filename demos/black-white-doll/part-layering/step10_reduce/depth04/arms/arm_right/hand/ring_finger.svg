@@ -1,15 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="dc237296a1efac76d830694351f85e860b4017c1c1fbebf319a17cb983d7eff9">
-  <g id="arm-right-ring-finger-outline" data-group-path="arms/arm_right/hand/ring_finger" fill="#58b8df" stroke="none">
-    <path d="M 358.371452,736
-      C 358.8,734.8 362,734.9 364.7,735.3
-      C 367.5,735.8 369.6,736.9 369.6,739
-      C 369.5,742.1 369.8,745.5 370.8,748.7
-      C 371.6,751.5 373,755.5 374.1,758.3
-      C 376.4,763.3 377.7,769.3 377.6,775.5
-      C 376.6,777.4 375.4,777.6 374.4,776.3
-      C 372.2,774.2 369.1,769 366.6,763.2
-      C 364.145781,757.378365 361.984741,751.361278 359.819402,745
-      C 359.365544,743.666667 359.083376,742.333333 358.902104,741
-      C 358.675513,739.333333 358.594484,737.666667 358.371452,736 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <defs>
+    <clipPath id="right-ring-finger-visible-tip" clipPathUnits="userSpaceOnUse">
+      <path d="M409.8 778.4 C411.8 779.4 414.2 782.0 415.2 784.5 C416.5 787.5 416.3 791.0 417.8 793.9 L419 798 L400 805 L395 778 Z"/>
+    </clipPath>
+  </defs>
+  <g id="right-ring-finger-outline" data-group-path="arms/arm_right/hand/ring_finger" fill="#51b2b5" stroke="none" clip-path="url(#right-ring-finger-visible-tip)">
+    <path d="M397.2 749.2 C403.8 760.3 408 770.4 411.7 781.5 C413.3 786.6 415.3 794.4 417.4 794.4 C419.1 794.4 422.1 789.1 423 785.8 L430 780 L430 740 L390 740 Z"/>
   </g>
 </svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448"><defs><clipPath id="face-eyes-eye-left-lower-eyelashes-region" clipPathUnits="userSpaceOnUse"><path d="M 591,170 C 593.9,168.8 596.2,167.0 599,164.8 L 603,164.8 L 603,175 L 591,175 Z"/></clipPath></defs><g clip-path="url(#face-eyes-eye-left-lower-eyelashes-region)"><defs><clipPath id="face-eyes-eye-left-region" clipPathUnits="userSpaceOnUse"><rect x="540" y="115" width="90" height="70"/></clipPath></defs><g clip-path="url(#face-eyes-eye-left-region)"><g stroke="none" fill="#73bddb"></g>
+  <g stroke="none" data-group-path="face/eyes/eye_left/lower_eyelashes" id="lower-eyelashes-outline" fill="#73bddb">
+    
+    
+    
+    
+    <path id="lower-lashes-screen-right" transform="matrix(-1 0 0 1 1087 0)" d="M 489.6,167.2 C 490.2,166.7 491.1,166.9 491.7,167.6 C 492.0,168.1 491.6,168.8 491.0,168.9 C 490.2,168.9 489.4,168.2 489.6,167.2 Z
+      M 492.7,169.0 C 493.3,168.7 494.5,169.1 494.9,169.7 C 495.1,170.2 494.4,170.9 493.7,170.8 C 493.0,170.7 492.3,170.2 492.7,169.0 Z"/>
+    
+  </g>
+</g></g></svg>

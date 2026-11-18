@@ -3,66 +3,31 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "通过。先独立查看纯衣服参考全图及上衣局部 [335,235,435,505]×2，确认 camisole 的可见实体为左右肩带、连续荷叶领缘和胸腹衣身至裙腰头上沿；胸前结归 chest_bow，腰头与裙身归 pleated_skirt。随后完成整图 blend、SVG 独显，以及覆盖全部可见区域的局部 blend/edge；未发现确定需要修改的问题，无需重画本组。\n\n核对证据（坐标均为 1086×1448 原图坐标）：\n1. 肩带与开口：在 [375,237,355,143]×4 的原参考和 edge 中，左右肩带的顶端、弯曲侧边、宽度、长度及接入荷叶边的位置贴合。两肩带之间及衣身两侧之外保持空白，没有把人体或领口开口填入。\n2. 荷叶领缘：在 [367,357,369,95]×4 的 blend/edge 中，左右肩带根部至中央浅 V 低点的连续可见轮廓、波瓣及转折均覆盖；再以 [600,359,132,62]×6 对照原参考和 edge 核实右侧凹口，未见实体波瓣遗漏或真实开口被封闭。内部缝线、褶纹与明暗属于后续绘画，不构成本轮缺陷。\n3. 胸部与两侧轮廓：在 [332,383,436,179]×3 的 blend/edge 中核对胸部宽度、侧缘鼓出和上下连接；另以 [336,454,49,113]×6 核对画面左侧曲边，轮廓贴合。胸前结覆盖范围内保留的是结后上衣连续衣料，符合本组职责，不应挖去结形空洞；结体自身已登记另组，无可见附件遗漏。\n4. 腹部、腰侧与下摆：在 [342,538,413,197]×3 的 blend/edge 中核对两侧收腰、下端外展转角及 x385–721、y717–723 的下摆交接曲线，位置和比例贴合，未误包裙腰头或裙身。隐藏根部、结后衣料及腰头后搭接的职责已在 note 中说明，后续补全继续承担。\n5. note 已明确本组实体、邻接分界、肩部/胸腹/胸前结/裙腰头的区域前后关系、随动与必要搭接，并要求向终止 part 传递；本次无父组或父 SVG，未出现上游范围限制。\n\n图像记录位于 observations/review/camisole/：2026-10-25T23-04-37-779Z-1.png（整图 blend）、-3.png（肩带 edge）、-4.png（领缘 edge）、-6.png（SVG 独显）、-7.png（上半衣身 edge）、-8.png（腹腰与下摆 edge）、-10.png（右领缘六倍 edge）、-11.png（左侧曲边六倍 edge）。其余对应原参考与 blend 局部已同时核对。",
-      "candidateHash": "77cd557507d779088a0eab16eb78fffa429bc5054aca62450b7abbe9ad4c786f",
+      "feedback": "第1轮，camisole group 通过；无确定需要修改的问题，候选保持只读。本组为顶层节点，无父 SVG 或父范围限制。\n已先从纯衣服参考独立确认实体归属：左右肩带、连续领口荷叶边与胸腹衣身属于本组；黑色胸前蝴蝶结另组，裙腰及裙片另组。随后核对 groups.json 的 note、候选源码、全图 blend、分区3倍 edge 和2倍独显，覆盖全部可见范围。\n1. 肩带与领口（x335–752、y165–370）：两根肩带位置、宽度、弯曲与领缘连接正确；荷叶边连续外轮廓及中央低点匹配参考，肩带之间至领口上缘的真实开口保持空白，无人体填入。证据：。\n2. 胸腹与两侧（x311–775、y365–685）：胸部外扩、两侧收腰及下端外翻与参考相符；未发现可见衣身遗漏或误包其他实体。蝴蝶结遮挡处保留连续衣身属于合理隐藏覆盖，不构成附件误归属。证据：。\n3. 下摆与腰头（x358–726、y682–700）：可见下摆位置匹配，延至腰头后的少量覆盖符合 note 的隐藏搭接职责，无需按腰头遮挡线裁掉。\n4. note 已描述实体范围、相邻分界、肩带跨肩前后关系、共同随动及腰头和蝴蝶结遮挡关系；无需修改。该图无本组独立薄纱或额外分离附件遗漏。\n整体定位与独显证据：；。不将纯色填充、内部褶皱和材质绘画表现作为缺陷。",
+      "candidateHash": "7f220c73f062f722629bd330700907ae68b0c3a56fa9d4ab57db2dd244ded054",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-1.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-2.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/previews/2026-11-15T19-08-15-822Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
           "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-3.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/previews/2026-11-15T19-08-15-822Z-2.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
           "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-4.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-5.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/previews/2026-11-15T19-08-15-822Z-3.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/step01/observations/camisole/2026-10-25T23-04-37-779Z-11.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/previews/2026-11-15T19-08-15-822Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:06:41.292Z"
+      "updatedAt": "2026-11-15T19:14:03.837Z"
     }
   ]
 }

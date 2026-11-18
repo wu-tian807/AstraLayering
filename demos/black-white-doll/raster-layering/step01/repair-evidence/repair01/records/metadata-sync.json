@@ -1,0 +1,51 @@
+{
+  "logicalParts": 70,
+  "physicalLayers": 75,
+  "retainedNonPonytailOwnerUUIDs": 66,
+  "allOriginalPaintingUUIDsRetained": true,
+  "openingMasks": 10,
+  "changedLogicalParts": [
+    "hair/ponytail/ponytail_left/ponytail_front",
+    "hair/ponytail/ponytail_left/ponytail_back",
+    "hair/side_hair/side_hair_left",
+    "hair/side_hair/side_hair_right",
+    "face/eyes/eye_left/upper_eyelid",
+    "face/eyes/eye_right/upper_eyelid",
+    "body/torso",
+    "pelvis",
+    "neck",
+    "face/face_base",
+    "legs/leg_left/leg",
+    "legs/leg_right/leg",
+    "legs/leg_right/shoes/rear_collar",
+    "arms/arm_left/hand/palm",
+    "arms/arm_right/hand/palm",
+    "arms/arm_left/hand/little_finger",
+    "arms/arm_right/hand/little_finger",
+    "arms/arm_left/hand/ring_finger",
+    "arms/arm_right/hand/ring_finger",
+    "arms/arm_left/hand/middle_finger",
+    "arms/arm_right/hand/middle_finger",
+    "arms/arm_left/hand/index_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/thumb",
+    "arms/arm_left/forearm",
+    "arms/arm_right/forearm",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm",
+    "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+    "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner"
+  ],
+  "sourceShapesChanged": [
+    "legs/leg_left/leg",
+    "legs/leg_right/leg",
+    "legs/leg_right/shoes/rear_collar"
+  ],
+  "controlsRefreshed": 70,
+  "groupsUnchanged": true,
+  "upstreamFingerprints": {
+    "groups.json": "2ab37e5da152002ce1d420c9ae1274614917058422984273c92196b842525bdb",
+    "occlusion.json": "0506aaacd9075f41908b991a23acf5690cea92391b6c6f72c06a9e7e1fbcbacf"
+  }
+}

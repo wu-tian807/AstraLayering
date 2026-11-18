@@ -1,14 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="18401e78ce1be70370bc6337db6058174c43e980e54d864fdf56e4e417b5b272">
-  <g id="chest_bow_left_loop_outline" data-group-path="chest_bow/left_loop" fill="#00a6b8" stroke="none">
-    <path d="M 563.0,441.3
-      L 565.2,441.4
-      C 587.6,442.2 613.0,453.6 630.7,467.3
-      Q 632.1,468.2 631.4,469.6
-      C 627.2,479.3 621.5,489.4 616.4,495.8
-      Q 615.6,497.0 614.5,496.3
-      L 578.4,469.4
-      L 562.0,459.0
-      Q 560.5,458.3 560.8,456.0
-      C 561.4,450.8 562.1,445.5 563.0,441.3 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <g id="chest_bow_left_loop" data-group-path="chest_bow/left_loop" fill="#e74ca8" stroke="none">
+    <path d="M 548.8 371.5 C 550.7 370.5 552.7 369.7 554.5 369.4 C 581.6 369.3 613.4 380.6 630.4 392.3 Q 633 394 631.3 398 C 627 407.5 622 417 616.4 423.8 Q 614.5 427.5 610.3 425.5 C 596 419 581.5 406.8 569.6 397.3 C 562.5 391.7 555 387.1 548.8 385.1 Z"/>
   </g>
 </svg>

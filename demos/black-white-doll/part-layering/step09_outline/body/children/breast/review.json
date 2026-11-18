@@ -2,241 +2,57 @@
   "groupId": "body/breast",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已完成整图叠加与父组完成稿核对，并以重叠选框 [450,325,90,115]、[515,325,80,115]、[570,325,75,115] 的 5 倍参考、blend、edge 覆盖左右胸部及中央过渡；另以两侧外缘、上下连接处的 8 倍局部核对接缝。父范围检查 pass，outsideSamples=0。左右乳房归为一个连续实体符合职责，未发现独立组件遗漏、孤点、碎片或孔洞问题。本轮需要局部外缘返修，不需要重画当前组的主要形体。衣服领口、缝线和弥散下胸阴影没有作为必须追随的实体边界；被衣服遮挡的上部、根部不要求本轮恢复。\n\n1. 画面左侧乳房下外缘，约 x466–472、y400–417：参考中胸部与左臂之间的边界逐渐向右收，并在下端露出狭窄空隙；候选这段斜缘位于参考边界左侧约 1–2 px，下端 (470.65,417.4) 尤其伸入了空隙。8 倍局部 [457,385,43,46] 中，红线在参考深色边界外侧，blend 能看见填色覆盖空隙的窄楔形。证据：observations/review/body/breast/2026-10-25T06-05-13-948Z-18.png（blend）、-20.png（edge），参考 observations/review/body/breast/e48b222d-94d2-4e5a-b91b-020dd2f37b88.png。请将 y400–417 的外缘向右收回，贴合清楚的胸部边界，并平顺接入下胸连接曲线；不要沿衣服内部阴影切层。这是父范围内可修的外缘偏出，不能以沿用父曲线放过。\n\n2. 画面右侧乳房下外缘，约 x621–625、y408–417：参考边界在这里向左收，胸部与右臂之间的窄空隙逐渐展开；候选靠近下端仍偏右，下端 (622.60,417.4) 覆盖了参考空隙约 1–2 px。8 倍局部 [596,385,43,46] 的红线偏在参考胸部边界右侧，blend 显示多出的窄楔形。证据：observations/review/body/breast/2026-10-25T06-05-13-948Z-22.png（blend）、-25.png（edge），参考 observations/review/body/breast/0637a9f9-295e-4292-8b21-85d885165d7b.png。请将 y408–417 的外缘向左收回并调整下端转向，保持与下胸连接处连续。父局部 -21.png 也沿用同一偏出的曲线，但向内修正不受父范围限制，因此仍由当前组返修。\n\n单独记录上游范围限制：两侧最外凸段附近，约左侧 x462–464、y360–385，右侧 x630–632、y365–385，参考轮廓线外侧的窄带超出父 body 的容纳边界。已在相同局部 [455,334,30,98]、[610,334,32,98] 将候选与父 SVG 以 8 倍 edge/blend 核对：候选此段与父边界重合（左侧候选 -13.png / 父 -12.png、-14.png；右侧候选 -15.png / 父 -16.png、-17.png）。恢复这些父外窄带需要上游扩大父范围，不能要求当前组越界，也不能声称候选已经覆盖它们。此限制不影响上述两处父内可修问题的 revise 结论。",
-      "candidateHash": "6da977452c6274b65964c6e4d25659180f4c80e02b651ee289a95e99ed81982c",
-      "observations": [
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-2.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-11.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-13.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-15.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-16.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-18.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-19.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-20.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-21.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-23.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-24.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T06-05-13-948Z-25.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T06:44:17.035Z",
-      "repairedCandidateHash": "1e57bc48ac4d50ee0dc2aaec77c70408a33722375136e2e3ec5efbcc06182936"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已独立核对 body/breast 本组。参考中腋前两侧约 x464–631、y340–400 的圆润隆起及下胸约 y400–422 的体积过渡支持左右乳房与中央连接的联合形体；候选覆盖该范围，未把肩、锁骨、腰腹或连体服肩带、缝线误认成本部件，也未按两块阴影拆成分离碎片。整图 blend 后，以 [451,324,86,112]、[514,324,82,112]、[573,324,77,112] 三个重叠选框逐块检查 blend 与 edge，覆盖全部候选及可辨区域；另以两侧 [458,332,34,102]、[610,332,29,102] 和下外侧 [464,393,41,37]、[593,393,42,37] 的 8 倍参考、父稿 edge 与候选 edge 核对外弧和衔接。两侧可见外缘的隆起位置、宽度、弧度及向胸廓收回的走向相符；上下及中央属衣服覆盖下的自然体积过渡，无清晰实体边界要求另行贴合，不以衣物领口、缝线或弥散阴影切层。候选独显为单件连续形体，无无依据孔洞、孤点或碎片，未发现可确认的本组组件缺失或需要重画的归属、主要形体问题。父范围检查 pass：4 倍采样 outsideSamples=0、outsidePixels=0。本轮无确定需修改问题。",
-      "candidateHash": "1e57bc48ac4d50ee0dc2aaec77c70408a33722375136e2e3ec5efbcc06182936",
+      "feedback": "已读取 body/breast 的 part 职责、父 body 及同级 torso 说明，并查看原图、候选和父完成 SVG。整图 blend 定位后，以左侧 [450,305,105,125]、右侧 [530,305,105,125] 和中央 [510,305,65,125] 的重叠选框完成 5–6 倍 blend/edge 核对，覆盖本组全部范围，并检查独显。\n左右胸侧约 x461 / x623、y343–400 的可见隆起及与上臂相邻的边缘吻合；双侧分别核对，未因近似镜像省略检查。中央乳沟所在区域及连体服包覆的双侧体积均已覆盖，中部连续，无无依据孔洞、孤立碎片或组件遗漏。领口、布料接缝与柔和胸部明暗属于本组范围内的内部表现，不要求挖空或新增内部轮廓；上下与胸廓的连续体积承接未见可据以认定缺漏的独立遮挡边界。未发现误包手臂、肩头或长发。父稿局部叠加已核对；候选父范围检查 outsidePixels=0，无上游范围冲突。\n图像证据：  \n当前候选通过，无确定需返修问题。",
+      "candidateHash": "2686d2a37a705c33c2517d6d484853001199e71d1b957c8908867f27b7b74581",
       "observations": [
         {
-          "source": "part-layering/parts/body.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-1.png"
-        },
-        {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-3.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-1.png"
         },
         {
           "source": "part-layering/parts/body.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-4.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-5.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-7.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-8.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-9.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-11.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-13.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-14.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/body/children/breast/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-17.png"
-        },
-        {
-          "source": "part-layering/parts/body.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-18.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/body/children/breast/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/body/children/breast/step01/observations/body/breast/2026-10-25T07-05-37-567Z-19.png"
+          "savedPath": "part-layering/step09_outline/body/children/breast/previews/2026-11-16T01-58-37-629Z-9.png"
         }
       ],
-      "updatedAt": "2026-10-25T07:27:05.094Z"
+      "updatedAt": "2026-11-16T02:25:30.827Z"
     }
   ]
 }

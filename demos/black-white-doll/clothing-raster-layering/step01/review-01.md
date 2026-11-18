@@ -1,77 +1,96 @@
 结论：需要修复
 
-# step01 衣服深度分层 — 独立视觉复核（review-01）
+已完成全部 10 个逻辑衣片、15 个普通绘画深度分片及 5 个原生透明度蒙版的独立检查。确定要修的是以下 3 处参考描边还原不足；未发现其他有明确图像证据的必修问题。
 
-被检对象：`step01/clothing-depth.kra`（19 个普通绘画层，1086×1448）。
-对照：`../../clothing-part-layering/references/clothing.png`、`groups.json`、`occlusion.json`、`parts/`。
-本次复核是直接把 KRA 的 19 层解码后逐层单显、按深度顺序重新合成（与 KRA 自带 `mergedimage.png` 逐像素一致，最大差 0.002），没有改动 KRA、参考与任何图层文件。
+## 检查对象与方式
 
-## 1 检查范围与总体判断
+- 当前工程：`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/clothing-depth.kra`，1086×1448。
+- 纯衣服参考：`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-part-layering/references/clothing.png`。
+- 原穿衣角色：`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/part-layering/references/simplified-subject.png`；用于核对肩带、腰口和裙身的穿着结构，本次没有检查身体装配。
+- 已读取 `D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-part-layering/groups.json`、`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-part-layering/occlusion.json` 及 `D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-part-layering/parts/` 的全部衣片 SVG，并将色块范围与当前绘画并排查看。
+- 本步现有正式记录为 `D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/report.md`，未发现正式 review / repair 报告。记录只用于了解已知处理，不作为验收依据。
 
-| 检查项 | 结果 |
-|---|---|
-| 内容完整（参考可见像素全部被某一层承载） | 通过：参考未被合成覆盖的像素为 0；仅有 103 个合成像素超出参考外缘（1 px AA 级），不构成问题 |
-| 形状与组装（19 层顺序与 occlusion 深度） | 通过：层序与 occlusion.json 一致；腰头 L8 在上衣可见下摆之后、衣尾 L9 在前腰头 L11 之后、裙尖 L13 在最前侧，符合 groups/occlusion 的标注；多层深度分片均为已有标注，不要求合并 |
-| 可见区与参考一致 | 通过：RGB 差 >8 的 1404 px、>32 的 121 px，集中在 1 px AA 外缘和下述接缝处 |
-| 层归属 | 通过：未发现身体、手臂、背景或邻片颜色混入某层；蝴蝶结五片、肩带、裙尖归属正确 |
-| 半透明/镂空区域保留 | 通过：衣身与肩带之间、蝴蝶结尾/环之间的透底区域保持透明 |
-| 画风一致（可见补全区） | 除下述 R2 外一致：低对比赛璐璐平涂，肩带根部、蝴蝶结结心、裙根补全区没有明显风格断裂 |
-| 补全区与可见区的接缝 | **存在已确认问题（R1）** |
-| 隐藏层画法 | **存在已确认问题（R2）** |
+在 Krita 5.3.1 实际打开当前 KRA，逐层切换可见性并导出：每个绘画分片独显、逐级隐藏更高层以露出搭接补全、5 个蒙版分别启用和停用、同一逻辑 part 的前后分片合看、全衣合成的蒙版两种状态。原始导出均保留画布坐标，参考未移动或配准。另查看原尺寸并排图及 2×/3×最近邻局部图，核查肩带根部、连续领缘、结心与翼尾、白衣与腰头、腰头与褶根和裙摆折角。放大仅用于辨认笔触，不以像素指标判断质量。
 
-按本阶段规则不当作缺陷处理：阴影/AO/投影、1 px 级 AA 与软边（step 2）、参考自带噪点与描边、同一部件的多层深度分片、PSNR。
+## 确定问题与修复反馈
 
-## 2 已确认问题
+所有 bounds 均为原画布 `[x,y,width,height]`。编号与框选工具的 `regions.json` 一致。以下局部对照均为左参考、右当前。
 
-### R1 — 腰头下缘与裙根的接缝线断成虚线（可见合成上的接缝缺陷）  〔中〕
 
-- 涉及图层：`11 pleated_skirt/waistband L11`、`10 pleated_skirt/skirt_body L10`
-- 位置：x≈376–727，y≈764–794（标注框 `[376,764,352,30]`）；最差一段 x≈427–615，y≈770–785。
-- 当前表现：腰头与裙根交界处的暗色接缝线不连续。L11 的下缘是台阶状的锯齿，L10 顶部紧贴该线的一排暗线被切成短横段，肉眼看是一条虚线/断续碎段，并且在右半（x≈600–727）再次出现错位的小黑点。逐列量化：x376–727 内有 57 列的接缝线深度比参考弱 8 个灰度级以上（如 x436–440 为 35 对参考约 23，x517–524、x580–591、x599–620 同样偏弱），断裂贯穿整条接缝而不是单点。
-- 参考依据：参考中该处是一条**连续**、自左向右逐渐变细的暗线，两侧是 L11 的平整亮面和 L10 的褶面；腰头两端（x≈366–390 与 x≈690–730，L2 端条一带）的外形与转角与参考一致，这些位置没有问题。
-- 影响：这是腰头与裙身之间最显眼的一条线，属于“补全区/可见区接缝没有修成连续轮廓”。以后单独移动或替换腰头或裙身时，这条线会作为碎片跟在 L10/L11 上，轮廓无法对齐。
-- 修复方向：沿参考里的接缝线走向，用画笔把这条暗线在 L11 的下缘（或 L10 的顶缘，二选一，不要两层各留半条）补成一条连续、向右渐细的实线；L11 下缘的台阶按参考的平滑弧度修顺。接缝线应当只由一层承载，另一层对应位置用本层底色补满、不留暗线残片。
-- 需要保留：L11 腰头平整亮面、高光块和两端外形；L10 的褶线、裙根弧形补全区和下方褶面明暗；两端 L2 端条与外缘位置；所有参考可见像素的原色，不要移动或缩放。
-- 证据：
-  - 标注图：`review-evidence/89c68893-5270-4b9d-b202-76a370904483/marked.png`、`regions.json`、`R1-current.png`、`R1-reference.png`、`R1-comparison.png`
-  - 放大对比（左参考/右当前）：`review-01-evidence/seam_comp.png`；分层视图 `seam_L11.png`、`seam_L10.png`、`seam_ref.png`
-  - 腰头两端对比：`waistL_ends.png`、`waistR_ends.png`、`waist_left_comp.png`、`waist_right_comp.png`
-  - 当前合成：`review-01-evidence/current-composite.png`；参考：`review-01-evidence/reference.png`
 
-### R2 — 隐藏衣尾 L9 整体偏灰、斑驳，与衣身主体画法不一致（隐藏补全层）  〔低〕
+### R1 — 蝴蝶结自身的深色外缘描边还原不足
 
-- 涉及图层：`09 camisole/bodice L9`
-- 位置：x≈387–719，y≈714–758（标注框 `[387,714,332,44]`，在 `view-L1-L10-no-front-layers.png` 中标注）。
-- 当前表现：L9 是上衣伸入腰头之后的隐藏衣尾，共 9096 像素。均值约 RGB 193/191/197，同一件上衣紧邻的 L12 下摆约 238/236/242，偏灰约 45 个级；标准差约 37 对 L12 的约 10，里面是一块块边界生硬的灰紫褶影，下缘是台阶状描边。看起来像另一件灰色衣料，而不是同一件白色低对比赛璐璐上衣。
-- 参考依据：参考中上衣下摆一整片为近白（约 238）加少量浅灰紫褶影，没有这种大面积灰块；衣尾只是下摆同一块布的向下延续。
-- 影响：该层被 L11 完全盖住，当前合成看不出来，不影响整体还原；但这是隐藏补全层，一旦腰头被移开（这正是拆出这层的用途），露出的衣尾颜色和画法与上衣断开。
-- 修复方向：把 L9 的底色提亮到与 L12 下摆同色系（近白，约 238），褶影改成与 L12 下摆相同的浅灰紫、低对比、与下摆方向一致的几道，去掉斑驳的深灰块；下缘描边沿 SVG 轮廓画成平滑连续的弧线，不要台阶。
-- 需要保留：L9 的外形/范围（x391–715，y718–753）和与 L12 下摆线的衔接位置；L9 与 L11、L10 的遮挡关系（仍保持在 L11 之后、L10 之前）。
-- 证据：
-  - 标注图：`review-evidence/b7ba215d-f8fa-402f-8a6c-e7c123fa10c3/marked.png`、`regions.json`、`R2-current.png`
-  - 隐藏层视图：`review-01-evidence/view-L1-L10-no-front-layers.png`
-  - L9 与 L12 并排：`L9_L12_left.png`、`L9_L12_right.png`
+- **相关图层**：`D16__chest_bow/right_tail__full`、`D17__chest_bow/left_tail__full`、`D18__chest_bow/right_loop__full`、`D19__chest_bow/left_loop__full`、`D20__chest_bow/center_knot__front`；同源背向结心 `D15__chest_bow/center_knot__rear` 的对应边缘一并保持一致。
+- **位置**：bounds `[454,365,179,180]`。重点是两条带尾长边及斜切末端、两结翼上缘与外端、结心左右侧缘。
+- **当前表现**：带尾长边和末端接近深灰布面直接截止，参考中可辨认的近黑色细描边未充分保留；结翼外缘和结心侧缘的描边也变淡、变软。此差异在原尺寸对照中可见，独显确认来自各件自身边缘。
+- **参考依据**：纯衣服参考同坐标可见连续深色细线，尤其两条带尾斜切端与长边的黑色边线明确；结翼的外缘与折返面边界有清楚区分。
+- **影响**：外轮廓线的强度与参考不符，缎带的边缘和折返结构显得软化，未满足参考已有外轮廓、包边完整还原的要求。
+- **修复方向**：在各自原绘画层沿已有形体恢复深色细描边，以原尺寸参考确定粗细和深浅；带尾边线连到本件隐藏根部，结翼外缘接顺折返边缘，结心侧缘保持曲线连续。修后同时检查独显及汇合合成，避免加出双重边线。
+- **需要保留**：现有缎带渐变、褶皱和完整折返内壁、各件独立层级、隐藏根部、两带尾间透明开口，以及衣身不带蝴蝶结投影的状态。
 
-## 3 不阻塞的观察（本阶段不要求处理，供 step 2 参考）
 
-以下不计入“需要修复”的依据，不要因此改动已通过的可见像素：
 
-1. **蝴蝶结投影残片在 L12**：胸前蝴蝶结在上衣可见布面上的浅灰紫投影（参考可见像素）保留在 L12，形状被蝴蝶结轮廓切成硬边楔形。本阶段不要求阴影，且是参考自带可见像素，所以不算问题；若要让蝴蝶结可独立移动，step 2 再决定是否去掉。见 `bow_area_L12.png`、`solo_bodice_L12.png`。
-2. **右肩带顶端的零星低 alpha 斑点**：右肩带顶端轮廓外侧有数十个 1 px 的暗紫/灰点（合成中超出参考的 103 px 的一部分），在 L3/L6 上。属于 1 px 级边缘噪点，step 2 清理。见 `strapR_top_comp.png`、`strapR_root_comp.png`。
-3. **裙身左外缘 x≈275–293、y≈893–924**：最外约 1 px 的淡 AA 缺失，边缘略呈点状；主描边连续（制作者已在 report §7.1 自述）。
-4. **蝴蝶结外缘个别点**：个别 RGB 差 >32 的 1 px AA 点；结心外轮廓略有锯齿。见 `knot_comp.png`、`loops.png`、`tails.png`。
-5. **L13 裙尖边缘**的细长小碎片、**L1/L5** 窄条与相邻层的 1 px 描边增厚，均在 AA 级别。见 `tip_left.png`、`tip_right.png`、`L1_left.png`、`L1_right.png`、`L5L12_left.png`。
-6. **肩带根部**（L6/L7）补全区与可见带面颜色衔接正常，描边在根部有 1–2 px 折点，不影响轮廓连续（`strapR_root_comp.png`、`strapL_root_comp.png`）。
+放大辨认：[蝴蝶结 3×对照](review-evidence/review01-inspection/detail-bow.png)。逐件证据见下方覆盖表中的 D15–D20。
 
-## 4 修复后复核重点
+### R2 — 画面左肩带肩顶及外侧轮廓线明显变浅
 
-- R1：重新导出合成后，x376–727 内接缝线应连续、向右渐细，逐列深度与参考相差 ≤8 个灰度级。
-- R2：L9 与 L12 下摆同色系，单显 L9 时看不到大块深灰斑驳。
-- 修复中不得改动其他 17 层及上述“需要保留”的像素；可见像素仍用参考自身像素，不移动、不缩放参考。
+- **相关图层**：`D10__camisole/right_shoulder_strap__front`、`D03__camisole/right_shoulder_strap__rear`。
+- **位置**：bounds `[373,167,39,143]`，画面左肩带圆弧肩顶及画面左侧长边，直到进入领缘的可见段。
+- **当前表现**：肩顶及外侧长边呈浅灰软边，参考中的连续深色外轮廓线明显减弱；带内的暗色折转线仍然存在。背向顶帽停用蒙版后可见相同笔触。
+- **参考依据**：纯衣服参考同位置的肩顶及外侧边有清楚深色描边，原穿衣角色也保留窄带的明确轮廓。
+- **影响**：轮廓线与参考强度不符，白色窄带的边界缺少参考中的清晰度。
+- **修复方向**：沿本件肩顶和外侧长边补回与参考相当的连续深色细线，接顺领缘遮住之前的可见段。D03 顶帽与 D10 对应笔触同步处理，合看时肩顶不出现重复线或深度分界横线。
+- **需要保留**：白布渐变、带内折转线、当前窄带形体与位置、延至 y328 的完整隐藏根部、领口透明开口及背向蒙版默认启用。
 
-## 5 证据索引
 
-- 标注图（`mcp__layering__annotate_review_regions`）
-  - R1：`step01/review-evidence/89c68893-5270-4b9d-b202-76a370904483/`（`marked.png`、`regions.json`、`R1-current.png`、`R1-reference.png`、`R1-comparison.png`）
-  - R2：`step01/review-evidence/b7ba215d-f8fa-402f-8a6c-e7c123fa10c3/`（`marked.png`、`regions.json`、`R2-current.png`）
-- 截图与局部对比：`step01/review-01-evidence/`（`current-composite.png`、`reference.png`、`view-L1-L10-no-front-layers.png`，另有 `seam_*.png`、`waist*_ends.png`、`L9_L12_*.png`、`bow_area_L12.png`、`strap*_comp.png`、`tip_*.png` 等逐处局部图）。
+
+放大辨认：[画面左肩带 3×对照](review-evidence/review01-inspection/detail-left-strap.png)。
+
+### R3 — 画面右肩带肩顶及外侧轮廓线明显变浅
+
+- **相关图层**：`D11__camisole/left_shoulder_strap__front`、`D04__camisole/left_shoulder_strap__rear`。
+- **位置**：bounds `[677,167,39,143]`，画面右肩带圆弧肩顶及画面右侧长边。
+- **当前表现**：肩顶和外侧边变成浅灰软边，深色外轮廓描边明显弱于参考；独显与前后分片合看均可确认。
+- **参考依据**：纯衣服参考同位置的肩顶和画面右侧长边均有连续深色细线，其强度与带内折转线相协调。
+- **影响**：与参考及其他清楚描边的衣片边缘不一致，肩带外缘的线条还原不足。
+- **修复方向**：在 D11 恢复圆弧肩顶及外侧长边的深色细线，按参考控制粗细、色深及抗锯齿；D04 的对应顶帽保持一致，蒙版两种状态及前后合看均应连续。
+- **需要保留**：当前布面明暗、带内折转线、窄带比例与位置、领缘搭接、前后独立绘画层、背向默认隐藏和透明领口。
+
+
+
+放大辨认：[画面右肩带 3×对照](review-evidence/review01-inspection/detail-right-strap.png)。
+
+## 全部衣片检查覆盖
+
+下表的“逐层”图左栏为独显、中栏为隐藏上层；有蒙版的分片另有右栏启用蒙版的状态。小衣片为最近邻放大，大衣片为原尺寸局部。每个原始状态 PNG 也保存在同一证据目录，清单见 `D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/review-evidence/review01-inspection/inspection-manifest.json`。
+
+|逻辑 part|已看实际分片与逐层证据|同 part 合看与结果|
+|---|---|---|
+|`camisole/right_shoulder_strap`（画面左）|[D03 背顶帽](review-evidence/review01-inspection/inspection-D03.png)、[D10 前段](review-evidence/review01-inspection/inspection-D10.png)|[蒙版启用/停用合看](review-evidence/review01-inspection/combined-camisole-right_shoulder_strap.png)；形体、根部完整；修 R2。|
+|`camisole/left_shoulder_strap`（画面右）|[D04 背顶帽](review-evidence/review01-inspection/inspection-D04.png)、[D11 前段](review-evidence/review01-inspection/inspection-D11.png)|[蒙版启用/停用合看](review-evidence/review01-inspection/combined-camisole-left_shoulder_strap.png)；形体、根部完整；修 R3。|
+|`camisole/bodice`|[D12 完整衣身](review-evidence/review01-inspection/inspection-D12.png)|领缘连续，蝴蝶结后为完整白布，无翼尾鬼影；下摆补全连续，未混入黑腰头。未见其他确定问题。|
+|`chest_bow/center_knot`|[D15 背向连接](review-evidence/review01-inspection/inspection-D15.png)、[D20 正面](review-evidence/review01-inspection/inspection-D20.png)|[蒙版启用/停用合看](review-evidence/review01-inspection/combined-chest_bow-center_knot.png)；束结本体连续；修 R1 对应边缘。|
+|`chest_bow/right_tail`（画面左）|[D16](review-evidence/review01-inspection/inspection-D16.png)|根部及斜切端完整，无其他衣片像素；修 R1 对应边缘。|
+|`chest_bow/left_tail`（画面右）|[D17](review-evidence/review01-inspection/inspection-D17.png)|根部及斜切端完整，与另一条间开口透明；修 R1 对应边缘。|
+|`chest_bow/right_loop`（画面左）|[D18](review-evidence/review01-inspection/inspection-D18.png)|聚拢根部、折返暗面和内壁连续；修 R1 对应边缘。|
+|`chest_bow/left_loop`（画面右）|[D19](review-evidence/review01-inspection/inspection-D19.png)|聚拢根部、折返暗面和内壁连续；修 R1 对应边缘。|
+|`pleated_skirt/waistband`|[D02 背侧连接](review-evidence/review01-inspection/inspection-D02.png)、[D14 前腰头](review-evidence/review01-inspection/inspection-D14.png)|[蒙版启用/停用合看](review-evidence/review01-inspection/combined-pleated_skirt-waistband.png)；两侧连接和前布面完整，未见缺口、脏色或拼接台阶。|
+|`pleated_skirt/skirt_body`|[D01 背侧连接](review-evidence/review01-inspection/inspection-D01.png)、[D13 前裙身](review-evidence/review01-inspection/inspection-D13.png)|[蒙版启用/停用合看](review-evidence/review01-inspection/combined-pleated_skirt-skirt_body.png)；褶根补全、连续裙面、纵褶及错落下摆完整，无远端残影。|
+
+5 个背向层默认启用透明度蒙版后独显为空，停用后分别显示自身顶帽、侧接或束结笔触；它们是同 part 的深度分片，没有按“重复层”判错。前后分片合看未见新增台阶或双线。
+
+### 整体与衔接证据
+
+- [全画布参考与当前](review-evidence/review01-inspection/compare-full.png)；[上衣原尺寸对照](review-evidence/review01-inspection/compare-upper-native.png)。
+- [色块范围：上衣](review-evidence/review01-inspection/colormap-upper.png)；[色块范围：裙子](review-evidence/review01-inspection/colormap-lower.png)。形体、比例、位置及当前衣服内部层级未见其他确定问题。
+- [腰部 2×接缝](review-evidence/review01-inspection/compare-waist-2x.png)；[裙根 2×接缝](review-evidence/review01-inspection/detail-root.png)；[裙摆原尺寸对照](review-evidence/review01-inspection/compare-hem-native.png)。白衣与腰头、腰头与褶根衔接未见露底、断口、错位或外露搭接。
+- [整体蒙版启用与停用](review-evidence/review01-inspection/masks-composite-native.png)。背向连接由前片正常覆盖，未见蒙版开关引入的接缝。
+
+各衣片可见布面均有绘画明暗和线条，未发现沿外形整块填色、补全区色块拼贴或邻件线条残影；未见人体或其他部件投影混入独立衣片。参考衣服没有袖子或纱料；领口及带尾之间的正常开口保留。纯衣服参考中翼尾在白衣上的投影已移除，符合本步要求，不列为缺失。
+
+## 证据位置与只读核验
+
+- 框选及原尺寸同坐标参考/当前/对照：`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/review-evidence/review01-marked/`；其中 `regions.json` 记录 R1–R3 的坐标、图层和修复说明。
+- 本次实际 KRA 导出与检查图：`D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/review-evidence/review01-inspection/`。
+- KRA 打开前及检查结束的 SHA-256 均为 `990a9b9627ce0bd68e1f116edb2386c4de442ad34acb2616d71e62f1fab3d037`。可见性操作只发生在内存，恢复初始图层/蒙版状态后关闭，未保存工程；核验记录为该检查图目录的 `readonly-verification.json`。此散列仅核验文件未改动，不用于画质判断。
+- 未修改 KRA、parts SVG、groups.json、occlusion.json 或原有正式记录。本次仅交付本暂存报告与新增证据，未进行修画。
