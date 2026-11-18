@@ -21,10 +21,15 @@ export type Harness = typeof modelHarnesses[keyof typeof modelHarnesses];
 export type ModelId = keyof typeof modelHarnesses;
 export const reasoningEfforts = ['low', 'medium', 'high', 'xhigh'] as const;
 export type ReasoningEffort = typeof reasoningEfforts[number];
-export function modelReasoningEfforts(model: string, harness: Harness): readonly ReasoningEffort[] {
-  return harness === 'agv' && model === 'gemini-4-carbon' ? ['low', 'medium', 'high'] : reasoningEfforts;
-}
 export type AgentModel = { model: string; effort: ReasoningEffort; harness: Harness };
+const standardGeminiEfforts = ['low', 'medium', 'high'] as const;
+export function modelReasoningEfforts(model: string, harness: Harness): readonly ReasoningEffort[] {
+  return harness === 'agv' && (model === 'gemini-4-carbon' || model === 'gemini-4-argon') ? standardGeminiEfforts : reasoningEfforts;
+}
+export function validateModelReasoningEffort({ model, effort, harness }: AgentModel, key = '模型配置'): void {
+  const supported = modelReasoningEfforts(model, harness);
+  if (!supported.includes(effort)) throw new Error(`${key} 的 ${model} 不支持 ${effort}，可选力度：${supported.join("、")}。`);
+}
 type ModelCatalog=Partial<Record<Harness,{models?:readonly string[]}>>;
 export function modelHarness(model:string,catalog:ModelCatalog={},key='模型'):Harness {
   const selected=matchModelService<Harness>(model,Object.fromEntries(Object.entries(catalog).map(([h,provider])=>[h,provider?.models])),key);
@@ -83,11 +88,9 @@ export function parseAgentModel(value: string, key: string, catalog:ModelCatalog
     throw new Error(`${key} 必须为已支持的模型 ID 加思考力度后缀；模型：${Object.keys(modelHarnesses).join(', ')}；力度：${reasoningEfforts.join(', ')}。`);
   }
   const model = match[1];
-  const effort = match[2] as ReasoningEffort;
-  const harness = modelHarness(model, catalog, key);
-  const supported = modelReasoningEfforts(model, harness);
-  if (!supported.includes(effort)) throw new Error(key + ' 的 ' + model + ' 不支持 ' + effort + '，可选力度：' + supported.join('、') + '。');
-  return { model, effort, harness };
+  const selection = { model, effort: match[2] as ReasoningEffort, harness: modelHarness(model, catalog, key) };
+  validateModelReasoningEffort(selection, key);
+  return selection;
 }
 export function partStep(section: 'part-layering' | 'clothing-part-layering', kind: string): AgentStep {
   const key = `${section === 'part-layering' ? 'part' : 'clothing'}_${kind}`;

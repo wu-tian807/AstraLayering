@@ -142,7 +142,7 @@ raster_step01_repair_image_model=gpt-image-2.5-flare
 | Claude Code | `claude-fable-5-2`、`claude-sonnet-5-5`、`claude-opus-5-5`、`claude-haiku-5-5` | `claude_path`，未填则找全局 `claude` |
 | Antigravity（agv） | `gemini-4-carbon`、`gemini-4-argon`、`gemini-4-hydrogen` | `agv_path`，未填则找全局 `agy`／`agv`／`antigravity` |
 
-配置支持 `low`、`medium`、`high`、`xhigh`。Gemini 4 Carbon 可用 `low`、`medium`、`high`，Gemini 4 Hydrogen 也支持 `xhigh`。配置路径相对于 skill 根目录；模型是否获授权仍由用户的 CLI 登录或 provider 决定。三种 CLI 复用支持的本机登录；文件型登录改变后下一次调用同步，继续原会话。动态认证由 CLI 和认证命令自身取值，支持范围与升级行为见 [Harness 登录与会话契约](../shared/README.md#harness-登录与会话契约)。启动会报告缺失条件，由 agent 与用户确认安装、登录或改选模型的方案。
+配置支持 `low`、`medium`、`high`、`xhigh`。Gemini 4 Carbon 和 Gemini 4 Argon 可用 `low`、`medium`、`high`，Gemini 4 Hydrogen 也支持 `xhigh`。配置路径相对于 skill 根目录；预览或保存配置、启动任务时，会直接拒绝已知不支持的力度组合。模型是否获授权仍由用户的 CLI 登录或 provider 决定。三种 CLI 复用支持的本机登录；文件型登录改变后下一次调用同步，继续原会话。动态认证由 CLI 和认证命令自身取值，支持范围与升级行为见 [Harness 登录与会话契约](../shared/README.md#harness-登录与会话契约)。启动会报告缺失条件，由 agent 与用户确认安装、登录或改选模型的方案。
 
 例如，将人物和衣服的轮廓绘制与返修改为 Terra：
 

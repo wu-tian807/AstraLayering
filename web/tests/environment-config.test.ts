@@ -43,7 +43,9 @@ test('preview masks multiline and inherited credentials while exposing resolved 
   assert.equal(models.get(id)?.harness,harness,id);
   assert.equal(models.get(id)?.allowed,true,id);
  }
- assert.deepEqual(models.get('gemini-4-carbon')?.efforts,['low','medium','high']);
+ for(const id of ['gemini-4-carbon','gemini-4-argon']) {
+  assert.deepEqual(models.get(id)?.efforts,['low','medium','high']);
+ }
  assert.ok(models.get('gemini-4-hydrogen')?.efforts.includes('xhigh'));
 });
 test('the workbench ignores prefixed aliases and saves the visible Codex budget independently', async t => {
@@ -231,6 +233,15 @@ test('custom model IDs are offered and saved through the declared harness; unkno
  await assert.rejects(f.environment.save({revision:saved.revision,changes:{claude_models:'custom/router-model'}}),/多个服务/);
  assert.deepEqual(loadWorkflowEnvironment({},f.directory).stepModels.part_pose_judgment,model);
  data=await f.environment.read();assert.equal(data.fields.find(field=>field.key==='preparation_agent_model')?.effective,'custom/router-model-high');
+});
+
+test('workbench rejects unsupported effort in preview and save before checking the CLI',async t=>{
+ const original='part_review_agent_model=gemini-4-argon-high\n';
+ const f=await fixture(t,original),initial=await f.environment.read();
+ const draft={revision:initial.revision,changes:{part_review_agent_model:'gemini-4-argon-xhigh'}};
+ await assert.rejects(f.environment.preview(draft),/part_review_agent_model.*gemini-4-argon.*不支持 xhigh/);
+ await assert.rejects(f.environment.save(draft),/part_review_agent_model.*gemini-4-argon.*不支持 xhigh/);
+ assert.equal(await readFile(join(f.directory,'.env'),'utf8'),original);
 });
 
 test('shared model-rule validation blocks malformed drafts, extends defaults and routes free-form image/video IDs',async t=>{
