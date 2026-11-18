@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import fs, { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { syncBuiltinESMExports } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { AgentLog } from '../codex/agent-log.ts';
 import { followNativeLog } from '../codex/native-log.ts';
-import { readTaskLog } from '../../workflow/log.ts';
+import { createTaskLog, readTaskLog } from '../../workflow/log.ts';
 
 test('concurrent agents and raster steps write the same task log, retaining independent request records', async t => {
   const root = await mkdtemp(join(tmpdir(), 'layering-log-'));
@@ -116,6 +117,7 @@ test('Codex SDK and app-server command/tool events already share the same human 
   await log.record({ type: 'item.completed', item: { type: 'command_execution', id: 'command', command: 'python inspect.py',
     aggregated_output: 'inspection complete', exit_code: 0, status: 'completed' } });
   await log.recordProtocol({ method: 'item/started', params: { item: { type: 'commandExecution', id: 'native-command', command: 'inspect native' } } });
+  await log.recordProtocol({ method: 'item/commandExecution/outputDelta', params: { delta: 'raw command fragment' } });
   await log.recordProtocol({ method: 'item/tool/call', params: { tool: 'preview_svg', arguments: { path: 'draft.svg' } } });
   await log.recordProtocol({ result: { contentItems: [{ type: 'inputText', text: 'preview complete' }], success: true } }, 'out');
   await log.recordProtocol({ method: 'item/completed', params: { item: { type: 'commandExecution', id: 'native-command', aggregatedOutput: 'native complete' } } });
@@ -125,5 +127,49 @@ test('Codex SDK and app-server command/tool events already share the same human 
   for (const pattern of [/命令开始：python inspect.py/, /命令完成：python inspect.py/, /inspection complete/,
     /item\/started/, /工具调用：preview_svg/, /工具结果：/, /preview complete/, /native complete/, /native error/, /SDK error/]) {
     assert.match(text, pattern);
+  }
+  assert.doesNotMatch(text, /raw command fragment/);
+  assert.match(await readFile(join(log.directory, 'events.jsonl'), 'utf8'), /raw command fragment/);
+});
+
+test('a locked workflow summary retries its open and preserves the agent result if it stays locked', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'layering-log-busy-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const log = await AgentLog.create(join(root, 'part-layering/agents'), 'face', {});
+  const path = join(root, 'workflow.log'), append = fs.appendFile, open = fs.open;
+  const sharingViolation = Object.assign(new Error('file is in use'), { code: 'EBUSY', syscall: 'open' });
+  let blockedAppends = 2, blockedRead = false;
+  const appendMock = t.mock.method(fs, 'appendFile', async (...args: Parameters<typeof append>) => {
+    if (args[0] === path && blockedAppends > 0) { blockedAppends--; throw sharingViolation; }
+    return append(...args);
+  });
+  const openMock = t.mock.method(fs, 'open', async (...args: Parameters<typeof open>) => {
+    if (args[0] === path && blockedRead) throw sharingViolation;
+    return open(...args);
+  });
+  const warning = t.mock.method(console, 'error', () => {});
+  syncBuiltinESMExports();
+  try {
+    await log.record({ type: 'turn.started' });
+    assert.equal(blockedAppends, 0);
+    assert.equal((await readFile(path, 'utf8')).match(/开始处理/g)?.length, 1);
+    assert.equal(warning.mock.callCount(), 0);
+
+    blockedAppends = Infinity; blockedRead = true;
+    const summary = createTaskLog(root);
+    summary.write('总调度进度');
+    const [, displayed] = await Promise.all([log.finish({ status: 'completed' }), readTaskLog(root), summary.flush()]);
+    assert.equal(JSON.parse(await readFile(join(log.directory, 'result.json'), 'utf8')).status, 'completed');
+    assert.match(displayed.text, /暂时无法读取/);
+    assert.equal(warning.mock.callCount(), 1);
+    assert.equal(warning.mock.calls[0].arguments[1], sharingViolation);
+
+    blockedAppends = 0; blockedRead = false;
+    await log.record({ type: 'item.completed', item: { type: 'agent_message', id: 'message', text: '已恢复写入' } });
+    assert.match((await readTaskLog(root)).text, /已恢复写入/);
+  } finally {
+    appendMock.mock.restore();
+    openMock.mock.restore();
+    syncBuiltinESMExports();
   }
 });
