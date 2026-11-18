@@ -24,9 +24,13 @@ async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
 }
 
 test('model roles are shared by character/clothing, repairs use drawing roles, groups and depth stay independent', async t => {
-  for (const [id, harness] of Object.entries(modelHarnesses)) for (const effort of ['low', 'medium', 'high', 'xhigh']) {
-    assert.deepEqual(parseAgentModel(`${id}-${effort}`, 'fixture'), { model: id, harness, effort });
+  for (const [id, harness] of Object.entries(modelHarnesses)) {
+    const efforts = id === 'gemini-4-carbon' ? ['low', 'medium', 'high'] : ['low', 'medium', 'high', 'xhigh'];
+    for (const effort of efforts) {
+      assert.deepEqual(parseAgentModel(`${id}-${effort}`, 'fixture'), { model: id, harness, effort });
+    }
   }
+  assert.throws(() => parseAgentModel('gemini-4-carbon-xhigh', 'fixture'), /gemini-4-carbon.*不支持 xhigh/);
   assert.throws(() => parseAgentModel('gemini-4-argon-max', 'fixture'));
   assert.throws(() => parseAgentModel('claude-sonnet-5.5-xhigh', 'fixture'), /claude-sonnet-5-5/);
   assert.throws(() => parseAgentModel('unlisted-high', 'fixture'));

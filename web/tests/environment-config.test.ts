@@ -35,6 +35,16 @@ test('preview masks multiline and inherited credentials while exposing resolved 
  assert.equal(claude.overridden,false);assert.equal(claude.sourceKey,'claude_api_key');assert.equal(claude.effectiveConfigured,true);
  assert.equal(data.providers?.claude.baseUrl,'https://gateway.example');
  assert.equal(data.models.find(m=>m.id==='claude-sonnet-5-5')?.available,false);
+ const models=new Map(data.models.map(model=>[model.id,model]));
+ for(const [id,harness] of [
+  ['gpt-6.2-sol','codex'],['gpt-6.2-astra','codex'],['claude-fable-5-2','claude'],
+  ['gemini-4-carbon','agv'],['gemini-4-hydrogen','agv'],
+ ]) {
+  assert.equal(models.get(id)?.harness,harness,id);
+  assert.equal(models.get(id)?.allowed,true,id);
+ }
+ assert.deepEqual(models.get('gemini-4-carbon')?.efforts,['low','medium','high']);
+ assert.ok(models.get('gemini-4-hydrogen')?.efforts.includes('xhigh'));
 });
 test('the workbench ignores prefixed aliases and saves the visible Codex budget independently', async t => {
  const original='layering_image_compact_threshold=49\nlayering_codex_api_key=old-secret\n';
