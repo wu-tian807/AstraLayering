@@ -152,6 +152,46 @@ test('isolated clipped parts retain mask coverage; hidden clipped layers need no
   assert.deepEqual([...data.subarray((50*100+60)*3,(50*100+60)*3+3)],[0x30,0x33,0x3a]);
 });
 
+test('overlapping paint with the same motion filters as composed pixels; independent poses and visibility still work', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'nine-view-paint-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const dark = [112, 32, 48, 255], light = [232, 206, 152, 255], clear = [0, 0, 0, 0];
+  const files = new Map<string, string>();
+  for (const [name, left, right] of [['base', dark, clear], ['overlay', clear, light], ['composed', dark, light]] as const) {
+    const file = join(directory, name + '.png'), pixels = Buffer.from(Array.from({ length: 64 }, (_, i) => i % 8 < 4 ? left : right).flat());
+    await sharp(pixels, { raw: { width: 8, height: 8, channels: 4 } }).png().toFile(file);
+    files.set('layers/' + name + '.png', file);
+  }
+  const part = (name: string) => ({
+    id: name, level: 'face' as const, texture: 'layers/' + name + '.png', textureBounds: [2, 2, 8, 8],
+    bbox: [2, 2, 10, 10], cols: 1, rows: 1, keyforms: {
+      '0': grid(2, 2, 10, 10), '-30': grid(2, 2, 10, 10), '30': grid(2, 2, 10, 10),
+    },
+  });
+  const doc: Built['doc'] = {
+    version: 2, kind: 'head-nine-axis', canvas: [12, 12], view: { x: 0, y: 0, width: 12, height: 12 },
+    levels: [{ id: 'face', includes: ['face'] }], deformers: [], parts: [part('base'), part('overlay')],
+    parameters: [{ id: 'ParamAngleX', min: -30, max: 30, keys: [-30, 0, 30] }],
+  };
+  const signal = new AbortController().signal;
+  const render = async (model: Built['doc'], args: Record<string, unknown> = {}) => {
+    const tool = createNineAxisViewTool(directory, join(directory, 'observations'), async () => ({ doc: model, textures: files }));
+    const reply = await tool.execute({ scale: 4, ...args }, signal);
+    const { savedPath } = JSON.parse((reply.contentItems[0] as { text: string }).text);
+    return sharp(savedPath).removeAlpha().raw().toBuffer();
+  };
+  const at = (pixels: Buffer, x: number, y: number) => [...pixels.subarray((y * 48 + x) * 3, (y * 48 + x) * 3 + 3)];
+  const rendered = await render(doc);
+  const reference = await render({ ...doc, parts: [part('composed')] });
+  for (const x of [22, 23, 24, 25]) assert.deepEqual(at(rendered, x, 24), at(reference, x, 24));
+  const hidden = await render(doc, { only: ['overlay'] });
+  assert.deepEqual(at(hidden, 14, 24), [0x30, 0x33, 0x3a]);
+  assert.deepEqual(at(hidden, 32, 24), light.slice(0, 3));
+  doc.parts[1].keyforms['30'] = grid(2, 2, 10, 10, 2);
+  const moved = await render(doc, { x: 30 });
+  assert.deepEqual(at(moved, 43, 24), light.slice(0, 3));
+});
+
 test('edge compares only the visible silhouette at fixed canvas coordinates without grid, checkerboard or crop edges', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'nine-view-edge-'));
   t.after(() => rm(directory, { recursive: true, force: true }));

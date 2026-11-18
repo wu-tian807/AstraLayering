@@ -98,17 +98,58 @@ try:
     doc.waitForDone()
     if doc.colorModel() != 'RGBA' or doc.colorDepth() != 'U8':
         raise RuntimeError('KRA must be RGBA/U8')
-    nodes = {}
-    def collect(parent):
+    nodes, parents, children, masked_groups = {}, {}, {}, set()
+    def collect(parent, parent_id=''):
+        children[parent_id] = []
         for node in parent.childNodes():
-            nodes[node.uniqueId().toString().strip('{}').lower()] = node
-            collect(node)
+            key = node.uniqueId().toString().strip('{}').lower()
+            nodes[key] = node
+            parents[key] = parent_id
+            children[parent_id].append(key)
+            if parent_id and parent.type() == 'grouplayer' and node.type() == 'transparencymask' and node.visible():
+                masked_groups.add(parent_id)
+            collect(node, key)
     collect(doc.rootNode())
     for key in config['shadows']:
         if key in nodes:
             nodes[key].setVisible(False)
     doc.refreshProjection()
     doc.waitForDone()
+
+    def projected(key, rect):
+        # Child projections omit masks attached to ancestor groups. Read the
+        # outermost masked group with just this branch and its masks visible.
+        branch, group = [], None
+        at = key
+        while parents[at]:
+            parent = parents[at]
+            branch.append((parent, at))
+            if parent in masked_groups:
+                group = parent
+            at = parent
+        if group is None:
+            return nodes[key].projectionPixelData(*rect)
+        hidden = []
+        try:
+            for parent, child in branch:
+                for sibling in children[parent]:
+                    node = nodes[sibling]
+                    if sibling != child and not node.type().endswith('mask') and node.visible():
+                        hidden.append(node)
+                        node.setVisible(False)
+                if parent == group:
+                    break
+            if hidden:
+                doc.refreshProjection()
+                doc.waitForDone()
+            return nodes[group].projectionPixelData(*rect)
+        finally:
+            for node in hidden:
+                node.setVisible(True)
+            if hidden:
+                doc.refreshProjection()
+                doc.waitForDone()
+
     exported = []
     for row in config['rows']:
         node = nodes.get(row.get('uuid'))
@@ -125,7 +166,8 @@ try:
             image = QImage(w, h, QImage.Format_ARGB32)
             image.fill(0)
         else:
-            raw = node.pixelData(x,y,w,h) if row.get('raw') else node.projectionPixelData(x,y,w,h)
+            rect = (x, y, w, h)
+            raw = node.pixelData(*rect) if row.get('raw') else projected(row['uuid'], rect)
             if len(raw) != w*h*4:
                 raise RuntimeError('Invalid pixels: ' + row['id'])
             image = QImage(raw,w,h,QImage.Format_ARGB32).copy()
@@ -186,7 +228,7 @@ export class KraMaterials {
       if (visible) rows.push({ id: `__kra__/${material.uuid}`, uuid: material.uuid, partId: material.partId, scope: material.scope, texture: `${rows.length}.png` });
     }
     if(hash(await readFile(document))!==revision)throw Error('KRA 在解析期间已变化，请重试');
-    const key = hash(JSON.stringify({ version: 1, revision, rows, shadows: selection.shadowLayerUuids }));
+    const key = hash(JSON.stringify({ version: 2, revision, rows, shadows: selection.shadowLayerUuids }));
     const cache = join(root, '.cache/nine-axis-materials', key);
     let request = this.pending.get(cache);
     if (!request) {
