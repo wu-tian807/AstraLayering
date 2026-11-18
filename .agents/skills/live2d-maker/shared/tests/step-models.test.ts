@@ -24,8 +24,11 @@ async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
 }
 
 test('model roles are shared by character/clothing, repairs use drawing roles, groups and depth stay independent', async t => {
-  for (const [id, harness] of Object.entries(modelHarnesses)) for (const effort of ['low', 'medium', 'high', 'xhigh']) {
-    assert.deepEqual(parseAgentModel(`${id}-${effort}`, 'fixture'), { model: id, harness, effort });
+  for (const [id, harness] of Object.entries(modelHarnesses)) {
+    const efforts = id === 'gemini-4-carbon' || id === 'gemini-4-argon' ? ['low', 'medium', 'high'] : ['low', 'medium', 'high', 'xhigh'];
+    for (const effort of efforts) {
+      assert.deepEqual(parseAgentModel(`${id}-${effort}`, 'fixture'), { model: id, harness, effort });
+    }
   }
   assert.throws(() => parseAgentModel('gemini-4-argon-max', 'fixture'));
   assert.throws(() => parseAgentModel('claude-sonnet-5.5-xhigh', 'fixture'), /claude-sonnet-5-5/);
@@ -60,6 +63,19 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   assert.ok(!sectionAgentSteps('clothing-part-layering').some(step => step.startsWith('clothing_raster_')));
   assert.ok(!sectionAgentSteps('part-layering').includes('part_standardize'));
   assert.ok(sectionAgentSteps('part-layering', true).includes('part_standardize'));
+});
+
+test('unsupported Argon and Carbon effort is rejected before selecting or starting a CLI', async t => {
+  const root = await fixture(t), logDirectory = join(root, 'agents');
+  const environment = loadWorkflowEnvironment({ agv_path: join(root, 'missing-cli') }, root);
+  for (const model of ['gemini-4-argon', 'gemini-4-carbon']) {
+    const configuration = model + '-xhigh';
+    assert.throws(() => loadWorkflowEnvironment({ part_review_agent_model: configuration }, root),
+      /part_review_agent_model.*gemini-4-.*不支持 xhigh.*low、medium、high/);
+    await assert.rejects(runCliTask({ name: 'fixture', prompt: 'unused' }, { model, harness: 'agv', effort: 'xhigh' },
+      environment, { cwd: root, logDirectory }, new AbortController().signal), /gemini-4-.*不支持 xhigh/);
+  }
+  await assert.rejects(stat(logDirectory), { code: 'ENOENT' });
 });
 
 test('every image-capable agent rejects native imagegen with a different harness; part review stays text-only', async t => {
@@ -266,7 +282,7 @@ test('Claude and agv run in the step workspace with original MCP schemas and res
   const settings = loadWorkflowEnvironment({ claude_path: cli, agv_path: cli }, root);
   let called = 0;
   for (const [id, wireModel] of [['claude-sonnet-5-5-high', 'claude-sonnet-5-5'],
-    ['claude-opus-5-5-xhigh', 'claude-opus-5-5'], ['claude-haiku-5-5-low', 'claude-haiku-5-5'], ['gemini-4-argon-xhigh', 'gemini-4-argon']]) {
+    ['claude-opus-5-5-xhigh', 'claude-opus-5-5'], ['claude-haiku-5-5-low', 'claude-haiku-5-5'], ['gemini-4-argon-high', 'gemini-4-argon']]) {
     const model = parseAgentModel(id, 'test'), options = { cwd, logDirectory: join(cwd, 'agents') };
     const task = { name: 'fixture', cwd, prompt: '完整任务提示词', tools: [{ name: 'fixture_echo', description: '原始工具说明',
       inputSchema: { type: 'object' }, async execute() { called++; return { success: true, contentItems: [] }; } }] };

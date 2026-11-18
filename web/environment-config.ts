@@ -5,7 +5,7 @@ import { resolve, join, delimiter } from 'node:path';
 import { parseEnv, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
+import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, modelReasoningEfforts, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { validateImageSelection } from '../.agents/skills/live2d-maker/shared/agents/images.ts';
 import { validateProviderModel } from '../.agents/skills/live2d-maker/shared/agents/providers.ts';
@@ -176,7 +176,7 @@ export function createEnvironmentConfig({directory=workflowsDirectory, env=proce
       for(const slot of modelSlots){const step=Object.keys(stepModelSlots).find(s=>stepModelSlots[s as AgentStep]===slot)!;try{validateProviderModel(settings.providers,settings.stepModels[step as AgentStep],roles[slot]);}catch(error){issues.push((error as Error).message);}}
     }
     const modelIds=new Set([...Object.keys(modelHarnesses),...Object.values(settings?.providers??{}).flatMap(provider=>(provider.models??[]).filter(model=>!model.includes('*'))),...Object.values(settings?.stepModels??{}).map(selection=>selection.model)]);
-    const models=[...modelIds].flatMap(id=>{try{const harness=modelHarness(id,settings?.providers);return [{id,harness,...cli[harness],allowed:!settings?.providers?.[harness].models||settings.providers[harness].models!.some(pattern=>modelPatternMatches(id,pattern))}];}catch{return [];}});
+    const models=[...modelIds].flatMap(id=>{try{const harness=modelHarness(id,settings?.providers);return [{id,harness,efforts:modelReasoningEfforts(id,harness),...cli[harness],allowed:!settings?.providers?.[harness].models||settings.providers[harness].models!.some(pattern=>modelPatternMatches(id,pattern))}];}catch{return [];}});
     return {path:file,exists,revision,preview:redactedPreview(text),issues:[...new Set(issues)],cli,connections,
       models,imageModels:[...new Set([...Object.keys(imageModelProviders),...Object.values(settings?.imageRules??{}).flat().filter(rule=>!rule.includes('*')),...Object.values(settings?.stepImages??{})])],videoModels,efforts:reasoningEfforts,
       fields:fields.map(field=> {

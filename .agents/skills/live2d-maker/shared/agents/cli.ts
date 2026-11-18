@@ -16,7 +16,7 @@ import { VisualContext, imageBudget } from '../../patches/shared/visual-context.
 import { AgvTurn } from './agv-turn.ts';
 import { createMcpBridge } from './mcp.ts';
 import type { WorkflowEnvironment } from '../codex/environment.ts';
-import type { AgentModel, Harness } from './models.ts';
+import { validateModelReasoningEffort, type AgentModel, type Harness } from './models.ts';
 import type { AgentTask, AgentResult, AgentOptions } from './dispatcher.ts';
 import { AgentCallError } from './runtime.ts';
 import { agentCallError } from '../codex/diagnostics.ts';
@@ -65,6 +65,7 @@ export async function cliExecutable(settings: WorkflowEnvironment, harness: Harn
 }
 export async function runCliTask(task: AgentTask, model: AgentModel, settings: WorkflowEnvironment, options: AgentOptions,
   signal: AbortSignal, resumed?: string): Promise<AgentResult> {
+  validateModelReasoningEffort(model, task.step ?? task.name);
   validateProviderModel(settings.providers, model, task.step ?? task.name);
   const executable = await cliExecutable(settings, model.harness, options.imageNormalization?.runsRoot);
   const root = resolve(options.logDirectory || join(task.cwd || options.cwd!, 'agents'));

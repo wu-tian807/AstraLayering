@@ -6,6 +6,7 @@ export function createEnvEditor({get,post,toast,render}) {
  const ruleErrors=()=>data?data.fields.filter(f=>f.key.endsWith('_models')).flatMap(f=>{try{parseModelPatterns(value(f),f.label);return [];}catch(e){return [e.message];}}):[];
  const hasChanges=()=>Object.keys(pending).length>0;
  const value=f=>Object.hasOwn(pending,f.key)?pending[f.key]:f.value;
+ const modelEfforts=model=>data.models.find(m=>m.id===model)?.efforts??data.efforts;
  function changed(key,next) {
   const field=data.fields.find(f=>f.key===key);
   if(next===field.value)delete pending[key];else pending[key]=next;
@@ -37,7 +38,7 @@ export function createEnvEditor({get,post,toast,render}) {
   let control;
   if(f.type==='model') {
    const selected=current||f.effective||f.fallback,index=selected.lastIndexOf('-'),model=selected.slice(0,index),effort=selected.slice(index+1);
-   control=`<div class="env-model-pair"><input id="${id}" list="${id}-models" data-env-model="${f.key}" aria-label="${escape(f.label)}模型" ${describedBy} value="${escape(current?model:'')}" placeholder="${escape(defaultLabel(f))}" autocomplete="off" spellcheck="false"><datalist id="${id}-models">${data.models.map(m=>`<option value="${escape(m.id)}">${escape(m.harness+(!m.available?' · CLI 未就绪':m.allowed?'':' · 未在可用模型列表中'))}</option>`).join('')}</datalist><select data-env-effort="${f.key}" aria-label="${escape(f.label)}思考力度" ${describedBy}>${data.efforts.map(e=>option(e,e,effort)).join('')}</select></div>`;
+   control=`<div class="env-model-pair"><input id="${id}" list="${id}-models" data-env-model="${f.key}" aria-label="${escape(f.label)}模型" ${describedBy} value="${escape(current?model:'')}" placeholder="${escape(defaultLabel(f))}" autocomplete="off" spellcheck="false"><datalist id="${id}-models">${data.models.map(m=>`<option value="${escape(m.id)}">${escape(m.harness+(!m.available?' · CLI 未就绪':m.allowed?'':' · 未在可用模型列表中'))}</option>`).join('')}</datalist><select data-env-effort="${f.key}" aria-label="${escape(f.label)}思考力度" ${describedBy}>${modelEfforts(model).map(e=>option(e,e,effort)).join('')}</select></div>`;
   } else if(f.type==='image'||f.type==='video') {
    const presets=f.type==='image'?data.imageModels:data.videoModels;
    control=`<input id="${id}" data-env-value="${f.key}" list="${id}-presets" ${describedBy} value="${escape(current)}" placeholder="${escape(defaultLabel(f))}" autocomplete="off" spellcheck="false"><datalist id="${id}-presets">${presets.map(model=>`<option value="${escape(model)}"></option>`).join('')}</datalist>`;
@@ -71,7 +72,18 @@ export function createEnvEditor({get,post,toast,render}) {
    const fileToggle=document.querySelector('[data-env-file-toggle]');if(fileToggle)fileToggle.onclick=()=>{section='preview';render();document.querySelector('.env-main').scrollTop=0;};
    document.querySelectorAll('[data-env-reload]').forEach(b=>b.onclick=async()=>{busy=true;error='';render();try{if(hasChanges())applyPreview(await post('config/environment/preview',{revision:data.revision,changes:pending}));else await this.load();}catch(e){error=e.message;}finally{busy=false;render();}});
    const discard=document.querySelector('[data-env-discard]');if(discard)discard.onclick=async()=>{pending={};error='';busy=true;render();await this.load();render();};
-   document.querySelectorAll('[data-env-model]').forEach(input=>{const update=()=>{const key=input.dataset.envModel,effort=document.querySelector(`[data-env-effort="${key}"]`).value;changed(key,input.value.trim()?`${input.value.trim()}-${effort}`:'');};input.oninput=update;input.onchange=update;});
+   document.querySelectorAll('[data-env-model]').forEach(input=>{
+    const update=()=>{
+     const key=input.dataset.envModel, model=input.value.trim();
+     const select=document.querySelector(`[data-env-effort="${key}"]`);
+     const field=data.fields.find(f=>f.key===key), inherited=field.effective||field.fallback;
+     const efforts=modelEfforts(model||inherited.slice(0,inherited.lastIndexOf('-')));
+     const effort=efforts.includes(select.value)?select.value:efforts.at(-1);
+     select.innerHTML=efforts.map(level=>option(level,level,effort)).join('');
+     changed(key,model?`${model}-${effort}`:'');
+    };
+    input.oninput=update;input.onchange=update;
+   });
    document.querySelectorAll('[data-env-effort]').forEach(select=>select.onchange=()=>{const key=select.dataset.envEffort, control=document.querySelector(`[data-env-model="${key}"]`);let model=control.value;if(!model){const field=data.fields.find(f=>f.key===key);const inherited=data.models.find(m=>field.effective.startsWith(m.id+'-'));if(!inherited?.available)return;model=inherited.id;control.value=model;}changed(key,`${model}-${select.value}`);});
    document.querySelectorAll('[data-env-value]').forEach(input=>{
     const update=()=>{const key=input.dataset.envValue;if(input.hasAttribute('data-env-secret')&&!input.value){changed(key,'');return;}changed(key,input.value);};
