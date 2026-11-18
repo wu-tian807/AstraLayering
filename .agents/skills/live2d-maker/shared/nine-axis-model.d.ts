@@ -5,7 +5,7 @@ export type CastShadow = { casters: string[]; receivers: string[]; blendMode: 'n
 export interface HeadDeformer extends WarpGrid { group?: string; texture?: string; textureBounds: number[]; uuid?: string; /** Semantic source part resolved from the native UUID, independently of node ID. */ partId?: string; context?: boolean; material?: 'transparent'; role?: 'mask'; clip?: { by: string[]; invert?: boolean }; shadow?: CastShadow }
 export type IndependentAxis = 'x' | 'up' | 'down';
 export interface AxisSource { axis: IndependentAxis; doc: HeadNineAxis }
-export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; axis?: number; source?: {document:string; geometryDocument?:string}; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[]; /** Complete protected nonrecursive sources; only root parts are drawn. */ axisSources?: AxisSource[] }
+export interface HeadNineAxis { version: 2; kind: 'head-nine-axis'; canvas?: number[]; axis?: number; source?: {document:string; geometryDocument?:string}; view?: { x: number; y: number; width: number; height: number }; parameters?: any[]; levels: { id: string; name?: string; includes: HeadLevel[] }[]; notes?: string; deformers: WarpGrid[]; parts: HeadDeformer[]; /** Complete protected nonrecursive sources; only root parts are drawn. */ axisSources?: AxisSource[]; headRoll?: { pivot: Point; parts: string[] } }
 export const levelNames: Record<HeadLevel, string>;
 export function validateHeadNineAxis(doc: any): HeadNineAxis;
 export type NineAxisCapabilities = { x: { keys: number[]; min: number; max: number }; y: { keys: number[]; min: number; max: number }; plane: boolean; region: string; cornerKeys: string[] };
@@ -20,7 +20,9 @@ export function nodes(doc: HeadNineAxis): WarpGrid[];
 export function descendants(doc: HeadNineAxis, id: string): Set<string>;
 /** Strip derived image paths from KRA-backed author data, including axis snapshots. */
 export function kraReferences<T>(doc: T): T;
-export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number): Float32Array;
+export const HEAD_ROLL_LIMIT: number;
+export function headRollLimit(doc?: HeadNineAxis): number;
+export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number, z?: number): Float32Array;
 /** Independent source pose of one leaf, before current canvas Warp parents. */
 export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number): Point;
 export function parentPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number, inverse?: boolean): Point;

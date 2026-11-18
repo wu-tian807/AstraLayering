@@ -1,4 +1,4 @@
-import { validateHeadNineAxis, nineAxisCapabilities, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
+import { validateHeadNineAxis, nineAxisCapabilities, headRollLimit, keyformAt, keyValues, levelParts, nodes, descendants, evaluatePoints, parentPoint, dragKeyform } from './nine-axis-model.js';
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
 import { constrainHeadPoint, followHeadPointer, headPreviewAngles, headSideLimit } from '../head-motion.js';
@@ -27,11 +27,15 @@ export function projectNineAxisAngles(axes, x, y, preferredAxis) {
 }
 export class HeadNineAxisPanel {
   constructor({ error }) {
-    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.level = 'face'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set();
+    Object.assign(this, { error }); this.epoch = 0; this.value = 0; this.valueY = 0; this.valueZ = 0; this.level = 'face'; this.selected = null; this.hidden = new Set(); this.shownMasks = new Set();
     this.radius = 40; this.showGrid = true; this.dirty = new Set(); this.active = false;
     this.canvas = $('#nine-axis-canvas'); this.overlay = $('#nine-axis-overlay'); this.view = $('#nine-axis-view');
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
+    $('#nine-axis-angle-z').oninput = e => {
+      this.valueZ = e.target.valueAsNumber;
+      this.sync();
+    };
     for (const input of [$('#nine-axis-angle-number'), $('#nine-axis-angle-y-number')]) {
       // Stop before typing/pasting begins; unfinished numbers commit on change.
       for (const event of ['focus', 'input']) input.addEventListener(event, () => this.stopSwing());
@@ -97,7 +101,7 @@ export class HeadNineAxisPanel {
     const requested = new URLSearchParams(location.search).get('nineLevel');
     if (!this.levelSelection && this.modes.some(mode => mode.id === requested && mode.available)) selection.level = requested;
     this.levelSelection = selection; this.level = selection.level;
-    this.value = 0; this.valueY = 0;
+    this.value = 0; this.valueY = 0; this.valueZ = 0;
     this.configureLevel();
     $('#nine-axis-notes').textContent = doc.notes ?? '';
     $('#nine-axis-controls').hidden = false; this.status(`${doc.deformers.length} 个组变形器 · ${doc.parts.length} 个部件`);
@@ -127,7 +131,10 @@ export class HeadNineAxisPanel {
       b.onclick = () => this.setValue(x, y); return b;
     }));
     this.installPad();
-    const shown = new Set(['ParamAngleX', ...(ay ? ['ParamAngleY'] : [])]);
+    const roll = headRollLimit(this.doc);
+    $('#nine-axis-z').hidden = !roll;
+    configure($('#nine-axis-angle-z'), { min: -roll, max: roll });
+    const shown = new Set(['ParamAngleX', ...(ay ? ['ParamAngleY'] : []), ...(roll ? ['ParamAngleZ'] : [])]);
     $('#nine-axis-other-params').textContent = (this.doc.parameters ?? []).filter(q => !shown.has(q.id)).map(q => `${q.name}（${q.id}）${q.status ?? ''}`).join(' · ');
     const point = projectNineAxisAngles(this.axes, this.value, this.valueY);
     this.value = point.x; this.valueY = point.y;
@@ -219,7 +226,7 @@ export class HeadNineAxisPanel {
   padKeyDown(e) {
     const step = e.altKey ? .1 : e.shiftKey ? 5 : 1;
     const arrows = { ArrowLeft: [-step, 0, 'x'], ArrowRight: [step, 0, 'x'], ArrowUp: [0, step, 'y'], ArrowDown: [0, -step, 'y'] };
-    if (e.key === 'Home') this.setValue(0, 0);
+    if (e.key === 'Home') { this.valueZ = 0; this.setValue(0, 0); }
     else if (e.key === 'Escape') { this.stopSwing(); this.endPadDrag(); }
     else if (arrows[e.key]) { const [x, y, axis] = arrows[e.key]; this.setValue(this.value + x, this.valueY + y, axis); }
     else return;
@@ -227,6 +234,7 @@ export class HeadNineAxisPanel {
   }
   // The keyform being edited: an X key while Y is 0, a Y key while X is 0, or a corner both are on.
   onKey() {
+    if (this.valueZ) return undefined;
     const p = this.part(); if (!p) return undefined;
     if (this.mode && !this.mode.scope.has(p.id)) return undefined;
     if (p.id.startsWith('__kra__/')) return undefined;
@@ -242,11 +250,14 @@ export class HeadNineAxisPanel {
     if (!this.doc) return;
     $('#nine-axis-angle-number').value = this.value;
     $('#nine-axis-angle-y-number').value = this.valueY;
+    $('#nine-axis-angle-z').value = this.valueZ;
+    $('#nine-axis-angle-z-value').value = sign(this.valueZ) + '°';
     const handle = this.padPosition(this.value, this.valueY);
     $('#nine-axis-pad-handle').style.left = handle.x + '%'; $('#nine-axis-pad-handle').style.top = handle.y + '%';
     this.pad.setAttribute('aria-label', `头部角度：X ${this.value}，Y ${this.valueY}`);
     const hud = (id, v) => `${id} ${v > 0 ? '+' : ''}${v.toFixed(1)}`;
-    $('#nine-axis-hud').textContent = hud('ParamAngleX', this.value) + ($('#nine-axis-y').hidden ? '' : ' · ' + hud('ParamAngleY', this.valueY));
+    $('#nine-axis-hud').textContent = hud('ParamAngleX', this.value) + ($('#nine-axis-y').hidden ? '' : ' · ' + hud('ParamAngleY', this.valueY))
+      + ($('#nine-axis-z').hidden ? '' : ' · ' + hud('ParamAngleZ', this.valueZ));
     for (const b of document.querySelectorAll('[data-nine-level]')) {
       const mode = this.modes.find(mode => mode.id === b.dataset.nineLevel);
       b.disabled = !mode?.available;
@@ -266,7 +277,7 @@ export class HeadNineAxisPanel {
       const ys = (p.keyformsY ? ` · Y ${keyValues(p, 'y').map(sign).join(' / ')}` : '') + (p.keyformsXY ? ` · 斜向 ${Object.keys(p.keyformsXY).length} 角` : '');
       const extra = [p.role === 'mask' ? '蒙版（不绘制，只裁切其他部件）' : '', clipLabel(p), p.status ?? ''].filter(Boolean).map(t => ' · ' + t).join('');
       $('#nine-axis-selected-info').textContent = `变形器 ${p.cols}×${p.rows} · 关键形 X ${keyValues(p).map(sign).join(' / ')}${ys}${extra}`;
-      $('#nine-axis-edit-hint').textContent = key === undefined ? /^neck(?:\/|$)/.test(p.id) ? '脖子保持固定；调整脸与它的覆盖衔接' : '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
+      $('#nine-axis-edit-hint').textContent = this.valueZ ? '将角度 Z 归零后可编辑变形网格' : key === undefined ? /^neck(?:\/|$)/.test(p.id) ? '脖子保持固定；调整脸与它的覆盖衔接' : '停在关键形上（点上方的度数按钮，另一角度为 0；或两个角度都在关键形上的斜向角）才能拖动控制点' : `正在编辑关键形 ${key.label}：拖动控制点，软选择半径内的点随之移动`;
       $('#nine-axis-reset').disabled = key === undefined || !this.original?.has(p.id + '@' + key.label);
     }
     $('#nine-axis-dirty').hidden = !this.dirty.size; $('#nine-axis-dirty').textContent = `已修改 ${this.dirty.size} 个变形器，尚未保存`;
@@ -289,12 +300,12 @@ export class HeadNineAxisPanel {
     const sel = this.selected, isolate = $('#nine-axis-isolate').checked, affected = sel ? descendants(this.doc, sel) : new Set();
     const shown = new Set([...shownParts(this.doc, this.level, { hidden: this.hidden, masks: this.shownMasks, selected: sel })]
       .filter(id => this.mode.scope.has(id) && authoredPreviewPart({id})));
-    this.view3.draw({ x0, y0, width: r.width * s, height: r.height * s }, this.value, this.valueY, shown, p => sel && !affected.has(p.id) && isolate ? .35 : 1);
+    this.view3.draw({ x0, y0, width: r.width * s, height: r.height * s }, this.value, this.valueY, shown, p => sel && !affected.has(p.id) && isolate ? .35 : 1, this.valueZ);
     this.drawOverlay(x0, y0, s);
   }
   drawOverlay(x0, y0, s) {
     const p = this.part();
-    if (!p || !this.showGrid || this.hidden.has(p.id) || !this.mode.scope.has(p.id)) { this.overlay.replaceChildren(); return; }
+    if (!p || this.valueZ || !this.showGrid || this.hidden.has(p.id) || !this.mode.scope.has(p.id)) { this.overlay.replaceChildren(); return; }
     const pts = evaluatePoints(this.doc, p, this.value, this.valueY), curve = evaluatePoints(this.doc, p, this.value, this.valueY, 5), X = i => (pts[i * 2] - x0) / s, Y = i => (pts[i * 2 + 1] - y0) / s, c = p.cols * 5 + 1, at = i => `${((curve[i * 2] - x0) / s).toFixed(1)},${((curve[i * 2 + 1] - y0) / s).toFixed(1)} `;
     let d = '';
     for (let j = 0; j <= p.rows; j++) { d += 'M'; for (let i = 0; i < c; i++) d += at(j * 5 * c + i); }
@@ -365,8 +376,10 @@ export class HeadNineAxisPanel {
       const next = await response.json();
       if (this.project !== project || !this.active || this.dirty.size || this.padDrag || this.raf) return;
       if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
-      const x = this.value, y = this.valueY;
+      const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
+      const limit = headRollLimit(this.doc);
+      this.valueZ = Math.max(-limit, Math.min(limit, z));
       this.setValue(x, y);
     } catch (error) { if (this.project === project) this.status('动态预览更新失败：' + error.message); }
     finally { this.refreshing = false; }

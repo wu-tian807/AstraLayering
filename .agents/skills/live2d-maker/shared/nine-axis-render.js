@@ -54,16 +54,16 @@ export class HeadNineAxisRenderer {
       m.renderOrder = order; m.frustumCulled = false; this.scene.add(m); this.meshes.set(p.id, m);
     });
   }
-  // Draw the canvas-space window [x0, y0, x0 + width, y0 + height] at angles (x, y).
+  // Draw the canvas-space window [x0, y0, x0 + width, y0 + height] at angles (x, y, z).
   // shown: the part ids drawn; dim(part) scales a drawn part's alpha.
-  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1) {
+  draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0) {
     if (!this.doc) return;
     Object.assign(this.camera, { left: x0, right: x0 + width, top: y0, bottom: y0 + height }); this.camera.updateProjectionMatrix();
     // Clip sources take effect whether or not they are shown or in the level.
     const clipped = this.doc.parts.filter(p => p.clip && shown.has(p.id)), needed = new Set([...shown, ...clipped.flatMap(p => p.clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
-      const m = this.meshes.get(p.id), pts = evaluatePoints(this.doc, p, x, y, SUB), pos = m.geometry.attributes.position.array;
+      const m = this.meshes.get(p.id), pts = evaluatePoints(this.doc, p, x, y, SUB, z), pos = m.geometry.attributes.position.array;
       for (let i = 0, k = 0; i < pts.length; i += 2, k += 3) { pos[k] = pts[i]; pos[k + 1] = pts[i + 1]; }
       m.geometry.attributes.position.needsUpdate = true;
       const u = m.material.uniforms, mask = p.role === 'mask';

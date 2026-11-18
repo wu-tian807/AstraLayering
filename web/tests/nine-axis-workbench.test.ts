@@ -37,7 +37,7 @@ async function fixture(t: any) {
 }
 
 test('web presents every current workflow step and keeps hair rounds inside one executable step', () => {
-  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories','step10_head-pitch','step11_head-angle-xy']);
+  assert.deepEqual(nineAxisSteps, ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line','step08_hair','step09_head-accessories','step10_head-pitch','step11_head-angle-xy','step12_head-roll']);
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), nineAxisSteps);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);

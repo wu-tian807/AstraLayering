@@ -15,6 +15,7 @@
 | step09_head-accessories | left＋right，Y=0；继承头发累计模型和实际 KRA，建立一份本步可编辑工程，保护已有脸发 |
 | step10_head-pitch/up、down | 两个独立上下文并发；直接引用 step09 的实际 KRA，各自协调完整头部的本方向 Y 形，程序合并 |
 | step11_head-angle-xy | 一个新会话完成四角；沿用 step10 累计模型与实际 KRA，只编辑程序准备的 XY 修正承载 |
+| step12_head-roll | 继承 step11 的模型与实际 KRA，程序追加 ±15° 的 Z 轴倾斜 |
 
 调度绑定当前作者、上游模型、KRA 和编辑/预览范围，不按文件修改时间寻找工程。`source.document` 指定实际 KRA；切换画稿所有权时，`source.geometryDocument` 保留单轴几何的来源，`axisSources` 保留独立作者函数。
 

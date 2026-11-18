@@ -12,6 +12,7 @@
 // Masks follow Cubism clipping: a part with clip {by, invert} is drawn only
 // where (or, inverted, only where not) the union of its sources' current alpha
 // covers it; a part with role "mask" is never drawn itself, only clips others.
+export const HEAD_ROLL_LIMIT = 15;
 export const levelNames = { face: '脖子＋脸＋五官', hair: '头发', accessory: '头饰' };
 
 export function validateHeadNineAxis(doc) {
@@ -21,6 +22,16 @@ export function validateHeadNineAxis(doc) {
   if (!Array.isArray(doc.levels) || !doc.levels.length) throw Error('头部九轴数据没有预览层级');
   const ids = new Set();
   const partIds = new Set(doc.parts.map(p => p.id));
+  if (doc.headRoll !== undefined) {
+    const { pivot, parts } = doc.headRoll ?? {};
+    const z = Array.isArray(doc.parameters) && doc.parameters.find(p => p?.id === 'ParamAngleZ');
+    if (!Array.isArray(pivot) || pivot.length !== 2 || !pivot.every(Number.isFinite) ||
+        !Array.isArray(parts) || !parts.length || new Set(parts).size !== parts.length ||
+        parts.some(id => !partIds.has(id) || /^neck(?:\/|$)/.test(id)) ||
+        !Number.isFinite(z?.max) || z.max <= 0 || z.max > HEAD_ROLL_LIMIT || z.min !== -z.max) {
+      throw Error(`头部 Z 轴需要有效的转轴中心、随动部件及不超过 ±${HEAD_ROLL_LIMIT}° 的对称范围`);
+    }
+  }
   for (const p of nodes(doc)) {
     if (typeof p.id !== 'string' || ids.has(p.id)) throw Error('部件编号无效或重复：' + p.id);
     ids.add(p.id);
@@ -328,9 +339,23 @@ function parentTransform(doc, node, x, y) {
 export function parentPoint(doc, node, x, y, px, py, inverse = false) {
   return parentTransform(doc, node, x, y)(px, py, inverse);
 }
-export function evaluatePoints(doc, node, x, y = 0, subdivision = 1) {
+export function headRollLimit(doc) {
+  return doc?.headRoll ? doc.parameters?.find(p => p.id === 'ParamAngleZ')?.max ?? 0 : 0;
+}
+
+export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
   const local = [preparedWarp(node, keyformAt(node, x, y))], samples = refine(lattice(node), node.cols, node.rows, subdivision), out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
   for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
+  if (z && Number.isFinite(z) && doc.headRoll?.parts.includes(node.id)) {
+    const [cx, cy] = doc.headRoll.pivot, limit = headRollLimit(doc);
+    const angle = Math.max(-limit, Math.min(limit, z)) * Math.PI / 180;
+    const cos = Math.cos(angle), sin = Math.sin(angle);
+    for (let i = 0; i < out.length; i += 2) {
+      const dx = out[i] - cx, dy = out[i + 1] - cy;
+      out[i] = cx + cos * dx - sin * dy;
+      out[i + 1] = cy + sin * dx + cos * dy;
+    }
+  }
   return out;
 }
 

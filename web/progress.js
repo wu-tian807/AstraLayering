@@ -135,7 +135,8 @@ export const sectionSteps = [
     { ...step('step10_head-pitch', '头部上下', 'pending', ['up', 'down'].map(direction =>
       step(`step10_head-pitch/${direction}`, direction === 'up' ? '完整头部抬头' : '完整头部低头', 'pending')),
       '抬头与低头独立并发，完成后合并；保留已有左右成果。'), childrenMode: 'parallel' },
-    step('step11_head-angle-xy', '完整头部斜角', 'pending', [], '一个会话统一调整四角，保留已完成的左右与上下。')],
+    step('step11_head-angle-xy', '完整头部斜角', 'pending', [], '一个会话统一调整四角，保留已完成的左右与上下。'),
+    step('step12_head-roll', '头部 Z 轴', 'pending', [], '根据已完成的头部模型生成有限幅度的歪头。')],
 ];
 
 export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
@@ -227,6 +228,7 @@ Object.assign(stepArtifacts[6], {
   'step08_hair': [file('nine-axis/step08_hair/deformers.json','头发累计模型'),file('nine-axis/step08_hair/character-nine-axis.kra','分层 KRA'),file('nine-axis/step08_hair/notes.md','制作说明')],
   'step09_head-accessories': [file('nine-axis/step09_head-accessories/deformers.json','头部累计模型'),file('nine-axis/step09_head-accessories/character-nine-axis.kra','分层 KRA'),file('nine-axis/step09_head-accessories/notes.md','制作说明')],
   'step10_head-pitch': [file('nine-axis/step10_head-pitch/deformers.json','完整头部上下模型'),file('nine-axis/step10_head-pitch/notes.md','制作说明')],
+  'step12_head-roll': [file('nine-axis/step12_head-roll/deformers.json','头部 Z 轴模型')],
   'step11_head-angle-xy': [file('nine-axis/step11_head-angle-xy/deformers.json','完整头部斜角模型'),file('nine-axis/step11_head-angle-xy/head-xy.json','斜角作者模型'),file('nine-axis/step11_head-angle-xy/notes.md','制作说明')],
   ...Object.fromEntries(['up','down'].map(direction=>[`step10_head-pitch/${direction}`,[file(`nine-axis/step10_head-pitch/${direction}/deformers.json`,'本方向累计模型'),file(`nine-axis/step10_head-pitch/${direction}/notes.md`,'制作说明')]])),
 });
