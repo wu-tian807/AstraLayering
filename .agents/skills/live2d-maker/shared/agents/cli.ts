@@ -22,9 +22,7 @@ import { AgentCallError } from './runtime.ts';
 import { agentCallError } from '../codex/diagnostics.ts';
 import { errorDetails, errorMessage } from './errors.ts';
 import { followNativeLog } from '../codex/native-log.ts';
-import { resolvePatchedAgv } from './agv-patch.ts';
 import { AgentLog } from '../codex/agent-log.ts';
-import { resolveRunsDirectory } from '../paths.ts';
 import { withNodePath } from '../process-environment.ts';
 import { claudeProviderSettings, validateProviderModel } from './providers.ts';
 import { prepareWorkspace, workspacePrompt, workspaceTools } from './workspace.ts';
@@ -41,33 +39,28 @@ export function signalAgentProcesses(signal: NodeJS.Signals) {
   for (const child of agentGroups.values()) stopCliProcess(child, signal === 'SIGKILL');
 }
 
-export async function cliExecutable(settings: WorkflowEnvironment, harness: Harness, runsRoot?: string): Promise<string> {
+export async function cliExecutable(settings: Pick<WorkflowEnvironment, 'cliPaths' | 'codex'>, harness: Harness): Promise<string> {
   const explicit = settings.cliPaths[harness];
-  const names = harness === 'claude' ? ['claude'] : harness === 'agv' ? ['agy', 'agv', 'antigravity'] : ['codex'];
-  const candidates = explicit ? [explicit] : (settings.codex.env?.PATH ?? process.env.PATH ?? '').split(delimiter)
-    .flatMap(directory => names.flatMap(name => process.platform === 'win32' ? [join(directory, `${name}.exe`), join(directory, `${name}.cmd`)] : [join(directory, name)]));
+  const name = harness === 'agv' ? 'agy' : harness;
+  const candidates = explicit ? [explicit] : (settings.codex.env?.PATH ?? process.env.PATH ?? '').split(delimiter).filter(Boolean)
+    .flatMap(directory => process.platform === 'win32' ? [join(directory, name + '.exe'), join(directory, name + '.cmd')] : [join(directory, name)]);
   for (const path of candidates) {
     let executable;
     try { await access(path, constants.X_OK); if (!(await stat(path)).isFile()) continue; executable = await realpath(path); }
     catch { continue; }
-    // Compatibility errors must reach the user, rather than be swallowed and
-    // misreported as a missing CLI or silently fall back to an unpatched one.
-    if (harness !== 'agv') return executable;
-    if (settings.codex.env?.agv_unlimited_response_header_timeout === 'true') {
-      const {createPatchedAgv} = await import('../../patches/agv/patch-response-header.ts');
-      const root = resolveRunsDirectory(runsRoot);
-      await mkdir(root, {recursive: true});
-      return createPatchedAgv(executable, root);
+    if (harness === 'agv' && /(?:^|[\\/])\.runtime[\\/]agv[\\/]/i.test(executable)) {
+      throw new Error('此路径指向旧的 AGV 补丁副本。请将 agv_path 指向已安装的原版 agy，或留空从 PATH 查找。');
     }
-    return resolvePatchedAgv(executable);
+    return executable;
   }
   throw new Error(`所选步骤需要 ${harness} CLI，但没有可用的全局入口${explicit ? `：${explicit}` : ''}。工作流不会自动安装；请安装并登录，或设置 ${harness}_path / 改用已有模型。`);
 }
+
 export async function runCliTask(task: AgentTask, model: AgentModel, settings: WorkflowEnvironment, options: AgentOptions,
   signal: AbortSignal, resumed?: string): Promise<AgentResult> {
   validateModelReasoningEffort(model, task.step ?? task.name);
   validateProviderModel(settings.providers, model, task.step ?? task.name);
-  const executable = await cliExecutable(settings, model.harness, options.imageNormalization?.runsRoot);
+  const executable = await cliExecutable(settings, model.harness);
   const root = resolve(options.logDirectory || join(task.cwd || options.cwd!, 'agents'));
   const paths = await prepareWorkspace(task, options.cwd!);
   task = { ...task, tools: workspaceTools((task.tools || []).filter(tool =>
@@ -113,7 +106,7 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       XDG_CONFIG_HOME: join(data, 'config'), XDG_DATA_HOME: join(data, 'data'), XDG_STATE_HOME: join(data, 'state'), XDG_CACHE_HOME: join(data, 'cache'),
       CLAUDE_CONFIG_DIR: join(data, 'claude'), CLAUDE_CODE_TMPDIR: join(log.directory, 'tmp'),
       ANTIGRAVITY_APP_DATA_DIR: join(data, 'home/.gemini/antigravity-cli'), JETSKI_APP_DATA_DIR: join(data, 'home/.gemini/antigravity-cli'),
-      ANTIGRAVITY_GEMINI_DIR: join(data, 'home/.gemini'), GEMINI_DIR: join(data, 'home/.gemini'), AGY_CLI_DISABLE_AUTO_UPDATE: 'true', AGY_LLM_GATEWAY_MODELS:settings.codex.env?.AGY_LLM_GATEWAY_MODELS||'',
+      ANTIGRAVITY_GEMINI_DIR: join(data, 'home/.gemini'), GEMINI_DIR: join(data, 'home/.gemini'), AGY_LLM_GATEWAY_MODELS:settings.codex.env?.AGY_LLM_GATEWAY_MODELS||'',
     };
     if(model.harness==='agv')env.AGY_LLM_GATEWAY_MODELS=[...new Set([...(env.AGY_LLM_GATEWAY_MODELS||'').split(',').filter(Boolean),model.model])].join(',');
     for (const path of [env.TMPDIR, env.CLAUDE_CONFIG_DIR, env.ANTIGRAVITY_APP_DATA_DIR, env.ANTIGRAVITY_GEMINI_DIR]) await mkdir(path, { recursive: true, mode: 0o700 });
@@ -145,7 +138,8 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
       }
     }
     mcpServer = await createMcpBridge(task.tools || [], signal, event => log.recordProtocol(event));
-    const mcp = { mcpServers: { layering: mcpServer.config } };
+    const layering = model.harness === 'claude' ? { ...mcpServer.config, alwaysLoad: true } : mcpServer.config;
+    const mcp = { mcpServers: { layering } };
     const budget = imageBudget(env, model.harness);
     const visual = new VisualContext({ directory: join(data, 'visual-context'), protocol: model.harness === 'agv' ? 'genai' : 'anthropic', budget,
       observe: async event => {

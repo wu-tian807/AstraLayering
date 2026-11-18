@@ -1,17 +1,79 @@
+diff --git a/codex-rs/Cargo.toml b/codex-rs/Cargo.toml
+index bc5910cd..cbfecb17 100644
+--- a/codex-rs/Cargo.toml
++++ b/codex-rs/Cargo.toml
+@@ -28,9 +28,7 @@ members = [
+     "install-context",
+     "codex-backend-openapi-models",
+     "code-mode",
+-    "code-mode-host",
+     "code-mode-protocol",
+-    "code-mode-runtime",
+     "plugin-host",
+     "codex-home",
+     "cloud-config",
+@@ -120,7 +118,6 @@ members = [
+     "tui",
+     "user-verification",
+     "tools",
+-    "v8-poc",
+     "websocket-auth",
+     "websocket-client",
+     "windows-sandbox-rs/tests/support",
+@@ -213,7 +210,6 @@ codex-cloud-tasks-client = { path = "cloud-tasks-client" }
+ codex-cloud-tasks-mock-client = { path = "cloud-tasks-mock-client" }
+ codex-code-mode = { path = "code-mode" }
+ codex-code-mode-protocol = { path = "code-mode-protocol" }
+-codex-code-mode-runtime = { path = "code-mode-runtime" }
+ codex-plugin-host = { path = "plugin-host" }
+ codex-home = { path = "codex-home" }
+ codex-http-client = { path = "http-client" }
+@@ -340,7 +336,6 @@ codex-utils-stream-parser = { path = "utils/stream-parser" }
+ codex-utils-string = { path = "utils/string" }
+ codex-utils-template = { path = "utils/template" }
+ codex-user-verification = { path = "user-verification" }
+-codex-v8-poc = { path = "v8-poc" }
+ codex-workload-identity = { path = "workload-identity" }
+ codex-windows-sandbox = { path = "windows-sandbox-rs" }
+ codex-windows-sandbox-test-support = { path = "windows-sandbox-rs/tests/support" }
+@@ -569,7 +564,6 @@ unicode-width = "0.2"
+ url = "2"
+ urlencoding = "2.1"
+ uuid = "1"
+-v8 = "=152.2.0"
+ vt100 = "0.16.2"
+ vtparse = "0.6.2"
+ walkdir = "2.5.0"
+@@ -644,7 +638,6 @@ unwrap_used = "deny"
+ ignored = [
+     "icu_provider",
+     "openssl-sys",
+-    "codex-v8-poc",
+ ]
+ 
+ [profile.dev]
+@@ -690,7 +683,6 @@ sqlx-core = { git = "https://github.com/transact-rs/sqlx", rev = "10462fa4414c6c
+ sqlx-sqlite = { git = "https://github.com/transact-rs/sqlx", rev = "10462fa4414c6c7f1ed1d39bb31678e3b726878c" }
+ tokio-tungstenite = { git = "https://github.com/openai-oss-forks/tokio-tungstenite", rev = "7447c427513cfe685f236e1ac0513c4ea3dd9c0b" }
+ tungstenite = { git = "https://github.com/openai-oss-forks/tungstenite-rs", rev = "bc589d684755a8c02da0fc7e58d0861cbfc306f1" }
+-v8 = { git = "https://github.com/openai-oss-forks/rusty_v8.git", rev = "90a65f887a0c0f048f3784afbcb320b373c8a2e0" }
+ 
+ # Uncomment to debug local changes.
+ # rmcp = { path = "../../rust-sdk/crates/rmcp" }
 diff --git a/codex-rs/cli/src/main.rs b/codex-rs/cli/src/main.rs
-index ac06a66..394d572 100644
+index 5108253a..df332343 100644
 --- a/codex-rs/cli/src/main.rs
 +++ b/codex-rs/cli/src/main.rs
-@@ -257,6 +257,8 @@ struct DebugCommand {
-
+@@ -265,6 +265,8 @@ struct DebugCommand {
+ 
  #[derive(Debug, clap::Subcommand)]
  enum DebugSubcommand {
 +    /// Report optional Layering runtime patch capabilities without starting a thread.
 +    LayeringCapabilities,
      /// Render the raw model catalog as JSON.
      Models(DebugModelsCommand),
-
-@@ -1709,6 +1711,12 @@ async fn cli_main(
+ 
+@@ -1860,6 +1862,12 @@ async fn dispatch_cli(
              }
          }
          Some(Subcommand::Debug(DebugCommand { subcommand })) => match subcommand {
@@ -25,7 +87,7 @@ index ac06a66..394d572 100644
                  reject_remote_mode_for_subcommand(
                      root_remote.as_deref(),
 diff --git a/codex-rs/codex-api/src/endpoint/images.rs b/codex-rs/codex-api/src/endpoint/images.rs
-index 2217ce8..79e321e 100644
+index 5366bd75..52f6052b 100644
 --- a/codex-rs/codex-api/src/endpoint/images.rs
 +++ b/codex-rs/codex-api/src/endpoint/images.rs
 @@ -93,11 +93,28 @@ impl<T: HttpTransport> ImagesClient<T> {
@@ -65,7 +127,7 @@ index 2217ce8..79e321e 100644
 @@ -107,6 +124,63 @@ impl<T: HttpTransport> ImagesClient<T> {
      }
  }
-
+ 
 +fn external_edit_body(body: &serde_json::Value) -> Result<(Vec<u8>, http::HeaderValue), String> {
 +    use base64::Engine;
 +    let fields = body
@@ -127,29 +189,22 @@ index 2217ce8..79e321e 100644
      headers
          .get(X_CODEX_IMAGEGEN_REQUEST_ID_HEADER)
 diff --git a/codex-rs/codex-api/src/sse/responses.rs b/codex-rs/codex-api/src/sse/responses.rs
-index 6b2a7ed..a6e9986 100644
+index eafc92dd..43314aa4 100644
 --- a/codex-rs/codex-api/src/sse/responses.rs
 +++ b/codex-rs/codex-api/src/sse/responses.rs
 @@ -1,3 +1,5 @@
 +use super::responses_error::EMPTY_FAILED_RESPONSE;
 +use super::responses_error::parse_error_event;
  use super::responses_error::parse_failed_response;
+ use crate::common::ReasoningRemovalReason;
  use crate::common::ResponseEvent;
- use crate::common::ResponseStream;
-@@ -626,7 +628,24 @@ async fn process_sse_with_treatment(
-             return;
+@@ -691,7 +693,17 @@ async fn process_sse_with_treatment(
+             }
          }
-
+ 
 -        match process_responses_event(event) {
-+        // Flex errors keep their own handling; any other detailed `error` event is
-+        // kept like a failed response, so LiteLLM's late detail is not dropped.
-+        let error_event = if event.kind == "error"
-+            && event
-+                .error
-+                .as_ref()
-+                .and_then(parse_flex_unavailable)
-+                .is_none()
-+        {
++        // Preserve separate error details, using the same provider error mapping as response.failed.
++        let error_event = if event.kind == "error" {
 +            parse_error_event(event.error.as_ref())
 +        } else {
 +            None
@@ -162,12 +217,15 @@ index 6b2a7ed..a6e9986 100644
              Ok(Some(event)) => {
                  let is_completed = matches!(event, ResponseEvent::Completed { .. });
                  if tx_event.send(Ok(event)).await.is_err() {
-@@ -638,12 +657,17 @@ async fn process_sse_with_treatment(
+@@ -703,7 +715,6 @@ async fn process_sse_with_treatment(
              }
              Ok(None) => {}
              Err(error) => {
 -                let error = error.into_api_error();
-                 if matches!(error, ApiError::FlexUnavailable) {
+                 if matches!(
+                     error,
+                     ApiError::FlexUnavailable
+@@ -718,7 +729,13 @@ async fn process_sse_with_treatment(
                      let _ = tx_event.send(Err(error)).await;
                      return;
                  }
@@ -182,10 +240,10 @@ index 6b2a7ed..a6e9986 100644
              }
          };
      }
-@@ -1088,6 +1112,47 @@ mod tests {
+@@ -1211,6 +1228,47 @@ mod tests {
          }
      }
-
+ 
 +    #[tokio::test]
 +    async fn error_event_fills_empty_failed_response() {
 +        let failed =
@@ -203,7 +261,7 @@ index 6b2a7ed..a6e9986 100644
 +                .collect();
 +            let events = collect_events(&[body.as_bytes()]).await;
 +            match events.as_slice() {
-+                [Err(ApiError::InvalidRequest { message })] => {
++                [Err(ApiError::ContentPolicyViolation { message, status: None })] => {
 +                    assert_eq!(
 +                        message,
 +                        "Image processing blocked due to content policy violation."
@@ -231,13 +289,13 @@ index 6b2a7ed..a6e9986 100644
      async fn context_window_error_is_fatal() {
          let raw_error = r#"{"type":"response.failed","sequence_number":3,"response":{"id":"resp_5c66275b97b9baef1ed95550adb3b7ec13b17aafd1d2f11b","object":"response","created_at":1759510079,"status":"failed","background":false,"error":{"code":"context_length_exceeded","message":"Your input exceeds the context window of this model. Please adjust your input and try again."},"usage":null,"user":null,"metadata":{}}}"#;
 diff --git a/codex-rs/codex-api/src/sse/responses_error.rs b/codex-rs/codex-api/src/sse/responses_error.rs
-index 872769c..ac29a5d 100644
+index b16822c1..3bd66dcc 100644
 --- a/codex-rs/codex-api/src/sse/responses_error.rs
 +++ b/codex-rs/codex-api/src/sse/responses_error.rs
-@@ -22,6 +22,25 @@ struct Error {
+@@ -23,6 +23,25 @@ struct Error {
      misalignment: Option<Value>,
  }
-
+ 
 +pub(super) const EMPTY_FAILED_RESPONSE: &str = "response.failed event received";
 +
 +// LiteLLM ends a failed stream with `response.failed` whose `response.error` is
@@ -258,18 +316,18 @@ index 872769c..ac29a5d 100644
 +}
 +
  pub(super) fn parse_failed_response(response: Option<Value>) -> ApiError {
-     if let Some(error) = response
-         .as_ref()
-@@ -35,7 +54,7 @@ pub(super) fn parse_failed_response(response: Option<Value>) -> ApiError {
-         .and_then(|response| response.get("error"))
-         .and_then(|error| serde_json::from_value::<Error>(error.clone()).ok())
+     let error = response.as_ref().and_then(|response| response.get("error"));
+     let retry_after_header = error
+@@ -34,7 +53,7 @@ pub(super) fn parse_failed_response(response: Option<Value>) -> ApiError {
+     }
+     let Some(error) = error.and_then(|error| serde_json::from_value::<Error>(error.clone()).ok())
      else {
--        return ApiError::Stream("response.failed event received".into());
-+        return ApiError::Stream(EMPTY_FAILED_RESPONSE.into());
-     };
-
-     match error.code.as_deref() {
-@@ -73,6 +92,13 @@ pub(super) fn parse_failed_response(response: Option<Value>) -> ApiError {
+-        let message = "response.failed event received".to_string();
++        let message = EMPTY_FAILED_RESPONSE.to_string();
+         return match retry_after_header {
+             Some(_) => ApiError::Retryable {
+                 message,
+@@ -78,6 +97,13 @@ pub(super) fn parse_failed_response(response: Option<Value>) -> ApiError {
                  }),
              }
          }
@@ -285,10 +343,10 @@ index 872769c..ac29a5d 100644
                  .message
 diff --git a/codex-rs/core/src/astra_image_guard.rs b/codex-rs/core/src/astra_image_guard.rs
 new file mode 100644
-index 0000000..4e07916
+index 00000000..c9a19c49
 --- /dev/null
 +++ b/codex-rs/core/src/astra_image_guard.rs
-@@ -0,0 +1,257 @@
+@@ -0,0 +1,261 @@
 +//! Every image is either summarized with vision or retained unchanged in the
 +//! replacement history. No unsupported-media projection is used for compaction.
 +
@@ -540,19 +598,23 @@ index 0000000..4e07916
 +        projected.push(envelope);
 +    }
 +    projected.push(ResponseItemEnvelope::new(ResponseItem::Message {
-+        id: None, role: "developer".into(), phase: None,
++        id: None,
++        role: "developer".into(),
++        phase: None,
++        status: None,
++        encrypted_content: None,
 +        content: vec![ContentItem::InputText { text: "This visual compaction request contains a bounded prefix of the historical images. Images marked retained will be attached unchanged after your summary, with their original completed tool calls and output context; those tools must not be rerun just to retrieve them. Summarize the images provided here and preserve prior observations, completed checks, uncertainty, and remaining work accurately. Deferred images are pending visual inputs, not evidence that vision or tools are unavailable. Do not invalidate earlier observations merely because an image is deferred.".into() }],
 +        internal_chat_message_metadata_passthrough: None,
 +    }));
 +    Ok((projected, retained))
 +}
 diff --git a/codex-rs/core/src/client.rs b/codex-rs/core/src/client.rs
-index e852b63..155a6fa 100644
+index 5913d07c..f0781cf9 100644
 --- a/codex-rs/core/src/client.rs
 +++ b/codex-rs/core/src/client.rs
-@@ -1347,6 +1347,29 @@ impl Drop for ModelClientSession {
+@@ -1606,6 +1606,29 @@ impl Drop for ModelClientSession {
  }
-
+ 
  impl ModelClientSession {
 +    pub(crate) fn layering_request_bytes(
 +        &self,
@@ -577,18 +639,18 @@ index e852b63..155a6fa 100644
 +        Ok(serde_json::to_vec(&request)?.len().saturating_add(4096))
 +    }
 +
-     #[allow(clippy::too_many_arguments)]
-     /// Builds shared Responses API transport options and request-body options.
-     ///
-@@ -1768,6 +1791,7 @@ impl ModelClientSession {
+     pub(crate) fn inference_tools_changed(&self, tools: &Arc<[ToolSpec]>) -> bool {
+         let previous = self
+             .client
+@@ -2103,6 +2126,7 @@ impl ResponsesHttpExecutor<'_> {
                  client_setup.api_auth,
              )
              .with_telemetry(Some(request_telemetry), Some(sse_telemetry));
 +            crate::astra_image_guard::check_wire_bytes(&request)?;
              let stream_result = client.stream_request(request, options).await;
-
+ 
              match stream_result {
-@@ -2055,6 +2079,7 @@ impl ModelClientSession {
+@@ -2426,6 +2450,7 @@ impl ModelClientSession {
                  let ResponsesWsRequest::ResponseCreate(payload) = &mut ws_request;
                  payload.input = input;
              }
@@ -597,11 +659,27 @@ index e852b63..155a6fa 100644
                  inference_trace_attempt.record_started(&ws_request);
              }
 diff --git a/codex-rs/core/src/compact.rs b/codex-rs/core/src/compact.rs
-index 39919cf..2584271 100644
+index 4aa7e07a..f814bdad 100644
 --- a/codex-rs/core/src/compact.rs
 +++ b/codex-rs/core/src/compact.rs
-@@ -268,14 +268,59 @@ async fn run_compact_task_inner_impl(
-
+@@ -291,35 +291,89 @@ async fn run_compact_task_inner_impl(
+         fallback_instructions.text.clear();
+     }
+ 
++    let base_instructions = |input: &[ResponseItem]| {
++        if input
++            .iter()
++            .any(|item| BaseInstructionsFragment::text_from_item(item).is_some())
++        {
++            BaseInstructions {
++                text: String::new(),
++                provenance: None,
++            }
++        } else {
++            fallback_instructions.clone()
++        }
++    };
++
      let max_retries = turn_context.provider.info().stream_max_retries();
      let mut retries = 0;
 +    let image_budget = crate::astra_image_guard::threshold();
@@ -620,12 +698,20 @@ index 39919cf..2584271 100644
 -        let mut turn_input = history
 +        let turn_input = history
              .clone()
--            .for_prompt(&turn_context.model_info().input_modalities);
-+            .for_prompt_annotated(&turn_context.model_info().input_modalities);
+-            .for_prompt(
++            .for_prompt_annotated(
+                 &turn_context.model_info().input_modalities,
+                 sess.services.image_store.as_ref(),
+             )
+             .await;
 +        let budget_metadata = sess
 +            .compaction_responses_metadata(turn_context.as_ref(), compaction_metadata)
 +            .await;
-+        let budget_instructions = sess.get_prompt_base_instructions().await;
++        let budget_effort = if byte_budget.is_some() {
++            sess.reasoning_effort_for_request(&turn_context.initial_settings, RequestEffortUsage::Compaction).await
++        } else {
++            None
++        };
 +        let (turn_input, retained_images) = if image_budget.is_some() || byte_budget.is_some() {
 +            crate::astra_image_guard::partition_for_request(
 +                turn_input,
@@ -638,15 +724,16 @@ index 39919cf..2584271 100644
 +                        .executed_tool_calls
 +                        .attach_to_compaction_prompt(&mut input);
 +                    let prompt = Prompt {
++                        base_instructions: base_instructions(&input),
 +                        input,
-+                        base_instructions: budget_instructions.clone(),
++                        prompt_cache_ttl: turn_context.prompt_cache_ttl,
 +                        cyber_access_program: turn_context.cyber_access_program,
 +                        ..Default::default()
 +                    };
 +                    client_session.layering_request_bytes(
 +                        &prompt,
 +                        turn_context.model_info(),
-+                        turn_context.reasoning_effort().cloned(),
++                        budget_effort.clone(),
 +                        turn_context.reasoning_summary(),
 +                        turn_context.config.service_tier.clone(),
 +                        &budget_metadata,
@@ -663,7 +750,23 @@ index 39919cf..2584271 100644
          sess.services
              .executed_tool_calls
              .attach_to_compaction_prompt(&mut turn_input);
-@@ -295,13 +340,13 @@ async fn run_compact_task_inner_impl(
+         let turn_input_len = turn_input.len();
+-        let base_instructions = if turn_input
+-            .iter()
+-            .any(|item| BaseInstructionsFragment::text_from_item(item).is_some())
+-        {
+-            BaseInstructions {
+-                text: String::new(),
+-                provenance: None,
+-            }
+-        } else {
+-            fallback_instructions.clone()
+-        };
++        let base_instructions = base_instructions(&turn_input);
+         let prompt = Prompt {
+             input: turn_input,
+             base_instructions,
+@@ -336,15 +390,20 @@ async fn run_compact_task_inner_impl(
              &mut client_session,
              &responses_metadata,
              &prompt,
@@ -671,16 +774,11 @@ index 39919cf..2584271 100644
 +            buffer_output,
          )
          .await;
-
+ 
          match attempt_result {
              Ok(response) => {
 -                break response;
 +                break (response, retained_images);
-             }
-             Err(err)
-                 if matches!(
-@@ -315,6 +360,11 @@ async fn run_compact_task_inner_impl(
-                 return Err(e);
              }
              Err(e) if matches!(e.details(), CodexErrorDetails::ContextWindowExceeded) => {
 +                if image_budget.is_some() || byte_budget.is_some() {
@@ -691,8 +789,8 @@ index 39919cf..2584271 100644
                  if turn_input_len > 1 {
                      // Trim from the beginning to preserve cache (prefix-based) and keep recent messages intact.
                      error!(
-@@ -348,12 +398,13 @@ async fn run_compact_task_inner_impl(
-
+@@ -380,12 +439,13 @@ async fn run_compact_task_inner_impl(
+ 
      let history_snapshot = sess.clone_history().await;
      let history_items = history_snapshot.annotated_items();
 -    let summary_suffix = if matches!(compaction_metadata.phase(), CompactionPhase::PostTurn) {
@@ -707,9 +805,9 @@ index 39919cf..2584271 100644
                  )
              })?
      } else {
-@@ -376,6 +427,21 @@ async fn run_compact_task_inner_impl(
+@@ -428,6 +488,21 @@ async fn run_compact_task_inner_impl(
          new_history =
-             insert_initial_context_before_last_real_user_or_summary(new_history, initial_context);
+             crate::compact_pending_input::insert_summary(new_history, summary, pending_sequence);
      }
 +    // Images beyond the budget were not summarized. Restore them byte-for-byte
 +    // with their source text and completed call/result pairs, including metadata.
@@ -726,66 +824,69 @@ index 39919cf..2584271 100644
 +            .is_none_or(|id| !retained_ids.contains(id))
 +    });
 +    new_history.extend(retained_images);
-     let reference_context_item = match initial_context_injection {
-         InitialContextInjection::DoNotInject => None,
-         InitialContextInjection::BeforeLastUserMessage { step_context, .. } => {
-@@ -757,7 +823,7 @@ async fn drain_to_completed(
+     let rendered = world_state.render_full_with_host_roster().await;
+     let (window_number, window_ids) = sess.advance_auto_compact_window().await;
+     let (updates, world_state_baseline) = sess
+@@ -843,7 +918,7 @@ async fn drain_to_completed(
      client_session: &mut ModelClientSession,
      responses_metadata: &CodexResponsesMetadata,
      prompt: &Prompt,
 -    phase: CompactionPhase,
 +    buffer_output: bool,
  ) -> CodexResult<CompactionResponse> {
+     let mut includes_reasoning = turn_context.model_info().use_responses_lite;
      let mut stream = client_session
-         .stream(
-@@ -787,7 +853,7 @@ async fn drain_to_completed(
-         };
-         match event {
-             Ok(ResponseEvent::OutputItemDone(item)) => {
--                if matches!(phase, CompactionPhase::PostTurn) {
-+                if buffer_output {
-                     // Commit post-turn summaries only after success; failures must leave both
-                     // the live history and persisted rollout intact.
-                     output.push(item);
+@@ -887,7 +962,7 @@ async fn drain_to_completed(
+                 usage_metadata,
+                 ..
+             }) => {
+-                if !matches!(phase, CompactionPhase::PostTurn) {
++                if !buffer_output {
+                     for item in std::mem::take(&mut output) {
+                         sess.record_annotated_conversation_items(
+                             turn_context,
 diff --git a/codex-rs/core/src/lib.rs b/codex-rs/core/src/lib.rs
-index e7753db..c8a76aa 100644
+index 12d65a0b..9172849b 100644
 --- a/codex-rs/core/src/lib.rs
 +++ b/codex-rs/core/src/lib.rs
-@@ -33,6 +33,7 @@ pub use turn_metadata::detached_memory_responses_metadata;
- mod codex_thread;
+@@ -35,6 +35,7 @@ mod thread_input;
+ pub use thread_input::InputWaitOutcome;
  mod turn_extension_data;
  pub use turn_extension_data::WithTurnExtensionData;
 +mod astra_image_guard;
  mod compact_model_fallback;
+ mod compact_pending_input;
  mod compact_remote_history;
- mod compact_remote_v2;
 diff --git a/codex-rs/core/src/session/turn.rs b/codex-rs/core/src/session/turn.rs
-index f13e98c..05b1e5b 100644
+index 0d3da231..c6c4c852 100644
 --- a/codex-rs/core/src/session/turn.rs
 +++ b/codex-rs/core/src/session/turn.rs
-@@ -513,7 +513,7 @@ pub(crate) async fn run_turn(
+@@ -639,11 +639,66 @@ pub(crate) async fn run_turn(
                  .await;
-
+ 
              // Construct the input that we will send to the model.
--            let sampling_request_input: Vec<ResponseItem> = async {
-+            let mut sampling_request_input: Vec<ResponseItem> = async {
-                 sess.clone_history()
-                     .await
-                     .for_prompt(&step_context.settings.model_info.input_modalities)
-@@ -521,6 +521,54 @@ pub(crate) async fn run_turn(
-             .instrument(trace_span!("run_turn.prepare_sampling_request_input"))
-             .await;
-
+-            let sampling_request_input = sess
++            let mut sampling_request_input = sess
+                 .clone_history()
+                 .instrument(trace_span!("run_turn.prepare_sampling_request_input"))
+                 .await;
+ 
 +            // Inspect the complete request at a safe boundary, including tool batches
 +            // that jump past the upstream image limit. Keep the same thread and files.
-+            loop {
-+                let byte_limit = crate::astra_image_guard::byte_threshold();
++            let image_limit = crate::astra_image_guard::threshold();
++            let byte_limit = crate::astra_image_guard::byte_threshold();
++            if image_limit.is_some() || byte_limit.is_some() {
++                let mut projected = sampling_request_input.clone().for_prompt(
++                    &step_context.settings.model_info.input_modalities,
++                    sess.services.image_store.as_ref(),
++                ).await;
++                loop {
 +                let before_bytes = if byte_limit.is_some() {
-+                    Some(layering_request_bytes(sess.as_ref(), step_context.as_ref(), &client_session, &sampling_request_input).await?)
++                    Some(layering_request_bytes(sess.as_ref(), step_context.as_ref(), &client_session, &projected).await?)
 +                } else { None };
-+                if !crate::astra_image_guard::needs_compaction(&sampling_request_input)
++                if !crate::astra_image_guard::needs_compaction(&projected)
 +                    && !byte_limit.zip(before_bytes).is_some_and(|(limit, bytes)| bytes >= limit) { break; }
-+                let image_count = crate::astra_image_guard::image_count(&sampling_request_input);
++                let image_count = crate::astra_image_guard::image_count(&projected);
 +                sess.send_event(
 +                    &turn_context,
 +                    EventMsg::Warning(WarningEvent {
@@ -795,42 +896,43 @@ index f13e98c..05b1e5b 100644
 +                    }),
 +                )
 +                .await;
-+                run_inline_auto_compact_task(
-+                    Arc::clone(&sess),
-+                    Arc::clone(&turn_context),
-+                    InitialContextInjection::BeforeLastUserMessage {
-+                        world_state: Arc::clone(&world_state),
-+                        step_context: Arc::clone(&step_context),
-+                    },
++                run_auto_compact(
++                    &sess,
++                    Arc::clone(&step_context),
++                    Arc::clone(&step_context),
++                    &mut client_session,
 +                    CompactionReason::ContextLimit,
 +                    CompactionPhase::MidTurn,
++                    /*candidate*/ None,
 +                )
 +                .await?;
 +                if run_pending_session_start_hooks(&sess, &turn_context).await {
 +                    return Err(CodexErr::TurnAborted);
 +                }
-+                sampling_request_input = sess
-+                    .clone_history()
-+                    .await
-+                    .for_prompt(&step_context.settings.model_info.input_modalities);
++                sampling_request_input = sess.clone_history().await;
++                projected = sampling_request_input.clone().for_prompt(
++                    &step_context.settings.model_info.input_modalities,
++                    sess.services.image_store.as_ref(),
++                ).await;
 +                let after_bytes = if before_bytes.is_some() {
-+                    Some(layering_request_bytes(sess.as_ref(), step_context.as_ref(), &client_session, &sampling_request_input).await?)
++                    Some(layering_request_bytes(sess.as_ref(), step_context.as_ref(), &client_session, &projected).await?)
 +                } else { None };
-+                if crate::astra_image_guard::image_count(&sampling_request_input) >= image_count
++                if crate::astra_image_guard::image_count(&projected) >= image_count
 +                    && !before_bytes.zip(after_bytes).is_some_and(|(before, after)| after < before) {
 +                    return Err(CodexErr::InvalidRequest(
 +                        "Layering image guard: compaction did not reduce image count; history was retained for recovery.".to_string(),
 +                    ));
 +                }
 +            }
++            }
 +
              run_sampling_request(
                  Arc::clone(&sess),
                  Arc::clone(&step_context),
-@@ -839,6 +887,30 @@ pub(crate) async fn run_turn(
+@@ -1011,6 +1066,35 @@ pub(crate) async fn run_turn(
      Ok(last_agent_message)
  }
-
+ 
 +async fn layering_request_bytes(
 +    sess: &Session,
 +    step: &StepContext,
@@ -841,14 +943,19 @@ index f13e98c..05b1e5b 100644
 +    sess.services
 +        .executed_tool_calls
 +        .attach_to_prompt(&mut input, &mut HashMap::new());
-+    let prompt = build_prompt(input, step, sess.get_prompt_base_instructions().await);
++    let prompt = build_prompt(
++        input,
++        step,
++        sess.get_prompt_base_instructions().await,
++        sess.current_window_uses_incremental_tools(step).await,
++    );
 +    let metadata = sess
 +        .responses_metadata(step, CodexResponsesRequestKind::Turn)
 +        .await;
 +    client.layering_request_bytes(
 +        &prompt,
 +        &step.settings.model_info,
-+        step.settings.reasoning_effort().cloned(),
++        sess.reasoning_effort_for_request(&step.settings, super::RequestEffortUsage::Sampling).await,
 +        step.settings.reasoning_summary,
 +        step.settings.service_tier.clone(),
 +        &metadata,
@@ -858,13 +965,38 @@ index f13e98c..05b1e5b 100644
  #[instrument(level = "trace", skip_all)]
  async fn turn_diff_display_roots(step_context: &StepContext) -> Vec<(String, PathUri)> {
      let mut display_roots = Vec::new();
+@@ -1707,7 +1791,9 @@ async fn run_auto_compact(
+         conversation.id = %sess.thread_id,
+         turn.id = %turn_context.sub_id,
+     );
+-    if turn_context.config.features.enabled(Feature::TokenBudget) {
++    let layering_guard = crate::astra_image_guard::threshold().is_some()
++        || crate::astra_image_guard::byte_threshold().is_some();
++    if !layering_guard && turn_context.config.features.enabled(Feature::TokenBudget) {
+         // Compaction is the reset request, so force a new context window
+         // instead of consuming a pending `new_context` tool request.
+         crate::compact_token_budget::run_inline_auto_compact_task(
+@@ -1719,7 +1805,12 @@ async fn run_auto_compact(
+         return Ok(true);
+     }
+ 
+-    match turn_context.provider.capabilities().remote_compaction {
++    let remote_compaction = if layering_guard {
++        RemoteCompactionSupport::Unsupported
++    } else {
++        turn_context.provider.capabilities().remote_compaction
++    };
++    match remote_compaction {
+         RemoteCompactionSupport::V2 => {
+             let has_candidate = candidate.is_some();
+             if !has_candidate {
 diff --git a/codex-rs/core/src/tools/spec_plan.rs b/codex-rs/core/src/tools/spec_plan.rs
-index 379face..2bd13bd 100644
+index a5851263..a0addd42 100644
 --- a/codex-rs/core/src/tools/spec_plan.rs
 +++ b/codex-rs/core/src/tools/spec_plan.rs
-@@ -754,7 +754,8 @@ fn image_generation_available(turn_context: &TurnContext, model_info: &ModelInfo
+@@ -847,7 +847,8 @@ fn image_generation_available(turn_context: &TurnContext, model_info: &ModelInfo
      }
-
+ 
      let provider = turn_context.provider.info();
 -    provider.uses_openai_actor_authorization()
 +    codex_model_provider_info::ModelProviderInfo::layering_image_provider().is_some()
@@ -873,10 +1005,10 @@ index 379face..2bd13bd 100644
              && turn_context
                  .auth_manager
 diff --git a/codex-rs/ext/image-generation/src/extension.rs b/codex-rs/ext/image-generation/src/extension.rs
-index d36a14c..49fc525 100644
+index e240e4a8..e8830398 100644
 --- a/codex-rs/ext/image-generation/src/extension.rs
 +++ b/codex-rs/ext/image-generation/src/extension.rs
-@@ -40,12 +40,17 @@ impl ImageGenerationExtensionConfig {
+@@ -40,13 +40,18 @@ impl ImageGenerationExtensionConfig {
      /// Resolves the image provider and save root for a thread.
      fn from_config(config: &Config, resolve_save_root: &SaveRootResolver) -> Self {
          Self {
@@ -885,6 +1017,7 @@ index d36a14c..49fc525 100644
 +                || config.model_provider.is_openai()
                  || config.model_provider.requires_openai_auth
                  || config.model_provider.uses_openai_actor_authorization(),
+             gif_enabled: config.features.image_generation_animation_enabled(),
              http_client_factory: config.http_client_factory(),
 -            provider: config.model_provider.clone(),
 -            save_root: resolve_save_root(config),
@@ -898,12 +1031,12 @@ index d36a14c..49fc525 100644
      }
  }
 diff --git a/codex-rs/ext/image-generation/src/tool.rs b/codex-rs/ext/image-generation/src/tool.rs
-index d2777fb..a74ed49 100644
+index 162b4211..063c1da0 100644
 --- a/codex-rs/ext/image-generation/src/tool.rs
 +++ b/codex-rs/ext/image-generation/src/tool.rs
-@@ -56,6 +56,13 @@ use crate::artifact::image_generation_output_hint;
+@@ -66,6 +66,13 @@ use crate::artifact::image_generation_output_hint;
  use crate::backend::CodexImagesBackend;
-
+ 
  const IMAGE_MODEL: &str = "gpt-image-2";
 +
 +fn image_model() -> String {
@@ -915,32 +1048,32 @@ index d2777fb..a74ed49 100644
  const MAX_EDIT_IMAGES: usize = 5;
  const MAX_EXECUTOR_GENERATED_IMAGE_BYTES: usize = 32 * 1024 * 1024;
  const MAX_EXECUTOR_GENERATED_IMAGE_BASE64_BYTES: usize =
-@@ -432,7 +439,7 @@ async fn request_for_call_args(
-             return Ok(ImageRequest::Generate(ImageGenerationRequest {
-                 prompt: args.prompt.clone(),
-                 background: Some(background),
--                model: IMAGE_MODEL.to_string(),
-+                model: image_model(),
-                 n: None,
-                 quality: Some(ImageQuality::Auto),
-                 size: Some("auto".to_string()),
-@@ -476,7 +483,7 @@ async fn request_for_call_args(
-         images,
-         prompt: args.prompt.clone(),
-         background: Some(background),
--        model: IMAGE_MODEL.to_string(),
-+        model: image_model(),
-         n: None,
-         quality: Some(ImageQuality::Auto),
-         size: Some("auto".to_string()),
+@@ -530,7 +537,7 @@ async fn request_for_call_args(
+                     prompt: args.prompt.clone(),
+                     output: args.gif.map(ImageOutput::Gif),
+                     background: Some(background),
+-                    model: IMAGE_MODEL.to_string(),
++                    model: image_model(),
+                     n: None,
+                     quality: Some(ImageQuality::Auto),
+                     size: Some("auto".to_string()),
+@@ -580,7 +587,7 @@ async fn request_for_call_args(
+             prompt: args.prompt.clone(),
+             output: args.gif.map(ImageOutput::Gif),
+             background: Some(background),
+-            model: IMAGE_MODEL.to_string(),
++            model: image_model(),
+             n: None,
+             quality: Some(ImageQuality::Auto),
+             size: Some("auto".to_string()),
 diff --git a/codex-rs/model-provider-info/src/lib.rs b/codex-rs/model-provider-info/src/lib.rs
-index 5d5b1f9..9c7286f 100644
+index feeea5fe..30593744 100644
 --- a/codex-rs/model-provider-info/src/lib.rs
 +++ b/codex-rs/model-provider-info/src/lib.rs
-@@ -605,6 +605,20 @@ other non-default provider fields are not supported"
-         provider
+@@ -708,6 +708,20 @@ other non-default provider fields are not supported"
+             .unwrap_or(provider_id == OPENAI_PROVIDER_ID)
      }
-
+ 
 +    /// A separate Images API provider, without replacing the chat provider or login.
 +    pub fn layering_image_provider() -> Option<Self> {
 +        let base_url = std::env::var("LAYERING_IMAGE_BASE_URL").ok()?;

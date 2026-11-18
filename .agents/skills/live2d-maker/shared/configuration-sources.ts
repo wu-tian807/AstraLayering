@@ -1,6 +1,6 @@
 export const scalarConfigurationKeys=[
   ...['codex','claude','agv'].flatMap(h=>['api_key','base_url','models'].map(key=>`${h}_${key}`)),
-  'claude_path','agv_path','codex_home','agv_protocol','agv_unlimited_response_header_timeout','agv_minimal_thinking_level',
+  'claude_path','agv_path','codex_home','agv_protocol','agv_minimal_thinking_level',
   'image_compact_threshold',...['codex','claude','agv'].flatMap(h=>[`${h}_image_compact_threshold`,`${h}_request_compact_mib`]),
   'agv_image_deduplicate','claude_image_deduplicate','krita_max_instances','update_check','DISPLAY','WAYLAND_DISPLAY','QT_QPA_PLATFORM',
   'openai_image_models','google_image_models','openai_image_base_url','openai_image_api_key','google_image_base_url','google_image_api_key','google_image_protocol',

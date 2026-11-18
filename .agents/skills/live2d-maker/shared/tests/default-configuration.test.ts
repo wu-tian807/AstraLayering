@@ -63,11 +63,11 @@ test('invalid or incomplete defaults identify the skill template and preserve th
 
 test('all scalar runtime defaults come from the template and partial local settings retain those defaults',async t=>{
  const root=await fixture(t);let template=await readFile(templateUrl,'utf8');
- for(const [key,value] of Object.entries({agv_image_compact_threshold:'12',codex_request_compact_mib:'4',claude_image_deduplicate:'true',agv_unlimited_response_header_timeout:'true',krita_max_instances:'7'}))template=replace(template,key,value);
+ for(const [key,value] of Object.entries({agv_image_compact_threshold:'12',codex_request_compact_mib:'4',claude_image_deduplicate:'true',krita_max_instances:'7'}))template=replace(template,key,value);
  await writeFile(join(root,'example.env'),template);await writeFile(join(root,'.env'),'# partial\n');
  const actual=loadWorkflowEnvironment({},root);
  assert.equal(actual.imageBudgets!.agv.images,12);assert.equal(actual.imageBudgets!.codex.bytes,4*1048576);assert.equal(actual.imageBudgets!.claude.deduplicate,true);
- assert.equal(actual.codex.env!.agv_unlimited_response_header_timeout,'true');assert.equal(actual.codex.env!.krita_max_instances,'7');
+ assert.equal(actual.codex.env!.krita_max_instances,'7');
  await writeFile(join(root,'.env'),'agv_image_compact_threshold=8\nclaude_image_deduplicate=false\n');
  const local=loadWorkflowEnvironment({agv_image_compact_threshold:'9'},root);assert.equal(local.imageBudgets!.agv.images,8);assert.equal(local.imageBudgets!.claude.deduplicate,undefined);
  await writeFile(join(root,'example.env'),template.replace(/^video_api_key=[^\r\n]*\r?\n/m,''));assert.throws(()=>loadWorkflowEnvironment({},root),/example.env.*video_api_key/);

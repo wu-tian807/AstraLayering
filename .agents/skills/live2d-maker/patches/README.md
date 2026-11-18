@@ -9,7 +9,6 @@
 | 三种 CLI 图片／请求体预算 | `<codex/claude/agv>_image_compact_threshold` / `<codex/claude/agv>_request_compact_mib` | 留空关闭；按实际发送内容检查，带图分批压缩，保留最新图与恢复记录 |
 | Claude 拒绝后的会话恢复 | 自动处理结构化 refusal，无开关 | 保留记录与产物，从恢复提示词新建会话；边界见下文 |
 | Codex 自定义生图 | 对应步骤选择 GPT／Nano，并填写对应 API | 与 compact 共用同一补丁，按所选路线实际需要准备 |
-| AGV 响应头期限兼容 | `agv_unlimited_response_header_timeout=true` | 自动检查已安装 CLI，准备独立受控副本，不需要 Rust |
 
 使用 Codex harness 时始终准备补丁；只用 Claude／AGV 时不构建 Codex。显式指定已有 Codex 补丁路径时，必须通过能力／完整性检查。详细行为与验证见下方各节；安装与构建操作见 [setup · CLI 准备与补丁构建](../references/setup.md#cli-准备与补丁构建)。
 
@@ -45,7 +44,9 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ## 原生 Codex 补丁
 
-固定官方 `rust-v0.161.0`，提交 `979011409de0a60b52f179721948e65531d26144`。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
+固定官方 `rust-v0.170.0`，提交 `29eb79e9866b3262a777fdf8195c1b9e63684c91`。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
+
+构建目标为 Codex CLI。Code Mode Host 来自同版本官方 SDK 随附的二进制，构建工作区无需再次编译 Host 或下载它专用的 V8 源码。
 
 ### 补丁入口与缓存校验
 
@@ -80,27 +81,15 @@ python3 patches/codex/image-compaction-smoke.py --codex /absolute/codex
 
 `codex_request_compact_mib` 开启后，普通请求和视觉 compact 均使用真实 Responses 序列化器计算大小（含指令、工具和 Base64），预留传输元数据。HTTP／WebSocket 发包前还有最终字节检查。溢出时按图片数量与字节两种预算选择可实际总结的前缀，其余原图及工具配对保留；无法容纳文本和一张图时明确报错，不删除未总结的历史。关闭此项时原 49 张图片保护保持原行为。
 
-## AGV 自定义网关的响应头期限
+## AGV 自定义网关的响应超时
 
-已验证的 Linux x64 AGV 1.4.4、1.4.5 默认等待响应头 60 秒。供应商尚未返回响应头时，CLI 会取消请求并重试；它与整个 print 回合的 `--print-timeout` 无关。工作流不提前返回虚假的 HTTP 200，也不忽略上游错误。
+工作流通过 `agv_path` 或 PATH 启动用户安装的原版 `agy`。旧配置如果仍指向任务目录中的 AGV 补丁副本，将路径改为原版 `agy`，或留空使用 PATH。已有会话与产物可以继续使用。
 
-这是针对结构可确认构建的可选兼容补丁，不自动安装 CLI。先检查现有 CLI 和登录，在 `.env` 设置 `agv_unlimited_response_header_timeout=true`；工作流首次使用 AGV 时自动准备独立副本，并校验复用。默认关闭，不需要 Rust。也可手动提前准备：
-
-```bash
-pnpm patch:agv --source /absolute/path/to/agy --dir /absolute/path/to/.run
-```
-
-脚本从 ELF/Go 函数表精确定位网关 Transport，验证目标指令，并检查 updater 对 `AGY_CLI_DISABLE_AUTO_UPDATE=true` 的实际识别方式。结构一致的新构建自动兼容，不依赖固定版本号或固定文件偏移；无法确认指令或开关时明确报错，未修改、未启动。仅将默认 `ResponseHeaderTimeout` 从 60 秒改成 0（无期限），独立副本放在 `<dir>/.runtime/agv/<source-sha256>/v2/`；原 CLI、连接/TLS 期限、权限检查和 HTTP 错误处理不变。macOS 等其他格式暂未验证，不适用。运行根目录必须已经存在且位于 skill 外。
-
-返回的 `antigravity` 是受控启动入口：每次启动前验证 `antigravity.bin` 的完整 SHA-256，强制传入字符串 `true`（CLI 不接受 `1`），运行中和结束时再次检查文件是否被替换。CLI 如果仍启动自动更新，工作流明确报错并停止本次调用，保留会话与产物。旧补丁目录或已更新的副本在下次调用前重新做结构检查，兼容时创建新的受控副本，绝不按旧 `patch.json` 的声明直接运行。
-
-自动模式的 `agv_path` 可留空以查找原始 CLI，或指向已安装 CLI，无需记录生成路径。手动模式仍可把打印的路径写入 `.env`。关闭 `agv_unlimited_response_header_timeout` 并清除已有补丁路径后恢复全局原 CLI。会话和产物不变，不要删除 threadId。不要提交生成的 CLI 或任务过程记录。
+原版 AGV 的 HTTP 响应头期限由 CLI 控制。已验证的构建中，上游 60 秒内未返回响应头会触发超时。项目的 GenAI 网关收到上游响应头即转发，随后逐段转发 SSE。真实 HTTP 状态与 CLI 超时原因进入原有诊断和重试逻辑。调试时对照 `workflow.log` 中同一请求的准备完成、响应头和首段正文时间。
 
 已验证构建的 `sir_flash_lite` 是 CLI 内置的安全预检查：在工具执行前查看近期推理和待执行操作，判断是否需要进一步安全审查。它不承担分层绘制或图像 review；嵌入配置为 `LOG` 模式、8 秒期限。实测中其 MINIMAL 请求报错后，主回合仍可完成，但检查本身失败，并产生额外请求和等待。这与主请求 60 秒响应头期限分别诊断，不关闭监视、不延长其专用期限，也不因这类内部日志重开已经成功交付的会话。
 
 部分网关还把 CLI 的内部 MINIMAL 调用路由到只接受 LOW 的模型。已通过真实接口确认后，可设置 `agv_minimal_thinking_level=LOW`。这只替换 MINIMAL，不修改绘制/review 的 LOW、MEDIUM、HIGH 请求；留空保留原协议。它不关闭内部监视，也不会修改其原生期限。
-
-验证应包含：真实 CLI 等待超过 60 秒的响应头仍成功；HTTP 400/503 不误报成功；取消能及时结束；以及真实多图/工具调用的耗时和产物。不能以短请求跑通或进程仍存活代替这些检查。
 
 ## Responses 错误透传
 

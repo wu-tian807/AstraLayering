@@ -1,9 +1,9 @@
-import { readFile, writeFile, rename, rm, lstat, access } from 'node:fs/promises';
-import { constants } from 'node:fs';
+import { readFile, writeFile, rename, rm, lstat } from 'node:fs/promises';
 import { createHash, randomUUID } from 'node:crypto';
-import { resolve, join, delimiter } from 'node:path';
+import { resolve, join } from 'node:path';
 import { parseEnv, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
+import { cliExecutable } from '../.agents/skills/live2d-maker/shared/agents/cli.ts';
 import { workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
 import { modelHarness, modelHarnesses, modelSlots, modelSlotKey, isModelSlotKey, defaultImageModelKey, imageModelKey, resolveModelDefaults, resolveImageDefaults, imageSteps, imageModelProviders, modelReasoningEfforts, reasoningEfforts, stepModelSlots, type AgentStep, type Harness, type ModelSlot } from '../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { parseWorkflowEnvironment, type WorkflowEnvironment } from '../.agents/skills/live2d-maker/shared/codex/environment.ts';
@@ -32,7 +32,6 @@ const scalarDescriptions: Record<string,{label?:string;hint:string}> = {
   google_image_base_url:{hint:'Nano 生图接口的基础地址；Gemini 格式通常以 /v1beta 结尾，OpenAI 格式通常以 /v1 结尾。'},
   google_image_api_key:{hint:'调用 Nano 生图服务的密钥，与语言模型密钥分别配置。'},
   google_image_protocol:{hint:'选择生图服务使用的接口格式：gemini 为 Google 原生格式，openai 为 OpenAI 兼容格式。'},
-  agv_unlimited_response_header_timeout:{label:'Antigravity 响应等待超时兼容',hint:'为已安装的 CLI 准备补丁副本，解除其 60 秒响应头等待限制；默认关闭。'},
   agv_minimal_thinking_level:{label:'Antigravity 最低思考级别兼容',hint:'服务不支持 MINIMAL 时，选择替换级别；仅替换 MINIMAL 请求，留空保持原值。'},
   image_compact_threshold:{label:'Codex 图片张数阈值（旧配置）',hint:'旧版图片张数阈值，Codex 专用阈值优先于此项。单位：张；填正整数，留空不启用此项。'},
   krita_max_instances:{label:'Krita 同时运行上限',hint:'限制本机所有制作任务同时占用的 Krita 名额，满额时排队。填正整数，默认 4。'},
@@ -65,7 +64,7 @@ function scalarFields(defaults: Record<string,string>): Field[] {
       result.push({key:`${harness}_${suffix}`,label:`${harness} ${label}`,section:'connection',type,hint:suffix==='models'?'逗号分隔模型 ID；留空沿用已有范围':suffix==='api_key'?'留空复用已有登录；填入新值可替换本地密钥':undefined});
     }
   }
-  const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 认证来源目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_unlimited_response_header_timeout:'AGV 响应头期限兼容',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
+  const labels: Record<string,string> = {agv_protocol:'AGV 网关协议',codex_home:'Codex 认证来源目录',openai_image_base_url:'GPT 生图服务地址',openai_image_api_key:'GPT 生图 API 密钥',google_image_base_url:'Nano 生图服务地址',google_image_api_key:'Nano 生图 API 密钥',google_image_protocol:'Nano 生图协议',agv_minimal_thinking_level:'AGV MINIMAL 兼容',image_compact_threshold:'Codex 图片数量预算（兼容键）',krita_max_instances:'本机 Krita 并发上限',update_check:'检查新版本'};
   const choices: Record<string,string[]> = {agv_protocol:['','genai','openai'],google_image_protocol:['gemini','openai'],agv_minimal_thinking_level:['','LOW','MEDIUM','HIGH']};
   Object.assign(labels,{video_base_url:'视频服务地址',video_api_key:'视频服务 API 密钥',nine_axis_view_video_model:'头部九轴参考视频模型'});
   choices.video_provider=[...videoProviders];
@@ -123,18 +122,17 @@ function redactedPreview(text: string) {
 export async function probeEnvironmentCli(harness: Harness, values: Record<string,string>, env: NodeJS.ProcessEnv, directory: string) {
   if (harness === 'codex') return {available:true,detail:'使用管线内置补丁版 Codex，任务启动时自动准备',path:''};
   const explicit=values[`${harness}_path`]?.trim()||env[`${harness}_path`]?.trim();
-  const names=harness==='agv'?['agy','agv','antigravity']:[harness];
-  const paths=explicit?[resolve(directory,explicit)]:(env.PATH??'').split(delimiter).flatMap(p=>names.flatMap(n=>process.platform==='win32'?[join(p,n+'.exe'),join(p,n+'.cmd')]:[join(p,n)]));
-  const exec=promisify(execFile);
-  for(const path of paths) {
-    try {await access(path,constants.X_OK);if(!(await lstat(path)).isFile()&&!(await lstat(path)).isSymbolicLink())continue;
-      // Batch launchers are located, but only fixed .exe / native entrypoints are run here.
-      if(process.platform==='win32'&&/\.(cmd|bat)$/i.test(path)) return {available:true,detail:'已找到 CLI 入口，启动任务时检查版本',path};
-      const r=await exec(path,['--version'],{env,timeout:3500,maxBuffer:16000});
-      if(/\d+\.\d+/.test(r.stdout+r.stderr))return {available:true,detail:(r.stdout||r.stderr).trim().split('\n')[0],path};
-    } catch { /* Check the next installed entrypoint. */ }
+  let path: string;
+  try {
+    path = await cliExecutable({ cliPaths: { [harness]: explicit ? resolve(directory, explicit) : undefined }, codex: { env: { PATH: env.PATH ?? '' } } }, harness);
+  } catch (error) {
+    return {available:false,detail:(error as Error).message,path:explicit||''};
   }
-  return {available:false,detail:`当前服务环境未检测到可用 ${harness} CLI，请安装后登录或填写 CLI 路径`,path:explicit||''};
+  // Batch launchers are located here and version-checked at workflow startup.
+  if(process.platform==='win32'&&/\.(cmd|bat)$/i.test(path)) return {available:true,detail:'已找到 CLI 入口，启动任务时检查版本',path};
+  const result=await promisify(execFile)(path,['--version'],{env,timeout:3500,maxBuffer:16000}).catch(()=>undefined);
+  if(result&&/\d+\.\d+/.test(result.stdout+result.stderr)) return {available:true,detail:(result.stdout||result.stderr).trim().split('\n')[0],path};
+  return {available:false,detail:'CLI 版本检查失败，请在终端确认该入口可用',path};
 }
 export function createEnvironmentConfig({directory=workflowsDirectory, env=process.env, probe=probeEnvironmentCli, authentication=nativeAuthentication}:{directory?:string;env?:NodeJS.ProcessEnv;probe?:typeof probeEnvironmentCli;authentication?:typeof nativeAuthentication}={}) {
   const file=join(directory,'.env');
