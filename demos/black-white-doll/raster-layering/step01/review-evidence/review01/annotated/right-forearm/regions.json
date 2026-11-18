@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D027.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/3578613d-d266-4b3e-a958-8c7189427112/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/3578613d-d266-4b3e-a958-8c7189427112/regions.json",
+  "regions": [
+    {
+      "id": "R12",
+      "bounds": [
+        384,
+        478,
+        76,
+        201
+      ],
+      "layers": [
+        "D027.0 | arms/arm_right/forearm"
+      ],
+      "description": "右前臂独显：顶端盖帽色界明显，可见外缘原描边大段缺失，轮廓是浅色方阶；上下端没有延续本件边线。恢复参考的深浅描边及自然明暗过渡，不扩大胳膊以遮接界。",
+      "crop": [
+        377,
+        471,
+        90,
+        215
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/3578613d-d266-4b3e-a958-8c7189427112/R12-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/3578613d-d266-4b3e-a958-8c7189427112/R12-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/3578613d-d266-4b3e-a958-8c7189427112/R12-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

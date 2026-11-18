@@ -1,0 +1,34 @@
+{
+  "logicalParts": 70,
+  "physicalLayers": 77,
+  "retainedNonPonytailOwnerUUIDs": 70,
+  "allOriginalPaintingUUIDsRetained": true,
+  "openingMasks": 10,
+  "changedLogicalParts": [
+    "hair/ponytail/ponytail_left/ponytail_front",
+    "hair/ponytail/ponytail_left/ponytail_back",
+    "body/torso",
+    "pelvis",
+    "face/face_base",
+    "arms/arm_left/upper_arm",
+    "arms/arm_right/upper_arm",
+    "face/eyebrows/eyebrow_left",
+    "face/eyebrows/eyebrow_right",
+    "face/eyes/eye_left/upper_eyelid",
+    "arms/arm_left/hand/palm",
+    "arms/arm_left/hand/thumb",
+    "arms/arm_right/hand/palm",
+    "arms/arm_right/hand/middle_finger",
+    "arms/arm_right/hand/index_finger",
+    "arms/arm_left/hand/index_finger"
+  ],
+  "sourceShapesChanged": [
+    "arms/arm_right/hand/middle_finger"
+  ],
+  "controlsRefreshed": 70,
+  "groupsUnchanged": true,
+  "upstreamFingerprints": {
+    "groups.json": "2ab37e5da152002ce1d420c9ae1274614917058422984273c92196b842525bdb",
+    "occlusion.json": "cd5e647b528456567cb42d5e7738c968289356c52d1d6fd97f6231daac87a88d"
+  }
+}

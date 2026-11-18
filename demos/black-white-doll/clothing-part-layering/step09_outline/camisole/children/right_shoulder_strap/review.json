@@ -3,66 +3,36 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成独立只读审查，通过；未发现有图像依据且需要修改的问题。\n\n归属与完整性：先查看纯衣服参考全图及 [365,225,80,180] 的 4 倍放大，确认本片为画面左侧约 x389–424、y244–374 的连续窄肩带。相邻领缘波瓣属于 bodice；本片没有实际可见的独立附件、薄纱或额外开口遗漏。候选未误包其他衣片或人体，肩带旁及肩带间开口保持为空。\n\n轮廓、位置与比例：整图 blend 后，以 [375,235,60,170] 的 4 倍 blend、edge、svg 覆盖整根肩带，再检查带顶 [387,238,42,62] 的 8 倍 blend/edge、中段 [383,294,36,77] 的 6 倍 edge、根部 [379,353,51,47] 的原参考及 8 倍 blend/edge。带顶转折、窄带弯曲走向、两侧边缘及领缘入口与参考实体范围相符，无主要形状、位置比例或确定的局部轮廓缺陷。\n\n接缝与隐藏搭接：约 x390–406、y366–374 的可见下端在荷叶边后接入衣身。约 x391–406、y358–394 的下端余量沿用父完成稿，是已登记的肩带根部隐藏搭接，保持连续且合理。候选两条路径分别与父稿肩带及对应根部补全一致；工具以 4 倍采样检查父范围，outsideSamples=0、outsidePixels=0。未发现需单列的上游范围限制。\n\nnote：已将实体范围、bodice 相邻分界、肩部前后接续的连续分界、下端位于荷叶边之后、肩部与领缘端共同随动及必要隐藏搭接传至终止 part；保留同一肩带控制身份的说明完整，无确定的说明错误。",
-      "candidateHash": "0e28fee0f79f5c46848f494e2b7c024acbb7dcc9d2ca89e923204ee12c694fe8",
+      "feedback": "已从纯衣服参考独立确认：本 part 为画面左侧、角色自身右肩带，约 x374–410、y168–310；不包含相邻领口荷叶边或领口空白。完成整图 blend、全肩带及根部 4 倍原图/edge/blend 对照、SVG 独显和父完成稿局部对照。肩顶圆弧、两侧连续带缘、倾斜与宽度均与参考吻合，全部可见肩带覆盖完整；内部深色折转线属于同体表现，不构成真实开口。下端约 y299–310 的少量延伸落在荷叶边后，符合 note 所述隐藏搭接，未误包其他可见衣片或人体，未发现遗漏附件。note 已明确实体范围、领缘分界、肩前/肩后关系、肩顶连续深度分界及肩部/衣身锚点随动职责，无需修改。父范围四倍采样检查通过，outsidePixels=0。当前候选无需重画或局部返修。",
+      "candidateHash": "9abc2ab726a9c074664278744cde682ed2f0227f65d3db84190a50fe587a704f",
       "observations": [
         {
-          "source": "clothing-part-layering/parts/camisole.svg",
+          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-1.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/previews/2026-11-15T19-36-05-853Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-2.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-3.png"
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/previews/2026-11-15T19-36-05-853Z-2.png"
         },
         {
           "source": "clothing-part-layering/parts/camisole.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-4.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/previews/2026-11-15T19-36-05-853Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/previews/2026-11-15T19-36-05-853Z-4.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/camisole/children/right_shoulder_strap/step01/observations/camisole/right_shoulder_strap/2026-10-25T23-14-29-879Z-11.png"
+          "savedPath": "clothing-part-layering/step09_outline/camisole/children/right_shoulder_strap/previews/2026-11-15T19-36-05-853Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:21:53.348Z"
+      "updatedAt": "2026-11-15T19:55:43.417Z"
     }
   ]
 }

@@ -3,96 +3,51 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "通过。先独立查看纯衣服参考全图及裙部放大，再核对当前 note、候选和父完成 SVG；已以全图纯色独显、整体 blend、左/中/右裙面 2 倍 blend 与 edge、裙根及完整下摆 4 倍参考/blend/edge 覆盖本片全部可见区域。\n\n归属与主要范围：参考中约 (376,766) 经 (553,784) 至 (727,767) 的腰头下缝以下为连续裙布，向两侧展开至 x167–931，中央下摆至约 y1268。候选完整保留左右裙尖、连续裙面和同片褶叠，没有误包上衣、腰头上伸搭接或人体；参考纵向褶线及中央深色三角形没有独立实体外轮廓，保留为同一裙布符合本阶段职责。整图证据：observations/review/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-1.png（blend）、-3.png（纯色独显）；左右及中央裙面 edge 为同目录 -7.png、-9.png、-10.png。\n\n裙根与接缝：在 [355,748,395,65] 的 4 倍局部，候选上缘中央约 y780.5，较参考缝线略向腰头后方搭入，属于 note 已登记的保守隐藏裙根搭接；缝线下可见衣料连续，没有露缝或吞入整片腰头。证据：同目录 -4.png（edge）、-5.png（blend）。\n\n下摆和真实开口：分别以 [160,1135,205,115]、[345,1230,315,48]、[650,1135,290,135] 的 4 倍参考、blend 与 edge 核对全部下摆。左侧 x167–238、y1146–1202 的裙尖与转折，x330–351、y1227–1243 的阶差；中央 x468–490 与 x633–655、y1252–1265 的两处凹口及中央弧形底边；右侧 x765–790、y1227–1243 和 x875–931、y1143–1196 的阶差及裙尖均保留并贴合参考。裙布之外及阶差凹口保持透明，没有封闭真实缺口，也没有把褶面阴影误挖为空洞。本片参考没有另外可见的薄纱或分离附件遗漏。证据：同目录 -12.png/-13.png（左下摆 blend/edge）、-15.png/-14.png（中央 blend/edge）、-17.png/-16.png（右下摆 blend/edge）。\n\n父范围与说明：候选共享父稿的裙身两侧和下摆边界，4 倍父范围检查 outsideSamples=0、outsidePixels=0；未发现需要单列的上游范围限制。当前终止 part 的 note 已明确实体范围、与 waistband 的连续分界、骨盆/大腿及局部前臂的区域前后关系、共同随动及必要隐藏搭接，无已证实的说明错误。无需修改或重画当前 part。",
-      "candidateHash": "6a2ac91a5d15906bb28e5b61b1364a06550f993da23d8d293991a59e24012ed6",
+      "feedback": "第 1 轮，pleated_skirt/skirt_body：通过，无确定需修改问题。\n\n先独立查看纯衣服参考，再核对 groups.json 本片及父组 note、候选源码与父完成 SVG。参考中本片为腰头下方连续展开的全部裙身；纵向褶线为同体褶面分界，无独立悬挂附件、薄纱或内部真实开口。候选未误包上衣、腰头主体或人体，也未遗漏可见裙身。\n\n已完成全图 blend、纯色独显及全部可见区域的分区放大 edge：\n- 腰头连接 x353–729、y733–757：候选弧形上界略伸入腰头下缘，符合 note 要求的隐藏褶根搭接；不吞并腰头主体，两端连接位置正确。证据：。\n- 两侧和中部 x158–928、y750–1229：展开宽度、侧线弧度、位置与比例贴合参考；内部连续覆盖，不需按褶线挖空或拆件。证据：、。\n- 下摆 x158–928、y1228–1323：逐处核对左右外角、完整下缘弧线及六处褶叠错落；各处凹口均对应参考可见边界，未将浅色区域误删或填入下摆之外。证据：、。\n- 纯色独显形状连续，无孤立残片或意外孔洞。证据：。\n\n父范围检查四倍采样 outsideSamples=0，候选完整包含于父 SVG。note 已传递裙身实体范围、腰头分界、前后深度区域、共同随动及必要隐藏搭接职责，未发现需修正文义。无需重画或局部返修；无上游范围限制。候选及父稿均未修改。",
+      "candidateHash": "f285f9c85285d1f268cef81b1050295803c6a9af12b325897c2eb3408ddf6d50",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-1.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-1.png"
         },
         {
           "source": "clothing-part-layering/parts/pleated_skirt.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-2.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-6.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-7.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-3.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-4.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-11.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-12.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-13.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-14.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-15.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-16.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/children/skirt_body/step01/observations/pleated_skirt/skirt_body/2026-10-25T23-19-42-251Z-17.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/children/skirt_body/previews/2026-11-15T19-51-53-424Z-8.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:26:46.658Z"
+      "updatedAt": "2026-11-15T20:07:37.700Z"
     }
   ]
 }

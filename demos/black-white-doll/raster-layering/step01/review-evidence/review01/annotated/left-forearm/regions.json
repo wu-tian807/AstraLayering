@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D026.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/da115f1e-cc22-402b-a666-399b495a3dde/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/da115f1e-cc22-402b-a666-399b495a3dde/regions.json",
+  "regions": [
+    {
+      "id": "R11",
+      "bounds": [
+        624,
+        456,
+        78,
+        220
+      ],
+      "layers": [
+        "D026.0 | arms/arm_left/forearm"
+      ],
+      "description": "左前臂独显：顶部补全盖帽与原段间有楔形硬色界，外侧原描边被削薄且成块状台阶，两端轮廓线未画完整。延续原描边与体积色层，软接色界；同侧上臂根端同样需补全描边。",
+      "crop": [
+        617,
+        449,
+        92,
+        234
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/da115f1e-cc22-402b-a666-399b495a3dde/R11-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/da115f1e-cc22-402b-a666-399b495a3dde/R11-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/da115f1e-cc22-402b-a666-399b495a3dde/R11-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

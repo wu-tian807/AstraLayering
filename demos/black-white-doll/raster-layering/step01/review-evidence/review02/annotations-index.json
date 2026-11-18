@@ -1,0 +1,468 @@
+[
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/main",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/current.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/regions.json",
+      "regions": [
+        {
+          "id": "R1",
+          "bounds": [
+            657,
+            713,
+            31,
+            34
+          ],
+          "layers": [
+            "D024.0 | arms/arm_left/hand/palm",
+            "D022.0 / D024.5 | arms/arm_left/hand/thumb"
+          ],
+          "description": "画面右手掌指交界出现水平浅色切边和接色台阶，原图连续的肤色与红暗侧在此被截开。需接顺掌与拇指分片的颜色、细轮廓及体积，保留指甲和既定前后深度。",
+          "crop": [
+            645,
+            701,
+            55,
+            58
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R1-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R1-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R1-comparison.png"
+          }
+        },
+        {
+          "id": "R2",
+          "bounds": [
+            386,
+            726,
+            37,
+            28
+          ],
+          "layers": [
+            "D025.0 | arms/arm_right/hand/palm",
+            "D019.0 | arms/arm_right/hand/middle_finger",
+            "D021.0 | arms/arm_right/hand/index_finger"
+          ],
+          "description": "画面左手掌下缘形成近水平接带，外侧还有暗色小台阶；原图掌面向长指连续过渡。需融接掌缘及指根，消除硬切和外轮廓顿点。",
+          "crop": [
+            374,
+            714,
+            61,
+            52
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R2-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R2-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R2-comparison.png"
+          }
+        },
+        {
+          "id": "R5",
+          "bounds": [
+            656,
+            474,
+            91,
+            75
+          ],
+          "layers": [
+            "D003.0 | hair/ponytail/ponytail_left/ponytail_front"
+          ],
+          "description": "白前马尾下部转弯被浅白竖条与多条尖束改写；参考是连续灰紫转面和顺滑卷尖，当前竖向高亮、叉形收笔在独显及合成均可见。按原图恢复宽卷的走向、层次和收笔并融顺隐藏延续。",
+          "crop": [
+            644,
+            462,
+            115,
+            99
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R5-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R5-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R5-comparison.png"
+          }
+        },
+        {
+          "id": "R6",
+          "bounds": [
+            677,
+            422,
+            96,
+            86
+          ],
+          "layers": [
+            "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+            "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface"
+          ],
+          "description": "前绕束变成细而均匀的淡紫线，参考的双侧束缘、亮面宽度与转面层次丢失；末端回接也被压平。按参考恢复渐变宽度和两侧描边，与后发面接顺，保留1/5深度。",
+          "crop": [
+            665,
+            410,
+            120,
+            110
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R6-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R6-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R6-comparison.png"
+          }
+        },
+        {
+          "id": "R8",
+          "bounds": [
+            490,
+            509,
+            18,
+            24
+          ],
+          "layers": [
+            "D031.0 | body/torso",
+            "D012.0 | pelvis"
+          ],
+          "description": "画面左衣缝在躯干下缘约y518处变细、变浅并偏折，形成接段；参考是一条连续平滑曲线。接顺两层衣缝的中心线、粗细、浓淡及周围底色。",
+          "crop": [
+            478,
+            497,
+            42,
+            48
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R8-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R8-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R8-comparison.png"
+          }
+        },
+        {
+          "id": "R11",
+          "bounds": [
+            558,
+            110,
+            44,
+            17
+          ],
+          "layers": [
+            "D048.0 | face/eyebrows/eyebrow_left",
+            "D065.0 | hair/side_hair/side_hair_left",
+            "D067.0 | hair/bangs"
+          ],
+          "description": "画面右眉仅剩发间短段，参考中在相同位置可见的长弧两端被当前发层遮掉。眉层独显有完整弧线；需核对交叉处局部层级及本件线形归属，恢复参考可见眉段，不将眉线画入头发或使用透见蒙版。",
+          "crop": [
+            546,
+            98,
+            68,
+            41
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R11-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R11-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R11-comparison.png"
+          }
+        },
+        {
+          "id": "R12",
+          "bounds": [
+            476,
+            110,
+            47,
+            19
+          ],
+          "layers": [
+            "D049.0 | face/eyebrows/eyebrow_right",
+            "D066.0 | hair/side_hair/side_hair_right",
+            "D067.0 | hair/bangs"
+          ],
+          "description": "画面左眉参考可见的长弧被当前黑发遮成中央短横，原有眉头、眉尾可见线段丢失。需按参考恢复局部交叉和可见线，完整眉仍归独立眉part。",
+          "crop": [
+            464,
+            98,
+            71,
+            43
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R12-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R12-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R12-comparison.png"
+          }
+        },
+        {
+          "id": "R13",
+          "bounds": [
+            477,
+            194,
+            23,
+            29
+          ],
+          "layers": [
+            "D035.0 | face/face_base"
+          ],
+          "description": "画面左侧脸缘的深色轮廓在颊部与下颌之间中断，剩浅色无描边外缘，独显也有同样断段；参考此处深色线连续。补画本件连续颊颌线并融接两端粗细。",
+          "crop": [
+            465,
+            182,
+            47,
+            53
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R13-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R13-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R13-comparison.png"
+          }
+        },
+        {
+          "id": "R14",
+          "bounds": [
+            590,
+            190,
+            26,
+            30
+          ],
+          "layers": [
+            "D035.0 | face/face_base"
+          ],
+          "description": "画面右侧下颌描边到约x596/y211即停止，上接侧脸的一段只有肤色边，参考轮廓连续至发下。需延续同件描边至遮挡下方并接顺两端，保留现有脸型及独立颈层。",
+          "crop": [
+            578,
+            178,
+            50,
+            54
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R14-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R14-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R14-comparison.png"
+          }
+        },
+        {
+          "id": "R15",
+          "bounds": [
+            609,
+            142,
+            15,
+            18
+          ],
+          "layers": [
+            "D065.5 | face/eyes/eye_left/upper_eyelid | outer_corner",
+            "D042.0 | face/eyes/eye_left/upper_eyelid | main_arc"
+          ],
+          "description": "画面右眼外眼尾的末端上挑细钩被缩成短直三角尖，原图向外回挑的细收笔丢失。按原图本件墨线恢复钩形、尖端及抗锯齿衔接，保留眼尾普通深度分片。",
+          "crop": [
+            597,
+            130,
+            39,
+            42
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R15-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R15-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/8b1664c1-fa85-4c01-897d-516cab80da46/R15-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  },
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/left-index",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/solo/D020.0.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/9f61615a-0784-41ff-8aa5-208b750c523d/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/9f61615a-0784-41ff-8aa5-208b750c523d/regions.json",
+      "regions": [
+        {
+          "id": "R3",
+          "bounds": [
+            659,
+            749,
+            20,
+            33
+          ],
+          "layers": [
+            "D020.0 | arms/arm_left/hand/index_finger"
+          ],
+          "description": "食指独显的上部圆润补画段在约y755处突然接成暗红细窄取样段，侧缘、宽度与红暗层次出现斜切台阶；默认合成也显为硬接。逐指融顺此处形体、细描边和明暗，保留本指远端取样笔触。",
+          "crop": [
+            647,
+            737,
+            44,
+            57
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/9f61615a-0784-41ff-8aa5-208b750c523d/R3-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/9f61615a-0784-41ff-8aa5-208b750c523d/R3-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/9f61615a-0784-41ff-8aa5-208b750c523d/R3-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  },
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/right-middle",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/solo/D019.0.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/c8fa3c13-e46b-4395-93d6-4cb28b81d8da/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/c8fa3c13-e46b-4395-93d6-4cb28b81d8da/regions.json",
+      "regions": [
+        {
+          "id": "R4",
+          "bounds": [
+            405,
+            752,
+            20,
+            36
+          ],
+          "layers": [
+            "D019.0 | arms/arm_right/hand/middle_finger"
+          ],
+          "description": "右中指独显中下段右缘有外鼓的小台阶，暗侧在此突变，后段又骤收；参考可见手指的侧缘为连续细曲线。修顺本件轮廓与明暗，消除补画段和保留末段间的鼓包、折点。",
+          "crop": [
+            393,
+            740,
+            44,
+            60
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/c8fa3c13-e46b-4395-93d6-4cb28b81d8da/R4-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/c8fa3c13-e46b-4395-93d6-4cb28b81d8da/R4-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/c8fa3c13-e46b-4395-93d6-4cb28b81d8da/R4-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  },
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/torso",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/solo/D031.0.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/regions.json",
+      "regions": [
+        {
+          "id": "R7",
+          "bounds": [
+            496,
+            368,
+            91,
+            51
+          ],
+          "layers": [
+            "D031.0 | body/torso"
+          ],
+          "description": "隐藏乳房后检查，躯干两条补全衣缝在胸廓中段变为硬折的竖线，再急转回腰线，局部粗细浓淡也有接段。原图可见衣缝是圆滑连续曲线；需按躯干自身形体平顺延续线流、融接两端，保留完整衣料底形与明暗。",
+          "crop": [
+            484,
+            356,
+            115,
+            75
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/81d34359-ea0f-41fa-9468-c17bdc432487/R7-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  },
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/left-arm",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/solo/D028.0.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/ce4abb1d-0da9-4a5f-a616-99a7641b2981/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/ce4abb1d-0da9-4a5f-a616-99a7641b2981/regions.json",
+      "regions": [
+        {
+          "id": "R9",
+          "bounds": [
+            613,
+            357,
+            27,
+            88
+          ],
+          "layers": [
+            "D028.0 | arms/arm_left/upper_arm"
+          ],
+          "description": "左上臂完整补全面内留有另一条向上收尖的暗线及深色楔形，位置、走向对应参考躯干衣料压在手臂上的交界；本件自身外轮廓位于其左侧。需清掉衣物交界残线和投影形暗楔，接顺自有臂面转明暗，保留真正臂缘描边。",
+          "crop": [
+            601,
+            345,
+            51,
+            112
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/ce4abb1d-0da9-4a5f-a616-99a7641b2981/R9-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/ce4abb1d-0da9-4a5f-a616-99a7641b2981/R9-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/ce4abb1d-0da9-4a5f-a616-99a7641b2981/R9-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  },
+  {
+    "folder": "raster-layering/step01/review-evidence/review02/annotated/right-arm",
+    "data": {
+      "image": "raster-layering/step01/review-evidence/review02/solo/D029.0.png",
+      "reference": "part-layering/references/base-subject.png",
+      "canvas": [
+        1086,
+        1448
+      ],
+      "marked": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/marked.png",
+      "manifest": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/regions.json",
+      "regions": [
+        {
+          "id": "R10",
+          "bounds": [
+            448,
+            357,
+            29,
+            88
+          ],
+          "layers": [
+            "D029.0 | arms/arm_right/upper_arm"
+          ],
+          "description": "右上臂独显在完整臂面内残留衣物交界形的弯折暗线和深色尖楔，与自有外轮廓同时存在。需移除由躯干遮挡产生的残线、投影形色块，补成连续干净的本件肤色体积，并保持真正内外臂缘。",
+          "crop": [
+            436,
+            345,
+            53,
+            112
+          ],
+          "files": {
+            "current": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-current.png",
+            "reference": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-reference.png",
+            "comparison": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-comparison.png"
+          }
+        }
+      ],
+      "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+    }
+  }
+]

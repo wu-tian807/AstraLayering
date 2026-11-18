@@ -62,3 +62,6 @@ sam_veirfy/outputs/** -text whitespace=blank-at-eol,blank-at-eof,space-before-ta
 /tutorial export-ignore
 /prompt.txt export-ignore
 /demos export-ignore
+
+# Preserve the workflow export bytes recorded in the Black White Doll manifest.
+demos/black-white-doll/** -text

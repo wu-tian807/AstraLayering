@@ -3,71 +3,31 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "结论：通过。已从纯衣服参考独立确认本组可见归属，再检查候选纯色独显、整图 blend，以及覆盖整个腰头、左右裙身和全部下摆的局部原图、blend 与 edge；未发现有图像依据且需要修改的问题，无须重画当前组。\n\n归属与主要形状：参考中约 x376–727、y717–784 的宽腰头与其下至 x167–932、y1268 的连续百褶裙布构成完整裙子。候选联合覆盖包含这些实体，裙身展开比例、左右斜边和裙尖位置与参考对应；没有把 camisole、人体或裙外空白纳入。中央深色三角及各条褶线均位于同一连续裙布内部，不属于遗漏附件。\n\n腰头与接缝：在 crop=[350,695,400,110]、3 倍原图及 blend/edge 中，腰头上沿沿上衣下摆接合，侧边转入裙身的位置与参考对应；下沿缝接曲线在参考中是内部边界，group 使用一条联合轮廓不造成腰头或裙根缺失。\n\n侧边与下摆：crop=[150,760,410,520]、[550,760,400,520] 的 2 倍原图及 blend/edge 已覆盖全部裙身；再以 4 倍检查左右裙尖和中央下摆。x218–238、331–351、470–489、633–655、765–790、875–895 附近的褶叠台阶及凹口均保留，中央弧形最低下摆、两侧参差端部与参考实际边界对应；裙外和这些下缘凹口保持透明，没有把内部褶面阴影误挖成开口。参考在本组范围内没有独立薄纱或分离附件。\n\nnote 已明确实体范围、腰头与裙布的内部缝接、上衣相邻关系、腰腿环绕前后区域、裙尖与前臂的局部前后关系、共同随动、必要隐藏搭接及对子节点的继承要求。本次 parentGroup 与 parentSvg 均为 null，无父范围限制。\n\n图像证据（均为当前候选只读预览）：整图叠加 observations/pleated_skirt/2026-10-25T23-04-30-455Z-1.png；腰头 edge observations/pleated_skirt/2026-10-25T23-04-30-455Z-4.png；左裙身 edge observations/pleated_skirt/2026-10-25T23-04-30-455Z-6.png；右裙身 edge observations/pleated_skirt/2026-10-25T23-04-30-455Z-7.png；中央下摆 edge observations/pleated_skirt/2026-10-25T23-04-30-455Z-12.png；左右裙尖 edge /data/home/lockliu/workspaces/AstraLayering-step-models/.run/black-white-doll/clothing-part-layering/groups/pleated_skirt/step01/workspace/observations/pleated_skirt/2026-10-25T23-04-30-455Z-10.png、/data/home/lockliu/workspaces/AstraLayering-step-models/.run/black-white-doll/clothing-part-layering/groups/pleated_skirt/step01/workspace/observations/pleated_skirt/2026-10-25T23-04-30-455Z-9.png。\n\n修改要求：无。未以填充色、透明度、内部配色、纹样、高光、阴影或材质表现作为缺陷依据。",
-      "candidateHash": "47d4fe47390e963ab94d8a2ffecab0d37b139fe04559c05cf28c166072600718",
+      "feedback": "第 1 轮审查通过。已只读核对纯衣服参考、groups.json 中 pleated_skirt 的 note 和当前候选源码，并完成全图 blend、SVG 独显及上下两区 2 倍 edge 覆盖检查，覆盖全部可见裙身。此节点为顶层 group，无父 SVG。\n\n独立归属核对：参考中 x约157–929、y约682–1328 的横向腰头与全部展开裙片构成连续裙子；候选未误包上衣或人体，未遗漏可见裙片。腰头上缘（x约358–725、y约682–693）沿上衣下摆交界，左右腰头至裙身的转折（约353,741 与729,736）位置与参考一致；腰头和裙身联合覆盖连续，内部褶线不需要在该 group 控制轮廓中拆出。\n\n局部图像证据：上半区 edge（x140–945、y670–1015，2倍）显示腰缘、两侧展开角度与参考外缘贴合；下半区 edge（x145–940、y995–1340，2倍）显示左右侧边、两端下摆及整段弧形下缘与参考一致。另单独放大原参考下摆（x145–940、y1200–1340，2倍），确认约x220、338、472、627、762、875处的浅缺口对应实际褶端高差，候选已保留，未将深色褶线误切成贯穿开口。参考未见本组另有薄纱、分离附件或内部真实开口。note 已说明腰头覆盖上衣下摆、腰头与褶根连接、裙子相对身体的前后关系、共同运动及必要隐藏连接。未发现有图像依据的返修问题，无须重画。",
+      "candidateHash": "91e2801837e8600bf8d38a26e794ce97e0f843e82bdb29401a84c7bf6eb5f953",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/observations/pleated_skirt/2026-10-25T23-04-30-455Z-1.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-15T19-12-55-411Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-2.png"
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-15T19-12-55-411Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-15T19-12-55-411Z-3.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
           "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-3.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/observations/pleated_skirt/2026-10-25T23-04-30-455Z-4.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/observations/pleated_skirt/2026-10-25T23-04-30-455Z-6.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/observations/pleated_skirt/2026-10-25T23-04-30-455Z-7.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-8.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-9.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-10.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/pleated_skirt/step01/observations/pleated_skirt/2026-10-25T23-04-30-455Z-11.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/pleated_skirt/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/observations/pleated_skirt/2026-10-25T23-04-30-455Z-12.png"
+          "savedPath": "clothing-part-layering/step09_outline/pleated_skirt/previews/2026-11-15T19-12-55-411Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:06:49.167Z"
+      "updatedAt": "2026-11-15T19:19:11.890Z"
     }
   ]
 }

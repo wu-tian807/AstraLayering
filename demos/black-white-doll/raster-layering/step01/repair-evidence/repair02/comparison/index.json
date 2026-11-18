@@ -1,0 +1,101 @@
+[
+  {
+    "name": "full",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/full.png",
+    "canvasBox": [
+      0,
+      0,
+      1086,
+      1448
+    ],
+    "scale": 1
+  },
+  {
+    "name": "eyes-native",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/eyes-native.png",
+    "canvasBox": [
+      460,
+      102,
+      170,
+      92
+    ],
+    "scale": 1
+  },
+  {
+    "name": "eyes-only-native",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/eyes-only-native.png",
+    "canvasBox": [
+      460,
+      134,
+      170,
+      58
+    ],
+    "scale": 1
+  },
+  {
+    "name": "eyes-enlarged",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/eyes-enlarged.png",
+    "canvasBox": [
+      460,
+      102,
+      170,
+      92
+    ],
+    "scale": 6
+  },
+  {
+    "name": "hands",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/hands.png",
+    "canvasBox": [
+      380,
+      692,
+      326,
+      113
+    ],
+    "scale": 3
+  },
+  {
+    "name": "waist",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/waist.png",
+    "canvasBox": [
+      486,
+      503,
+      121,
+      39
+    ],
+    "scale": 7
+  },
+  {
+    "name": "jaw",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/jaw.png",
+    "canvasBox": [
+      472,
+      183,
+      148,
+      64
+    ],
+    "scale": 5
+  },
+  {
+    "name": "white-curl",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/white-curl.png",
+    "canvasBox": [
+      647,
+      417,
+      135,
+      142
+    ],
+    "scale": 4
+  },
+  {
+    "name": "white-eye-hook",
+    "file": "raster-layering/step01/repair-evidence/repair02/comparison/white-eye-hook.png",
+    "canvasBox": [
+      607,
+      140,
+      20,
+      19
+    ],
+    "scale": 16
+  }
+]

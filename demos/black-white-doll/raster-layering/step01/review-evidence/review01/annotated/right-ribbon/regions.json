@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D061.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/0ed8a359-e828-4e60-a0d3-1ed6a5ea08e3/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/0ed8a359-e828-4e60-a0d3-1ed6a5ea08e3/regions.json",
+  "regions": [
+    {
+      "id": "R20",
+      "bounds": [
+        432,
+        169,
+        21,
+        36
+      ],
+      "layers": [
+        "D061.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner"
+      ],
+      "description": "内飘带约y180处有横贯带宽的硬黑接带，根部灰亮面在此突变为黑段，外缘也突然缩窄。独显呈两段拼接，参考没有此处独立结扣或横缝。延续同一带面的纵向明暗与宽度，融掉横接界。",
+      "crop": [
+        422,
+        159,
+        41,
+        56
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/0ed8a359-e828-4e60-a0d3-1ed6a5ea08e3/R20-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/0ed8a359-e828-4e60-a0d3-1ed6a5ea08e3/R20-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/0ed8a359-e828-4e60-a0d3-1ed6a5ea08e3/R20-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

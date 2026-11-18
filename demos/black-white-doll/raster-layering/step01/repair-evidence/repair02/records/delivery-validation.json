@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "errors": [],
+  "reviewItems": 15,
+  "logicalParts": 70,
+  "ordinaryPaintFragments": 77,
+  "nativeOpeningMasks": 10,
+  "originalPaintUUIDsRetained": 75,
+  "unchangedLogicalPaintings": 54,
+  "reportImageLinksChecked": 37,
+  "logicalFinalCompositeExportsChecked": 70,
+  "physicalFinalCompositeExportsChecked": 14,
+  "allFinalEvidenceCurrent": true,
+  "reopenedPNGIdentical": true,
+  "kraBytes": 12418625,
+  "pngBytes": 785352,
+  "reportBytes": 45515,
+  "repairBytes": 20360,
+  "formalRepairWritten": false
+}

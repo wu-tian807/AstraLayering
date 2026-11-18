@@ -3,61 +3,56 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已核对组说明、素体参考、候选 outline.svg 及父组 face/mouth 完成稿。先查看整图 blend，再以 [530,199,34,33] 的 8 倍参考、blend 和 edge 定位全部可见牙带；以相互重叠的 [538,202,12,11]、[545,202,12,11] 的 8 倍参考、blend 和 edge 覆盖左右端、完整上弧、下缘及其与口腔的接缝，并查看独显。参考在约 x=542–552、y=205–208 确有连续浅乳白上牙短带，候选归属正确，窄带形体、位置、宽度、上弧转向和两端收束与可见范围相符，下缘贴合浅牙带与较深口内区域的交界；未发现误包邻接口缘、可见组件遗漏、孔洞误填或应修的边缘缺漏。轮廓为连续干净实体，无孤点、碎片或无依据牙缝。父范围检查通过：4 倍采样 outsideSamples=0、outsidePixels=0。全部当前可见区域检查通过；被上唇遮挡的完整牙弓补全不属于本轮要求。",
-      "candidateHash": "bc4b69b4cf3aeee497fbbaee0f62194803869f964631021fae0b81a0390dfc87",
+      "feedback": "已读取本组及父组说明、候选和父组完成 SVG，完成整图 blend 定位，并以 8 倍参考图、blend 与 edge 核对全部上牙区域；左右重叠选框分别为 [531,191,13,8]、[541,191,14,8]。参考开口上侧 x≈533–553、y≈193–196 的连续白色牙面归属上牙，候选覆盖完整；上沿贴合上嘴遮挡边界，下沿中央浅弧及左右端部的小转折均与白色牙面和深色口腔分界吻合。未误包口腔、舌面或嘴缘，未发现遗漏、真实孔洞被填平、孤立碎片或轮廓噪音。SVG 独显轮廓连续干净。本组 allowOutsideParent=true，已结合父稿核对位置与连接，当前可见色块位于父嘴部范围内，无父范围冲突。无需重画或返修。",
+      "candidateHash": "6903cf0616e82265d9d42f64585d6debcbd44da1b66f68911c063cbb9f2631ab",
       "observations": [
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-1.png"
         },
         {
           "source": "part-layering/parts/face/mouth.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-3.png"
-        },
-        {
-          "source": "part-layering/parts/face/mouth.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-4.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-6.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-7.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-8.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-9.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/face/children/mouth/children/upper_teeth/step01/observations/face/mouth/upper_teeth/2026-10-25T08-55-08-613Z-10.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-16T04-13-01-232Z-9.png"
         }
       ],
-      "updatedAt": "2026-10-25T09:51:03.023Z"
+      "updatedAt": "2026-11-16T04:39:46.138Z"
     }
   ]
 }

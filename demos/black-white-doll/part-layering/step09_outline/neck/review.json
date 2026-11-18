@@ -2,166 +2,52 @@
   "groupId": "neck",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "需局部重描颈部外缘，当前不涉及部件误认或主要形体错误，无需整体重画。\n\n1. 左侧竖直颈缘及开始向颈根转弯处，约 x=520–525、y=236–260：在 [496,226,51,49] 和 [500,246,32,29] 的 8 倍 edge 对照中，候选红边位于参考连续颈部外缘的背景侧，竖直段约偏出 1 个原图像素；参考灰褐色轮廓仍在红边右侧，弯折处也延续这一偏移。请将该段外缘向颈部内侧收回，依据实际连续轮廓重描竖直段与颈根转弯，保持两段平顺衔接。\n\n2. 右侧颈缘，尤其向躯干外展的颈根弧线，约 x=568–594、y=236–270：在 [541,226,59,49]、[496,252,105,39] 及 [563,248,37,28] 的 8 倍 blend/edge 对照中，候选边界位于参考颈缘外侧；x≈573–591、y≈262–269 的外展段红边明显在参考连续轮廓上方，约偏出 1–2 个原图像素。请收回竖直段的外扩，并将颈根弧线及右端接点贴回参考可见外缘，同步保持与下方闭合边的连接。\n\n已完成整图叠加定位，并通过相互重叠的下颌、左颈缘、右颈缘和颈根选框核对全部可见区域。下颌接缝、颈部主体覆盖及锁骨上方的躯干连接范围未发现其他确定需要修改的问题；无父组范围限制。",
-      "candidateHash": "3349d2181cf571c423c92221014c7a91cef37b9c95d2ab2ba0ad5e91f1b01d4e",
-      "observations": [
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T03-55-04-548Z-14.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T04:08:24.934Z",
-      "repairedCandidateHash": "ba549fb46c0b2ae34ea8ee9b46760795a0549ea4f86795c3cd23fc16939b6ffd"
-    },
-    {
       "verdict": "pass",
-      "feedback": "已完成整图 blend 定位，并用相互重叠的放大选框完整核对本组：下颌接缝 [513,225,65,29]、画面左颈缘 [490,230,49,49]、画面右颈缘 [554,228,52,53]、颈根与躯干连接 [495,258,104,34]，各区均对照参考、blend 和 edge；另以 [518,233,14,32]、[563,233,15,33] 复核两侧直段及转弯，并检查 SVG 独显。可见形体确属下颌以下的颈部：上缘贴合下颌接缝，两侧外缘及颈根转弯贴合可靠的参考边界；与头发之间的真实空隙保留，未误包头发、肩部或锁骨。下方在锁骨上方连续连接躯干，属于合理的组间分界；没有将颈部内部阴影当作孔洞或轮廓。两侧剩余的淡色边缘为参考的半透明过渡，局部复核未发现有明确依据的可修漏边。可见范围完整，轮廓单一连续、无孤点或碎片噪音，无需重画。当前组无父组，父范围检查不适用。",
-      "candidateHash": "ba549fb46c0b2ae34ea8ee9b46760795a0549ea4f86795c3cd23fc16939b6ffd",
+      "feedback": "已读取 neck 说明与候选 SVG；本组无父组、无子组。整图 blend 定位后，以 [490,212,108,80] 六倍放大检查全颈部，并以相互重叠的 [500,222,48,62]、[538,222,50,62] 八倍 blend/edge 核对左右两侧、下颌接缝和颈根闭合，另检查 SVG 独显。候选上缘贴合下颌可见分界，左右侧缘及颈根转向贴合原图外缘；下端位于锁骨上方，符合颈根以下和锁骨归 body 的职责。颈部可见范围覆盖完整，无误包头发或面部、遗漏独立组件、真实孔洞被填平、孤立碎片或轮廓噪音。未发现确定需要修改的问题。",
+      "candidateHash": "ed50a70d1203597250b4e91e296caf7d658cecfacf953f9d815088195e24a149",
       "observations": [
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-1.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-1.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-2.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-3.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-4.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-5.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-9.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/neck/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/neck/step01/observations/neck/2026-10-25T04-20-45-706Z-15.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-15T18-59-47-827Z-8.png"
         }
       ],
-      "updatedAt": "2026-10-25T04:32:52.183Z"
+      "updatedAt": "2026-11-15T19:24:20.528Z"
     }
   ]
 }

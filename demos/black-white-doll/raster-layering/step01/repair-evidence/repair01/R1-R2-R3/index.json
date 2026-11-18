@@ -1,0 +1,26 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_front",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_front__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_front__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_front__full.png",
+    "highestDepth": 3,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_front__views.png"
+  },
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_back__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_back__full.png",
+    "highestDepth": 5,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/hair__ponytail__ponytail_left__ponytail_back__views.png"
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/face__eyes__eye_right__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/face__eyes__eye_right__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/face__eyes__eye_right__upper_eyelid__full.png",
+    "highestDepth": 66.5,
+    "sheet": "raster-layering/step01/repair-evidence/repair01/R1-R2-R3/face__eyes__eye_right__upper_eyelid__views.png"
+  }
+]

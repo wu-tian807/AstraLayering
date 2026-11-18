@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <g id="eye-right-highlight-outline" data-group-path="face/eyes/eye_right/highlight" fill="#42b8cd" stroke="none">
+    <path id="highlight-upper" transform="translate(506.4 148.6)" d="M -0.7,-2.2 C 0,-2.45 0.7,-2.1 1.05,-1.45 C 1.55,-0.65 1.7,0.8 1.35,1.7 C 1.1,2.4 0.35,2.6 -0.3,2.3 C -1.05,2 -1.4,1.2 -1.5,0.3 C -1.7,-0.8 -1.6,-1.8 -0.7,-2.2 Z"/>
+    <path id="highlight-outer" transform="matrix(0.9 0 0 0.48 496.4 155.45)" d="M -0.7,-2.2 C 0,-2.45 0.7,-2.1 1.05,-1.45 C 1.55,-0.65 1.7,0.8 1.35,1.7 C 1.1,2.4 0.35,2.6 -0.3,2.3 C -1.05,2 -1.4,1.2 -1.5,0.3 C -1.7,-0.8 -1.6,-1.8 -0.7,-2.2 Z"/>
+    <path id="highlight-inner" transform="matrix(0.75 0 0 0.4 515.1 155.8)" d="M -0.7,-2.2 C 0,-2.45 0.7,-2.1 1.05,-1.45 C 1.55,-0.65 1.7,0.8 1.35,1.7 C 1.1,2.4 0.35,2.6 -0.3,2.3 C -1.05,2 -1.4,1.2 -1.5,0.3 C -1.7,-0.8 -1.6,-1.8 -0.7,-2.2 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+{
+  "groupId": "face/eyes/eye_right/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及父组说明、候选与父组完成 SVG；先作全图 blend 定位，再以原图局部 [480,138,45,36]、[492,144,26,16] 及候选 blend/edge [488,141,33,22] 八倍放大覆盖核对全部三个高光，并检查 SVG 独显。上方约 (506.4,148.6) 的纵向白斑、外侧约 (496.4,155.5) 及内侧约 (515.1,155.8) 的小亮点均有原图依据，位置、大小和可见边缘贴合；三处实际分离，候选未误连，也未把下部浅粉渐变归入高光。无可确认的组件遗漏、额外碎片、孔洞或接缝问题。结合父稿局部叠加检查，全部高光位于眼部父范围内；四倍父范围检查 outsidePixels=0。当前组通过。",
+      "candidateHash": "3f53750fb3c949a2955a6a8c59cee275d1791a009b9f756ae650397a313f7396",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-16T05-14-14-190Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-16T05-14-14-190Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-16T05-14-14-190Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-16T05-14-14-190Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-16T05-14-14-190Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:19:04.637Z"
+    }
+  ]
+}

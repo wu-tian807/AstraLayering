@@ -1,0 +1,137 @@
+[
+  {
+    "part": "pleated_skirt/skirt_body",
+    "depth": 1,
+    "region": "rear",
+    "name": "D01__pleated_skirt/skirt_body__rear",
+    "uuid": "{af8e56aa-2234-4292-b10b-373647498880}",
+    "maskUuid": "{ff91a1f8-1f36-4a0a-90b4-6651a8818f9b}",
+    "reuse": null
+  },
+  {
+    "part": "pleated_skirt/waistband",
+    "depth": 2,
+    "region": "rear",
+    "name": "D02__pleated_skirt/waistband__rear",
+    "uuid": "{2a07e5b5-f8b4-4d33-aa97-d822b502c1a9}",
+    "maskUuid": "{026dfc5e-1068-4464-a7cd-47dedd5c161e}",
+    "reuse": null
+  },
+  {
+    "part": "camisole/right_shoulder_strap",
+    "depth": 3,
+    "region": "rear",
+    "name": "D03__camisole/right_shoulder_strap__rear",
+    "uuid": "{1e0a5dbd-95f8-45dd-95cb-dbb399bdf75f}",
+    "maskUuid": "{a9e70fed-b354-476a-bdce-1c6667ced5cf}",
+    "reuse": "camisole/left_shoulder_strap"
+  },
+  {
+    "part": "camisole/left_shoulder_strap",
+    "depth": 4,
+    "region": "rear",
+    "name": "D04__camisole/left_shoulder_strap__rear",
+    "uuid": "{2b5b4e2a-9199-44f6-b95f-5d69f8712c13}",
+    "maskUuid": "{82b5278c-9092-4602-982b-466b395499e8}",
+    "reuse": null
+  },
+  {
+    "part": "camisole/right_shoulder_strap",
+    "depth": 10,
+    "region": "front",
+    "name": "D10__camisole/right_shoulder_strap__front",
+    "uuid": "{300a2f84-bdf7-4d6f-9177-e001fd030b3e}",
+    "maskUuid": null,
+    "reuse": "camisole/left_shoulder_strap"
+  },
+  {
+    "part": "camisole/left_shoulder_strap",
+    "depth": 11,
+    "region": "front",
+    "name": "D11__camisole/left_shoulder_strap__front",
+    "uuid": "{6b123705-b765-41d6-a721-cb070e43a5d3}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "camisole/bodice",
+    "depth": 12,
+    "region": "full",
+    "name": "D12__camisole/bodice__full",
+    "uuid": "{6fa2babc-28ce-47da-913e-e3219416d00a}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "pleated_skirt/skirt_body",
+    "depth": 13,
+    "region": "front",
+    "name": "D13__pleated_skirt/skirt_body__front",
+    "uuid": "{8bcc4f36-818b-4d40-94b6-0ce0345a3ed5}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "pleated_skirt/waistband",
+    "depth": 14,
+    "region": "front",
+    "name": "D14__pleated_skirt/waistband__front",
+    "uuid": "{e98d938c-061c-4535-82b4-ecd090dded1d}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "chest_bow/center_knot",
+    "depth": 15,
+    "region": "rear",
+    "name": "D15__chest_bow/center_knot__rear",
+    "uuid": "{4ab5ad9d-4ee5-45dc-8442-c3452a6ae458}",
+    "maskUuid": "{ea4e8840-443e-48fe-bc54-d746e657ac4d}",
+    "reuse": null
+  },
+  {
+    "part": "chest_bow/right_tail",
+    "depth": 16,
+    "region": "full",
+    "name": "D16__chest_bow/right_tail__full",
+    "uuid": "{b62c8330-3872-40a6-9a16-6bf1242e52e7}",
+    "maskUuid": null,
+    "reuse": "chest_bow/left_tail"
+  },
+  {
+    "part": "chest_bow/left_tail",
+    "depth": 17,
+    "region": "full",
+    "name": "D17__chest_bow/left_tail__full",
+    "uuid": "{ba8fb229-834b-45df-a64a-f1dce9b081c7}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "chest_bow/right_loop",
+    "depth": 18,
+    "region": "full",
+    "name": "D18__chest_bow/right_loop__full",
+    "uuid": "{400d169d-8f42-4d1e-a079-f430a866737a}",
+    "maskUuid": null,
+    "reuse": "chest_bow/left_loop"
+  },
+  {
+    "part": "chest_bow/left_loop",
+    "depth": 19,
+    "region": "full",
+    "name": "D19__chest_bow/left_loop__full",
+    "uuid": "{e6dd8124-61a5-40ea-a423-2ba04bf83da7}",
+    "maskUuid": null,
+    "reuse": null
+  },
+  {
+    "part": "chest_bow/center_knot",
+    "depth": 20,
+    "region": "front",
+    "name": "D20__chest_bow/center_knot__front",
+    "uuid": "{21218d8d-9965-41de-b7db-cc20150450f8}",
+    "maskUuid": null,
+    "reuse": null
+  }
+]

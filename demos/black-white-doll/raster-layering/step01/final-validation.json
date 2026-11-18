@@ -1,0 +1,42 @@
+{
+  "conclusion": "已修复",
+  "phase": "repair-02",
+  "review": "raster-layering/step01/review-02.md",
+  "repair": "raster-layering/step01/repair-02.md.tmp",
+  "logicalParts": 70,
+  "ordinaryPaintLayers": 77,
+  "nativeOpeningMasks": 10,
+  "reviewItems": 15,
+  "modifiedLogicalParts": 16,
+  "originalPaintingOwnerUUIDsRetained": 75,
+  "unchangedLogicalPartPaintings": 54,
+  "originalMaskUUIDsRetained": true,
+  "allNativeApertureSelectionsPreserved": true,
+  "sourceGroupsUnchanged": true,
+  "allSVGCurrentGroupBindingsValid": true,
+  "depthOrderValid": true,
+  "unknownLayers": [],
+  "outOfAssignedBounds": [],
+  "exportCoverage": {
+    "logicalThreeViews": 70,
+    "multiDepthPhysicalThreeViews": 14,
+    "changedOwnerFourColumnSheets": 16
+  },
+  "reopening": {
+    "layerTreeIdentical": true,
+    "paintAndMaskPixelsIdentical": true,
+    "compositePixelsIdentical": true,
+    "compositePixelSHA256": "93565392ab0c66913abc346e76d7fac7dfb002377a142871ba66a9d048230205"
+  },
+  "upstreamFingerprints": {
+    "groups.json": "2ab37e5da152002ce1d420c9ae1274614917058422984273c92196b842525bdb",
+    "occlusion.json": "cd5e647b528456567cb42d5e7738c968289356c52d1d6fd97f6231daac87a88d"
+  },
+  "paintLayerInheritAlpha": false,
+  "deliveredKRA": "raster-layering/step01/character-depth.kra",
+  "deliveredPNG": "raster-layering/step01/character-depth.png",
+  "kraSHA256": "5c5a331c720f0da789c835f83229ceaddd8b7fb1ea463eda1ed42cba46acc564",
+  "pngSHA256": "f36788962145599dd1381489c3e16509b2c2ce4f84f636824ff8b6647354a502",
+  "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/index.json",
+  "persistenceOnly": "Hashes verify preservation/save integrity; visual repair judgement comes from images."
+}

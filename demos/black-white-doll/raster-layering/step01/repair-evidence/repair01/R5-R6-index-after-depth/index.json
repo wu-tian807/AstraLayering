@@ -1,0 +1,16 @@
+[
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_left__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_left__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_left__hand__index_finger__full.png",
+    "highestDepth": 20
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_right__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_right__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R5-R6-index-after-depth/arms__arm_right__hand__index_finger__full.png",
+    "highestDepth": 21
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "path": "raster-layering/step03/character-dressup-base.kra",
+    "length": 12385111,
+    "last_write_time_utc": "2026-11-17T09:48:37.1112595Z",
+    "sha256": "15CD03F3D06190855846FD8286E3396E44E5E98A0E15426E5AAD82092834603E"
+  },
+  {
+    "path": "clothing-raster-layering/step02/clothing-soft-edges.kra",
+    "length": 3814515,
+    "last_write_time_utc": "2026-11-15T21:40:46.3850521Z",
+    "sha256": "FCECEC82B86FE86D0173402E596EA90C965A9BFBFE6D6B01F9E7D699B4CA9199"
+  },
+  {
+    "path": "part-layering/references/simplified-subject.png",
+    "length": 1276470,
+    "last_write_time_utc": "2026-11-15T18:54:56.2987256Z",
+    "sha256": "611E1D4344FF30F3D0A7109703BC5EF4B9C21E9CF6514B44529CF023AC4DD688"
+  }
+]

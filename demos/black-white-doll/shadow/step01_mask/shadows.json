@@ -2,21 +2,19 @@
   "version": 2,
   "shadows": [
     {
-      "id": "skirt-to-legs",
-      "casterPartId": "clothing:pleated_skirt/skirt_body",
+      "id": "chin-to-neck",
+      "casterPartId": "character:face/face_base",
       "receiverPartIds": [
-        "character:legs/leg_left/leg",
-        "character:legs/leg_right/leg"
+        "character:neck"
       ],
       "casterLayerUuids": [
-        "82ede469-3f66-4d1c-bb98-f6b2be7705b9"
+        "5120839e-f4ec-4fc8-9539-ecb251cfc63b"
       ],
       "receiverLayerUuids": [
-        "3b97b6c9-4f49-40dc-b0e7-b049db4deef5",
-        "0cd31741-7e60-4e9c-b426-e3669b18f71f"
+        "7c9213b7-ec58-4bbd-a966-2ec28be4c5ff"
       ],
-      "shadowLayerUuid": "076ede28-711a-4f3a-b8f6-1ef2a819a328",
-      "clipBaseLayerUuid": "c3972a78-9952-4e0f-8243-e41aa9a06721",
+      "shadowLayerUuid": "0c063871-6801-4241-ba68-403943696b02",
+      "clipBaseLayerUuid": "7c9213b7-ec58-4bbd-a966-2ec28be4c5ff",
       "follow": "caster",
       "blendMode": "multiply",
       "testOffsets": [
@@ -25,91 +23,540 @@
           0
         ],
         [
-          -14,
+          -5,
           0
         ],
         [
-          14,
+          5,
           0
         ],
         [
           0,
-          -10
-        ],
-        [
-          0,
-          14
+          6
         ]
       ],
-      "notes": "前裙面（skirt_body L10）下摆向下约 18 px 的投影，落在两条大腿上端。形状取自 simplified 的阶梯形下缘，颜色为 multiply 的 #C4BBBB（亮部丝袜约乘 0.77/0.73/0.73，与参考 0.73/0.70/0.71 接近）；两腿外缘和内缘本已较暗，按亮度削弱，避免叠黑。完整影形保留到裙下被遮挡区域，左右各留约 22–26 px 余量，由两条腿联合裁切。"
-    }
-  ],
-  "excluded": [
-    {
-      "id": "hair-to-face",
-      "casterPartIds": [
-        "character:hair/bangs",
-        "character:hair/side_hair_left",
-        "character:hair/side_hair_right",
-        "character:hair/ponytail_left",
-        "character:hair/ponytail_right",
-        "character:hair/back_hair"
-      ],
-      "receiverPartIds": [
-        "character:face/face_base",
-        "character:face/ear_left",
-        "character:face/ear_right"
-      ],
-      "reason": "刘海、左右侧发、外伸细发和马尾卷尾在 simplified 与组装稿中，额头、太阳穴、脸颊的皮肤亮度均匀（拉伸对比后只有腮红），没有落在脸上的发影；外侧发丝轮廓也不能向脸内平移成影线。不画，不为可见度加深细线或强求左右对称。"
+      "color": "#b36564",
+      "opacity": 0.62,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
     },
     {
-      "id": "hair-bows-to-hair",
-      "casterPartIds": [
-        "character:head_accessories/left_hair_bow",
-        "character:head_accessories/right_hair_bow"
-      ],
+      "id": "skirt-to-legs",
+      "casterPartId": "clothing:pleated_skirt/skirt_body",
       "receiverPartIds": [
-        "character:hair/side_hair_left",
-        "character:hair/side_hair_right"
+        "character:legs/leg_left/leg",
+        "character:legs/leg_right/leg"
       ],
-      "reason": "蝴蝶结与发束交界处的明暗已烘进发丝，与 simplified 一致，没有缺失，不重复加深。"
+      "casterLayerUuids": [
+        "c61bc906-bf7f-45dc-b22d-4a39f3d6ec23"
+      ],
+      "receiverLayerUuids": [
+        "cefe2b59-92ac-4b75-92c1-23a71a91d23a",
+        "5f4aafde-aafd-4b83-9467-33e594de7f3b"
+      ],
+      "shadowLayerUuid": "06d687cc-b55a-4028-87ce-a1ec8c6c5757",
+      "clipBaseLayerUuid": "a877ff29-f507-4149-8c92-8b26acf11534",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -10,
+          0
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          0,
+          10
+        ]
+      ],
+      "color": "#673d3e",
+      "opacity": 0.48,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
     },
     {
-      "id": "upper-eyelid-to-eyes",
-      "casterPartIds": [
-        "character:face/eye_left/upper_eyelid",
-        "character:face/eye_right/upper_eyelid"
-      ],
+      "id": "upper-lid-left",
+      "casterPartId": "character:face/eyes/eye_left/upper_eyelid",
       "receiverPartIds": [
-        "character:face/eye_left/sclera",
-        "character:face/eye_left/iris",
-        "character:face/eye_right/sclera",
-        "character:face/eye_right/iris"
+        "character:face/eyes/eye_left/sclera",
+        "character:face/eyes/eye_left/iris",
+        "character:face/eyes/eye_left/highlight"
       ],
-      "reason": "上睫毛和上眼睑投在眼白与虹膜上缘的阴影已在原眼白、虹膜美术中，逐行亮度与 simplified 同量级或更暗（左右眼可见区域平均仅差 +6 灰度，且上缘各行原画不比参考亮），再叠加会双重压暗。不新增，不动虹膜线稿和高光。"
+      "casterLayerUuids": [
+        "0e0d66d6-a711-46ee-abb6-eee2a0abd8a2"
+      ],
+      "receiverLayerUuids": [
+        "d6a48281-13a3-48d9-b9b4-0f6744c809a4",
+        "3e729b40-ba98-43f7-bcd7-c165fe64d54b",
+        "f6d14c01-e53e-45cd-b6fc-1deabd15c97b"
+      ],
+      "shadowLayerUuid": "b133d1d5-1cb7-4875-9100-bd3615e6fe91",
+      "clipBaseLayerUuid": "58943ea0-eca8-4210-9fa2-5924ac76d904",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -4,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "color": "#55515d",
+      "opacity": 0.55,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
     },
     {
-      "id": "face-to-neck",
-      "casterPartIds": [
+      "id": "upper-lid-right",
+      "casterPartId": "character:face/eyes/eye_right/upper_eyelid",
+      "receiverPartIds": [
+        "character:face/eyes/eye_right/sclera",
+        "character:face/eyes/eye_right/iris",
+        "character:face/eyes/eye_right/highlight"
+      ],
+      "casterLayerUuids": [
+        "8689f19d-ec05-43f9-8f35-70a804dd539b"
+      ],
+      "receiverLayerUuids": [
+        "b0846450-9172-4195-9173-adbc29ab66ca",
+        "9ff9f155-33df-4bba-b4dc-364ab7882f6e",
+        "281fe8f6-7c28-4b2a-84a2-ed885292fbec"
+      ],
+      "shadowLayerUuid": "33d19e7c-3c7e-4756-89fc-d2fcf10c4cd1",
+      "clipBaseLayerUuid": "5034c161-0a45-4ea8-9d34-1df3bb900e7b",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -4,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "color": "#55515d",
+      "opacity": 0.55,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "bangs-to-face",
+      "casterPartId": "character:hair/bangs",
+      "receiverPartIds": [
         "character:face/face_base"
       ],
-      "receiverPartIds": [
-        "character:neck"
+      "casterLayerUuids": [
+        "02e3bf05-8979-471b-ba16-65a3278f0964"
       ],
-      "reason": "下颌到颈部的投影在组装稿与 simplified 中一致地烘在颈部皮肤上，没有缺失。"
+      "receiverLayerUuids": [
+        "5120839e-f4ec-4fc8-9539-ecb251cfc63b"
+      ],
+      "shadowLayerUuid": "f3cda5ff-13b8-4913-855e-102ab1e2384c",
+      "clipBaseLayerUuid": "5120839e-f4ec-4fc8-9539-ecb251cfc63b",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -4,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "color": "#bd8d86",
+      "opacity": 0.38,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
     },
     {
-      "id": "torso-to-arm-and-skirt-flank",
-      "casterPartIds": [
-        "character:body/torso",
+      "id": "side-hair-right-to-face",
+      "casterPartId": "character:hair/side_hair/side_hair_right",
+      "receiverPartIds": [
+        "character:face/face_base"
+      ],
+      "casterLayerUuids": [
+        "f455cb05-e140-443f-aaa2-55f9be847b1e"
+      ],
+      "receiverLayerUuids": [
+        "5120839e-f4ec-4fc8-9539-ecb251cfc63b"
+      ],
+      "shadowLayerUuid": "d7f3afa1-c5e3-4ea7-86b9-a82bc79b4d73",
+      "clipBaseLayerUuid": "5120839e-f4ec-4fc8-9539-ecb251cfc63b",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -4,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "color": "#ac7972",
+      "opacity": 0.38,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "side-hair-left-to-face",
+      "casterPartId": "character:hair/side_hair/side_hair_left",
+      "receiverPartIds": [
+        "character:face/face_base"
+      ],
+      "casterLayerUuids": [
+        "5ff9fec7-57c1-4140-8880-2620c0f1d61a"
+      ],
+      "receiverLayerUuids": [
+        "5120839e-f4ec-4fc8-9539-ecb251cfc63b"
+      ],
+      "shadowLayerUuid": "4abbda5c-a9b5-4da6-9bde-d8e24f344fff",
+      "clipBaseLayerUuid": "5120839e-f4ec-4fc8-9539-ecb251cfc63b",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -4,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "color": "#ac7972",
+      "opacity": 0.38,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "clip-upper-to-bangs",
+      "casterPartId": "character:head_accessories/hair_clips/hair_clip_upper",
+      "receiverPartIds": [
+        "character:hair/bangs"
+      ],
+      "casterLayerUuids": [
+        "e18850a5-af43-4a81-9a0c-ea918d8ed66c"
+      ],
+      "receiverLayerUuids": [
+        "02e3bf05-8979-471b-ba16-65a3278f0964"
+      ],
+      "shadowLayerUuid": "c00c9924-ad7a-4b5a-be18-cd0a617fa8a0",
+      "clipBaseLayerUuid": "02e3bf05-8979-471b-ba16-65a3278f0964",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "color": "#6d6379",
+      "opacity": 0.3,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "clip-lower-to-bangs",
+      "casterPartId": "character:head_accessories/hair_clips/hair_clip_lower",
+      "receiverPartIds": [
+        "character:hair/bangs"
+      ],
+      "casterLayerUuids": [
+        "9fd7575e-3753-4c54-9ba2-238ff98ddd1d"
+      ],
+      "receiverLayerUuids": [
+        "02e3bf05-8979-471b-ba16-65a3278f0964"
+      ],
+      "shadowLayerUuid": "00865c28-b4fb-49cf-801c-2babd9ef7228",
+      "clipBaseLayerUuid": "02e3bf05-8979-471b-ba16-65a3278f0964",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -2,
+          0
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "color": "#6d6379",
+      "opacity": 0.3,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "bow-left-to-tail",
+      "casterPartId": "character:head_accessories/hair_bows/hair_bow_left/bow_body",
+      "receiverPartIds": [
+        "character:hair/ponytail/ponytail_left/ponytail_back"
+      ],
+      "casterLayerUuids": [
+        "85ec8913-cffb-413f-a79d-34c0736070b8"
+      ],
+      "receiverLayerUuids": [
+        "97f63bbf-cdba-4e09-9ce7-9e33ea689fb1"
+      ],
+      "shadowLayerUuid": "a82f75a7-ba12-4f59-b28f-34c4b59cb26c",
+      "clipBaseLayerUuid": "97f63bbf-cdba-4e09-9ce7-9e33ea689fb1",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -5,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "color": "#777082",
+      "opacity": 0.34,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "bow-right-to-tail",
+      "casterPartId": "character:head_accessories/hair_bows/hair_bow_right/bow_body",
+      "receiverPartIds": [
+        "character:hair/ponytail/ponytail_right/ponytail_back"
+      ],
+      "casterLayerUuids": [
+        "6816993f-3e68-4555-8372-9fea1df67c6c"
+      ],
+      "receiverLayerUuids": [
+        "c51a8a72-68f6-46a4-b3c4-019b4572ba2d"
+      ],
+      "shadowLayerUuid": "701fb498-b6d0-44a4-a6eb-961b7b725867",
+      "clipBaseLayerUuid": "c51a8a72-68f6-46a4-b3c4-019b4572ba2d",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -5,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "color": "#777082",
+      "opacity": 0.34,
+      "notes": "原生透明度继承；完整画笔影层保留遮挡内形状及相对运动余量。"
+    },
+    {
+      "id": "chest-right_loop",
+      "casterPartId": "clothing:chest_bow/right_loop",
+      "receiverPartIds": [
         "clothing:camisole/bodice"
       ],
-      "receiverPartIds": [
-        "character:arms/arm_left/upper_arm",
-        "character:arms/arm_right/upper_arm",
-        "clothing:pleated_skirt/skirt_body"
+      "casterLayerUuids": [
+        "0811deb0-8fd1-4753-bebc-316b6883275a"
       ],
-      "reason": "上衣侧缘与上臂内侧、裙身侧缘的差异只是细线描边和左右对称的手臂自身边缘明暗，没有与裙下投影一致的光向依据，不增加影层。"
+      "receiverLayerUuids": [
+        "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f"
+      ],
+      "shadowLayerUuid": "daefe31c-266c-4c83-bc48-a57b6cf7775f",
+      "clipBaseLayerUuid": "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "color": "#777080",
+      "opacity": 0.22745098039215686,
+      "notes": "黑色胸结各翼及带尾到白衣的柔和窄接触影；影子在附件下完整延伸，软刷留3px微动余量。"
+    },
+    {
+      "id": "chest-left_loop",
+      "casterPartId": "clothing:chest_bow/left_loop",
+      "receiverPartIds": [
+        "clothing:camisole/bodice"
+      ],
+      "casterLayerUuids": [
+        "0f5e552f-dc26-4f43-9c51-fc8b2ce28ab0"
+      ],
+      "receiverLayerUuids": [
+        "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f"
+      ],
+      "shadowLayerUuid": "c1821dc7-288e-43cb-a60e-92296291472b",
+      "clipBaseLayerUuid": "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "color": "#777080",
+      "opacity": 0.22745098039215686,
+      "notes": "黑色胸结各翼及带尾到白衣的柔和窄接触影；影子在附件下完整延伸，软刷留3px微动余量。"
+    },
+    {
+      "id": "chest-right_tail",
+      "casterPartId": "clothing:chest_bow/right_tail",
+      "receiverPartIds": [
+        "clothing:camisole/bodice"
+      ],
+      "casterLayerUuids": [
+        "2308d55e-be1b-4af3-94a3-795a663ccd08"
+      ],
+      "receiverLayerUuids": [
+        "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f"
+      ],
+      "shadowLayerUuid": "b5442c63-74c2-46fb-9bca-bc456958b5fc",
+      "clipBaseLayerUuid": "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "color": "#777080",
+      "opacity": 0.22745098039215686,
+      "notes": "黑色胸结各翼及带尾到白衣的柔和窄接触影；影子在附件下完整延伸，软刷留3px微动余量。"
+    },
+    {
+      "id": "chest-left_tail",
+      "casterPartId": "clothing:chest_bow/left_tail",
+      "receiverPartIds": [
+        "clothing:camisole/bodice"
+      ],
+      "casterLayerUuids": [
+        "aff03e0b-d6df-48dd-b56f-cd931cb20603"
+      ],
+      "receiverLayerUuids": [
+        "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f"
+      ],
+      "shadowLayerUuid": "1fd49b09-20e5-43ae-a28d-e3418f36a848",
+      "clipBaseLayerUuid": "762ef3ce-b0ab-4fad-b671-9c9bb5a7924f",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "color": "#777080",
+      "opacity": 0.22745098039215686,
+      "notes": "黑色胸结各翼及带尾到白衣的柔和窄接触影；影子在附件下完整延伸，软刷留3px微动余量。"
     }
-  ]
+  ],
+  "excluded": []
 }

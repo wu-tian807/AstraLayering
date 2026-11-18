@@ -1,0 +1,23 @@
+[
+  {
+    "id": "body/torso",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/body__torso__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/body__torso__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/body__torso__full.png",
+    "highestDepth": 31
+  },
+  {
+    "id": "pelvis",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/pelvis__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/pelvis__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/pelvis__full.png",
+    "highestDepth": 12
+  },
+  {
+    "id": "face/face_base",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/face__face_base__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/face__face_base__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R7-R8-R13-R14-lines/face__face_base__full.png",
+    "highestDepth": 35
+  }
+]

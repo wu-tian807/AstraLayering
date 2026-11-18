@@ -1,0 +1,38 @@
+{
+  "groupId": "chest_bow/center_knot",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已独立从纯衣服参考确认本 part 为胸前中央束结，位于约 x533–555、y366–389，左右结翼及两条带尾均为相邻部件。已查看整幅参考、结心原图 8 倍放大、候选全图 blend、局部 8 倍 blend/edge 及 SVG 独显，并对照父完成 SVG。候选上缘圆角起伏、两侧向下收束及下缘连接均与参考中结心实体边界相符，位置及宽高比例正确；未误包上衣、结翼、带尾或带尾间的真实空隙，无可见组件遗漏。结心与四个根部的遮挡及必要搭接符合 note，note 已承接锚定、随动和前后区域职责。父范围检查 outsideSamples=0，无越界。未发现有图像依据的返修项。",
+      "candidateHash": "ad3d3ff33c00105e1f2c3cfe89cef30103a59252a18435b8fb8e3211693791f9",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/previews/2026-11-15T19-42-51-833Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/previews/2026-11-15T19-42-51-833Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/previews/2026-11-15T19-42-51-833Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/previews/2026-11-15T19-42-51-833Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/chest_bow.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/children/center_knot/previews/2026-11-15T19-42-51-833Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-15T19:58:59.861Z"
+    }
+  ]
+}

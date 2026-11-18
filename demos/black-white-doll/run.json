@@ -1,40 +1,38 @@
 {
   "version": 1,
   "archive": true,
-  "name": "black-white-doll",
-  "dir": ".",
   "from": "part-layering",
   "to": "shadow",
   "jobs": 3,
   "standard": true,
   "shadowMode": "mask",
   "status": "completed",
-  "createdAt": "2026-10-25T03:31:49.121Z",
-  "updatedAt": "2026-10-26T10:36:37.660Z",
+  "createdAt": "2026-11-15T18:53:50.053Z",
+  "updatedAt": "2026-11-17T17:05:06.382Z",
   "sections": {
     "part-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-25T14:03:25.705Z"
+      "updatedAt": "2026-11-16T10:25:56.584Z"
     },
     "raster-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-25T22:56:28.045Z"
+      "updatedAt": "2026-11-17T09:50:22.224Z"
     },
     "clothing-part-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-25T23:56:13.174Z"
+      "updatedAt": "2026-11-15T20:37:32.899Z"
     },
     "clothing-raster-layering": {
       "status": "completed",
-      "updatedAt": "2026-10-26T05:11:16.566Z"
+      "updatedAt": "2026-11-17T04:37:40.772Z"
     },
     "character-assembly": {
       "status": "completed",
-      "updatedAt": "2026-10-26T09:44:32.192Z"
+      "updatedAt": "2026-11-17T10:09:34.293Z"
     },
     "shadow": {
       "status": "completed",
-      "updatedAt": "2026-10-26T10:36:37.658Z"
+      "updatedAt": "2026-11-17T10:21:57.816Z"
     }
   }
 }

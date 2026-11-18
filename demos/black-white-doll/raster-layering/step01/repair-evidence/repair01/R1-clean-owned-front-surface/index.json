@@ -1,0 +1,9 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_front",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R1-clean-owned-front-surface/hair__ponytail__ponytail_left__ponytail_front__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R1-clean-owned-front-surface/hair__ponytail__ponytail_left__ponytail_front__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R1-clean-owned-front-surface/hair__ponytail__ponytail_left__ponytail_front__full.png",
+    "highestDepth": 3
+  }
+]

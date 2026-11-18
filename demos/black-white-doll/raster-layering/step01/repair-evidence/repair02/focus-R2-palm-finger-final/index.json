@@ -1,0 +1,35 @@
+[
+  {
+    "id": "arms/arm_right/hand/palm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R2-palm-finger-final/arms__arm_right__hand__palm.png",
+    "box": [
+      383,
+      692,
+      52,
+      109,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R2-palm-finger-final/arms__arm_right__hand__middle_finger.png",
+    "box": [
+      381,
+      707,
+      50,
+      96,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R2-palm-finger-final/arms__arm_right__hand__index_finger.png",
+    "box": [
+      394,
+      701,
+      40,
+      93,
+      5
+    ]
+  }
+]

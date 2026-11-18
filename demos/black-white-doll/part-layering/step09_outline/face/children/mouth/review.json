@@ -3,86 +3,56 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "通过，当前 mouth 组无需重画或修边。已读取 groups.json 的 face 与 face/mouth 说明、候选 outline.svg 和父组完成稿 ../../../../../parts/face.svg，并独立对照参考确认：本组为鼻点下方、下巴上方完整可见的小椭圆张口，范围约 x=535–558、y=204–226。上下口缘、粉色口内与上缘浅色内容均位于候选连续联合色块内，没有组件遗漏；这些内部内容本轮无需独立 path。候选未误包鼻点、唇旁皮肤或下巴。\n已先查看候选及父稿整图 blend，再以 8 倍放大检查全口 [528,198,38,33]、上部 [531,201,32,17]、下部 [531,212,32,17]、左侧 [531,204,18,23] 和右侧 [543,204,18,23]，各局部均核对 blend 与 edge，选框相互重叠。上缘弧顶、左右扩张及向下转弯、下口缘收圆均贴合参考可辨的外缘，与周围脸底的边界连续；未见明确超出、缩入、孔洞填平或无依据缺口。独显为一个干净连续形体，没有孤点、碎片或噪音。证据：observations/review/face/mouth/2026-10-25T05-56-31-686Z-5.png（全口 edge）、-6.png（上部 edge）、-8.png（下部 edge）、-10.png（左侧 edge）、-13.png（右侧 edge）、-12.png（独显）。父稿同位置 blend 为 -15.png，嘴部完整处于父范围内；固定 4 倍父范围检查 pass，outsideSamples=0、outsidePixels=0，无上游范围冲突。",
-      "candidateHash": "c149355edbb5ca0943581ac0ac79193d8f4256e1551d6eee353b170a206b845d",
+      "feedback": "已读取 face/mouth 职责、候选及父完成 SVG，先检查整图 blend，再以 [516,184,55,48] 整嘴放大，并用相互重叠的 [520,187,26,41]、[541,187,26,41] 左右选框逐块核对 blend 与 edge，覆盖上缘、两侧转折、下缘及全部连接段。参考中嘴缘、口腔、上侧牙面及下部舌面均位于候选连续色块内，组件范围完整；当前阶段无需提前拆出内部边界，口腔开口也不应挖成脸底孔洞。候选外缘沿嘴部可见外缘闭合，未发现确定的漏画、误包相邻结构或需修正的边缘偏差；独显轮廓连续干净，无孤立碎片。父组局部叠加确认嘴部位于父完成脸部范围内，工具四倍采样范围检查 outsidePixels=0。无已确认的上游范围限制或当前组返修项。",
+      "candidateHash": "4d49cfcbfd3f5764bdfd6518570b1f380ede3b4d8744eb554dbd54d5fdd56d9c",
       "observations": [
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-1.png"
         },
         {
           "source": "part-layering/parts/face.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-4.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-5.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-6.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-7.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-8.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-11.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/face/children/mouth/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-14.png"
-        },
-        {
-          "source": "part-layering/parts/face.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/face/children/mouth/step01/observations/face/mouth/2026-10-25T05-56-31-686Z-15.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/previews/2026-11-16T02-02-04-461Z-9.png"
         }
       ],
-      "updatedAt": "2026-10-25T06:30:25.174Z"
+      "updatedAt": "2026-11-16T02:25:24.640Z"
     }
   ]
 }

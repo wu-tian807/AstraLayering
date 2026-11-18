@@ -1,0 +1,48 @@
+{
+  "groupId": "face/eyebrows",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已检查整图 blend、父组完成 SVG，并分别以 8 倍 blend/edge 覆盖画面左眉（468,109,65,25）和画面右眉（549,108,60,26）的全部弧段与两端，另核对原图眉区及 SVG 独显。两条细长眉弧均有原图依据，包含跨过刘海表面仍可辨认的眉段；未将下方眼褶线或发丝误归眉毛。两眉的位置、弧度、宽度变化及尖端与参考可见边界贴合，无可见组件遗漏、无依据孔隙或孤立碎片，左右形体已分别核对。候选位于父 face 完成轮廓内，四倍采样范围检查 outsidePixels=0。当前组通过，无需重画或局部返修。",
+      "candidateHash": "2182a839560c4f365447061b4f3b15e060a61e72e8f9c5aaa380a07602d77106",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-16T02-08-18-135Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T02:28:17.333Z"
+    }
+  ]
+}

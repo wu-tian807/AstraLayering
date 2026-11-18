@@ -1,0 +1,188 @@
+{
+  "groupId": "hair/side_hair",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已核对本组说明、原图、候选及父完成稿；以四个重叠选框覆盖两侧全部可见发面（左上435,10,115,150；右上535,10,115,150；左下435,140,100,120；右下565,140,85,120），逐块查看 blend、edge，另以8倍放大核对双颊和下端发尖。两件宽侧发的归属与主要体量成立，无须整体重画；双侧开隙有真实透明区域依据，未发现需要清理的孤立碎片。候选父范围检测通过（outsidePixels=0）。仍有以下确定问题，须局部重描，不能直接验收：\n1. 双侧颊旁短尖与脸的接缝不贴合。画面左侧约(473,155)至(498,196)：候选沿发面内部收边，眼外侧至颊旁仍漏掉一条明确可见的黑发边缘，尖端也提前结束，原图黑尖继续伸至约(503,197)；尖端下缘又用偏低、偏平的弧线跨过可见肤色。画面右侧约(614,155)至(584,196)同样有上缘缩进发面、末端提前停止及下缘包入肤色的问题。8倍 edge 对照可见红线没有沿真实发肤分界走，而是在尖端两侧分别漏发和包肤。请分别沿原图两侧可见的发肤边界重描，保留尖端的细长收束，不用一条宽三角弧替代。父稿在这些颊旁位置含有连续补全范围，这些均属于当前父内可修问题。\n2. 画面左侧下端两条向内卷的发梢，约(489,225)至(512,234)、(489,240)至(516,254)，候选的内上缘及上翘末端伸入原图白色背景，卷尖被画得偏厚、偏长。8倍 edge 中红线上缘与原图深色发缘之间有连续白带，末端也超出真实尖端。请收回这些多包区域，按各条发梢的真实上下缘和端点闭合；不得因该段沿用父路径而保留多包背景。\n3. 画面右侧下颌旁至下端的内缘，尤其约(600,215)至(577,233)，以及最下长尖约(599,240)至(574,253)，候选内上缘偏向脸侧/背景，填进了原图可见的白色间隙，使发梢偏宽。右下8倍 edge 中可见红线与灰紫色实发边缘间的白带；请收回到原图实发外缘，保留各层尖端之间的真实开口，末端按原图细尖闭合。\n单独记录上游范围限制：左侧外下方细尖约(480,242)至(493,253)处，原图仍有少量连续发缘露在父轮廓外。父稿与候选在同一局部 edge 对照显示两者该段边界一致；此处只能由上游扩大父范围恢复，当前子组不应越界补画，也不能声称已补齐。该限制不抵消上述父内可修问题。",
+      "candidateHash": "938ae615a90ced290ade3853eb202df00068e0dff02db5e9188255518129b3f6",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-10.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T02-51-01-793Z-16.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T02:55:38.134Z",
+      "repairedCandidateHash": "d8fd72876d80c0c118417eee2f8800ef5b9a0751802dedc1b6877873606adf60"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已检查整图叠加，并以左右上部（x430–550、535–655，y10–160）及左右下部（x430–530、565–660，y135–265）的重叠选框完成 blend、edge 核对，另以 8 倍放大复核颊旁与发梢，并查看父 hair.svg 的对应局部。两件宽侧发归属及主要形体正确，无需整组重画；未见需清理的孤立碎片。父范围检查通过。以下均为当前父范围内可修问题：\n\n1. 画面右侧白色侧发的颊旁内缘（约 x580–614、y166–198）向脸内扩张。edge 中红线与原图白发的深灰外轮廓之间留有一条明确的肤色带，中段约偏入肤色 2–4 px；尖端也向左伸至约 x579.5，而参考可见尖端在约 x582 附近。请沿原图白发与肤色的实际分界收回内缘，保持从眼外侧下弯至颊旁尖端的弧度，并核对尖端回接耳前发面的折返及肤色开口，不能用当前偏入皮肤的曲线。证据：[右颊 8 倍 edge](previews/2026-11-16T03-18-59-101Z-12.png)。\n\n2. 画面左侧黑发靠颈部的上下两个内弯发梢（约 x499–517、y229–254）被截短。上梢候选终点约 x505、y232，原图仍有向右延伸并略翘起的灰黑发尖；下梢候选终点约 x512、y252，原图可见发尖继续伸至约 x516 附近。两处都能看到红线外残留的连续发梢，长度约差 4–6 px，且末端回弯形状未覆盖。请按实际发尖外缘延长并闭合上下两侧边缘，不仅移动单个尖点。父局部显示这些延伸区域并非全部受父边界阻挡，须先补足父内可见部分。证据：[候选左发梢](previews/2026-11-16T03-18-59-101Z-16.png)、[父组同区](previews/2026-11-16T03-18-59-101Z-17.png)。\n\n3. 画面右侧白发朝颈部弯曲的多级发梢（约 x574–598、y231–254）同样向发面内部收短。最上一级候选约 x578.5、y233，中间小尖约 x587、y238.5，最下方主尖约 x578、y253；原图各尖左端仍有连续灰色轮廓露在候选外，约 2–4 px，尤其最下方主尖的左端和向上回弯段。请逐尖沿原图外轮廓补齐，并保留尖与尖之间的真实开口；不能把灰色描边整体当成背景舍去。父图对应区域有可用范围，属于本组可修缺漏。证据：[候选右发梢](previews/2026-11-16T03-18-59-101Z-14.png)、[父组同区](previews/2026-11-16T03-18-59-101Z-15.png)。",
+      "candidateHash": "d8fd72876d80c0c118417eee2f8800ef5b9a0751802dedc1b6877873606adf60",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-12.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-14.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-15.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-16.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-16T03-18-59-101Z-17.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T03:22:43.028Z",
+      "repairedCandidateHash": "3f3dcef63786e624904eb0e28c0d349ea1dd9bb1e47e919ebf83f4bcab6575cc"
+    }
+  ]
+}

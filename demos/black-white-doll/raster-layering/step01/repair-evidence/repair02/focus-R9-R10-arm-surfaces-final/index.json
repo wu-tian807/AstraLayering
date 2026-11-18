@@ -1,0 +1,24 @@
+[
+  {
+    "id": "arms/arm_left/upper_arm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R9-R10-arm-surfaces-final/arms__arm_left__upper_arm.png",
+    "box": [
+      600,
+      338,
+      55,
+      120,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R9-R10-arm-surfaces-final/arms__arm_right__upper_arm.png",
+    "box": [
+      430,
+      338,
+      55,
+      120,
+      5
+    ]
+  }
+]

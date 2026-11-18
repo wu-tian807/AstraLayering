@@ -1,0 +1,122 @@
+{
+  "groupId": "hair/hair_cap",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已完成全图叠加、父完成稿对照，以及四个重叠区域（430,0,125,100）、（535,0,120,105）、（425,65,90,115）、（595,65,80,115）的 blend/edge 放大和独显检查；全部候选区域均已覆盖。父范围检查通过，outsidePixels=0。无碎片、孤立噪点或真实孔洞被填平的问题。需修改以下一项：\n\n1. 头顶中央两侧与前发发根的接缝内缘缩入，头盖可见发面漏画。位置约 x=489–591、y=15–45，尤以中央 x=520–566 最明显。原图中向外后方梳拢的头顶发面延续至前发隆起的根部遮挡线：黑侧弧顶约在 (525,24)，白侧约在 (554,24)，两侧在分缝约 (541,29) 附近接到向下垂落的前发。候选却在约 y=14–18 就收口，中央接点为 (541,17.5)，把这条真实根部边界上方约 8–12 像素宽的连续头顶发面留在色块外；红色内缘横切了尚未到达前发根部的表面，不能以较上方普通发纹作为开口边界。请局部重画头顶内缘，沿两侧前发隆起的实际根部遮挡弧线向下扩展，并与左右现有接缝平顺承接；保留黑白两侧各自弧度，不机械复制。此项需要重画这段接缝与相应色块宽度，无需推倒整个头盖外轮廓，也不要把整片刘海或宽侧发收入本组。该漏画区域完全位于父完成轮廓内，属于本组可修问题。\n\n图像证据：原图根部放大 ；左侧红边对照 ；右侧红边对照 。",
+      "candidateHash": "8bb3e713f217a62c850066018892871e7e22ec7f47f420df1c2463a6a3348533",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-40-13-836Z-11.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T02:45:59.487Z",
+      "repairedCandidateHash": "623272f402495c6d4288d5a138ba3c357e97e80976e0fcf540dda23a328fda48"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "已读取 hair/hair_cap 及 hair、bangs、side_hair、ponytail 的说明，并结合父完成稿核对归属。完成整图 blend 定位，以及重叠局部检查：左侧 [430,0,130,165] blend、[435,15,115,145] edge；右侧 [530,0,125,170] blend、[535,0,120,170] edge；下部连接 [425,125,235,140] blend、[425,125,235,65] edge；另检查本组 SVG 独显及父组头部叠加。头顶黑白两侧至扎点附近的贴头外壳均有覆盖，中央分缝、头顶外弧、双侧头饰遮挡边界与两端收尖连续；额角和下颌旁宽侧发、刘海、耳缘、扎点以下马尾未被误领，下方未发现另属本组而遗漏的可见区域。内部发纹及明暗不计作孔洞或额外组件。轮廓为连续干净色块，无孤立碎片、无依据孔洞或断缝。父范围检查 outsideSamples=0，画布坐标正确。本轮未发现有明确图像依据、需要修改的问题。",
+      "candidateHash": "623272f402495c6d4288d5a138ba3c357e97e80976e0fcf540dda23a328fda48",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/hair_cap/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/hair/children/hair_cap/previews/2026-11-16T02-56-14-524Z-9.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T02:59:06.211Z"
+    }
+  ]
+}

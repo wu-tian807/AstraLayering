@@ -1,0 +1,9 @@
+[
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R11-hidden-tail-complete/face__eyebrows__eyebrow_left__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R11-hidden-tail-complete/face__eyebrows__eyebrow_left__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R11-hidden-tail-complete/face__eyebrows__eyebrow_left__full.png",
+    "highestDepth": 67.1
+  }
+]

@@ -1,0 +1,38 @@
+{
+  "groupId": "face/eyes/eye_right/iris",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已按原图独立确认：本组为画面左侧眼睛内的红粉色虹膜、深色外圈及中央瞳孔，未误包相邻眼白或上眼睑。完成整图 blend 定位，并以 [482,135,43,44] 原图放大、[487,139,36,37] blend/edge 覆盖核对全部外周，另查看父组完成 SVG 的局部叠加和候选独显。上弧与眼睑邻接处、左右侧弧及底部较平缓的转折均贴合可见虹膜外缘；主体范围完整，无应保留的真实孔洞、遗漏组件或孤立碎片。瞳孔与高光所在区域已由主体色块覆盖，内部边界留给后续阶段。本组未设置 allowOutsideParent，父范围检查通过，outsidePixels=0；未发现需要当前组返修或单列的上游范围限制。",
+      "candidateHash": "b503238f2db7cb3933d44211bb4177e9c7ce32b3f9b9292b07b71fb322fb52f2",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-16T05-11-38-416Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-16T05-11-38-416Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-16T05-11-38-416Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-16T05-11-38-416Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-16T05-11-38-416Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:15:04.207Z"
+    }
+  ]
+}

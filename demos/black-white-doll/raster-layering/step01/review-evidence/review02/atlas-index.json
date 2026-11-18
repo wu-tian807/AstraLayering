@@ -1,0 +1,827 @@
+[
+  {
+    "tag": "D001.0",
+    "name": "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface",
+    "crop": [
+      624,
+      38,
+      836,
+      621
+    ],
+    "atlas": "atlas-01.png"
+  },
+  {
+    "tag": "D002.0",
+    "name": "D002.0 | hair/ponytail/ponytail_right/ponytail_back",
+    "crop": [
+      249,
+      38,
+      459,
+      605
+    ],
+    "atlas": "atlas-01.png"
+  },
+  {
+    "tag": "D003.0",
+    "name": "D003.0 | hair/ponytail/ponytail_left/ponytail_front",
+    "crop": [
+      624,
+      38,
+      775,
+      561
+    ],
+    "atlas": "atlas-01.png"
+  },
+  {
+    "tag": "D004.0",
+    "name": "D004.0 | hair/ponytail/ponytail_right/ponytail_front",
+    "crop": [
+      296,
+      52,
+      446,
+      555
+    ],
+    "atlas": "atlas-02.png"
+  },
+  {
+    "tag": "D005.0",
+    "name": "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+    "crop": [
+      665,
+      410,
+      782,
+      514
+    ],
+    "atlas": "atlas-02.png"
+  },
+  {
+    "tag": "D006.0",
+    "name": "D006.0 | hair/hair_cap",
+    "crop": [
+      420,
+      0,
+      657,
+      249
+    ],
+    "atlas": "atlas-02.png"
+  },
+  {
+    "tag": "D007.0",
+    "name": "D007.0 | legs/leg_left/shoes/collar_back",
+    "crop": [
+      539,
+      1216,
+      623,
+      1329
+    ],
+    "atlas": "atlas-03.png"
+  },
+  {
+    "tag": "D008.0",
+    "name": "D008.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+    "crop": [
+      542,
+      1202,
+      618,
+      1269
+    ],
+    "atlas": "atlas-03.png"
+  },
+  {
+    "tag": "D009.0",
+    "name": "D009.0 | legs/leg_right/shoes/rear_collar",
+    "crop": [
+      466,
+      1200,
+      546,
+      1273
+    ],
+    "atlas": "atlas-03.png"
+  },
+  {
+    "tag": "D010.0",
+    "name": "D010.0 | legs/leg_left/leg",
+    "crop": [
+      531,
+      535,
+      686,
+      1385
+    ],
+    "atlas": "atlas-04.png"
+  },
+  {
+    "tag": "D011.0",
+    "name": "D011.0 | legs/leg_right/leg",
+    "crop": [
+      399,
+      535,
+      554,
+      1385
+    ],
+    "atlas": "atlas-04.png"
+  },
+  {
+    "tag": "D012.0",
+    "name": "D012.0 | pelvis",
+    "crop": [
+      425,
+      478,
+      660,
+      707
+    ],
+    "atlas": "atlas-04.png"
+  },
+  {
+    "tag": "D014.0",
+    "name": "D014.0 | arms/arm_left/hand/little_finger",
+    "crop": [
+      656,
+      700,
+      707,
+      789
+    ],
+    "atlas": "atlas-05.png"
+  },
+  {
+    "tag": "D015.0",
+    "name": "D015.0 | arms/arm_right/hand/little_finger",
+    "crop": [
+      379,
+      706,
+      429,
+      789
+    ],
+    "atlas": "atlas-05.png"
+  },
+  {
+    "tag": "D016.0",
+    "name": "D016.0 | arms/arm_left/hand/ring_finger",
+    "crop": [
+      654,
+      703,
+      706,
+      799
+    ],
+    "atlas": "atlas-05.png"
+  },
+  {
+    "tag": "D017.0",
+    "name": "D017.0 | arms/arm_right/hand/ring_finger",
+    "crop": [
+      380,
+      703,
+      433,
+      807
+    ],
+    "atlas": "atlas-06.png"
+  },
+  {
+    "tag": "D018.0",
+    "name": "D018.0 | arms/arm_left/hand/middle_finger",
+    "crop": [
+      650,
+      698,
+      708,
+      807
+    ],
+    "atlas": "atlas-06.png"
+  },
+  {
+    "tag": "D019.0",
+    "name": "D019.0 | arms/arm_right/hand/middle_finger",
+    "crop": [
+      377,
+      703,
+      435,
+      807
+    ],
+    "atlas": "atlas-06.png"
+  },
+  {
+    "tag": "D020.0",
+    "name": "D020.0 | arms/arm_left/hand/index_finger",
+    "crop": [
+      647,
+      698,
+      695,
+      799
+    ],
+    "atlas": "atlas-07.png"
+  },
+  {
+    "tag": "D021.0",
+    "name": "D021.0 | arms/arm_right/hand/index_finger",
+    "crop": [
+      390,
+      697,
+      439,
+      799
+    ],
+    "atlas": "atlas-07.png"
+  },
+  {
+    "tag": "D022.0",
+    "name": "D022.0 | arms/arm_left/hand/thumb | root_behind_palm",
+    "crop": [
+      652,
+      690,
+      698,
+      733
+    ],
+    "atlas": "atlas-07.png"
+  },
+  {
+    "tag": "D023.0",
+    "name": "D023.0 | arms/arm_right/hand/thumb | root_behind_palm",
+    "crop": [
+      384,
+      682,
+      433,
+      732
+    ],
+    "atlas": "atlas-08.png"
+  },
+  {
+    "tag": "D024.0",
+    "name": "D024.0 | arms/arm_left/hand/palm",
+    "crop": [
+      651,
+      639,
+      713,
+      744
+    ],
+    "atlas": "atlas-08.png"
+  },
+  {
+    "tag": "D024.5",
+    "name": "D024.5 | arms/arm_left/hand/thumb | front_finger",
+    "crop": [
+      646,
+      708,
+      692,
+      768
+    ],
+    "atlas": "atlas-08.png"
+  },
+  {
+    "tag": "D025.0",
+    "name": "D025.0 | arms/arm_right/hand/palm",
+    "crop": [
+      372,
+      630,
+      435,
+      751
+    ],
+    "atlas": "atlas-09.png"
+  },
+  {
+    "tag": "D025.5",
+    "name": "D025.5 | arms/arm_right/hand/thumb | front_finger",
+    "crop": [
+      390,
+      702,
+      439,
+      768
+    ],
+    "atlas": "atlas-09.png"
+  },
+  {
+    "tag": "D026.0",
+    "name": "D026.0 | arms/arm_left/forearm",
+    "crop": [
+      612,
+      444,
+      712,
+      687
+    ],
+    "atlas": "atlas-09.png"
+  },
+  {
+    "tag": "D027.0",
+    "name": "D027.0 | arms/arm_right/forearm",
+    "crop": [
+      373,
+      466,
+      470,
+      689
+    ],
+    "atlas": "atlas-10.png"
+  },
+  {
+    "tag": "D028.0",
+    "name": "D028.0 | arms/arm_left/upper_arm",
+    "crop": [
+      592,
+      270,
+      679,
+      500
+    ],
+    "atlas": "atlas-10.png"
+  },
+  {
+    "tag": "D029.0",
+    "name": "D029.0 | arms/arm_right/upper_arm",
+    "crop": [
+      401,
+      270,
+      493,
+      515
+    ],
+    "atlas": "atlas-10.png"
+  },
+  {
+    "tag": "D030.0",
+    "name": "D030.0 | neck",
+    "crop": [
+      487,
+      201,
+      599,
+      300
+    ],
+    "atlas": "atlas-11.png"
+  },
+  {
+    "tag": "D031.0",
+    "name": "D031.0 | body/torso",
+    "crop": [
+      416,
+      255,
+      668,
+      531
+    ],
+    "atlas": "atlas-11.png"
+  },
+  {
+    "tag": "D032.0",
+    "name": "D032.0 | body/breast",
+    "crop": [
+      448,
+      299,
+      636,
+      429
+    ],
+    "atlas": "atlas-11.png"
+  },
+  {
+    "tag": "D033.0",
+    "name": "D033.0 | face/ears/ear_left",
+    "crop": [
+      595,
+      136,
+      653,
+      201
+    ],
+    "atlas": "atlas-12.png"
+  },
+  {
+    "tag": "D034.0",
+    "name": "D034.0 | face/ears/ear_right",
+    "crop": [
+      431,
+      132,
+      490,
+      201
+    ],
+    "atlas": "atlas-12.png"
+  },
+  {
+    "tag": "D035.0",
+    "name": "D035.0 | face/face_base",
+    "crop": [
+      448,
+      54,
+      638,
+      251
+    ],
+    "atlas": "atlas-12.png"
+  },
+  {
+    "tag": "D036.0",
+    "name": "D036.0 | face/eyes/eye_left/sclera",
+    "crop": [
+      553,
+      129,
+      617,
+      184
+    ],
+    "atlas": "atlas-13.png"
+  },
+  {
+    "tag": "D037.0",
+    "name": "D037.0 | face/eyes/eye_right/sclera",
+    "crop": [
+      469,
+      129,
+      532,
+      184
+    ],
+    "atlas": "atlas-13.png"
+  },
+  {
+    "tag": "D038.0",
+    "name": "D038.0 | face/eyes/eye_left/iris",
+    "crop": [
+      556,
+      131,
+      605,
+      184
+    ],
+    "atlas": "atlas-13.png"
+  },
+  {
+    "tag": "D039.0",
+    "name": "D039.0 | face/eyes/eye_right/iris",
+    "crop": [
+      481,
+      131,
+      530,
+      184
+    ],
+    "atlas": "atlas-14.png"
+  },
+  {
+    "tag": "D040.0",
+    "name": "D040.0 | face/eyes/eye_left/highlight",
+    "crop": [
+      558,
+      135,
+      605,
+      172
+    ],
+    "atlas": "atlas-14.png"
+  },
+  {
+    "tag": "D041.0",
+    "name": "D041.0 | face/eyes/eye_right/highlight",
+    "crop": [
+      483,
+      134,
+      529,
+      169
+    ],
+    "atlas": "atlas-14.png"
+  },
+  {
+    "tag": "D042.0",
+    "name": "D042.0 | face/eyes/eye_left/upper_eyelid | main_arc",
+    "crop": [
+      552,
+      119,
+      624,
+      178
+    ],
+    "atlas": "atlas-15.png"
+  },
+  {
+    "tag": "D043.0",
+    "name": "D043.0 | face/eyes/eye_right/upper_eyelid | main_arc",
+    "crop": [
+      467,
+      124,
+      533,
+      177
+    ],
+    "atlas": "atlas-15.png"
+  },
+  {
+    "tag": "D044.0",
+    "name": "D044.0 | face/eyes/eye_left/lower_eyelashes",
+    "crop": [
+      580,
+      155,
+      610,
+      183
+    ],
+    "atlas": "atlas-15.png"
+  },
+  {
+    "tag": "D045.0",
+    "name": "D045.0 | face/eyes/eye_right/lower_eyelashes",
+    "crop": [
+      476,
+      155,
+      506,
+      182
+    ],
+    "atlas": "atlas-16.png"
+  },
+  {
+    "tag": "D046.0",
+    "name": "D046.0 | face/eyes/eye_left/eyelid_crease",
+    "crop": [
+      550,
+      120,
+      603,
+      157
+    ],
+    "atlas": "atlas-16.png"
+  },
+  {
+    "tag": "D047.0",
+    "name": "D047.0 | face/eyes/eye_right/eyelid_crease",
+    "crop": [
+      476,
+      119,
+      536,
+      154
+    ],
+    "atlas": "atlas-16.png"
+  },
+  {
+    "tag": "D048.0",
+    "name": "D048.0 | face/eyebrows/eyebrow_left",
+    "crop": [
+      548,
+      101,
+      610,
+      135
+    ],
+    "atlas": "atlas-17.png"
+  },
+  {
+    "tag": "D049.0",
+    "name": "D049.0 | face/eyebrows/eyebrow_right",
+    "crop": [
+      466,
+      102,
+      534,
+      137
+    ],
+    "atlas": "atlas-17.png"
+  },
+  {
+    "tag": "D050.0",
+    "name": "D050.0 | face/nose",
+    "crop": [
+      529,
+      162,
+      557,
+      195
+    ],
+    "atlas": "atlas-17.png"
+  },
+  {
+    "tag": "D051.0",
+    "name": "D051.0 | face/blush_left",
+    "crop": [
+      551,
+      161,
+      621,
+      207
+    ],
+    "atlas": "atlas-18.png"
+  },
+  {
+    "tag": "D052.0",
+    "name": "D052.0 | face/blush_right",
+    "crop": [
+      453,
+      151,
+      534,
+      204
+    ],
+    "atlas": "atlas-18.png"
+  },
+  {
+    "tag": "D053.0",
+    "name": "D053.0 | face/mouth/mouth_interior",
+    "crop": [
+      512,
+      176,
+      575,
+      238
+    ],
+    "atlas": "atlas-18.png"
+  },
+  {
+    "tag": "D054.0",
+    "name": "D054.0 | face/mouth/lower_teeth",
+    "crop": [
+      516,
+      204,
+      570,
+      243
+    ],
+    "atlas": "atlas-19.png"
+  },
+  {
+    "tag": "D055.0",
+    "name": "D055.0 | face/mouth/tongue",
+    "crop": [
+      515,
+      190,
+      571,
+      235
+    ],
+    "atlas": "atlas-19.png"
+  },
+  {
+    "tag": "D056.0",
+    "name": "D056.0 | face/mouth/upper_teeth",
+    "crop": [
+      520,
+      176,
+      567,
+      209
+    ],
+    "atlas": "atlas-19.png"
+  },
+  {
+    "tag": "D057.0",
+    "name": "D057.0 | face/mouth/upper_lip",
+    "crop": [
+      510,
+      174,
+      577,
+      225
+    ],
+    "atlas": "atlas-20.png"
+  },
+  {
+    "tag": "D058.0",
+    "name": "D058.0 | face/mouth/lower_lip",
+    "crop": [
+      504,
+      192,
+      582,
+      245
+    ],
+    "atlas": "atlas-20.png"
+  },
+  {
+    "tag": "D059.0",
+    "name": "D059.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+    "crop": [
+      613,
+      61,
+      668,
+      251
+    ],
+    "atlas": "atlas-20.png"
+  },
+  {
+    "tag": "D060.0",
+    "name": "D060.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+    "crop": [
+      616,
+      61,
+      679,
+      238
+    ],
+    "atlas": "atlas-21.png"
+  },
+  {
+    "tag": "D061.0",
+    "name": "D061.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+    "crop": [
+      423,
+      85,
+      464,
+      252
+    ],
+    "atlas": "atlas-21.png"
+  },
+  {
+    "tag": "D062.0",
+    "name": "D062.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+    "crop": [
+      411,
+      84,
+      463,
+      238
+    ],
+    "atlas": "atlas-21.png"
+  },
+  {
+    "tag": "D063.0",
+    "name": "D063.0 | head_accessories/hair_bows/hair_bow_left/bow_body",
+    "crop": [
+      608,
+      11,
+      721,
+      160
+    ],
+    "atlas": "atlas-22.png"
+  },
+  {
+    "tag": "D064.0",
+    "name": "D064.0 | head_accessories/hair_bows/hair_bow_right/bow_body",
+    "crop": [
+      358,
+      11,
+      479,
+      157
+    ],
+    "atlas": "atlas-22.png"
+  },
+  {
+    "tag": "D065.0",
+    "name": "D065.0 | hair/side_hair/side_hair_left",
+    "crop": [
+      528,
+      0,
+      658,
+      267
+    ],
+    "atlas": "atlas-22.png"
+  },
+  {
+    "tag": "D065.5",
+    "name": "D065.5 | face/eyes/eye_left/upper_eyelid | outer_corner",
+    "crop": [
+      592,
+      131,
+      630,
+      173
+    ],
+    "atlas": "atlas-23.png"
+  },
+  {
+    "tag": "D066.0",
+    "name": "D066.0 | hair/side_hair/side_hair_right",
+    "crop": [
+      427,
+      0,
+      554,
+      266
+    ],
+    "atlas": "atlas-23.png"
+  },
+  {
+    "tag": "D066.5",
+    "name": "D066.5 | face/eyes/eye_right/upper_eyelid | outer_corner",
+    "crop": [
+      457,
+      133,
+      495,
+      174
+    ],
+    "atlas": "atlas-23.png"
+  },
+  {
+    "tag": "D067.0",
+    "name": "D067.0 | hair/bangs",
+    "crop": [
+      460,
+      10,
+      629,
+      164
+    ],
+    "atlas": "atlas-24.png"
+  },
+  {
+    "tag": "D068.0",
+    "name": "D068.0 | head_accessories/hair_clips/hair_clip_upper",
+    "crop": [
+      581,
+      66,
+      633,
+      119
+    ],
+    "atlas": "atlas-24.png"
+  },
+  {
+    "tag": "D069.0",
+    "name": "D069.0 | head_accessories/hair_clips/hair_clip_lower",
+    "crop": [
+      588,
+      98,
+      635,
+      142
+    ],
+    "atlas": "atlas-24.png"
+  },
+  {
+    "tag": "D070.0",
+    "name": "D070.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+    "crop": [
+      556,
+      1167,
+      619,
+      1271
+    ],
+    "atlas": "atlas-25.png"
+  },
+  {
+    "tag": "D071.0",
+    "name": "D071.0 | legs/leg_left/shoes/shoe_body",
+    "crop": [
+      530,
+      1223,
+      634,
+      1420
+    ],
+    "atlas": "atlas-25.png"
+  },
+  {
+    "tag": "D072.0",
+    "name": "D072.0 | legs/leg_right/shoes/shoe_body",
+    "crop": [
+      451,
+      1198,
+      555,
+      1420
+    ],
+    "atlas": "atlas-25.png"
+  }
+]

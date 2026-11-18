@@ -1,0 +1,9 @@
+[
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R2-index-front-plane-final/arms__arm_right__hand__index_finger__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R2-index-front-plane-final/arms__arm_right__hand__index_finger__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R2-index-front-plane-final/arms__arm_right__hand__index_finger__full.png",
+    "highestDepth": 21
+  }
+]

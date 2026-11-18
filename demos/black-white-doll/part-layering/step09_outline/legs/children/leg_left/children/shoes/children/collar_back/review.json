@@ -1,0 +1,43 @@
+{
+  "groupId": "legs/leg_left/shoes/collar_back",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "已读取本组及同级职责说明、原图、候选与父组完成 SVG，并完成整图 blend 定位；以 [546,1234,40,30]、[580,1234,40,32] 两个重叠选框的 8 倍 edge，结合 [548,1236,68,26] 的 8 倍 blend 和原图局部检查全部可见区域。画面左侧约 x552–564、y1243–1255 与右侧约 x600–610、y1242–1255 的后鞋口露出段覆盖完整，外侧转折、内侧绕踝边界及向鞋舌／前鞋帮连接的端部符合原图。上方红色踝部带扣带未误包；踝后中段被腿踝遮挡，本轮不要求补画隐藏范围。两段保持实际分离，未见孤立噪点或孔洞误填。候选父范围检查通过，outsidePixels=0；无需重画或返修。",
+      "candidateHash": "fc5dfafb962382f971ca53af5beca9ef2e1f892ad37b1f6124cec0761c848727",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/legs/leg_left/shoes.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/legs/children/leg_left/children/shoes/children/collar_back/previews/2026-11-16T06-17-20-058Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-16T06:34:11.746Z"
+    }
+  ]
+}

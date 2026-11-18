@@ -2,307 +2,72 @@
   "groupId": "head_accessories",
   "reviews": [
     {
-      "verdict": "revise",
-      "feedback": "已按整图叠加定位，并用相互重叠的 5×/8×参考、blend 和 edge 选框完成两侧蝴蝶结、褶边、白/黑垂带及刘海叉形、心形发饰的全组核对。本组无父 SVG。未发现部件误认、整段独立组件遗漏或孤立碎片噪音；两侧心形装饰位于现有联合色块内，已覆盖，无须为了内部着色另拆 path。无需重画整组，但叉形发饰须局部重新描轮廓，其余按以下可见边缘修订。\n\n1. 刘海叉形发饰，约 x594–620、y83–111（核对选框 [588,77,43,62]，8×）：候选杆宽偏粗。右上杆的右缘、左上杆的下缘、左下杆的左缘和下端、右下杆的下缘均有青色色块伸到参考深色发夹之外的白发上；左下端尤其向左、向下扩出，右上端也偏右。按参考深色发夹的真实外缘局部重描，恢复四个杆端的位置、宽度和转角，不能保留当前加粗形体只微移几个端点。\n\n2. 右侧白垂带，约 x670–675、y139–178（选框 [653,132,29,54]，8×）：候选从褶边下方到斜切末端的右缘整体左缩，参考有连续的白色垂带窄条仍露在色块右侧；末端右侧折角也提前收口。右缘向参考与白马尾之间的清晰边界补齐，约需补 1–2 个原图像素，并延续到真实斜切末端；保留斜切转折，不把垂带内部灰色明暗当作外缘。\n\n3. 左侧粉色褶边与黑发的下侧接缝，约 x398–418、y109–125，重点约 (404,116)、(412,123) 两处褶瓣下缘（选框 [389,54,64,95]，8×）：候选下缘比参考粉色褶瓣的实际边界更低，多包了相邻黑发，局部约 1–2 像素；褶瓣连接处也随之下移。沿粉色褶边与黑发的可见接缝回收，恢复各瓣之间的凹口和转折，不能把这段接缝拉成更低、更宽的圆滑包边。\n\n4. 右侧黑色褶边的下方外凸瓣，约 x679–691、y108–121（选框 [646,54,54,92]，8×）：候选外凸瓣下缘越出参考黑色实体边缘，约 x680–685、y118–121 处色块压到了白马尾上，瓣底与邻近凹口因此偏低、偏满。按参考黑色褶边与白发的接缝向上、向内回收约 1–2 像素，保留真实瓣底及约 (679,119) 附近的转向。\n\n5. 右上黑色蝴蝶结叶瓣的外侧斜弧，约 x628–645、y40–55（选框 [620,29,44,54]，8×）：候选边缘缩在参考外侧黑色描边之内，叠加图中可见连续黑边留在色块的左上侧。沿该斜弧向左上补齐约 1 个原图像素，使弧线与可靠的黑色实体外缘一致；不沿背景的粉色和彩色杂点扩张。\n\n6. 两侧黑垂带末端（分别核对 [421,193,44,50]、[630,199,42,45]，8×）：左侧约 x442–459、y224–238 的长带尖端收口偏高，参考黑色下缘在候选尖端下方仍连续可见，末端需向下补约 1 像素并按参考尖端收口；右侧约 x650–665、y211–222 的短带斜切下缘则向下外扩，边缘图红线落在参考黑带外的白马尾区域，应向上回收约 1 像素。保留两侧末端已有的台阶、折角和上下带片连续关系，不抹成圆弧，也不追随背景杂色像素。\n\n以上均为已经在局部参考与叠加/边缘图中确认的可修轮廓问题，不涉及最终填色、纹样或组内普通明暗。",
-      "candidateHash": "a1168d645778321e19b08cccc168870652bf2b8f330fdcae206d197684e125cc",
+      "verdict": "pass",
+      "feedback": "已完成整图 blend 定位，并对左蝴蝶结 [360,18,110,140]、右蝴蝶结 [618,18,100,140]、左垂带 [412,128,51,120]、右垂带 [626,128,49,120]、刘海发饰 [585,72,44,65] 逐块放大进行 blend/edge 核对；蝴蝶结与垂带选框重叠覆盖连接处，并检查 SVG 独显。两侧蝴蝶结的上部结瓣、褶边及被头发遮挡的内缘均有覆盖；左侧心形装饰位于蝴蝶结主体色块内，无须在本阶段单独拆分。两侧黑色垂带的外缘、分叉间隙和斜切末端与参考可见范围相符，连接处连续。叉形发饰及其下方心形发饰均已覆盖，心形左下侧的实际凹口得到保留。未发现确定的部件误认、相邻结构误包、可见组件遗漏、孔洞填平或孤立噪音。当前组无父组，无父范围约束；本轮通过。",
+      "candidateHash": "7f57ea32b0b60ca3c423b6c79e59f3d622b069e694836b83c0cbac09ac50a325",
       "observations": [
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-1.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-1.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-3.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-4.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-5.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-6.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-7.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-8.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-9.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-10.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-9.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-11.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-10.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-12.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-11.png"
         },
         {
           "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-18.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-19.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-20.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-21.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-23.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-24.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-25.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T03-52-44-381Z-26.png"
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-15T19-21-55-251Z-12.png"
         }
       ],
-      "updatedAt": "2026-10-25T04:09:14.376Z",
-      "repairedCandidateHash": "d5da1d7f5e5d98088735bc2f63bfade104c58891f15d36787f38cb5a6036af58"
-    },
-    {
-      "verdict": "revise",
-      "feedback": "本组需局部返修，不需要整组重画。未发现部件归属混乱、独立组件整段遗漏或碎片噪音。两侧蝴蝶结、褶边、黑白垂带和刘海两枚发饰均已用重叠选框检查 reference、blend 与 edge；左侧覆盖 [388,28,88,123]、[406,115,67,131]，右侧覆盖 [618,28,87,124]、[628,113,64,133]，刘海发饰覆盖 [590,79,38,59]，下列位置另作 8 倍放大核实。无父组。\n\n1. 左侧黑色长垂带靠近脸侧短发的可见右缘，约 x450–460、y194–237，明显缩入。参考在两者之间的亮色开口左侧，黑色垂带的真实边缘从约 (452,194) 向下延伸到尖端；候选弧线在 y194–220 段位于黑色垂带实体内部，留下约数像素宽的可见黑色条带未覆盖，使下段变窄。证据：crop [438,159,34,85] 的 reference、blend、edge，尤其开口起点以下。请向右扩展并重描这一段可见侧边，与现有下缘、尖端连续衔接；不要沿垂带内部暗线收窄。\n\n2. 右侧蝴蝶结顶部、上方黑色结瓣下方，约 x652–666、y57–63，漏掉顶部凸起的一条实体区域。参考可见灰白轮廓在候选上方形成低矮隆起；候选从 (652,59.8) 接出的线切过该隆起内部，blend 中仍有连续灰白窄带露在填色上方，约缩入 2–3 像素。证据：crop [649,52,22,17] 的 blend、edge，以及 [648,51,46,35] reference。请按灰白实体的外缘抬高并重接此段，保留与黑色结瓣的凹转折，不沿下方内部灰色折痕描轮廓。\n\n3. 右侧黑色褶边第一处外侧凹口，约 x686–693、y94–104，转折位置下移。参考凹口尖点约在 (688,97)，候选尖点却在 (688.4,100)，因此把凹口上半部的真实空白填入，改变上下褶瓣相接的位置。证据：crop [682,91,16,23] 的 reference、blend、edge，红线尖点明显低于参考凹口。请上移尖点并按两瓣真实边缘重接，保持明确折角，不能用平滑弧线填平该凹口。\n\n4. 刘海叉形发饰的条带宽度不足，多段实黑外缘未被覆盖。上左臂上缘约 x597–605、y85–92，向右下伸出的臂上缘约 x610–618、y95–103，以及左下臂右侧约 x603–607、y101–108，edge 中均可见实体深黑条带留在红线外；上下末端也有窄幅缩入。这里是发饰实体外缘，不是内部高光。证据：crop [592,81,31,32] 的 reference、edge，及 [590,79,38,59] blend。请重新沿完整黑色条带外缘描绘叉饰，恢复四臂宽度和端部轮廓，保留中央交叉处的凹转折。\n\n5. 刘海心形发饰有两处微小但确定的实体描边漏盖：左上瓣约 x605–609、y113–116，以及左侧小凹转折约 x605–607、y124–127。放大参考与 edge 对照，深粉实体描边仍有部分位于红线之外，分别在 (606,114)、(606,125) 附近；不是弥散眼影或背景痕迹。证据：crop [599,111,28,25] 的 reference、edge。请小范围外扩并连顺这两段轮廓，保留心窝及左侧真实转折，不另加孤点或碎片。",
-      "candidateHash": "d5da1d7f5e5d98088735bc2f63bfade104c58891f15d36787f38cb5a6036af58",
-      "observations": [
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-5.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-18.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-19.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-20.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-21.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-23.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-24.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-25.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-26.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-27.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-28.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-29.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-30.png"
-        },
-        {
-          "source": "part-layering/step09_outline/head_accessories/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/head_accessories/step01/observations/head_accessories/2026-10-25T04-27-48-455Z-31.png"
-        }
-      ],
-      "updatedAt": "2026-10-25T04:44:18.384Z",
-      "repairedCandidateHash": "d9147d868cef31f70039af54da01cb03c5e9384d67c7484706f4b0ec5b83944f"
+      "updatedAt": "2026-11-15T19:42:49.669Z"
     }
   ]
 }

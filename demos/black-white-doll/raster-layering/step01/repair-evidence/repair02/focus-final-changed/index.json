@@ -1,0 +1,178 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/hair__ponytail__ponytail_left__ponytail_back.png",
+    "box": [
+      673,
+      417,
+      105,
+      94,
+      4
+    ]
+  },
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_front",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/hair__ponytail__ponytail_left__ponytail_front.png",
+    "box": [
+      647,
+      459,
+      125,
+      100,
+      4
+    ]
+  },
+  {
+    "id": "pelvis",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/pelvis.png",
+    "box": [
+      483,
+      493,
+      125,
+      48,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_right__hand__middle_finger.png",
+    "box": [
+      381,
+      707,
+      50,
+      96,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_left__hand__index_finger.png",
+    "box": [
+      652,
+      703,
+      39,
+      91,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_right__hand__index_finger.png",
+    "box": [
+      394,
+      701,
+      40,
+      93,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_left__hand__thumb.png",
+    "box": [
+      650,
+      699,
+      52,
+      101,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_left__hand__palm.png",
+    "box": [
+      650,
+      699,
+      52,
+      101,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_right__hand__palm.png",
+    "box": [
+      383,
+      692,
+      52,
+      109,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_left__upper_arm.png",
+    "box": [
+      600,
+      338,
+      55,
+      120,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/arms__arm_right__upper_arm.png",
+    "box": [
+      430,
+      338,
+      55,
+      120,
+      5
+    ]
+  },
+  {
+    "id": "body/torso",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/body__torso.png",
+    "box": [
+      477,
+      310,
+      134,
+      228,
+      3
+    ]
+  },
+  {
+    "id": "face/face_base",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/face__face_base.png",
+    "box": [
+      472,
+      183,
+      148,
+      64,
+      4
+    ]
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/face__eyes__eye_left__upper_eyelid.png",
+    "box": [
+      595,
+      134,
+      34,
+      35,
+      10
+    ]
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/face__eyebrows__eyebrow_left.png",
+    "box": [
+      551,
+      104,
+      60,
+      32,
+      8
+    ]
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-final-changed/face__eyebrows__eyebrow_right.png",
+    "box": [
+      470,
+      104,
+      60,
+      32,
+      8
+    ]
+  }
+]

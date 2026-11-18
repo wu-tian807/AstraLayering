@@ -1,0 +1,16 @@
+[
+  {
+    "id": "legs/leg_left/leg",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_left__leg__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_left__leg__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_left__leg__full.png",
+    "highestDepth": 10
+  },
+  {
+    "id": "legs/leg_right/leg",
+    "solo": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_right__leg__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_right__leg__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair01/R13-R17/legs__leg_right__leg__full.png",
+    "highestDepth": 11
+  }
+]

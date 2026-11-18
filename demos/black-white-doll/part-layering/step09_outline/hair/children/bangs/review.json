@@ -3,271 +3,110 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "审查结论：revise。刘海的主体归属、额前范围和头顶根部整体可保留，没有把下颌侧发或发夹本体误并为独立刘海组件；不需要整体重画，但以下三段可见分叉与下缘须局部重描，不能只改着色。\n\n覆盖核对：先看候选整图 blend、父组完成稿及头部参考；再以参考、blend、edge 对照上部 [468,5,157,113]（5倍）、左侧 [470,88,73,86]、中央 [507,86,77,88]、右侧 [565,86,62,88]（均8倍），选框重叠；另核对黑白细分叉、右眼外角接缝和 [526,146,36,22] 的中央下端。父范围检查 pass：outsideSamples=0，outsidePixels=0。当前轮廓无孤点、碎片堆砌问题。以下均为父内可修问题；相同局部父稿叠加已核对，不存在必须扩大父范围才能修改的限制。\n\n1. 中央黑发左侧分叉，约 x518–530、y130–157：参考中分叉上方仍是连续黑色发面，真实肤色狭缝到约 y137 才显露；候选却从 (519,130) 开始挖出细长缺口，edge 上该缺口上段落在黑发实体内，切薄了分叉根部。下端 (528.5,155.5) 又比参考可见细尖收短。须重描该分叉的两侧边和根部，补回无依据的上段缺口，沿实际肤色缝隙开口并延至参考尖端，保留真实分叉，不把整条缝填平。这是局部分叉形体错误。\n\n图像证据：参考 observations/hair/bangs/c96c07f5-eb28-411e-abe6-0ee4ea623d03.png；blend observations/hair/bangs/2026-10-25T05-56-12-883Z-15.png；edge observations/hair/bangs/2026-10-25T05-56-12-883Z-14.png；同框父稿 observations/hair/bangs/2026-10-25T05-56-12-883Z-25.png。\n\n2. 中央白束右缘与旁边细尖，约 x553–575、y130–160：参考中主白束与右侧细尖之间有与下方额头连通的肤色狭缝；候选把狭缝上段覆盖，直到 (568,137.5) 才开口，后续狭缝边沿也偏向画面右侧，未贴合参考的两条可见发缘。细尖止于 (560,158.5)，参考尖端还向下延伸。须把主白束右缘、狭缝及细尖内外两侧作为一个局部连续结构重描，恢复真实狭缝的起点、弧度和宽度并覆盖完整细尖；不要把相邻内部发纹另挖成轮廓。\n\n图像证据：参考 observations/hair/bangs/2e08cbb2-7e3c-4da8-89eb-db5e232108a3.png；blend observations/hair/bangs/2026-10-25T05-56-12-883Z-16.png；edge observations/hair/bangs/2026-10-25T05-56-12-883Z-17.png；同框父稿 observations/hair/bangs/2026-10-25T05-56-12-883Z-24.png。\n\n3. 画面右侧眉上短发及眼外角前的下缘，约 x594–613、y134–158：参考的短分叉尖端较候选 (599,149) 更靠左、略靠上，候选尖端伸进肤色开口；其旁从 (597,134) 向 (614,159) 的下缘则在约 y140–155 内缩，红边落在参考灰白／粉灰发面内，漏掉左侧连续可见发缘，局部约数像素宽。须联合重描短分叉和相邻较宽发片的下缘，按真实发面与额头的交界恢复开口宽度、尖端和转向，并与眼外角的侧发接缝连续衔接；不要以内部灰色发纹替代外缘，也不要把两条尖端磨成一条弧。\n\n图像证据：参考 observations/hair/bangs/053498b8-b207-4dfc-9b31-a52ff087200d.png；blend observations/hair/bangs/2026-10-25T05-56-12-883Z-19.png；edge observations/hair/bangs/2026-10-25T05-56-12-883Z-18.png；同框父稿 observations/hair/bangs/2026-10-25T05-56-12-883Z-20.png。",
-      "candidateHash": "96812dc1f680ef1870111f652230cabd1edc46d4a7dba0da2eebb122c6ed0416",
+      "feedback": "已完成整图 blend 定位、父组 hair.svg 对照，以及覆盖全部刘海的左右重叠分区 blend/edge 放大和独显检查；候选父范围检查通过（outsidePixels=0）。本组归属与主体形体成立，无需整组重画；需修正以下实际发肤边界，均在父范围内。\n\n1. 画面左侧黑色细刘海与外侧发束之间，约 x488–497、y111–138：参考在眉线附近已有向上延伸的狭窄肤色开口，细发束左缘较直且向下收尖；候选把开口顶点压到 (489,123)，并以向左鼓出的弧线连到 (497,138)，覆盖了原图眉线上下的肤色，使该细束明显变宽。请沿原图两侧发肤边界把开口向上恢复，并收窄细束左缘，保持下端尖细连接。依据：原图 crop [480,101,30,42] 的 8 倍图与同区 blend，可直接看见候选蓝块覆盖开口上段。\n\n2. 画面右侧额头开口两侧，约 x554–610、y108–147：中央白色尖束的右缘在下半段超入肤色，原图可见的棕色描边/肤色窄带被蓝块覆盖；同时开口另一侧、带发夹白发束的内缘被候选过度向左弯曲，原图沿眉外侧向眼尾下行的细长白发边仍有一条落在蓝块之外。请逐段重描这两条相向的发肤边界：中央束右缘向原图实际尖束边缘收回，外侧白束内缘向原图可见边界补出，保留真实额头开口及各自的细尖，不能用当前平滑大弧线替代。依据：crop [548,87,73,68] 的 8 倍 blend，以及 [470,88,154,69] 的 8 倍 edge，能看到两侧偏差方向相反，开口的位置与弧度均未贴合参考。\n\n其余根部接缝、中央黑色多尖、发夹遮挡缺口及整体连续性已检查，未发现需要另列的部件遗漏或碎片噪音。",
+      "candidateHash": "1e2ec8597ae6614c963fed86729ff8c39a078763aa3454aa3a0d6d5e607e8698",
       "observations": [
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-1.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-2.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-1.png"
         },
         {
           "source": "part-layering/parts/hair.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-3.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-4.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-5.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-6.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-7.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-8.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-9.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-10.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-12.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-18.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-19.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-20.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-9.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-21.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T05-56-12-883Z-23.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-24.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/step09_outline/hair/children/bangs/observations/hair/bangs/2026-10-25T05-56-12-883Z-25.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T02-41-00-178Z-10.png"
         }
       ],
-      "updatedAt": "2026-10-25T06:31:20.666Z",
-      "repairedCandidateHash": "4787666280635da974bc50d8c4556931298e2448b276ec1b9cacb09c62a078fe"
+      "updatedAt": "2026-11-16T02:46:31.392Z",
+      "repairedCandidateHash": "b9c401faf427918d189fee927f55df4b0cc62d92b2d3cebda31664d139816985"
     },
     {
-      "verdict": "revise",
-      "feedback": "已完成全组可见区域核对：顶部根部选框 [465,0,165,105]，下部采用重叠选框 [469,88,68,82]、[507,87,73,85]、[565,87,65,85]，均对照 blend 与 edge，并对开口、分叉及眼外角接缝作 8 倍复核。以下两项需要局部重描，不需要整组重画；未发现部件归属混乱或孤立碎片。父范围检查 pass，outsideSamples=0；两处同框查看父完成稿均在允许范围内，不属于上游范围限制。\n\n1. 中央白束右侧分叉，约 x558–568、y134–161。参考中主白束与右侧细尖之间存在真实的暖肤色缝；在 y140–156，候选缝的左边缘偏右，把参考可见肤色填进主白束，使开口过窄。细尖末端约 (559.1,161) 也比参考细尖偏左下，延入尖端下方的肤色。请沿主白束与肤色的实际交界重描内弧，恢复这段缝的宽度及转向，并收准细尖末端；保留连续细尖，不能将它清成孤点，也不要把相邻灰色内部发纹挖成新缝。证据：参考 crop=[548,125,27,43]、scale=8（observations/review/hair/bangs/7a2fa301-f28e-4235-a138-84aba6ce9e01.png），同框候选 edge（2026-10-25T06-57-26-027Z-15.png）及 blend（2026-10-25T06-57-26-027Z-20.png）；父同框为 2026-10-25T06-57-26-027Z-25.png。\n\n2. 画面右侧眉上小尖及其外侧连续下缘，约 x594–613、y132–158。参考小尖下方仍有肤色间隙，外侧发片沿斜向可见发缘向右下转折。候选小尖下探至约 (596.6,147.3)，其后的圆弧下缘又落在参考斜向发缘下方，覆盖了小尖附近及斜边下方的肤色，间隙被削窄，局部转折也被圆化。请缩回小尖，并沿实际发缘重描这一段斜向下缘和转折，保留与睫毛之间的真实肤色间隙；到眼外角与侧发的接缝应保持连续。证据：参考 crop=[589,125,32,40]、scale=8（observations/review/hair/bangs/bc1d5fb2-02f1-4567-aee9-3d0c75a18e96.png），同框候选 edge（2026-10-25T06-57-26-027Z-16.png）及 blend（2026-10-25T06-57-26-027Z-21.png）；父同框为 2026-10-25T06-57-26-027Z-24.png。",
-      "candidateHash": "4787666280635da974bc50d8c4556931298e2448b276ec1b9cacb09c62a078fe",
+      "verdict": "pass",
+      "feedback": "已读取 hair/bangs 的 note、相邻头发节点说明、参考图、候选及父完成 SVG。先整图 blend 定位，再以重叠选框 [465,15,90,145]、[540,15,90,145] 对全部刘海作 6 倍 blend/edge 核对，并以 [470,85,155,75] 作 8 倍下缘核对、[580,105,44,49] 核对右侧细尖及遮挡接缝，最后检查 SVG 独显。额前中央黑白发面及两侧分束覆盖完整，与垂向下颌的 side_hair 归属清楚；顶部承接边界、眉上肤色开口、中央与两侧发尖均贴合参考可见形状，未填平真实开口。叉形、心形发夹处的缺口对应头饰遮挡，没有重复领取饰件；轮廓连续、无孤立碎片或来源不明发丝。画布为 1086×1448；父范围四倍采样检查 outsidePixels=0。未发现本组允许范围内确定需要修改的问题，本轮通过。",
+      "candidateHash": "b9c401faf427918d189fee927f55df4b0cc62d92b2d3cebda31664d139816985",
       "observations": [
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-1.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-1.png"
         },
         {
           "source": "part-layering/parts/hair.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-2.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-4.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-2.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-5.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-6.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-7.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-10.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-12.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-13.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-16.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-17.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-18.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-19.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-20.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-21.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-23.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-24.png"
-        },
-        {
-          "source": "part-layering/parts/hair.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/hair/children/bangs/step01/observations/hair/bangs/2026-10-25T06-57-26-027Z-25.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-16T03-01-31-738Z-8.png"
         }
       ],
-      "updatedAt": "2026-10-25T07:21:23.856Z",
-      "repairedCandidateHash": "ca430f3755d15f0ff47ed3b27c67c2dde3991729570ef968bc5cb667796b09f3"
+      "updatedAt": "2026-11-16T03:03:32.993Z"
     }
   ]
 }

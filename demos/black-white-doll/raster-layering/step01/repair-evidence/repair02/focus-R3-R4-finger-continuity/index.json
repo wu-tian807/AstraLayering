@@ -1,0 +1,24 @@
+[
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R3-R4-finger-continuity/arms__arm_left__hand__index_finger.png",
+    "box": [
+      652,
+      703,
+      39,
+      91,
+      5
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R3-R4-finger-continuity/arms__arm_right__hand__middle_finger.png",
+    "box": [
+      381,
+      707,
+      50,
+      96,
+      5
+    ]
+  }
+]

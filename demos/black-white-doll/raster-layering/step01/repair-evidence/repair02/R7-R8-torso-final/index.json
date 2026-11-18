@@ -1,0 +1,16 @@
+[
+  {
+    "id": "body/torso",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/body__torso__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/body__torso__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/body__torso__full.png",
+    "highestDepth": 31
+  },
+  {
+    "id": "pelvis",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/pelvis__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/pelvis__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R7-R8-torso-final/pelvis__full.png",
+    "highestDepth": 12
+  }
+]

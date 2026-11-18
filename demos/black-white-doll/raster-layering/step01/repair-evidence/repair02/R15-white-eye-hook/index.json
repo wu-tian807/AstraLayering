@@ -1,0 +1,9 @@
+[
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "solo": "raster-layering/step01/repair-evidence/repair02/R15-white-eye-hook/face__eyes__eye_left__upper_eyelid__solo.png",
+    "below": "raster-layering/step01/repair-evidence/repair02/R15-white-eye-hook/face__eyes__eye_left__upper_eyelid__below.png",
+    "full": "raster-layering/step01/repair-evidence/repair02/R15-white-eye-hook/face__eyes__eye_left__upper_eyelid__full.png",
+    "highestDepth": 65.5
+  }
+]

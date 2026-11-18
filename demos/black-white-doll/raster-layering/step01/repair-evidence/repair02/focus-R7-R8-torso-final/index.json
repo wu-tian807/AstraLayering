@@ -1,0 +1,24 @@
+[
+  {
+    "id": "body/torso",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R7-R8-torso-final/body__torso.png",
+    "box": [
+      477,
+      310,
+      134,
+      228,
+      3
+    ]
+  },
+  {
+    "id": "pelvis",
+    "file": "raster-layering/step01/repair-evidence/repair02/focus-R7-R8-torso-final/pelvis.png",
+    "box": [
+      483,
+      493,
+      125,
+      48,
+      5
+    ]
+  }
+]

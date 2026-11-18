@@ -3,41 +3,31 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "通过。已先从纯衣服参考独立确认本组归属，再完成整图叠加、全结体 4 倍 blend／edge／纯 SVG、结心与左右结环 6 倍原图／edge、两条带尾 6 倍原图／edge 核对；全部可见区域均已覆盖，未发现确定需要修改的问题，无需重画或边缘返修。\n\n归属及完整性：参考 x478–632、y440–599 的结心、左右结环及两条带尾均由候选联合覆盖。未误包周围 camisole 衣身或人体，也未遗漏分离的可见结体；group 使用一条联合路径可完整承担这些组件，无须因缺少内部绘画路径判附件缺失。\n\n轮廓及位置比例：结心顶部与两侧根部（约 x544–565、y440–462）、左结环外缘与末端（约 x478–544、y441–497）、右结环外缘与末端（约 x565–632、y441–497）在 6 倍边缘叠加中贴合参考实体边界。两条带尾自结心后方接入；左尾约 x506–550、y461–599，右尾约 x561–606、y461–599，其弧形内外边缘、长度及斜切尾端均贴合。参考结体外的浅灰紫投影属于后续绘画表现，未将其当作实体外轮廓。\n\n真实空隙及交界：中央自结心下缘至两尾末端的渐宽空隙保持开放；左右结环下缘与各带尾外缘之间的空隙也保留，均露出后方上衣。候选没有用色块填入这些开口。结心、环与尾根部的联合覆盖符合本组检查职责；本组没有薄纱或额外分离附件需要补入。\n\nnote：已说明结体实体范围、上衣固定点、周围衣身分界、全结体位于胸前衣料及胸部之前、结心遮挡各根部、随 camisole 固定点运动、必要根部隐藏搭接及向子节点传递职责，与参考可见结构一致。本次 parentGroup／parentSvg 均为 null，无父范围限制。\n\n图像证据：整图 blend 为 observations/review/chest_bow/2026-10-25T23-05-07-298Z-1.png；全结体 edge／blend／独显为同目录 -3.png／-4.png／-2.png；结心与结环 edge 为 -5.png（crop [474,436,163,68]，6 倍），对应原参考为 0e221905-871f-411f-9eab-8d768633adeb.png；两尾 edge 为 -6.png（crop [500,458,111,148]，6 倍），对应原参考为 d0963a00-450d-4184-930e-6106f86109d6.png。候选只读，未作修改。",
-      "candidateHash": "b076c5331831a17377d39682764b9a849a7f222e378d73a367839dd8cf9e1dbf",
+      "feedback": "已先从纯衣服参考独立确认归属，再完成整图 blend、全组件局部 4 倍参考与 blend、5 倍 edge 和 SVG 独显核对。chest_bow 为顶层 group，无父 SVG 包含关系限制。参考中可见中央结、左右结翼及两条带尾均已联合覆盖，范围约 x455–633、y366–543；中央结上缘、左右结翼弧形外缘及下缘、翼尾之间的凹口、双尾内外边与斜切末端均与参考对应，位置比例正确。双尾之间露出上衣的区域保留，没有误包上衣、领缘或投影，也没有遗漏可见独立附件。单一联合轮廓符合本 group 的覆盖职责，不要求内部结心分界或褶皱纹样。note 已明确结心锚点、随上衣胸部运动、结心压住翼尾根部、整件位于衣身和中央领缘之前及必要隐藏搭接，未发现需要修改的问题。图像证据：局部参考 bitmaps/c6eae5f0-aba4-4968-8383-0f134024e8df.png；整体叠加 previews/2026-11-15T19-12-43-898Z-1.png；全可见区域放大边缘对照 previews/2026-11-15T19-12-43-898Z-2.png；局部叠加 previews/2026-11-15T19-12-43-898Z-3.png；独显 previews/2026-11-15T19-12-43-898Z-4.png。",
+      "candidateHash": "47c5a2cb1acd08417a39c7d6514ee7dbb47aae4a038f32ba9afcbaa139eaa6c2",
       "observations": [
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-1.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
-          "mode": "svg",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-2.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/previews/2026-11-15T19-12-43-898Z-1.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
           "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-3.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/previews/2026-11-15T19-12-43-898Z-2.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
           "mode": "blend",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-4.png"
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/previews/2026-11-15T19-12-43-898Z-3.png"
         },
         {
           "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-5.png"
-        },
-        {
-          "source": "clothing-part-layering/step09_outline/chest_bow/outline.svg",
-          "mode": "edge",
-          "savedPath": "clothing-part-layering/groups/chest_bow/step01/observations/chest_bow/2026-10-25T23-05-07-298Z-6.png"
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/chest_bow/previews/2026-11-15T19-12-43-898Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-25T23:06:54.990Z"
+      "updatedAt": "2026-11-15T19:18:09.992Z"
     }
   ]
 }

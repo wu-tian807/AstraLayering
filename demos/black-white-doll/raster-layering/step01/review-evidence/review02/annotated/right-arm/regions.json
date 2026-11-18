@@ -1,0 +1,37 @@
+{
+  "image": "raster-layering/step01/review-evidence/review02/solo/D029.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/regions.json",
+  "regions": [
+    {
+      "id": "R10",
+      "bounds": [
+        448,
+        357,
+        29,
+        88
+      ],
+      "layers": [
+        "D029.0 | arms/arm_right/upper_arm"
+      ],
+      "description": "右上臂独显在完整臂面内残留衣物交界形的弯折暗线和深色尖楔，与自有外轮廓同时存在。需移除由躯干遮挡产生的残线、投影形色块，补成连续干净的本件肤色体积，并保持真正内外臂缘。",
+      "crop": [
+        436,
+        345,
+        53,
+        112
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/99742c8c-3d28-4fef-b2b0-ad2180b4d830/R10-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D066.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/5874d506-0d88-45f6-b5cb-32e6681f2d80/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/5874d506-0d88-45f6-b5cb-32e6681f2d80/regions.json",
+  "regions": [
+    {
+      "id": "R3",
+      "bounds": [
+        465,
+        143,
+        16,
+        17
+      ],
+      "layers": [
+        "D066.0 | hair/side_hair/side_hair_right",
+        "D043.0 | face/eyes/eye_right/upper_eyelid"
+      ],
+      "description": "黑侧发独显在眼尾坐标残留横向黑墨条，且内缘有按眼尾截出的台阶。这段属于眼睑；从发面清掉并接顺自有束缘，在D043补回完整外眼尾细尖。",
+      "crop": [
+        457,
+        135,
+        32,
+        33
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/5874d506-0d88-45f6-b5cb-32e6681f2d80/R3-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/5874d506-0d88-45f6-b5cb-32e6681f2d80/R3-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/5874d506-0d88-45f6-b5cb-32e6681f2d80/R3-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

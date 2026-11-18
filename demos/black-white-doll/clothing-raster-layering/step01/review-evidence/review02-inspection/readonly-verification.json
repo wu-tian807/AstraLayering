@@ -1,0 +1,9 @@
+{
+  "document": "clothing-raster-layering/step01/clothing-depth.kra",
+  "sha256_before": "b94f229f20cc97113f9081e38a3390159e321b381198f2a79a98e4dc54a958e8",
+  "sha256_after": "b94f229f20cc97113f9081e38a3390159e321b381198f2a79a98e4dc54a958e8",
+  "original_visibility_restored": true,
+  "saved_during_review": false,
+  "review_document_closed": true,
+  "note": "Hash verifies read-only handling only; all quality findings were determined by visual inspection."
+}

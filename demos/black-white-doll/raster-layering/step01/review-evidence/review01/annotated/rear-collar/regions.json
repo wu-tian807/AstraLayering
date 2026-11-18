@@ -1,0 +1,38 @@
+{
+  "image": "raster-layering/step01/workspace/review01/solo/D009.0.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1086,
+    1448
+  ],
+  "marked": "raster-layering/step01/workspace/review-regions/f1318ca9-d43f-4cdd-953e-95bffe884faf/marked.png",
+  "manifest": "raster-layering/step01/workspace/review-regions/f1318ca9-d43f-4cdd-953e-95bffe884faf/regions.json",
+  "regions": [
+    {
+      "id": "R18",
+      "bounds": [
+        495,
+        1212,
+        19,
+        18
+      ],
+      "layers": [
+        "D009.0 | legs/leg_right/shoes/rear_collar",
+        "part-layering/parts/legs/leg_right/shoes/rear_collar.svg"
+      ],
+      "description": "后帮补全面中央被挖出与前鞋扣孔同坐标的不规则透明孔。该扣孔属于D072前侧扣带，后帮是踝后连续包覆面，不应跟随前件镂空。上游rear_collar.svg补全path也含此洞，应先修正补全轮廓，再在本层补画后帮材质和完整边线；D072真实扣孔保留。",
+      "crop": [
+        486,
+        1203,
+        37,
+        36
+      ],
+      "files": {
+        "current": "raster-layering/step01/workspace/review-regions/f1318ca9-d43f-4cdd-953e-95bffe884faf/R18-current.png",
+        "reference": "raster-layering/step01/workspace/review-regions/f1318ca9-d43f-4cdd-953e-95bffe884faf/R18-reference.png",
+        "comparison": "raster-layering/step01/workspace/review-regions/f1318ca9-d43f-4cdd-953e-95bffe884faf/R18-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

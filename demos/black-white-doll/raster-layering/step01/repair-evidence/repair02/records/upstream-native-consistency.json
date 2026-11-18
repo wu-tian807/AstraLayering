@@ -1,0 +1,11 @@
+{
+  "logicalParts": 70,
+  "physicalDepths": 77,
+  "groupsMatchManifest": true,
+  "occlusionMatchesNativeMap": true,
+  "allSVGCurrentGroupBindingsValid": true,
+  "legSVGPreviewWarningRepaired": true,
+  "openingMaskCount": 10,
+  "allOriginalApertureSelectionsPreserved": true,
+  "inheritAlphaOnPaintLayers": false
+}

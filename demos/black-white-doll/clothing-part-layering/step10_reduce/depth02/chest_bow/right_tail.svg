@@ -1,13 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448" data-source-sha256="18401e78ce1be70370bc6337db6058174c43e980e54d864fdf56e4e417b5b272">
-  <g id="chest_bow_right_tail_outline" data-group-path="chest_bow/right_tail" fill="#00a6b8" stroke="none">
-    <path d="M 543.7,456.7
-      Q 546.4,456.4 549.6,457.6
-      L 549.5,461.1
-      C 546.2,483.2 541.2,528.9 534.8,597.8
-      Q 534.7,598.7 533.9,598.3
-      L 506.6,584.6
-      Q 505.9,584.2 506.1,583.4
-      C 510.4,544.1 521.5,500.7 533.8,468.6
-      C 536.2,464.5 540.0,460.3 543.7,456.7 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1086" height="1448" viewBox="0 0 1086 1448">
+  <g id="chest_bow_right_tail" data-group-path="chest_bow/right_tail" fill="#e74ca8" stroke="none">
+    <path d="M 533.5 384 L 537.1 384 L 537 388.8 C 536.1 412.8 533.4 438 531.1 460 C 528.5 485.6 525 515.9 521.9 543 L 488.5 525.9 C 491.5 496.1 499 458.7 507.6 430 C 511 418.2 514.3 407.4 518.5 397.4 C 521.3 391.8 526.3 387.2 533.5 384 Z"/>
   </g>
 </svg>

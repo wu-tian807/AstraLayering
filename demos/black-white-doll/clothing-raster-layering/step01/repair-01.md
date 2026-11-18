@@ -1,137 +1,90 @@
 结论：已修复
 
-# step01 review-01 返修记录
+已逐项处理 D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/review-01.md 的 R1、R2、R3，保存 D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/clothing-depth.kra，完成每个修改分片的单层、隐藏上层、整图检查，以及前后分片合看、蒙版开关和保存后重开核对。检查中未发现新的未解决问题。
 
-- 对象：`step01/clothing-depth.kra`，在当前工程上继续修改。参考为 `../../clothing-part-layering/references/clothing.png`。
-- 返修脚本与中间数据在本请求工作区 `agents/2026-10-26T02-08-18-213Z-clothing_raster_step01_repair-ROqgiC/workspace/`（下称 W2）。返修前的 KRA、parts、报告和 inspect 存档在 `W2/tmp/pre-repair/`，作为历史成果保留。
-- 详细方法与数据见 `step01/report.md` §9。
+## R1 — 蝴蝶结自身深色外缘描边
 
-## 0 改动范围
+处理结果：已修复。范围为原画布 [454,365,179,180]。在原生成画面上用 Krita 原生 b) Basic-1 画笔沿各片既有外缘逐笔补线：
 
-| 层 | 改动像素 | 说明 |
-|---|---|---|
-| `09 camisole/bodice L9` | 9234（整层重画） | R2 |
-| `10 pleated_skirt/skirt_body L10` | 474（都在腰头下缘线下 1–2 行） | R1 |
-| `11 pleated_skirt/waistband L11` | 716（都在底行附近 k=0…2，另有 x380–381 的 4 px 换回参考自身色） | R1 |
-| 其余 16 层 | 0 | 逐像素不变（`W2/tmp/layerdiff.py`） |
+- D16、D17：恢复两条带尾的两侧长边和斜切末端，边线一直延到本片隐藏根部，转角接通。
+- D18、D19：恢复结翼上缘、外端及外轮廓，与原有折返边缘接顺；完整暗面和内壁保留。
+- D20：恢复结心平滑侧缘和周圈细边；D15 背向结心在同样坐标使用同一笔触同步处理，原生蒙版保留。
 
-- 层序、归属、拆分与 SVG 均未调整。评审要求的 L9 在 L10、L11 之下、范围 x391–715 y718–753 均保持。
-- 可见区仍是参考自身像素，未移动或缩放参考。
-- 未新增阴影、AO、投影，没有用全层模糊或阈值处理代替绘制。
-- 所有补画都是私有 Krita 实例中 `b) Basic-1` 的真实笔触（`Node.paintLine`，4× 裁切后回采样）。
+使用近黑色 #17141c，画笔配置2.2px（翼尾）、2.0px（结心），锁定原有透明度沿边绘画。该数值是画笔配置，最终线宽和深浅通过原尺寸参考及放大对照判断。原有缎带渐变、褶皱、隐藏根部和五件独立层序保留；两带尾间开口透明，白衣上没有加入蝴蝶结投影。汇合合成未见双重外缘。
 
-## R1 腰头下缘 / 裙根接缝断成虚线（L11、L10，框 [376,764,352,30]）——已修复
 
-**原因**：腰头下缘是“暗线压在暗布上”（线约 25，腰头约 45，裙约 60）。初版的轮廓收养与线稿判定阈值是按“亮布上的暗线”设计的，导致：
-- 线在 SVG 外的下半段，有的列被收养进 L11，有的列留在 L10，线被切成虚线；
-- 裙褶线接到缝线的位置，L11 下缘上缩成台阶或鼓出小疙瘩；
-- 右端 x700–707 有错位的黑点。
 
-**处理**：
-1. **compose.py 接缝规则**（框 x376–728 y750–798，只作用于最近归属为 L11 的像素）：
-   - 比两侧本色都暗的像素，判为腰头本片线稿；
-   - 线的下半段 AA 按解混 α 整条收养进 L11，共 513 px；
-   - L10 在线下换成裙身本色（解混用色）；
-   - 裙身自己的褶线顶保留参考像素。
-   - 结果：接缝线只由 L11 承载，L10 不留残线。
-2. **edgebrush.py edge-1**（Krita 笔触，51 px）：
-   - 下缘偏离弧线的列按弧线修顺；
-   - paint 3 段：x405–408、593–596、705–707；
-   - erase 5 段：x408–411、524–526、591–594、656–660、701–703（含右端错位黑点）。
-3. **edgebrush.py edge-2**（Krita 笔触，19 px）：x456–460、x703–704 是褶线顶与缝线相接处的缺口（底行空洞加下方孤岛）。先 erase 孤岛，再沿两侧插值的弧线 paint。
-4. **L10 在笔触半覆盖处**：按 L11 剩余覆盖率解混出裙身本色，保证合成等于参考。
+逐片三视图（左单层、中隐藏上层、右整图）：
 
-**复核**（从保存后重开的 KRA 读出）：
+- [D16 画面左带尾](repair-evidence/repair01/R1-D16-three-views.png)
+- [D17 画面右带尾](repair-evidence/repair01/R1-D17-three-views.png)
+- [D18 画面左结翼](repair-evidence/repair01/R1-D18-three-views.png)
+- [D19 画面右结翼](repair-evidence/repair01/R1-D19-three-views.png)
+- [D20 结心正面](repair-evidence/repair01/R1-D20-three-views.png)
+- [D15 背向结心](repair-evidence/repair01/R1-D15-three-views.png)
+- [结心前后分片合看，蒙版启用/停用](repair-evidence/repair01/R1-combined-check.png)
 
-| 检查 | 返修前 | 返修后 |
-|---|---|---|
-| 全部叠加：x376–727 逐列接缝最暗值比参考弱 > 8 的列 | 79 / 352 | **0 / 352**（差值 −2…+4，平均 \|d\| 0.09） |
-| 只显 L11（衬在裙身本色上）：线比参考浅 > 8 的列 | — | **0 / 349** |
-| R1 框内合成 RGB 差 > 8 / > 32 | 300 / 3 | **3 / 0** |
-| L11 下缘与平滑弧线的残差 | — | 中位 0.17 px，最大 0.89 px，无台阶 |
+## R2 — 画面左肩带肩顶及外侧轮廓
 
-- **单层核对**：L11 单显时，下缘是一条连续、向右渐细的暗线，没有台阶；高光块与平整亮面未动。L10 单显时，线的位置是裙身本色，褶线完整。
-- **隐藏上层核对**：隐藏 L11 及以上（L1–L10）时，裙根补全区没有暗线残片，褶线连续接入补全区。
-- **全部叠加**：与参考一致，线连续。
-- **接受的残留**（不影响结论）：
-  - R1 框内 3 px（x379 y764–765、x376 y767）是左端转角 AA，返修前后数值相同，属于评审认可的两端外形；
-  - L10 残线检测剩 2 列（x526 y784、x656 y780），是裙褶线顶落在 L11 外缘 AA（α 15/62）下，像素等于参考，属于褶线本身；
-  - L11 底部 alpha 非单调只剩两端转角 4 列（x378–379、x724–725）。
-- **证据**：
-  - `inspect/repair01-R1-seam-left-x4.png`、`repair01-R1-seam-right-x4.png`：参考 / 返修前后全叠加 / L11 单显 / L10 单显 / 隐藏上层；
-  - `inspect/zoom-hem-waistband-x3.png`、`solo-skirt.png`、`composite-vs-reference.png`。
+处理结果：已修复。针对 [373,167,39,143]，在 D10 的圆弧肩顶及画面左侧长边，以原生 b) Basic-1 画笔补回连续深色细线；外侧边线继续进入至y328的本件隐藏根部。D03 顶帽使用相同坐标、颜色和笔触同步修复，前后独立层及蒙版不变。
 
-## R2 隐藏衣尾 L9 偏灰、斑驳（框 [387,714,332,44]）——已修复
+以 #403748、2.4px画笔配置沿现有边缘局部描画，锁定原有透明度。保留白布渐变及带内折转线。三视图检查确认窄带形体和位置保持、领缘衔接没有外露根部；前后合看及蒙版开关时肩顶没有重复线或横向分界线，默认背向蒙版启用。
 
-**原因**：L9 是生成补丁和早先笔触拼出来的，存在三处问题：
-- 底色偏灰，有生硬的深灰紫块；
-- 下缘描边是形状阈值的台阶；
-- 与 L12 下摆不像同一块布。
 
-**处理**：`l9brush.py` brush-3，Krita 共 672 条 paintLine，覆盖 L9 切片全部像素。
-- **底色**：L12 下摆本身的亮色 (245,245,247)，40 条横向笔触。
-- **褶影**：6 道楔形，颜色为下摆褶影的浅灰紫 (222,219,230)，低对比。方向延续上方下摆的褶纹：中线左侧向右下，右侧向左下。
-- **下缘与两侧**：本片描边色 (90,86,100) 沿 SVG 亚像素轮廓描成连续弧线。
-- **edge-1**：轮廓上 364 px 用 SVG 覆盖率作 alpha，得到平滑抗锯齿弧线。adopt=false，不从 L10/L11 取任何像素。
 
-**复核**：
+- [D10 前段三视图](repair-evidence/repair01/R2-D10-three-views.png)
+- [D03 背向顶帽三视图](repair-evidence/repair01/R2-D03-three-views.png)
+- [前后分片合看，蒙版启用/停用](repair-evidence/repair01/R2-combined-check.png)
 
-| 检查 | 返修前 | 返修后 | L12 下摆参照 |
-|---|---|---|---|
-| L9 衣身均值 RGB（不含描边带，7969 px） | 203.0/201.4/206.3（整层 193.4/191.4/197.3） | **241.6/241.1/244.5** | 232.2/229.9/237.2 |
-| 衣身亮度标准差 | 17.6（整层 36.4） | **7.6** | 12.2 |
-| 衣身亮度 < 200 的像素 | 1952 | **0** | — |
+## R3 — 画面右肩带肩顶及外侧轮廓
 
-- **范围与衔接**：inclusive bbox x391–714 y718–752，在规定范围内。与 L12 下摆线的衔接位置不变（分界 323 px，x392–714 y718–724），L12、L5 均 0 改动。
-- **深度**：仍为 level 9。被 L11 全部覆盖（9234 px），与 L10 搭接 84 px。
-- **单层核对**：L9 单显是近白衣料，带几道浅灰紫褶影，下缘为平滑弧线，看不到深灰斑块或台阶。
-- **隐藏上层核对**：
-  - 只隐藏 L11 时，衣尾接在 L12 下摆下方，像同一块布；
-  - L1–L10 视图中，衣尾下缘连续。
-- **全部叠加**：R2 框内合成 RGB 差 > 8 返修前后都是 15 px，来自下摆线与腰头上沿交界处 1 px 的 AA（L12/L11 上未改动的像素）。L9 被 L11 完全盖住，合成不变。
-- **证据**：
-  - `inspect/repair01-R2-L9-left-x5.png`、`repair01-R2-L9-right-x5.png`：参考 / 返修前后 L5+L9+L12 / L9 单显 / SVG 覆盖率；
-  - `inspect/repair01-R2-hidden-views-x2.png`：返修前后 L1–L10、隐藏 L11、全部叠加、参考；
-  - `inspect/solo-bodice.png`。
+处理结果：已修复。针对 [677,167,39,143]，在 D11 的圆弧肩顶和画面右侧长边恢复连续深色细线，接至本件完整隐藏根部；D04 顶帽同步处理。使用与R2协调的原生画笔、线色和画笔配置，并按本侧现有曲线独立落笔。
 
-## 不阻塞项
+单层、隐藏上层、整图及蒙版两种状态均已查看。白布渐变、带内折线、窄带比例、位置、领缘搭接及领口开口保留；顶帽与前段合看没有双线、断线或深度分界横线。
 
-评审 §3 的 6 条观察均未改动，对应层逐像素不变：
-- L12 蝴蝶结投影；
-- 右肩带斑点；
-- 裙左外缘；
-- 蝴蝶结 AA；
-- L13/L1/L5 描边；
-- 肩带根部折点。
 
-## KRA 保存与重开检查
 
-- **保存**：`W2/build_kra.py` 在私有 Krita 实例中建档并保存，2026-10-26 11:19:29，sha256 df871e2f3df127c522f4d999730709dfe9833634b3f4d27245f0040dd825983a。
-- **重开**：`W2/verify_kra.py` 重新 openDocument 校验，结果在 `W2/tmp/kra/verify.json`。
-  - **problems = []**；
-  - 尺寸 1086×1448，RGBA / U8 / sRGB-elle-V2-srgbtrc.icc；
-  - 根节点下恰好 19 层，名称和顺序为 01…19，与 occlusion level 1→19 一致；无 Background；
-  - 每层都是 paintlayer、无子节点、可见、opacity 255、normal；
-  - 逐层像素 md5 与建档计划一致。相对返修前，只有 L9（c29298dc5e）、L10（c341c0898b）、L11（d8cde42caa）的 md5 改变。
-- **重开投影 vs 参考**：
-  - RGB 差 > 8 / > 32 为 1104 / 118（返修前 1403 / 121）；
-  - 平均差 0.89；
-  - 参考未覆盖 1505、超出参考 103，与返修前相同。
-- **验收 PNG**：从重开 KRA 重新导出了以下文件，其余 inspect 图对应的层未变：
-  - `composite-krita.png`、`composite-vs-reference.png`、`layers-solo-from-reopened-kra.png`；
-  - `solo-skirt.png`、`solo-bodice.png`、`zoom-hem-waistband-x3.png`；
-  - 5 张 repair01-* 图。
+- [D11 前段三视图](repair-evidence/repair01/R3-D11-three-views.png)
+- [D04 背向顶帽三视图](repair-evidence/repair01/R3-D04-three-views.png)
+- [前后分片合看，蒙版启用/停用](repair-evidence/repair01/R3-combined-check.png)
 
-## 上游同步
+## 修改范围、归属和结构
 
-- **改动**：`clothing-part-layering/occlusion.json` 中 L9/L10/L11 的 region 记录已与当前 KRA 一致（`W2/tmp/occl_update_r1.py`，原件备份 `W2/tmp/occlusion.pre-repair01.json`）。
-  - L9：9096 → 9234 px；
-  - L11：19298 → 19809 px，y 范围到 784；
-  - 重叠 L11/L9：9096 → 9234；L11/L10：9375 → 9886；L10/L9：44 → 84；
-  - 补记接缝线归 L11、L9 画法。
-- **未改动**：level、顺序、`layer` 引用都不变。groups.json、SVG、preview.svg 不需改动。
-- **一致性复核**（`W2/tmp/upcheck.py`）problems = []：
-  - 两个 JSON 可解析；
-  - 10 个 part ID 均在 groups.json 中，SVG sha256 与 input-manifest 一致；
-  - 19 个 `layer` 引用与重开 KRA 的层名和顺序一致。
-- `step01/report.md` 已更新：§3 图层表、§5 重开与指标、§6 上游、§7 偏差、§8 索引，新增 §9 返修记录。
+本次是既有生成绘画外缘的局部原生画笔返修，未重画布面。共修改下表10个绘画分片；10个逻辑part、15个深度分片、图层名称/UUID/排序及5个原生透明度蒙版均保持。无需调整SVG、groups.json或occlusion.json，现有上游记录与工程一致。
+
+|原part ID|实际图层名|UUID|深度|
+|---|---|---|---:|
+|camisole/right_shoulder_strap|D03__camisole/right_shoulder_strap__rear|{1e0a5dbd-95f8-45dd-95cb-dbb399bdf75f}|3|
+|camisole/left_shoulder_strap|D04__camisole/left_shoulder_strap__rear|{2b5b4e2a-9199-44f6-b95f-5d69f8712c13}|4|
+|camisole/right_shoulder_strap|D10__camisole/right_shoulder_strap__front|{300a2f84-bdf7-4d6f-9177-e001fd030b3e}|10|
+|camisole/left_shoulder_strap|D11__camisole/left_shoulder_strap__front|{6b123705-b765-41d6-a721-cb070e43a5d3}|11|
+|chest_bow/center_knot|D15__chest_bow/center_knot__rear|{4ab5ad9d-4ee5-45dc-8442-c3452a6ae458}|15|
+|chest_bow/right_tail|D16__chest_bow/right_tail__full|{b62c8330-3872-40a6-9a16-6bf1242e52e7}|16|
+|chest_bow/left_tail|D17__chest_bow/left_tail__full|{ba8fb229-834b-45df-a64a-f1dce9b081c7}|17|
+|chest_bow/right_loop|D18__chest_bow/right_loop__full|{400d169d-8f42-4d1e-a079-f430a866737a}|18|
+|chest_bow/left_loop|D19__chest_bow/left_loop__full|{e6dd8124-61a5-40ea-a423-2ba04bf83da7}|19|
+|chest_bow/center_knot|D20__chest_bow/center_knot__front|{21218d8d-9965-41de-b7db-cc20150450f8}|20|
+
+所有绘画层的透明度与修前一致，开口及衣片范围保持。未修改的 D01、D02、D12、D13、D14 像素与修前完全一致。检查未发现新的归属、层级或补全问题。散列比较仅用于核对保存和保护项，不代替看图验收。
+
+## PNG、记录及重开
+
+已更新当前 D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/report.md，保留原始图层映射并追加本轮修复结果。用于验收的透明合成PNG及原报告引用的逐层、对照、接缝PNG均已由当前KRA重新导出：
+
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/composite.png
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/comparison.png
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/junctions.png
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/solo-large.png
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/solo-small.png
+- D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/evidence/rear-mask-disabled.png
+
+
+
+已实际关闭并重新打开 D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/clothing-depth.kra，等待加载完成后核对15层的名称、UUID、排序、可见性、像素及5个蒙版的内容/状态；保存前后全部一致，合成像素也一致。重开后再次逐个切换5个蒙版，默认背向投影为空，停用后恢复本片纹理，最终均恢复启用并保存。
+
+重开核对：D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/repair-evidence/repair01/reopen-verification.json。
+完整三视图清单：D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/repair-evidence/repair01/inspection-manifest.json。
+原生画笔路径和配置：D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/workspace/repair01/R1-actions.json、D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/workspace/repair01/R2-actions.json、D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/workspace/repair01/R3-actions.json。
+修前工程保留在 D:/Resources/workspace/AstraLayering/.run/black-white-doll-sol-20261116/clothing-raster-layering/step01/workspace/repair01/before.kra，仅作为回退副本。
+
+本轮无未解决工具故障，无遗漏的review问题。

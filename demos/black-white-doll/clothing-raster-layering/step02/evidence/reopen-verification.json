@@ -1,0 +1,630 @@
+{
+  "passed": true,
+  "changed_from_input": [
+    "D12__camisole/bodice__full"
+  ],
+  "before_save": {
+    "width": 1086,
+    "height": 1448,
+    "layers": [
+      {
+        "name": "D01__pleated_skirt/skirt_body__rear",
+        "uuid": "{af8e56aa-2234-4292-b10b-373647498880}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          157,
+          721,
+          771,
+          516
+        ],
+        "pixels": "92ac760dc1c3920fdf5648617c38f1c695b41c31ac0bdd23410c9d9268bd6e9c",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{ff91a1f8-1f36-4a0a-90b4-6651a8818f9b}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              157,
+              721,
+              771,
+              516
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D02__pleated_skirt/waistband__rear",
+        "uuid": "{2a07e5b5-f8b4-4d33-aa97-d822b502c1a9}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          352,
+          682,
+          378,
+          64
+        ],
+        "pixels": "0b9951706dea9761d0268509f200a0599bd05c643e8fc2e381092c0ac8444446",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{026dfc5e-1068-4464-a7cd-47dedd5c161e}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              352,
+              682,
+              378,
+              64
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D03__camisole/right_shoulder_strap__rear",
+        "uuid": "{1e0a5dbd-95f8-45dd-95cb-dbb399bdf75f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          384,
+          167,
+          27,
+          18
+        ],
+        "pixels": "fdb98a67f9b491371a1ca2c2f3f7309b0741af7a3d004386e3563bbeb654b778",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{a9e70fed-b354-476a-bdce-1c6667ced5cf}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              384,
+              167,
+              27,
+              18
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D04__camisole/left_shoulder_strap__rear",
+        "uuid": "{2b5b4e2a-9199-44f6-b95f-5d69f8712c13}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          677,
+          167,
+          28,
+          18
+        ],
+        "pixels": "83b22e971cd992bf677938f9406cd7140755a76679d9f86755ace5a2c1246a2e",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{82b5278c-9092-4602-982b-466b395499e8}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              677,
+              167,
+              28,
+              18
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D10__camisole/right_shoulder_strap__front",
+        "uuid": "{300a2f84-bdf7-4d6f-9177-e001fd030b3e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          373,
+          167,
+          38,
+          161
+        ],
+        "pixels": "d4a93278a0555852b35364380ff5394e0acac7435a8d7372db3d5b6ba0a44dc0",
+        "children": []
+      },
+      {
+        "name": "D11__camisole/left_shoulder_strap__front",
+        "uuid": "{6b123705-b765-41d6-a721-cb070e43a5d3}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          677,
+          167,
+          39,
+          161
+        ],
+        "pixels": "a66302d71392248a07beb449f200d51ce76c5111b740976e9d32ed9697248874",
+        "children": []
+      },
+      {
+        "name": "D12__camisole/bodice__full",
+        "uuid": "{6fa2babc-28ce-47da-913e-e3219416d00a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          312,
+          298,
+          463,
+          432
+        ],
+        "pixels": "bf62134057a0f473567b0255a0c46efb93469db2f09fc5ffebfba26a1d4e8d39",
+        "children": []
+      },
+      {
+        "name": "D13__pleated_skirt/skirt_body__front",
+        "uuid": "{8bcc4f36-818b-4d40-94b6-0ce0345a3ed5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          157,
+          721,
+          771,
+          603
+        ],
+        "pixels": "3d8094ea0fcf31aa132e94a3606555cea28cf1893a21c56377d1702f749787ed",
+        "children": []
+      },
+      {
+        "name": "D14__pleated_skirt/waistband__front",
+        "uuid": "{e98d938c-061c-4535-82b4-ecd090dded1d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          352,
+          682,
+          378,
+          77
+        ],
+        "pixels": "9384ba43b37feb1a15f1ec83e96dd28bd892a6013f47d9b36ff8bb27b5ef45ad",
+        "children": []
+      },
+      {
+        "name": "D15__chest_bow/center_knot__rear",
+        "uuid": "{4ab5ad9d-4ee5-45dc-8442-c3452a6ae458}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          533,
+          365,
+          22,
+          25
+        ],
+        "pixels": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{ea4e8840-443e-48fe-bc54-d746e657ac4d}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              533,
+              365,
+              22,
+              25
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D16__chest_bow/right_tail__full",
+        "uuid": "{b62c8330-3872-40a6-9a16-6bf1242e52e7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          488,
+          375,
+          55,
+          169
+        ],
+        "pixels": "dc88fff60598860a9986a7838c0f07516b5e00318f9304b2d78a0f6192731b84",
+        "children": []
+      },
+      {
+        "name": "D17__chest_bow/left_tail__full",
+        "uuid": "{ba8fb229-834b-45df-a64a-f1dce9b081c7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          546,
+          376,
+          57,
+          167
+        ],
+        "pixels": "b3a3763b789d13284c75e5c41262633c20b7036ebd135e1b7a0303737024ad02",
+        "children": []
+      },
+      {
+        "name": "D18__chest_bow/right_loop__full",
+        "uuid": "{400d169d-8f42-4d1e-a079-f430a866737a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          454,
+          368,
+          92,
+          61
+        ],
+        "pixels": "33270ef9d89d7bdc6908546be9e6eedc13db670d1e127d850eb5651d048b5904",
+        "children": []
+      },
+      {
+        "name": "D19__chest_bow/left_loop__full",
+        "uuid": "{e6dd8124-61a5-40ea-a423-2ba04bf83da7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          542,
+          368,
+          91,
+          59
+        ],
+        "pixels": "5cf3097faa555ee3baec87b39adee9250a5ed08f9aba964b5d391c3cc7aa0c62",
+        "children": []
+      },
+      {
+        "name": "D20__chest_bow/center_knot__front",
+        "uuid": "{21218d8d-9965-41de-b7db-cc20150450f8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          533,
+          365,
+          22,
+          25
+        ],
+        "pixels": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5",
+        "children": []
+      }
+    ],
+    "projection": "59ed5e5dcedd91db3f0ba44d2b7ad501435ecc176afc83bb06c5d1c8457d3e7d"
+  },
+  "after_reopen": {
+    "width": 1086,
+    "height": 1448,
+    "layers": [
+      {
+        "name": "D01__pleated_skirt/skirt_body__rear",
+        "uuid": "{af8e56aa-2234-4292-b10b-373647498880}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          157,
+          721,
+          771,
+          516
+        ],
+        "pixels": "92ac760dc1c3920fdf5648617c38f1c695b41c31ac0bdd23410c9d9268bd6e9c",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{ff91a1f8-1f36-4a0a-90b4-6651a8818f9b}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              157,
+              721,
+              771,
+              516
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D02__pleated_skirt/waistband__rear",
+        "uuid": "{2a07e5b5-f8b4-4d33-aa97-d822b502c1a9}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          352,
+          682,
+          378,
+          64
+        ],
+        "pixels": "0b9951706dea9761d0268509f200a0599bd05c643e8fc2e381092c0ac8444446",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{026dfc5e-1068-4464-a7cd-47dedd5c161e}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              352,
+              682,
+              378,
+              64
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D03__camisole/right_shoulder_strap__rear",
+        "uuid": "{1e0a5dbd-95f8-45dd-95cb-dbb399bdf75f}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          384,
+          167,
+          27,
+          18
+        ],
+        "pixels": "fdb98a67f9b491371a1ca2c2f3f7309b0741af7a3d004386e3563bbeb654b778",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{a9e70fed-b354-476a-bdce-1c6667ced5cf}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              384,
+              167,
+              27,
+              18
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D04__camisole/left_shoulder_strap__rear",
+        "uuid": "{2b5b4e2a-9199-44f6-b95f-5d69f8712c13}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          677,
+          167,
+          28,
+          18
+        ],
+        "pixels": "83b22e971cd992bf677938f9406cd7140755a76679d9f86755ace5a2c1246a2e",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{82b5278c-9092-4602-982b-466b395499e8}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              677,
+              167,
+              28,
+              18
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D10__camisole/right_shoulder_strap__front",
+        "uuid": "{300a2f84-bdf7-4d6f-9177-e001fd030b3e}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          373,
+          167,
+          38,
+          161
+        ],
+        "pixels": "d4a93278a0555852b35364380ff5394e0acac7435a8d7372db3d5b6ba0a44dc0",
+        "children": []
+      },
+      {
+        "name": "D11__camisole/left_shoulder_strap__front",
+        "uuid": "{6b123705-b765-41d6-a721-cb070e43a5d3}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          677,
+          167,
+          39,
+          161
+        ],
+        "pixels": "a66302d71392248a07beb449f200d51ce76c5111b740976e9d32ed9697248874",
+        "children": []
+      },
+      {
+        "name": "D12__camisole/bodice__full",
+        "uuid": "{6fa2babc-28ce-47da-913e-e3219416d00a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          312,
+          298,
+          463,
+          432
+        ],
+        "pixels": "bf62134057a0f473567b0255a0c46efb93469db2f09fc5ffebfba26a1d4e8d39",
+        "children": []
+      },
+      {
+        "name": "D13__pleated_skirt/skirt_body__front",
+        "uuid": "{8bcc4f36-818b-4d40-94b6-0ce0345a3ed5}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          157,
+          721,
+          771,
+          603
+        ],
+        "pixels": "3d8094ea0fcf31aa132e94a3606555cea28cf1893a21c56377d1702f749787ed",
+        "children": []
+      },
+      {
+        "name": "D14__pleated_skirt/waistband__front",
+        "uuid": "{e98d938c-061c-4535-82b4-ecd090dded1d}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          352,
+          682,
+          378,
+          77
+        ],
+        "pixels": "9384ba43b37feb1a15f1ec83e96dd28bd892a6013f47d9b36ff8bb27b5ef45ad",
+        "children": []
+      },
+      {
+        "name": "D15__chest_bow/center_knot__rear",
+        "uuid": "{4ab5ad9d-4ee5-45dc-8442-c3452a6ae458}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          533,
+          365,
+          22,
+          25
+        ],
+        "pixels": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5",
+        "children": [
+          {
+            "name": "default-hidden__rear-connection",
+            "uuid": "{ea4e8840-443e-48fe-bc54-d746e657ac4d}",
+            "type": "transparencymask",
+            "visible": true,
+            "opacity": 255,
+            "bounds": [
+              533,
+              365,
+              22,
+              25
+            ],
+            "pixels": "116cfd3051fc2a5809c0048ed535115af1ec05d4efa22e79ec45a8790c71d9af",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "D16__chest_bow/right_tail__full",
+        "uuid": "{b62c8330-3872-40a6-9a16-6bf1242e52e7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          488,
+          375,
+          55,
+          169
+        ],
+        "pixels": "dc88fff60598860a9986a7838c0f07516b5e00318f9304b2d78a0f6192731b84",
+        "children": []
+      },
+      {
+        "name": "D17__chest_bow/left_tail__full",
+        "uuid": "{ba8fb229-834b-45df-a64a-f1dce9b081c7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          546,
+          376,
+          57,
+          167
+        ],
+        "pixels": "b3a3763b789d13284c75e5c41262633c20b7036ebd135e1b7a0303737024ad02",
+        "children": []
+      },
+      {
+        "name": "D18__chest_bow/right_loop__full",
+        "uuid": "{400d169d-8f42-4d1e-a079-f430a866737a}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          454,
+          368,
+          92,
+          61
+        ],
+        "pixels": "33270ef9d89d7bdc6908546be9e6eedc13db670d1e127d850eb5651d048b5904",
+        "children": []
+      },
+      {
+        "name": "D19__chest_bow/left_loop__full",
+        "uuid": "{e6dd8124-61a5-40ea-a423-2ba04bf83da7}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          542,
+          368,
+          91,
+          59
+        ],
+        "pixels": "5cf3097faa555ee3baec87b39adee9250a5ed08f9aba964b5d391c3cc7aa0c62",
+        "children": []
+      },
+      {
+        "name": "D20__chest_bow/center_knot__front",
+        "uuid": "{21218d8d-9965-41de-b7db-cc20150450f8}",
+        "type": "paintlayer",
+        "visible": true,
+        "opacity": 255,
+        "bounds": [
+          533,
+          365,
+          22,
+          25
+        ],
+        "pixels": "c68ce370476295b30b95fb809846decd8a054dbefaf81f62a8d6fb912ba5e3a5",
+        "children": []
+      }
+    ],
+    "projection": "59ed5e5dcedd91db3f0ba44d2b7ad501435ecc176afc83bb06c5d1c8457d3e7d"
+  }
+}

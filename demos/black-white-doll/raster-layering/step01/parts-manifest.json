@@ -1,0 +1,4169 @@
+[
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_back",
+    "name": "hair__ponytail__ponytail_left__ponytail_back",
+    "hidden": false,
+    "note": "角色左马尾中在前方宽内卷发面之后连续延伸的完整后发面：上接同一头饰下的扎点，沿马尾外侧及前发面后方向下，包含下部较低的宽内卷、最下方回绕细梢，以及同源外缘长细束和外绕弧形部分。与 ponytail_front 沿可追踪的宽发面束缘和下部叠压边缘分界；被前发面遮住而分散露出的区域仍按同一完整后发面归属，不把开隙两侧、外绕弧或末梢截成零件。根部被头饰及短侧发遮挡，主体局部受前发面和左臂遮挡，但上段、外缘及较低卷梢可见，并非整体隐藏。作为一个 part 随本侧扎点和头部运动，承担后层长发的连续摆动、转面及较低卷梢形变，与前发面保持相应遮挡关系；外绕细束的局部穿插保留完整归属，由后续深度安排处理，不因交叉再横断本体。普通发纹、明暗和高光随本发面；不含头饰、黑色飘带或短侧发。",
+    "svg": "part-layering/parts/hair/ponytail/ponytail_left/ponytail_back.svg",
+    "crop": {
+      "left": 610,
+      "top": 24,
+      "width": 239,
+      "height": 610
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_back.png",
+    "levels": [
+      {
+        "level": 1,
+        "region": "画面右侧马尾的外侧下垂后发面、内侧后方延伸、较低宽卷及底部回绕细梢；在 ponytail_left/ponytail_front 中央宽卷及左臂之后。分界沿同一外绕细束的两侧束缘及汇入后发面的连接。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/hair__ponytail__ponytail_left__ponytail_back__D1.png"
+      },
+      {
+        "level": 5,
+        "region": "同一后发面所属细窄外绕束，约 x680–760、y425–503 斜向右下掠过中央宽卷，尤其 x716–756、y469–501 的连续双侧束缘在前卷之前；仍在左前臂后。仅细束及其汇入后发面的局部在此深度，不抬前整个低位宽卷。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/hair__ponytail__ponytail_left__ponytail_back__D5.png"
+      }
+    ],
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_left__ponytail_back__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_left__ponytail_back__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_back__visible.png",
+    "generation": {
+      "width": 602,
+      "height": 1536
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_back__visible.png",
+    "paint": {
+      "id": "hair/ponytail/ponytail_left/ponytail_back",
+      "originalPartId": "hair/ponytail/ponytail_left/ponytail_back",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_a8a37b6552224618b21436f721984c23.png"
+      ],
+      "retainedLayerUUID": null,
+      "repairs": [
+        {
+          "note": "同一 part 的预先标注深度 1/5；原生画笔补全细束，两片为普通绘画层，接缘连续。",
+          "evidence": "raster-layering/step01/workspace/front-sweep-paint-repair-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_back__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 1,
+          "region": "画面右侧马尾的外侧下垂后发面、内侧后方延伸、较低宽卷及底部回绕细梢；均在 hair/ponytail/ponytail_left/ponytail_front 的中央宽卷之后，并在 arms/arm_left/upper_arm、arms/arm_left/forearm 之后。与前方区域的分界沿同一外绕细束的两条束缘及其汇入外侧后发面的连接，不沿横向腰线或辅助填色划分。",
+          "name": "D001.0 | hair/ponytail/ponytail_left/ponytail_back | rear_surface",
+          "uuid": "{97f63bbf-cdba-4e09-9ce7-9e33ea689fb1}"
+        },
+        {
+          "level": 5,
+          "region": "同一后发面所属的一条细窄外绕束，在画面约 x680–760、y425–503 从内侧斜向右下掠过中央宽卷；尤其 x716–756、y469–501 可见连续双侧束缘压过 hair/ponytail/ponytail_left/ponytail_front。该连续细束及其接入外侧后发面的局部在中央宽卷之前，仍在 arms/arm_left/forearm 后。按细束自身两侧边缘追踪，进入后发面处沿束缘汇合过渡；不得把整个低位宽卷抬前。",
+          "name": "D005.0 | hair/ponytail/ponytail_left/ponytail_back | front_sweep",
+          "uuid": "{21c33243-4378-486e-af36-6916afe1b117}"
+        }
+      ],
+      "split": "预先标注的同一 part 多深度分片"
+    }
+  },
+  {
+    "id": "hair/ponytail/ponytail_right/ponytail_back",
+    "name": "hair__ponytail__ponytail_right__ponytail_back",
+    "hidden": false,
+    "note": "同侧马尾位于中央宽卷之后的完整下垂发面，从头饰下的扎点向外下方延伸，包含与这一后层连续相连的上部外绕窄束、外侧下垂宽发面、靠臂侧的回弯延伸及下方较低的卷梢。上段、外侧和底部均有可见依据，中间部分被 ponytail_front 覆盖，靠身体的局部受手臂遮挡；这些露出区域按完整后层归属，不按遮挡切口、开隙或末梢分散登记。与前件以中央宽卷的可追踪束缘和下部叠压关系分界，保留遮挡下的连续本体；不含侧发、蝴蝶结、心形饰物及飘带。作为一个 part 随本侧扎点与头部运动，承担后层相对前卷的摆动和显露变化，外绕细束及卷梢由同一网格形变；所属白色、粉色色条与普通明暗随本体。",
+    "svg": "part-layering/parts/hair/ponytail/ponytail_right/ponytail_back.svg",
+    "crop": {
+      "left": 236,
+      "top": 25,
+      "width": 236,
+      "height": 593
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_back.png",
+    "level": 2,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_right__ponytail_back__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_right__ponytail_back__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_back__visible.png",
+    "generation": {
+      "width": 611,
+      "height": 1536
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_back__visible.png",
+    "paint": {
+      "id": "hair/ponytail/ponytail_right/ponytail_back",
+      "originalPartId": "hair/ponytail/ponytail_right/ponytail_back",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_right__ponytail_back__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a13b6b88ee144fda7ed2c119889d3fa.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_dd10884180164bf7a6aaa7e10e137fbb.png"
+      ],
+      "retainedLayerUUID": null,
+      "repairs": [
+        {
+          "note": "局部重生成连续扎点承接区，保留下段原有绘画。",
+          "evidence": "raster-layering/step01/workspace/hair-root-repairs/index.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 2,
+          "region": "完整逻辑部件",
+          "name": "D002.0 | hair/ponytail/ponytail_right/ponytail_back",
+          "uuid": "{c51a8a72-68f6-46a4-b3c4-019b4572ba2d}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    }
+  },
+  {
+    "id": "hair/ponytail/ponytail_left/ponytail_front",
+    "name": "hair__ponytail__ponytail_left__ponytail_front",
+    "hidden": false,
+    "note": "角色左马尾中位于前方的完整宽内卷发面：从画面右侧头饰遮住的扎点承接区，沿马尾中央偏内侧向下，连续接至下部较高一层向身体内侧回卷的宽发梢，包含附属于该发面的内侧细尖及卷梢。分界沿中央宽发面的可追踪束缘及下部覆盖后发面的卷曲边缘，不在腰旁遮挡处或沿长度横切。根部受头饰、短侧发局部遮挡，内侧和内卷梢部分被左臂挡住，沿用父稿已有连续补全范围；下部主要宽卷压在 ponytail_back 的较低宽卷之前。作为一个 part 随本侧扎点及头部运动，以连续网格承担长发摆动、转面和内卷形变，并支持与后发面的相对形变及遮挡变化。发纹、自身阴影、高光和同一发面的多尖末端均随本体，不另列效果或发梢节点；不含另属 side_hair 的下颌短发及 head_accessories 的头饰、黑色飘带。",
+    "svg": "part-layering/parts/hair/ponytail/ponytail_left/ponytail_front.svg",
+    "crop": {
+      "left": 610,
+      "top": 24,
+      "width": 178,
+      "height": 550
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_front.png",
+    "level": 3,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_left__ponytail_front__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_left__ponytail_front__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_front__visible.png",
+    "generation": {
+      "width": 497,
+      "height": 1536
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_left__ponytail_front__visible.png",
+    "paint": {
+      "id": "hair/ponytail/ponytail_left/ponytail_front",
+      "originalPartId": "hair/ponytail/ponytail_left/ponytail_front",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_front__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_f205837eaaf94e8980d0d620baed4d2a.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_57434a534e27447c8c07ffa5f890b03d.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_4362d3de45f34d3e89faae2ae678c15d.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_ed6f4d5624d648f0b595d822ede5d672.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_05a059f03e2a4656b3aedce6ae90fc2d.png"
+      ],
+      "retainedLayerUUID": null,
+      "repairs": [
+        {
+          "note": "局部重生成连续扎点承接区，保留下段原有绘画。",
+          "evidence": "raster-layering/step01/workspace/hair-root-repairs/index.json"
+        },
+        {
+          "note": "仅替换下卷局部生成画面并渐变接回原上半段；消除横向拼接和其他发束穿过留下的线。",
+          "evidence": "raster-layering/step01/workspace/white-curl-local-v70/job.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__ponytail__ponytail_left__ponytail_front__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_left__ponytail_front__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 3,
+          "region": "完整逻辑部件",
+          "name": "D003.0 | hair/ponytail/ponytail_left/ponytail_front",
+          "uuid": "{d57b889c-1e87-4bb7-ad0c-9813c75ad853}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    }
+  },
+  {
+    "id": "hair/ponytail/ponytail_right/ponytail_front",
+    "name": "hair__ponytail__ponytail_right__ponytail_front",
+    "hidden": false,
+    "note": "角色右侧、画面左侧马尾中朝观者的中央宽卷发面，从头饰遮挡下的扎点承接区连续下垂，在下部向画面右侧回卷，包含该发面自身相连的分叉卷梢。其侧缘与下部卷曲轮廓可连续追踪，覆盖 ponytail_back 的下垂发面及部分回弯段；不沿局部交叉、发纹或每个末梢切段。根部受头饰、侧发局部遮挡，向内伸出的部分卷梢位于手臂之后，沿用当前完成稿的隐藏承接范围；下颌旁短侧发与头饰飘带不属本件。作为一个 part 随本侧马尾扎点及头部运动，承担前方宽卷相对后层的摆动、转面透视与局部弯曲；附着色条、阴影和高光随发面。",
+    "svg": "part-layering/parts/hair/ponytail/ponytail_right/ponytail_front.svg",
+    "crop": {
+      "left": 282,
+      "top": 39,
+      "width": 177,
+      "height": 529
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_front.png",
+    "level": 4,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_right__ponytail_front__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__ponytail__ponytail_right__ponytail_front__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_front__visible.png",
+    "generation": {
+      "width": 514,
+      "height": 1536
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__ponytail__ponytail_right__ponytail_front__visible.png",
+    "paint": {
+      "id": "hair/ponytail/ponytail_right/ponytail_front",
+      "originalPartId": "hair/ponytail/ponytail_right/ponytail_front",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__ponytail__ponytail_right__ponytail_front__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_77f5b4d4da6345128a2abd0a4d99de93.png"
+      ],
+      "retainedLayerUUID": null,
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 4,
+          "region": "完整逻辑部件",
+          "name": "D004.0 | hair/ponytail/ponytail_right/ponytail_front",
+          "uuid": "{704ac90b-23ae-425c-8700-d65b179edb8b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    }
+  },
+  {
+    "id": "hair/hair_cap",
+    "name": "hair__hair_cap",
+    "hidden": false,
+    "note": "承担中央分缝两侧的头顶及向后枕、耳后延续的贴头外壳，提供稳定头部体积和画幅上缘附近的头顶轮廓，并承接双侧马尾扎点。可见依据是头顶向外后方梳拢的弧形发流及刘海、侧发上外缘背后的头部轮廓；脸、刘海、侧发和扎点头饰遮住的后枕与连接范围沿用父完成轮廓的已有补全职责。前下方被 bangs、side_hair 覆盖，侧缘与侧发隐藏根部、耳后及 ponytail 的扎点相接；不领取覆盖额角、太阳穴的宽侧发，也不领取下颌旁短发梢和扎点以下的长马尾。作为一个贴头外壳随头脸整体转动、俯仰，内部黑白分色及发纹无独立运动依据，因此直接为 part；与可摆动的侧发和双马尾分开，不额外创建同范围后发底形。",
+    "svg": "part-layering/parts/hair/hair_cap.svg",
+    "crop": {
+      "left": 419,
+      "top": 0,
+      "width": 239,
+      "height": 251
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__hair_cap.png",
+    "level": 6,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__hair_cap__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__hair_cap__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__hair_cap__visible.png",
+    "generation": {
+      "width": 1463,
+      "height": 1536
+    },
+    "paint": {
+      "id": "hair/hair_cap",
+      "originalPartId": "hair/hair_cap",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__hair_cap__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/hair_front.png"
+      ],
+      "retainedLayerUUID": "{94c4693b-9af1-4887-849b-a44c4e8ae1fa}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 6,
+          "region": "完整逻辑部件",
+          "name": "D006.0 | hair/hair_cap",
+          "uuid": "{94c4693b-9af1-4887-849b-a44c4e8ae1fa}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__hair_cap__visible.png"
+  },
+  {
+    "id": "legs/leg_left/shoes/collar_back",
+    "name": "legs__leg_left__shoes__collar_back",
+    "hidden": false,
+    "note": "角色左鞋的完整后侧鞋口与后帮，范围为鞋口两侧向踝后连续环绕的鞋料，下接鞋身后跟位置，两侧与前侧鞋帮衔接；不含上方另列的红色踝部带扣带。参考中鞋口侧缘局部可见，踝后中段受 leg 的小腿与踝部遮挡，需保留该后侧连续范围，并非整体隐藏。位于 leg 的踝部之后、前侧鞋口与鞋舌之后，使踝部可夹在前后鞋帮之间。作为一个 part 跟随左足及鞋身运动，承担后鞋口相对踝部的局部形变与转脚时的显露变化，内部透视由同一网格处理。",
+    "svg": "part-layering/parts/legs/leg_left/shoes/collar_back.svg",
+    "crop": {
+      "left": 543,
+      "top": 1220,
+      "width": 76,
+      "height": 105
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__collar_back.png",
+    "level": 7,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__collar_back__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__collar_back__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__collar_back__visible.png",
+    "generation": {
+      "width": 912,
+      "height": 1260
+    },
+    "paint": {
+      "id": "legs/leg_left/shoes/collar_back",
+      "originalPartId": "legs/leg_left/shoes/collar_back",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_left__shoes__collar_back__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{f81f5ff1-1813-4858-84e8-836e21a39123}",
+      "repairs": [
+        {
+          "note": "原生皮革色笔触去掉补全区多余标记；保留有效原生成主体。",
+          "evidence": "raster-layering/step01/workspace/finish-body-patches-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 7,
+          "region": "完整逻辑部件",
+          "name": "D007.0 | legs/leg_left/shoes/collar_back",
+          "uuid": "{f81f5ff1-1813-4858-84e8-836e21a39123}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__collar_back__visible.png"
+  },
+  {
+    "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+    "name": "legs__leg_left__shoes__ankle_strap__ankle_strap_back",
+    "hidden": false,
+    "note": "同一红色踝带从两侧向踝后延续的完整后段，连接前段并与鞋帮邻接，不含另属 collar_back 的后侧鞋口。参考中踝侧有局部露出的带体，踝后中段被 leg 挡住，属于局部可见而非整体隐藏；当前完成 SVG 已包含踝后连续补全范围。后段位于 leg 之后，与前段共同夹住踝部，以支持转脚、俯仰时的显露及遮挡变化。整段作为一个 part 随左足及鞋体运动，不再按两侧露出片段、内外表面或明暗细分。",
+    "svg": "part-layering/parts/legs/leg_left/shoes/ankle_strap/ankle_strap_back.svg",
+    "crop": {
+      "left": 545,
+      "top": 1206,
+      "width": 69,
+      "height": 59
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_back.png",
+    "level": 8,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_back__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_back__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_back__visible.png",
+    "generation": {
+      "width": 828,
+      "height": 708
+    },
+    "paint": {
+      "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+      "originalPartId": "legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_left__shoes__ankle_strap__ankle_strap_back__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{33bd2a01-497b-49b6-aa70-a900ef58bcb5}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 8,
+          "region": "完整逻辑部件",
+          "name": "D008.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_back",
+          "uuid": "{33bd2a01-497b-49b6-aa70-a900ef58bcb5}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_back__visible.png"
+  },
+  {
+    "id": "legs/leg_right/shoes/rear_collar",
+    "name": "legs__leg_right__shoes__rear_collar",
+    "hidden": false,
+    "note": "右鞋后侧鞋口及后帮，位于画面左侧右踝后方，范围为从鞋口一侧绕过小腿后方、连续接至另一侧的完整后侧包覆结构，并向下连接鞋身后部；包含鞋口带在踝后延续的所属部分，不只登记两侧露出的窄边。参考可见鞋口两侧向后延续，中央后侧受 leg 的小腿与踝部遮挡，源 SVG 已包含踝后补全范围；属于局部遮挡，不标记整体隐藏。位于 leg 之后、前侧鞋口与鞋舌之后，与 shoe_body 的两侧及后部相接，让同级 leg 的完整踝足夹在前后鞋体之间。整件随右足及鞋身运动，以同一 part 网格承接转脚、俯仰时后侧鞋口的透视和局部形变，不再按左右露出段拆开；不含腿足或袜面。",
+    "svg": "part-layering/parts/legs/leg_right/shoes/rear_collar.svg",
+    "crop": {
+      "left": 470,
+      "top": 1204,
+      "width": 72,
+      "height": 65
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__rear_collar.png",
+    "level": 9,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__shoes__rear_collar__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__shoes__rear_collar__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__rear_collar__visible.png",
+    "generation": {
+      "width": 864,
+      "height": 780
+    },
+    "paint": {
+      "id": "legs/leg_right/shoes/rear_collar",
+      "originalPartId": "legs/leg_right/shoes/rear_collar",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_right__shoes__rear_collar__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{955e9986-5704-44c4-bc4a-3857278ec12f}",
+      "repairs": [
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/legs__leg_right__shoes__rear_collar__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 9,
+          "region": "完整逻辑部件",
+          "name": "D009.0 | legs/leg_right/shoes/rear_collar",
+          "uuid": "{955e9986-5704-44c4-bc4a-3857278ec12f}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__rear_collar__visible.png"
+  },
+  {
+    "id": "legs/leg_left/leg",
+    "name": "legs__leg_left__leg",
+    "hidden": false,
+    "note": "角色左腿，位于画面右侧，从髋部连接处经大腿、膝、小腿、脚踝至完整左足，包含贴合腿足的深色连裤袜。上接 pelvis，腿根局部被连体服遮挡，大腿外侧局部被左手遮挡，踝部及足部被 shoes 局部遮挡，仍需保留鞋内完整足部。整腿连足作为单一运动单元跟随左髋运动，转动、俯仰及膝踝局部形变由同一 part 网格承担；不拆膝部、腿脚或袜面。全部制作范围位于画内，并非整体隐藏。",
+    "svg": "part-layering/parts/legs/leg_left/leg.svg",
+    "crop": {
+      "left": 520,
+      "top": 525,
+      "width": 180,
+      "height": 883
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__leg.png",
+    "level": 10,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__leg__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__leg__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__leg__visible.png",
+    "generation": {
+      "width": 313,
+      "height": 1536
+    },
+    "paint": {
+      "id": "legs/leg_left/leg",
+      "originalPartId": "legs/leg_left/leg",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_left__leg__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{cefe2b59-92ac-4b75-92c1-23a71a91d23a}",
+      "repairs": [
+        {
+          "note": "保留生成腿和脚部补全，沿原图校准可见腿围，去除其他衣物/鞋带线，原生柔笔接顺踝部自身明暗。",
+          "evidence": "raster-layering/step01/workspace/registered-v70/legs-final-index.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/legs__leg_left__leg__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 10,
+          "region": "完整逻辑部件",
+          "name": "D010.0 | legs/leg_left/leg",
+          "uuid": "{cefe2b59-92ac-4b75-92c1-23a71a91d23a}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__leg__visible.png"
+  },
+  {
+    "id": "legs/leg_right/leg",
+    "name": "legs__leg_right__leg",
+    "hidden": false,
+    "note": "角色右腿，位于画面左侧，从髋部连接处经大腿、膝、小腿、踝至完整右足的连续本体，包含贴合腿足的深色连裤袜，不含另列的鞋体。上接 pelvis，腿根局部被连体服遮挡，大腿外侧局部被右手遮挡，踝部与足部被高帮鞋局部包覆，鞋内的完整足部仍属本体范围；整体位于画内，部分可见。作为一个 part 跟随右髋及右腿运动，膝部不分段，腿与脚不拆开；转动、俯仰及腿足局部形变由同一网格承担，袜面随本体。",
+    "svg": "part-layering/parts/legs/leg_right/leg.svg",
+    "crop": {
+      "left": 385,
+      "top": 525,
+      "width": 180,
+      "height": 878
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__leg.png",
+    "level": 11,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__leg__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__leg__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__leg__visible.png",
+    "generation": {
+      "width": 315,
+      "height": 1536
+    },
+    "paint": {
+      "id": "legs/leg_right/leg",
+      "originalPartId": "legs/leg_right/leg",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_right__leg__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{5f4aafde-aafd-4b83-9467-33e594de7f3b}",
+      "repairs": [
+        {
+          "note": "保留生成腿和脚部补全，沿原图校准可见腿围，去除其他衣物/鞋带线，原生柔笔接顺踝部自身明暗。",
+          "evidence": "raster-layering/step01/workspace/registered-v70/legs-final-index.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/legs__leg_right__leg__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 11,
+          "region": "完整逻辑部件",
+          "name": "D011.0 | legs/leg_right/leg",
+          "uuid": "{5f4aafde-aafd-4b83-9467-33e594de7f3b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__leg__visible.png"
+  },
+  {
+    "id": "pelvis",
+    "name": "pelvis",
+    "hidden": false,
+    "note": "肚脐附近至骨盆、髋部和裆部，包含白色临时连体服的对应下腹与裆部区域；上接躯干，下接双腿，正面可见且完整位于画内。",
+    "svg": "part-layering/parts/pelvis.svg",
+    "crop": {
+      "left": 424,
+      "top": 477,
+      "width": 237,
+      "height": 231
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/pelvis.png",
+    "level": 12,
+    "sample": "raster-layering/step01/workspace/controls-repair02/pelvis__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/pelvis__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/pelvis__visible.png",
+    "generation": {
+      "width": 1536,
+      "height": 1497
+    },
+    "paint": {
+      "id": "pelvis",
+      "originalPartId": "pelvis",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/pelvis__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png"
+      ],
+      "retainedLayerUUID": "{b9061b38-ae00-46a4-96d4-509567f3dae9}",
+      "repairs": [
+        {
+          "note": "原生柔笔沿本件体积修根部硬色块，保护轮廓与已有结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/pelvis__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/pelvis__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 12,
+          "region": "完整逻辑部件",
+          "name": "D012.0 | pelvis",
+          "uuid": "{b9061b38-ae00-46a4-96d4-509567f3dae9}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/pelvis__visible.png"
+  },
+  {
+    "id": "arms/arm_left/hand/little_finger",
+    "name": "arms__arm_left__hand__little_finger",
+    "hidden": true,
+    "note": "完整左小指，根部接掌部远端的小指侧，位于无名指外侧，走向随当前侧向并拢指束向下并略向画面左侧。参考中没有可独立确认的小指露出轮廓，整根受掌部及前方并拢的无名指、中指遮挡；它位于当前画内，仍需按此手姿保留完整结构及与掌部的连接。指根为伸入掌部下方的局部搭接端；作为完整手指 part 跟随掌部并独立控制，局部弯曲与透视由同一网格承担，不拆指节、指甲或纹理。",
+    "svg": "part-layering/parts/arms/arm_left/hand/little_finger.svg",
+    "crop": {
+      "left": 660,
+      "top": 704,
+      "width": 43,
+      "height": 81
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__little_finger.png",
+    "level": 14,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__little_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__little_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__little_finger__visible.png",
+    "generation": {
+      "width": 516,
+      "height": 972
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/little_finger",
+      "originalPartId": "arms/arm_left/hand/little_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__little_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{43a6cefa-c016-413f-b3f8-2e77901d9244}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__little_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 14,
+          "region": "完整逻辑部件",
+          "name": "D014.0 | arms/arm_left/hand/little_finger",
+          "uuid": "{43a6cefa-c016-413f-b3f8-2e77901d9244}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__little_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_right/hand/little_finger",
+    "name": "arms__arm_right__hand__little_finger",
+    "hidden": true,
+    "note": "完整右小指，根部连接掌部远端的尺侧，即四指指根中远离拇指的一端；随其余手指向下略偏右并拢。当前侧向手姿中，没有可单独确认的小指露出轮廓，指根被掌部遮住，指身和指端被前方无名指、中指遮住；由完整手部结构可知其位于画内，需补足当前姿势下的完整小指。整根作为一个 part 跟随掌部，可在指根独立调整并局部弯曲，指节、指甲及纹理均随本指，不制作替换手势或翻掌结构。",
+    "svg": "part-layering/parts/arms/arm_right/hand/little_finger.svg",
+    "crop": {
+      "left": 383,
+      "top": 710,
+      "width": 42,
+      "height": 75
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__little_finger.png",
+    "level": 15,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__little_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__little_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__little_finger__visible.png",
+    "generation": {
+      "width": 504,
+      "height": 900
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/little_finger",
+      "originalPartId": "arms/arm_right/hand/little_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__little_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{1c41aedd-be72-4586-a485-cedaed9115a7}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__little_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 15,
+          "region": "完整逻辑部件",
+          "name": "D015.0 | arms/arm_right/hand/little_finger",
+          "uuid": "{1c41aedd-be72-4586-a485-cedaed9115a7}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__little_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_left/hand/ring_finger",
+    "name": "arms__arm_left__hand__ring_finger",
+    "hidden": true,
+    "note": "完整左无名指，根部位于中指与小指之间并连接掌部远端，随当前并拢指束向下并略向画面左侧延伸。当前侧向重叠中没有可独立确认的露出指身或指尖，目标结构整体被前方中指及掌部遮挡；其存在由完整五指手结构及当前并拢姿势确认，制作范围在画内。保留掌部下方相连的指根及遮挡后的完整手指，只服务当前手姿。作为一个 part 跟随掌部并可独立变形，指根为局部伸入侧，指节与附属细节随整指，不另拆。",
+    "svg": "part-layering/parts/arms/arm_left/hand/ring_finger.svg",
+    "crop": {
+      "left": 658,
+      "top": 708,
+      "width": 44,
+      "height": 87
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__ring_finger.png",
+    "level": 16,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__ring_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__ring_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__ring_finger__visible.png",
+    "generation": {
+      "width": 528,
+      "height": 1044
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/ring_finger",
+      "originalPartId": "arms/arm_left/hand/ring_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__ring_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{bc4240c8-ca4b-4846-85b2-ad08825f7da2}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__ring_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 16,
+          "region": "完整逻辑部件",
+          "name": "D016.0 | arms/arm_left/hand/ring_finger",
+          "uuid": "{bc4240c8-ca4b-4846-85b2-ad08825f7da2}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__ring_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_right/hand/ring_finger",
+    "name": "arms__arm_right__hand__ring_finger",
+    "hidden": false,
+    "note": "完整右无名指，指根接掌部远端、中指与小指之间，向画面下方略偏右随中指并拢；相邻指缘仅窄小露出，不能将整片指间暗影视作独立指体。近端被掌部遮住，大部分指身被前方中指遮挡，与食指所在的并指区域局部重叠，仍需保留当前姿势下的完整手指。整根作为一个 part 跟随掌部，并支持指根调整及局部弯曲，指节、指甲与表面明暗随本指。",
+    "svg": "part-layering/parts/arms/arm_right/hand/ring_finger.svg",
+    "crop": {
+      "left": 383,
+      "top": 707,
+      "width": 46,
+      "height": 96
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__ring_finger.png",
+    "level": 17,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__ring_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__ring_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__ring_finger__visible.png",
+    "generation": {
+      "width": 552,
+      "height": 1152
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/ring_finger",
+      "originalPartId": "arms/arm_right/hand/ring_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__ring_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{ac1ace21-7413-43bb-9e12-c1fd8000fbf7}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__ring_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 17,
+          "region": "完整逻辑部件",
+          "name": "D017.0 | arms/arm_right/hand/ring_finger",
+          "uuid": "{ac1ace21-7413-43bb-9e12-c1fd8000fbf7}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__ring_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_left/hand/middle_finger",
+    "name": "arms__arm_left__hand__middle_finger",
+    "hidden": false,
+    "note": "完整左中指，指根接于食指与无名指之间的掌部远端，沿当前并拢手姿向画面左下方伸出；并拢长指束下方较长的指端与相邻外缘可见，近端及与食指贴合处有局部遮挡。它邻接食指，并遮住后方无名指、小指的部分结构，根部受掌部覆盖；需保留从指根到指尖的完整连续本体。指根在掌部下方局部搭接，不扩大掌部轮廓。作为完整手指 part 随掌部运动并独立控制，指节、指甲和普通明暗均随本指。",
+    "svg": "part-layering/parts/arms/arm_left/hand/middle_finger.svg",
+    "crop": {
+      "left": 654,
+      "top": 702,
+      "width": 51,
+      "height": 101
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__middle_finger.png",
+    "level": 18,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__middle_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__middle_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__middle_finger__visible.png",
+    "generation": {
+      "width": 612,
+      "height": 1212
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/middle_finger",
+      "originalPartId": "arms/arm_left/hand/middle_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__middle_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{70a48136-79a4-4fb3-89ff-618c1841d27b}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__middle_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 18,
+          "region": "完整逻辑部件",
+          "name": "D018.0 | arms/arm_left/hand/middle_finger",
+          "uuid": "{70a48136-79a4-4fb3-89ff-618c1841d27b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__middle_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_right/hand/middle_finger",
+    "name": "arms__arm_right__hand__middle_finger",
+    "hidden": false,
+    "note": "完整右中指，指根连接掌部远端、位于食指与无名指之间，随并拢手指向画面下方略偏右伸出，形成手部最低处的长指端。指身及末端可见，近端被掌部遮住，拇指和食指遮住靠大腿一侧的部分范围；另一侧邻接并遮挡无名指部分指身。整根含被遮住的指根作为一个 part，随掌部运动并可独立调整指根及弯曲，指节、指甲、指腹和纹理均留在本指。",
+    "svg": "part-layering/parts/arms/arm_right/hand/middle_finger.svg",
+    "crop": {
+      "left": 381,
+      "top": 707,
+      "width": 50,
+      "height": 96
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__middle_finger.png",
+    "level": 19,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__middle_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__middle_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__middle_finger__visible.png",
+    "generation": {
+      "width": 600,
+      "height": 1152
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/middle_finger",
+      "originalPartId": "arms/arm_right/hand/middle_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__middle_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{1d21298b-68e3-47b5-ae9e-e456892a274d}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__middle_finger__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__middle_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 19,
+          "region": "完整逻辑部件",
+          "name": "D019.0 | arms/arm_right/hand/middle_finger",
+          "uuid": "{1d21298b-68e3-47b5-ae9e-e456892a274d}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__middle_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_left/hand/index_finger",
+    "name": "arms__arm_left__hand__index_finger",
+    "hidden": false,
+    "note": "完整左食指，根部接在掌部四指根的拇指侧，位于拇指之后，沿并拢指束向画面左下方延伸；拇指下方可辨靠大腿一侧的细长指缘及较短长指端，近段被拇指和掌部局部遮挡，另一侧邻接中指。包含遮挡下与掌部连接的同一根完整手指，指根为伸入侧，在掌部下方局部搭接；保留与拇指、中指之间真实缝隙。整根为一个 part，随掌部运动并独立控制，内部指节形变由同一网格承担，指甲和纹理不另拆。",
+    "svg": "part-layering/parts/arms/arm_left/hand/index_finger.svg",
+    "crop": {
+      "left": 652,
+      "top": 703,
+      "width": 39,
+      "height": 91
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__index_finger.png",
+    "level": 20,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__index_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__index_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__index_finger__visible.png",
+    "generation": {
+      "width": 468,
+      "height": 1092
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/index_finger",
+      "originalPartId": "arms/arm_left/hand/index_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__index_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{a7f3b5a6-bd56-4178-848d-1d040d23ab61}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__index_finger__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__index_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 20,
+          "region": "完整逻辑部件",
+          "name": "D020.0 | arms/arm_left/hand/index_finger",
+          "uuid": "{a7f3b5a6-bd56-4178-848d-1d040d23ab61}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__index_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_right/hand/index_finger",
+    "name": "arms__arm_right__hand__index_finger",
+    "hidden": false,
+    "note": "完整右食指，指根接在掌部远端的拇指侧，沿拇指后方向画面下方略偏右延伸；拇指下方靠大腿一侧的指身和较短指端可见，近端及部分侧缘被掌部、拇指遮挡，与中指紧贴并有局部重叠。指根连接掌部并保留掌下被遮住的连续本体，根部搭接仅属本指伸入掌部的局部范围。整根作为一个 part 跟随掌部，可在指根独立调整，内部指节、指甲及明暗不另拆。",
+    "svg": "part-layering/parts/arms/arm_right/hand/index_finger.svg",
+    "crop": {
+      "left": 394,
+      "top": 701,
+      "width": 40,
+      "height": 93
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__index_finger.png",
+    "level": 21,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__index_finger__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__index_finger__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__index_finger__visible.png",
+    "generation": {
+      "width": 480,
+      "height": 1116
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/index_finger",
+      "originalPartId": "arms/arm_right/hand/index_finger",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__index_finger__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{46a2f005-f975-479d-b963-0899922da2ba}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__index_finger__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__index_finger__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 21,
+          "region": "完整逻辑部件",
+          "name": "D021.0 | arms/arm_right/hand/index_finger",
+          "uuid": "{46a2f005-f975-479d-b963-0899922da2ba}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__index_finger__visible.png"
+  },
+  {
+    "id": "arms/arm_left/hand/thumb",
+    "name": "arms__arm_left__hand__thumb",
+    "hidden": false,
+    "note": "完整左拇指，从掌部靠大腿一侧的拇指根向画面左下方伸出，较短的指身、圆钝指尖及指甲可见，末端止于其余长指尖上方。根部与掌部连续并局部受掌部覆盖，指身位于紧邻食指的前方，遮住其近侧部分；拇指与食指之间的深色夹缝是两者的结构边界，不独立拆件。指根可在掌部下方留局部圆弧搭接，整根作为一个 part 随掌部运动并可独立转动，指甲、指腹及明暗随本指。",
+    "svg": "part-layering/parts/arms/arm_left/hand/thumb.svg",
+    "crop": {
+      "left": 651,
+      "top": 694,
+      "width": 43,
+      "height": 69
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__thumb.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__thumb__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__thumb__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__thumb__visible.png",
+    "generation": {
+      "width": 516,
+      "height": 828
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/thumb",
+      "originalPartId": "arms/arm_left/hand/thumb",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{0da721a0-936e-483f-802b-060acea54fe9}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__thumb__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__thumb__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 22,
+          "region": "完整拇指近端圆根及掌下承接段，约 y702–720，沿拇指根与掌心相接的弯曲截面进入掌后；保留连续完整原生指体底画。",
+          "name": "D022.0 | arms/arm_left/hand/thumb | root_behind_palm",
+          "uuid": "{0da721a0-936e-483f-802b-060acea54fe9}"
+        },
+        {
+          "level": 24.5,
+          "region": "同一拇指由根部转出的可见指身、甲面和细外缘，约 x659–680、y719–755，在本侧掌部 D024 的补全前；前后分片沿 x664/y720 至 x680/y720 左右的根部曲线连续衔接。指身仍盖食指，不把整根圆头抬到掌前。",
+          "name": "D024.5 | arms/arm_left/hand/thumb | front_finger",
+          "uuid": "{015927e5-ba89-4a67-8d46-e443548a96ba}"
+        }
+      ],
+      "split": "repair-01 拇指绕掌新增同一 part 普通深度分片"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__thumb__visible.png",
+    "levels": [
+      {
+        "level": 22,
+        "region": "完整拇指近端圆根及掌下承接段，约 y702–720，沿拇指根与掌心相接的弯曲截面进入掌后；保留连续完整原生指体底画。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/arms__arm_left__hand__thumb__D22.png"
+      },
+      {
+        "level": 24.5,
+        "region": "同一拇指由根部转出的可见指身、甲面和细外缘，约 x659–680、y719–755，在本侧掌部 D024 的补全前；前后分片沿 x664/y720 至 x680/y720 左右的根部曲线连续衔接。指身仍盖食指，不把整根圆头抬到掌前。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/arms__arm_left__hand__thumb__D24.5.png"
+      }
+    ]
+  },
+  {
+    "id": "arms/arm_right/hand/thumb",
+    "name": "arms__arm_right__hand__thumb",
+    "hidden": false,
+    "note": "完整右拇指，根部连接掌部靠大腿的桡侧，从掌侧向画面下方略偏右垂下，位于其余并拢手指之前；带可见指甲的短指端及主体清楚可见，根部与掌体相接，根端局部由掌部覆盖。拇指遮住食指近端及其部分侧缘，拇指与食指之间的暗线属于真实指间遮挡边界，不另拆暗线。整根作为一个 part 跟随掌部并可绕指根调整，指甲、指节、指腹及明暗随本指保留。",
+    "svg": "part-layering/parts/arms/arm_right/hand/thumb.svg",
+    "crop": {
+      "left": 389,
+      "top": 686,
+      "width": 45,
+      "height": 77
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__thumb.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__thumb__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__thumb__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__thumb__visible.png",
+    "generation": {
+      "width": 540,
+      "height": 924
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/thumb",
+      "originalPartId": "arms/arm_right/hand/thumb",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__thumb__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{b431a766-e0cf-4756-b5bb-7db516654159}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__thumb__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 23,
+          "region": "拇指完整近端圆根及掌下延续，约 y695–719，藏在本侧掌部 D025 后；不抬前完整补全圆根。",
+          "name": "D023.0 | arms/arm_right/hand/thumb | root_behind_palm",
+          "uuid": "{b431a766-e0cf-4756-b5bb-7db516654159}"
+        },
+        {
+          "level": 25.5,
+          "region": "同一拇指从掌侧转出的短指身、甲面与红暗外缘，约 x401–426、y714–755，位于 D025 掌补全前、食指前。根身分界沿约 x402/y714 至 x421/y720 的自然弯曲截面，两个分片连续同动。",
+          "name": "D025.5 | arms/arm_right/hand/thumb | front_finger",
+          "uuid": "{9d109ffc-ebfe-4fe5-abea-32c63216c36b}"
+        }
+      ],
+      "split": "repair-01 拇指绕掌新增同一 part 普通深度分片"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__thumb__visible.png",
+    "levels": [
+      {
+        "level": 23,
+        "region": "拇指完整近端圆根及掌下延续，约 y695–719，藏在本侧掌部 D025 后；不抬前完整补全圆根。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/arms__arm_right__hand__thumb__D23.png"
+      },
+      {
+        "level": 25.5,
+        "region": "同一拇指从掌侧转出的短指身、甲面与红暗外缘，约 x401–426、y714–755，位于 D025 掌补全前、食指前。根身分界沿约 x402/y714 至 x421/y720 的自然弯曲截面，两个分片连续同动。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/arms__arm_right__hand__thumb__D25.5.png"
+      }
+    ]
+  },
+  {
+    "id": "arms/arm_left/hand/palm",
+    "name": "arms__arm_left__hand__palm",
+    "hidden": false,
+    "note": "角色左手掌部，位于画面右侧，从腕端至四指根及拇指根连接区；掌部主体可见，四指并拢且向画面左下方延伸，拇指位于靠大腿的一侧。腕端承接已有伸入 forearm 下方的局部搭接；下方连接食指、中指、无名指和小指，内侧连接拇指。掌部为指根的覆盖侧，允许各指根在其下方局部搭接，掌部自身不沿每根手指重新外扩，也不包含各指的游离指身。作为完整掌部 part 跟随 hand 和腕部运动，承接各指的独立转动，掌面普通明暗随本体。",
+    "svg": "part-layering/parts/arms/arm_left/hand/palm.svg",
+    "crop": {
+      "left": 656,
+      "top": 643,
+      "width": 53,
+      "height": 96
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__palm.png",
+    "level": 24,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__palm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__hand__palm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__palm__visible.png",
+    "generation": {
+      "width": 636,
+      "height": 1152
+    },
+    "paint": {
+      "id": "arms/arm_left/hand/palm",
+      "originalPartId": "arms/arm_left/hand/palm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__palm__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{9e935d1f-a24a-450d-ae8b-e2a0206823f6}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__hand__palm__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__hand__palm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 24,
+          "region": "完整逻辑部件",
+          "name": "D024.0 | arms/arm_left/hand/palm",
+          "uuid": "{9e935d1f-a24a-450d-ae8b-e2a0206823f6}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__hand__palm__visible.png"
+  },
+  {
+    "id": "arms/arm_right/hand/palm",
+    "name": "arms__arm_right__hand__palm",
+    "hidden": false,
+    "note": "角色右手的完整掌部，自腕部连接至四指指根，包含拇指根连接处的掌体，位于画面左侧大腿外缘；掌面侧向可见，远端与并拢四指连续，靠大腿一侧连接拇指。腕端已有伸入 forearm 覆盖下的局部搭接范围。掌部承接各指根，不把长指主体或拇指重复归入掌体，也不沿每根手指扩出掌部轮廓。作为完整掌部 part 跟随前臂并承接腕部转动、俯仰及局部形变，各指相对掌部独立控制。",
+    "svg": "part-layering/parts/arms/arm_right/hand/palm.svg",
+    "crop": {
+      "left": 377,
+      "top": 634,
+      "width": 53,
+      "height": 112
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__palm.png",
+    "level": 25,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__palm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__hand__palm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__palm__visible.png",
+    "generation": {
+      "width": 636,
+      "height": 1344
+    },
+    "paint": {
+      "id": "arms/arm_right/hand/palm",
+      "originalPartId": "arms/arm_right/hand/palm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__palm__solo.png",
+      "generationSources": [],
+      "retainedLayerUUID": "{fedc19dc-c14c-49d3-9740-39837d6b2fad}",
+      "repairs": [
+        {
+          "note": "孤立手部生图遇 HTTP 400 后采用原生 4 倍笔刷画本件，依自身原图取样补明暗、轮廓和指甲；其余生成素材沿用。",
+          "evidence": "raster-layering/step01/workspace/paint-hand-quality-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__hand__palm__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__hand__palm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 25,
+          "region": "完整逻辑部件",
+          "name": "D025.0 | arms/arm_right/hand/palm",
+          "uuid": "{fedc19dc-c14c-49d3-9740-39837d6b2fad}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__hand__palm__visible.png"
+  },
+  {
+    "id": "arms/arm_left/forearm",
+    "name": "arms__arm_left__forearm",
+    "hidden": false,
+    "note": "角色左前臂，从肘部至腕部，参考中完整位于画内且主体可见，向下沿左髋及大腿外侧延伸，上接 upper_arm，下接 hand。肘部以前臂近端为伸入侧，藏在上臂肘端覆盖侧下方，保留局部圆弧搭接；腕部以前臂末端为覆盖侧，承接手的腕端。作为单一前臂运动单元跟随上臂并可绕肘独立转动，内部透视和形变由同一网格承担，皮肤明暗不另拆。",
+    "svg": "part-layering/parts/arms/arm_left/forearm.svg",
+    "crop": {
+      "left": 612,
+      "top": 444,
+      "width": 101,
+      "height": 244
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__forearm.png",
+    "level": 26,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__forearm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__forearm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__forearm__visible.png",
+    "generation": {
+      "width": 636,
+      "height": 1536
+    },
+    "paint": {
+      "id": "arms/arm_left/forearm",
+      "originalPartId": "arms/arm_left/forearm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__forearm__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png"
+      ],
+      "retainedLayerUUID": "{b3aaaf3b-975b-49e6-ba87-29a5886811ed}",
+      "repairs": [
+        {
+          "note": "原生柔笔沿本件体积修根部硬色块，保护轮廓与已有结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "note": "按各段自身可见区恢复原图同坐标笔触，消除肘部可见色差接缝，补全画面保留。",
+          "evidence": "raster-layering/step01/workspace/arm-owned-brushwork-final-v70.json"
+        },
+        {
+          "note": "仅在被上臂覆盖的补全区用本前臂可见色样接顺根部体积；保护可见笔触。",
+          "evidence": "raster-layering/step01/workspace/forearm-hidden-root-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__forearm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 26,
+          "region": "完整逻辑部件",
+          "name": "D026.0 | arms/arm_left/forearm",
+          "uuid": "{b3aaaf3b-975b-49e6-ba87-29a5886811ed}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__forearm__visible.png"
+  },
+  {
+    "id": "arms/arm_right/forearm",
+    "name": "arms__arm_right__forearm",
+    "hidden": false,
+    "note": "角色右前臂，自肘部至腕部，主体可见且全部位于画内，沿右髋与大腿外侧向下延伸，上接 upper_arm，下接 hand。肘部以前臂近端为伸入侧，位于上臂肘端覆盖侧下方，需要局部圆弧搭接余量；腕部以前臂末端为覆盖侧，承接手部腕端。作为单一前臂运动单元跟随上臂并可绕肘独立转动，透视与局部形变由同一网格承担，皮肤纹理和普通明暗随本体。",
+    "svg": "part-layering/parts/arms/arm_right/forearm.svg",
+    "crop": {
+      "left": 374,
+      "top": 467,
+      "width": 96,
+      "height": 222
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__forearm.png",
+    "level": 27,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__forearm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__forearm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__forearm__visible.png",
+    "generation": {
+      "width": 664,
+      "height": 1536
+    },
+    "paint": {
+      "id": "arms/arm_right/forearm",
+      "originalPartId": "arms/arm_right/forearm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__forearm__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png"
+      ],
+      "retainedLayerUUID": "{77745b28-7235-486b-8afa-f3fbf816bd4a}",
+      "repairs": [
+        {
+          "note": "原生柔笔沿本件体积修根部硬色块，保护轮廓与已有结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "note": "按各段自身可见区恢复原图同坐标笔触，消除肘部可见色差接缝，补全画面保留。",
+          "evidence": "raster-layering/step01/workspace/arm-owned-brushwork-final-v70.json"
+        },
+        {
+          "note": "仅在被上臂覆盖的补全区用本前臂可见色样接顺根部体积；保护可见笔触。",
+          "evidence": "raster-layering/step01/workspace/forearm-hidden-root-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__forearm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 27,
+          "region": "完整逻辑部件",
+          "name": "D027.0 | arms/arm_right/forearm",
+          "uuid": "{77745b28-7235-486b-8afa-f3fbf816bd4a}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__forearm__visible.png"
+  },
+  {
+    "id": "arms/arm_left/upper_arm",
+    "name": "arms__arm_left__upper_arm",
+    "hidden": false,
+    "note": "角色左上臂，位于画面右侧，从肩关节承接处至肘部，主体可见，邻近白色长发位于其后。肩头残段、腋下与胸侧归 body；上臂肩端为伸入侧，位于 torso 肩部覆盖侧下方，连接处需有局部圆弧搭接余量。肘端为覆盖侧，承接其下方 forearm 的近端搭接。作为单一上臂运动单元，随肩部运动并独立转动，透视及局部形变由本 part 网格承担，不另拆三角肌或肘帽。",
+    "svg": "part-layering/parts/arms/arm_left/upper_arm.svg",
+    "crop": {
+      "left": 592,
+      "top": 271,
+      "width": 87,
+      "height": 229
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__upper_arm.png",
+    "level": 28,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__upper_arm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_left__upper_arm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__upper_arm__visible.png",
+    "generation": {
+      "width": 584,
+      "height": 1536
+    },
+    "paint": {
+      "id": "arms/arm_left/upper_arm",
+      "originalPartId": "arms/arm_left/upper_arm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__upper_arm__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_7a8b5125088e41e5bc8ff55c702c4489.png"
+      ],
+      "retainedLayerUUID": "{f10018ea-0b99-4738-a459-405dcb2c318f}",
+      "repairs": [
+        {
+          "note": "原生柔笔沿本件体积修根部硬色块，保护轮廓与已有结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "note": "按各段自身可见区恢复原图同坐标笔触，消除肘部可见色差接缝，补全画面保留。",
+          "evidence": "raster-layering/step01/workspace/arm-owned-brushwork-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_left__upper_arm__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_left__upper_arm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 28,
+          "region": "完整逻辑部件",
+          "name": "D028.0 | arms/arm_left/upper_arm",
+          "uuid": "{f10018ea-0b99-4738-a459-405dcb2c318f}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_left__upper_arm__visible.png"
+  },
+  {
+    "id": "arms/arm_right/upper_arm",
+    "name": "arms__arm_right__upper_arm",
+    "hidden": false,
+    "note": "角色右上臂，位于画面左侧，自肩关节承接处至肘部，主体可见，邻近黑色长发位于其后。肩头残段、腋下及胸侧归 body；上臂肩端为伸入侧，位于 torso 肩部覆盖侧下方，连接处需要局部圆弧搭接余量，源 SVG 已保留肩端补全范围。肘端为覆盖侧，承接 forearm 近端的局部圆弧搭接。作为单一上臂运动单元跟随肩部并可独立转动，转面、俯仰及局部形变由本 part 网格承担，不另拆三角肌或肘帽。",
+    "svg": "part-layering/parts/arms/arm_right/upper_arm.svg",
+    "crop": {
+      "left": 400,
+      "top": 269,
+      "width": 94,
+      "height": 247
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__upper_arm.png",
+    "level": 29,
+    "sample": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__upper_arm__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/arms__arm_right__upper_arm__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__upper_arm__visible.png",
+    "generation": {
+      "width": 585,
+      "height": 1536
+    },
+    "paint": {
+      "id": "arms/arm_right/upper_arm",
+      "originalPartId": "arms/arm_right/upper_arm",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__upper_arm__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_7a8b5125088e41e5bc8ff55c702c4489.png"
+      ],
+      "retainedLayerUUID": "{4323d60b-9de3-43a0-ad2e-ed4b7505a560}",
+      "repairs": [
+        {
+          "note": "原生柔笔沿本件体积修根部硬色块，保护轮廓与已有结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "note": "按各段自身可见区恢复原图同坐标笔触，消除肘部可见色差接缝，补全画面保留。",
+          "evidence": "raster-layering/step01/workspace/arm-owned-brushwork-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/arms__arm_right__upper_arm__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/arms__arm_right__upper_arm__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 29,
+          "region": "完整逻辑部件",
+          "name": "D029.0 | arms/arm_right/upper_arm",
+          "uuid": "{4323d60b-9de3-43a0-ad2e-ed4b7505a560}"
+        }
+      ],
+      "split": "单深度完整绘画层",
+      "reuseRepair02": {
+        "sourcePart": "arms/arm_left/upper_arm",
+        "operation": "Mirror local generated pale-skin material and register x_source=1088-x; preserve right native alpha/edges."
+      }
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/arms__arm_right__upper_arm__visible.png"
+  },
+  {
+    "id": "neck",
+    "name": "neck",
+    "hidden": false,
+    "note": "下颌至躯干之间的颈部，正面可见，侧缘局部被短发遮挡；下端止于颈根，锁骨归 body。",
+    "svg": "part-layering/parts/neck.svg",
+    "crop": {
+      "left": 491,
+      "top": 205,
+      "width": 104,
+      "height": 90
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/neck.png",
+    "level": 30,
+    "sample": "raster-layering/step01/workspace/controls-repair02/neck__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/neck__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/neck__visible.png",
+    "generation": {
+      "width": 1248,
+      "height": 1080
+    },
+    "paint": {
+      "id": "neck",
+      "originalPartId": "neck",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/neck__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png"
+      ],
+      "retainedLayerUUID": "{7c9213b7-ec58-4bbd-a966-2ec28be4c5ff}",
+      "repairs": [
+        {
+          "note": "保留原生成颈部体积，去除下巴投影。",
+          "evidence": "raster-layering/step01/workspace/repair-face-neck-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/neck__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 30,
+          "region": "完整逻辑部件",
+          "name": "D030.0 | neck",
+          "uuid": "{7c9213b7-ec58-4bbd-a966-2ec28be4c5ff}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/neck__visible.png"
+  },
+  {
+    "id": "body/torso",
+    "name": "body__torso",
+    "hidden": false,
+    "note": "颈根以下至肚脐附近的连续躯干底形，包含双肩头、锁骨、胸廓、腋下、胸侧及腰腹上段；上接 neck，两侧接手臂，下接 pelvis，长发位于后方。乳房后方仍为完整连续的躯干，不挖空。参考中锁骨、肩部及腰腹形体可辨，临时连体服覆盖不构成独立结构。作为身体转动、俯仰和呼吸变形的承接本体，以同一网格控制，不再按解剖区域细分。",
+    "svg": "part-layering/parts/body/torso.svg",
+    "crop": {
+      "left": 413,
+      "top": 252,
+      "width": 258,
+      "height": 282
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/body__torso.png",
+    "level": 31,
+    "sample": "raster-layering/step01/workspace/controls-repair02/body__torso__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/body__torso__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/body__torso__visible.png",
+    "generation": {
+      "width": 1405,
+      "height": 1536
+    },
+    "paint": {
+      "id": "body/torso",
+      "originalPartId": "body/torso",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/body__torso__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_f0bfec93432e4eb7bcbf26291edff54b.png"
+      ],
+      "retainedLayerUUID": "{facc9531-601b-4dcd-9af7-108430d288c3}",
+      "repairs": [
+        {
+          "note": "局部生成平顺躯干补全面，去除重复乳房形体；原生续完衣领和两侧结构线。",
+          "evidence": "raster-layering/step01/workspace/body-native-continuity-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/body__torso__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/body__torso__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 31,
+          "region": "完整逻辑部件",
+          "name": "D031.0 | body/torso",
+          "uuid": "{facc9531-601b-4dcd-9af7-108430d288c3}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/body__torso__visible.png"
+  },
+  {
+    "id": "body/breast",
+    "name": "body__breast",
+    "hidden": false,
+    "note": "左右乳房合为一个完整前置形体；参考中可见中央乳沟、双侧胸部隆起及连体服包覆下的体积转折，具有相对胸廓独立的体积和物理形变需求。位于 torso 胸廓前方，随 torso 整体转动并承接局部形变；左右体积差异和转面透视由同一 part 的网格控制。局部皮肤外露，其余被临时连体服覆盖，形体仍可辨，并非整体隐藏。",
+    "svg": "part-layering/parts/body/breast.svg",
+    "crop": {
+      "left": 450,
+      "top": 301,
+      "width": 184,
+      "height": 126
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/body__breast.png",
+    "level": 32,
+    "sample": "raster-layering/step01/workspace/controls-repair02/body__breast__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/body__breast__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/body__breast__visible.png",
+    "generation": {
+      "width": 1536,
+      "height": 1052
+    },
+    "paint": {
+      "id": "body/breast",
+      "originalPartId": "body/breast",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/body__breast__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/body.png"
+      ],
+      "retainedLayerUUID": "{1961dad3-adb0-4599-96b0-ef2d4e295527}",
+      "repairs": [
+        {
+          "note": "沿用有效生成绘画，局部本件原图取样接回可见领缘。",
+          "evidence": "raster-layering/step01/workspace/apply-joint-sampling-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 32,
+          "region": "完整逻辑部件",
+          "name": "D032.0 | body/breast",
+          "uuid": "{1961dad3-adb0-4599-96b0-ef2d4e295527}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/body__breast__visible.png"
+  },
+  {
+    "id": "face/ears/ear_left",
+    "name": "face__ears__ear_left",
+    "hidden": false,
+    "note": "角色自身左耳，位于画面右侧脸颊外缘、白色侧发后方；原图露出窄小的肤色耳缘，其余耳体被头发遮挡，需保留并补全被遮挡的同一耳体。属于普通人耳，整耳随头部运动，转动与俯仰通过整体网格变形控制；耳廓线、耳内凹面及普通明暗均留在本 part。两耳同为普通人耳，可镜像作为形体基础，再按原画各自的位置、倾斜和露出范围对齐；遮挡下的内部细节无法据参考确认。",
+    "svg": "part-layering/parts/face/ears/ear_left.svg",
+    "crop": {
+      "left": 598,
+      "top": 140,
+      "width": 51,
+      "height": 58
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_left.png",
+    "level": 33,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__ears__ear_left__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__ears__ear_left__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_left__visible.png",
+    "generation": {
+      "width": 612,
+      "height": 696
+    },
+    "paint": {
+      "id": "face/ears/ear_left",
+      "originalPartId": "face/ears/ear_left",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__ears__ear_left__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_649a032ea91b438c864dd9a4c27355d6.png"
+      ],
+      "retainedLayerUUID": "{7ef45aa6-e5e7-4a98-bfff-26dd2a2eae86}",
+      "repairs": [
+        {
+          "note": "Complete ear regeneration with all folds",
+          "evidence": "raster-layering/step01/workspace/feature-local-v70/face-finish-jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 33,
+          "region": "完整逻辑部件",
+          "name": "D033.0 | face/ears/ear_left",
+          "uuid": "{7ef45aa6-e5e7-4a98-bfff-26dd2a2eae86}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_left__visible.png"
+  },
+  {
+    "id": "face/ears/ear_right",
+    "name": "face__ears__ear_right",
+    "hidden": false,
+    "note": "角色自身右耳，位于画面左侧脸颊外缘、黑色侧发后方；原图露出窄小的肤色耳缘，其余耳体被头发遮挡，需保留并补全被遮挡的同一耳体。属于普通人耳，整耳随头部运动，转动与俯仰通过整体网格变形控制；耳廓线、耳内凹面及普通明暗均留在本 part。与左耳同型，可镜像作为形体基础，再按原画各自的位置、倾斜和露出范围对齐；不据局部露出推定两侧完全对称的内部细节。",
+    "svg": "part-layering/parts/face/ears/ear_right.svg",
+    "crop": {
+      "left": 435,
+      "top": 135,
+      "width": 51,
+      "height": 62
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_right.png",
+    "level": 34,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__ears__ear_right__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__ears__ear_right__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_right__visible.png",
+    "generation": {
+      "width": 612,
+      "height": 744
+    },
+    "paint": {
+      "id": "face/ears/ear_right",
+      "originalPartId": "face/ears/ear_right",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__ears__ear_right__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_106ffe51e78b4e9d8f964870cb8ec1d9.png"
+      ],
+      "retainedLayerUUID": "{f2b91761-c1f0-4adc-9a0b-25f7a7481322}",
+      "repairs": [
+        {
+          "note": "Complete ear regeneration with all folds",
+          "evidence": "raster-layering/step01/workspace/feature-local-v70/face-finish-jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 34,
+          "region": "完整逻辑部件",
+          "name": "D034.0 | face/ears/ear_right",
+          "uuid": "{f2b91761-c1f0-4adc-9a0b-25f7a7481322}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__ears__ear_right__visible.png"
+  },
+  {
+    "id": "face/face_base",
+    "name": "face__face_base",
+    "hidden": false,
+    "note": "完整干净脸底，包含额头、双颊、下颌和下巴；位于全部五官与腮红下方，眼部和嘴部不挖洞。额头及两侧脸缘被刘海、侧发局部遮挡，仍需保持连续脸型；上界止于脸部额头，不扩展为头顶或后脑，不含耳朵、颈部和头发。随 face 整体转动、俯仰，脸型透视与局部形变由同一 part 网格承担，普通肤色和明暗附着于脸底。",
+    "svg": "part-layering/parts/face/face_base.svg",
+    "crop": {
+      "left": 449,
+      "top": 56,
+      "width": 187,
+      "height": 193
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__face_base.png",
+    "level": 35,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__face_base__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__face_base__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__face_base__visible.png",
+    "generation": {
+      "width": 1488,
+      "height": 1536
+    },
+    "paint": {
+      "id": "face/face_base",
+      "originalPartId": "face/face_base",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__face_base__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{5120839e-f4ec-4fc8-9539-ecb251cfc63b}",
+      "repairs": [
+        {
+          "note": "去除五官和头发鬼影、保留自身肤色体积，完整下颌轮廓归此层。",
+          "evidence": "raster-layering/step01/workspace/repair-face-neck-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__face_base__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__face_base__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 35,
+          "region": "完整逻辑部件",
+          "name": "D035.0 | face/face_base",
+          "uuid": "{5120839e-f4ec-4fc8-9539-ecb251cfc63b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__face_base__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/sclera",
+    "name": "face__eyes__eye_left__sclera",
+    "hidden": false,
+    "note": "完整眼白及眼眶开口底形，参考中在虹膜两侧可见白色眼白及上方灰色明暗；虹膜后方仍是连续完整眼白。位于虹膜、高光和上眼睑之后，下沿就是当前眼睛开口的下缘，与 upper_eyelid 内缘共同控制开闭及眼内内容的显露。参考下缘没有独立贯通的下眼睑线，不将虹膜黑边或底部局部灰边扩成完整下眼线；本次无须另设下方肤色推起带。作为一个 part 随整眼转动、俯仰并承接开口变形，眼白普通明暗随本体。",
+    "svg": "part-layering/parts/face/eyes/eye_left/sclera.svg",
+    "crop": {
+      "left": 556,
+      "top": 132,
+      "width": 57,
+      "height": 49
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__sclera.png",
+    "level": 36,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__sclera__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__sclera__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__sclera__visible.png",
+    "generation": {
+      "width": 684,
+      "height": 588
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/sclera",
+      "originalPartId": "face/eyes/eye_left/sclera",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__sclera__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_8da303f77f344584afba55c1fb01187b.png"
+      ],
+      "retainedLayerUUID": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+      "repairs": [
+        {
+          "note": "重新生成完整实心眼白，保留整圈轮廓和柔和自身体积。",
+          "evidence": "raster-layering/step01/workspace/registered-v70/scleras-final-index.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_left/sclera",
+          "ownerLayer": "D036.0 | face/eyes/eye_left/sclera",
+          "ownerUUID": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+          "mask": "OPENING | eye_left | shared aperture",
+          "maskUUID": "{2f703e78-ba71-4c64-b272-d340fb5b8d6a}",
+          "control": "eye_left",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{375c1a9d-1320-4dc4-8abc-43c92df1036d}",
+          "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+          "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 36,
+          "region": "完整逻辑部件",
+          "name": "D036.0 | face/eyes/eye_left/sclera",
+          "uuid": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__sclera__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/sclera",
+    "name": "face__eyes__eye_right__sclera",
+    "hidden": false,
+    "note": "完整眼白及眼眶开口底形，参考中在虹膜两侧及周边可见白色与浅灰色眼白，虹膜后方仍须保持连续完整。下沿就是眼睛开口下缘，包含下缘中央可见的局部浅色短边界笔触；它不是贯通下缘的完整眼睑线，不据此增加整条描线。上方邻接并受 upper_eyelid 遮挡，开闭时下沿与上眼睑内缘共同控制开口；虹膜与高光仅在该眼白范围内显露和活动。作为一个 part 随整眼及头脸运动，以网格承接开口下缘和转面透视变形。",
+    "svg": "part-layering/parts/face/eyes/eye_right/sclera.svg",
+    "crop": {
+      "left": 473,
+      "top": 132,
+      "width": 56,
+      "height": 49
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__sclera.png",
+    "level": 37,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__sclera__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__sclera__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__sclera__visible.png",
+    "generation": {
+      "width": 672,
+      "height": 588
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/sclera",
+      "originalPartId": "face/eyes/eye_right/sclera",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__sclera__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_8da303f77f344584afba55c1fb01187b.png"
+      ],
+      "retainedLayerUUID": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+      "repairs": [
+        {
+          "note": "复用左眼完整生成眼白，原生水平镜像后配准；独立图层及右眼开合区。",
+          "evidence": "raster-layering/step01/workspace/sclera-reuse-v70.json"
+        }
+      ],
+      "reuse": {
+        "id": "face/eyes/eye_right/sclera",
+        "reuseSource": "face/eyes/eye_left/sclera",
+        "sourceUUID": "{d6a48281-13a3-48d9-b9b4-0f6744c809a4}",
+        "targetUUID": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+        "mirrorX": true,
+        "sourceBounds": [
+          565,
+          141,
+          40,
+          31
+        ],
+        "targetBounds": {
+          "left": 481,
+          "top": 141,
+          "width": 39,
+          "height": 31
+        },
+        "reason": "The complete frontal sclera is a symmetric white curved surface. Mirror the clean complete painted surface; preserve independent original upper lids, iris designs, glints and side-specific anatomical apertures."
+      },
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_right/sclera",
+          "ownerLayer": "D037.0 | face/eyes/eye_right/sclera",
+          "ownerUUID": "{b0846450-9172-4195-9173-adbc29ab66ca}",
+          "mask": "OPENING | eye_right | shared aperture",
+          "maskUUID": "{54b755d2-eced-433a-8527-9b960ca081b5}",
+          "control": "eye_right",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{b075dee8-54c0-4d60-a637-78c7cdd18507}",
+          "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+          "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 37,
+          "region": "完整逻辑部件",
+          "name": "D037.0 | face/eyes/eye_right/sclera",
+          "uuid": "{b0846450-9172-4195-9173-adbc29ab66ca}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__sclera__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/iris",
+    "name": "face__eyes__eye_left__iris",
+    "hidden": false,
+    "note": "可见的粉红色椭圆眼黑主体，包括深色外圈、中央黑色瞳孔及虹膜内部色彩明暗；瞳孔默认与虹膜同动，参考没有独立缩放依据，不另列 pupil。位于完整眼白之前、上眼睑之后，保留眼睑后被遮住的虹膜范围；视线变化时在眼白开口范围内移动，超出开口的部分受遮挡。整体随 eye_left 和头脸转动、俯仰，视线、透视压缩及局部形变由同一 part 网格承担。",
+    "svg": "part-layering/parts/face/eyes/eye_left/iris.svg",
+    "crop": {
+      "left": 560,
+      "top": 135,
+      "width": 41,
+      "height": 45
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__iris.png",
+    "level": 38,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__iris__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__iris__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__iris__visible.png",
+    "generation": {
+      "width": 492,
+      "height": 540
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/iris",
+      "originalPartId": "face/eyes/eye_left/iris",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__iris__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+      ],
+      "retainedLayerUUID": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}",
+      "repairs": [
+        {
+          "note": "保留原虹膜形状、暗边和层次；原生笔触清除烘焙高光，高光由独立 part 控制。",
+          "evidence": "raster-layering/step01/workspace/native-eye-paint-finish-v70.py"
+        },
+        {
+          "note": "去掉外圈带入的中性白背景细屑，暗边未改。",
+          "evidence": "raster-layering/step01/workspace/iris-background-fringe-cleanup-v70.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_left/iris",
+          "ownerLayer": "D038.0 | face/eyes/eye_left/iris",
+          "ownerUUID": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}",
+          "mask": "OPENING | eye_left | shared aperture",
+          "maskUUID": "{e35b204c-17be-42d3-9431-da250ca1eedf}",
+          "control": "eye_left",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{cab5a696-c987-42ab-8c4a-9157a5fc2ae9}",
+          "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+          "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 38,
+          "region": "完整逻辑部件",
+          "name": "D038.0 | face/eyes/eye_left/iris",
+          "uuid": "{3e729b40-ba98-43f7-bcd7-c165fe64d54b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__iris__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/iris",
+    "name": "face__eyes__eye_right__iris",
+    "hidden": false,
+    "note": "可见的红粉色虹膜、深色外缘及中央黑色瞳孔合为一个眼黑主体，内部色彩和普通明暗随主体；没有瞳孔需要独立缩放的依据，不另列 pupil。位于完整 sclera 前方、上眼睑之后，包含并补足上部被眼睑遮住的同一虹膜范围；当前局部遮挡，并非整体隐藏。随 eye_right 和头脸转动，可相对眼白移动控制视线，显露范围受眼白开口及眼睑遮挡约束，虹膜透视压缩由本 part 网格处理。",
+    "svg": "part-layering/parts/face/eyes/eye_right/iris.svg",
+    "crop": {
+      "left": 484,
+      "top": 135,
+      "width": 42,
+      "height": 45
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__iris.png",
+    "level": 39,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__iris__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__iris__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__iris__visible.png",
+    "generation": {
+      "width": 504,
+      "height": 540
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/iris",
+      "originalPartId": "face/eyes/eye_right/iris",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__iris__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+      ],
+      "retainedLayerUUID": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}",
+      "repairs": [
+        {
+          "note": "保留原虹膜形状、暗边和层次；原生笔触清除烘焙高光，高光由独立 part 控制。",
+          "evidence": "raster-layering/step01/workspace/native-eye-paint-finish-v70.py"
+        },
+        {
+          "note": "去掉外圈带入的中性白背景细屑，暗边未改。",
+          "evidence": "raster-layering/step01/workspace/iris-background-fringe-cleanup-v70.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_right/iris",
+          "ownerLayer": "D039.0 | face/eyes/eye_right/iris",
+          "ownerUUID": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}",
+          "mask": "OPENING | eye_right | shared aperture",
+          "maskUUID": "{9383eaf3-c36b-453b-a78c-39ee6bf7adee}",
+          "control": "eye_right",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{1ebbeb1e-db08-41f0-af42-4266794c2997}",
+          "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+          "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 39,
+          "region": "完整逻辑部件",
+          "name": "D039.0 | face/eyes/eye_right/iris",
+          "uuid": "{9ff9f155-33df-4bba-b4dc-364ab7882f6e}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__iris__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/highlight",
+    "name": "face__eyes__eye_left__highlight",
+    "hidden": false,
+    "note": "虹膜表面可见的上方白色亮斑及两侧小亮点、短亮条，合为一个可共同控制的高光 part；不包含虹膜下部自身的浅粉色明暗。位于虹膜之前，默认随 iris 的视线运动，可独立调整偏移或显隐，并与虹膜一起受眼白开口及上眼睑遮挡，闭眼时随开口收起。",
+    "svg": "part-layering/parts/face/eyes/eye_left/highlight.svg",
+    "crop": {
+      "left": 561,
+      "top": 138,
+      "width": 40,
+      "height": 30
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__highlight.png",
+    "level": 40,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__highlight__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__highlight__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__highlight__visible.png",
+    "generation": {
+      "width": 480,
+      "height": 360
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/highlight",
+      "originalPartId": "face/eyes/eye_left/highlight",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__highlight__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+      ],
+      "retainedLayerUUID": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}",
+      "repairs": [
+        {
+          "note": "按原图坐标补回微小侧高光白芯，保留各眼设计。",
+          "evidence": "raster-layering/step01/workspace/finish-eye-rim-and-glint-ownership-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_left/highlight",
+          "ownerLayer": "D040.0 | face/eyes/eye_left/highlight",
+          "ownerUUID": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}",
+          "mask": "OPENING | eye_left | shared aperture",
+          "maskUUID": "{c72fa4cd-dc6e-4d93-8267-0950c3e8ef93}",
+          "control": "eye_left",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_left__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{f9980514-f549-468a-92fd-7b66522cdf46}",
+          "selectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb",
+          "backupSelectionSHA256": "6b899a076253eee0c0cead26930e28b49955cf8eb0edf67a87566bda1cb1c8cb"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 40,
+          "region": "完整逻辑部件",
+          "name": "D040.0 | face/eyes/eye_left/highlight",
+          "uuid": "{f6d14c01-e53e-45cd-b6fc-1deabd15c97b}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__highlight__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/highlight",
+    "name": "face__eyes__eye_right__highlight",
+    "hidden": false,
+    "note": "虹膜上方较大的白色高光及两侧较小的白色亮点，共三个可见高光合为一个 part；不含虹膜下部本身的浅粉色渐变。它们位于虹膜表面，默认随 iris 同动，可统一调整或显隐，无需逐点拆分。开闭与视线移动时和虹膜一起受眼白范围及上眼睑遮挡限制，随整眼转动、俯仰并以网格处理局部变化。",
+    "svg": "part-layering/parts/face/eyes/eye_right/highlight.svg",
+    "crop": {
+      "left": 486,
+      "top": 138,
+      "width": 39,
+      "height": 27
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__highlight.png",
+    "level": 41,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__highlight__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__highlight__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__highlight__visible.png",
+    "generation": {
+      "width": 468,
+      "height": 324
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/highlight",
+      "originalPartId": "face/eyes/eye_right/highlight",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__highlight__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+      ],
+      "retainedLayerUUID": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}",
+      "repairs": [
+        {
+          "note": "按原图坐标补回微小侧高光白芯，保留各眼设计。",
+          "evidence": "raster-layering/step01/workspace/finish-eye-rim-and-glint-ownership-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/eyes/eye_right/highlight",
+          "ownerLayer": "D041.0 | face/eyes/eye_right/highlight",
+          "ownerUUID": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}",
+          "mask": "OPENING | eye_right | shared aperture",
+          "maskUUID": "{f6b437ec-2d88-48fd-9604-cf03dde7b630}",
+          "control": "eye_right",
+          "region": "raster-layering/step01/workspace/feature-local-v70/eye_right__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{8addc4d7-3afc-4643-aa2e-fe2270f8e870}",
+          "selectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171",
+          "backupSelectionSHA256": "372446886259229c0af2aad20382ae2b5e43aca5695f5147b33407382fa17171"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 41,
+          "region": "完整逻辑部件",
+          "name": "D041.0 | face/eyes/eye_right/highlight",
+          "uuid": "{281fe8f6-7c28-4b2a-84a2-ed885292fbec}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__highlight__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/upper_eyelid",
+    "name": "face__eyes__eye_left__upper_eyelid",
+    "hidden": false,
+    "note": "角色左眼、画面右侧的完整深色上眼睑，包含与其连为同一线形的上睫毛尖、外眼尾勾及外眦下接段；这些部分没有独立运动依据，不另列 upper_eyelashes。位于眼白、虹膜及高光之前，其内缘与眼睛下缘围成开口，承担眨眼时上缘下降、抬起及弯曲。整件随 eye_left 和头脸运动，转动、俯仰及眼尾局部形变由同一 part 网格处理。",
+    "svg": "part-layering/parts/face/eyes/eye_left/upper_eyelid.svg",
+    "crop": {
+      "left": 556,
+      "top": 124,
+      "width": 70,
+      "height": 49
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__upper_eyelid.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__upper_eyelid__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__upper_eyelid__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__upper_eyelid__visible.png",
+    "generation": {
+      "width": 840,
+      "height": 588
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/upper_eyelid",
+      "originalPartId": "face/eyes/eye_left/upper_eyelid",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+      ],
+      "retainedLayerUUID": "{0e0d66d6-a711-46ee-abb6-eee2a0abd8a2}",
+      "repairs": [
+        {
+          "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+          "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+        },
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__upper_eyelid__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 42,
+          "region": "左上眼睑主体、上睫毛弧及发下连续部分，在眼白虹膜前、刘海和白侧发后；不把整只眼睑抬到头发前。",
+          "name": "D042.0 | face/eyes/eye_left/upper_eyelid | main_arc",
+          "uuid": "{0e0d66d6-a711-46ee-abb6-eee2a0abd8a2}"
+        },
+        {
+          "level": 65.5,
+          "region": "画面右眼外眦尖钩约 x603–619、y142–162，尤其 x610–617、y147–152 的细尖压在白侧发内缘之前。沿本件墨线内部与主体搭接，保留完整尖端和渐细收笔；同一逻辑上眼睑的普通绘画分片。",
+          "name": "D065.5 | face/eyes/eye_left/upper_eyelid | outer_corner",
+          "uuid": "{da4b2000-d9bd-49fd-a542-759ab4d0c165}"
+        }
+      ],
+      "split": "repair-01 眼尾穿插新增同一 part 普通深度分片"
+    },
+    "levels": [
+      {
+        "level": 42,
+        "region": "左上眼睑主体、上睫毛弧及发下连续部分，在眼白虹膜前、刘海和白侧发后；不把整只眼睑抬到头发前。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyes__eye_left__upper_eyelid__D42.png"
+      },
+      {
+        "level": 65.5,
+        "region": "画面右眼外眦尖钩约 x603–619、y142–162，尤其 x610–617、y147–152 的细尖压在白侧发内缘之前。沿本件墨线内部与主体搭接，保留完整尖端和渐细收笔；同一逻辑上眼睑的普通绘画分片。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyes__eye_left__upper_eyelid__D65.5.png"
+      }
+    ],
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__upper_eyelid__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/upper_eyelid",
+    "name": "face__eyes__eye_right__upper_eyelid",
+    "hidden": false,
+    "note": "角色右眼、画面左侧的完整上眼睑线形，包含较厚的深色上缘、与之连成一体的上睫毛尖及外眼角向下的勾形；这些笔触无独立控制依据，不另列 upper_eyelashes。位于眼白、虹膜与高光之前，其内缘与 sclera 下沿围成眼睛开口，开闭时承担上缘升降、弯曲及对眼内内容的遮挡。整件随 eye_right 和头脸运动，转动、俯仰及局部形变由同一 part 网格承担。",
+    "svg": "part-layering/parts/face/eyes/eye_right/upper_eyelid.svg",
+    "crop": {
+      "left": 461,
+      "top": 128,
+      "width": 68,
+      "height": 46
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__upper_eyelid.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__upper_eyelid__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__upper_eyelid__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__upper_eyelid__visible.png",
+    "generation": {
+      "width": 816,
+      "height": 552
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/upper_eyelid",
+      "originalPartId": "face/eyes/eye_right/upper_eyelid",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__upper_eyelid__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+      ],
+      "retainedLayerUUID": "{8689f19d-ec05-43f9-8f35-70a804dd539b}",
+      "repairs": [
+        {
+          "note": "只取本件可见睫毛/眼睑墨线，排除上眼褶和虹膜；原生成遮挡内延续保留。",
+          "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/face__eyes__eye_right__upper_eyelid__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 43,
+          "region": "右上眼睑主弧、上睫毛及发下延续，在眼白虹膜前、黑侧发和刘海后。",
+          "name": "D043.0 | face/eyes/eye_right/upper_eyelid | main_arc",
+          "uuid": "{8689f19d-ec05-43f9-8f35-70a804dd539b}"
+        },
+        {
+          "level": 66.5,
+          "region": "画面左眼外眦尖钩约 x468–483、y145–164，特别 x469–477、y149–153 压在黑侧发自有内缘之前；沿本件墨线内部与主体连续接回，保持尖钩和浓淡收笔。",
+          "name": "D066.5 | face/eyes/eye_right/upper_eyelid | outer_corner",
+          "uuid": "{c4298322-c043-410d-b944-d0cbc9624540}"
+        }
+      ],
+      "split": "repair-01 眼尾穿插新增同一 part 普通深度分片"
+    },
+    "levels": [
+      {
+        "level": 43,
+        "region": "右上眼睑主弧、上睫毛及发下延续，在眼白虹膜前、黑侧发和刘海后。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyes__eye_right__upper_eyelid__D43.png"
+      },
+      {
+        "level": 66.5,
+        "region": "画面左眼外眦尖钩约 x468–483、y145–164，特别 x469–477、y149–153 压在黑侧发自有内缘之前；沿本件墨线内部与主体连续接回，保持尖钩和浓淡收笔。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyes__eye_right__upper_eyelid__D66.5.png"
+      }
+    ],
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__upper_eyelid__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/lower_eyelashes",
+    "name": "face__eyes__eye_left__lower_eyelashes",
+    "hidden": false,
+    "note": "眼睛下缘偏外侧可见的两枚分离点状短睫毛，与上眼睑及外眼尾勾不相连，作为一个同动 part，不连成长下眼线。跟随本侧眼睛下缘及 sclera 下沿的开闭变形，并随 eye_left 转动、俯仰；外眼尾连在上眼睑上的深色部分仍归 upper_eyelid。",
+    "svg": "part-layering/parts/face/eyes/eye_left/lower_eyelashes.svg",
+    "crop": {
+      "left": 584,
+      "top": 158,
+      "width": 22,
+      "height": 21
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__lower_eyelashes.png",
+    "level": 44,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__lower_eyelashes__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__lower_eyelashes__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__lower_eyelashes__visible.png",
+    "generation": {
+      "width": 264,
+      "height": 252
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/lower_eyelashes",
+      "originalPartId": "face/eyes/eye_left/lower_eyelashes",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__lower_eyelashes__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+      ],
+      "retainedLayerUUID": "{914ddc36-1348-41cb-87bc-7c853b002beb}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 44,
+          "region": "完整逻辑部件",
+          "name": "D044.0 | face/eyes/eye_left/lower_eyelashes",
+          "uuid": "{914ddc36-1348-41cb-87bc-7c853b002beb}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__lower_eyelashes__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/lower_eyelashes",
+    "name": "face__eyes__eye_right__lower_eyelashes",
+    "hidden": false,
+    "note": "眼睛外侧下缘可见的两个点状短睫毛，与上眼睑及外眼角勾形分离，合为一个 part；只包含这两个点状笔触，不含下缘中央的浅色短边界，也不连接成完整下眼睑线。随 sclera 的开口下缘移动和变形，开闭时保持与下缘的邻接，跟随 eye_right 及头脸转动、俯仰；两个笔触无独立运动依据。",
+    "svg": "part-layering/parts/face/eyes/eye_right/lower_eyelashes.svg",
+    "crop": {
+      "left": 479,
+      "top": 158,
+      "width": 23,
+      "height": 20
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__lower_eyelashes.png",
+    "level": 45,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__lower_eyelashes__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__lower_eyelashes__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__lower_eyelashes__visible.png",
+    "generation": {
+      "width": 276,
+      "height": 240
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/lower_eyelashes",
+      "originalPartId": "face/eyes/eye_right/lower_eyelashes",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__lower_eyelashes__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+      ],
+      "retainedLayerUUID": "{c716fdf1-2523-44a7-9ed7-79bbeb38b357}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 45,
+          "region": "完整逻辑部件",
+          "name": "D045.0 | face/eyes/eye_right/lower_eyelashes",
+          "uuid": "{c716fdf1-2523-44a7-9ed7-79bbeb38b357}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__lower_eyelashes__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_left/eyelid_crease",
+    "name": "face__eyes__eye_left__eyelid_crease",
+    "hidden": false,
+    "note": "上眼睑上方可见的一条细弧眼褶，与深色上眼睑之间留有肤色间隔，不属于眉毛。整条作为一个 part 随上眼睑及眼周皮肤运动，在开闭时承接位置与弯曲变化，可相对上眼睑调整显隐；不参与眼白开口边界，也不遮挡虹膜。转动、俯仰及透视形变由本 part 网格承担。",
+    "svg": "part-layering/parts/face/eyes/eye_left/eyelid_crease.svg",
+    "crop": {
+      "left": 553,
+      "top": 124,
+      "width": 46,
+      "height": 29
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__eyelid_crease.png",
+    "level": 46,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__eyelid_crease__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_left__eyelid_crease__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__eyelid_crease__visible.png",
+    "generation": {
+      "width": 552,
+      "height": 348
+    },
+    "paint": {
+      "id": "face/eyes/eye_left/eyelid_crease",
+      "originalPartId": "face/eyes/eye_left/eyelid_crease",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_left__eyelid_crease__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_e4ea6bfa33ce4a148169d5920c1832ec.png"
+      ],
+      "retainedLayerUUID": "{9a787a45-40ed-4f18-91be-dba46cd1f213}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 46,
+          "region": "完整逻辑部件",
+          "name": "D046.0 | face/eyes/eye_left/eyelid_crease",
+          "uuid": "{9a787a45-40ed-4f18-91be-dba46cd1f213}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_left__eyelid_crease__visible.png"
+  },
+  {
+    "id": "face/eyes/eye_right/eyelid_crease",
+    "name": "face__eyes__eye_right__eyelid_crease",
+    "hidden": false,
+    "note": "上眼睑上方、与粗眼缘分离的细弧形眼褶，局部被细条黑色刘海遮挡，需保留同一眼褶在发下的连续范围；不含更上方眉毛及头发。位于眼睛开口外侧，随上眼睑开闭产生相应位移与弯曲，并跟随 eye_right 及头脸转动、俯仰，不承担眼内内容的裁切。作为单一细弧 part，以网格处理透视和局部变形，不按被头发分隔的可见段拆件。",
+    "svg": "part-layering/parts/face/eyes/eye_right/eyelid_crease.svg",
+    "crop": {
+      "left": 479,
+      "top": 124,
+      "width": 52,
+      "height": 27
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__eyelid_crease.png",
+    "level": 47,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__eyelid_crease__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyes__eye_right__eyelid_crease__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__eyelid_crease__visible.png",
+    "generation": {
+      "width": 624,
+      "height": 324
+    },
+    "paint": {
+      "id": "face/eyes/eye_right/eyelid_crease",
+      "originalPartId": "face/eyes/eye_right/eyelid_crease",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyes__eye_right__eyelid_crease__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_81a30316a70143e89b3762caa9fa49e2.png"
+      ],
+      "retainedLayerUUID": "{58270692-50f3-4801-a480-f4610f4c53da}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 47,
+          "region": "完整逻辑部件",
+          "name": "D047.0 | face/eyes/eye_right/eyelid_crease",
+          "uuid": "{58270692-50f3-4801-a480-f4610f4c53da}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyes__eye_right__eyelid_crease__visible.png"
+  },
+  {
+    "id": "face/eyebrows/eyebrow_left",
+    "name": "face__eyebrows__eyebrow_left",
+    "hidden": false,
+    "note": "角色左眉，位于画面右侧、左眼上方，范围为从靠鼻梁的眉头至外侧眉尾的整条细弧眉，不含周围肤色、眼褶、头发或发夹。眉弧局部可见，其余与白色刘海重叠并受遮挡，保留发下连续眉形；并非整体隐藏。与右眉属同型细弧眉，可镜像作为起点，再按本侧原画的位置、眉弧、长度及端点差异对齐，不宜直接等形复制。整眉作为单一 part 随 face 转动、俯仰，可独立升降、弯曲及显隐；透视和局部变形由本 part 网格承担，无需拆眉头或眉尾。",
+    "svg": "part-layering/parts/face/eyebrows/eyebrow_left.svg",
+    "crop": {
+      "left": 547,
+      "top": 106,
+      "width": 60,
+      "height": 30
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_left.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyebrows__eyebrow_left__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyebrows__eyebrow_left__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_left__visible.png",
+    "generation": {
+      "width": 720,
+      "height": 360
+    },
+    "paint": {
+      "id": "face/eyebrows/eyebrow_left",
+      "originalPartId": "face/eyebrows/eyebrow_left",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{d32221bf-3766-450f-8410-748229a621fd}",
+      "repairs": [
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_left__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 48,
+          "region": "完整左眉发下延续和两端被实发遮住的补全细弧，保留于脸前、白侧发与刘海后；约 x559 以左的细尾和参考不可见余量。",
+          "name": "D048.0 | face/eyebrows/eyebrow_left | under_hair",
+          "uuid": "{d32221bf-3766-450f-8410-748229a621fd}"
+        },
+        {
+          "level": 67.1,
+          "region": "原图画面右侧参考可见的左眉长弧，约 x559–601、y111–128；跨白侧发及刘海的可见线段在发前，按同一眉毛的普通绘画分片与发下段连续衔接，不移动整眉或改变细弧。",
+          "name": "D067.1 | face/eyebrows/eyebrow_left | reference_visible_arc",
+          "uuid": "{9f5f79ba-a26e-43d3-8f75-a4b3cf3b103a}"
+        }
+      ],
+      "split": "repair-02 眉发交叉新增同一 part 普通绘画分片"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_left__visible.png",
+    "levels": [
+      {
+        "level": 48,
+        "region": "完整左眉发下延续和两端被实发遮住的补全细弧，保留于脸前、白侧发与刘海后；约 x559 以左的细尾和参考不可见余量。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyebrows__eyebrow_left__D48.png"
+      },
+      {
+        "level": 67.1,
+        "region": "原图画面右侧参考可见的左眉长弧，约 x559–601、y111–128；跨白侧发及刘海的可见线段在发前，按同一眉毛的普通绘画分片与发下段连续衔接，不移动整眉或改变细弧。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyebrows__eyebrow_left__D67.1.png"
+      }
+    ]
+  },
+  {
+    "id": "face/eyebrows/eyebrow_right",
+    "name": "face__eyebrows__eyebrow_right",
+    "hidden": false,
+    "note": "角色右眉，位于画面左侧、右眼上方，范围为从靠鼻梁的眉头至外侧眉尾的整条细弧眉，不含周围肤色、眼褶或头发。眉弧局部可见，黑色刘海遮挡部分眉段，保留发下连续眉形；并非整体隐藏。与左眉属同型细弧眉，可镜像作为起点，再按本侧原画的位置、眉弧、长度及端点差异对齐；当前两侧轮廓并非严格镜像。整眉作为单一 part 随 face 转动、俯仰，可独立升降、弯曲及显隐；透视和局部变形由本 part 网格承担，无内部深度层次需要继续拆分。",
+    "svg": "part-layering/parts/face/eyebrows/eyebrow_right.svg",
+    "crop": {
+      "left": 466,
+      "top": 106,
+      "width": 66,
+      "height": 29
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_right.png",
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__eyebrows__eyebrow_right__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__eyebrows__eyebrow_right__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_right__visible.png",
+    "generation": {
+      "width": 792,
+      "height": 348
+    },
+    "paint": {
+      "id": "face/eyebrows/eyebrow_right",
+      "originalPartId": "face/eyebrows/eyebrow_right",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{856910fe-47bf-42f8-a68d-f74f70b1cd6f}",
+      "repairs": [
+        {
+          "phase": "repair-02",
+          "note": "Review-02 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair02/final-all/face__eyebrows__eyebrow_right__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 49,
+          "region": "右眉完整发下延续及参考被黑发遮住的极端余量，约 x479 以左、x522 以右的补全尾端，仍在黑侧发和刘海后。",
+          "name": "D049.0 | face/eyebrows/eyebrow_right | under_hair",
+          "uuid": "{856910fe-47bf-42f8-a68d-f74f70b1cd6f}"
+        },
+        {
+          "level": 67.2,
+          "region": "原图画面左侧参考可见的右眉长弧，约 x479–522、y112–128；跨黑侧发和刘海的可见线段在发前，与同眉发下段连续。保留本侧独立弯向，不等形复制另一眉。",
+          "name": "D067.2 | face/eyebrows/eyebrow_right | reference_visible_arc",
+          "uuid": "{b7d71c64-a823-4389-b951-546f730261dc}"
+        }
+      ],
+      "split": "repair-02 眉发交叉新增同一 part 普通绘画分片"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__eyebrows__eyebrow_right__visible.png",
+    "levels": [
+      {
+        "level": 49,
+        "region": "右眉完整发下延续及参考被黑发遮住的极端余量，约 x479 以左、x522 以右的补全尾端，仍在黑侧发和刘海后。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyebrows__eyebrow_right__D49.png"
+      },
+      {
+        "level": 67.2,
+        "region": "原图画面左侧参考可见的右眉长弧，约 x479–522、y112–128；跨黑侧发和刘海的可见线段在发前，与同眉发下段连续。保留本侧独立弯向，不等形复制另一眉。",
+        "mask": "raster-layering/step01/workspace/depth-regions-repair02/face__eyebrows__eyebrow_right__D67.2.png"
+      }
+    ]
+  },
+  {
+    "id": "face/nose",
+    "name": "face__nose",
+    "hidden": false,
+    "note": "位于两眼之间偏下、嘴上方，可见小鼻点及其上方邻近的小高光。参考未显示需要单独错位的鼻梁线或独立鼻影层，鼻点与高光作为同一鼻部表现随 face 一起转动、俯仰和局部变形，不另拆高光。",
+    "svg": "part-layering/parts/face/nose.svg",
+    "crop": {
+      "left": 533,
+      "top": 166,
+      "width": 20,
+      "height": 25
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__nose.png",
+    "level": 50,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__nose__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__nose__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__nose__visible.png",
+    "generation": {
+      "width": 240,
+      "height": 300
+    },
+    "paint": {
+      "id": "face/nose",
+      "originalPartId": "face/nose",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__nose__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{aab8c80d-398a-45ce-aedc-976af0befae7}",
+      "repairs": [
+        {
+          "note": "仅取本件鼻部细色点及柔亮点，清除矩形光斑。",
+          "evidence": "raster-layering/step01/workspace/feature-local-v70/face-finish-jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 50,
+          "region": "完整逻辑部件",
+          "name": "D050.0 | face/nose",
+          "uuid": "{aab8c80d-398a-45ce-aedc-976af0befae7}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__nose__visible.png"
+  },
+  {
+    "id": "face/blush_left",
+    "name": "face__blush_left",
+    "hidden": false,
+    "note": "角色左颊、画面右侧眼睛下方的明显粉红红晕及斜线表现，位于脸底之上，外侧邻接白色侧发并受其局部遮挡。其色彩与斜线具有独立表情红晕特征，可独立显隐、调节浓淡；作为一个 part 随左侧脸颊运动和变形，不包含普通肤色渐变。",
+    "svg": "part-layering/parts/face/blush_left.svg",
+    "crop": {
+      "left": 554,
+      "top": 164,
+      "width": 62,
+      "height": 38
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_left.png",
+    "level": 51,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__blush_left__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__blush_left__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_left__visible.png",
+    "generation": {
+      "width": 744,
+      "height": 456
+    },
+    "paint": {
+      "id": "face/blush_left",
+      "originalPartId": "face/blush_left",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__blush_left__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{1f620ecb-977b-4b2e-9b58-baedb6970eb5}",
+      "repairs": [
+        {
+          "note": "保留生成红色底及斜线，清除发丝污染，软化自身绘画边缘。",
+          "evidence": "raster-layering/step01/workspace/feature-local-v70/face-finish-jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 51,
+          "region": "完整逻辑部件",
+          "name": "D051.0 | face/blush_left",
+          "uuid": "{1f620ecb-977b-4b2e-9b58-baedb6970eb5}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_left__visible.png"
+  },
+  {
+    "id": "face/blush_right",
+    "name": "face__blush_right",
+    "hidden": false,
+    "note": "角色右颊、画面左侧眼睛下方的明显粉红红晕及斜线表现，位于脸底之上，外侧邻接黑色侧发并受其局部遮挡。其色彩与斜线具有独立表情红晕特征，可独立显隐、调节浓淡；作为一个 part 随右侧脸颊运动和变形，不包含普通肤色渐变。",
+    "svg": "part-layering/parts/face/blush_right.svg",
+    "crop": {
+      "left": 457,
+      "top": 155,
+      "width": 73,
+      "height": 46
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_right.png",
+    "level": 52,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__blush_right__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__blush_right__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_right__visible.png",
+    "generation": {
+      "width": 876,
+      "height": 552
+    },
+    "paint": {
+      "id": "face/blush_right",
+      "originalPartId": "face/blush_right",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__blush_right__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_074c5bbc2a464d86932a696e20c49283.png"
+      ],
+      "retainedLayerUUID": "{aa0acd6d-b31c-4317-a00f-cec348df4558}",
+      "repairs": [
+        {
+          "note": "保留生成红色底及斜线，清除发丝污染，软化自身绘画边缘。",
+          "evidence": "raster-layering/step01/workspace/feature-local-v70/face-finish-jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 52,
+          "region": "完整逻辑部件",
+          "name": "D052.0 | face/blush_right",
+          "uuid": "{aa0acd6d-b31c-4317-a00f-cec348df4558}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__blush_right__visible.png"
+  },
+  {
+    "id": "face/mouth/mouth_interior",
+    "name": "face__mouth__mouth_interior",
+    "hidden": false,
+    "note": "完整口腔底形，参考中可见上牙下方、舌面上方及两侧的深红暗色内腔。位于上下嘴、上下牙及舌头后方，需连续保留被它们遮挡的口腔范围，底形超出唇线及父组当前开口轮廓，由上下嘴肤色面控制显露；当前部分可见，并非整体隐藏。作为一个 part 随 face/mouth 转动、俯仰与开合变形，口内普通暗部随底形，不额外拆暗色块。",
+    "svg": "part-layering/parts/face/mouth/mouth_interior.svg",
+    "crop": {
+      "left": 515,
+      "top": 180,
+      "width": 56,
+      "height": 54
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__mouth_interior.png",
+    "level": 53,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__mouth_interior__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__mouth_interior__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__mouth_interior__visible.png",
+    "generation": {
+      "width": 672,
+      "height": 648
+    },
+    "paint": {
+      "id": "face/mouth/mouth_interior",
+      "originalPartId": "face/mouth/mouth_interior",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__mouth_interior__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{905b720d-3f33-49dc-b613-21464d968db2}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/mouth/mouth_interior",
+          "ownerLayer": "D053.0 | face/mouth/mouth_interior",
+          "ownerUUID": "{905b720d-3f33-49dc-b613-21464d968db2}",
+          "mask": "OPENING | mouth | shared aperture",
+          "maskUUID": "{d59f8575-e70c-4aa0-abae-b9e985258d31}",
+          "control": "mouth",
+          "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{62975ee8-f2d6-429e-895a-705aa6e94847}",
+          "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+          "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 53,
+          "region": "完整逻辑部件",
+          "name": "D053.0 | face/mouth/mouth_interior",
+          "uuid": "{905b720d-3f33-49dc-b613-21464d968db2}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__mouth_interior__visible.png"
+  },
+  {
+    "id": "face/mouth/lower_teeth",
+    "name": "face__mouth__lower_teeth",
+    "hidden": false,
+    "note": "整片下牙，当前参考中被舌头及下嘴完全遮挡，未见可确认的下牙牙面；舌面下方的灰暗嘴缘向左右上弯并连接两侧嘴角，中央白亮细条位于该嘴缘外侧、下方承接粉色下唇，属于下唇高光，不归下牙。本轮保留空的可见轮廓，不补画隐藏牙根；牙根位于下嘴之后，后续完整隐藏根部可超出父组当前开口轮廓。承担正常开合时下牙的连续露出，与下嘴及下颌开合运动相随，和舌头、口腔底形保持独立遮挡关系。作为一个整体 part，不逐颗拆分，随 face/mouth 转动、俯仰，透视与牙面形变由网格处理。",
+    "svg": "part-layering/parts/face/mouth/lower_teeth.svg",
+    "crop": {
+      "left": 520,
+      "top": 201,
+      "width": 46,
+      "height": 32
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_teeth.png",
+    "level": 54,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__lower_teeth__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__lower_teeth__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_teeth__visible.png",
+    "generation": {
+      "width": 552,
+      "height": 384
+    },
+    "paint": {
+      "id": "face/mouth/lower_teeth",
+      "originalPartId": "face/mouth/lower_teeth",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__lower_teeth__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}",
+      "repairs": [
+        {
+          "note": "完整下齿整体下移 6 px 到舌和下唇之后；默认自然不可见，仍只共用真实嘴部开合区。",
+          "evidence": "raster-layering/step01/workspace/lower-teeth-registration-v70.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/mouth/lower_teeth",
+          "ownerLayer": "D054.0 | face/mouth/lower_teeth",
+          "ownerUUID": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}",
+          "mask": "OPENING | mouth | shared aperture",
+          "maskUUID": "{552e3474-ae73-4ba8-aed7-009a2be45c19}",
+          "control": "mouth",
+          "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{a87852d4-0663-402f-bf7d-fc06d9f8310b}",
+          "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+          "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        6
+      ],
+      "depths": [
+        {
+          "level": 54,
+          "region": "完整逻辑部件",
+          "name": "D054.0 | face/mouth/lower_teeth",
+          "uuid": "{25e6a366-46b0-4fb5-9cf1-4b1252d3edd6}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_teeth__visible.png"
+  },
+  {
+    "id": "face/mouth/tongue",
+    "name": "face__mouth__tongue",
+    "hidden": false,
+    "note": "完整舌头，参考口腔下部可见大块粉色舌面、中央浅沟与局部高光，后部及下部受口内结构和下嘴遮挡。位于口腔底形前方，开合与转面时和上下嘴、牙面发生遮挡变化，可相对口腔作局部变形。整舌作为一个 part 随 face/mouth 和下颌开合运动，不拆舌根、舌尖；舌沟、明暗与高光附着于舌面，无独立控制依据。",
+    "svg": "part-layering/parts/face/mouth/tongue.svg",
+    "crop": {
+      "left": 519,
+      "top": 194,
+      "width": 48,
+      "height": 37
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__tongue.png",
+    "level": 55,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__tongue__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__tongue__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__tongue__visible.png",
+    "generation": {
+      "width": 576,
+      "height": 444
+    },
+    "paint": {
+      "id": "face/mouth/tongue",
+      "originalPartId": "face/mouth/tongue",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__tongue__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/mouth/tongue",
+          "ownerLayer": "D055.0 | face/mouth/tongue",
+          "ownerUUID": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}",
+          "mask": "OPENING | mouth | shared aperture",
+          "maskUUID": "{e83b6cd2-3a28-4c18-8335-8562c7114bc7}",
+          "control": "mouth",
+          "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{fa805fd2-79fa-415f-81b5-0cdf276120d2}",
+          "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+          "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 55,
+          "region": "完整逻辑部件",
+          "name": "D055.0 | face/mouth/tongue",
+          "uuid": "{61e61d10-ee32-4cf7-92fa-17440a9a1d9d}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__tongue__visible.png"
+  },
+  {
+    "id": "face/mouth/upper_teeth",
+    "name": "face__mouth__upper_teeth",
+    "hidden": false,
+    "note": "整片上牙，参考在开口上侧可见连续白色牙面，贴近上嘴缘；牙根及两侧延续受上嘴遮挡，完整隐藏根部可超出父组当前开口轮廓。位于深色口腔之前、上嘴肤色覆盖面之后，随上嘴及头脸运动，开合和转面时由上嘴控制露出范围。整片作为一个 part，牙面透视及局部压缩由同一网格承担，不逐颗拆牙；参考不足以确认需独立控制的特殊虎牙。",
+    "svg": "part-layering/parts/face/mouth/upper_teeth.svg",
+    "crop": {
+      "left": 523,
+      "top": 180,
+      "width": 39,
+      "height": 24
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_teeth.png",
+    "level": 56,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__upper_teeth__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__upper_teeth__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_teeth__visible.png",
+    "generation": {
+      "width": 468,
+      "height": 288
+    },
+    "paint": {
+      "id": "face/mouth/upper_teeth",
+      "originalPartId": "face/mouth/upper_teeth",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__upper_teeth__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [
+        {
+          "id": "face/mouth/upper_teeth",
+          "ownerLayer": "D056.0 | face/mouth/upper_teeth",
+          "ownerUUID": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}",
+          "mask": "OPENING | mouth | shared aperture",
+          "maskUUID": "{3c23808f-8647-46ed-8650-fd7fe0f39797}",
+          "control": "mouth",
+          "region": "raster-layering/step01/workspace/feature-local-v70/mouth__opening.png",
+          "default": "Reference open pose; real aperture only",
+          "previousMaskUUID": "{a0eb95be-f0fc-4e9f-b439-565989d36d2e}",
+          "selectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed",
+          "backupSelectionSHA256": "b7982fc4435174cf1a6440dddc5f6b6a5876307a45a8e9b66371b1f3ec9c49ed"
+        }
+      ],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 56,
+          "region": "完整逻辑部件",
+          "name": "D056.0 | face/mouth/upper_teeth",
+          "uuid": "{2e5dc718-2c60-4632-bd4d-e88005b2c5ad}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_teeth__visible.png"
+  },
+  {
+    "id": "face/mouth/upper_lip",
+    "name": "face__mouth__upper_lip",
+    "hidden": false,
+    "note": "上嘴，包含以上唇线为下沿、向上及两侧延续的肤色覆盖面，并承接两侧嘴角的上段。参考为张嘴，上缘可见浅粉嘴缘及细线，肤色与脸底相接；源父轮廓仅圈出口部开口，完整肤色覆盖面需要超出该轮廓。位于口腔与上牙根前方，开合时相对下嘴升降并遮挡口腔上沿及两侧，闭合时与下嘴唇线贴合。随 face/mouth 转动、俯仰，以同一 part 网格控制整片肤色和唇线，附着明暗随本体，不另拆嘴角。",
+    "svg": "part-layering/parts/face/mouth/upper_lip.svg",
+    "crop": {
+      "left": 514,
+      "top": 178,
+      "width": 59,
+      "height": 43
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_lip.png",
+    "level": 57,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__upper_lip__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__upper_lip__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_lip__visible.png",
+    "generation": {
+      "width": 708,
+      "height": 516
+    },
+    "paint": {
+      "id": "face/mouth/upper_lip",
+      "originalPartId": "face/mouth/upper_lip",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__upper_lip__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{e4879604-e0f1-495d-8266-a4bf9afcc88e}",
+      "repairs": [
+        {
+          "note": "保留自己的嘴线，软接肤色外缘；下唇皮肤覆盖停在下颌以内，不带入下颌线。",
+          "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 57,
+          "region": "完整逻辑部件",
+          "name": "D057.0 | face/mouth/upper_lip",
+          "uuid": "{e4879604-e0f1-495d-8266-a4bf9afcc88e}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__upper_lip__visible.png"
+  },
+  {
+    "id": "face/mouth/lower_lip",
+    "name": "face__mouth__lower_lip",
+    "hidden": false,
+    "note": "下嘴，包含以下唇线为上沿、向下及两侧嘴角延续的 U 形肤色覆盖面。参考可见下嘴缘及其下方浅粉明暗，完整肤色面需超出仅覆盖开口的父轮廓。位于口腔下沿、下牙根和舌面前方，负责遮住口腔下半部及两侧；开合时相对上嘴下移或合拢，两侧与上嘴平顺衔接。作为整体 part 随 face/mouth 转动、俯仰，下缘和嘴角局部形变由同一网格承担，附着明暗不另拆。",
+    "svg": "part-layering/parts/face/mouth/lower_lip.svg",
+    "crop": {
+      "left": 508,
+      "top": 195,
+      "width": 70,
+      "height": 51
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_lip.png",
+    "level": 58,
+    "sample": "raster-layering/step01/workspace/controls-repair02/face__mouth__lower_lip__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/face__mouth__lower_lip__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_lip__visible.png",
+    "generation": {
+      "width": 840,
+      "height": 612
+    },
+    "paint": {
+      "id": "face/mouth/lower_lip",
+      "originalPartId": "face/mouth/lower_lip",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/face__mouth__lower_lip__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3a6532624a7a400aa7b233601ad9e691.png"
+      ],
+      "retainedLayerUUID": "{e8651430-d57d-4076-b308-8a825bd5cac1}",
+      "repairs": [
+        {
+          "note": "保留自己的嘴线，软接肤色外缘；下唇皮肤覆盖停在下颌以内，不带入下颌线。",
+          "evidence": "raster-layering/step01/workspace/final-contour-repairs-v70/jobs.json"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 58,
+          "region": "完整逻辑部件",
+          "name": "D058.0 | face/mouth/lower_lip",
+          "uuid": "{e8651430-d57d-4076-b308-8a825bd5cac1}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/face__mouth__lower_lip__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+    "name": "head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner",
+    "hidden": false,
+    "note": "角色左侧蝴蝶结的内侧长飘带，位于画面中两条带身靠脸的一侧，末端较低；范围从结部后方的连接根部连续延伸至该条斜切末端。上部与外侧飘带重叠，受 bow_body 及白色侧发局部遮挡；下部以两条带身之间的开隙与外侧飘带分界，不含头发、结翼或边饰。根部归本条保留连续搭接，与外侧带的根部可有必要重叠。作为一个 part 随蝴蝶结扎点及头部运动，可相对另一条飘带独立弯曲、摇摆及调整遮挡次序；整条织物的转动、俯仰和局部形变由同一网格承担，褶纹与自身明暗随带身，不按长度分段。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner.svg",
+    "crop": {
+      "left": 614,
+      "top": 63,
+      "width": 52,
+      "height": 186
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner.png",
+    "level": 59,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__visible.png",
+    "generation": {
+      "width": 429,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3c720d761603411697d857b0f87641d5.png"
+      ],
+      "retainedLayerUUID": "{c823e52b-0f1d-4511-adb4-8ee2d7066a33}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 59,
+          "region": "完整逻辑部件",
+          "name": "D059.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_inner",
+          "uuid": "{c823e52b-0f1d-4511-adb4-8ee2d7066a33}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_inner__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+    "name": "head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer",
+    "hidden": false,
+    "note": "角色左侧蝴蝶结的外侧长飘带，位于画面中两条带身远离脸、靠白色马尾的一侧，末端较高；范围从结部后方的连接根部连续延伸至该条斜切末端。上部与内侧飘带重叠，受 bow_body 及侧发局部遮挡，下部沿两带开隙与内侧带分界；不含白色马尾、结翼或黑色边饰。根部归本条保留被挡住的连续结构，与内侧带允许必要搭接。作为一个 part 随蝴蝶结扎点及头部运动，可相对内侧飘带独立弯曲、摇摆及改变前后遮挡；整条的透视压缩和局部形变由同一网格承担，固定褶纹和自身明暗随本体，无须再拆。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer.svg",
+    "crop": {
+      "left": 619,
+      "top": 64,
+      "width": 56,
+      "height": 171
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer.png",
+    "level": 60,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer__visible.png",
+    "generation": {
+      "width": 503,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{f8313e75-669e-4097-87f6-58e9eb395548}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 60,
+          "region": "完整逻辑部件",
+          "name": "D060.0 | head_accessories/hair_bows/hair_bow_left/ribbon_tails/ribbon_tail_outer",
+          "uuid": "{f8313e75-669e-4097-87f6-58e9eb395548}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__ribbon_tails__ribbon_tail_outer__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+    "name": "head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner",
+    "hidden": false,
+    "note": "角色右侧蝴蝶结中靠近脸部中线、位于画面右侧的较长黑色长飘带，从结体连接处经侧发及结翼遮挡的根部向下延伸，止于更低的斜切末端；画面左缘邻接较短的外侧飘带，右缘邻接黑色侧发。包含本条连续带身与根部遮挡范围，现有上方补全范围归两条飘带各自连接根部，不另设公共根部节点。根部跟随 bow_body 与马尾扎点，可相对外侧飘带独立弯曲、摆动并调整前后遮挡；整条为一个 part，转动、俯仰及局部透视由同一网格承担，自身褶纹和普通明暗不另拆。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner.svg",
+    "crop": {
+      "left": 426,
+      "top": 88,
+      "width": 35,
+      "height": 161
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner.png",
+    "level": 61,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__visible.png",
+    "generation": {
+      "width": 334,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_3c720d761603411697d857b0f87641d5.png"
+      ],
+      "retainedLayerUUID": "{6fe1c271-2b7f-4ec7-9d57-6bd704a57b2a}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 61,
+          "region": "完整逻辑部件",
+          "name": "D061.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_inner",
+          "uuid": "{6fe1c271-2b7f-4ec7-9d57-6bd704a57b2a}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_inner__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+    "name": "head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer",
+    "hidden": false,
+    "note": "角色右侧蝴蝶结中远离脸部中线、位于画面左侧的较短黑色长飘带，从结体下方被结翼及侧发局部遮住的连接根部延伸至较高的斜切末端；靠脸一侧邻接并局部重叠于较长的内侧飘带。包含本条完整带身及其被遮挡的根部，不含白色发束、黑色头发或结翼。根部跟随 bow_body 与马尾扎点，柔软带身可相对内侧飘带独立弯曲、摆动及改变遮挡；整条作为一个 part，以网格承接转动、俯仰和连续弯曲，不沿长度分段，褶纹及普通明暗随本带。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer.svg",
+    "crop": {
+      "left": 416,
+      "top": 89,
+      "width": 43,
+      "height": 145
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer.png",
+    "level": 62,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer__visible.png",
+    "generation": {
+      "width": 456,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{ff19d310-cc7d-410b-b4b9-31ad38e4e39c}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 62,
+          "region": "完整逻辑部件",
+          "name": "D062.0 | head_accessories/hair_bows/hair_bow_right/ribbon_tails/ribbon_tail_outer",
+          "uuid": "{ff19d310-cc7d-410b-b4b9-31ad38e4e39c}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__ribbon_tails__ribbon_tail_outer__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_left/bow_body",
+    "name": "head_accessories__hair_bows__hair_bow_left__bow_body",
+    "hidden": false,
+    "note": "角色左侧、画面右侧马尾扎点上的蝴蝶结主体，包含内侧黑色结部及短结翼、向外展开的白色褶面和附着的黑色边饰；不含向下延伸至下颌旁的两条长飘带。内侧连接局部被白色头发遮挡，与飘带在根部相接，保留必要搭接。短结翼、褶面及其边饰共同依附扎点，参考未见其间夹入其他实体或需要分别开合的结构；作为一个 part 随左侧马尾扎点及头部转动、俯仰，局部弯曲和透视压缩由本体网格承担，固定褶纹、边饰与自身明暗随本体。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_left/bow_body.svg",
+    "crop": {
+      "left": 610,
+      "top": 15,
+      "width": 107,
+      "height": 141
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__bow_body.png",
+    "level": 63,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__bow_body__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_left__bow_body__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__bow_body__visible.png",
+    "generation": {
+      "width": 1166,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_left/bow_body",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_left/bow_body",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_left__bow_body__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{85ec8913-cffb-413f-a79d-34c0736070b8}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 63,
+          "region": "完整逻辑部件",
+          "name": "D063.0 | head_accessories/hair_bows/hair_bow_left/bow_body",
+          "uuid": "{85ec8913-cffb-413f-a79d-34c0736070b8}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_left__bow_body__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_bows/hair_bow_right/bow_body",
+    "name": "head_accessories__hair_bows__hair_bow_right__bow_body",
+    "hidden": false,
+    "note": "角色右侧、画面左侧马尾扎点上的蝴蝶结主体，包含上方黑色短结部、中央粉色连接结、向外展开的白色褶边结翼、粉色边饰及固定在结面上的红色心形贴饰；下界止于结翼与长飘带的连接处，不含下垂长飘带和黑色头发。主体可见，靠头部的连接局部被黑色侧发遮挡。整件跟随右侧马尾扎点及头部转动、俯仰，短结部与结翼的局部弯曲、透视压缩由同一 part 网格承担；参考未见其内部夹着其他实体或需分别开合的依据。心形、褶边、褶纹及自身明暗固定随结体，不另拆。",
+    "svg": "part-layering/parts/head_accessories/hair_bows/hair_bow_right/bow_body.svg",
+    "crop": {
+      "left": 362,
+      "top": 15,
+      "width": 114,
+      "height": 138
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__bow_body.png",
+    "level": 64,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__bow_body__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_bows__hair_bow_right__bow_body__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__bow_body__visible.png",
+    "generation": {
+      "width": 1269,
+      "height": 1536
+    },
+    "paint": {
+      "id": "head_accessories/hair_bows/hair_bow_right/bow_body",
+      "originalPartId": "head_accessories/hair_bows/hair_bow_right/bow_body",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_bows__hair_bow_right__bow_body__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{6816993f-3e68-4555-8372-9fea1df67c6c}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 64,
+          "region": "完整逻辑部件",
+          "name": "D064.0 | head_accessories/hair_bows/hair_bow_right/bow_body",
+          "uuid": "{6816993f-3e68-4555-8372-9fea1df67c6c}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_bows__hair_bow_right__bow_body__visible.png"
+  },
+  {
+    "id": "hair/side_hair/side_hair_left",
+    "name": "hair__side_hair__side_hair_left",
+    "hidden": false,
+    "note": "角色左侧、画面右侧的完整白色宽侧发，自中央分缝及头顶侧前部发根，经额角、太阳穴、耳前至下颌旁内弯的全部短发梢，包含颊旁细尖和外侧多尖末端。隐藏根部沿用父轮廓已补出的头顶承接范围；内上缘按发流与额前 bangs 分界，上外缘根部与其后的 hair_cap 搭接，外后缘邻接耳侧及马尾扎点。发面覆盖左侧太阳穴、部分耳缘和脸缘，位于左侧长马尾及头饰下垂飘带之前；扎点处受头饰局部遮挡，发面表面的发夹仍归 head_accessories。下颌旁短发梢属于本件，不归长马尾或后发；耳前细尖与宽发面连续，无另控鬓发层的依据。与另一侧轮廓近似对应，但此侧为白色，颊旁弧线与发梢排列按本侧参考独立确认，不直接镜像成稿。整体随头脸转动和俯仰，并可相对头盖摆动；未见内部夹入其他部件的独立深度层，作为一个 part，以同一网格承担透视压缩和局部发梢形变。",
+    "svg": "part-layering/parts/hair/side_hair/side_hair_left.svg",
+    "crop": {
+      "left": 528,
+      "top": 0,
+      "width": 132,
+      "height": 268
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_left.png",
+    "level": 65,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__side_hair__side_hair_left__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__side_hair__side_hair_left__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_left__visible.png",
+    "generation": {
+      "width": 757,
+      "height": 1536
+    },
+    "paint": {
+      "id": "hair/side_hair/side_hair_left",
+      "originalPartId": "hair/side_hair/side_hair_left",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__side_hair__side_hair_left__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/hair_front.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_70e863e5a684435ab03546db907e3fc9.png"
+      ],
+      "retainedLayerUUID": "{5ff9fec7-57c1-4140-8880-2620c0f1d61a}",
+      "repairs": [
+        {
+          "note": "局部取本件原图笔触并以原生细线接完既有内缘曲线；清除肤色污染，不挖头发蒙版。",
+          "evidence": "raster-layering/step01/workspace/native-side-hair-edges-final-v70.json"
+        },
+        {
+          "note": "独显复核后，以同一发片邻近的自身冷色笔触替换边缘误带的 35 个暖色耳线像素，保持 alpha。",
+          "evidence": "raster-layering/step01/workspace/white-hair-ear-ink-clean-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__side_hair__side_hair_left__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 65,
+          "region": "完整逻辑部件",
+          "name": "D065.0 | hair/side_hair/side_hair_left",
+          "uuid": "{5ff9fec7-57c1-4140-8880-2620c0f1d61a}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_left__visible.png"
+  },
+  {
+    "id": "hair/side_hair/side_hair_right",
+    "name": "hair__side_hair__side_hair_right",
+    "hidden": false,
+    "note": "角色右侧、画面左侧的完整黑色宽侧发，自中央分缝及头顶侧前部发根，经额角、太阳穴、耳前至下颌旁内弯的全部短发梢，包含颊旁细尖、外侧多尖末端及贴附于本发面的粉色细条。隐藏根部沿用父轮廓已补出的头顶承接范围；内上缘按发流与额前 bangs 分界，上外缘根部与其后的 hair_cap 搭接，外后缘邻接耳侧及右侧马尾扎点，扎点附近部分被蝴蝶结遮挡。发面覆盖右侧太阳穴、部分耳缘和脸缘，位于黑色长马尾及头饰飘带之前；蝴蝶结、心形饰物和黑色飘带仍归 head_accessories。下颌旁短发梢不归马尾或后发，颊旁细尖与宽发面连续，不单列鬓发。此侧黑色及粉色条、发梢分叉与左侧不同，需按本侧参考处理；粉色条和发纹随发面，不独立拆件。整体随头脸转动和俯仰，并可相对头盖摆动；未见同侧必须独立摆动且夹着其他部件的第二层发面，作为一个 part，以网格承担转面透视和局部形变。",
+    "svg": "part-layering/parts/hair/side_hair/side_hair_right.svg",
+    "crop": {
+      "left": 427,
+      "top": 0,
+      "width": 128,
+      "height": 268
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_right.png",
+    "level": 66,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__side_hair__side_hair_right__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__side_hair__side_hair_right__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_right__visible.png",
+    "generation": {
+      "width": 734,
+      "height": 1536
+    },
+    "paint": {
+      "id": "hair/side_hair/side_hair_right",
+      "originalPartId": "hair/side_hair/side_hair_right",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__side_hair__side_hair_right__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/hair_front.png",
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_70e863e5a684435ab03546db907e3fc9.png"
+      ],
+      "retainedLayerUUID": "{f455cb05-e140-443f-aaa2-55f9be847b1e}",
+      "repairs": [
+        {
+          "note": "局部取本件原图笔触并以原生细线接完既有内缘曲线；清除肤色污染，不挖头发蒙版。",
+          "evidence": "raster-layering/step01/workspace/native-side-hair-edges-final-v70.json"
+        },
+        {
+          "phase": "repair-01",
+          "note": "Review-01 correction, owned local generated/native/reference painting retained. Final solo / higher-hidden / composite evidence checked.",
+          "evidence": "raster-layering/step01/repair-evidence/repair01/final-all/hair__side_hair__side_hair_right__solo.png"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 66,
+          "region": "完整逻辑部件",
+          "name": "D066.0 | hair/side_hair/side_hair_right",
+          "uuid": "{f455cb05-e140-443f-aaa2-55f9be847b1e}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__side_hair__side_hair_right__visible.png"
+  },
+  {
+    "id": "hair/bangs",
+    "name": "hair__bangs",
+    "hidden": false,
+    "note": "额前完整刘海发面，从头顶中央分缝附近的发根向额头下垂，至双眉上方及额中较低的尖端，包含黑白相接的中央发束和同属额前的分束，不按分色、发纹或尖端拆件。两侧边界沿发流与向太阳穴、脸侧下垂的 side_hair 分开；隐藏根部位于头顶前部，与 hair_cap 的承接区重合，前方覆盖额头并局部遮住眉部。它与垂至下颌的两侧发面长度、运动和遮挡职责不同，可相对头盖作刘海摆动；内部为统一额前发面，以一个 part 随头脸转动和俯仰，透视与各尖端形变由网格承担。发夹属于 head_accessories，不在本节点重复制作。",
+    "svg": "part-layering/parts/hair/bangs.svg",
+    "crop": {
+      "left": 464,
+      "top": 14,
+      "width": 162,
+      "height": 147
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/hair__bangs.png",
+    "level": 67,
+    "sample": "raster-layering/step01/workspace/controls-repair02/hair__bangs__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/hair__bangs__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/hair__bangs__visible.png",
+    "generation": {
+      "width": 1536,
+      "height": 1394
+    },
+    "paint": {
+      "id": "hair/bangs",
+      "originalPartId": "hair/bangs",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/hair__bangs__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/hair_front.png"
+      ],
+      "retainedLayerUUID": "{02e3bf05-8979-471b-ba16-65a3278f0964}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 67,
+          "region": "完整逻辑部件",
+          "name": "D067.0 | hair/bangs",
+          "uuid": "{02e3bf05-8979-471b-ba16-65a3278f0964}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/hair__bangs__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_clips/hair_clip_upper",
+    "name": "head_accessories__hair_clips__hair_clip_upper",
+    "hidden": false,
+    "note": "角色左侧、画面右侧白色刘海表面上方的完整深色叉形发夹，位于心形发夹上方，两枚之间有间隔。交叉两臂作为同一件硬质饰品，参考未见夹入其他部件或需要分别运动的结构；整枚随所在刘海及头部转动、俯仰，可相对另一枚独立定位和显隐，透视压缩由本 part 网格承担。厚度、边缘和固定明暗随发夹本体，不再拆交叉臂或绘画效果。",
+    "svg": "part-layering/parts/head_accessories/hair_clips/hair_clip_upper.svg",
+    "crop": {
+      "left": 584,
+      "top": 69,
+      "width": 44,
+      "height": 45
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_upper.png",
+    "level": 68,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_clips__hair_clip_upper__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_clips__hair_clip_upper__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_upper__visible.png",
+    "generation": {
+      "width": 528,
+      "height": 540
+    },
+    "paint": {
+      "id": "head_accessories/hair_clips/hair_clip_upper",
+      "originalPartId": "head_accessories/hair_clips/hair_clip_upper",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_clips__hair_clip_upper__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{e18850a5-af43-4a81-9a0c-ea918d8ed66c}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 68,
+          "region": "完整逻辑部件",
+          "name": "D068.0 | head_accessories/hair_clips/hair_clip_upper",
+          "uuid": "{e18850a5-af43-4a81-9a0c-ea918d8ed66c}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_upper__visible.png"
+  },
+  {
+    "id": "head_accessories/hair_clips/hair_clip_lower",
+    "name": "head_accessories__hair_clips__hair_clip_lower",
+    "hidden": false,
+    "note": "角色左侧白色刘海表面下方的完整红色心形发夹，位于叉形发夹下方、左眼外上侧；包含源 SVG 在心形内凹处已有的局部补全范围，不含白色头发、眼部及另一侧蝴蝶结上的心形贴饰。整体可见，心形内部的色面与明暗属于同一硬质饰品，未见内部夹入其他组件的深度关系。整枚随所在刘海及头部转动、俯仰，可独立定位和显隐；局部形变由本 part 网格承担，不按心形两瓣或明暗继续拆分。",
+    "svg": "part-layering/parts/head_accessories/hair_clips/hair_clip_lower.svg",
+    "crop": {
+      "left": 592,
+      "top": 102,
+      "width": 39,
+      "height": 36
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_lower.png",
+    "level": 69,
+    "sample": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_clips__hair_clip_lower__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/head_accessories__hair_clips__hair_clip_lower__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_lower__visible.png",
+    "generation": {
+      "width": 468,
+      "height": 432
+    },
+    "paint": {
+      "id": "head_accessories/hair_clips/hair_clip_lower",
+      "originalPartId": "head_accessories/hair_clips/hair_clip_lower",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/head_accessories__hair_clips__hair_clip_lower__solo.png",
+      "generationSources": [
+        "raster-layering/step01/workspace/generated/accessories.png"
+      ],
+      "retainedLayerUUID": "{9fd7575e-3753-4c54-9ba2-238ff98ddd1d}",
+      "repairs": [
+        {
+          "note": "恢复原有效生成绘画，清理其他头发边屑及局部取样硬接缝。",
+          "evidence": "raster-layering/step01/workspace/restore-clean-accessory-paint-v70.py"
+        }
+      ],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 69,
+          "region": "完整逻辑部件",
+          "name": "D069.0 | head_accessories/hair_clips/hair_clip_lower",
+          "uuid": "{9fd7575e-3753-4c54-9ba2-238ff98ddd1d}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/head_accessories__hair_clips__hair_clip_lower__visible.png"
+  },
+  {
+    "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+    "name": "legs__leg_left__shoes__ankle_strap__ankle_strap_front",
+    "hidden": false,
+    "note": "角色左鞋踝带的可见前段，包含踝前斜向红色带身、上端中空扣框及扣舌，下端与鞋帮相接；不含鞋舌、鞋口或袜面。位于 leg 的踝部之前，与绕踝后段在侧面衔接。扣框、扣舌固定于这条短带，未见独立展开或长软悬挂结构，整体作为一个 part 随左足及鞋体运动，带身局部弯曲和转脚透视由同一网格承担，扣件保持形状，不按材质或明暗细分。",
+    "svg": "part-layering/parts/legs/leg_left/shoes/ankle_strap/ankle_strap_front.svg",
+    "crop": {
+      "left": 560,
+      "top": 1171,
+      "width": 55,
+      "height": 97
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_front.png",
+    "level": 70,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_front__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_front__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_front__visible.png",
+    "generation": {
+      "width": 660,
+      "height": 1164
+    },
+    "paint": {
+      "id": "legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+      "originalPartId": "legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_left__shoes__ankle_strap__ankle_strap_front__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{ea86465c-5c11-4067-9d88-2c81286854d6}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 70,
+          "region": "完整逻辑部件",
+          "name": "D070.0 | legs/leg_left/shoes/ankle_strap/ankle_strap_front",
+          "uuid": "{ea86465c-5c11-4067-9d88-2c81286854d6}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__ankle_strap__ankle_strap_front__visible.png"
+  },
+  {
+    "id": "legs/leg_left/shoes/shoe_body",
+    "name": "legs__leg_left__shoes__shoe_body",
+    "hidden": false,
+    "note": "角色左鞋的连续主体，包含前侧鞋口、两侧鞋帮、鞋舌、鞋面、鞋头及完整厚底与底部后跟区域；普通交叉系带、上方系结及线纹配色随所属鞋面保留。上方前侧鞋口与鞋舌覆盖 leg 的踝前，后侧与 collar_back 两侧及下缘衔接，鞋内完整左足仍归同级 leg；本件只制作鞋料。参考中鞋面和厚底均可见，没有可确认的独立活动鞋跟、分离鞋底或中间夹入其他实体的鞋身层次。作为一个 part 跟随左足转动、俯仰，以连续网格承接前掌弯曲、踮脚时鞋面与厚底的体积和透视变化；不按正面、侧面、明暗或材料分件。系带未见相对鞋身独立摆动的依据。",
+    "svg": "part-layering/parts/legs/leg_left/shoes/shoe_body.svg",
+    "crop": {
+      "left": 532,
+      "top": 1225,
+      "width": 100,
+      "height": 193
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__shoe_body.png",
+    "level": 71,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__shoe_body__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_left__shoes__shoe_body__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__shoe_body__visible.png",
+    "generation": {
+      "width": 796,
+      "height": 1536
+    },
+    "paint": {
+      "id": "legs/leg_left/shoes/shoe_body",
+      "originalPartId": "legs/leg_left/shoes/shoe_body",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_left__shoes__shoe_body__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{1f2ec0b4-f30d-4cb4-a240-c3a6a35c1b5e}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 71,
+          "region": "完整逻辑部件",
+          "name": "D071.0 | legs/leg_left/shoes/shoe_body",
+          "uuid": "{1f2ec0b4-f30d-4cb4-a240-c3a6a35c1b5e}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_left__shoes__shoe_body__visible.png"
+  },
+  {
+    "id": "legs/leg_right/shoes/shoe_body",
+    "name": "legs__leg_right__shoes__shoe_body",
+    "hidden": false,
+    "note": "右鞋连续主体，包含前侧鞋口、前侧红色带扣带及固定搭扣、鞋舌、前侧与两侧鞋帮、鞋头、下部后跟鞋身及完整厚底；不重复包含 rear_collar 的后侧鞋口材料。前侧与两侧鞋面、黑红配色及浅色厚底可见，鞋口前方覆盖 leg 的踝部，鞋面覆盖完整足背与脚趾，厚底位于脚下；足部与袜面仍归同级 leg。上部两侧与 rear_collar 相接，下部鞋面连续连接厚底，参考未见独立突出的鞋跟或需与鞋身分离控制的底部结构。鞋舌、普通交叉系带及顶部系结随所属鞋身保留，结合父节点说明无单独摆动依据；带扣与固定饰纹也随所在鞋口，不按配色或材质拆件。作为一个 part 跟随右足转动及俯仰，网格承接鞋口、足背和鞋头的局部形变，并保持厚底相对稳定的体积，支持踮脚时前掌至后跟的变化。",
+    "svg": "part-layering/parts/legs/leg_right/shoes/shoe_body.svg",
+    "crop": {
+      "left": 451,
+      "top": 1198,
+      "width": 104,
+      "height": 222
+    },
+    "mask": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__shoe_body.png",
+    "level": 72,
+    "sample": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__shoes__shoe_body__sample.png",
+    "control": "raster-layering/step01/workspace/controls-repair02/legs__leg_right__shoes__shoe_body__control.png",
+    "selectionSample": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__shoe_body__visible.png",
+    "generation": {
+      "width": 720,
+      "height": 1536
+    },
+    "paint": {
+      "id": "legs/leg_right/shoes/shoe_body",
+      "originalPartId": "legs/leg_right/shoes/shoe_body",
+      "nativeSolo": "raster-layering/step01/repair-evidence/repair02/final-all/legs__leg_right__shoes__shoe_body__solo.png",
+      "generationSources": [
+        "raster-layering/agents/2026-11-16T10-45-24-524Z-raster_step01-unktoq/cli-data/codex/generated_images/01a1e3f6-3d40-79e1-bcac-50f9603dd4c9/call_fd6b6918dbb34fe7a98934e596595dff.png"
+      ],
+      "retainedLayerUUID": "{9b22ae4f-7193-468d-abc4-b71337ede87f}",
+      "repairs": [],
+      "reuse": null,
+      "openingMasks": [],
+      "registrationOffset": [
+        0,
+        0
+      ],
+      "depths": [
+        {
+          "level": 72,
+          "region": "完整逻辑部件",
+          "name": "D072.0 | legs/leg_right/shoes/shoe_body",
+          "uuid": "{9b22ae4f-7193-468d-abc4-b71337ede87f}"
+        }
+      ],
+      "split": "单深度完整绘画层"
+    },
+    "selectionSampleFeathered": "raster-layering/step01/workspace/selection-masks-repair02/legs__leg_right__shoes__shoe_body__visible.png"
+  }
+]

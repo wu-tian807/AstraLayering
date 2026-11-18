@@ -3,210 +3,95 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "已完成当前 ring_finger 全组独立核对：先查看候选与父 hand 的整图 blend，再以 8 倍放大检查指根 [354,724,28,32]、指身 [356,742,30,29]、指尖 [364,761,24,23]，选框互相重叠；另以 [354,734,32,47] 连续检查两侧走向，并对 [362,738,17,24] 的内侧接缝及 [369,771,13,9] 的末端复核。均对照参考、blend、edge，父稿在相同局部复核。父范围检查通过，outsideSamples=0。\n\n归属：候选确实对应两处长指尖中画面左侧的无名指，没有误认成中指或食指；没有独立碎片、孤点或噪音堆砌。主要问题是可见上半指身整体画得明显过窄，需要局部重画约 y739–758 的上段形体及接缝，不能当作指尖几个像素的微调。已核对的下段及指尖归属可保留，不要求本轮恢复不可见的完整指根。\n\n1. 靠中指的内侧边界明显缩入无名指指身（约 x365–374、y739–757）。参考在 [362,738,17,24] 中清楚显示：浅肤色的无名指指身连续延伸到约 x369–370、y739–745，再沿细暗接缝转向约 x371–373、y750–755；候选右边缘却在上段约 x365–367，并提前斜向右下，距实际接缝约 3–5 像素，上段漏掉一条连续的可见肤色区域，至中段才逐渐靠近原接缝。该区域全部位于父 hand 内，不能以邻指或掌部遮挡解释已明确可见的缺漏。请重新描绘上段宽度与内侧走向，将可见指身连续覆盖到参考的中指接缝，保留贴合暗边及末端小凹口，不制造宽指缝，也不以普通内部明暗作为边界。\n\n2. 画面左侧上段外缘留有无依据的窄条缺漏（约 x359–363、y739–752）。候选左缘在约 x361–362、y739–748，参考的连续手指外缘及父 hand 允许范围位于它左侧，局部相差约 1–2 像素。根部、指身的 edge 与父 edge 对照可见这条父内区域仍未覆盖。参考没有能把这条窄带独立划给小指的接缝或额外指尖，不能为已登记但完全遮挡的小指刻意留出一条可见空带。请沿可靠的可见外缘向左补齐父内上段，并与掌远端、下方已画指身连续连接；隐藏近端的合理局部圆弧可保留，无须推测大片隐藏结构。\n\n上游限制，单独记录：约 x374–376、y777–778 的无名指最下端，参考仍有连续圆钝指尖的灰色外缘；在 [364,761,24,23] 和 [369,771,13,9] 的相同局部，候选与父 hand 的底部曲线重合，均略高于该可见外缘，候选已经贴到父边界。这一末端未覆盖部分只有扩大父范围才能恢复，本轮不要求子组越界修补，也不声称已经补齐，不修改父稿或放宽父检查。上述第 1、2 项仍是父内可修问题，故本轮结论为 revise。",
-      "candidateHash": "6ed7aef04e539105035000e0ed0b288c408990b67ffd10341d3d0f6648460c8f",
+      "feedback": "已检查整图叠加、完整手部参考及父完成稿，并以重叠选框 [404,746,27,29]、[405,768,27,31] 的 8 倍 blend/edge 覆盖候选全部区域，另查看 SVG 独显。父范围检查通过，未发现越界；下述问题均可在父内修正。\n1. 主要形体和归属错误，需要重画当前可见轮廓，不是局部像素修边。候选在约 x412–423、y751–790 画出一条宽长的独立指体，主要沿拇指下方、食指与中指之间的纵向暗影展开。参考中这里是并指重叠的深色沟槽及相邻指面的明暗，不能把整片暗影认作无名指；候选左侧长弧还切入前方长指的连续指面，上端 (414,751) 至 (418,754) 的弧形封口也没有对应的可见无名指分界。请按无名指被中指遮挡的关系重新确定实际窄小露出范围，去掉这条由暗影推成的宽指体，不沿普通明暗分界闭合。\n2. 末端窄露出未覆盖。参考长指束下端偏画面左侧约 x410–418、y779–794，可见一小段由短斜分界与外缘围出的窄指缘，向最低指尖收拢；候选却位于其右侧，并在约 (420,791) 收成尖端，未落到这段实际露出轮廓。重画时须沿该小段两侧可见边缘及指尖转向闭合，保留它与前方中指的接缝，不把中央指间暗沟延伸成替代指身。父完成手轮廓包含此处，不属于上游范围限制。当前未见孤立点或碎片噪音；主要问题是指体归属混淆及真实窄露出遗漏。",
+      "candidateHash": "1950530997b40c3a5a7fa906361018a33af59e32b55e27053ba18c4669b75b50",
       "observations": [
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-3.png"
         },
         {
           "source": "part-layering/parts/arms/arm_right/hand.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-4.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-5.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-7.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-6.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-8.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-9.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-10.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-7.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-11.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-12.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-13.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-14.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-15.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-16.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-17.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-8.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "svg",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-18.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-19.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-20.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-21.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-22.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-23.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T12-29-07-256Z-24.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-01-27-973Z-9.png"
         }
       ],
-      "updatedAt": "2026-10-25T12:53:39.624Z",
-      "repairedCandidateHash": "a892570ec48e82a17fe838a8c326e1a5a9b163d548e0a34ed30d5474746877e2"
+      "updatedAt": "2026-11-16T06:28:46.493Z",
+      "repairedCandidateHash": "ad38d3e11ac23bf1e29dad516b437cf9ee1c2ee8fcb15648f6ac285a29a4e3d7"
     },
     {
       "verdict": "pass",
-      "feedback": "已完成整图 blend 定位，并以 8 倍放大逐块核对上段 [354,731,25,24]、中段 [356,745,25,25]、指尖 [362,761,23,22]，相邻选框重叠；各块均查看原参考、候选 blend 与 edge，并在同一局部对照 hand 父稿。\n当前组归属正确：覆盖画面左侧长指尖及其连续指身，没有把中指或隐藏小指误包进来。上段可见肤色连续覆盖至与中指的细暗接缝，接缝走向、下段收细及末端小凹口吻合；未见父内可修的组件缺失、挖缝、孤点或碎片。近端圆弧属于合理局部搭接。父范围检查 pass，outsideSamples=0、outsidePixels=0。当前允许范围内通过，无需重画或返修当前组。\n单独记录上游范围限制：参考在画面左侧外缘约 x360–363、y749–755，以及无名指尖下缘约 x374–377、y777–778，仍有窄灰色外缘位于 hand 父范围外。候选与父稿在这些位置的外轮廓完全重合；同局部 edge 对照确认，恢复这条父外窄带需要上游扩大父范围，当前子组无法在保持范围检查通过的同时补齐。此处未补齐，不要求当前组越界，也不修改父稿。图像证据：observations/review/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-13.png（候选）与 -14.png（父稿），相同选框 [354,733,31,50]、8 倍 edge；指尖原参考见 observations/review/arms/arm_right/hand/ring_finger/42db3bf3-5311-456c-8143-1fe3064add72.png。",
-      "candidateHash": "a892570ec48e82a17fe838a8c326e1a5a9b163d548e0a34ed30d5474746877e2",
+      "feedback": "已读取本组及 hand 父组、相邻手指说明，并查看父完成 SVG；完成整图 blend 定位、全手参考放大，以及相互重叠的 [385,710,47,77]、[390,745,42,58]、[395,765,36,35] 局部 blend/edge 核对与候选独显。本组实际露出为约 (410,778) 至 (417,794) 的外侧窄小指缘：候选覆盖了该连续露出，起点沿相邻指缘收尖，内侧沿可见遮挡接缝闭合，外侧及末端与父轮廓和参考相符。上方掌部与并指暗影区域未见另属本组的明确分离露出，未将整片指间阴影扩作指身。轮廓无孤立碎片、无无依据孔洞或开口；未发现当前范围内确定需修改的归属、覆盖或边缘问题。group 未启用 allowOutsideParent，四倍采样父范围检查 outsidePixels=0，满足父范围约束。",
+      "candidateHash": "ad38d3e11ac23bf1e29dad516b437cf9ee1c2ee8fcb15648f6ac285a29a4e3d7",
       "observations": [
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-1.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-2.png"
         },
         {
           "source": "part-layering/parts/arms/arm_right/hand.svg",
           "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-3.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-4.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-3.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-5.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-4.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-6.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-7.png"
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-5.png"
         },
         {
           "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
           "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-8.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "blend",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-9.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-10.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-11.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-12.png"
-        },
-        {
-          "source": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/outline.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-13.png"
-        },
-        {
-          "source": "part-layering/parts/arms/arm_right/hand.svg",
-          "mode": "edge",
-          "savedPath": "part-layering/groups/arms/children/arm_right/children/hand/children/ring_finger/step01/observations/arms/arm_right/hand/ring_finger/2026-10-25T13-00-01-867Z-14.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_right/children/hand/children/ring_finger/previews/2026-11-16T06-41-00-735Z-6.png"
         }
       ],
-      "updatedAt": "2026-10-25T13:08:13.655Z"
+      "updatedAt": "2026-11-16T06:49:00.623Z"
     }
   ]
 }
