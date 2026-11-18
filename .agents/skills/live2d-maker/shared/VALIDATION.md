@@ -16,7 +16,7 @@ pnpm check
 
 | 条件 | 通过标准 |
 | --- | --- |
-| 方案 1 默认、方案 2 混合与自定义配置 | 全部 LLM 职责和独立生图选择完整；人物／衣服职责共享，但工具和提示词覆盖保留；本地非空值优先、启动环境回退与旧配置冲突有对应断言 |
+| 默认配置与显式模型覆盖 | 全部 LLM 职责和独立生图选择完整；人物／衣服职责共享，但工具和提示词覆盖保留；本地非空值优先、启动环境回退与旧配置冲突有对应断言 |
 | 模型与生图组合 | 所有生图步骤拒绝非 Codex harness 配原生 imagegen；缺少所选生图 URL／key、CLI 或 Codex 生图补丁能力时，启动前明确报错；CLI 本地版本探测能识别文件存在但解释器／动态库缺失的情况 |
 | 真实工具目录 | 读取 `shared/tools/`、`shadow/tools/`、`clothing-part-layering/tools/` 的全部 schema.json 与 knowledge 中的 description.md，管线自有工具只出现在该管线的 catalog；不以只含简单字符串的测试工具代替；可空类型、嵌套数组、枚举、数值约束、oneOf 和 additionalProperties 等逐字段保留 |
 | Gemini 请求 | 实际 HTTP 适配路径用 parametersJsonSchema 传完整 JSON Schema，不能把 type 数组塞进受限的 parameters；保留 CLI 原生工具；重复准备不重复注册；camelCase／snake_case 原生声明均可处理 |

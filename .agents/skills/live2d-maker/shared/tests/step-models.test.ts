@@ -96,7 +96,7 @@ test('every image-capable agent rejects native imagegen with a different harness
   assert.throws(() => validateImageSelection(custom, 'part_simplify'), /缺少 google/);
 });
 
-test('scheme 1 template and code defaults resolve all role efforts and native images without extra providers', async t => {
+test('template and code defaults resolve all role efforts and native images without extra providers', async t => {
   const contents = await readFile(new URL('../../example.env', import.meta.url), 'utf8');
   const variables = parseEnv(contents);
   assert.equal(Object.keys(modelSlotDefaults).length, Object.keys(modelSlotDefaults).length);
@@ -125,22 +125,31 @@ test('scheme 1 template and code defaults resolve all role efforts and native im
   assert.ok(imageSteps().every(step => settings.stepImages[step] === 'codex-native'));
 });
 
-test('mixed preset assigns shared GPT and Claude roles and uses Sunburst for simplification', async t => {
-  const base = parseEnv(await readFile(new URL('../../example.env', import.meta.url), 'utf8'));
-  const overrides = parseEnv(await readFile(new URL('../../presets/optimized.env', import.meta.url), 'utf8'));
-  const variables = { ...base, ...overrides, google_image_base_url: 'https://image.example/v1beta', google_image_api_key: 'fixture',
-    openai_image_base_url: 'https://image.example/v1', openai_image_api_key: 'fixture' };
+test('explicit Codex and Claude roles preserve shared routing and per-step image overrides', async t => {
+  const variables = {
+    part_draw_agent_model: 'gpt-6.2-sol-xhigh',
+    part_review_agent_model: 'gpt-6.2-sol-xhigh',
+    part_completion_agent_model: 'claude-sonnet-5-5-xhigh',
+    raster_step01_agent_model: 'claude-opus-5-5-xhigh',
+    default_image_model: 'gpt-image-2.5-sunburst',
+    part_simplify_image_model: 'gpt-image-2.5-sunburst',
+    part_base_subject_image_model: 'gemini-nano-banana-2.1',
+    part_completion_image_model: 'gemini-nano-banana-2.1',
+    clothing_completion_image_model: 'gemini-nano-banana-2.1',
+    google_image_base_url: 'https://image.example/v1beta',
+    google_image_api_key: 'fixture',
+    openai_image_base_url: 'https://image.example/v1',
+    openai_image_api_key: 'fixture',
+  };
   const root = await fixture(t);
   await writeFile(join(root, '.env'), Object.entries(variables).map(([key, value]) => `${key}=${value}\n`).join(''));
   const settings = loadWorkflowEnvironment({}, root);
   const expected: Record<keyof typeof modelSlotDefaults, string> = {
     ...modelSlotDefaults,
-    preparation: 'gpt-6.2-sol-low',
-    part_draw: 'gpt-6.2-sol-xhigh', part_review: 'gpt-6.2-sol-xhigh', part_completion: 'claude-sonnet-5-5-xhigh',
-    part_groups: 'gpt-6.2-sol-xhigh', part_depth: 'gpt-6.2-sol-xhigh', part_reduce: 'gpt-6.2-sol-xhigh',
-    raster_step01: 'claude-opus-5-5-xhigh', raster_step01_review: 'claude-sonnet-5-5-xhigh',
-    raster_step02: 'claude-sonnet-5-5-xhigh', raster_step03: 'claude-sonnet-5-5-xhigh',
-    assembly: 'claude-sonnet-5-5-xhigh', shadow: 'claude-sonnet-5-5-xhigh', nine_axis_head: 'claude-sonnet-5-5-xhigh',
+    part_draw: variables.part_draw_agent_model,
+    part_review: variables.part_review_agent_model,
+    part_completion: variables.part_completion_agent_model,
+    raster_step01: variables.raster_step01_agent_model,
   };
   for (const [step, role] of Object.entries(stepModelSlots)) {
     assert.deepEqual(settings.stepModels[step as keyof typeof stepModelSlots], parseAgentModel(expected[role], 'fixture'), step);
