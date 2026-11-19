@@ -1,7 +1,0 @@
-{
-  "groupId": "chest_bow",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "f0988ef6d4cd5d0ba3a29d649a5a2a818204a8965186786f9cdd3986ceab631b",
-  "afterHash": "fd56f1e38d84b65ab77947d23f485e256466f670b746a1b35b9d796aa9bc9d9c"
-}

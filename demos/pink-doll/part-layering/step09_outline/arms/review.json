@@ -2,112 +2,117 @@
   "groupId": "arms",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已通过整图叠加及分块高倍放大（左臂上段 crop=[480,350,60,150]、中段 crop=[430,490,95,160]、手部 crop=[390,640,80,110]；右臂上段 crop=[715,350,60,150]、中段 crop=[730,490,95,160]、手部 crop=[790,640,80,110]，均以 blend 与 edge 模式核对）完成 `arms` 组全部可见区域的审查：\n1. 左右手臂与手掌可见区域完整覆盖，无遗漏部件或碎片噪音，SVG 仅包含左右两条干净闭合路径。\n2. 上臂与发丝交界接缝、手肘折角、手腕过渡、拇指与虎口凹陷、指尖及指间阶梯转折均精确贴合参考图外轮廓。\n审查通过。",
-      "candidateHash": "163a9c73fdb99e61f29bd9bc27a3be71652317a39d0307bd18b1de3faffcabbd",
+      "verdict": "revise",
+      "feedback": "第 1 轮。候选 part-layering\\step09_outline\\arms\\outline.svg。已用参考、blend 和 edge 逐侧检查肩尖、肩弧、上臂与长发接缝、肘部转向、前臂、腕部与双手。arms 为顶层组，无父范围限制。坐标为原图，左右按画面方向。\n1. 画面左臂靠躯干侧，从肘下到腕前（约 x=472–517、y=563–670），红边有一段落在肤侧，发侧仍露出连续的深色臂轮廓。尤其在前臂斜过垂发至小发梢交会处，沿深线的发侧外缘小幅向画面右移，保留腕凹，发梢留在臂外。\n2. 画面右臂靠躯干侧，从肘下到腕前（约 x=736–774、y=565–670），前臂斜段也有深线留在红边外，内侧是肤色、外侧是前垂发与发梢。沿清晰深线外缘小幅向画面左移，在发梢离开腕部处接回腕凹，保持发梢和腕间的真实分界。\n3. 双手对背景的边界略包入线外浅边。画面左手从外侧掌根下方到手侧折角和最低指尖（约 x=423–447、y=701–771），以及屈指凸缘与指尖之间的凹口（约 x=447–464、y=744–769），向手内贴回深线外缘。画面右手外侧掌缘及底端斜折（约 x=803–824、y=706–771），以及靠拇指下方的屈指凸缘和底部指间凹口（约 x=784–805、y=744–770），同样向手内收至深线外缘。逐侧保留原有掌角、指尖弧度及凹口，去掉轮廓外的浅边。",
+      "candidateHash": "e785ea52b9670cad22fff45507fd34fcc0692f797f712b652a1c0e72924ffbf7",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-3.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-4.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-5.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-6.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-7.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-7.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-9.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-8.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
+          "source": "part-layering/step09_outline/arms/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-12.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-13.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-14.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-15.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-16.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-17.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-18.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-19.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/2026-10-22T01-10-45-007Z-20.png"
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T09-48-54-774Z-9.png"
         }
       ],
-      "updatedAt": "2026-10-22T01:15:59.721Z"
+      "updatedAt": "2026-11-18T10:10:01.172Z",
+      "repairedCandidateHash": "044a833aabbf496a9143ddfb1e38690756716262c263a35cce4f32b9844046a4"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。整图定位后，分别放大参考、blend 和 edge，核过双侧肩端、上臂与长发的接缝、肘弯、前臂、发梢交会处、腕部和各指端。arms 无父组。双臂整体露出关系正确，需修以下局部（坐标为原图，左右按画面）。\n• 画面左肩上缘（约 x511–526、y337–350），肩尖及其向左下转入肩弧的短段，红边压在皮肤与深色后发之间的暗线内，线条上缘仍露在候选外。沿暗线朝上、朝后发侧微移到线宽外缘，止于前发挡住肩部的尖点。\n• 画面左手，从靠躯干侧的腕弯经掌缘至拇指（约 y675–743），以及手背从直边转入最长指尖的斜段（约 y744–770），局部红边已进白底，分别向左、向右收回至暗线外缘。拇指与蜷指相接处（约 x459、y744）及最低两指之间（约 x449、y766）也有少量白底被包进，按参考暗线收回，保留两个凹口各自的转折。\n• 画面右手，靠躯干侧的掌缘至拇指（约 y678–743），以及画面右侧手背直边和转往最长指尖的斜边（约 y718–770），局部红边越进白底，分别向右、向左收回至暗线外缘。右手最下方两指间的凹口（约 x800–801、y764–767）偏低，邻接的蜷指下缘也包了白底。从凹口向上贴回暗线交会点，沿蜷指下缘收回，保留独立指尖。",
+      "candidateHash": "044a833aabbf496a9143ddfb1e38690756716262c263a35cce4f32b9844046a4",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/previews/2026-11-18T10-25-00-451Z-10.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:36:00.465Z",
+      "repairedCandidateHash": "89217c9fe77c09559de3e4f88a9662bac89c2b13062cd0cdd6aa374a691ff397"
     }
   ]
 }

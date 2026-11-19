@@ -65,3 +65,6 @@ sam_veirfy/outputs/** -text whitespace=blank-at-eol,blank-at-eof,space-before-ta
 
 # Preserve the workflow export bytes recorded in the Black White Doll manifest.
 demos/black-white-doll/** -text
+
+# Preserve the workflow export bytes recorded in the Pink Doll manifest.
+demos/pink-doll/** -text whitespace=cr-at-eol,-blank-at-eof

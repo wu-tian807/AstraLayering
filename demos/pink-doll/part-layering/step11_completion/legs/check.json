@@ -1,7 +1,5 @@
 {
   "groupId": "legs",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "ca87c72c9f770084c36974d475cd7975e5f186cae64921e13d18f311f934fcb1",
-  "afterHash": "0dd96abb280ab7b917d737912bbcb05a5a3961a94cfd19d0079cf4ebc4091996"
+  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

@@ -1,0 +1,33 @@
+{
+  "groupId": "face/eyes/eye_left/eyelid_crease",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮。参考图与同一局部的 8 倍 blend、edge 对照确认，角色左眼（画面右侧）靠鼻侧的浅暖色睑褶位于约 x=652–680、y=181–193。可辨暖棕弧线从鼻侧发梢旁斜向右上，中段逐渐转平，画面右端渐淡收束；弧线上缘接浅肤色，下缘与深色上睑之间保留清楚的浅肤色间隔。父稿同区域 edge 显示，父范围上边沿深色上睑外缘通过，整段可辨睑褶连同两侧线宽和端部均在父范围之外。候选 SVG 为空组，父内没有可补绘的睑褶范围，也无误包。当前组按父范围通过；可见睑褶的整段缺漏属于上游父范围限制。",
+      "candidateHash": "5c7705a821cb3caa0046f5200042b5ca5b88749d702c7b1b8820865752580919",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-18T14-18-04-710Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-18T14-18-04-710Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-18T14-18-04-710Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/eyelid_crease/previews/2026-11-18T14-18-04-710Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:27:24.742Z"
+    }
+  ]
+}

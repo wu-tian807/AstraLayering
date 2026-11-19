@@ -1,0 +1,39 @@
+{
+  "image": "raster-layering/step01/workspace/independent-review/canvas-solo-54.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "marked": "raster-layering/step01/review-01-evidence/bangs_solo/marked.png",
+  "manifest": "raster-layering/step01/review-01-evidence/bangs_solo/regions.json",
+  "regions": [
+    {
+      "id": "R05",
+      "bounds": [
+        545,
+        149,
+        160,
+        23
+      ],
+      "layers": [
+        "54 hair/bangs",
+        "39 face/eyebrows/eyebrow_left",
+        "40 face/eyebrows/eyebrow_right"
+      ],
+      "description": "独显刘海时仍可在双眉对应高度的细发缕上看到横向暗线，位置与原参考眉线吻合。",
+      "crop": [
+        536,
+        140,
+        178,
+        41
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/bangs_solo/R05-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/bangs_solo/R05-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/bangs_solo/R05-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

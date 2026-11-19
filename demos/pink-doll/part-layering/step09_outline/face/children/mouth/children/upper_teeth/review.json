@@ -2,47 +2,61 @@
   "groupId": "face/mouth/upper_teeth",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "通过审查。已结合整图叠加及口部局部放大（crop=[610,265,36,36] 与 [620,270,16,10]，scale=8）核对原图、blend、edge、svg 独显及父组 face/mouth.svg 边界：\n1. 可见范围与边缘对齐：上排牙齿（upper_teeth）位于口腔上沿，下缘（y≈275.6–275.7）呈平缓弧形，与原图乳白色牙列下沿和深红色口腔内壁（mouth_interior）的分界精确对齐；\n2. 接缝与搭接：上拱弧顶（y≈272.8）及左右两侧（x≈624.2–632.5）向 upper_lip 深色唇线内部适度延伸，无漏白或越界；\n3. 轮廓质量与父范围检查：单一闭合路径平滑干净，无碎点或多余块面；父范围检查通过（outsideSamples=0，outsidePixels=0）。",
-      "candidateHash": "8ee0136aea5be82733b1607d0238d992610c5a58f0b54140605eb75eadff3d9e",
+      "verdict": "revise",
+      "feedback": "第 1 轮。已核对当前候选 outline.svg。参考中上排牙是上唇下方的一条连续浅灰白齿带，牙根由上唇遮挡。整图定位和 8 倍参考、blend、edge 对照显示，上边贴合上唇暗线的下侧，左端沿浅齿与深红口腔交界收束。下缘中段约 x=625–638、y=258，红边略偏上，齿带下侧仍露出一条细浅灰边；将该段微向下移到浅齿与下方红色区域的实际交界，保持中段连续。右端约 x=640–643、y=256–258，当前收尖略早，右下斜边切入仍清晰可见的浅齿；沿浅齿与右侧深红口腔的斜向分界略向右外移，再接回上唇下侧，在浅色消失处收尖，保留右侧深红口腔。相同局部叠加父组 mouth.svg 后确认两处均在父范围内，父范围检测为零越界。",
+      "candidateHash": "44a270b472138189c42cefaa079e55218a5b7103787fb1f4d74a169f5851650c",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-04-05-996Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-04-05-996Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-04-05-996Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-2.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-3.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face/mouth.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_teeth.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_teeth/2026-10-22T08-24-39-119Z-7.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-04-05-996Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T08:57:45.809Z"
+      "updatedAt": "2026-11-18T13:11:01.790Z",
+      "repairedCandidateHash": "e5868157595e27854c543962ad8ff308853b6c41f279e4a6f3d8ca35d51f047f"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮在整图定位后，以口部 8 倍参考、blend 和 edge 逐段核对。连续浅色上齿带的上缘贴合上唇线下侧的遮挡分界，下缘沿浅色牙面与深红口腔的交界，左右短弧分别在浅色带消失处收合。未见清晰的漏描或误包。父稿同区叠加确认齿带位于口部开口内，四倍采样无越界。",
+      "candidateHash": "e5868157595e27854c543962ad8ff308853b6c41f279e4a6f3d8ca35d51f047f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-15-01-441Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-15-01-441Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-15-01-441Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_teeth/previews/2026-11-18T13-15-01-441Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:19:21.148Z"
     }
   ]
 }

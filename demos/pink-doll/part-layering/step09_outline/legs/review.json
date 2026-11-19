@@ -2,72 +2,117 @@
   "groupId": "legs",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成整图叠加与上大腿及骨盆接缝、大腿至膝盖小腿、小腿至脚踝及脚趾的全区域分块放大核对（blend、edge、svg 模式）：\n1. 覆盖完整性：左右双腿与双脚（leg-left、leg-right）可见区域完整覆盖，无遗漏区域或组件缺失。\n2. 边缘与接缝对齐：上方与 pelvis（连体服下缘）的接缝、大腿内外侧、膝盖与小腿弧度、脚踝转折以及双脚五个脚趾底部外轮廓均与参考图外缘精确贴合。\n3. 轮廓质量：仅包含两个干净连续的闭合路径，无噪点、碎块或无依据缺口。审查通过。",
-      "candidateHash": "ca87c72c9f770084c36974d475cd7975e5f186cae64921e13d18f311f934fcb1",
+      "verdict": "revise",
+      "feedback": "已逐段对照放大参考、blend 和 edge。legs 为顶层组。坐标均为原图画布坐标，左右按画面方向。\n1. 双腿根：画面左侧腿口斜弧约 x563–615、y650–723，候选落在深色腿口线的肤色一侧，留出细窄肤色带。沿实际腿口线向连体服侧贴回，并在 x615、y720 附近按裆底转角接入内腿边。两侧发梢凹口分别沿肤色与深色发梢的分界重描，尤其是左 x510–527、y649–669 和右 x720–740、y649–668。候选在外股起点与发尖之间将真实弧线接得偏直，右侧尖端也略向肤色伸出。收回右尖端，保留两侧各自的尖角和遮挡转向。\n2. 大腿、膝与小腿：两腿的深色外轮廓和中间开口均可辨认。候选沿线有像素阶梯和局部出入，左腿外侧 x525–535、y840–1005 与内膝 x597–607、y875–945，右腿内侧 x641–656、y845–985 和外膝至小腿 x715–725、y870–1000 较明显。把伸入背景或腿间开口的台阶收回至深线外缘，压进深线的短段向空白侧补足，沿原线保留膝窝收窄、小腿鼓起以及到袜口的连续过渡。\n3. 袜口和袜筒：两侧荷叶边外下角及接入袜筒的折点，尤其左侧 x530–543、y1095–1109 和右侧 x708–721、y1095–1109，被折线拉直。按深色描边恢复圆瓣和回折，右袜外侧凸角稍收。袜筒通往鞋带和扣位的外边仍有台阶式折线，沿参考中袜料或鞋帮与背景的真实交界修顺，保留部件交接处的折点。\n4. 鞋和鞋底：右鞋画面右侧 x715–717、y1205–1225 有超出深色鞋帮的鼓包，向内收回并顺着鞋帮转入鞋底。左鞋画面左侧 x536–539、y1208–1234 有阶梯切过连续的深色边缘，按鞋帮外缘接圆。两鞋底下缘约 y1230–1245 的直折段按各自深色底线的外缘修成连续弧线，保留两鞋之间的窄缝。鞋扣突出部仍沿各自外框，蝴蝶结、袜褶及鞋面明暗保留在联合范围内。",
+      "candidateHash": "27a71972f27c4294ecc265b965dc0a518cbe7615b3e3ccfbf512595e4936acea",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-1.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-2.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-3.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-4.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-5.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-6.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-6.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
+          "source": "part-layering/step09_outline/legs/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/legs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/legs/2026-10-22T01-08-20-183Z-12.png"
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-00-36-320Z-7.png"
         }
       ],
-      "updatedAt": "2026-10-22T01:13:35.075Z"
+      "updatedAt": "2026-11-18T10:13:25.155Z",
+      "repairedCandidateHash": "550190a9bd93d3fe397930e4af3f7168a1085afbc72958a0358b12d943923494"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。按画面左右及 1254×1254 原图坐标记录。legs 无父组。双腿分别沿腿间开口延续，膝、小腿、袜身、鞋扣、鞋面和鞋底均已核对，保留两腿及两鞋之间的缝隙，袜和鞋继续与同侧腿使用联合轮廓。\n1. 画面右侧连体服腿口中下段（约 x644–690、y650–709），红边与深色腿口线之间有连续的浅色衣料细带。将这段候选朝皮肤方向微收至该深线的衣料侧外缘，完整保留线宽，并沿原线弧度接回裆角。右侧发束外边与大腿相遇处（约 x739–740、y645–649），凹口上端落低，红边与发边之间留有一小截可见肤色。将交点上提到深色发边与腿外缘实际相交处，沿明晰发边回接发尖，保留发尖下方的皮肤。\n2. 双侧袜口荷叶边的下翼与直袜身接点均需局部收回。画面左侧外翼下缘约 x534–542、y1100–1105，内翼接点约 x589–593、y1100–1103。画面右侧内翼约 x655–663、y1099–1103，外翼约 x710–718、y1101–1106。红边在深色描线外兜入浅底，尤其右袜外翼下方和内翼接点。将下翼多出的范围向上收至深线外缘，按各侧参考保留翼端折角及转入袜身的小凹折。\n3. 画面右鞋朝腿间缝的一侧，鞋带外凸下半至鞋面斜边（约 x648–653、y1150–1168）及鞋头内侧转入鞋底处（约 x632–634、y1211–1234），红边局部越过深色轮廓进入亮底。分别向鞋体微收，贴带边与鞋底黑线外缘，保留鞋带下端的凹折和鞋底转角。",
+      "candidateHash": "550190a9bd93d3fe397930e4af3f7168a1085afbc72958a0358b12d943923494",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-8.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/legs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/legs/previews/2026-11-18T10-39-42-484Z-12.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:52:00.393Z",
+      "repairedCandidateHash": "baa87a4512e8c18cea09921d85eb01a9e878f6ff8d29ae5ce18fedd1398d1320"
     }
   ]
 }

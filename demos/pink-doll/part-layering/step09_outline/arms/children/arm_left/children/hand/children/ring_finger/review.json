@@ -2,47 +2,67 @@
   "groupId": "arms/arm_left/hand/ring_finger",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "左手无名指（arms/arm_left/hand/ring_finger）候选轮廓审查通过：\n1. 可见区域与外缘对齐：分块放大核对（crop=[815,670,45,45] 与 [815,700,45,45], scale=8），左侧外轮廓自虎口下方 (831.02, 691.53) 经指体侧缘 (832.2, 720.5) 至圆润指尖 (835.41, 728.15) 及指缝转折点 (837.53, 729.88) 与参考图外沿及父组 hand.svg 边界完全贴合。\n2. 邻接接缝连续性：右侧与 middle_finger 的交界（(837.53, 729.88) 至 (840.6, 700.5)）以及右上与 index_finger/palm 虎口蹼部的遮挡交界（(840.6, 700.5) 至 (831.02, 691.53)）均精准落在原图指间分界线中心，无漏画或越界。\n3. 轮廓质量与父范围检查：单一闭合路径结构干净，无碎点或冗余折角；四倍采样父范围检查通过（outsideSamples=0, outsidePixels=0）。",
-      "candidateHash": "c76aaf074873b7a8c470c706cbad5c0281e4ed668e723ab33941f49e56e2011a",
+      "verdict": "revise",
+      "feedback": "第 1 轮。整图定位及 8 倍参考、blend、edge 确认本件为画面右手三枚暖色指尖中的中间一枚。候选四倍采样无父外像素，同区父稿叠加未见阻碍下列修正的上游缺口。\n1. 近端横缝（x≈801–806，y≈725–727）上方是掌部遮挡，下方是露出的暖色指身。候选横弧压在暗线中下部，右端也切入横缝与右侧暗边的交点。沿横缝上外缘略上移，保留右端转折及完整线宽。\n2. 左侧与中指的分界（x≈787–801，y≈727–755）上段贴暗线内侧，向左下弯后尤为明显。沿中指侧的暗线外缘微向左及左上补足线宽，在暗缝接到手外轮廓处保留指间折口。\n3. 右上段（x≈805–809，y≈737–744）从右侧掌缘折点向左下斜接小指分界，包入了两者之间没有独立分界支撑的楔形。可辨小指暗缝在约 (805.5,741) 渐显。撤回向右伸出的折角，接到可确认的暗缝起段，模糊处以已确认边界为界。沿该暗缝往左下至指尖下侧（x≈790–805，y≈743–763），将压在暗线中心或本指侧的曲线微向小指侧调整，包含线宽。\n4. 指尖左外弧（x≈786–790，y≈755–763）局部红边切过深色轮廓，向左及下微扩到外侧背景交界，保留圆弧及其与下方小指相接的凹口。",
+      "candidateHash": "07a09346e60719c7e88838ebb16591db5174c3bae110867b406f697a39e408f9",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-21-46-769Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-21-46-769Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-21-46-769Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-3.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/ring_finger.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/ring_finger/2026-10-22T10-07-22-328Z-7.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-21-46-769Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T11:05:34.409Z"
+      "updatedAt": "2026-11-18T14:32:09.564Z",
+      "repairedCandidateHash": "f372f30959a2238fc3c710a87a09185737fc80317014452e37ded9faad29acb9"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。整图定位及 8 倍参考、blend、edge 确认本件是画面右侧左手三枚暖色指尖中的中间一枚。逐段核对了近端横缝、与中指相接的左缘、露在背景前的圆指尖和指间折口，以及与小指相接的斜缝。同区父稿叠加及四倍采样确认候选无父外像素，以下修正位于父范围内。\n近端横缝右端（x≈805.5–807.5，y≈725–728）仍需微调。横缝上方及折角右侧是浅色掌部，下方及折角左侧是暖色指身。放大 edge 中，红边在横缝与右侧暗边相交处从暗笔画内侧提前下转，留下转角右上侧一截清晰暗线。把这一小段沿暗线外缘微向右上补齐，保留横缝转向；顺着明确线迹短接到现有边界，右下方缺少可靠分界的楔区维持收敛。",
+      "candidateHash": "f372f30959a2238fc3c710a87a09185737fc80317014452e37ded9faad29acb9",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-37-06-664Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-37-06-664Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-37-06-664Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-37-06-664Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/ring_finger/previews/2026-11-18T14-37-06-664Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:42:48.125Z",
+      "repairedCandidateHash": "9f2120e615122ac3d3667c317617cec725b9e745b4e7a2715189365a6a28c92c"
     }
   ]
 }

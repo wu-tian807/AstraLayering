@@ -1,0 +1,78 @@
+{
+  "groupId": "face/eyebrows",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮 review，face/eyebrows。整图定位后，以原图坐标 [547,143,164,36] 的 8 倍参考、blend 和 edge 核对双眉上下缘、尖端和发丝交界。眉线跨过发束仍清晰可辨的位置保留连续。\n1. 画面左眉外侧（约 x=553–566、y=163–170）：候选把发面上的细斜眉尾加宽成楔形，收尖也略偏右上。把上下缘收回到发面上的细灰线外缘，向左下对齐实际收尖。额缝中段（约 x=579–591、y=156–160）的下缘略切进灰褐眉线，向下贴回眉线与浅肤色交界，包含可见线宽。靠中心刘海处（约 x=600–608、y=158–162）复核主弧收窄和深发丝旁短尖的交界，候选当前用平顺的窄带跨过浅弱处，沿两处各自可辨的边界收口，勿将竖向发丝并入。\n2. 画面右眉主弧（约 x=660–677、y=154–157）下缘切入眉色，向下贴至深灰眉线与浅额肤的交界，保留完整线宽。靠中心的短尖（约 x=652–656、y=158–160）收紧到发面上可确认的细线端点。向画面右侧（约 x=677–695、y=154–162），候选把主弧、发面短线和外尾接成平滑宽条。按斜发缘处的实际转折收边，贴合 x≈679–686 的短线，在 x≈686–689 的浅发面间断处留空，随后沿深发丝旁露出的外尾收尖，排除竖向发丝。\n同一区域叠加 face.svg，双眉及上述可修位置均在父稿范围内，四倍范围检测越界为 0。",
+      "candidateHash": "4d202e99a7f39486daaaaad91aeaa140f77301f683e93ab4f84c7e50cdbd5f23",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-25-58-149Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-25-58-149Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-25-58-149Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-25-58-149Z-4.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-25-58-149Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:37:30.178Z",
+      "repairedCandidateHash": "0c2976f41e3f66f6336bf957aedad4481da2d5b1d9443dc6470292da9f3aeccb"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。已在整图定位双眉，以原图及 8× blend、edge 逐段核对上下缘、尖端和刘海交界。需修两处发束接缝（原图坐标）：① 画面左眉内端 x≈600–607、y≈158–162，主段在近竖的深色发束线左侧提前收尖，漏掉仍可辨的短横向眉缘。沿眉线上下外缘延至发束左界。其右侧小段的左端压入深色发束线，应从发束右侧重新露出的横向眉线起描，保留原图遮断。② 画面右眉外侧末段 x≈688–695、y≈157–161，候选左端落在斜向深色发束上，把发束暗线包进眉段。在该束右侧重新可辨的细眉线上起描，沿其上下缘收至尾尖，保留与中段的间隙。已以同裁区叠加 face.svg 核对，两处可在父范围内修正，当前候选四倍采样越界为 0。",
+      "candidateHash": "0c2976f41e3f66f6336bf957aedad4481da2d5b1d9443dc6470292da9f3aeccb",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyebrows/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyebrows/previews/2026-11-18T11-43-49-377Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:48:33.197Z",
+      "repairedCandidateHash": "ae9c90c529076660005ef02c1cee67ebb46b54311274e407e6cfbe92db7c6df6"
+    }
+  ]
+}

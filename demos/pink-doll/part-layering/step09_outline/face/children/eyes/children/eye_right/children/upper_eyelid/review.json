@@ -1,0 +1,68 @@
+{
+  "groupId": "face/eyes/eye_right/upper_eyelid",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮。以原图 [540,175,73,65] 的 8 倍参考、blend 和 edge 对照了画面左侧右眼的整条上睑。① 靠鬓发外眼角（约 x544–553、y198–208）：鬓发与上睑之间的浅肤色楔在上睑外侧。候选在贴发尖上方用两条直段切出硬折，贴发尖也略偏低。沿深棕睑线与浅肤色楔的接边调整，贴发尖略上移，保留浅色楔。② 向左挑出的上缘短睫（约 x559–566、y189–192）：参考短尖的下缘沿浅色缺口弯回主线，候选用斜直线连到凹口，削薄了可见深棕边。下缘沿浅色缺口上沿微向下补足，保留凹口。③ 主拱顶部至鼻侧斜坡（约 x579–601、y189–198）：候选上缘略走在深色睑线外侧的浅色过渡中，向下贴回深色轮廓的可见外缘，保留上方与浅棕睑褶之间的肤色间隔。④ 开口上缘跨过虹膜顶部（约 x581–596、y196–203）：候选下缘偏向上睑一侧，压薄了虹膜上方的深棕睑带。沿深棕睑带向灰棕虹膜的可辨转色边局部下移，连回两侧眼白接缝，避免顺着虹膜自身边线下描。⑤ 外眼角下勾末端（约 x565–566、y228–229）：候选锐尖略伸过参考中深棕线收尽处，向上微收，保持与下方两处独立下睫的间隔。鼻侧长尖及其上方短尖间的凹口已对照。父稿在同一局部叠加，现候选四倍采样无越界。父稿在贴发尖及短挑睫所在的上缘与候选共边，涉及外扩的部分以父范围为限，共边外仍有可靠线宽的部分需上游复核，弧顶内收、开口接缝和下勾末端在父内可修。",
+      "candidateHash": "73d8171a59ca6082e3d3f50d90e3082f67b97da0c3aa3bb28102ee84f1de66fb",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-15-08-229Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-15-08-229Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-15-08-229Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-15-08-229Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "svg",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-15-08-229Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:24:38.251Z",
+      "repairedCandidateHash": "38f2233140d55ff3a705ebd4ce67290b2b58fca350ef0493248da214b7124f38"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。以原图坐标核对画面左侧的角色右上眼睑。参考、blend 和 edge 的 8 倍局部覆盖了外眼角下勾、鬓发侧挑睫及缺口、上拱、鼻侧尖端，以及朝眼白和虹膜的开口上缘。候选全在父组内，4 倍范围检查无越界。请修以下位置：\n1. 开口上缘在 x≈578–584、y≈196 处从眼白尖端接到虹膜上方。红线在眼白尖端后向下折出一小阶并接平段，切进睑下的灰褐虹膜。保留眼白尖端，按可辨的深棕睑缘和虹膜顶部的交界收回小阶，平顺接到右侧弧线。\n2. 鼻侧 x≈602–608、y≈198–208。叠加可见两道尖端之间的凹口被画成硬折，主尖端回收段也在深色睫线边缘外包入一条偏浅的过渡色。沿可辨深棕线外侧收回回收段，按参考的斜向收尖和两尖间的小凹口调整。父稿同窗叠加显示这里的外侧折线与候选共用，局部收回可在父内完成。\n鬓发侧挑睫与主线之间的浅色缺口、外眼角下勾到眼白侧的回弯均可辨，保留其连续关系和缺口。",
+      "candidateHash": "38f2233140d55ff3a705ebd4ce67290b2b58fca350ef0493248da214b7124f38",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-32-27-192Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-32-27-192Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-32-27-192Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/upper_eyelid/previews/2026-11-18T14-32-27-192Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:36:58.878Z",
+      "repairedCandidateHash": "5b70c44b93bf18528b901f804969a07101c189e269d3654899b932640cf28b27"
+    }
+  ]
+}

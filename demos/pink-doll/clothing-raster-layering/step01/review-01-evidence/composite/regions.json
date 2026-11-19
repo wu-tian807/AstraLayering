@@ -1,0 +1,139 @@
+{
+  "image": "clothing-raster-layering/step01/workspace/independent-review/default.png",
+  "reference": "clothing-part-layering/references/clothing.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "marked": "clothing-raster-layering/step01/review-01-evidence/composite/marked.png",
+  "manifest": "clothing-raster-layering/step01/review-01-evidence/composite/regions.json",
+  "regions": [
+    {
+      "id": "R7",
+      "bounds": [
+        465,
+        257,
+        33,
+        57
+      ],
+      "layers": [
+        "neckline_ruffle",
+        "image_left_shoulder_assembly/right_shoulder_ruffle",
+        "dress_bodice"
+      ],
+      "description": "左领端白褶凸瓣与回折衔接处。灰黑毛边在粉底上形成第二圈粗线，入粉色包边处暗线加粗。",
+      "crop": [
+        449,
+        241,
+        65,
+        89
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-01-evidence/composite/R7-current.png",
+        "reference": "clothing-raster-layering/step01/review-01-evidence/composite/R7-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-01-evidence/composite/R7-comparison.png"
+      }
+    },
+    {
+      "id": "R8",
+      "bounds": [
+        744,
+        247,
+        35,
+        58
+      ],
+      "layers": [
+        "neckline_ruffle",
+        "image_right_shoulder_assembly/left_shoulder_strap",
+        "image_right_shoulder_assembly/left_shoulder_ruffle",
+        "dress_bodice"
+      ],
+      "description": "右领端。接肩带内缘出现短暗钩，白褶外侧的灰重边跨过凸瓣与下回折，压脏肩荷叶根。",
+      "crop": [
+        728,
+        231,
+        67,
+        90
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-01-evidence/composite/R8-current.png",
+        "reference": "clothing-raster-layering/step01/review-01-evidence/composite/R8-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-01-evidence/composite/R8-comparison.png"
+      }
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        389,
+        644,
+        19,
+        20
+      ],
+      "layers": [
+        "skirt_tier_one",
+        "skirt_tier_two"
+      ],
+      "description": "第一道摆缘在画面左侧与第二道外侧线相接处出现浅透明针口，深轮廓断成上下两段。",
+      "crop": [
+        373,
+        628,
+        51,
+        52
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-01-evidence/composite/R15-current.png",
+        "reference": "clothing-raster-layering/step01/review-01-evidence/composite/R15-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-01-evidence/composite/R15-comparison.png"
+      }
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        236,
+        1072,
+        22,
+        24
+      ],
+      "layers": [
+        "skirt_tier_four"
+      ],
+      "description": "末层画面左翼第二片裙褶转角，短黑重线尖向下挑，外轮廓局部成双。",
+      "crop": [
+        220,
+        1056,
+        54,
+        56
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-01-evidence/composite/R16-current.png",
+        "reference": "clothing-raster-layering/step01/review-01-evidence/composite/R16-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-01-evidence/composite/R16-comparison.png"
+      }
+    },
+    {
+      "id": "R17",
+      "bounds": [
+        981,
+        1064,
+        26,
+        25
+      ],
+      "layers": [
+        "skirt_tier_four"
+      ],
+      "description": "末层画面右翼折转，外翼下缘并成发黑的粗边，根部有伸向下方的短暗线。",
+      "crop": [
+        965,
+        1048,
+        58,
+        57
+      ],
+      "files": {
+        "current": "clothing-raster-layering/step01/review-01-evidence/composite/R17-current.png",
+        "reference": "clothing-raster-layering/step01/review-01-evidence/composite/R17-reference.png",
+        "comparison": "clothing-raster-layering/step01/review-01-evidence/composite/R17-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

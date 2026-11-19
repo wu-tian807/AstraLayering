@@ -2,47 +2,67 @@
   "groupId": "arms/arm_left/hand/middle_finger",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成对 `arms/arm_left/hand/middle_finger` 候选轮廓的全图与分区 8 倍放大核对（覆盖指根及背侧指节基部 `crop=[830,668,30,45]`、中远节显露段与指尖 `crop=[830,695,30,55]` 及整体独显/父轮廓对照 `crop=[825,668,40,80]`）：\n1. 范围与父边界贴合：父范围检查完全通过（`outsideSamples=0`）；右上背侧指节基部（`(847.52, 674.91)` 至 `(852.32, 691.45)`）及下方中远节指尖外沿（`(837.53, 729.88)` 经最低点 `(843.5, 741.06)` 至右侧指缝 `(848.67, 731.25)`）均与父 SVG `hand.svg` 共享顶点精确对齐，紧贴原图外轮廓。\n2. 邻接关系与可见边界：左侧可见边界（`y≈698..729.88, x≈837.53..839.8`）准确沿中指与后方无名指之间的指间暗线外缘描绘；右侧与上方被前景食指及手掌遮挡区域保留了平滑合理的重叠余量与圆弧指根收口。\n3. 轮廓质量：单条闭合路径结构清晰、边缘干净连续，无碎块、孤点或漏画缺口，符合本组职责要求，予以通过。",
-      "candidateHash": "25aa808b1288ac44747e7cfc7972a5a4bff909b96c2cf7553e80eae0e3218125",
+      "verdict": "revise",
+      "feedback": "第 1 轮。整图定位到画面右手，局部 8 倍参考、blend、edge 确认本件为食指左上方最低的暖色圆指尖，左上邻无名指，右侧受浅色食指遮挡。① 右侧接缝约 x802–810、y742–759：红边从食指内缘的折角向下时，数段落在深棕遮挡线靠暖色指面的一侧，漏掉可见线宽；向画面右侧贴到清晰线条的外缘，保留起始折角及下行弧度，止于浅色食指面前。上端约 x806、y740 的短封口收在左侧接缝可辨端点和右侧折角之间，削去向近端拱出的部分。② 指尖下缘至食指指间隙约 x792–801、y764–769：候选红弧在参考的深棕外缘下方，罩住一条背景，并把实际向右上收进间隙的转折拉低。将该弧向上收回至圆指尖深棕线的背景侧外缘，保留向右上回接及真实开口。左侧与无名指的斜缝及绕入圆尖的主体走势可以保留。候选四倍范围检查无父外采样；同窗父稿 edge 核实，父稿在指尖下缘同样偏松，这里的收回以及右侧内部接缝均可在父范围内修正。",
+      "candidateHash": "3eea649b6d6e433a799efbb21fdae6ed463bfe2766590f10cbba1b9cf8a2d9c7",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-1.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-20-44-646Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-2.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-20-44-646Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-3.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-20-44-646Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/arms/arm_left/hand/middle_finger.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/arms/arm_left/hand.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/arms/arm_left/hand/middle_finger/2026-10-22T10-46-57-358Z-7.png"
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-20-44-646Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T11:08:33.205Z"
+      "updatedAt": "2026-11-18T14:31:07.868Z",
+      "repairedCandidateHash": "480bcbf6193a659d6a907d893d2b26792caf435aa71d7ff858557d6b0c938cde"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。已用整图定位画面右侧左手，并在同一局部对照原图、候选 blend／edge 与父手稿 edge。候选对应食指尖左上方最低的暖色指尖，左上侧贴后方无名指，右侧贴前方浅色食指。近端在两条可辨接缝的上端之间收口，保留该处可见范围。需修正两处：① x≈790–794、y≈759–764，无名指下方斜接缝转入中指左肩的短段，红边在深色线内侧，留出一窄条本件线宽。向左贴到深线外缘，并由该处连续绕入圆指尖，保留与上方无名指的转折。② x≈801–803、y≈761–764，右侧食指遮挡线与中指下斜缘交接处，候选转折偏低，向下压到食指内侧的深色竖边。将交接点略上提至参考中暖色斜缘汇入食指遮挡线的位置，再沿斜缘向左下接回圆尖，保留两指下方的缺口。圆尖最低点与右侧上段基本贴合。四倍采样当前候选无越出父稿的像素；修正左肩时贴合父手稿在同处的外缘。",
+      "candidateHash": "480bcbf6193a659d6a907d893d2b26792caf435aa71d7ff858557d6b0c938cde",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-35-49-852Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-35-49-852Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-35-49-852Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/arms/arm_left/hand.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-35-49-852Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/arms/children/arm_left/children/hand/children/middle_finger/previews/2026-11-18T14-35-49-852Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:40:25.065Z",
+      "repairedCandidateHash": "b07810087dcf2e11f18168346342004a37dcee1d73846348b002928feb2ee160"
     }
   ]
 }

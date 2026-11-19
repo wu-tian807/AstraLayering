@@ -1,0 +1,72 @@
+{
+  "groupId": "neckline_ruffle",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "整体位置、宽高和归属正确。纯衣服参考中，本组为两肩带根部之间连续的白色前领抽褶边，包含左右褶冠下方、粉色包边上方各一小片回折。整体与局部叠加确认两端回折均已覆盖、上方领口敞开，未见误包其他衣片或遗漏独立附件。该节点无父组，无上游范围限制。当前组无需整体重画，修正以下两处即可。\n1. 上沿褶谷与褶冠局部错位。7 倍红边叠加中，画布 x≈531–544、y≈244–252 处，参考左侧宽褶已向下收谷并转入下一小褶，候选红边从谷上方跨过。x≈667–682、y≈240–248 处，右中宽褶的左肩有一段参考黑边露在候选红边上方。x≈706–719、y≈246–253 处，候选把偏右的小回折抬成进入领口空白的圆拱，右侧谷底也结束过高。沿参考可见外沿重描这三段，恢复各谷的落点和相邻褶冠的起弧，保持整条轮廓连续。\n2. 下缘隐藏搭接未落实。放大叠加显示，从 x≈473 到 771、y≈277–303，候选下边基本沿粉色胸口包边的上口接缝直接收边。note 已说明褶边下缘藏在包边之后。沿这道弧线将下缘少量伸入粉色包边背后，保持两端贴合实际接点。note 中明确白褶边位于上胸皮肤及两端肩带根部之前，粉色胸口包边压在白褶边下缘之前，二者沿该接缝共同随前领变形。",
+      "candidateHash": "98fcac5cea40c32ea3988e8c8ce398feed1160f7d4fbc5d6554f583694f92097",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-5.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T09-48-26-812Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:11:19.243Z",
+      "repairedCandidateHash": "c1f27df3d98a2c5ab92fb1c8cec367eecb51214b81a1ccc973b416f123899204"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮通过。纯衣服参考显示，本组为两侧肩带根部之间连续露出的前领荷叶边，左右褶冠下方各有一小段同片回折。全图叠加确认其位置和横向跨度。对原图坐标 x=459–783、y=231–314 的完整局部做 4 倍原参考、叠加及边缘核对，候选覆盖从左肩带根部经过中央全部褶冠至右肩带根部的可见范围，两端回折均保留。领口上方敞口、两侧粉色肩带及肩部荷叶片均留在本组之外。下弧沿粉色胸口包边上缝留有少量受包边遮盖的连续搭接。参考未见属于本组的分离附件、薄纱延伸或内部真实开口。groups.json 的本组 note 已说明与上胸、肩带根部及粉色包边的前后关系、接缝搭接与随动关系。本节点为顶层组，无父组 SVG。未发现需返修项。",
+      "candidateHash": "c1f27df3d98a2c5ab92fb1c8cec367eecb51214b81a1ccc973b416f123899204",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T10-24-27-466Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T10-24-27-466Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T10-24-27-466Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/neckline_ruffle/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/neckline_ruffle/previews/2026-11-18T10-24-27-466Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:30:53.438Z"
+    }
+  ]
+}

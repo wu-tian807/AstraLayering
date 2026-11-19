@@ -1,0 +1,33 @@
+{
+  "groupId": "face/blush_right",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "在画面左侧眼下 x≈571–590、y≈242–248，逐条对照了五道淡粉腮红的两侧外缘与端部。由外向内，首道保留较长的左下尖端，中间三道保留各自的斜向与收束，末道较短且近竖直。候选覆盖各道可辨的线宽，保留四处肤色间隙；周围的柔和红晕、下眼线与发梢均在候选外。局部父稿叠加确认五道均位于脸部范围内，父范围检测为零越界。",
+      "candidateHash": "ec4a4522aaf448a52f7a45e642b2df01448dfa622fcd057509dc3a6cba03d578",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/blush_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_right/previews/2026-11-18T11-21-17-122Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_right/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_right/previews/2026-11-18T11-21-17-122Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/blush_right/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/blush_right/previews/2026-11-18T11-21-17-122Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/blush_right/previews/2026-11-18T11-21-17-122Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:36:22.934Z"
+    }
+  ]
+}

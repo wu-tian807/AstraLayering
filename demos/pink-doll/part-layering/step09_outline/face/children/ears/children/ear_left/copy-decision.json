@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "face/ears/ear_left",
+  "detectorVersion": 1,
+  "needsCompletion": true,
+  "reason": "uncertain-geometry"
+}

@@ -5,7 +5,7 @@
 | 案例 | 成果 | 文件 |
 | --- | --- | --- |
 | 狸猫女孩 | 人物与衣服分层、组装、阴影与完整头部九轴 | [案例](tanuki-girl/README.md) · [KRA](tanuki-girl/shadow/step01_mask/character-shadowed.kra) |
-| Pink Doll | 58 层人物、8 层衣服，组装与阴影 | [案例](pink-doll/README.md) · [KRA](pink-doll/shadow/step01_mask/character-shadowed.kra) |
+| Pink Doll | 60 层人物、11 层衣服，组装与阴影 | [案例](pink-doll/README.md) · [KRA](pink-doll/shadow/step01_mask/character-shadowed.kra) |
 | Pink Elf | 70 层人物、32 层衣服，组装与阴影 | [案例](pink-elf/README.md) · [KRA](pink-elf/shadow/step01_mask/character-shadowed.kra) |
 | Jianma | 人物与衣服分层、穿戴组装与阴影 | [案例](jianma/README.md) · [KRA](jianma/shadow/step01_mask/character-shadowed.kra) |
 | Closed Face | 半身闭眼闭嘴角色，49 个绘画层与阴影 | [案例](closed-face-full-20261026/README.md) · [KRA](closed-face-full-20261026/shadow/step01_mask/character-shadowed.kra) |

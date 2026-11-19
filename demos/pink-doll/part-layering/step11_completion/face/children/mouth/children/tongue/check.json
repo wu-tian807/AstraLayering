@@ -1,7 +1,5 @@
 {
   "groupId": "face/mouth/tongue",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "b6759d76dd2e1ebfe32897d78e35e8947dca0f4ca9e0d352898feefc6d59d174",
-  "afterHash": "8647face1d5cdbc6118e2f747e3ecdbe980356418e58d94229293c987bd07f5f"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

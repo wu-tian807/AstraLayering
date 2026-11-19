@@ -1,21 +1,5 @@
 {
   "groupId": "head_accessories",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。 raster step01：来源 SVG 同步最终深度/可见形状修订，保持补全新增路径合同；规范化前后渲染完全一致。",
-  "beforeHash": "7903b5e1577d0c3522e26d67ae43ba2b2feac3b4f34a81fadf800058342bcdc4",
-  "afterHash": "0cb17f7f36166262cb923ebffc4f905077d1cd13abc9d99df656a5c09ef2a939",
-  "rasterAmendment": {
-    "kind": "multi-depth same logical part",
-    "levels": [
-      {
-        "level": 0,
-        "region": "root：补全形状减去原可见叶瓣/圆珠形状的剩余像素；SVG data-completion-additions 区域中伸入辫环下方的根部，位于 bun_right 后。KRA 000 | head_accessories::root。"
-      },
-      {
-        "level": 4,
-        "region": "front：原可见形状（不含 data-completion-additions）覆盖的叶瓣与圆珠像素，位于 bun_right 前。KRA 004 | head_accessories::front。"
-      }
-    ],
-    "geometryChanged": false
-  }
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

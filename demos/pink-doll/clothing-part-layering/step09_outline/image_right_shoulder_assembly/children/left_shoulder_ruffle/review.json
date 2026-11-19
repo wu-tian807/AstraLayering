@@ -1,0 +1,38 @@
+{
+  "groupId": "image_right_shoulder_assembly/left_shoulder_ruffle",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮。根据纯衣服参考，角色左肩（画面右侧）荷叶从窄肩带外缘连续向外展开，沿四段波浪自由边收至胸衣侧上缘。整体叠加及原图坐标 [730,117,155,225] 的局部叠加与放大边缘图显示，肩顶（约 793,142）、自由边凹口（约 853,202、830,257、804,295）及末端（约 775,330）均对应参考位置。肩带外缘、白褶边端部与粉色包边附近的窄重叠符合缝接和遮挡关系。可见荷叶为一整片，未见真实开口、独立薄纱或分离附件，也未发现漏片、误包相邻衣片或填入领口。子 part note 已说明实体分界、前后关系、随动和隐藏搭接。父稿叠加及 4 倍采样包含检查通过，越界样本为 0。无须返修。",
+      "candidateHash": "9bfad51e854f41f15193992b7324cce85479a99888a82a82038664d4e07cab9a",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/previews/2026-11-18T11-16-52-843Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/image_right_shoulder_assembly.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/previews/2026-11-18T11-16-52-843Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/previews/2026-11-18T11-16-52-843Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/previews/2026-11-18T11-16-52-843Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_ruffle/previews/2026-11-18T11-16-52-843Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:18:41.812Z"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "groupId": "face/eyes/eye_left/upper_eyelid",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已在整图定位角色左眼（画面右侧），并以同一局部的参考图、8 倍 blend、edge 及父稿 edge 核对鼻侧尖端、上缘两根挑出的睫毛、鬓发侧外眼角和下勾，以及开口侧与虹膜、眼白的接缝。候选当前无越出父范围。需修正两处：① 靠鬓发的上缘约 x704–707、y191–194，候选沿鬓发与浅肤色的斜接缝挑出一个小三角，再折回深色睑线。沿深棕上睑与浅肤色的分界向内收掉这个凸角，保留上方两根清晰睫毛及最外侧朝右的眼角尖。父稿也包入这个凸角，子件可在父内收回。② 外眼角下勾内侧约 x700–703、y204–212，开口边转向下行处略压入灰白眼白，向画面右侧微收，贴合深棕睑线与灰白眼白的可见交界，再顺原弧接入下勾尖端。保留下勾尖端与下方独立短痕之间的间隔。鼻侧尖端、虹膜上方的连续接缝及其余外缘已核对，本轮未确认有须在父范围外补画的清晰边缘。",
+      "candidateHash": "61b682bb392d4793ea88632dae866912f3e090dd2d37b2889262c8128d7ef8be",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-17-18-594Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-17-18-594Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-17-18-594Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-17-18-594Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:26:34.359Z",
+      "repairedCandidateHash": "0e4f6fcd5590a6fd044ff1f7d211710519fef5401c1a364b2454477e05d9b036"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "已在整图定位角色左眼（画面右侧），用 8 倍参考、blend、edge 和同区父稿 edge 核对上下两侧。上一轮指出的鬓发侧上缘小凸角已从候选收掉。鼻侧尖端、上缘弧线与两根上挑睫毛、朝右的外眼角尖、虹膜上方的连续接缝，以及下勾尖端与下方独立短痕的间隔均已核对。剩余一处在父范围内可修：外眼角下勾的开口侧，约 x701–703、y204–212，候选在灰白眼白转向下行的弧段略偏画面右侧，红边落入深棕睑线，留下细窄的可见线宽。将这段内缘微向画面左侧移到灰白眼白与深棕睑线的交界，顺接上方开口弧和下勾尖端。候选无越出父范围，未确认有清晰外缘受父范围限制。",
+      "candidateHash": "0e4f6fcd5590a6fd044ff1f7d211710519fef5401c1a364b2454477e05d9b036",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-34-06-073Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-34-06-073Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-34-06-073Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/upper_eyelid/previews/2026-11-18T14-34-06-073Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:39:02.540Z",
+      "repairedCandidateHash": "2eb09be4e2b4517dbcf6e86ae2fbb5cfa708adedfe32090287a9f450875b4ef4"
+    }
+  ]
+}

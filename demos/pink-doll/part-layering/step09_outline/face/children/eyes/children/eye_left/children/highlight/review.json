@@ -1,0 +1,33 @@
+{
+  "groupId": "face/eyes/eye_left/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "整图定位为画面右侧的角色左眼。8 倍参考、blend 和 edge 核对显示，虹膜上部圆亮点（约 x668–674、y197–204）的顶弧、两侧回转及底弧沿浅亮色块与深棕虹膜的分界；鼻侧小亮点（约 x661–664、y205–208）保留略倾斜的扁椭圆，左右收口与上下短弧贴合可辨亮斑外缘。两处均无线稿，各自闭合，中间保留深棕虹膜间隙，与瞳孔、虹膜外圈及上睑均无接缝或遮挡。父稿局部叠加确认两处完整位于左眼范围，四倍采样无越界。",
+      "candidateHash": "43ddf83884f9e1b56c90d7eca016d7ac2ecba33006006bdea74978d43335aca5",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-18T14-18-37-840Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-18T14-18-37-840Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-18T14-18-37-840Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/highlight/previews/2026-11-18T14-18-37-840Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:27:20.566Z"
+    }
+  ]
+}

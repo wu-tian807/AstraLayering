@@ -1,0 +1,62 @@
+{
+  "groupId": "face/eyes/eye_right/iris",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "参考、blend 和 edge 在原图 [545,185,65,54] 同窗放大 8 倍核对。上部按深色上睑压住虹膜的接缝截断，两处独立高光露出区已保留，瞳孔及虹膜内部明暗仍在联合范围内。需收准两段清晰外缘：① 画面右侧、靠鼻侧约 x=601–604、y=208–229，红边在外凸弧及转入右下的部分略落入窄白眼白，向虹膜内侧微收至深色描线与眼白的交界，保留深线全宽和连续弧度。② 画面左下约 x=575–583、y=225–233，红边在转向底部前略跨入浅色眼白，沿可见深色弧线外缘微收，接回底部时保留下缘与旁侧点状下睫毛之间的浅色缺口。父稿在同一窗口叠加核对，四倍采样越界为零，上述两段均可在父范围内修正。",
+      "candidateHash": "ebdbe5e0ee9a67b086dcd340db1f614fd3db9708486c002ac70ca2de4cf70d1d",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-16-04-615Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-16-04-615Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-16-04-615Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-16-04-615Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:25:02.119Z",
+      "repairedCandidateHash": "b7852bd58a787ef44046798e99c559de38b6fb296706836814dba56f100be2db"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "以原图 [544,185,69,56] 的 8 倍参考、blend 和 edge 核对整圈。上缘沿深色上睑与虹膜的遮挡接缝截断，两端与可见侧弧相接。画面右侧靠鼻的外凸弧到右下转折，沿虹膜深色描线与窄眼白的交界，纳入描线可见宽度。画面左侧到左下同样沿深线的眼白侧外缘，接入底缘时保留与点状下睫毛之间的浅色缺口。底缘沿贴近眼裂下界的深线连续闭合。两处高光的独立露出范围保留，瞳孔与内部明暗包含在虹膜范围内。父稿同窗叠加确认归属，四倍采样越界为零，未发现父范围造成的可见缺漏。",
+      "candidateHash": "b7852bd58a787ef44046798e99c559de38b6fb296706836814dba56f100be2db",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-33-08-197Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-33-08-197Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-33-08-197Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/iris/previews/2026-11-18T14-33-08-197Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:37:53.857Z"
+    }
+  ]
+}

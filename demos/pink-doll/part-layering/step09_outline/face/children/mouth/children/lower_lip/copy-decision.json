@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "face/mouth/lower_lip",
+  "detectorVersion": 1,
+  "needsCompletion": true,
+  "reason": "mask-cuts-parent"
+}

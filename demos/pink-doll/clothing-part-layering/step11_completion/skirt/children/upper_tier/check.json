@@ -1,7 +1,0 @@
-{
-  "groupId": "skirt/upper_tier",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "7bf1e8bda3e511a7f4d56b503a608d57a1174420afdb4593258205520e5f13f3",
-  "afterHash": "8a9380f4fd7ad52d6a4280543dea2be64de7fdbececa9d2b079c6c93a19a38d3"
-}

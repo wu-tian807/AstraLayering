@@ -1,0 +1,103 @@
+{
+  "groupId": "hair/back_hair/lock_left",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮。已逐段比对画面右侧外垂后发的髻下根端、肩至前臂外侧的大束、外侧细束及长缝、腕髋旁两处独立露尖。候选四倍采样未超父范围。父范围内请修正两处：① 髻下至上段内接缝（约 y=178–253），候选内边从 x≈749 向下平滑过渡，压在分界右侧的后发色面上，漏掉沿宽侧发外侧清楚可见的深线及其旁边的窄条。将内边向画面左移，贴住亮侧发与后发之间的深线外缘，并在辫髻下按实际遮挡结束。② 腕髋旁较大的露尖（约 y=607–643），靠前臂的边现用直斜线从露头接到右下转折，红边落在棕色发面内，与右侧肤色前臂的深色遮挡线之间仍有一条清楚的棕色窄带。向画面右侧补至遮挡线的发侧，按其弧度接到下转折，保留两露尖之间的真实间隙。另有一处上游限制：细束与主束之间的缝顶，父稿和候选共用约 (798,468) 的尖端，将浅缝沿深色发流线提前向上切开；参考到约 y=485–490 才能确认两侧深边之间的背景开缝。父稿同一局部 edge 显示该段落在父稿孔内，需上游先把缝顶向下收至确认开口，保留其下连续细缝和下端回接。",
+      "candidateHash": "812336b3b19a171815ab40fd56a22a65f7da818cdea1fcfb1fe972c346df1f06",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair/back_hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/hair/back_hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-12-53-115Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:17:21.179Z",
+      "repairedCandidateHash": "c630514f998494e68bc5577eb411cabb7679f331ce753b15ed3fb305eb93d7e1"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮核对了画面右侧这束后发的发髻下缘、前侧发接缝、肩至前臂的遮挡边、整段外弧和腕旁两处独立发尖。需返修外侧细发与主束之间的长缝上端（原图约 x795–802、y458–480）。参考在 y463–468 已能辨出两道深色发缘及其间透底的窄缝，候选到约 (798,468) 才起孔，随后仍偏窄。请沿两侧深色描线朝缝的一边描出缝尖，将上端上提并在 y468–480 向两侧微张，保留两边线宽和向下连续渐宽的形状。父稿在同处也把缝尖画得偏低，但此处只需在父范围内减去误填，当前组可直接修正。腕旁两处露段与臂外主束之间的遮挡断开应保留。",
+      "candidateHash": "c630514f998494e68bc5577eb411cabb7679f331ce753b15ed3fb305eb93d7e1",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-5.png"
+        },
+        {
+          "source": "part-layering/parts/hair/back_hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/children/lock_left/previews/2026-11-18T13-21-41-008Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:26:01.099Z",
+      "repairedCandidateHash": "86781b05ba0be542b50164af92e8a996898eb812f9a066a7028cc65d39877265"
+    }
+  ]
+}

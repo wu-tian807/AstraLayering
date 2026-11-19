@@ -1,126 +1,150 @@
-# pink-doll 人物绘画与分层报告（step01）
+# 人物分层与补全
 
-## 1. 交付与验收结论
+已保存 1254 × 1254 的人物 KRA，包含 58 个逻辑部件、60 个绘画层和 5 张原生透明度蒙版。默认姿态为双眼睁开、张口微笑、下齿由舌面、下唇和共同开口遮蔽。保持发束、四肢和面部特征的独立绑定层。
 
-- **状态**：已完成并通过原尺寸（`1254 × 1254`）逐层单独检查、整图拼装视觉比对、上游结构同步校验与 Krita 保存重开一致性核验。
-- **最终 KRA 交付**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/character-depth.kra`
-- **本步正式报告**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/report.md`
-- **整图导出与检视产物**：
-  - 最终拼装导出：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/review/assembly-final.png`
-  - 重开后导出：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/review/assembly-reopened.png`
-  - 原图与最终成果并排比对：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/review/final-vs-reference.png`
-  - 55 个逻辑部件与 58 个绘画层原尺寸检视表：`step01/review/solo-sheet-01.png` 至 `solo-sheet-14.png` 及 `step01/review/layers/000..057-*.png`
-- **画布与图层规格**：`1254 × 1254` RGBA，共 **55 个逻辑部件**，拆分为 **58 个普通绘画层（`paintlayer`）**，按实际深度由下到上 `000`..`057` 排列，无蒙版、无分组或子节点，全部可见且不透明度为 `255`。
+- 工程 `raster-layering\step01\character-depth.kra`
+- 默认状态的透明 PNG `raster-layering\step01\character-depth.png`
+- 原画坐标与笔触依据 `part-layering\references\base-subject.png`
+- 重开一致性记录 `raster-layering\step01\workspace\repair-01-roundtrip.json`
 
-## 2. 红黄绿控制图构建与生图记录
+## 绘制与修整
 
-1. **输入图与控制图准备**：
-   - 直接读取上游 `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/groups.json`、`occlusion.json`、`parts/` 及 `references/base-subject.png`。
-   - 对全部 55 个逻辑部件逐一构建 `control-rgb.png`（红色=可见主体，黄色=被高层部件遮挡需补全区域，绿色=部件外部）与 `input-masked.png`（将黄色遮挡区域与绿色外部区域清为中性灰底，仅保留本部件可见像素，防止模型照抄头发、衣服或五官等遮挡物），并按部件包围盒等比局部放大为 `crop-input.png` 与 `crop-control.png`（记录于 `step01/input-manifest.json`）。
-2. **模型生图与重生筛选**：
-   - 全部 55 个逻辑部件均通过内置 `image_generation` 工具完成提取与遮挡补全，共生成 62 张部件图（完整记录于 `step01/generation-records.json`），绝未用原图遮挡物像素代替补全。
-   - 对初版生图存在瑕疵的 7 个部件进行了提示词微调与 `v2` 重生：`face/face_base`（消除内部伪线与侧脸尖角）、`hair/bun_right`（补齐上半部发髻体积）、`hair/bun_left`、`hair/back_hair`、`hair/bangs`、`hair/front_side_hair_right`、`hair/front_side_hair_left`。
+每件先制作三色控制图与中性灰可见参考。小部件放大后按格生成，各格独立配准。每件从自身生成画面起稿。局部取样沿其可见笔触与自己的形体接续，用 Krita 画笔补肩口、颈侧的软过渡。原图的投影按来源剔除，保留头发褶面的纵向明暗、手指内侧暖面、膝部体积和鞋袜细线。
 
-## 3. 深度穿插、拆层与色块归属修正（区分预先标注与组装新发现）
+中央后发从顶弧连续铺到背面发梢，补全区保留宽发束交叠、内侧暗褶、两侧细尖与回卷。眼白补成整片，虹膜独显保留完整深色环、瞳孔和层次，高光单独分层。头发按实体深度盖住眉尾，眉线保留完整底纹。运行中检查了眼白与上睫毛的直接衔接、手掌与指根间的亮肤连续性和连体服腰部原有的纵向缝线。
 
-在实际配准与拼装核对中，落实了上游已标注的穿插区域，并处理了组装中新发现的层序、色块归属与多深度分片问题，所有修改均已同步写回 `../part-layering/occlusion.json`、`../part-layering/groups.json`、`../../part-layering/preview.svg` 及对应部件 SVG/回执（详见 `step01/structure-changes.json` 与 `step01/upstream-sync.json`）：
+## 层级与色块差异
 
-| 原逻辑部件 ID | 类型（预先标注 / 组装新发现） | 调整前深度 | 调整后图层名与深度 | 区域说明与修改依据 |
-| :--- | :--- | :---: | :--- | :--- |
-| `head_accessories` | **预先标注**（上游已标注发饰根部与右发髻辫环双向穿插） | `4` | `000 \| head_accessories::root` (`level 0`)<br>`004 \| head_accessories::front` (`level 4`) | 保留同一逻辑发饰完整补全形状，按原可见叶瓣/圆珠几何与 `bun_right` 遮挡关系切分为两个普通绘画层：`root`（伸入右发髻辫环下方的深绿发饰根部及与右发髻交界处 `alpha < 96` 的半透明抗锯齿边缘，位于 `001 \| hair/bun_right` 后方）与 `front`（前方可见叶瓣与金珠主体，位于 `001 \| hair/bun_right` 前方）。合起来仍是连续完整的同一部件。 |
-| `hair/front_side_hair_right` | **预先标注外露 + 组装确立分片方案** | `52` | `049 \| hair/front_side_hair_right::root` (`level 49`)<br>`052 \| hair/front_side_hair_right::front` (`level 52`) | 上游已提示头顶 `x=580..659, y=60..89` 处发根补全舌片在中分缝外露；若保持单深度 `52` 会压在 `051 \| hair/bangs` 顶部分缝上形成突兀色块。将该逻辑部件在 `x=580..659, y=60..89` 内原可见几何 `alpha=0` 的发根补全舌片拆为 `049 \| hair/front_side_hair_right::root`（位于 `051 \| hair/bangs` 后方），其余贴脸鬓发主体保留为 `052 \| hair/front_side_hair_right::front`（位于 `051 \| hair/bangs` 前方）。 |
-| `hair/front_side_hair_left` | **预先标注外露 + 组装确立分片方案** | `53` | `050 \| hair/front_side_hair_left::root` (`level 50`)<br>`053 \| hair/front_side_hair_left::front` (`level 53`) | 与右侧对称，将 `x=580..659, y=60..89` 内原可见几何 `alpha=0` 的发根补全舌片拆为 `050 \| hair/front_side_hair_left::root`（位于 `051 \| hair/bangs` 后方），其余贴脸鬓发主体保留为 `053 \| hair/front_side_hair_left::front`（位于 `051 \| hair/bangs` 前方）。 |
-| `face/eyebrow_right` | **组装新发现**（层序调整） | `49` | `056 \| face/eyebrow_right` (`level 56`) | 对照原图眉额局部确认：动漫透发眉线条完整画在刘海与贴脸鬓发表面；若置于 `49` 会被 `051 \| hair/bangs` 遮住而消失。故将右眉整体上移至 `level 56`（刘海与前侧发前方），同时将 `051 \| hair/bangs` 上原被眉毛覆盖的区域按上下发丝截面纵向修补为连续发丝。 |
-| `face/eyebrow_left` | **组装新发现**（层序调整） | `50` | `057 \| face/eyebrow_left` (`level 57`) | 与右眉对称，将左眉整体上移至 `level 57`（刘海与前侧发前方），保留独立眉毛运动身份。 |
-| `face/eye_left/highlight` | **组装新发现**（色块形状补入） | `42` | `042 \| face/eye_left/highlight` (`level 42`) | 对照原图发现左眼虹膜右下方 `x=679..685, y=238..245` 的浅米白反光点在上游归属中遗漏（与右眼 `face/eye_right/highlight` 的右下反光对称）。将该反光点补入 `face/eye_left/highlight` 的 SVG 与图层（共用深度 `42`），并将下方 `040 \| face/eye_left/iris` 对应位置修补为连续棕色虹膜底。 |
+- 上游预先标注的多深度部件为 0。本次组装确认现有深度 `0` 至 `57` 可表达参考的前后关系，新增多深度分片为 0。眼内和口内的组嵌套遵循组内原有深度，未调用分组或深度修改工具。
+- 骨盆部件 `pelvis` 在腰线内侧补入最多 3 px 的布料搭接，沿已存在的布料走向接住 `body`。两侧 `y=544–640` 以原画布料侧缘重新收形，在发束后保留薄搭接，修正上游补全形状在腰侧露出的小角。
+- `face/blush_left` 和 `face/blush_right` 在原有排线外缘补柔和红晕底色。`face/nose` 在原鼻点邻近补柔边。排线和鼻点的位置与上游一致。
+- 手部掌指交界在原绘画范围内调整了不足整像素的边缘覆盖。左右手和双眼各自生成、配准与修画，未镜像复用。下表的 PNG 列是该部件的生成来源，均保存在 `raster-layering\step01\workspace\generated`。
 
-## 4. Krita 配准、原像素叠加与逐层精细修画记录
+## 首次制作绘画层
 
-在 Krita 5.3.4.1 中完成了全部 55 个逻辑部件（58 个绘画层）的配准、可见区原图像素叠加、边缘收边以及补全区精细修画（详见 `step01/scripts/repair_*.py`、`step01/repair-polish-v12.json` 与 `step01/repair-polish-v13.json`）：
+| 最终深度 | 原 part ID | KRA 图层名 | 原生 UUID | 区域与层序依据 | 生成来源 |
+| ---: | --- | --- | --- | --- | --- |
+| 0 | `hair/back_hair/lock_left` | `00 hair/back_hair/lock_left` | `3d19fa76-524d-44ab-9dab-dc57fce660c7` | 画面右侧外垂发束，耳后根端伸到 hair/bun/bun_left 与 hair/back_hair/base 接合下方，垂段在同侧手臂和胸前束之后。 | `rear-locks.png` |
+| 1 | `hair/back_hair/lock_right` | `01 hair/back_hair/lock_right` | `e246fc9e-c505-47f0-8766-d24ecdf31be1` | 画面左侧外垂发束，耳后根端在 hair/bun/bun_right 与 hair/back_hair/base 之后，臂外露段与腕旁发尖在手臂后方连续。 | `rear-locks.png` |
+| 2 | `hair/bun/bun_left` | `02 hair/bun/bun_left` | `4d7bc4df-2b72-4162-9061-c62e9a8e0410` | 画面右侧编股盖 hair/back_hair/lock_left 根段，向内伸入 hair/back_hair/base 与 hair/side_hair/side_hair_left 的包边后。 | `buns-accessory.png` |
+| 3 | `hair/bun/bun_right` | `03 hair/bun/bun_right` | `cf4989b3-cff4-40e8-a727-1c200fd339ea` | 画面左侧编股盖 hair/back_hair/lock_right 根段，靠头的接缘入 hair/back_hair/base 和 hair/side_hair/side_hair_right 下，上前部被 head_accessories 覆盖。 | `buns-accessory.png` |
+| 4 | `hair/back_hair/base` | `04 hair/back_hair/base` | `5627df70-765a-4db5-b68e-a4df570d050e` | 承担分缝后方头顶外弧及中央背发，侧根承接髻根和外垂束，正面层位在颈、脸、胸和前侧发束之后。 | `back-base.png` |
+| 5 | `legs/leg_left` | `05 legs/leg_left` | `66897033-654d-48fb-b674-651fcce376eb` | 画面右侧髋端伸入 pelvis 的连体服腿口下，髋前由 hair/front_long_hair/front_long_hair_left 的弯尖遮挡。袜鞋随腿。 | `legs.png` |
+| 6 | `legs/leg_right` | `06 legs/leg_right` | `cad62bde-fd4f-4a80-b8a2-4ac6e55e2ac0` | 画面左侧髋端由 pelvis 的腿口包边覆盖，hair/front_long_hair/front_long_hair_right 的尖梢在大腿根前。袜鞋随腿。 | `legs.png` |
+| 7 | `pelvis` | `07 pelvis` | `c9eda606-5a95-47fc-a5d1-c907198ba8eb` | 连体服下段承担两侧腿口和裆底包边，罩住双腿近端。腰口与 body 同材接合，上缘伸到 body 下，髋侧被双前长发遮挡。 | `torso.png` |
+| 8 | `arms/arm_left/hand/little_finger` | `08 arms/arm_left/hand/little_finger` | `2865c6c1-9aa4-4a25-a3c2-54f42d88beda` | 画面右手组内最靠后，掌体、无名指和拇指分别覆盖根部及内叠指段，拇指指尖下露出最高暖色指尖。 | `hand-left.png` |
+| 9 | `arms/arm_left/hand/ring_finger` | `09 arms/arm_left/hand/ring_finger` | `6e16d924-22a8-449b-8b57-5072cc04ecbc` | 画面右侧三暖色指尖中间一枚，盖小指，由中指和掌缘覆盖。 | `hand-left.png` |
+| 10 | `arms/arm_left/hand/middle_finger` | `10 arms/arm_left/hand/middle_finger` | `3b0d77ea-19c2-4367-97f3-f118487079db` | 画面右侧暖色最低圆指尖，盖无名指，食指内缘和掌体遮住其部分指身与根段。 | `hand-left.png` |
+| 11 | `arms/arm_left/hand/index_finger` | `11 arms/arm_left/hand/index_finger` | `abcd98bf-4dd2-44bd-b571-c8ae9c8d667f` | 画面右侧手外缘的浅色长指，盖中指，近端搭入掌体；手外轮廓与掌侧连续。 | `hand-left.png` |
+| 12 | `arms/arm_left/hand/thumb` | `12 arms/arm_left/hand/thumb` | `8b2f7748-1bdf-4b2e-96fd-847f2d1a95ed` | 画面右手靠躯干的一侧，圆指尖和指身在小指内叠段之前，根端伸入掌体的掌侧连接之后。 | `hand-left.png` |
+| 13 | `arms/arm_left/hand/palm` | `13 arms/arm_left/hand/palm` | `37da5a78-27b2-46e0-a03d-23513fa2a3f4` | 掌体持有虎口、掌侧及远掌连接转折，覆盖各指的近端余量；近腕圆端由 arms/arm_left/forearm 覆盖。 | `hand-left.png` |
+| 14 | `arms/arm_left/forearm` | `14 arms/arm_left/forearm` | `85541358-95df-4d69-b657-1009ffb22f7a` | 在外侧后发前，肘端伸入 arms/arm_left/upper_arm 后，腕端持有收窄转折并覆盖 arms/arm_left/hand/palm 的近腕余量。 | `arms.png` |
+| 15 | `arms/arm_left/upper_arm` | `15 arms/arm_left/upper_arm` | `7160fadb-559e-4013-83d0-7eb59270b2f0` | 肩端伸入 body 的圆肩覆盖侧，内缘在左胸前束后，肘端罩住 arms/arm_left/forearm 的根端。 | `arms.png` |
+| 16 | `arms/arm_right/hand/ring_finger` | `16 arms/arm_right/hand/ring_finger` | `0e755446-5a90-465a-b22c-6f41f3500b39` | 画面左手三枚内叠暖色指尖中最低一枚，近端在中指、小指和掌体之后。 | `hand-right.png` |
+| 17 | `arms/arm_right/hand/middle_finger` | `17 arms/arm_right/hand/middle_finger` | `7afdecfa-bf6d-4a4a-a7b3-348a8b268f63` | 指尖处于食指与无名指之间，搭在无名指前方，近端藏入掌体和食指下。 | `hand-right.png` |
+| 18 | `arms/arm_right/hand/index_finger` | `18 arms/arm_right/hand/index_finger` | `16e23aca-0832-4498-9b58-22261d207ed2` | 内叠三指中最高一枚，从拇指尖下露出，在中指之前、掌体和拇指之后。 | `hand-right.png` |
+| 19 | `arms/arm_right/hand/little_finger` | `19 arms/arm_right/hand/little_finger` | `a8b933cc-2b65-4246-bf45-6d1239cd5650` | 画面左侧浅色外缘指覆盖无名指偏外根段，近端与掌体的外侧连续。与其余指仅按实际接触判断。 | `hand-right.png` |
+| 20 | `arms/arm_right/hand/thumb` | `20 arms/arm_right/hand/thumb` | `8c1c4e43-1f46-4659-a8c5-69024f647218` | 画面左手靠躯干的浅色拇指，末端盖食指，近端伸入掌体持有的掌侧连接下。 | `hand-right.png` |
+| 21 | `arms/arm_right/hand/palm` | `21 arms/arm_right/hand/palm` | `e0267803-d8a6-45d9-b6c9-2c00047ceab1` | 掌体持有掌侧、外掌缘与虎口转折，覆盖进入掌体的指根余量，腕端由 arms/arm_right/forearm 覆盖。 | `hand-right.png` |
+| 22 | `arms/arm_right/forearm` | `22 arms/arm_right/forearm` | `4a3cd6c9-e952-4c3a-bb02-4776e9100853` | 越过外侧后发前面，肘端伸入 arms/arm_right/upper_arm 之下，腕端覆盖 arms/arm_right/hand/palm。 | `arms.png` |
+| 23 | `arms/arm_right/upper_arm` | `23 arms/arm_right/upper_arm` | `9726363c-b14c-481a-8b21-d53757919b49` | 肩端搭在 body 圆肩面之后，内缘由右胸前长束遮挡，肘端覆盖 arms/arm_right/forearm。 | `arms.png` |
+| 24 | `neck` | `24 neck` | `ab20c25e-4f8a-47a7-9ff4-2b5ce80059c7` | 颈面在 hair/back_hair/base 前面，上端由 face/face_base 的下颌线盖住，下端在 body 承接的颈根和锁骨接面后。 | `face-features.png` |
+| 25 | `body` | `25 body` | `8346528c-69b1-48ec-968b-a687d41ac861` | 锁骨、领口、双侧圆肩和上腹归此叶。圆肩覆盖双上臂的近端，颈根承接 neck，腹部覆盖 pelvis 上缘；胸肩两侧被前长发遮挡。 | `torso.png` |
+| 26 | `face/ears/ear_left` | `26 face/ears/ear_left` | `af7fbba5-8f9f-4d7c-af0f-fa841b046d1d` | 画面右侧，耳根伸入 face/face_base 脸缘下方，耳上部由 hair/side_hair/side_hair_left 遮挡，保留短耳底。 | `face-features.png` |
+| 27 | `face/ears/ear_right` | `27 face/ears/ear_right` | `36afd0de-0ba6-4e30-ab1e-8a8e13b89032` | 画面左侧，耳根与 face/face_base 接合，宽侧发遮去大部耳廓，保留短尖下方的圆弧耳底。 | `face-features.png` |
+| 28 | `face/face_base` | `28 face/face_base` | `33ed522e-65e8-4ff3-a48d-92ca9a407d70` | 整块额颊和下颌，压住 neck 的上端及双耳根，承载眼口底与表情细件，额缘及脸侧由刘海和宽侧发遮挡。 | `face-features.png` |
+| 29 | `face/eyes/eye_left/sclera` | `29 face/eyes/eye_left/sclera` | `cd4a1308-54eb-421c-8eb1-83923cf36999` | 在脸底前、左虹膜及上睑后。画面右眼以 face/eyes/eye_left/upper_eyelid 的朝眼白内缘为上界，以 face/eyes/eye_left/sclera 下沿为下界，两眼角闭合边界。默认睁眼，范围仅限本眼的 face/eyes/eye_left/sclera、face/eyes/eye_left/iris、face/eyes/eye_left/highlight，开口外隐藏。 | `sclera.png` |
+| 30 | `face/eyes/eye_left/iris` | `30 face/eyes/eye_left/iris` | `a0388200-56bf-4b7c-a367-c1c78ebe6f6f` | 在左眼白前、高光和上睑后。与 face/eyes/eye_left/highlight 同受 face/eyes/eye_left/upper_eyelid 内缘至 face/eyes/eye_left/sclera 下沿所围开口控制，默认睁眼显示开口内，睑后隐藏。 | `eye-left.png` |
+| 31 | `face/eyes/eye_left/highlight` | `31 face/eyes/eye_left/highlight` | `1d39cd92-8a6b-4eeb-82ff-daf95be0a081` | 左虹膜前的两个亮点，与 face/eyes/eye_left/iris 一同受 face/eyes/eye_left/upper_eyelid 内缘至 face/eyes/eye_left/sclera 下沿所围开口控制。默认睁眼，开口内可见。 | `eye-left.png` |
+| 32 | `face/eyes/eye_left/lower_eyelashes` | `32 face/eyes/eye_left/lower_eyelashes` | `bac971c6-612e-4eae-b93c-71fec7db71a7` | 画面右眼下缘疏点，在 face/face_base 前方，沿 face/eyes/eye_left/sclera 下沿附近保持间隔，随下缘运动。 | `eye-left.png` |
+| 33 | `face/eyes/eye_left/eyelid_crease` | `33 face/eyes/eye_left/eyelid_crease` | `eaa7f204-727b-444b-bed3-b3c8e5e57c15` | 画面右眼内侧上方暖色独立睑褶，贴在 face/face_base 前，位于刘海后方；随 face/eyes/eye_left/upper_eyelid 变形。 | `eye-left.png` |
+| 34 | `face/eyes/eye_right/sclera` | `34 face/eyes/eye_right/sclera` | `b3401516-70b8-4088-befd-8fb5a4b6afb5` | 在脸底前、右虹膜及上睑后。画面左眼由 face/eyes/eye_right/upper_eyelid 内缘和 face/eyes/eye_right/sclera 下沿构成开口，两眼角闭合边界。默认睁眼，仅控制本眼的 face/eyes/eye_right/sclera、face/eyes/eye_right/iris、face/eyes/eye_right/highlight，开口外隐藏。 | `sclera.png` |
+| 35 | `face/eyes/eye_right/iris` | `35 face/eyes/eye_right/iris` | `7b511ccd-dd7c-442a-9ad5-8bcf9eafe39a` | 在右眼白前、右高光和上睑后。与 face/eyes/eye_right/highlight 共用由 face/eyes/eye_right/upper_eyelid 内缘和 face/eyes/eye_right/sclera 下沿限定的开口。默认睁眼露出开口内，睑后隐藏。 | `eye-right.png` |
+| 36 | `face/eyes/eye_right/highlight` | `36 face/eyes/eye_right/highlight` | `c7b4813c-3cd9-423d-a369-9073d04ac264` | 在右虹膜前、上睑之下，亮点随 face/eyes/eye_right/iris 共用由 face/eyes/eye_right/upper_eyelid 内缘和 face/eyes/eye_right/sclera 下沿限定的开口。默认睁眼可见开口内。 | `eye-right.png` |
+| 37 | `face/eyes/eye_right/lower_eyelashes` | `37 face/eyes/eye_right/lower_eyelashes` | `91dce22a-7cd5-4194-bf5d-2f680c3f0209` | 画面左眼下缘短睫毛点，沿 face/eyes/eye_right/sclera 下沿，在 face/face_base 前，随眼下缘运动。 | `eye-right.png` |
+| 38 | `face/eyes/eye_right/eyelid_crease` | `38 face/eyes/eye_right/eyelid_crease` | `42b557c5-371c-49e1-88dc-963318681f9b` | 画面左眼靠鼻端上方的浅暖肤面褶线，随 face/eyes/eye_right/upper_eyelid 运动，在刘海之后。 | `eye-right.png` |
+| 39 | `face/eyebrows/eyebrow_left` | `39 face/eyebrows/eyebrow_left` | `17c3e10f-b0c5-4465-83d7-738cf6f54ebb` | 画面右眉位于脸底前，眉身经发缝连续，hair/bangs 覆盖交叠部分。 | `face-features.png` |
+| 40 | `face/eyebrows/eyebrow_right` | `40 face/eyebrows/eyebrow_right` | `b90a1a07-f740-46ef-aacd-e08cdf8914a7` | 画面左眉位于脸底前，眉身及眉头间被 hair/bangs 截断，露出按实际发缝。 | `face-features.png` |
+| 41 | `face/nose` | `41 face/nose` | `f70d3d33-2010-40f1-81d2-ef0e8aa9166b` | 鼻点和淡亮部贴于 face/face_base 中央，在双眼以下、嘴以上。 | `face-features.png` |
+| 42 | `face/mouth/mouth_interior` | `42 face/mouth/mouth_interior` | `5b63fae1-0571-47ce-9316-1d08a8a9e726` | 在 face/face_base 前、口内齿舌后。由 face/mouth/upper_lip 与 face/mouth/lower_lip 的朝口腔内缘及两嘴角连接围成开口，默认张口微笑。该开口裁切 face/mouth/mouth_interior、face/mouth/upper_teeth、face/mouth/lower_teeth、face/mouth/tongue，闭合时口内整体遮隐。 | `mouth.png` |
+| 43 | `face/mouth/lower_teeth` | `43 face/mouth/lower_teeth` | `525e1431-2e27-4098-9474-6c5965751718` | 完整下齿位于口腔底前、舌和下唇后，贴下唇内侧运动。face/mouth/upper_lip 与 face/mouth/lower_lip 的内缘闭合到两嘴角，控制整组口内内容的显露；参考默认下齿全隐，原开口下方由下唇覆盖。 | `mouth.png` |
+| 44 | `face/mouth/tongue` | `44 face/mouth/tongue` | `d134a61a-30c0-4280-890c-465711cb483e` | 口腔下部粉色舌面在 face/mouth/mouth_interior 和 face/mouth/lower_teeth 之前，由 face/mouth/upper_lip 与 face/mouth/lower_lip 内缘沿两嘴角构成的开口控制，默认露出下半部，闭口时隐藏。 | `mouth.png` |
+| 45 | `face/mouth/upper_teeth` | `45 face/mouth/upper_teeth` | `f6bf6c6f-b247-4336-b82d-642ec610036c` | 浅色上齿带贴在上唇朝口腔的边缘下方，在口腔底前。face/mouth/upper_lip 与 face/mouth/lower_lip 内缘沿两嘴角共同裁切，默认只显示开口顶端齿带。 | `mouth.png` |
+| 46 | `face/mouth/lower_lip` | `46 face/mouth/lower_lip` | `23429232-a275-4108-b2bf-c44765e842c6` | U 形唇线持有开口下界，前盖舌及下齿。与 face/mouth/upper_lip 内缘在嘴角接合，裁切 face/mouth/mouth_interior、face/mouth/upper_teeth、face/mouth/lower_teeth、face/mouth/tongue，参考默认张口且下齿全隐。 | `mouth.png` |
+| 47 | `face/mouth/upper_lip` | `47 face/mouth/upper_lip` | `2c8d105f-1256-416c-9f8d-9b9f2cc27476` | 上唇线持有开口上界并覆盖上齿根。与 face/mouth/lower_lip 内缘在两嘴角接合，裁切 face/mouth/mouth_interior、face/mouth/upper_teeth、face/mouth/lower_teeth、face/mouth/tongue，默认张口露上齿带、舌面及口腔底。 | `mouth.png` |
+| 48 | `face/blush_left` | `48 face/blush_left` | `4af2b4f1-0466-464d-83ca-85ebb7e10bcb` | 画面右眼下的细斜粉线，在 face/face_base 的普通颊红前方，靠耳侧止于脸面。 | `face-features.png` |
+| 49 | `face/blush_right` | `49 face/blush_right` | `51ba9a37-c69a-4c99-b7de-ec700c5ebdee` | 画面左眼下的细斜粉线，在 face/face_base 的普通颊红前方，靠耳侧止于脸面。 | `face-features.png` |
+| 50 | `hair/front_long_hair/front_long_hair_left` | `50 hair/front_long_hair/front_long_hair_left` | `f4198c1a-a6ff-4028-8fbd-f7e400b81a42` | 画面右侧胸前束，根端在 hair/side_hair/side_hair_left 后，垂段在体侧、臂内缘、衣身和髋前。 | `long-front.png` |
+| 51 | `hair/front_long_hair/front_long_hair_right` | `51 hair/front_long_hair/front_long_hair_right` | `3744e261-2aae-4e87-828f-b26b6412e3a0` | 画面左侧胸前束，根端在 hair/side_hair/side_hair_right 后，垂段在体侧、臂内缘、衣身和髋前。 | `long-front.png` |
+| 52 | `hair/side_hair/side_hair_left` | `52 hair/side_hair/side_hair_left` | `8c891a9a-a54e-4b2a-9603-71b9fff80ce9` | 画面右侧宽侧发在耳、脸缘和长束根前。头顶根端在刘海根区下，外眼角与上睑尖相邻。 | `hair-face-frame.png` |
+| 53 | `hair/side_hair/side_hair_right` | `53 hair/side_hair/side_hair_right` | `fcab6dd0-feac-4ddd-9261-2ea67425779e` | 画面左侧宽侧发在耳、脸缘和长束根前。头顶根端在刘海根区下，外眼角与上睑尖相邻。 | `hair-face-frame.png` |
+| 54 | `hair/bangs` | `54 hair/bangs` | `8f52de64-6df2-498b-885b-4bfe234ad388` | 前额发面承接分缝下方，位于脸底和双眉前，额前间隙保留露出的眉段，根区覆盖宽侧发内端。 | `hair-face-frame.png` |
+| 55 | `face/eyes/eye_left/upper_eyelid` | `55 face/eyes/eye_left/upper_eyelid` | `37c242f7-5c5d-4a1c-80f7-84b3bab48175` | 深色上睑在本眼内容前，维持外眼角原图的完整睫毛尖。与 face/eyes/eye_left/sclera 下沿围成画面右眼开口，由上睑的朝眼白内缘定上界，从内眼角闭合至外眼角。控制 face/eyes/eye_left/sclera、face/eyes/eye_left/iris、face/eyes/eye_left/highlight。参考默认睁开，开口外不可见。 | `eye-left.png` |
+| 56 | `face/eyes/eye_right/upper_eyelid` | `56 face/eyes/eye_right/upper_eyelid` | `0a88eacb-37dd-4fee-a591-94af26ddcee2` | 深色上睑在本眼内容前，在外眼角保留原图可见的睫毛尖。与 face/eyes/eye_right/sclera 下沿围成画面左眼开口，由上睑内缘定上界，从内眼角闭合至外眼角。控制 face/eyes/eye_right/sclera、face/eyes/eye_right/iris、face/eyes/eye_right/highlight。参考默认睁开，开口外不可见。 | `eye-right.png` |
+| 57 | `head_accessories` | `57 head_accessories` | `4d89065d-283b-4ce8-bf27-240f10d567ba` | 黑结与圆珠在画面左髻前面，压住 hair/bun/bun_right 上前部，内侧贴头顶外缘。 | `buns-accessory.png` |
 
-1. **头部与五官（`030..057`、`010`）**：
-   - `030 | face/face_base` 与 `010 | neck`：抹除头发、刘海、五官遮挡区残留暗影，使额头、侧脸轮廓与颈部顶面过渡自然平滑。
-   - `040 | face/eye_left/iris` 与 `042 | face/eye_left/highlight`：补齐左眼右下反光点并修复虹膜底层连续色彩。
-   - `051 | hair/bangs`：消除 `y=175..200` 眉毛移除带的横向抹痕，按上下发丝截面纵向插值恢复发束纹理与分缝阴影，并还原 `x=611..643, y=74..75` 头顶 V 形分缝暗部描边。
-   - `052 | hair/front_side_hair_right::front` 与 `053 | hair/front_side_hair_left::front`：清除内侧发梢 `y=224..241` 混入的浅棕亮斑，使内侧轮廓线干净连续。
-2. **发饰、发髻与后发/侧发/前侧发（`000..004`、`028..029`、`049..053`）**：
-   - `000 | head_accessories::root` 与 `004 | head_accessories::front`：补回 `004` 可见叶瓣与金珠的完整原图描边与暗部，将 `001 | hair/bun_right` 上方半透明交界边缘（`alpha < 96`）归入 `000`，并平滑 `000` 内部残留的发辫暗纹。
-   - `028 | hair/side_hair_right` 与 `029 | hair/side_hair_left`：柔化隐藏上端补全区内部的阶梯状接缝。
-3. **躯干、骨盆与四肢手足（`005..009`、`011..027`）**：
-   - `009 | pelvis`：将 `y=589` 处干净的白色紧身衣明暗与两侧公主线平滑延伸至 `013 | body` 下方的隐藏补全区（`y=500..585`），消除水平亮度断层与锯齿状暗线。
-   - `011 | arms/arm_right/upper_arm` 与 `012 | arms/arm_left/upper_arm`：清除肘部隐藏重叠区内的暗色残线与色斑，同时完整保留 `011` 在 `013 | body`、`014 | forearm` 与 `028 | hair/side_hair_right` 之间的可见内侧轮廓。
-   - `014/015 | arms/arm_*/forearm` 与 `016..027 | arms/arm_*/hand/*`：在严格保留手腕可见外轮廓（`022/023 | palm` 未完全覆盖处）的基础上，将隐藏手腕端帽与手指根部端帽平滑收边；用原图手背自身肤色场统一 `palm`、`index_finger` 与 `thumb` 的手背接缝，消除单层黑点与整图接缝弧线。
-   - `005/006 | legs/leg_*/foot` 与 `007/008 | legs/leg_*/leg`：在严格保留脚踝可见外轮廓（`007/008` 未完全覆盖处）的基础上，将脚踝两侧阴影向 `y=1101..1136` 隐藏端帽平滑渐变，消除 `y=1136` 处的水平色阶。
+## 原生开合蒙版
 
-## 5. 55 个逻辑部件与 58 个 Krita 绘画层完整映射表
+| 所属图层或组 | 蒙版名 | 原生 UUID | 控制区域 |
+| --- | --- | --- | --- |
+| face/eyes/eye_left ｜虹膜与高光 | 眼白范围 ｜虹膜与高光 | `34531a22-26d7-45f2-9ce1-c54469a52b24` | 限制虹膜和高光在眼白范围内移动，保留上缘与睫毛的搭接。 |
+| face/eyes/eye_left ｜眼内 | 上睑内缘与眼白下沿 ｜眼开合 | `196c2ed5-4326-4683-9dd2-b162e3d105e9` | 控制整组眼白、虹膜和高光。上缘与上睑搭接，开口下缘取眼白下沿。 |
+| face/eyes/eye_right ｜虹膜与高光 | 眼白范围 ｜虹膜与高光 | `eb9bd8c6-95b9-4116-b87e-cc3c5fb487a6` | 限制虹膜和高光在眼白范围内移动，保留上缘与睫毛的搭接。 |
+| face/eyes/eye_right ｜眼内 | 上睑内缘与眼白下沿 ｜眼开合 | `1056e26c-666a-423c-b613-cbaaafaa60f0` | 控制整组眼白、虹膜和高光。上缘与上睑搭接，开口下缘取眼白下沿。 |
+| face/mouth ｜口内 | 上下唇开口 ｜默认微笑 | `2cc8673c-3a8d-4b2b-ad31-ecb9a126d885` | 约束口腔底、齿带和舌面在上下唇所围的微笑开口内。 |
 
-| 图层序号与名称 | 深度 (Level) | 逻辑部件 ID | 图层类型 | 子节点数 | 包围盒 [x, y, w, h] | 保存前/重开后像素 SHA256 |
-| :--- | :---: | :--- | :---: | :---: | :--- | :--- |
-| `000 \| head_accessories::root` | `0` | `head_accessories` | `paintlayer` | `0` | `[471, 117, 60, 45]` | `d62c3e29c8d9157a...` |
-| `001 \| hair/bun_right` | `1` | `hair/bun_right` | `paintlayer` | `0` | `[469, 111, 66, 92]` | `ed28dc8325655519...` |
-| `002 \| hair/bun_left` | `2` | `hair/bun_left` | `paintlayer` | `0` | `[718, 101, 71, 98]` | `3f576867f9ec99aa...` |
-| `003 \| hair/back_hair` | `3` | `hair/back_hair` | `paintlayer` | `0` | `[425, 59, 406, 619]` | `437b38dda65ecea8...` |
-| `004 \| head_accessories::front` | `4` | `head_accessories` | `paintlayer` | `0` | `[462, 60, 83, 97]` | `da1d7f41a87a3eea...` |
-| `005 \| legs/leg_right/foot` | `5` | `legs/leg_right/foot` | `paintlayer` | `0` | `[557, 1101, 61, 113]` | `d7ba34ba8822cf9c...` |
-| `006 \| legs/leg_left/foot` | `6` | `legs/leg_left/foot` | `paintlayer` | `0` | `[638, 1104, 62, 110]` | `16b2e294f8e90c36...` |
-| `007 \| legs/leg_right/leg` | `7` | `legs/leg_right/leg` | `paintlayer` | `0` | `[521, 614, 99, 527]` | `c92e0fb9974f95cb...` |
-| `008 \| legs/leg_left/leg` | `8` | `legs/leg_left/leg` | `paintlayer` | `0` | `[637, 614, 98, 524]` | `75ddc26420b93f53...` |
-| `009 \| pelvis` | `9` | `pelvis` | `paintlayer` | `0` | `[529, 500, 199, 220]` | `583f325b2cca17d4...` |
-| `010 \| neck` | `10` | `neck` | `paintlayer` | `0` | `[566, 294, 125, 69]` | `1c4e2a05550f374f...` |
-| `011 \| arms/arm_right/upper_arm` | `11` | `arms/arm_right/upper_arm` | `paintlayer` | `0` | `[468, 356, 88, 192]` | `f8b92655b494632e...` |
-| `012 \| arms/arm_left/upper_arm` | `12` | `arms/arm_left/upper_arm` | `paintlayer` | `0` | `[701, 356, 85, 191]` | `7f2cc489ba688e0a...` |
-| `013 \| body` | `13` | `body` | `paintlayer` | `0` | `[534, 343, 188, 249]` | `99b557891ea6d695...` |
-| `014 \| arms/arm_right/forearm` | `14` | `arms/arm_right/forearm` | `paintlayer` | `0` | `[424, 518, 91, 148]` | `d3c4dc7a9a8c3cca...` |
-| `015 \| arms/arm_left/forearm` | `15` | `arms/arm_left/forearm` | `paintlayer` | `0` | `[736, 500, 91, 159]` | `9b3f0c7c142be1a7...` |
-| `016 \| arms/arm_right/hand/little_finger` | `16` | `arms/arm_right/hand/little_finger` | `paintlayer` | `0` | `[416, 679, 15, 48]` | `8357f339d75f9342...` |
-| `017 \| arms/arm_left/hand/little_finger` | `17` | `arms/arm_left/hand/little_finger` | `paintlayer` | `0` | `[834, 673, 19, 53]` | `66bb076f87947b88...` |
-| `018 \| arms/arm_right/hand/ring_finger` | `18` | `arms/arm_right/hand/ring_finger` | `paintlayer` | `0` | `[413, 678, 13, 52]` | `0d3b1ff4bf73399f...` |
-| `019 \| arms/arm_left/hand/ring_finger` | `19` | `arms/arm_left/hand/ring_finger` | `paintlayer` | `0` | `[831, 677, 11, 53]` | `314fa4a157afba22...` |
-| `020 \| arms/arm_right/hand/middle_finger` | `20` | `arms/arm_right/hand/middle_finger` | `paintlayer` | `0` | `[404, 678, 18, 64]` | `e2d54b7248a37142...` |
-| `021 \| arms/arm_left/hand/middle_finger` | `21` | `arms/arm_left/hand/middle_finger` | `paintlayer` | `0` | `[836, 674, 17, 68]` | `efee90cda0357c58...` |
-| `022 \| arms/arm_right/hand/palm` | `22` | `arms/arm_right/hand/palm` | `paintlayer` | `0` | `[406, 640, 55, 48]` | `99926f5f79124155...` |
-| `023 \| arms/arm_left/hand/palm` | `23` | `arms/arm_left/hand/palm` | `paintlayer` | `0` | `[799, 640, 53, 52]` | `9b2e30b16c169e09...` |
-| `024 \| arms/arm_right/hand/index_finger` | `24` | `arms/arm_right/hand/index_finger` | `paintlayer` | `0` | `[396, 674, 35, 65]` | `aad234743df73f99...` |
-| `025 \| arms/arm_left/hand/index_finger` | `25` | `arms/arm_left/hand/index_finger` | `paintlayer` | `0` | `[825, 670, 36, 69]` | `903463d1ad619e8d...` |
-| `026 \| arms/arm_right/hand/thumb` | `26` | `arms/arm_right/hand/thumb` | `paintlayer` | `0` | `[427, 669, 27, 46]` | `3088a59d1a7c90b5...` |
-| `027 \| arms/arm_left/hand/thumb` | `27` | `arms/arm_left/hand/thumb` | `paintlayer` | `0` | `[802, 668, 28, 47]` | `c1efca178719af8f...` |
-| `028 \| hair/side_hair_right` | `28` | `hair/side_hair_right` | `paintlayer` | `0` | `[489, 71, 115, 527]` | `09d5b4cb270c11ab...` |
-| `029 \| hair/side_hair_left` | `29` | `hair/side_hair_left` | `paintlayer` | `0` | `[637, 72, 130, 526]` | `51a011fa0cbe0374...` |
-| `030 \| face/face_base` | `30` | `face/face_base` | `paintlayer` | `0` | `[549, 143, 157, 176]` | `238158f8e466baa4...` |
-| `031 \| face/nose` | `31` | `face/nose` | `paintlayer` | `0` | `[623, 247, 9, 13]` | `91f8e5dd8e4082ea...` |
-| `032 \| face/mouth/mouth_interior` | `32` | `face/mouth/mouth_interior` | `paintlayer` | `0` | `[616, 272, 24, 25]` | `a18f75ca1b35a6ff...` |
-| `033 \| face/mouth/upper_teeth` | `33` | `face/mouth/upper_teeth` | `paintlayer` | `0` | `[622, 272, 13, 4]` | `26e2429bcd143815...` |
-| `034 \| face/mouth/tongue` | `34` | `face/mouth/tongue` | `paintlayer` | `0` | `[616, 282, 25, 15]` | `c223da96ad8b9a7b...` |
-| `035 \| face/mouth/lower_lip` | `35` | `face/mouth/lower_lip` | `paintlayer` | `0` | `[616, 281, 25, 16]` | `7dd0058d8919d17e...` |
-| `036 \| face/mouth/upper_lip` | `36` | `face/mouth/upper_lip` | `paintlayer` | `0` | `[616, 271, 25, 16]` | `aed0ebf662f84053...` |
-| `037 \| face/eye_right/sclera` | `37` | `face/eye_right/sclera` | `paintlayer` | `0` | `[559, 212, 45, 41]` | `fc451dacde84195c...` |
-| `038 \| face/eye_left/sclera` | `38` | `face/eye_left/sclera` | `paintlayer` | `0` | `[653, 211, 45, 42]` | `d72caa4b68528233...` |
-| `039 \| face/eye_right/iris` | `39` | `face/eye_right/iris` | `paintlayer` | `0` | `[569, 212, 32, 40]` | `aa2e7a03704e5dd8...` |
-| `040 \| face/eye_left/iris` | `40` | `face/eye_left/iris` | `paintlayer` | `0` | `[656, 211, 31, 41]` | `d268cc95ad2a7b70...` |
-| `041 \| face/eye_right/highlight` | `41` | `face/eye_right/highlight` | `paintlayer` | `0` | `[573, 218, 25, 25]` | `66cd1a3f20387fa3...` |
-| `042 \| face/eye_left/highlight` | `42` | `face/eye_left/highlight` | `paintlayer` | `0` | `[660, 218, 25, 26]` | `5a967551b69f75a0...` |
-| `043 \| face/eye_right/lower_eyelid` | `43` | `face/eye_right/lower_eyelid` | `paintlayer` | `0` | `[574, 250, 22, 4]` | `877075f45b106e40...` |
-| `044 \| face/eye_left/lower_eyelid` | `44` | `face/eye_left/lower_eyelid` | `paintlayer` | `0` | `[662, 251, 19, 2]` | `f89e5b31902b283b...` |
-| `045 \| face/eye_right/lower_eyelashes` | `45` | `face/eye_right/lower_eyelashes` | `paintlayer` | `0` | `[566, 248, 8, 5]` | `d6a03b30fa9d3c89...` |
-| `046 \| face/eye_left/lower_eyelashes` | `46` | `face/eye_left/lower_eyelashes` | `paintlayer` | `0` | `[683, 248, 7, 5]` | `82c7cfb3cfc95712...` |
-| `047 \| face/eye_right/eyelid_crease` | `47` | `face/eye_right/eyelid_crease` | `paintlayer` | `0` | `[565, 204, 37, 8]` | `37562c4081ad3bd9...` |
-| `048 \| face/eye_left/eyelid_crease` | `48` | `face/eye_left/eyelid_crease` | `paintlayer` | `0` | `[654, 203, 36, 7]` | `3545d35cdce9bf39...` |
-| `049 \| hair/front_side_hair_right::root` | `49` | `hair/front_side_hair_right` | `paintlayer` | `0` | `[612, 71, 10, 10]` | `c6aa1ff4e74f941a...` |
-| `050 \| hair/front_side_hair_left::root` | `50` | `hair/front_side_hair_left` | `paintlayer` | `0` | `[631, 72, 12, 9]` | `65a3bad8b57bdd91...` |
-| `051 \| hair/bangs` | `51` | `hair/bangs` | `paintlayer` | `0` | `[544, 72, 168, 148]` | `b7110e42640d1f98...` |
-| `052 \| hair/front_side_hair_right::front` | `52` | `hair/front_side_hair_right` | `paintlayer` | `0` | `[518, 71, 96, 241]` | `dab13ffae0d1f096...` |
-| `053 \| hair/front_side_hair_left::front` | `53` | `hair/front_side_hair_left` | `paintlayer` | `0` | `[640, 72, 97, 240]` | `4854823d0c33c11b...` |
-| `054 \| face/eye_right/upper_eyelid` | `54` | `face/eye_right/upper_eyelid` | `paintlayer` | `0` | `[546, 208, 59, 36]` | `47e5fdf3aa5dcf2b...` |
-| `055 \| face/eye_left/upper_eyelid` | `55` | `face/eye_left/upper_eyelid` | `paintlayer` | `0` | `[651, 208, 58, 37]` | `39136a6491d1d485...` |
-| `056 \| face/eyebrow_right` | `56` | `face/eyebrow_right` | `paintlayer` | `0` | `[554, 180, 51, 13]` | `4f41045511aee4b3...` |
-| `057 \| face/eyebrow_left` | `57` | `face/eyebrow_left` | `paintlayer` | `0` | `[650, 179, 52, 13]` | `ca8a5ca15e93bb83...` |
+下图左为当前默认微笑，中为扩大共同开口后单独查看下齿，右为下齿完整纹理。默认微笑只用共同开口蒙版和舌唇叠压约束下齿。检查后已复位，正式 PNG 取复位状态。
 
-## 6. 保存重开核验与上游文件一致性检查
 
-1. **Krita 保存与重开校验（`step01/reopen-verification.json`）**：
-   - 保存路径：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/raster-layering/step01/character-depth.kra`（画布 `1254 × 1254`）。
-   - 图层数量：保存前 `58` 层，关闭文档并重新打开后 `58` 层。
-   - 图层规范检查：`all_paintlayers = True`，`no_masks_or_children = True`，`layer_mismatches = []`。
-   - 整图投影像素 SHA256：保存前与重开后均为 `b2a65d9f48aa1f4c8c77cd1ab9495343ef20c0d0f690eff66852dcdd26f597ea`（`projection_identical = True`，`all_58_layers_identical = True`）。
-2. **上游分层结构文件同步校验（`step01/upstream-sync.json`）**：
-   - `../part-layering/groups.json`（SHA256 `249d33122ebbcba07d134eae35021d5f858f3c9c1f304dd63a630d27b17468e7`）、`../part-layering/occlusion.json`（SHA256 `e92a0e5dc3a65dd061dcbd5dd0052b9e12087f6bc6c7460a2685fe533ae05b09`）与 `../../part-layering/preview.svg` 均解析正常，55 个逻辑部件、68 个树节点与 58 个深度层序完整对应，无未决问题。
+
+## 视觉验收与重开
+
+整图自左向右为原画、首次制作合成、返修后的合成。各图使用相同原画布坐标和像素比例。
+
+
+
+双眼原尺寸与等倍率放大对照自左向右对应原画、首次制作与返修后。逐眼核对形状、睑缘收笔、外眼角钩、眼白与睫毛的搭接、虹膜暗边与亮点。下齿层禁用蒙版后的完整形状见独显页。
+
+
+
+
+
+以下为首次制作的全层独显存档。返修后各问题的独显、隐藏较前层和合成对照以返修证据为准。 [00–11](evidence/layers-1.png) · [12–23](evidence/layers-2.png) · [24–35](evidence/layers-3.png) · [36–47](evidence/layers-4.png) · [48–57](evidence/layers-5.png)
+
+保存后关闭工程并从正式路径重新打开。逐层验证图层树、名称、UUID、可见性、蒙版像素与绘画像素完全一致。重开合成与透明 PNG 像素一致。
+
+## 已恢复的工具异常
+
+- 手臂初次生图遇到 `http 400 Bad Request`、`moderation_blocked`，工具原文为 “Your request was rejected by the safety system.”，请求 ID 为 `d75ce237-31ed-45f7-9b01-e85309157c7e`。重试后成功取得肤色手臂部件并配准。
+- Krita 剪贴板选择区粘贴在该运行环境返回零像素。局部取样改用同一份 Krita 原图节点在相同坐标读取，并以原有选区权重写回所属绘画层。取样节点已从工程移除。
+
+## 第一轮复核返修存档
+
+复核的 R01–R37 已完成处理。原 58 个绘画层的部件归属、深度与 UUID 保持一致。移除原下齿专用全关蒙版，口内仍由共同开口与舌唇实际轮廓控制。默认微笑没有下齿露出，扩大开口检查可见完整下齿纹理。
+
+重做的部分包括中央后发、两侧外垂后发、两侧胸前发根及躯干与髋片。原表记录首次生成来源，新生图和局部修画来源详见返修记录。亚像素外缘及隐藏薄搭接已按原形复核。
+
+[最新整图对照](repair-01-evidence/overall.png) · [首项三视图](repair-01-evidence/R01.png) · [下齿开口控制](repair-01-evidence/teeth-opening.png)
+
+## 第二轮复核返修
+
+R01–R37 已逐项返修并保存三视图。使用原画同坐标检查双眼，以及关蒙版后完整眼内纹理。原有 58 个逻辑部件保留，新增加 2 个同部件前景分片，实际为 60 个绘画层。原有绘画层的 UUID 保留，五张原生开口蒙版继续使用相同的选择区。
+
+在 `part-layering\occlusion.json` 同步记录两个眉部件的真实前后穿插。组树和部件身份维持原绑定职责。画面右眉的前片新增在 54.1，画面左眉的前片新增在 54.2，均在 54 刘海之后绘制并位于上睑以下的绘画深度。表中同 part 的前后片共同绑定。
+
+| 最终深度 | 原逻辑 part ID | 实际绘画层名 | 原生 UUID | 区域与说明 |
+| ---: | --- | --- | --- | --- |
+| 39 | `face/eyebrows/eyebrow_left` | `39 face/eyebrows/eyebrow_left` | `17c3e10f-b0c5-4465-83d7-738cf6f54ebb` | 画面右眉贴肤和宽发后段 |
+| 40 | `face/eyebrows/eyebrow_right` | `40 face/eyebrows/eyebrow_right` | `b90a1a07-f740-46ef-aacd-e08cdf8914a7` | 画面左眉贴肤和宽发后段 |
+| 54.1 | `face/eyebrows/eyebrow_left` | `54.1 face/eyebrows/eyebrow_left` | `313363af-35a7-4356-9ab7-e4b1a0a27166` | 画面右眉跨过细发绺的可见淡线 |
+| 54.2 | `face/eyebrows/eyebrow_right` | `54.2 face/eyebrows/eyebrow_right` | `332b8ff9-82ce-4dbf-b400-505d625396d9` | 画面左眉跨过细发绺的可见淡线 |
+
+[画面左眉分片与刘海](repair-02-evidence/brow-left.png) · [画面右眉分片与刘海](repair-02-evidence/brow-right.png)
+
+本次局部外形调整包括额前窄尖与鬓发耳前尖、隐藏底发下摆、原侧缘布面、肩肘与指根薄搭接、髋外细边及裆底包边。下唇新增延至下齿外侧的同层薄肤面，停用共同口内蒙版时，当前姿态仍由舌和下唇实体遮住完整下齿。扩大开口与下齿独显验证后恢复默认姿态。
+
+
+
+正式工程保存并重开，60 张绘画层、5 张原生蒙版及默认合成的像素一致。更新后的 PNG 与重开合成一致。记录 `raster-layering\step01\workspace\repair-02-roundtrip.json`。
+
+[整图同尺寸](repair-02-evidence/overall.png) · [画面左眼 1∶1](repair-02-evidence/eye-screen-left-native.png) · [画面右眼 1∶1](repair-02-evidence/eye-screen-right-native.png) · [画面左眼 4×](repair-02-evidence/eye-screen-left-zoom.png) · [画面右眼 4×](repair-02-evidence/eye-screen-right-zoom.png) · [腕掌](repair-02-evidence/hands.png) · [肩颈与躯干](repair-02-evidence/body.png)

@@ -1,0 +1,33 @@
+{
+  "groupId": "face/eyes/eye_right/highlight",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "按组说明核对角色右眼（画面左侧）虹膜上半部的两处独立高光。8 倍参考、blend 和 edge 中，大亮点（约 x=588、y=203）的上部与两侧亮白弧缘、下端收圆均贴合参考；小亮点（约 x=574、y=209）靠虹膜外缘一侧的短圆弧、朝虹膜内侧的斜弧及下缘均沿亮白色块与棕灰虹膜的交界。两处高光均无独立线稿，彼此之间的暗色间隙保留，小亮点与虹膜深色外缘仍分开，两处均未被上睑截断。父稿局部叠加确认两处都在右眼内，四倍范围检查越界采样为 0。",
+      "candidateHash": "e8679a362de04afb18124bc762c62ca4782fa6087c17a6f2cfe783c56442dabf",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-18T14-16-01-858Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-18T14-16-01-858Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-18T14-16-01-858Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/highlight/previews/2026-11-18T14-16-01-858Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:23:55.813Z"
+    }
+  ]
+}

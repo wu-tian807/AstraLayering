@@ -1,0 +1,98 @@
+{
+  "groupId": "hair/side_hair",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮，当前候选 part-layering\\step09_outline\\hair\\children\\side_hair\\outline.svg。已对照整图及头部参考、blend、edge，并在同一头部局部叠加父稿。两片归属正确，候选四倍采样越父 0 像素，以下均可在父内修正。坐标按画面左右及原图像素。\n1. 两侧下半段外缘误包后方垂发。画面左侧约 (510,204) 至 (584,300)，右侧约 (745,196) 至 (677,300)，红线沿外侧较远的发流，吃进了贴着侧发的暗色带。以下颌旁长尖向上追溯，在亮棕侧发与后方垂发之间有一条连续深色叠边。左侧向右、右侧向左收至这条深线靠后方垂发的一缘，保留线宽。偏差在约 y=245–280 最明显，沿真实弧度接回各自尖端。\n2. 两侧分缝下方与刘海相接的根弧约 x=590–624、634–671，y=42–61，红线穿过根部深色楔线，漏掉靠刘海的一侧。把内缘移至深色楔线的刘海侧外缘，保留左右各自的根尖和中央窄开口。向下复核额角交界，尤其左 x=542–552、右 x=707–714、y=160–200，红线仍局部骑在线上，按深边靠刘海或露肤的一侧外缘微调，沿外眼角处的实际遮挡转向下接。\n3. 耳前短尖及回折须按本侧描绘。左侧约 (550,240) 至 (570,253)，右侧约 (707,235) 至 (695,250)，红边在短尖回折处呈平顺斜弧，局部跨到耳面，右短尖又向左下伸出参考尖端。沿发尖压在耳面和脸颊前的深边收回，左侧回折局部向内收至发侧临耳线外缘，右尖按参考略向右上回收。保留露出的耳面缺口，并把两侧长尖回挑的红边贴合暗色后发侧的线外缘，尤其尖端前最后一段。其余头顶上外弧及上侧与后发、发髻的衔接已核对，沿已有可见分界接续。",
+      "candidateHash": "70bd87ed6ae7be71bedf0da3d86359b2037d9f0ced1591465503282d0716bd73",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-34-55-334Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:41:52.481Z",
+      "repairedCandidateHash": "d039d19562131dbe6eb0a209aa0188881d8db17a80ed8f6855e7e199f78d1783"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮，坐标按画面左右。整图确认两片宽侧发从头顶分缝下方起，内侧接刘海、脸和耳，外侧叠在头壳及后方长发上。放大参考、blend 和 edge 逐段核对后，需返修以下父组内边界。\n1. 两片侧发与刘海相接的内弧（约 y=95–196）有漏线。画面左侧额角至外眼角前，红边多处偏在暗接缝的左侧；右侧从根部暗楔收细处经额角至外眼角前，红边多处偏在暗接缝的右侧，右侧上半弧尤为明显。分别向刘海方向贴到接缝的刘海侧外缘，纳入整条暗线；在外眼角处按发缘与眼线的实际交接收转。\n2. 两片主梢的外弧（左约 x=514–584、y=215–300，右约 x=675–744、y=215–301）在太阳穴下方逐渐跨入后方深色长发，接近尖端时才回到侧发。左外弧向右、右外弧向左收回，跟随浅侧发与深色长发之间暗描线的外缘，并消除右侧约 (725,249) 处红边的折点，沿参考连续弧线收尖。右主尖约 (675,300) 处补到黑色尖端。\n3. 耳前短尖及其下侧回折分别贴实。左侧约 (568,252) 的候选尖端偏左，向右补至可见线尖（约 x=570），下侧斜线贴着耳肤一侧的线外缘。右侧约 (696,248) 附近红边跨过短尖下侧的耳肤，沿暗线与耳肤的分界向发侧收回，尖端向左上贴准颊边可见线尖。两侧保留短尖与主梢内缘之间实际露出的耳部凹口。\n已核对分缝两旁上外弧和发根间开口。父稿同窗 edge 对照表明上述修改均可在父范围内完成，当前候选四倍采样越界为 0，未见上游范围限制。",
+      "candidateHash": "d039d19562131dbe6eb0a209aa0188881d8db17a80ed8f6855e7e199f78d1783",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/side_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/side_hair/previews/2026-11-18T11-47-35-937Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:52:43.581Z",
+      "repairedCandidateHash": "fc3229ad917231ece3abfddc9f21d4f08df35b9db9f4f99b20d56aab1ac95e3f"
+    }
+  ]
+}

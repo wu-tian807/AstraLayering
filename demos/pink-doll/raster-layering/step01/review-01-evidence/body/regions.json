@@ -1,0 +1,389 @@
+{
+  "image": "raster-layering/step01/workspace/independent-review/composite.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "marked": "raster-layering/step01/review-01-evidence/body/marked.png",
+  "manifest": "raster-layering/step01/review-01-evidence/body/regions.json",
+  "regions": [
+    {
+      "id": "R23",
+      "bounds": [
+        555,
+        287,
+        150,
+        69
+      ],
+      "layers": [
+        "24 neck",
+        "25 body"
+      ],
+      "description": "颈根出现额外的细灰弧线，颈侧的描边在靠肩处减弱，锁骨肤面高光和过渡变薄。",
+      "crop": [
+        546,
+        278,
+        168,
+        87
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R23-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R23-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R23-comparison.png"
+      }
+    },
+    {
+      "id": "R24",
+      "bounds": [
+        482,
+        332,
+        73,
+        181
+      ],
+      "layers": [
+        "23 arms/arm_right/upper_arm",
+        "25 body"
+      ],
+      "description": "画面左肩外缘见浅色断口；上臂独显在肩内和臂长方向有断续直条，躯干独显肩上也有残线。",
+      "crop": [
+        473,
+        323,
+        91,
+        199
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R24-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R24-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R24-comparison.png"
+      }
+    },
+    {
+      "id": "R25",
+      "bounds": [
+        695,
+        332,
+        76,
+        181
+      ],
+      "layers": [
+        "15 arms/arm_left/upper_arm",
+        "25 body"
+      ],
+      "description": "画面右肩弧中有白色台阶；上臂独显沿补画分界有断续竖条，躯干肩片夹带线痕。",
+      "crop": [
+        686,
+        323,
+        94,
+        199
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R25-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R25-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R25-comparison.png"
+      }
+    },
+    {
+      "id": "R26",
+      "bounds": [
+        511,
+        330,
+        232,
+        217
+      ],
+      "layers": [
+        "25 body"
+      ],
+      "description": "领口至腹部有多余斜波和高光，纵车缝锯齿；独显在两肩带下可见并行残线。",
+      "crop": [
+        502,
+        321,
+        250,
+        235
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R26-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R26-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R26-comparison.png"
+      }
+    },
+    {
+      "id": "R27",
+      "bounds": [
+        515,
+        529,
+        218,
+        197
+      ],
+      "layers": [
+        "25 body",
+        "07 pelvis"
+      ],
+      "description": "同材腰口出现接线角和色差；髋前有硬横色差、额外斜褶，腿口双线收笔不干净。",
+      "crop": [
+        506,
+        520,
+        236,
+        215
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R27-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R27-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R27-comparison.png"
+      }
+    },
+    {
+      "id": "R28",
+      "bounds": [
+        438,
+        641,
+        42,
+        62
+      ],
+      "layers": [
+        "22 arms/arm_right/forearm",
+        "21 arms/arm_right/hand/palm"
+      ],
+      "description": "画面左腕的外侧描边在前臂和掌体交接处中断并出现浅色小口。",
+      "crop": [
+        429,
+        632,
+        60,
+        80
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R28-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R28-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R28-comparison.png"
+      }
+    },
+    {
+      "id": "R29",
+      "bounds": [
+        768,
+        641,
+        43,
+        62
+      ],
+      "layers": [
+        "14 arms/arm_left/forearm",
+        "13 arms/arm_left/hand/palm"
+      ],
+      "description": "画面右腕—掌的线缘错接，细暖侧缘和肤面在接点有局部发白和台阶。",
+      "crop": [
+        759,
+        632,
+        61,
+        80
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R29-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R29-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R29-comparison.png"
+      }
+    },
+    {
+      "id": "R30",
+      "bounds": [
+        423,
+        698,
+        47,
+        76
+      ],
+      "layers": [
+        "16 arms/arm_right/hand/ring_finger",
+        "17 arms/arm_right/hand/middle_finger",
+        "18 arms/arm_right/hand/index_finger",
+        "19 arms/arm_right/hand/little_finger",
+        "20 arms/arm_right/hand/thumb",
+        "21 arms/arm_right/hand/palm"
+      ],
+      "description": "画面左手虎口暗三角变淡并断成点状，内屈指根有色阶和横向接块。",
+      "crop": [
+        414,
+        689,
+        65,
+        94
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R30-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R30-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R30-comparison.png"
+      }
+    },
+    {
+      "id": "R31",
+      "bounds": [
+        775,
+        698,
+        51,
+        76
+      ],
+      "layers": [
+        "08 arms/arm_left/hand/little_finger",
+        "09 arms/arm_left/hand/ring_finger",
+        "10 arms/arm_left/hand/middle_finger",
+        "11 arms/arm_left/hand/index_finger",
+        "12 arms/arm_left/hand/thumb",
+        "13 arms/arm_left/hand/palm"
+      ],
+      "description": "画面右手掌指相接处有灰隙及硬亮补片，后方三指独显残留错层暗线和方折。",
+      "crop": [
+        766,
+        689,
+        69,
+        94
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R31-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R31-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R31-comparison.png"
+      }
+    },
+    {
+      "id": "R32",
+      "bounds": [
+        497,
+        608,
+        125,
+        134
+      ],
+      "layers": [
+        "06 legs/leg_right"
+      ],
+      "description": "画面左髋露出段外轮廓中断后硬接；腿独显留有贴合衣口走向的斜弧及肤色旧接边。",
+      "crop": [
+        488,
+        599,
+        143,
+        152
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R32-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R32-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R32-comparison.png"
+      }
+    },
+    {
+      "id": "R33",
+      "bounds": [
+        626,
+        608,
+        126,
+        134
+      ],
+      "layers": [
+        "05 legs/leg_left"
+      ],
+      "description": "画面右髋外轮廓上段消失后突然接黑线；腿独显有与衣口同走向的幽灵弧线和贴片色。",
+      "crop": [
+        617,
+        599,
+        144,
+        152
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R33-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R33-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R33-comparison.png"
+      }
+    },
+    {
+      "id": "R34",
+      "bounds": [
+        529,
+        1061,
+        68,
+        57
+      ],
+      "layers": [
+        "06 legs/leg_right"
+      ],
+      "description": "画面左袜的袜口波纹上下重叠，袜边褶尖和描边间有灰色碎线。",
+      "crop": [
+        520,
+        1052,
+        86,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R34-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R34-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R34-comparison.png"
+      }
+    },
+    {
+      "id": "R35",
+      "bounds": [
+        651,
+        1061,
+        73,
+        57
+      ],
+      "layers": [
+        "05 legs/leg_left"
+      ],
+      "description": "画面右袜口多出一条退位波纹，肤面边缘夹杂淡弧，荷叶边原有明暗层次变浑。",
+      "crop": [
+        642,
+        1052,
+        91,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R35-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R35-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R35-comparison.png"
+      }
+    },
+    {
+      "id": "R36",
+      "bounds": [
+        526,
+        1137,
+        51,
+        61
+      ],
+      "layers": [
+        "06 legs/leg_right"
+      ],
+      "description": "画面左鞋外扣内孔与鞋带接口加了不规则重线和淡色碎边。",
+      "crop": [
+        517,
+        1128,
+        69,
+        79
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R36-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R36-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R36-comparison.png"
+      }
+    },
+    {
+      "id": "R37",
+      "bounds": [
+        681,
+        1137,
+        46,
+        69
+      ],
+      "layers": [
+        "05 legs/leg_left"
+      ],
+      "description": "画面右鞋扣下新添短灰线，鞋带与金扣的边界和亮部变混。",
+      "crop": [
+        672,
+        1128,
+        64,
+        87
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/body/R37-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/body/R37-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/body/R37-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

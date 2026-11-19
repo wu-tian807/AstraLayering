@@ -1,7 +1,0 @@
-{
-  "groupId": "shoulder_straps/left_shoulder_strap",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "425f2f6c8e51f8e77cfe4a63d7caf83b4ffc4dbb3b079866dba1894bcec7171c",
-  "afterHash": "c6a8c94d47288f07c159ad822161b0af5e647a7e3e6e16f2be410c35d510acb7"
-}

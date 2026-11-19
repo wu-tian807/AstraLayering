@@ -1,7 +1,0 @@
-{
-  "groupId": "hair/bun_left",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "63d674e7d63a235d347fc6ac86d1e5d1fe18f879e58e56e28e43c015d62f1449",
-  "afterHash": "b2d3275dbbe95771686181dc5dd18c061d2c9f951de6e954898b9e2fc9ff1dc9"
-}

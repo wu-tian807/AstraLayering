@@ -2,57 +2,67 @@
   "groupId": "face/mouth/upper_lip",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成 `face/mouth/upper_lip`（上唇轮廓 part）的全图与分块放大独立审查（查看整图 blend，并以 scale=8 对 `[608,265,40,38]` 整体及左右重叠局部 `[614,270,16,18]`、`[626,270,16,18]` 的参考原图、父组 `face/mouth.svg` 与候选 SVG 的 blend/edge/svg 模式逐处核对）：\n\n1. **父范围检查**：`bounds.status = \"pass\"`（`outsideSamples = 0`），完全容纳于父组 `face/mouth` 范围内。\n2. **外缘与父组贴合度**：外侧弧线从左侧嘴角（`x≈616.14, y≈285.5`）经上唇顶弧（`x=628.0, y=271.9`）延伸至右侧嘴角（`x≈640.2, y≈285.6`），精确复用父组 `mouth.svg` 上半圈曲线并与原图上唇外沿完全对齐。\n3. **内缘与邻接关系**：顶弧内缘（`y≈273.35`）准确贴合上唇深色线与下方白色 `upper_teeth` 的分界，未侵入牙齿亮部；两侧内缘顺滑贴合深褐色唇线内侧与 `mouth_interior` 的边界；左右嘴角收口位置（`y≈285.2..286.3`）对称平顺，便于与 `lower_lip` 衔接。\n4. **轮廓质量**：单条闭合路径结构干净，无碎片、孤点或多余折角，准予通过。",
-      "candidateHash": "e16819d7942535b2d7131c5d1211304cbf58b4e62f2806eaddf63cc9ac04bfdd",
+      "verdict": "revise",
+      "feedback": "第 1 轮。以原图 (605,248,54,38) 的 8 倍参考、blend 和 edge 逐段核对。中央上缘与上齿带上方灰褐线的肤色侧外缘基本贴合，保留连续浅弧和下方露出的浅色齿带。父内需修正两端靠口腔一侧的收口。左侧约 x615–622、y257–261，候选下缘从齿带左端向下兜进深褐口腔，并在侧壁上形成尖端。沿齿带左端上方的灰褐唇线转折向左收，在唇线与深色嘴角合并处贴着可辨线宽收窄，抬起落入口腔的尖端。右侧约 x643–650、y256–260，候选也把齿带右端以外的深褐肩部截成一条独立宽带，末端向侧壁拖尖。沿右端自身较短的转折收窄并提早并入嘴角，保留可辨的线宽及下方口腔开口，模糊处止于最后可辨的分界。父稿同窗叠加显示候选外侧上缘沿用父界，左嘴角外转约 x614.5–615.5、y258–261 处仍有极薄的深色线缘在父界外，属上游范围限制。当前候选范围检查无越界，以上父内收口可独立修正。",
+      "candidateHash": "45fbd1a2ec3c6be41005fb7f4d53293b82be983ea2d183eeb6dc1f72bc68fbf8",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_lip/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-01-57-852Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face/mouth.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-2.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_lip/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-01-57-852Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_lip/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-4.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-01-57-852Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-5.png"
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-01-57-852Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
+          "source": "part-layering/parts/face/mouth.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/upper_lip.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/upper_lip/2026-10-22T07-45-26-316Z-9.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-01-57-852Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-22T08:48:19.471Z"
+      "updatedAt": "2026-11-18T13:10:03.572Z",
+      "repairedCandidateHash": "f32a6bcf5a16137189afe0422aabfb07d8fcc4123172f0259d3e7c0aba974b97"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。已在原图整图定位，并用 [609,250,46,32] 的 8 倍参考、blend、edge 及同区父稿核对。中央上唇弧沿肤色与浅色齿带之间的灰褐线连续通过，保留齿带与口腔开口。两端仍有父范围内的漏画：左端约 (615.9,258.0) 提前收尖，参考的深褐上缘仍向左下转至约 (614.8,260)，外侧接脸部肤色，内侧接口腔暗部；右端约 (648.5,257.4) 同样提前收尖，参考边缘仍向右下弯至约 (649.4,259–260)。请沿两侧各自可辨的嘴角转折延伸，保留深色线的可见宽度，到了转入下唇侧缘的接缝即收住，保留中央齿带和两端口内暗面。父稿同区叠加显示这两处转折位于父轮廓内，候选四倍采样越界为 0。",
+      "candidateHash": "f32a6bcf5a16137189afe0422aabfb07d8fcc4123172f0259d3e7c0aba974b97",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_lip/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-13-58-957Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/upper_lip/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-13-58-957Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-13-58-957Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/upper_lip/previews/2026-11-18T13-13-58-957Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:18:33.363Z",
+      "repairedCandidateHash": "c06f8ece06336d95ef2d88a56bb63c3acda78b7c0eda170c3203a52d300a15ec"
     }
   ]
 }

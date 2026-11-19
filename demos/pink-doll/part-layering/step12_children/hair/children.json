@@ -5,91 +5,32 @@
       "id": "hair/bangs",
       "kind": "part",
       "name": "bangs",
-      "note": "额前刘海（part）。包含额头中央齐刘海主束（下沿呈多尖碎齐状）及两侧眉上偏束（每侧各含两个垂至眉毛与上眼睑上方的发尖），以及其上方连为一体的额前发面与横向高光带。上缘发根起自头顶中分凹口下方的内层分界弧线，左右两侧以从外眉梢上方延伸至头顶分缝的清晰深色发缝线与 front_side_hair_left、front_side_hair_right 分界。遮挡关系上，覆盖在 face/face_base 额头与 face/eyebrow_left、face/eyebrow_right 之上，并位于 back_hair 上部头盖底形前方；上缘及两侧隐蔽发根需向头顶及前侧发内侧略微延展补齐，以便随头部转动和微摆时整体统一控制，内部多尖与发纹无需继续拆分。",
-      "metadata": {
-        "rasterAssemblyNote": "额前刘海 depth51：覆盖 back_hair、face_base 额头和左右 eyelid_crease 中段，覆盖前侧发 root 分片（49/50）；两侧发根余量在 front 分片（52/53）下方。眉毛为原图透发眉，位于56/57，在本层前方。"
-      }
+      "note": "完整额前发面由头顶分缝前下方的共同根区向下铺在额头，含中央齐梢及两旁止于眉眼上方的额前发梢。根部与分缝及头顶后发底形相接，两外缘在额角与宽侧发的弧形内缘衔接，发梢压在额面与眉毛前。各梢沿同一额前发面分流，整体随额面转动、俯仰和变形，作为一个 part。"
     },
     {
-      "id": "hair/front_side_hair_left",
-      "kind": "part",
-      "name": "front_side_hair_left",
-      "note": "raster step01 对照头顶中分缝：上游已提示发根舌片外露，单深度使补全端形成色块；同一逻辑鬓发分出根部深度，主发束深度不变。分片只切现有像素，无几何删减或新运动节点。",
-      "metadata": {
-        "rasterDepth": {
-          "levels": [
-            {
-              "level": 50,
-              "region": "root：x580..659,y60..89 范围内，完整形状中原可见 SVG 几何 alpha=0 的发根补全舌片像素；位于 bangs 后方。"
-            },
-            {
-              "level": 53,
-              "region": "front：除 root 外的现有全部像素，包含原可见贴脸鬓发和其他补全；覆盖 bangs 两侧余量，在 upper_eyelid 外眼角与 eyebrow 后。"
-            }
-          ],
-          "logicalPart": "hair/front_side_hair_left",
-          "layers": [
-            "050 | hair/front_side_hair_left::root",
-            "053 | hair/front_side_hair_left::front"
-          ]
-        }
-      }
+      "id": "hair/side_hair",
+      "kind": "group",
+      "name": "side_hair",
+      "note": "角色左右各有一片完整的宽侧发，从头顶分缝两旁沿发流越过额角和太阳穴，贴外眼角与耳前下弯，至左右颊线至下颌旁的尖梢。根部接入分缝，发面上外缘之后与后发头顶外壳衔接，内缘与刘海两端相邻。两侧发面压在额角、脸缘和耳上部之前，也盖住同侧胸前长发的上段；耳前短尖沿同片发面收束，随该侧变形。两侧转头时各自适应近侧压窄、远侧展开，故本层设 group，下一层按角色自身左右各取完整一片。"
     },
     {
-      "id": "hair/front_side_hair_right",
-      "kind": "part",
-      "name": "front_side_hair_right",
-      "note": "raster step01 对照头顶中分缝：上游已提示发根舌片外露，单深度使补全端形成色块；同一逻辑鬓发分出根部深度，主发束深度不变。分片只切现有像素，无几何删减或新运动节点。",
-      "metadata": {
-        "rasterDepth": {
-          "levels": [
-            {
-              "level": 49,
-              "region": "root：x580..659,y60..89 范围内，完整形状中原可见 SVG 几何 alpha=0 的发根补全舌片像素；位于 bangs 后方。"
-            },
-            {
-              "level": 52,
-              "region": "front：除 root 外的现有全部像素，包含原可见贴脸鬓发和其他补全；覆盖 bangs 两侧余量，在 upper_eyelid 外眼角与 eyebrow 后。"
-            }
-          ],
-          "logicalPart": "hair/front_side_hair_right",
-          "layers": [
-            "049 | hair/front_side_hair_right::root",
-            "052 | hair/front_side_hair_right::front"
-          ]
-        }
-      }
-    },
-    {
-      "id": "hair/side_hair_left",
-      "kind": "part",
-      "name": "side_hair_left",
-      "note": "角色左侧长侧发（part，位于画面右侧）。指从头顶左侧发缝（紧贴头顶外轮廓内侧、bun_left 根部内侧，含左侧外段高光）起始、沿头部左侧垂直向下延伸并垂落于左肩、左胸外侧与左上臂内侧前方的完整长发大束，下端在腰际/手肘高度自然分叉为内外两个长发尖。遮挡关系上，其上段内侧被 front_side_hair_left 覆盖（绘制时需将 front_side_hair_left 下方遮挡的内缘平滑补齐并连回头顶发根），上段外缘邻接并压在 bun_left 根部内侧；中下段位于 back_hair、body（左肩带外缘及胸侧）与 arms/arm_left（左肩头及左上臂内侧边缘）的前方，下端发梢垂在左前臂内侧与腰侧前方。整束从头顶发根到腰际双尖为连续完整控制单元，需独立承担胸前垂发长摆物理，不按长度截断或拆分末端双尖，故定为 part。"
-    },
-    {
-      "id": "hair/side_hair_right",
-      "kind": "part",
-      "name": "side_hair_right",
-      "note": "角色右侧长侧发（part，位于画面左侧）。指从头顶右侧发缝（紧贴头顶外轮廓内侧、bun_right 根部内侧，含右侧外段高光）起始、沿头部右侧垂直向下延伸并垂落于右肩、右胸外侧与右上臂内侧前方的完整长发大束，下端在腰际/手肘高度自然分叉为内外两个长发尖。遮挡关系上，其上段内侧被 front_side_hair_right 覆盖（绘制时需将 front_side_hair_right 下方遮挡的内缘平滑补齐并连回头顶发根），上段外缘邻接并压在 bun_right 根部内侧；中下段位于 back_hair、body（右肩带外缘及胸侧）与 arms/arm_right（右肩头及右上臂内侧边缘）的前方，下端发梢垂在右前臂内侧与腰侧前方。整束从头顶发根到腰际双尖为连续完整控制单元，需独立承担胸前垂发长摆物理，不按长度截断或拆分末端双尖，故定为 part。"
-    },
-    {
-      "id": "hair/bun_left",
-      "kind": "part",
-      "name": "bun_left",
-      "note": "角色左侧麻花盘发髻（part，位于画面右上方）。位于头部左上方外侧，由内圈麻花辫环与外圈盘绕发团共同构成紧凑闭合的盘发球体，无垂落飘带或独立散尾。遮挡关系上，内侧根部贴合并略微伸入头顶左外缘（side_hair_left 与 back_hair 头盖外沿）下方，需保留向头顶内侧伸入的圆弧形胶水余量以防转头穿帮；整体随头部旋转统一产生透视位移与形变，内部辫纹无需拆分，故定为 part。"
-    },
-    {
-      "id": "hair/bun_right",
-      "kind": "part",
-      "name": "bun_right",
-      "note": "角色右侧麻花盘发髻（part，位于画面左上方）。位于头部右上方外侧，由内圈麻花辫环与外圈盘绕发团共同构成紧凑闭合的盘发球体。遮挡关系上，其上外侧局部被已归属 head_accessories 根组的深绿色叶瓣发饰遮挡，绘制与补全时须严格按照父组 hair.svg 绿色补全区补齐发饰下方的完整盘发髻弧形轮廓与辫体，不重复领取深绿色叶瓣发饰；其内侧根部同样向头顶右外缘（side_hair_right 与 back_hair 头盖外沿）下方保留圆弧形胶水余量。整体随头部统一控制，故定为 part。"
+      "id": "hair/front_long_hair",
+      "kind": "group",
+      "name": "front_long_hair",
+      "note": "角色左右各有一束胸前长发。上端沿两侧颞耳附近的发流接入，根部藏在宽侧发后，发面从侧发下方沿肩内侧、胸腰与上臂之间下垂，到髋侧收为弯尖。长束局部盖住上臂内缘和衣身，髋侧发尖压在大腿根前。上段与宽侧发按覆盖边界衔接，肩以下沿整束外缘及与臂后发的叠边辨认，保留从根到发梢的自然宽度。两束在身体左右分别摆动并与臂后长发保持不同深度，故本层设 group，下一层按左右组织完整长束。"
     },
     {
       "id": "hair/back_hair",
-      "kind": "part",
+      "kind": "group",
       "name": "back_hair",
-      "note": "后发主体与头顶头盖底形（part）。包含头顶最高处中分凹口及两侧贴头外轮廓构成的完整上头盖底形，以及从脑后向下延伸至臀胯高度的整片宽大后发。可见区域包括：头顶中分凹口至两侧发髻上方的顶弧外沿、颈部两侧与 side_hair_left/right 之间的深色脑后内凹发面、双臂外侧露出的后发外缘及最外侧弯尖、以及前臂内侧与腰胯之间露出的左右多簇后发底端发尖。被遮挡区域需向上完整补齐 bangs、front_side_hair_left/right 与 side_hair_left/right 下方的圆润头盖底形，向下完整补齐被 face、neck、body、pelvis、arms/arm_left、arms/arm_right 及 side_hair_left/right 遮挡的脑后至臀部连续后发底面（与父组 hair.svg 中躯干及手臂后方的绿色补全范围一致）。因角色脑后长发为左右贯通的整片式披发而非分束双马尾，包含头盖与后发长披面作为单一完整 part 置于角色最底层统一控制。"
+      "note": "脸、耳、颈和躯干之后的完整后发。稳定底形承担分缝后方可见的头顶外弧和后枕体积，向下经脸后、颈后接到身体遮挡内的背部长发，范围衔接父 SVG 的中央补全区。底形在侧发上外缘之后承接分缝发根，并在耳后保留与侧发及发髻根部的接合区。左右外垂大束的上端接在同侧耳后与后枕侧缘，从肩后延至腕、髋附近，前臂遮住的中段与外侧和腕旁露出的发段连续，外缘的细尖随各自大束。稳定底形随头部转动和俯仰，两侧外垂大束与底形有可追踪的叠接范围并需分别摆动，故设 group，由下一层安排各完整组成。"
+    },
+    {
+      "id": "hair/bun",
+      "kind": "group",
+      "name": "bun",
+      "note": "角色左右耳上偏后各有一个盘成团状的编发髻。每髻含从头侧汇入的根部和完整盘绕体，根部及靠脸的接合缘被贴头发面与宽侧发局部遮住。角色右髻在画面左侧，上前部另受黑色结饰与圆珠遮挡，发髻从饰物下方露出。两髻各有独立根部、外轮廓和重叠边界，随同侧头部定位并保留各自的局部形变，故本层设 group，下一层按左右实例复核各髻组成。"
     }
   ],
-  "note": "完成 hair 的直属子节点拆分，共登记 8 个直属 part 节点：bangs、front_side_hair_left、front_side_hair_right、side_hair_left、side_hair_right、bun_left、bun_right、back_hair（左右命名均以角色自身为准，正面角色 left 在画面右侧）。\n\n拆分依据与控制逻辑：\n1. 前发与两层侧发的层次划分：通过观察原图头顶至面部的连续分缝线与身体遮挡关系，角色面部周围存在明确的三层前景发面——额前中央与眉上的齐刘海（bangs）、沿左右眼外侧贴合脸颊向内弯收至下颌的包脸短侧发（front_side_hair_left/right），以及发根起自头顶分缝（发髻内侧）、沿脸侧向下直垂于双肩、胸侧与上臂内侧前方的长侧发大束（side_hair_left/right）。其中 front_side_hair_left/right 压在脸颊外缘与 side_hair_left/right 上段内侧之上，随头部转动贴合脸廓变形；side_hair_left/right 则跨越肩关节垂至腰际，压在 body 与 arms 前方，需独立设置长摆物理，故将 bangs、front_side_hair_left/right、side_hair_left/right 分别独立。\n2. 双发髻与已归属头饰边界：头部上方两侧的麻花盘发髻（bun_left、bun_right）在转头时具有明显的前后透视位移，故单列；右侧发髻（画面左上方）上的深绿色叶瓣发饰已归属根组 head_accessories，bun_right 仅按父组 hair.svg 补全范围恢复发饰遮挡下的盘发本体，不重复领取发饰。\n3. 头盖轮廓与后发主体：头顶最高处的中分外轮廓弧线与脑后宽大披发相连，back_hair 同时承担完整头盖底形与脑后披发主体，向上补齐前发和侧发下方的头盖，向下补齐脸、颈、躯干与双臂后方的连续长发底面。\n4. 节点类型（part vs group）：上述 8 个单元各自均为从合理发根到自身发梢（或闭合盘发团）的连续控制单元，内部的发丝纹理、高光或末端分叉发尖均随所属发面统一变形，无需要继续拆分的独立子部件，亦不创建只包含单一同范围部件的冗余包装 group，故全部直接定为 part。\n\n参考原则说明：\n1. 采用《01-发区组织与前侧发拆分-Milly》原则：依据完整发面与发根走向区分额前刘海（bangs）、贴脸前侧发（front_side_hair_left/right）、长侧发大束（side_hair_left/right）与含头盖的后发底形（back_hair），不将大片脸侧或垂肩发束误并入刘海或后发。\n2. 采用《02-长发主束与细束的粒度对照-莉尔》原则：保持从头顶发根到发梢的完整主束粒度，不截取局部外露段落或将末端分尖拆成细碎发丝。\n3. 采用《03-长卷发整束与多尖发面-樱桃蛋糕天使》原则：同一完整发面内的多条纹理与末端多个发尖保留在同一 part 中，不按长度或发尖数量机械细分。"
+  "note": "已用原图局部及父 SVG 的独显和叠加核对完整发流。采用 Hiyori／Mao 按脸前后深度识别发区的原则，将覆盖额角、太阳穴和耳前的宽发面归入 side_hair。对照 Milly 与莉尔按完整发面追踪根梢的原则，分别识别止于颊边的宽侧发、垂在胸腰前的成对长束，以及臂后断续显露的外垂大束。沿 Ren／Haru 示例的脸后外壳衔接原则，由 back_hair 的稳定底形承担头顶轮廓并接续颈后和背后。双髻均局部可见，画面左侧的角色右髻与 head_accessories 的既有结饰按真实遮挡衔接。所有直属节点均有可见部分，局部遮挡处沿所属完整发面或发髻连续补全。"
 }
