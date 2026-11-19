@@ -6,8 +6,10 @@ import type { StepResult } from './agent.ts';
 import { fileInfo } from './run-store.ts';
 import type { StepDefinition } from './steps.ts';
 import { publishReportAssets } from '../report-assets.ts';
+import { nextReviewAction, runReviewSchedule, type ReviewProgress } from '../review-schedule.ts';
 
 const reports = ['review-01.md', 'repair-01.md', 'review-02.md', 'repair-02.md'] as const;
+const maxRounds = reports.length / 2;
 export type ReviewTask = { kind: 'review' | 'repair'; filename: typeof reports[number]; index: number };
 
 async function verdict(directory: string, filename: string, kind: ReviewTask['kind']): Promise<string | undefined> {
@@ -30,18 +32,37 @@ export async function checkReport(directory: string, filename: string, kind: Rev
   await asCheck('invalid-output', () => verdict(directory, filename, kind));
 }
 
-// Only finalized Markdown reports advance the sequence. A repair report records that
-// the repair turn finished; whether the findings are resolved is the next review's call.
-export async function nextReviewTask(directory: string): Promise<ReviewTask | undefined> {
-  for (let index = 0; index < reports.length; index += 2) {
+// Only the consecutive prefix of finalized Markdown reports counts. A repair
+// report records that the repair finished; the next review judges the result.
+async function reviewProgress(directory: string): Promise<ReviewProgress> {
+  let progress: ReviewProgress = { completedReviews: 0 };
+  for (let round = 1; round <= maxRounds; round++) {
+    const index = (round - 1) * 2;
     const review = await verdict(directory, reports[index], 'review');
-    if (!review) return { kind: 'review', filename: reports[index], index };
-    if (review === '通过') return;
-    if (review !== '需要修复') throw new Error(`检查尚未完成：${reports[index]}。删除该报告后可重新检查。`);
-    const repair = await verdict(directory, reports[index + 1], 'repair');
-    if (!repair) return { kind: 'repair', filename: reports[index + 1], index: index + 1 };
+    if (!review) return progress;
+    if (review === '通过') return { completedReviews: round, verdict: 'pass' };
+    if (review !== '需要修复') return { completedReviews: round - 1, verdict: 'blocked' };
+    const repaired = Boolean(await verdict(directory, reports[index + 1], 'repair'));
+    progress = { completedReviews: round, verdict: 'revise', repaired };
+    if (!repaired) return progress;
   }
-  // The second repair is the last; there is no third review.
+  return progress;
+}
+
+function reportTask(kind: ReviewTask['kind'], round: number): ReviewTask {
+  const index = (round - 1) * 2 + (kind === 'repair' ? 1 : 0);
+  return { kind, filename: reports[index], index };
+}
+
+function blockedReview(round: number): never {
+  throw new Error(`检查尚未完成：${reportTask('review', round).filename}。删除该报告后可重新检查。`);
+}
+
+export async function nextReviewTask(directory: string): Promise<ReviewTask | undefined> {
+  const action = nextReviewAction(await reviewProgress(directory), maxRounds);
+  if (action.kind === 'done') return;
+  if (action.kind === 'blocked') return blockedReview(action.round);
+  return reportTask(action.kind, action.round);
 }
 
 export async function buildReviewPrompt(step: StepDefinition, task: ReviewTask): Promise<string> {
@@ -67,15 +88,12 @@ type ReviewOptions = {
 };
 
 export async function runReviews(options: ReviewOptions): Promise<void> {
-  let task: ReviewTask | undefined;
-  while ((task = await nextReviewTask(options.directory))) {
-    options.signal?.throwIfAborted();
+  async function runTask(task: ReviewTask) {
     // Deleting an earlier report invalidates later reports, retaining the artwork.
     await discardReviewReports(options.directory, task.index + 1);
     const draft = `${task.filename}.tmp`;
     await rm(join(options.directory, draft), { force: true });
-    const current = task;
-    const result = await options.invoke(await buildReviewPrompt(options.step, current), current, () => checkReport(options.directory, draft, current.kind));
+    const result = await options.invoke(await buildReviewPrompt(options.step, task), task, () => checkReport(options.directory, draft, task.kind));
     if (result.status !== 'completed') throw new Error(`本次${task.kind === 'review' ? '检查' : '修复'}未完成：${result.summary}`);
     const conclusion = await verdict(options.directory, draft, task.kind);
     if (!conclusion) throw new Error(`缺少完整报告：${draft}`);
@@ -86,4 +104,12 @@ export async function runReviews(options: ReviewOptions): Promise<void> {
     await rename(join(options.directory, draft), join(options.directory, task.filename));
     options.progress?.(`${task.filename}：${conclusion}`);
   }
+  const outcome = await runReviewSchedule({
+    maxRounds,
+    progress: () => reviewProgress(options.directory),
+    review: round => runTask(reportTask('review', round)),
+    repair: round => runTask(reportTask('repair', round)),
+    signal: options.signal,
+  });
+  if (outcome.kind === 'blocked') blockedReview(outcome.round);
 }

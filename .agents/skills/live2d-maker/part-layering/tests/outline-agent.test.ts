@@ -345,6 +345,20 @@ test('blocked 不返修也不放行；只有最终回复没有提交工具时不
   }
 });
 
+test('续跑保留 blocked 记录，同一轮重新审查且仍可进行两轮有效审查', async t => {
+  const f = await fixture(t);
+  await runLayering({ ...f, groups: null, steps: createLayeringSteps(agents(['blocked'])) });
+  const resumed = agents(['revise', 'pass']);
+  await runLayering({ ...f, groups: null, steps: createLayeringSteps(resumed) });
+  assert.deepEqual(resumed.calls.map(call => call.task.name), [
+    '组轮廓review-face', '组轮廓返修-face', '组轮廓review-face',
+  ]);
+  const report = JSON.parse(await readFile(join(f.directory, 'step09_outline/face/review.json'), 'utf8'));
+  assert.deepEqual(report.reviews.map((review: { verdict: string }) => review.verdict), ['blocked', 'revise', 'pass']);
+  const state = (await GroupStore.open(f.directory)).snapshot();
+  assert.equal(state.groups[0].steps.review.output?.reviewOutcome, 'pass');
+});
+
 test('缺少自检不能提交轮廓；返修回合失败保留此前已登记 SVG 并关闭会话', async t => {
   const f = await fixture(t);
   const failed = agents(['revise'], { failRepair: true });
