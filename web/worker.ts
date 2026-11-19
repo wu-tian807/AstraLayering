@@ -2,10 +2,9 @@ import { fork } from 'node:child_process';
 import { mkdir, open } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { runTask } from '../.agents/skills/live2d-maker/workflow/runner.ts';
-import { taskLogName } from '../.agents/skills/live2d-maker/workflow/log.ts';
+import { lastLog, runTask } from '../.agents/skills/live2d-maker/workflow/runner.ts';
+import { retryLogOpen, taskLogName } from '../.agents/skills/live2d-maker/workflow/log.ts';
 import { directoryFor, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
-import { tail } from './files.ts';
 
 // Only the process host is web-specific. Scheduling, locking, retries, markers and threads
 // remain owned by the existing coordinator and section entrypoints.
@@ -29,7 +28,7 @@ export async function runWebTask(options: TaskOptions, dependencies: Parameters<
 export async function launch(options: TaskOptions): Promise<number> {
   const directory = directoryFor(options);
   await mkdir(directory, { recursive: true });
-  const log = await open(join(directory, taskLogName), 'a', 0o600);
+  const log = await retryLogOpen(() => open(join(directory, taskLogName), 'a', 0o600));
   try {
     return await new Promise((resolve, reject) => {
       const child = fork(fileURLToPath(new URL('./worker.ts', import.meta.url)), [JSON.stringify(options)], {
@@ -47,7 +46,11 @@ export async function launch(options: TaskOptions): Promise<number> {
         if (message.type === 'failure') failure = new Error(message.message);
       });
       child.once('error', finish);
-      child.once('exit', (code, signal) => { if (!settled) void tail(directory, taskLogName).then(log => finish(failure ?? new Error(`启动失败 (${code ?? signal})\n${log}`))); });
+      child.once('exit', (code, signal) => {
+        if (settled) return;
+        if (failure) return finish(failure);
+        void lastLog(directory).then(log => finish(new Error(`启动失败 (${code ?? signal})\n${log}`)), finish);
+      });
     });
   } finally { await log.close(); }
 }

@@ -4,6 +4,7 @@ import { sectionIds } from '../paths.ts';
 import { retryDelays } from '../agents/runtime.ts';
 import { toTaskPath, toTaskPaths } from '../task-paths.ts';
 import type { ThreadEvent } from '@openai/codex-sdk';
+import { appendWorkflowLog, retryLogOpen } from '../../workflow/log.ts';
 
 // Written into a call's record directory while it waits to retry; see AgentLog.retry.
 export const retryWaitFile = 'retry-wait.json';
@@ -105,7 +106,7 @@ export class AgentLog {
   }
 
   private async write(description: string, timestamp = new Date().toISOString()) {
-    if (description) await appendFile(this.workflowLog, '[' + timestamp + '] [' + this.name + '] ' + description + '\n');
+    if (description) await appendWorkflowLog(this.workflowLog, '[' + timestamp + '] [' + this.name + '] ' + description + '\n');
   }
 
   // With taskRoot, paths inside the task are recorded relative to it; events.jsonl
@@ -127,17 +128,17 @@ export class AgentLog {
   static async retry(directory: string, event: { attempt: number; nextAttempt: number; delayMs: number; error: string; rateLimited?: boolean },
     now = new Date()) {
     const timestamp = now.toISOString();
-    await appendFile(join(directory, 'events.jsonl'), JSON.stringify({ timestamp, event: { type: 'retry.scheduled', ...event } }) + '\n');
+    await retryLogOpen(() => appendFile(join(directory, 'events.jsonl'), JSON.stringify({ timestamp, event: { type: 'retry.scheduled', ...event } }) + '\n'));
     // The page reads this to show 限流等待 until the next attempt; a later retry overwrites it, and the
     // wait ends on its own when `until` passes, so nothing removes it.
     await writeFile(join(directory, retryWaitFile), JSON.stringify({ reason: event.rateLimited ? 'rate-limit' : 'transient', attempt: event.attempt,
       nextAttempt: event.nextAttempt, since: timestamp, until: new Date(now.getTime() + event.delayMs).toISOString(), error: event.error }, null, 2) + '\n');
-    await appendFile(workflowLogPath(directory), `[${timestamp}] [${basename(directory)}] 限流等待（${event.rateLimited ? '429' : '临时错误'}），保留并发位置，${event.delayMs / 1000} 秒后第 ${event.attempt}/${retryDelays.retries} 次重试：${event.error}\n`);
+    await appendWorkflowLog(workflowLogPath(directory), `[${timestamp}] [${basename(directory)}] 限流等待（${event.rateLimited ? '429' : '临时错误'}），保留并发位置，${event.delayMs / 1000} 秒后第 ${event.attempt}/${retryDelays.retries} 次重试：${event.error}\n`);
   }
 
   async record(event: ThreadEvent): Promise<string> {
     const timestamp = new Date().toISOString();
-    await appendFile(join(this.directory, 'events.jsonl'), JSON.stringify({ timestamp, event }) + '\n', 'utf8');
+    await retryLogOpen(() => appendFile(join(this.directory, 'events.jsonl'), JSON.stringify({ timestamp, event }) + '\n', 'utf8'));
     const description = describeEvent(event);
     await this.write(description, timestamp);
     return description;
@@ -145,8 +146,9 @@ export class AgentLog {
 
   async recordProtocol(message: Record<string, any>, direction: 'in' | 'out' = 'in'): Promise<string> {
     const timestamp = new Date().toISOString();
-    await appendFile(join(this.directory, 'events.jsonl'), JSON.stringify({ timestamp, direction, event: message }) + '\n', 'utf8');
+    await retryLogOpen(() => appendFile(join(this.directory, 'events.jsonl'), JSON.stringify({ timestamp, direction, event: message }) + '\n', 'utf8'));
     const method = message.method as string | undefined;
+    if (method === 'item/commandExecution/outputDelta') return ''; // The completed item contains the assembled command output.
     let description = '';
     if (method === 'item/completed') {
       const item = message.params?.item;
