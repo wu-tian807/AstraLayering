@@ -145,6 +145,49 @@ async function fixtureRoundPrompts(f:Awaited<ReturnType<typeof fixture>>) {
   return {knowledge,markers};
 }
 
+test('hair dispatches the configured order and retains its declared prompt files on continue', async t => {
+  const f = await fixture(t), { knowledge, markers } = await fixtureRoundPrompts(f);
+  useKnowledge(knowledge);
+  const directory = join(knowledge, 'head-nine-axis/step08_hair'), path = join(directory, 'agent.json');
+  const config = JSON.parse(await readFile(path, 'utf8'));
+  config.main.then = [{ id: 'back', prompts: ['prompts/custom-back.md'] }, ...config.main.then.filter((round: { id: string }) => round.id === 'side')];
+  await writeFile(path, JSON.stringify(config));
+  await writeFile(join(directory, 'prompts/custom-back.md'), 'configured back turn');
+  await runWorkflow(f.options, { ...f.dependencies, async fitHair(_directory, prompt) {
+    assert.match(prompt, new RegExp(markers.front));
+    await selectFront(f);
+    await writeFile(join(f.output, 'notes.md'), 'front saved');
+  } });
+  assert.equal((await readHairProgress(f.output)).next, 'back');
+  config.main.then = [];
+  await writeFile(path, JSON.stringify(config));
+  await runWorkflow(f.options, { ...f.dependencies, async fitHair(_directory, prompt) {
+    assert.equal(prompt, 'configured back turn');
+    await selectBack(f);
+    await writeFile(join(f.output, 'notes.md'), 'back saved');
+  } });
+  assert.deepEqual(await readHairProgress(f.output), { version: 2, completed: ['front', 'back'], next: 'side' });
+});
+
+for (const then of [undefined, []]) test(`a hair step with ${then ? 'empty' : 'omitted'} then runs only initial`, async t => {
+  const f = await fixture(t), { knowledge, markers } = await fixtureRoundPrompts(f);
+  useKnowledge(knowledge);
+  const path = join(knowledge, 'head-nine-axis/step08_hair/agent.json');
+  const config = JSON.parse(await readFile(path, 'utf8'));
+  config.main.then = then;
+  await writeFile(path, JSON.stringify(config));
+  let calls = 0;
+  await runWorkflow(f.options, { ...f.dependencies, async fitHair(_directory, prompt) {
+    calls++;
+    assert.ok(prompt.includes(markers.front));
+    await selectFront(f);
+    await writeFile(join(f.output, 'notes.md'), 'front saved');
+  } });
+  assert.equal(calls, 1);
+  assert.deepEqual(await readHairProgress(f.output), { version: 2, completed: ['front'], next: 'done' });
+  assert.equal((await readStep(f.output)).status, 'completed');
+});
+
 test('preparation retains UUID references only; maker explicitly selects a part and shadow and controls their grouping',async t=>{
   const f=await fixture(t,true);await prepareHair(f.output,f.upstream,f.task,f.materialize);
   const initial=JSON.parse(await readFile(join(f.output,'hair.json'),'utf8'));

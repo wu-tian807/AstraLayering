@@ -321,6 +321,29 @@ test('第二轮返修失败后续跑只完成返修，不增加 review；进度�
   assert.equal((await GroupStore.open(f.directory)).snapshot().groups[0].steps.review.status, 'completed');
 });
 
+test('轮廓返修有 then 时，同一绘制会话执行多轮，通过最后一轮才记录返修完成', async t => {
+  const f = await fixture(t), knowledge = await temporaryKnowledge(t);
+  const directory = join(knowledge, 'part-layering/step09_outline'), path = join(directory, 'agent.json');
+  const config = JSON.parse(await readFile(path, 'utf8'));
+  const [repair] = config.review.repair.initial;
+  await writeFile(join(directory, 'prompts/finish-repair.md'), (await readFile(join(directory, repair), 'utf8')) + '\nfixture final outline turn');
+  config.review.repair.then = [{ id: 'finish', prompts: ['prompts/finish-repair.md'] }];
+  await writeFile(path, JSON.stringify(config));
+  const failed = agents(['revise'], { failDrawingTurn: 3 });
+  await assert.rejects(runLayering({ ...f, groups: null, steps: createLayeringSteps(failed) }), /返修执行失败/);
+  const [drawing, , initial, last] = failed.calls;
+  assert.equal(initial.session, drawing.session);
+  assert.equal(last.session, drawing.session);
+  assert.ok(last.task.prompt.includes('fixture final outline turn'));
+  const reportPath = join(f.directory, 'step09_outline/face/review.json');
+  assert.equal(JSON.parse(await readFile(reportPath, 'utf8')).reviews[0].repairedCandidateHash, undefined);
+  const resumed = agents(['pass']);
+  await runLayering({ ...f, groups: null, steps: createLayeringSteps(resumed) });
+  assert.deepEqual(resumed.calls.map(call => call.task.name), ['组轮廓返修-face', '组轮廓review-face']);
+  assert.ok(resumed.calls[0].task.prompt.includes('fixture final outline turn'));
+  assert.ok(JSON.parse(await readFile(reportPath, 'utf8')).reviews[0].repairedCandidateHash);
+});
+
 test('pass 已落盘后中断，续跑复用同一候选的通过结论', async t => {
   const f = await fixture(t);
   const failed = agents(['pass'], { failAfterSubmission: true });

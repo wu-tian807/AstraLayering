@@ -1,6 +1,11 @@
 {
   "main": {
     "initial": ["prompts/前发制作.md"],
+    "then": [
+      { "id": "side", "prompts": ["prompts/侧发制作.md"] },
+      { "id": "back", "prompts": ["prompts/后发制作.md"] },
+      { "id": "remaining", "prompts": ["prompts/其余头发制作.md"] }
+    ],
     "tools": ["krita", "view_bitmap", "edit_nine_axis", "view_nine_axis"]
   }
 }

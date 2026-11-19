@@ -52,6 +52,25 @@ test('prompt filenames stay within the selected knowledge root',async t=>{
 
 });
 
+test('a reviewer has only initial prompts while its repair can declare separate prompt rounds', async t => {
+  const f = await fixture(t), root = join(f.root, 'review-priors');
+  const step = stepKnowledge('raster-layering', 'step01', root);
+  const config = {
+    main: { initial: ['prompts/draw.md'] },
+    review: { initial: ['prompts/review.md'], repair: { initial: ['prompts/repair.md'],
+      then: [{ id: 'finish', prompts: ['prompts/a.md', 'prompts/b.md'] }] } },
+  };
+  const path = join(step.directory, 'agent.json');
+  await f.put(path, JSON.stringify(config));
+  await f.put(join(step.directory, 'prompts/a.md'), 'A {review_round}\n');
+  await f.put(join(step.directory, 'prompts/b.md'), 'B');
+  const rounds = step.rounds('repair');
+  assert.deepEqual(rounds.map(round => round.id), ['initial', 'finish']);
+  assert.equal(step.render('repair', { review_round: '2' }, { round: rounds[1] }), 'A 2\nB');
+  await f.put(path, JSON.stringify({ ...config, review: { ...config.review, then: config.review.repair.then } }));
+  assert.throws(() => step.rounds('review'), /agent\.json 结构无效/);
+});
+
 test('head knowledge uses the explicit namespace, resolves its shared prompts and orders tool overrides', async t => {
   const f = await fixture(t), root = join(f.root, 'head-priors'); useKnowledge(root);
   const agent = JSON.stringify({ main: { initial: ['head-nine-axis/prompts/common.md', 'prompts/main.md'], tools: ['view_bitmap'] } });

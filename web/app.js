@@ -161,7 +161,10 @@ function applySnapshot(next) {
    if(index===6&&step.id==='step08_hair') {
     const hair=data.sections[index]?.hair;
     if(hair) {
-     step.rounds.forEach(round=>round.status=hair.rounds[round.id]||'pending');
+     step.rounds=Object.keys(hair.rounds).flatMap(id=>{
+      const round=step.rounds.find(item=>item.id===id);
+      return round?[{...round,status:hair.rounds[id]}]:[];
+     });
      if(hair.awaitingContinue)step.roundNotice=`继续后制作${step.rounds.find(round=>round.id===hair.next)?.title||'下一轮'}`;
     } else if(step.status==='done')step.rounds=[];
    }
