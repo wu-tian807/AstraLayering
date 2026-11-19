@@ -1,4 +1,4 @@
-import { clothingPreparationStep, partSteps } from '../.agents/skills/live2d-maker/shared/step-paths.js';
+import { clothingPreparationStep, partSteps, standardReferenceSteps } from '../.agents/skills/live2d-maker/shared/step-paths.js';
 import type { StepStatus } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
 import { executionStatus, aggregateStatus, type ExecutionStatus } from './execution-state.js';
 import { throttled, type AgentCall } from './agent-progress.ts';
@@ -34,11 +34,16 @@ export async function partStages(section: string, calls: AgentCall[], active: bo
     const call = latest.get(phase);
     if (call?.failed) return 'failed' as const;
     if (call && !call.finished) return throttled(call) ? 'throttled' as const : 'running' as const;
-    return hasProducts ? 'available' as const : 'pending' as const;
+    return hasProducts ? 'available' as const : id === partSteps.passthrough ? 'running' as const : 'pending' as const;
   };
   states.initial = await stage('initial', partSteps.initial, groups.length > 0);
   if (section === 'part-layering') {
-    states.standard = await stage('standard', partSteps.standard, present('references/standard.png'));
+    let standardBranch = partSteps.standard as typeof standardReferenceSteps[number];
+    for (const id of standardReferenceSteps) {
+      const marker = await step(id);
+      if (marker === 'running' || marker === 'completed') { standardBranch = id; break; }
+    }
+    states.standard = await stage('standard', standardBranch, present('references/standard.png'));
     states.simplified = await stage('simplified', partSteps.simplified, present('references/simplified-subject.png'));
     states.base = await stage('base', partSteps.base, present('references/base-subject.png'));
     states.preparation = aggregateStatus(['standard', 'simplified', 'base'].map(phase => states[phase]));

@@ -62,7 +62,7 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 | 生图用途 | `.env` 配置键 | 默认选择 |
 | --- | --- | --- |
 | 全局默认 | `default_image_model` | `codex-native` |
-| 人物姿态标准化 | `part_standardize_image_model` | 继承默认 |
+| 人物标准参考（姿态调整与去背景共用） | `part_standardize_image_model` | 继承默认 |
 | 简化穿衣角色参考 | `part_simplify_image_model` | 继承默认 |
 | 人物素体参考 | `part_base_subject_image_model` | 继承默认 |
 | 纯衣服参考 | `clothing_preparation_image_model` | 继承默认 |

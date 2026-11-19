@@ -9,7 +9,7 @@ import type { AgentTask, AgentDispatcher, GeneratedImage } from '../shared/agent
 import { textResult } from '../shared/codex/function-tools.ts';
 import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { PreparationSteps, ProcessGenerated, ReferenceChoice } from './preparation.ts';
-import { checkStandardJudgment } from './preparation-state.ts';
+import { checkStandardJudgment, hasTransparentBackground, stageStep } from './preparation-state.ts';
 import { copyAsPng, isPng } from '../shared/png.ts';
 
 async function readableImage(image: GeneratedImage | undefined): Promise<GeneratedImage> {
@@ -66,13 +66,9 @@ async function prepareImage(agents: Pick<AgentDispatcher, 'run'>, knowledge: Ret
 }
 
 export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): PreparationSteps {
-  const imageOutputSchema = {
-    type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false,
-  };
   const referenceOutputSchema = {
-    ...imageOutputSchema,
-    properties: { ...imageOutputSchema.properties, reason: { type: 'string' } },
-    required: [...imageOutputSchema.required, 'reason'],
+    type: 'object', properties: { error: { type: ['string', 'null'] }, reason: { type: 'string' } },
+    required: ['error', 'reason'], additionalProperties: false,
   };
   const simplified = stepKnowledge('part-layering', 'step05_simplified'), base = stepKnowledge('part-layering', 'step06_base');
   return {
@@ -89,11 +85,15 @@ export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): Pr
         return decision;
       }) });
     },
-    standardize: async (image, output, prompt) => {
+    generateStandardReference: async (branch, output, prompt) => {
       const generated = await checkedTurn({ agents, task: {
-        step: 'part_standardize', name: '标准姿态', outputSchema: imageOutputSchema,
-        prompt,
-      }, check: result => asCheck('invalid-output', () => readableImage(result.images.at(-1))) });
+        step: 'part_standardize', name: branch === 'cutout' ? '原图去背景' : '标准姿态',
+        outputDirectory: stageStep(branch), prompt,
+      }, check: result => asCheck('invalid-output', async () => {
+        const image = await readableImage(result.images.at(-1));
+        if (!await hasTransparentBackground(image.savedPath)) throw new Error('标准参考须交付带透明背景的 PNG。');
+        return image;
+      }) });
       await saveImage(generated, output);
     },
     simplify: async (image, output, prompt, processGenerated) => {

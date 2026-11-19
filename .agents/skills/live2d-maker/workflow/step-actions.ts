@@ -1,13 +1,13 @@
 import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
 import { readStep, type StepStatus } from '../shared/step-chain.ts';
-import { missingDeliveries } from '../shared/step-deliveries.ts';
+import { missingDeliveries, stepDeliveries } from '../shared/step-deliveries.ts';
 import { fromTaskPath, taskRootOf } from '../shared/task-paths.ts';
 import { within } from '../shared/raster/run-store.ts';
 import { clearStepSession, readStepSession } from '../shared/agents/step-session.ts';
 import { occlusionPath } from '../shared/part/occlusion-plan.ts';
 import { artifactPath, draftPath } from '../shared/part/artifact-facts.ts';
-import { partSteps, stepPattern } from '../shared/step-paths.js';
+import { partSteps, standardReferenceSteps, stepPattern } from '../shared/step-paths.js';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
 import { headRollStep, nineAxisGroupSteps, nineAxisSteps, nineAxisBranchSteps, nineAxisPitchSteps, previousNineAxisGroupSteps, previousNineAxisSteps } from '../shared/nine-axis.ts';
 import { acquireTaskLock, directoryFor, sectionId, type TaskOptions } from './state.ts';
@@ -191,6 +191,12 @@ async function actOnStep(root: string, section: SectionId, step: string, action:
   }
   // retry: the step directory holds its session; some part products live outside it.
   const outputs: string[] = [];
+  if (section === 'part-layering') {
+    if (standardReferenceSteps.some(id => id === step)) outputs.push(...await stepDeliveries(root, section, step));
+    if (step === partSteps.pose) for (const id of standardReferenceSteps) {
+      if ((await readStep(join(root, id))).status !== 'absent') await actOnStep(root, section, id, 'retry');
+    }
+  }
   const group = step.startsWith(partSteps.completion + '/') ? step.slice(partSteps.completion.length + 1).split('/children/').join('/') : undefined;
   if (part && group) outputs.push(artifactPath(root, group, 'completion'), draftPath(artifactPath(root, group, 'completion')));
   if (part && step === partSteps.merge) outputs.push(join(root, 'preview.svg'), join(root, 'preview.draft.svg'));

@@ -308,6 +308,17 @@ test('a saved preparation reference stays available until its own agent call sta
   assert.equal(value.part.states.preparation, 'running');
 });
 
+for (const id of ['step04_cutout', 'step04_passthrough']) {
+  test(`${id} 完成后更新同一张标准参考卡片`, async t => {
+    const f = await fixture(t);
+    await f.put('references/standard.png', svg);
+    await f.mark(id);
+    const { part } = await f.get();
+    assert.equal(part.states.standard, 'done');
+    assert.equal(part.states[id], undefined);
+  });
+}
+
 test('人物参考以完成标记判定成功，缺少展示图不会改变执行状态', async t => {
   const f = await fixture(t);
   for (const [step, name] of [['step04_standard', 'standard'], ['step05_simplified', 'simplified-subject'], ['step06_base', 'base-subject']] as const) {

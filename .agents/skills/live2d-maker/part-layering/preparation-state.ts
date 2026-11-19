@@ -1,10 +1,11 @@
 import { lstat, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, join } from 'node:path';
+import sharp from 'sharp';
 import { type SectionStep } from '../shared/step-section.ts';
 import { preparationOptionsPath } from '../shared/part/preparation-cache.ts';
 import type { PreparationReferences } from '../shared/part/preparation-types.ts';
-import { stageNote, stageNumber, stageStep, type PreparationStage } from '../shared/part/preparation-steps.ts';
+import { recordedReferenceBranch, stageNote, stageNumber, stageStep, stepStage, type PreparationStage } from '../shared/part/preparation-steps.ts';
 export { preparationStages, stageNumber, stageStep, stepStage, type PreparationStage } from '../shared/part/preparation-steps.ts';
 
 export type StandardJudgment = { needsAdjustment: boolean; reason?: string };
@@ -52,22 +53,32 @@ export const writeJson = (output: string, value: unknown) => produce(output, tem
 export const sectionOf = (references: string) => dirname(references);
 export const poseJudgmentPath = (references: string) => join(sectionOf(references), stageStep('pose'), 'judgment.json');
 
+export async function hasTransparentBackground(path: string): Promise<boolean> {
+  const metadata = await sharp(path).metadata();
+  if (metadata.format !== 'png' || !metadata.hasAlpha) return false;
+  const { data, info: { width, height } } = await sharp(path).extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
+  return data.some((alpha, pixel) => alpha <= 8 && (pixel < width || pixel >= (height - 1) * width
+    || pixel % width === 0 || pixel % width === width - 1)) && data.some(alpha => alpha > 8);
+}
+
 // Each step's output stays at its existing reference path; the options and
 // the pose judgment live in their own step directories. The input original and
 // the standard image take part when the task has them; older tasks made before
 // the original was kept go on from their references alone. `ready` marks that
 // the references are prepared for splitting.
 export type PreparationStep = SectionStep & { output?: string };
-export async function preparationSteps(refs: PreparationReferences, standard: boolean, inputDirectory: string, source?: string): Promise<PreparationStep[]> {
+export async function preparationSteps(refs: PreparationReferences, standard: boolean, inputDirectory: string, source?: string,
+  branch?: PreparationStage): Promise<PreparationStep[]> {
   const root = sectionOf(refs.directory);
   const original = refs.originalImage ?? (source || await present(join(root, stageStep('original')))
     ? join(inputDirectory, 'original.png') : undefined);
-  const withStandard = !!original || !!refs.standardImage || await present(join(root, stageStep('standard')));
+  const recorded = branch ? undefined : await recordedReferenceBranch(root);
+  const selected = branch ?? (recorded && stepStage(recorded.id));
   const steps: [PreparationStage, string?][] = [];
   if (original) steps.push(['original', original]);
   steps.push(['options', preparationOptionsPath(refs.directory)]);
   if (standard && original) steps.push(['pose', poseJudgmentPath(refs.directory)]);
-  if (withStandard) steps.push(['standard', join(refs.directory, 'standard.png')]);
+  if (selected || original || refs.standardImage) steps.push([selected ?? 'standard', join(refs.directory, 'standard.png')]);
   steps.push(['simplified', refs.simplifiedSubject], ['base', refs.baseSubject], ['ready']);
   return steps.map(([stage, output]) => ({ number: stageNumber(stage), note: stageNote(stage), ...(output ? { output } : {}) }));
 }

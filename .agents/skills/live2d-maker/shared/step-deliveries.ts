@@ -1,7 +1,7 @@
 import { lstat, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { readStep } from './step-chain.ts';
-import { clothingPreparationStep, groupStepId, partSteps } from './step-paths.js';
+import { clothingPreparationStep, groupStepId, partSteps, standardReferenceSteps } from './step-paths.js';
 import { artifactPath, reportPath } from './part/artifact-facts.ts';
 import { occlusionPath } from './part/occlusion-plan.ts';
 import { preparationOptionsPath } from './part/preparation-cache.ts';
@@ -98,7 +98,7 @@ export async function stepDeliveries(root: string, section: SectionId, id: strin
   if (section === 'clothing-part-layering' && step === clothingPreparationStep) return [references(root, 'clothing.png')];
   if (section === 'part-layering') {
     if (step === partSteps.options) return [preparationOptionsPath(join(root, 'references'))];
-    if (step === partSteps.standard) return [references(root, 'standard.png')];
+    if (standardReferenceSteps.some(id => id === step)) return [references(root, 'standard.png')];
     if (step === partSteps.simplified) return [references(root, 'simplified-subject.png')];
     if (step === partSteps.base) return [references(root, 'base-subject.png')];
   }

@@ -61,7 +61,8 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   assert.deepEqual(settings.stepModels.nine_axis_head_corners, settings.stepModels.nine_axis_head);
   assert.equal(Object.keys(settings.stepModels).length, Object.keys(stepDefaults).length);
   assert.ok(!sectionAgentSteps('clothing-part-layering').some(step => step.startsWith('clothing_raster_')));
-  assert.ok(!sectionAgentSteps('part-layering').includes('part_standardize'));
+  assert.ok(sectionAgentSteps('part-layering').includes('part_standardize'));
+  assert.ok(!sectionAgentSteps('part-layering').includes('part_pose_judgment'));
   assert.ok(sectionAgentSteps('part-layering', true).includes('part_standardize'));
 });
 

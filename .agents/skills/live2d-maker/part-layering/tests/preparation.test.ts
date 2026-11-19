@@ -31,7 +31,8 @@ async function fixture(t: TestContext, needsSimplification: boolean, needsAdjust
     await rm(temporary, { recursive: true, force: true });
     await rm(taskDirectory(runName), { recursive: true, force: true });
   });
-  const bytes = await sharp(styleReference).resize({ width: 640 }).png().toBuffer();
+  const subject = Buffer.from('<svg width="48" height="64"><rect x="8" y="10" width="32" height="44" fill="#a16b89"/></svg>');
+  const bytes = await sharp(subject).png().toBuffer();
   const original = join(temporary, 'original.png');
   const generated = join(temporary, 'generated.png');
   await writeFile(original, bytes);
@@ -49,6 +50,7 @@ async function fixture(t: TestContext, needsSimplification: boolean, needsAdjust
       if (task.step === 'part_pose_judgment') {
         return { text: JSON.stringify({ needsAdjustment, reason: '测试姿态判断' }), images: [] };
       }
+      if (task.step === 'part_standardize') return { text: '', images: [{ savedPath: generated }] };
       return { text: JSON.stringify({ error: null, reason: '测试转换依据' }), images: [{ savedPath: generated }] };
     },
   });
@@ -73,6 +75,8 @@ test('无需简化仍执行换装，判断和换装各收到正确的两张图�
   assert.deepEqual(await readFile(refs.baseSubject), f.bytes);
   assert.deepEqual(await readFile(refs.standardImage!), f.bytes);
   assert.deepEqual(await readFile(refs.originalImage!), f.bytes);
+  await readFile(join(section(refs), step('passthrough'), '.completed'));
+  await assert.rejects(readFile(join(section(refs), step('cutout'), '.completed')), { code: 'ENOENT' });
   await assert.rejects(readFile(join(refs.directory, 'judgment.json')), { code: 'ENOENT' });
   assert.equal(await readDressup(taskDirectory(f.runName)), true);
 });
@@ -238,22 +242,27 @@ test('重试该步骤时无效 PNG 明确报错，不留下正式参考', async 
   await assert.rejects(readFile(refs.baseSubject), { code: 'ENOENT' });
 });
 
-test('原图不是 PNG 时复制为 original.png，standard 和不简化的参考都是真实 PNG', async t => {
+test('不透明原图转换为 PNG，单独派发去背景并发布生图工具的透明结果', async t => {
   const f = await fixture(t, false);
   const jpeg = f.original.replace('.png', '.jpg');
-  await writeFile(jpeg, await sharp(f.original).jpeg().toBuffer());
+  await writeFile(jpeg, await sharp(f.original).flatten({ background: 'white' }).jpeg().toBuffer());
   const refs = await prepareReferences({ runName: f.runName, image: jpeg }, f.steps);
   assert.deepEqual(await readFile(refs.originalImage!), await pngBytes(jpeg));
   assert.ok(refs.originalImage!.endsWith('original.png'));
   await prepareReferences({ runName: f.runName, image: jpeg }, f.steps);
   for (const path of [refs.standardImage!, refs.simplifiedSubject]) assert.equal((await sharp(path).metadata()).format, 'png');
-  assert.deepEqual(f.calls.map(task => task.name), ['参考判断与简化', '素体换装']);
+  assert.deepEqual(f.calls.map(task => task.name), ['原图去背景', '参考判断与简化', '素体换装']);
+  assert.equal(f.calls[0].step, 'part_standardize');
+  assert.equal(f.calls[0].outputDirectory, step('cutout'));
+  assert.deepEqual(referencePaths(f.calls[0].prompt), [refs.originalImage]);
+  assert.deepEqual(await readFile(refs.standardImage!), f.bytes);
+  await readFile(join(section(refs), step('cutout'), '.completed'));
+  await assert.rejects(readFile(join(section(refs), step('standard'), '.completed')), { code: 'ENOENT' });
 });
 
 test('--standard 先判断；已标准仅复制，需要调整才传一张原图给原生生图，后续引用新图', async t => {
   for (const adjust of [false, true]) await t.test(String(adjust), async t => {
     const f = await fixture(t, true, adjust);
-    await sharp({ create: { width: 24, height: 32, channels: 4, background: '#b0907080' } }).png().toFile(f.generated);
     const refs = await prepareReferences({ runName: f.runName, image: f.original, standard: true }, f.steps);
     assert.deepEqual(f.calls.map(task => task.name), ['姿态判断', ...(adjust ? ['标准姿态'] : []), '参考判断与简化', '素体换装']);
     const judge = f.calls[0];
@@ -261,9 +270,11 @@ test('--standard 先判断；已标准仅复制，需要调整才传一张原图
     const generation = f.calls.find(task => task.name === '标准姿态');
     if (adjust) {
       assert.equal(generation!.step, 'part_standardize');
+      assert.equal(generation!.outputDirectory, step('standard'));
       assert.deepEqual(referencePaths(generation!.prompt), [refs.originalImage]);
       assert.deepEqual(await readFile(refs.standardImage!), await readFile(f.generated));
     } else assert.deepEqual(await readFile(refs.standardImage!), f.bytes);
+    await readFile(join(section(refs), step(adjust ? 'standard' : 'passthrough'), '.completed'));
     assert.equal(referencePaths(f.calls.find(task => task.name === '参考判断与简化')!.prompt)[0], refs.standardImage);
     assert.deepEqual(await readFile(refs.originalImage!), f.bytes);
     f.calls.length = 0;
@@ -279,7 +290,7 @@ test('标准生图异常保留选项和判断，带同一 --standard 续跑不�
     return { text: '没有 image_generation 工具，无法生图', images: [], threadId: 'standard-thread', logDirectory: '/logs/standard' };
   } });
   await assert.rejects(prepareReferences({ runName: f.runName, image: f.original, standard: true },
-    { ...f.steps, standardize: failed.standardize }), error => {
+    { ...f.steps, generateStandardReference: failed.generateStandardReference }), error => {
     assert.match(formatAgentError(error), /模型最后消息：[\s\S]*没有 image_generation[\s\S]*standard-thread/);
     return true;
   });
@@ -302,13 +313,15 @@ test('无效姿态判断和无效生成图片明确报错，不回退原图', as
   });
   await writeFile(f.generated, 'invalid PNG');
   await assert.rejects(prepareReferences({ runName: f.runName, standard: true }, f.steps), /did not produce a PNG/);
+  await sharp(f.original).flatten({ background: 'white' }).png().toFile(f.generated);
+  await assert.rejects(prepareReferences({ runName: f.runName, standard: true }, f.steps), /带透明背景的 PNG/);
   await assert.rejects(readFile(join(getPreparationDirectory(f.runName), 'standard.png')), { code: 'ENOENT' });
 });
 
 test('切换模式时不修改文件、不调用模型，提示使用新的 --name；只读入口同样校验', async t => {
   const f = await fixture(t, false);
   const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);
-  const markers = section(refs), ids = ['original', 'options', 'standard', 'simplified', 'base', 'ready'] as const;
+  const markers = section(refs), ids = ['original', 'options', 'passthrough', 'simplified', 'base', 'ready'] as const;
   const before = await Promise.all(ids.map(id => readFile(join(markers, step(id), '.completed'))));
   f.calls.length = 0;
   await assert.rejects(prepareReferences({ runName: f.runName, standard: true }, f.steps), /不能直接切换[\s\S]*新的 --name/);

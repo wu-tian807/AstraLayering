@@ -45,6 +45,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step11_head-angle-xy', required: ['edit_nine_axis', 'view_nine_axis'] },
   { section: 'part-layering', step: 'step03_pose' },
   { section: 'part-layering', step: 'step04_standard' },
+  { section: 'part-layering', step: 'step04_cutout' },
   { section: 'part-layering', step: 'step05_simplified' },
   { section: 'part-layering', step: 'step06_base' },
   { section: 'clothing-part-layering', step: 'step01_preparation' },

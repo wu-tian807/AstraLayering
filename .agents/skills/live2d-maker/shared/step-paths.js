@@ -15,10 +15,12 @@ export const stepPath = (name, ...items) => [name, ...items].join('/');
 // preparation step leaves 02–07 unused.
 export const partSteps = {
   original: 'step01_original', options: 'step02_options', pose: 'step03_pose', standard: 'step04_standard',
+  cutout: 'step04_cutout', passthrough: 'step04_passthrough',
   simplified: 'step05_simplified', base: 'step06_base', ready: 'step07_ready',
   initial: 'step08_initial', outline: 'step09_outline', reduce: 'step10_reduce', completion: 'step11_completion',
   children: 'step12_children', merge: 'step13_merge', occlusion: 'step14_occlusion',
 };
+export const standardReferenceSteps = [partSteps.standard, partSteps.cutout, partSteps.passthrough];
 export const clothingPreparationStep = 'step01_preparation';
 // The shadow section runs one of these, as --shadow-mode chooses.
 export const shadowStep = mode => stepName(1, mode);

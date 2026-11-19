@@ -22,6 +22,20 @@ const text = (path: string) => readFile(path, 'utf8');
 const gone = (path: string) => assert.rejects(readFile(path), { code: 'ENOENT' }, path);
 const completed = (outputs: Record<string, string>) => JSON.stringify({ stamp: 's', inputs: {}, outputs });
 
+test('重试姿态判断清除所选参考分支及其交付，保留原图和其他步骤', async t => {
+  const f = await fixture(t), section = 'part-layering', root = join(f.task, section);
+  const standard = join(root, 'references/standard.png'), input = join(f.task, 'input/original.png');
+  for (const step of [partSteps.original, partSteps.pose, partSteps.cutout, partSteps.simplified]) await put(join(root, step, '.completed'), '');
+  await put(input, 'original');
+  await put(standard, 'standard');
+  await f.act(section, partSteps.pose, 'retry');
+  await gone(standard);
+  assert.equal((await readStep(join(root, partSteps.pose))).status, 'absent');
+  assert.equal((await readStep(join(root, partSteps.cutout))).status, 'absent');
+  assert.equal((await readStep(join(root, partSteps.simplified))).status, 'completed');
+  assert.equal(await text(input), 'original');
+});
+
 for (const section of ['part-layering', 'clothing-part-layering']) {
   test(`${section} enumerates nested steps without reading agent data or drawing workspaces`, async t => {
     const f = await fixture(t), root = join(f.task, section);
