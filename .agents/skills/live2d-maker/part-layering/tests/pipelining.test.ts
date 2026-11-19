@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { runLayering } from '../../shared/part/layering.ts';
+import { groupStep, readChildren } from '../../shared/part/part-steps.ts';
+import { readStep } from '../../shared/step-chain.ts';
 import * as character from './layering-fixture.ts';
 import * as clothing from '../../clothing-part-layering/tests/layering-fixture.ts';
 
@@ -24,6 +26,12 @@ for (const [name, fixtures] of [['人物', character], ['衣服', clothing]] as 
         return steps.splitChildren(context);
       },
       async reviewOutline(context) {
+        if (context.parent) {
+          const parent = context.parent.id;
+          assert.equal((await readStep(groupStep(context.directory, parent, 'children').directory)).status, 'completed');
+          const children = await readChildren(context.directory, parent);
+          assert.ok(children.groups.some(child => child.id === context.group.id));
+        }
         const result = await steps.reviewOutline(context);
         const gate = gates.find(gate => context.group.id === children[gate.parent.replace(/^b/, 'a')][0].id);
         gate?.reviewed.resolve();

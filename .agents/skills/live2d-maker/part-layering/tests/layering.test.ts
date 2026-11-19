@@ -11,6 +11,17 @@ import { readStep } from '../../shared/step-chain.ts';
 import { fixture, shape, workingMerger, workingSteps } from './layering-fixture.ts';
 import { profile } from '../profile.ts';
 
+test('无效深度在分组前被拒绝', async t => {
+  const f = await fixture(t);
+  const steps = {
+    ...workingSteps([], [{ id: 'a' }]),
+    async initialGroups() { assert.fail('参数无效时不应开始分组'); },
+  };
+  for (const maxDepth of [0, -1, 1.5, NaN]) {
+    await assert.rejects(runLayering({ ...f, groups: null, steps, maxDepth }), /maxDepth must be a positive integer/);
+  }
+});
+
 test('子组提前描边和 review；下一层去重等待所有父组拆分及所有轮廓齐备', { timeout: 5000 }, async t => {
   const f = await fixture(t), events: string[] = [];
   const steps = workingSteps(events, [{ id: 'fast' }, { id: 'slow' }], { fast: [{ id: 'fast/child' }], slow: [{ id: 'slow/child' }] });

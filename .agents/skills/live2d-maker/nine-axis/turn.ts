@@ -7,6 +7,7 @@ import sharp from 'sharp';
 export { ffmpegPath } from '../shared/ffmpeg.ts';
 import { requireUpstream } from '../shared/upstream.ts';
 import { readStep, type ChainStep } from '../shared/step-chain.ts';
+import { runStepBatch } from '../shared/step-dispatch.ts';
 import { taskDirectory } from '../shared/paths.ts';
 import { toTaskPath } from '../shared/task-paths.ts';
 import type { VideoApi } from '../shared/codex/environment.ts';
@@ -225,13 +226,6 @@ async function videoRecords(directory: string): Promise<Partial<Record<VideoName
   }
 }
 
-async function allVideos<T>(tasks: Promise<T>[]): Promise<T[]> {
-  const results = await Promise.allSettled(tasks);
-  const failed = results.find(result => result.status === 'rejected');
-  if (failed?.status === 'rejected') throw failed.reason;
-  return results.map(result => (result as PromiseFulfilledResult<T>).value);
-}
-
 // A frame comes back at the video's size; it is brought to the upper body's square.
 export async function normalizeView(path: string, size: number): Promise<Buffer> {
   const grey = { r: background, g: background, b: background };
@@ -314,13 +308,17 @@ export async function producePitchVideos(directory: string, front: string, gener
   { signal, progress, model }: Run & { model: string }) {
   const upperBody = join(front, 'upper-body.png'), image = await readFile(upperBody), started = Date.now();
   const cached = await videoRecords(directory);
+  const first = relative(directory, upperBody).split(sep).join('/');
   progress?.('提交抬头、低头绕轴视频，沿用左转步骤的正面裁框');
-  const records = await allVideos(viewsY.map(async view => {
-    const first = relative(directory, upperBody).split(sep).join('/');
-    return [view, await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress }, cached?.[view])] as const;
-  }));
+  const records = await runStepBatch(viewsY.map(view => ({
+    id: view,
+    async run() {
+      const record = await takeVideo(directory, view, prompts[view], image, first, generate, { signal, progress }, cached?.[view]);
+      return [view, record] as const;
+    },
+  })));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
-    input: { path: relative(directory, upperBody).split(sep).join('/') }, ...(directory === front && cached?.left ? { left: cached.left } : {}), ...Object.fromEntries(records),
+    input: { path: first }, ...(directory === front && cached?.left ? { left: cached.left } : {}), ...Object.fromEntries(records),
     elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');
   await clearVideoJobs(directory, viewsY);
 }
@@ -330,9 +328,16 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
   const started = Date.now();
   const cached = await videoRecords(directory);
   progress?.('提交左上、左下转头参考视频');
-  const records = await allVideos(viewsY.map(async view => {
-    const corner = `left-${view}` as const, first = relative(directory, join(pitch, `${view}.png`)).split(sep).join('/');
-    return [corner, await takeVideo(directory, corner, prompt, await readFile(join(pitch, `${view}.png`)), first, generate, { signal, progress }, cached?.[corner])] as const;
+  const records = await runStepBatch(viewsY.map(view => {
+    const corner = `left-${view}` as const, frame = join(pitch, `${view}.png`);
+    return {
+      id: corner,
+      async run() {
+        const first = relative(directory, frame).split(sep).join('/');
+        const record = await takeVideo(directory, corner, prompt, await readFile(frame), first, generate, { signal, progress }, cached?.[corner]);
+        return [corner, record] as const;
+      },
+    };
   }));
   await atomic(join(directory, 'videos.json'), JSON.stringify({ version: 1, model, seconds: turnSeconds, profileAngle,
     ...Object.fromEntries(records), elapsedSeconds: Math.round((Date.now() - started) / 100) / 10 }, null, 2) + '\n');

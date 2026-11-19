@@ -79,11 +79,21 @@ test('a failed corner outline waits for its successful sibling before returning 
   await assert.rejects(readFile(join(root, 'case/nine-axis/step06_angle-xy/.completed')), { code: 'ENOENT' });
 });
 
-for(const kind of ['pitch','corner'])test(`${kind}: a failed branch does not discard or regenerate its sibling MP4`,async t=>{
+for(const kind of ['pitch','corner'])test(`${kind}: videos run concurrently and a failed branch does not discard or regenerate its sibling MP4`,{timeout:5000},async t=>{
   const root=await fixture(t),input=join(root,'input'),output=join(root,'output');await mkdir(input);
   for(const name of ['upper-body.png','up.png','down.png'])await writeFile(join(input,name),name==='up.png'?'up-first':'down-first');
   const calls={up:0,down:0};let fail=true;
-  const generate=async(prompt:string)=>{const view=prompt==='up'?'up':'down';calls[view]++;if(view==='down'&&fail)throw new Error('down failed');return{id:view,status:{status:'completed'},bytes:Buffer.from(view)};};
+  const both = Promise.withResolvers<void>();
+  const generate=async(prompt:string)=>{
+    const view=prompt==='up'?'up':'down';
+    calls[view]++;
+    if(fail){
+      if(calls.up===1&&calls.down===1)both.resolve();
+      await both.promise;
+      if(view==='down')throw new Error('down failed');
+    }
+    return{id:view,status:{status:'completed'},bytes:Buffer.from(view)};
+  };
   const produce=()=>kind==='pitch'?producePitchVideos(output,input,generate,{up:'up',down:'down'},{model:'fixture'}):produceCornerVideos(output,input,async(_prompt,image)=>generate(image.toString().startsWith('up')?'up':'down'),'corner',{model:'fixture'});
   await assert.rejects(produce(),/down failed/);
   const success=join(output,(kind==='pitch'?'up':'left-up')+'.mp4');assert.equal((await readFile(success)).toString(),'up');

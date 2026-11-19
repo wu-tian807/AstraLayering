@@ -9,7 +9,7 @@ import { mergePartSvgs } from './merge-svg.ts';
 import { publishDepthPreview } from './depth-preview.ts';
 import { type GroupContext, type GroupInput, type GroupNode, type GroupSeed, type GroupStage, type GroupStageOutputs, type LayeringResult, type LayeringSteps, type StepResult, type SvgArtifact, type SvgMerger } from './layering-types.ts';
 import type { PreparationReferences } from './preparation-types.ts';
-import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
+import { createStepDispatcher, type StepInstance } from '../step-dispatch.ts';
 import { validateGroupSvg } from './svg-tools.ts';
 import { clearCopyDecision, readCopyDecision } from './parent-copy-decision.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
@@ -45,6 +45,12 @@ function proposal(output: { groups: GroupSeed[] }, seen: Set<string>, allowParts
   return normalizeGroups(output.groups, new Set(seen));
 }
 
+export function validateLayeringDepth(maxDepth = Infinity): void {
+  if (maxDepth !== Infinity && (!Number.isInteger(maxDepth) || maxDepth < 1)) {
+    throw new Error('maxDepth must be a positive integer or Infinity');
+  }
+}
+
 // Every unit of work is a step directory (part-steps.ts), checked in order as
 // the tree grows by its own marker (step-chain.ts): a completed step is kept, a
 // running one continues with its drafts and session, and any other starts fresh
@@ -54,12 +60,13 @@ export async function runLayering(input: {
   steps: LayeringSteps; mergeSvg?: SvgMerger; maxDepth?: number;
   progress?: (message: string) => void;
 }): Promise<LayeringResult> {
-  validateWorkflowOptions(input);
+  validateLayeringDepth(input.maxDepth);
   const directory = resolve(input.directory);
   const store = await GroupStore.open(directory);
   // 即使本次没有新工作，也将由步骤记录重建的树落盘。
   await store.update(() => {});
   const report = input.progress ?? (() => {});
+  const dispatcher = createStepDispatcher();
   const initial = { profile: input.profile, directory, references: input.references, store };
   const statePath = directory;
   let selected: Set<string> | undefined;
@@ -301,14 +308,24 @@ export async function runLayering(input: {
       return { status: 'completed', output: { ids: children.map(child => child.id) } };
     });
   }
-  async function batch(entries: ReturnType<typeof walkGroups>, action: (id: string) => Promise<void>) {
-    await runWorkflow(null, {
-      async initialize() {}, async ready() { return entries.map(entry => ({ ...entry, id: entry.group.id })); },
-      runRound: group => action(group.id),
-    }, { maxDepth: input.maxDepth });
+  function outlineStep(id: string, selected: boolean): StepInstance {
+    return { id: groupStep(directory, id, 'outline').id, run: () => prepare(id, selected) };
   }
 
-
+  function finishStep(id: string, depth: number): StepInstance {
+    return {
+      id: groupStep(directory, id, 'children').id,
+      async run() {
+        await finish(id);
+        const { group } = context(id);
+        if (!groupCompleted(group) || depth + 1 >= (input.maxDepth ?? Infinity)) return;
+        // finish() has committed the child list. Only the child outlines can
+        // start now. The layer loop still owns the reduction barrier. A selected
+        // parent includes its descendants in scope.
+        return group.groups.map(child => outlineStep(child.id, true));
+      },
+    };
+  }
   try {
     if (input.groups !== null) {
       const requested = normalizeGroups(Array.isArray(input.groups) ? input.groups : [input.groups]);
@@ -355,39 +372,29 @@ export async function runLayering(input: {
       }
     }
 
-    const preparedEarly = new Set<string>();
     for (let depth = 0; depth < (input.maxDepth ?? Infinity); depth++) {
       const entries = walkGroups(store.snapshot().groups).filter(entry => entry.depth === depth);
       if (!entries.length) break;
       // --groups only filters the work; every group of the layer is still checked.
       const selectedIds = scope();
-      await batch(entries, async id => {
-        if (!preparedEarly.has(id)) await prepare(id, !selectedIds || selectedIds.has(id));
-      });
-      if (entries.some(entry => context(entry.group.id).group.steps.review.status !== 'completed')) {
+      const reduced = await dispatcher.runAndJoin(
+        entries.map(({ group: { id } }) => outlineStep(id, !selectedIds || selectedIds.has(id))),
+        {
+          members: entries,
+          completed: entry => context(entry.group.id).group.steps.review.status === 'completed',
+          async run() {
+            try { return await reduce(depth, entries); }
+            catch (error) { throw new GroupExecutionError(`第 ${depth} 层`, 'reduction', error); }
+          },
+        },
+      );
+      if (reduced === 'waiting') {
         report(`第 ${depth} 层仍有未完成轮廓，等待本层齐备后去重`);
-        break;
       }
-      try { if (!await reduce(depth, entries)) break; }
-      catch (error) { throw new GroupExecutionError(`第 ${depth} 层`, 'reduction', error); }
+      if (reduced !== 'completed') break;
       const finishIds = scope();
       const finishTargets = entries.filter(entry => !finishIds || finishIds.has(entry.group.id));
-      await batch(finishTargets, async id => {
-        await finish(id);
-        if (!groupCompleted(context(id).group)) return;
-        // The parent's reduction, completion and split are committed. Its direct
-        // children can prepare while other parents are still finishing. They must
-        // not reduce or complete until the next iteration has the full layer.
-        const childScope = scope();
-        const children = walkGroups(store.snapshot().groups).filter(entry =>
-          entry.parent?.id === id && (!childScope || childScope.has(entry.group.id)));
-        await batch(children, async childId => {
-          // A pending early review must wait for a subsequent run, not retry
-          // immediately when the layer loop reaches this same child.
-          preparedEarly.add(childId);
-          await prepare(childId, true);
-        });
-      });
+      await dispatcher.run(finishTargets.map(({ group: { id } }) => finishStep(id, depth)));
       if (finishTargets.some(entry => !groupCompleted(context(entry.group.id).group))) break;
       // 下一层去重必须等待本层所有拆分完成，固定完整名单；
       // 已提前描边的子组沿用步骤记录，显式选择不派发未选分支。
