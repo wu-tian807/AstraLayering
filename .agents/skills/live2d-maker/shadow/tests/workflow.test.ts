@@ -148,6 +148,27 @@ test('中断保留同模式 thread；两种 step01 产物共存，重跑只检�
   assert.equal(JSON.parse(await readFile(join(f.task, 'shadow/selection.json'), 'utf8')).mode, 'normal-depth');
   assert.deepEqual(await readFile(join(f.source, 'character-assembled.kra')), Buffer.from(f.kra));
 });
+test('法线深度发布失败保持步骤未完成，继续时只补发布', async t => {
+  const f = await fixture(t);
+  const options = { ...f.options, shadowMode: 'normal-depth' as const };
+  const output = join(f.task, 'shadow/step01_normal-depth');
+  const lighting = join(f.task, 'lighting');
+  await writeFile(lighting, 'blocks publication');
+
+  await assert.rejects(runWorkflow(options, { ...f.deps, agent: request => f.deliver(request) }), /lighting/);
+  await readFile(join(output, '.running'));
+  await assert.rejects(readFile(join(output, '.completed')), { code: 'ENOENT' });
+  await assert.rejects(readFile(join(f.task, 'shadow/selection.json')), { code: 'ENOENT' });
+  const saved = await readFile(join(output, 'normal.png'));
+
+  await rm(lighting);
+  await runWorkflow(options, { ...f.deps, agent: async () => assert.fail('validated maps must be reused') });
+  await readFile(join(output, '.completed'));
+  await assert.rejects(readFile(join(output, '.running')), { code: 'ENOENT' });
+  assert.deepEqual(await readFile(join(lighting, 'normal.png')), saved);
+  assert.deepEqual(await readFile(join(lighting, 'depth.png')), await readFile(join(output, 'depth.png')));
+  assert.equal(JSON.parse(await readFile(join(f.task, 'shadow/selection.json'), 'utf8')).mode, 'normal-depth');
+});
 test('法线深度只生成一步；删除的发布贴图从已完成步骤恢复', async t => {
   const f = await fixture(t);
   const options = { ...f.options, shadowMode: 'normal-depth' as const };

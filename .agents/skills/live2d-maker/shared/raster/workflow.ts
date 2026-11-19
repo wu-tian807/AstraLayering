@@ -60,6 +60,9 @@ export type KritaSection<Input> = {
   prepareStep?(output: string, input: Input, step: StepDefinition, krita: KritaInstallation): Promise<void>;
   prepareDelivery?(output: string, input: Input, step: StepDefinition): Promise<void>;
   validateDelivery?(output: string, input: Input, step: StepDefinition, krita: KritaInstallation, dryRun?: boolean): Promise<void>;
+  // Idempotent publication after validation. A failed publication can be resumed
+  // without invoking the producer again.
+  publishDelivery?(output: string, input: Input, step: StepDefinition): Promise<void>;
   deliveryWarnings?(input: Input, step: StepDefinition): Promise<readonly string[]>;
   // A step this input needs no agent for: deliver() writes its required files
   // itself, e.g. copies the upstream result when there is no dress-up to strip.
@@ -149,15 +152,37 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
   async function stepWork(step: ResolvedStep, status: StepStatus): Promise<(() => Promise<void>) | undefined> {
     const output = join(directory, step.id);
     const records = join(directory, 'agents', 'steps', step.id);
+    const publish = section.publishDelivery?.bind(section, output, reference, step);
+    const readyToPublish = join(output, '.delivery-ready');
+    async function publishValidatedDelivery() {
+      if (!publish) return;
+      options.signal?.throwIfAborted();
+      await writeFile(readyToPublish, '');
+      await publish();
+    }
     if (!options.dryRun) await mkdir(records, { recursive: true });
     // A step's thread carries that step's work; a step starting over (its
     // directory removed) starts a new one.
     if (status === 'absent' && !options.dryRun) await clearStepSession(directory, step.id, '步骤重新开始');
     const drawingReady = status !== 'absent' && !!step.review && !!await fileInfo(join(output, 'report.md'));
     if (status === 'completed') {
+      if (!options.dryRun) await publish?.();
       options.progress?.(`${step.id}：.completed 已存在，跳过`);
       previous.push(output);
       return;
+    }
+    if (status === 'running' && publish && (await fileInfo(readyToPublish))?.isFile()) {
+      options.progress?.(`${step.id}：沿用已验收产物，继续发布`);
+      return async () => {
+        if (!options.dryRun) {
+          await checkFiles(output, step.requiredFiles);
+          await section.validateDelivery?.(output, reference, step, krita);
+          options.signal?.throwIfAborted();
+          await publish();
+          await rm(join(records, 'error.txt'), { force: true });
+        }
+        previous.push(output);
+      };
     }
     const reviewTask = step.review && drawingReady ? await nextReviewTask(output) : undefined;
     const passthrough = await section.passthrough?.(output, reference, step);
@@ -170,6 +195,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
         await passthrough.deliver();
         await checkFiles(output, step.requiredFiles);
         options.signal?.throwIfAborted();
+        await publishValidatedDelivery();
       };
     }
     const model = step;
@@ -304,6 +330,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       });
       await logDeliveryWarnings(step);
       options.signal?.throwIfAborted();
+      await publishValidatedDelivery();
       options.progress?.(`${step.id}：交付检查通过，写入 .completed`);
       previous.push(output);
     } catch (error) {

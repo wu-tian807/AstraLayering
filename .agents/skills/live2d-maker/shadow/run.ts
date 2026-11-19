@@ -1,10 +1,10 @@
 import { parseArgs } from 'node:util';
-import { mkdir, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { acquireTaskLock } from '../workflow/state.ts';
-import { sectionDirectory, taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
+import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
 import { selectKnowledge } from '../shared/knowledge.ts';
 import { shadowMode, type ShadowMode } from '../shared/shadow.ts';
 import { shadowStep } from '../shared/step-paths.js';
@@ -12,7 +12,6 @@ import { runWorkflow as runSharedWorkflow, type KritaSection, type WorkflowOptio
 import { assemblyStep, inputDirectories, isShadowInput, resolveShadowInput, fileHash, type ShadowInput } from './input.ts';
 import { buildPrompt, stepsFor } from './steps.ts';
 import { prepareMaps, validateDelivery } from './delivery.ts';
-import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
 import { prepareMaskReferences } from './preparation.ts';
 import { createInspectionTool } from './inspection.ts';
 
@@ -33,29 +32,32 @@ export function makeSection(mode: ShadowMode): KritaSection<ShadowInput> {
     ...(mode === 'normal-depth' ? { prepareDelivery: async (output, input, step) => { if (step.id === shadowStep(mode)) await prepareMaps(output, input); } } : { prepareStep: prepareMaskReferences }),
     // The mask agent inspects its own work in the section's Krita whenever it chooses.
     ...(mode === 'mask' ? { tools: (output, _input, _step, _phase, krita) => krita?.reserved ? [createInspectionTool(output, krita)] : [] } : {}),
-    validateDelivery: (output, input) => validateDelivery(output, input, mode) };
+    validateDelivery: (output, input) => validateDelivery(output, input, mode),
+    publishDelivery: (output, input) => publishDelivery(output, input, mode) };
 }
 async function atomicFile(path: string, bytes: Uint8Array | string) {
   await mkdir(dirname(path), { recursive: true });
   const tmp = path + '.' + randomUUID() + '.tmp';
-  await writeFile(tmp, bytes); await rename(tmp, path);
+  try {
+    await writeFile(tmp, bytes);
+    await rename(tmp, path);
+  } finally { await rm(tmp, { force: true }); }
 }
-export async function runWorkflow(options: WorkflowOptions & { shadowMode?: ShadowMode }, dependencies: Dependencies = {}) {
-  const mode = shadowMode(options.shadowMode), root = resolveRunsDirectory(options.dir ?? dependencies.runsDirectory);
-  const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const result = await runSharedWorkflow(makeSection(mode), options, { ...dependencies, environment });
-  if (options.dryRun) return result;
-  const input = await resolveShadowInput(options.name, root), output = join(sectionDirectory(options.name, 'shadow', root), shadowStep(mode));
+async function publishDelivery(output: string, input: ShadowInput, mode: ShadowMode) {
+  const directory = dirname(output);
   const selection = { version: 1, mode, sourceKraHash: await fileHash(input.characterKra),
     sourceColorHash: await fileHash(input.characterColor), updatedAt: new Date().toISOString(),
     ...(mode === 'normal-depth' ? { normalEncoding: 'rgb-xyz', normalY: 'up', depthEncoding: 'white-near-black-far', dataColorSpace: 'linear' } : {}) };
   if (mode === 'normal-depth') {
-    const { readFile } = await import('node:fs/promises');
-    for (const name of ['normal.png', 'depth.png']) await atomicFile(join(taskDirectory(options.name, root), 'lighting', name), await readFile(join(output, name)));
+    for (const name of ['normal.png', 'depth.png']) {
+      await atomicFile(join(dirname(directory), 'lighting', name), await readFile(join(output, name)));
+    }
   }
   await atomicFile(join(output, 'source.json'), JSON.stringify(selection, null, 2) + '\n');
-  await atomicFile(join(sectionDirectory(options.name, 'shadow', root), 'selection.json'), JSON.stringify(selection, null, 2) + '\n');
-  return result;
+  await atomicFile(join(directory, 'selection.json'), JSON.stringify(selection, null, 2) + '\n');
+}
+export async function runWorkflow(options: WorkflowOptions & { shadowMode?: ShadowMode }, dependencies: Dependencies = {}) {
+  return runSharedWorkflow(makeSection(shadowMode(options.shadowMode)), options, dependencies);
 }
 export function parseRunArguments(args: string[]) {
   const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, krita: { type: 'string' }, knowledge: { type: 'string' },
