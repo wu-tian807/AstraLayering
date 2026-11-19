@@ -37,7 +37,7 @@ test('两套 step01 绘制与两轮返修提供编辑工具；reviewer 和后续
     const f = await fixture(t, section), step = section.steps[0];
     const output = join(f.root, 'case', section.id, 'step01');
     for (const phase of ['draw', 'repair-01', 'repair-02']) {
-      assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name), ['edit_groups', 'edit_occlusion']);
+      assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name), ['edit_groups', 'edit_occlusion', 'prepare_part_reference']);
     }
     for (const phase of ['review-01', 'review-02']) {
       assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name), ['annotate_review_regions']);

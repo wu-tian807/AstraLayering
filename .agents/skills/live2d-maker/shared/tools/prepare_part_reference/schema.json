@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "part_id": {"type": "string", "description": "当前分组中的完整部件 ID"},
+    "output_dir": {"type": "string", "description": "两张图的保存目录（绝对路径）"}
+  },
+  "required": ["part_id", "output_dir"]
+}
