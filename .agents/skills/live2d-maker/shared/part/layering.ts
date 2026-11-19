@@ -13,7 +13,7 @@ import { runWorkflow, validateWorkflowOptions } from './workflow.ts';
 import { validateGroupSvg } from './svg-tools.ts';
 import { clearCopyDecision, readCopyDecision } from './parent-copy-decision.ts';
 import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occlusion-plan.ts';
-import { beginStep, checkStep, completeStep, readStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
+import { beginStep, checkStep, completeStep, runStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
 import { copiedOutlineNote, groupStep, layerStep, readInitialGroups } from './part-steps.ts';
 import { partSteps } from '../step-paths.js';
@@ -94,10 +94,17 @@ export async function runLayering(input: {
   async function completed<S extends GroupStage>(id: string, stage: S, output: GroupStageOutputs[S]) {
     await store.update(document => setGroupProgress(findGroup(document, id), stage, { status: 'completed', output }));
   }
-  // Starts a step that is not kept; a fresh start also drops its old session.
+  async function clearFreshSession(step: ChainStep, action: StepAction) {
+    if (action === 'run') await rm(join(directory, 'agents', 'steps', step.id), { recursive: true, force: true });
+  }
   async function begin(step: ChainStep, check: { action: StepAction; status: StepStatus }) {
-    if (check.action === 'run') await rm(join(directory, 'agents', 'steps', step.id), { recursive: true, force: true });
+    await clearFreshSession(step, check.action);
     await beginStep(step.directory, check.status);
+  }
+  async function runStandaloneStep(step: ChainStep, check: { action: StepAction; status: StepStatus },
+    work: () => Promise<void | boolean>) {
+    await clearFreshSession(step, check.action);
+    return runStep(step.directory, check.status, work);
   }
   async function execute<S extends GroupStage>(id: string, stage: S, action: () => Promise<StepResult<GroupStageOutputs[S]>>): Promise<boolean> {
     await store.update(document => setGroupProgress(findGroup(document, id), stage, { status: 'running' }));
@@ -337,22 +344,22 @@ export async function runLayering(input: {
       const step: ChainStep = { id: partSteps.initial, directory: join(directory, partSteps.initial) };
       const check = await checkStep(step.directory);
       if (check.action === 'keep') report('首次分组：沿用已有结果');
-      else {
-        await begin(step, check);
+      else await runStandaloneStep(step, check, async () => {
         // A turn that saved its grouping before failing continues from that file.
         const saved = check.action === 'continue' && await exists(join(step.directory, 'groups.json'));
         const result = saved ? { status: 'completed' as const, output: await readInitialGroups(directory) } : await input.steps.initialGroups(initial);
-        if (result.status === 'completed') {
-          const groups = proposal(result.output, new Set());
-          if (!groups.length) throw new Error('Initial grouping must contain at least one group');
-          await writeAtomic(join(step.directory, 'groups.json'), JSON.stringify({ groups: groups.map(nodeSeed) }, null, 2) + '\n');
-          // The tree is what a later run rebuilds from groups.json, kinds included.
-          await store.update(document => {
-            document.groups = normalizeGroups(groups.map(nodeSeed));
-          });
-          await completeStep(step.directory);
-        } else report(result.message);
-      }
+        if (result.status === 'pending') {
+          report(result.message);
+          return false;
+        }
+        const groups = proposal(result.output, new Set());
+        if (!groups.length) throw new Error('Initial grouping must contain at least one group');
+        await writeAtomic(join(step.directory, 'groups.json'), JSON.stringify({ groups: groups.map(nodeSeed) }, null, 2) + '\n');
+        // The tree is what a later run rebuilds from groups.json, kinds included.
+        await store.update(document => {
+          document.groups = normalizeGroups(groups.map(nodeSeed));
+        });
+      });
     }
 
     const preparedEarly = new Set<string>();
@@ -401,23 +408,23 @@ export async function runLayering(input: {
       const step: ChainStep = { id: partSteps.merge, directory: join(directory, partSteps.merge) };
       const output = join(directory, 'preview.svg');
       const check = await checkStep(step.directory);
-      if (check.action === 'keep') report('最终预览合并：沿用');
+      let merged = check.action === 'keep';
+      if (merged) report('最终预览合并：沿用');
       else {
-        await begin(step, check);
-        const draft = draftPath(output);
-        await rm(draft, { force: true });
-        report('最终预览合并：开始');
-        const result = await (input.mergeSvg ?? mergePartSvgs)({ directory, outputPath: draft, groups: document.groups,
-          parts: all.filter(({ group }) => !group.groups.length).map(({ group }) => ({ groupId: group.id, svg: artifact(group.id, 'completion') })) });
-        if (result.status === 'completed') {
+        const outcome = await runStandaloneStep(step, check, async () => {
+          const draft = draftPath(output);
+          await rm(draft, { force: true });
+          report('最终预览合并：开始');
+          const result = await (input.mergeSvg ?? mergePartSvgs)({ directory, outputPath: draft, groups: document.groups,
+            parts: all.filter(({ group }) => !group.groups.length).map(({ group }) => ({ groupId: group.id, svg: artifact(group.id, 'completion') })) });
+          if (result.status === 'pending') { report(result.message); return false; }
           const candidate = resolve(directory, result.output.path);
           if (candidate !== draft) await writeAtomic(draft, await readFile(candidate));
           await publishSvg(draft, output);
-          await completeStep(step.directory);
-          report(`最终预览合并：完成 ${output}`);
-        } else report(result.message);
+        });
+        merged = outcome === 'completed';
+        if (merged) report(`最终预览合并：完成 ${output}`);
       }
-      const merged = (await readStep(step.directory)).status === 'completed';
       await store.update(draft => { draft.merge = merged ? { status: 'completed', output: { path: output } } : { status: 'pending' }; });
     } else if (document.merge.status !== 'pending') await store.update(draft => { draft.merge = { status: 'pending' }; });
     // 独立的最后一步。raster 会改写层级表中的深度，已完成时直接沿用现有层级表。
@@ -432,19 +439,20 @@ export async function runLayering(input: {
         report('遮挡层级规划：沿用已完成的独立层级表');
       } else {
         if (check.action === 'run') await rm(occlusionPath(directory), { force: true });
-        await begin(step, check);
-        report('遮挡层级规划：开始');
-        const sourceHash = await occlusionSourceHash(context);
-        const result = input.steps.planOcclusion ? await input.steps.planOcclusion(context)
-          : { status: 'pending' as const, message: '遮挡层级规划：待接入' };
-        if (result.status === 'completed') {
+        const outcome = await runStandaloneStep(step, check, async () => {
+          report('遮挡层级规划：开始');
+          const sourceHash = await occlusionSourceHash(context);
+          const result = input.steps.planOcclusion ? await input.steps.planOcclusion(context)
+            : { status: 'pending' as const, message: '遮挡层级规划：待接入' };
+        if (result.status === 'pending') { report(result.message); return false; }
           if (await occlusionSourceHash(context) !== sourceHash) throw new Error('层级规划期间输入发生变化');
           const plan = validateOcclusionPlan(result.output, context, sourceHash);
+          await writeAtomic(occlusionPath(directory), JSON.stringify(plan, null, 2) + '\n');
+        });
+        if (outcome === 'completed') {
           completedOcclusion = occlusionPath(directory);
-          await writeAtomic(completedOcclusion, JSON.stringify(plan, null, 2) + '\n');
-          await completeStep(step.directory);
           report(`遮挡层级规划：完成 ${completedOcclusion}`);
-        } else report(`遮挡层级规划：${result.message}`);
+        }
       }
       if (completedOcclusion) {
         const plan = JSON.parse(await readFile(completedOcclusion, 'utf8'));
