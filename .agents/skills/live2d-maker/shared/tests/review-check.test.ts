@@ -6,7 +6,27 @@ import { test, type TestContext } from 'node:test';
 import { CheckFailure } from '../codex/checked-turn.ts';
 import { runAgent, type AgentRequest } from '../raster/agent.ts';
 import { checkReport } from '../raster/review.ts';
+import { runReviewSchedule, type ReviewProgress } from '../review-schedule.ts';
 import { rasterAppServer } from './raster-app-server.ts';
+
+test('a saved review resumes at its pending repair and the last repair completes the schedule', async () => {
+  let progress: ReviewProgress = { completedReviews: 1, verdict: 'revise', repaired: false };
+  const calls: string[] = [];
+  const outcome = await runReviewSchedule({
+    maxRounds: 2,
+    progress: () => progress,
+    async review(round) {
+      calls.push(`review-${round}`);
+      progress = { completedReviews: round, verdict: 'revise', repaired: false };
+    },
+    async repair(round) {
+      calls.push(`repair-${round}`);
+      progress = { completedReviews: round, verdict: 'revise', repaired: true };
+    },
+  });
+  assert.deepEqual(calls, ['repair-1', 'review-2', 'repair-2']);
+  assert.deepEqual(outcome, { kind: 'done', outcome: 'repaired' });
+});
 
 test('a report that is missing, malformed or empty is a check failure with its own code', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'report-check-'));

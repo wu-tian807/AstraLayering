@@ -18,9 +18,8 @@ import { createSvgPreviewTool, createSvgReadTool, taskObservation, validateGroup
 import { taskRootOf, toAgentPath } from '../task-paths.ts';
 import { createParentRegionTool, withoutCopyAttributes } from './parent-region.ts';
 import { clearCopyDecision } from './parent-copy-decision.ts';
-import { completedReviewCount, draftPath, matchesHash, publishSvg, readReviewReport, svgHash as hash, type Review } from './artifact-facts.ts';
-
-const maxOutlineReviews = 2;
+import { completedReviewCount, draftPath, maxOutlineReviews, outlineReviewProgress, publishSvg, readReviewReport, svgHash as hash, type Review } from './artifact-facts.ts';
+import { runReviewSchedule } from '../review-schedule.ts';
 
 async function recordRepair(output: string, round: number, prompt: string) {
   const directory = output.replace(/\.svg$/, '.repairs');
@@ -154,14 +153,13 @@ export async function drawGroupOutline(
 }
 
 async function reviewOnce(
-  context: GroupContext, candidate: string, reportPath: string, agents: Pick<AgentDispatcher, 'run'>,
+  context: GroupContext, candidate: string, reportPath: string, round: number, agents: Pick<AgentDispatcher, 'run'>,
 ): Promise<Review> {
   const profile = partProfile(context);
   const input = await inputs(context);
   const knowledge = partKnowledge(profile, 'outline');
   const bytes = await validateGroupSvg(candidate, context.group.id, input.canvas, undefined, true);
   const candidateHash = hash(bytes);
-  const round = completedReviewCount(await readReviewReport(reportPath, context.group.id)) + 1;
   const observations: SvgObservation[] = [];
   const preview = createSvgPreviewTool({ ...input, parent: input.parent, directory: context.directory,
     observationDirectory: join(context.directory, 'observations', 'review', context.group.id),
@@ -213,34 +211,37 @@ export async function reviewGroupOutline(
   const candidate = await realpath(resolve(context.directory, context.outline.path));
   const reportPath = context.reportPath;
   const report = await readReviewReport(reportPath, context.group.id);
-  let previous = report.reviews.at(-1);
-  async function repair(review: Review) {
-    // 记录实际完成返修的文件；续跑不能仅凭 SVG 变过就认定意见已落实。
-    if (matchesHash(await readFile(candidate), review.repairedCandidateHash)) return;
-    // The repair reads the review from its report; it is the report's latest entry.
-    await drawGroupOutline({ ...context, outputPath: candidate }, drawing, { candidate, round: completedReviewCount(report) });
-    review.repairedCandidateHash = hash(await readFile(candidate));
-    await writeAtomic(reportPath, JSON.stringify(report, null, 2) + '\n');
-  }
-  const passed = (): StepResult<ReviewedSvgArtifact> => ({
-    status: 'completed', output: { ...context.outline, reviewOutcome: 'pass' },
+  const previous = report.reviews.at(-1);
+  // Recover the latest valid decision even if the outer step never saved its
+  // marker. A blocked attempt from an earlier run leaves its round available.
+  const bytes = previous && previous.verdict !== 'blocked' ? await readFile(candidate) : undefined;
+  let progress = outlineReviewProgress(report, bytes);
+  const result = await runReviewSchedule({
+    maxRounds: maxOutlineReviews,
+    progress: () => progress,
+    async review(round) {
+      const review = await reviewOnce(context, candidate, reportPath, round, agents);
+      report.reviews.push(review);
+      progress = review.verdict === 'revise'
+        ? { completedReviews: round, verdict: 'revise', repaired: false }
+        : { completedReviews: completedReviewCount(report), verdict: review.verdict };
+    },
+    async repair(round) {
+      // The latest committed revise decision supplied this repair.
+      const decision = report.reviews.at(-1)!;
+      await drawGroupOutline({ ...context, outputPath: candidate }, drawing, { candidate, round });
+      decision.repairedCandidateHash = hash(await readFile(candidate));
+      await writeAtomic(reportPath, JSON.stringify(report, null, 2) + '\n');
+      progress = { completedReviews: round, verdict: 'revise', repaired: true };
+    },
   });
-  // 已提交结论但进度尚未保存时，从报告恢复，不重复消费审查轮次。
-  if (previous?.verdict === 'pass' && matchesHash(await readFile(candidate), previous.candidateHash)) return passed();
-  if (previous?.verdict === 'revise') await repair(previous);
-  while (completedReviewCount(report) < maxOutlineReviews) {
-    previous = await reviewOnce(context, candidate, reportPath, agents);
-    report.reviews.push(previous);
-    if (previous.verdict === 'pass') return passed();
-    if (previous.verdict === 'blocked') {
-      return { status: 'pending', message: `轮廓 review ${previous.verdict}：${previous.feedback}；报告：${reportPath}` };
-    }
-    // 第二轮的意见也必须返修并自检；完成后直接进入下一步，不再审查。
-    await repair(previous);
-  }
-  if (previous?.verdict === 'revise') {
+  if (result.kind === 'done') {
+    if (result.outcome === 'pass') return { status: 'completed', output: { ...context.outline, reviewOutcome: 'pass' } };
     return { status: 'completed', output: { ...context.outline, reviewOutcome: 'repaired',
-      note: `已按第 ${completedReviewCount(report)} 轮意见返修并自检，不再复审` } };
+      note: `已按第 ${progress.completedReviews} 轮意见返修并自检，不再复审` } };
+  }
+  if (result.reason === 'review-blocked') {
+    return { status: 'pending', message: `轮廓 review blocked：${report.reviews.at(-1)!.feedback}；报告：${reportPath}` };
   }
   return { status: 'pending', message: `轮廓 review blocked：${previous?.verdict === 'blocked'
     ? previous.feedback : '当前 SVG 与已通过的审查候选不一致'}；已用完 ${maxOutlineReviews} 轮审查；报告：${reportPath}` };
