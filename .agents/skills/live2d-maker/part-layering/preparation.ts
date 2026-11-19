@@ -3,7 +3,6 @@ import type { ImageProcessingOptions } from '../shared/image-processing.ts';
 import { sectionDirectory, resolveInput, taskDirectory } from '../shared/paths.ts';
 import { mkdir, readFile } from 'node:fs/promises';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
-import { checkOriginalImage } from '../shared/original-image.ts';
 import { dirname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { readPreparationOptions } from '../shared/part/preparation-cache.ts';
@@ -132,10 +131,7 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
     switch (id) {
       case 'original':
         await mkdir(inputs, { recursive: true });
-        if (!await exists(output(step))) {
-          await checkOriginalImage(source!);
-          await produce(output(step), temporary => copyAsPng(source!, temporary));
-        }
+        if (!await exists(output(step))) await produce(output(step), temporary => copyAsPng(source!, temporary));
         return;
       case 'options': return writeJson(output(step), { standard });
       case 'pose': {

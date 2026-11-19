@@ -14,7 +14,6 @@ import { readStep } from '../shared/step-chain.ts';
 import { nineAxisProgressSteps, previousNineAxisSteps, previousNineAxisGroupSteps } from '../shared/nine-axis.ts';
 import { installedVersion } from '../shared/version.ts';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
-import { checkOriginalImage } from '../shared/original-image.ts';
 
 export type TaskOptions = {
   name: string; dir?: string; image?: string; krita?: string; ffmpeg?: string; knowledge?: string;
@@ -122,11 +121,6 @@ export async function taskOriginal(directory: string): Promise<string | undefine
   const originals = names.filter(name => /^original\.[^.]+$/.test(name));
   if (originals.length > 1) throw new Error('原图不唯一：' + folder);
   return originals[0] && join(folder, originals[0]);
-}
-export async function checkTaskOriginal(options: TaskOptions, directory: string, saved?: TaskRun): Promise<void> {
-  if (!options.image && taskRoute(options, saved).from !== 'part-layering') return;
-  const source = await taskOriginal(directory) ?? (options.image ? resolveInput(options.name, options.image, options.dir) : undefined);
-  if (source) await checkOriginalImage(source);
 }
 // Keeps the given image as the task's original.
 async function keepOriginal(directory: string, input?: string): Promise<void> {
