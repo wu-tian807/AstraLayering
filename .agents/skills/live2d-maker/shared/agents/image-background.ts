@@ -39,6 +39,7 @@ export async function transparentGeneratedImage(png: Buffer, model: ImageModel, 
     const { width, height } = await sharp(png).metadata();
     const backgroundHex = await counterpartBackground(png);
     const replacement: ImageArguments = { background: 'opaque', ...(original.quality ? { quality: original.quality } : {}),
+      ...(request.size ? { size: request.size } : {}),
       prompt: renderPromptFile(new URL('../prompts/nano-background-replacement.md', import.meta.url),
         { background_hex: backgroundHex, width: String(width), height: String(height) }).trimEnd() };
     await writeFile(join(directory, 'counterpart-request.json'), JSON.stringify(replacement, null, 2) + '\n', { mode: 0o600 });

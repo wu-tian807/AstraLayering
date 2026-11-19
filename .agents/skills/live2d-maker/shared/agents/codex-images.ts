@@ -24,7 +24,7 @@ export async function createCodexImageRoute(settings: WorkflowEnvironment, step:
   await checkCodexCapabilities(settings, options, { image: true });
   const model = settings.stepImages[step]!;
   const api = settings.imageApis[imageProvider(model,settings.imageRules) as 'openai' | 'google']!;
-  const processing = { ...normalization, env: normalization.env ?? options.env, directory: outputDirectory };
+  const processing = { ...normalization, env: normalization.env ?? options.env, directory: outputDirectory, step };
   const token = randomBytes(32).toString('hex');
   const closing = new AbortController();
   const server = createServer(async (request, response) => {

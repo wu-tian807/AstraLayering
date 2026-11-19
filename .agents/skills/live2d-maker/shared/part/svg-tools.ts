@@ -8,6 +8,7 @@ import { svgSource, updateSvgRoot } from '../xml.ts';
 import { fromTaskPath, taskRootOf, toAgentPath, toTaskPathReal } from '../task-paths.ts';
 
 export type Canvas = { width: number; height: number };
+type SvgCrop = Canvas & { left: number; top: number };
 export type SvgObservation = { source: string; mode: 'svg' | 'blend' | 'edge'; savedPath: string; reference?: string; referenceHash?: string };
 // review.json and tool results record observation paths task-relative.
 // Task-relative for records; tool results pass toAgentPath to show absolute paths.
@@ -67,6 +68,20 @@ export async function renderSvgAlpha(path: string, canvas: Canvas, scale = 1): P
   const document = await svgDocument(path, canvas);
   const width = canvas.width * scale, height = canvas.height * scale;
   const bytes = scale === 1 ? document.bytes : Buffer.from(updateSvgRoot(document.text, { width: String(width), height: String(height) }));
+  return svgAlpha(bytes, { width, height }, path);
+}
+
+export async function renderSvgCropAlpha(path: string, canvas: Canvas, crop: SvgCrop, output: Canvas): Promise<Buffer> {
+  const document = await svgDocument(path, canvas);
+  const bytes = Buffer.from(updateSvgRoot(document.text, {
+    width: String(output.width), height: String(output.height),
+    viewBox: [crop.left, crop.top, crop.width, crop.height].join(' '),
+    preserveAspectRatio: 'none',
+  }));
+  return svgAlpha(bytes, output, path);
+}
+
+async function svgAlpha(bytes: Buffer, { width, height }: Canvas, path: string): Promise<Buffer> {
   const { data, info } = await sharp(bytes, { limitInputPixels: 100_000_000 })
     .ensureAlpha().extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
   if (info.width !== width || info.height !== height) throw new Error(`范围检查渲染尺寸不符：${path}`);

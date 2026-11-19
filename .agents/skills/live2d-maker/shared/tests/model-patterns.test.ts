@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 import {parseModelPatterns,modelPatternMatches} from '../model-patterns.js';
 import {parseWorkflowEnvironment} from '../codex/environment.ts';
 import {imageProvider} from '../agents/models.ts';
@@ -47,4 +50,30 @@ test('GPT Image 2.6 variants and custom image IDs use unchanged static generatio
    if(inputs.length)assert.ok(body.image instanceof Blob);
   }
  }
+});
+
+test('Raster Step01 defaults to a square 1K image request without changing other steps', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'raster-image-size-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const png = await sharp({ create: { width: 2, height: 2, channels: 4, background: '#ff000080' } }).png().toBuffer();
+  const image = png.toString('base64');
+  const bodies: any[] = [];
+  t.mock.method(globalThis, 'fetch', async (url: string, init: RequestInit) => {
+    bodies.push(JSON.parse(init.body as string));
+    return url.endsWith(':generateContent')
+      ? Response.json({ candidates: [{ content: { parts: [{ inlineData: { data: image } }] } }] })
+      : Response.json({ data: [{ b64_json: image }] });
+  });
+  const signal = new AbortController().signal;
+  const gpt = { baseUrl: 'https://image.test/v1', apiKey: 'fixture', protocol: 'openai' as const };
+  const nano = { ...gpt, provider: 'google' as const, protocol: 'gemini' as const };
+  await generateImage(gpt, 'gpt-image-2.6-sunburst', { prompt: 'draw', size: 'auto' }, [], signal,
+    { directory, step: 'raster_step01' });
+  assert.equal(bodies.at(-1).size, '1024x1024');
+  await generateImage(nano, 'gemini-nano-banana-2.1', { prompt: 'draw' }, [], signal,
+    { directory, step: 'clothing_raster_step01_repair' });
+  assert.deepEqual(bodies.at(-1).generationConfig.imageConfig, { aspectRatio: '1:1' });
+  await generateImage(gpt, 'gpt-image-2.6-sunburst', { prompt: 'draw', size: 'auto' }, [], signal,
+    { directory, step: 'part_standardize' });
+  assert.equal(bodies.at(-1).size, 'auto');
 });

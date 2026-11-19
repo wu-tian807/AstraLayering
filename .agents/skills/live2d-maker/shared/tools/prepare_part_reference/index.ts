@@ -5,8 +5,9 @@ import { textResult, type FunctionTool } from '../../codex/function-tools.ts';
 import { toolDefinition } from '../../codex/tool-config.ts';
 import { artifactPath, readJson } from '../../part/artifact-facts.ts';
 import { normalizeGroups, walkGroups, writeAtomic } from '../../part/groups.ts';
-import { renderSvgAlpha, type Canvas } from '../../part/svg-tools.ts';
+import { renderSvgAlpha, renderSvgCropAlpha, type Canvas } from '../../part/svg-tools.ts';
 import type { PartLayeringInput } from '../../raster/input.ts';
+import { rasterPartImageEdge } from '../../raster/part-image-size.ts';
 import { imagePath } from '../../task-paths.ts';
 
 const targetOccupancy = 0.85;
@@ -24,10 +25,14 @@ function partCrop(mask: Buffer, { width, height }: Canvas, id: string) {
     right = Math.max(right, x); bottom = Math.max(bottom, y);
   }
   if (right < left) throw new Error(`${id} 的补全轮廓为空`);
-  const partWidth = right - left + 1, partHeight = bottom - top + 1;
-  const padX = Math.round(partWidth * (1 / targetOccupancy - 1) / 2);
-  const padY = Math.round(partHeight * (1 / targetOccupancy - 1) / 2);
-  return { left: left - padX, top: top - padY, width: partWidth + 2 * padX, height: partHeight + 2 * padY };
+  return { left, top, width: right - left + 1, height: bottom - top + 1 };
+}
+
+function partPlacement(crop: Canvas) {
+  const scale = rasterPartImageEdge * targetOccupancy / Math.max(crop.width, crop.height);
+  const width = Math.max(1, Math.round(crop.width * scale));
+  const height = Math.max(1, Math.round(crop.height * scale));
+  return { left: Math.floor((rasterPartImageEdge - width) / 2), top: Math.floor((rasterPartImageEdge - height) / 2), width, height };
 }
 
 async function visibleOutline(directory: string, id: string) {
@@ -56,42 +61,53 @@ export function createPartReferenceTool(input: PartLayeringInput, sourceImage: s
 
       const source = sharp(sourceImage);
       const { autoOrient: canvas } = await source.metadata();
-      const full = await renderSvgAlpha(join(input.parts, `${id}.svg`), canvas);
-      const crop = partCrop(full, canvas, id);
-      const visible = part.hiddenInReference ? undefined
-        : await renderSvgAlpha(await visibleOutline(input.directory, id), canvas);
-      const left = Math.max(0, crop.left), top = Math.max(0, crop.top);
-      const right = Math.min(canvas.width, crop.left + crop.width);
-      const bottom = Math.min(canvas.height, crop.top + crop.height);
-      const sourceWidth = right - left;
-      const pixels = visible ? await source.autoOrient().extract({ left, top, width: sourceWidth, height: bottom - top })
-        .toColourspace('srgb').ensureAlpha().raw().toBuffer() : undefined;
+      const completed = join(input.parts, `${id}.svg`);
+      const crop = partCrop(await renderSvgAlpha(completed, canvas), canvas, id);
+      const sample = partPlacement(crop);
+      const { width, height } = sample;
+      const outline = part.hiddenInReference ? undefined : await visibleOutline(input.directory, id);
+      const [full, visible, pixels] = await Promise.all([
+        renderSvgCropAlpha(completed, canvas, crop, sample),
+        outline && renderSvgCropAlpha(outline, canvas, crop, sample),
+        outline && source.autoOrient().extract(crop).toColourspace('srgb').ensureAlpha()
+          .resize(width, height, { fit: 'fill', kernel: 'cubic' }).raw().toBuffer(),
+      ]);
       signal.throwIfAborted();
 
-      const shape = Buffer.alloc(crop.width * crop.height * 3, outsideColor);
+      // Use the enlarged SVG bounds so a subpixel edge in a tiny part does not
+      // count as a whole source pixel of content when laying out the 1K image.
+      const bounds = partCrop(full, sample, id);
+      const placement = partPlacement(bounds);
+      const shape = Buffer.alloc(width * height * 3, outsideColor);
       const reference = Buffer.alloc(shape.length, neutralGray);
-      for (let y = top; y < bottom; y++) {
-        for (let x = left; x < right; x++) {
-          const pos = y * canvas.width + x;
-          if (full[pos] === 0) continue;
-          const target = ((y - crop.top) * crop.width + x - crop.left) * 3;
-          const pixel = ((y - top) * sourceWidth + x - left) * 4;
-          const alpha = pixels && visible && visible[pos] >= 128 ? pixels[pixel + 3] / 255 : 0;
-          shape.set(alpha > 0 ? visibleColor : completionColor, target);
-          if (alpha > 0 && pixels) {
-            for (let c = 0; c < 3; c++) reference[target + c] = Math.round(pixels[pixel + c] * alpha + neutralGray * (1 - alpha));
-          }
+      for (let pos = 0; pos < full.length; pos++) {
+        if (full[pos] === 0) continue;
+        const target = pos * 3;
+        const pixel = pos * 4;
+        const alpha = pixels && visible && visible[pos] >= 128 ? pixels[pixel + 3] / 255 : 0;
+        shape.set(alpha > 0 ? visibleColor : completionColor, target);
+        if (alpha > 0 && pixels) {
+          for (let c = 0; c < 3; c++) reference[target + c] = Math.round(pixels[pixel + c] * alpha + neutralGray * (1 - alpha));
         }
       }
 
-      const raw = { width: crop.width, height: crop.height, channels: 3 as const };
+      const raw = { width, height, channels: 3 as const };
+      const border = { left: placement.left, top: placement.top,
+        right: rasterPartImageEdge - placement.left - placement.width,
+        bottom: rasterPartImageEdge - placement.top - placement.height };
+      const frame = (pixels: Buffer, background: string) => sharp(pixels, { raw }).extract(bounds)
+        .resize(placement.width, placement.height, { fit: 'fill', kernel: 'nearest' })
+        .extend({ ...border, background }).png().toBuffer();
       const [referencePng, controlPng] = await Promise.all([
-        sharp(reference, { raw }).png().toBuffer(), sharp(shape, { raw }).png().toBuffer(),
+        frame(reference, '#808080'), frame(shape, '#00ff00'),
       ]);
       signal.throwIfAborted();
       const referencePath = join(output, 'reference.png'), controlPath = join(output, 'control.png');
       await Promise.all([writeAtomic(referencePath, referencePng), writeAtomic(controlPath, controlPng)]);
-      return textResult({ part_id: id, referencePath, controlPath, crop: [crop.left, crop.top, crop.width, crop.height] });
+      const scaleX = crop.width / width, scaleY = crop.height / height;
+      return textResult({ part_id: id, referencePath, controlPath,
+        crop: [crop.left + bounds.left * scaleX, crop.top + bounds.top * scaleY, bounds.width * scaleX, bounds.height * scaleY],
+        placement: [placement.left, placement.top, placement.width, placement.height] });
     },
   };
 }

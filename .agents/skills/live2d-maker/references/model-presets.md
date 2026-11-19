@@ -176,6 +176,8 @@ Codex 的自定义生图请求通过[原生补丁](../patches/README.md)接入�
 
 Claude／AGV 注册与 Codex 原生工具同名的共享 `imagegen` 函数工具，其 [description.md](../knowledge/shared/tools/imagegen/description.md) 与 [schema.json](../shared/tools/imagegen/schema.json) 保持统一；Codex 使用原生工具定义。两条路径共用底层接口实现，绘图任务与验收要求由各管线自己的提示词约定。
 
+人物和衣服 Raster Step01 使用 1024 × 1024 部件参考图，部件最长边约占 85%。自定义 API 默认请求 1K 方图，`codex-native` 的返回尺寸由宿主决定。配准时按实际生图尺寸等比贴回原画布。
+
 参考图按顺序传入，生成结果保存在任务请求目录。共享函数工具返回 `hasAlpha`，原生工具路径也检查实际 PNG 的透明通道，并结合看图验收。
 
 调用者统一提出透明 PNG 要求。GPT 图像模型直接保留返回的原生 alpha。Nano 请求透明背景时，共享适配器在生图前分析第一张目标参考的主体颜色，从纯绿、纯蓝、纯红中推荐一个背景色，并通过[纯色背景要求](../shared/prompts/nano-solid-background.md)明确传给生图模型。原绘制任务完整保留，实际生图请求使用不透明背景。第一张 RGB 图返回后，保留原图并以它作为唯一参考，按[仅换背景要求](../shared/prompts/nano-background-replacement.md)生成第二张白底或黑底图。Node／Sharp 采样两张图四周的实际背景色，通过双背景差分恢复前景颜色和透明度，最终交回一张透明 PNG。两次请求串行执行，共用原模型与协议。明确选择 `auto`／`opaque` 的请求沿用原背景要求与输出。返回真实 alpha 时直接保留。

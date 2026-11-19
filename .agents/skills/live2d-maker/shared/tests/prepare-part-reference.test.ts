@@ -19,12 +19,13 @@ test('prepares an aligned pair from the reduced visible SVG and the completed SV
   const source = join(root, 'source.png'), id = 'hair/back';
   await Promise.all([
     writeAtomic(join(directory, 'groups.json'), JSON.stringify({ groups: [{
-      id: 'hair', groups: [{ id }, { id: 'hair/hidden', hiddenInReference: true }],
+      id: 'hair', groups: [{ id }, { id: 'hair/hidden', hiddenInReference: true }, { id: 'hair/tiny', hiddenInReference: true }],
     }] })),
     writeAtomic(artifactPath(directory, id, 'outline'), svg(35)),
     writeAtomic(artifactPath(directory, id, 'reduction'), svg(20)),
     writeAtomic(artifactPath(directory, id, 'completion'), svg(80)),
     writeAtomic(artifactPath(directory, 'hair/hidden', 'completion'), svg(80)),
+    writeAtomic(artifactPath(directory, 'hair/tiny', 'completion'), svg(80).replace(/width="80" height="60"/, 'width="3" height="1"')),
     sharp({ create: { width: 120, height: 100, channels: 3, background: '#3c5ab4' } }).png().toFile(source),
   ]);
   const tool = createPartReferenceTool({ directory, parts }, source);
@@ -32,22 +33,23 @@ test('prepares an aligned pair from the reduced visible SVG and the completed SV
     const result = await tool.execute({ part_id, output_dir }, signal);
     const item = result.contentItems[0];
     assert.equal(item.type, 'inputText');
-    return JSON.parse(item.text) as { referencePath: string; controlPath: string; crop: number[] };
+    return JSON.parse(item.text) as { referencePath: string; controlPath: string; crop: number[]; placement: number[] };
   };
   async function sample(path: string, points: [number, number][]) {
     const { data, info } = await sharp(path).raw().toBuffer({ resolveWithObject: true });
-    assert.deepEqual([info.width, info.height], [94, 70]);
+    assert.deepEqual([info.width, info.height], [1024, 1024]);
     return points.map(([x, y]) => {
       const i = (y * info.width + x) * info.channels;
       return [...data.subarray(i, i + 3)];
     });
   }
-  const points: [number, number][] = [[3, 6], [12, 6], [31, 6]];
+  const points: [number, number][] = [[60, 240], [140, 240], [423, 240]];
   const visibleDirectory = join(root, 'workspace', 'back');
   const result = await prepare(id, visibleDirectory);
   assert.equal(result.referencePath, join(visibleDirectory, 'reference.png'));
   assert.equal(result.controlPath, join(visibleDirectory, 'control.png'));
-  assert.deepEqual(result.crop, [-7, 7, 94, 70]);
+  assert.deepEqual(result.crop, [0, 12, 80, 60]);
+  assert.deepEqual(result.placement, [77, 185, 870, 653]);
   assert.deepEqual(await sample(result.controlPath, points), [[0, 255, 0], [255, 0, 0], [255, 255, 0]]);
   assert.deepEqual(await sample(result.referencePath, points), [[128, 128, 128], [60, 90, 180], [128, 128, 128]]);
 
@@ -57,6 +59,11 @@ test('prepares an aligned pair from the reduced visible SVG and the completed SV
   assert.equal(hidden.controlPath, join(custom, 'control.png'));
   assert.deepEqual(await sample(hidden.controlPath, points), [[0, 255, 0], [255, 255, 0], [255, 255, 0]]);
   assert.deepEqual(await sample(hidden.referencePath, points), Array.from({ length: 3 }, () => [128, 128, 128]));
+  const tiny = await prepare('hair/tiny', join(root, 'workspace', 'tiny'));
+  assert.deepEqual(tiny.crop, [0, 12, 3, 1]);
+  assert.deepEqual(tiny.placement, [77, 367, 870, 290]);
+  assert.deepEqual(await sample(tiny.controlPath, [[77, 367], [946, 656], [76, 367], [77, 366]]),
+    [[255, 255, 0], [255, 255, 0], [0, 255, 0], [0, 255, 0]]);
   await assert.rejects(tool.execute({ part_id: 'hair', output_dir: custom }, signal), /终止部件/);
   await assert.rejects(tool.execute({ part_id: id }, signal), /output_dir/);
   await assert.rejects(tool.execute({ part_id: id, output_dir: 'refs/back' }, signal), /绝对路径/);
