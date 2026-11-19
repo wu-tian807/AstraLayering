@@ -8,7 +8,7 @@ import { axisGroups, runAxisGroups, type AxisGroup } from '../axis-groups.ts';
 import { beginStep, completeStep, readStep } from '../../shared/step-chain.ts';
 import { runSection } from '../../shared/step-section.ts';
 
-type Hooks = Parameters<typeof runAxisGroups>[1] & { merge?(): Promise<void> };
+type Hooks = Parameters<typeof runAxisGroups>[1];
 
 async function fixture(t: TestContext) {
   const section = await mkdtemp(join(tmpdir(), 'astra-axis-groups-'));
@@ -39,7 +39,7 @@ async function runParent(section: string, hooks: Hooks, options: Parameters<type
   return runSection({ directory: section, steps: [{ number: 4, note: 'angles' }],
     async step(step, status) {
       if (status === 'completed') return;
-      return async () => { if (await runAxisGroups(step.directory, hooks, options)) await hooks.merge?.(); };
+      return async () => { await runAxisGroups(step.directory, hooks, options); };
     },
     async finished(step) {
       return (await Promise.all(axisGroups.map(async group => (await readStep(join(step.directory, group))).status === 'completed'))).every(Boolean);

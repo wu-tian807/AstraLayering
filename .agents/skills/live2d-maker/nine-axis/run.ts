@@ -48,7 +48,7 @@ import { readStepSession, writeStepSession } from '../shared/agents/step-session
 import type { AgentStep, Harness } from '../shared/agents/models.ts';
 import { checkOutlineFiles, runOutline } from './outline.ts';
 import sharp from 'sharp';
-import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
+import { createStepDispatcher, runStepBatch } from '../shared/step-dispatch.ts';
 import { headRollStep, nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
 import { upperBodyBox } from './turn.ts';
 import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
@@ -389,7 +389,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const { doc } = await readUpstream(upstream);
           if (!await modelDocument(task, upstream, doc)) throw Error('头部上下缺少最新 KRA 来源');
           const finished=await runAxisGroups(step.directory,{
-            async prepare(){},
             seed:(g,folder)=>seedHeadPitch(folder,upstream,task,g as HeadPitchDirection,scale),
             async keep(g,folder){
               await checkDelivery(`${step.id}/${g}`);
@@ -408,8 +407,8 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
               if(!verified)await verify();
               progress(`${id} 已完成，另一方向独立继续`);
             },
+            async merge() { await mergeHeadPitch(step.directory, upstream, scale); },
           },{groups:headPitchDirections,group:branch as HeadPitchDirection|undefined,signal:options.signal});
-          if(finished)await mergeHeadPitch(step.directory,upstream,scale);
           summary=finished?'nine-axis/step10_head-pitch：完整头部上下已完成并合并':`nine-axis/step10_head-pitch/${branch} 已完成，等待另一方向`;
         };
         if (step.id === 'step01_preparation') return async () => {
@@ -454,42 +453,53 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const { head } = await getTurnInput();
           if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(task, g), axisPrompt(task, g)]), videoPrompt()].join('\n\n'));
           const selected = branch ? [branch as 'model' | 'video'] : [...nineAxisBranches];
-          // The established group workflow handles both branches and the same
-          // direction workflow handles the model's three independent authors.
-          await runGroups(selected, {
-            async initialize() {},
-            async ready() { return (await Promise.all(selected.map(async b => {
-              if ((await readStep(join(angles, b))).status === 'completed') { await checkDelivery(`step04_angles/${b}`); return; }
-              return { id: b, group: b, depth: 0 };
-            }))).filter((item): item is NonNullable<typeof item> => !!item); },
-            async runRound(b) {
-              const output = join(angles, b), { status } = await readStep(output); await beginStep(output, status);
-              if (b === 'video') {
-                const { model, generate } = video(); await produceCornerVideos(output, frames, generate, videoPrompt(), { signal: options.signal, progress, model });
-              } else {
-                const box = await crop();
-                const finished = await runAxisGroups(output, {
-                  async prepare() {}, seed: (g, folder) => seedAxis(folder, preparation, g, scale),
-                  keep: (g) => checkDelivery(`step04_angles/model/${g}`),
-                  async run(g, folder) {
-                    const id = `step04_angles/model/${g}`;
-                    builds[id] = () => g === 'left' ? buildHead(folder, head, box, scale, task) : buildAngleY(folder, preparation, g, scale);
-                    const injected = g === 'left' ? dependencies.fitHead : g === 'up' ? dependencies.fitUp : dependencies.fitDown;
-                    const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(frames, `${g}.png`)), `${id}/outline`, `描边 ${g}`, options.signal, directory)));
-                    if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(task, g)); }
-                    const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${g}`, options.signal, directory));
-                    await fit(folder, axisPrompt(task, g), async () => checkAxisSource(preparation, await builds[id]()));
-                    if (g === 'left') await finishHead(folder, head, box, scale, task); else await finishAngleY(folder, preparation, g, scale);
-                    await checkDelivery(id); progress(`${id} 已完成，其他分支独立继续`);
-                  },
-                }, { group, signal: options.signal });
-                if (!finished) return;
-                const mergedDirectory = join(output, 'merged'); await rm(mergedDirectory, { recursive: true, force: true });
-                const merged = await mergeAxes(mergedDirectory, preparation, Object.fromEntries(axisGroups.map(g => [g, join(output, g)])) as Record<AxisGroup, string>, scale, task);
-                await writeBuilt(output, merged); await copyFile(join(mergedDirectory, 'axis-sources.json'), join(output, 'axis-sources.json')); await copyFile(join(preparation, 'source.json'), join(output, 'source.json'));
+          async function runBranch(b: (typeof selected)[number]) {
+            const output = join(angles, b), { status } = await readStep(output);
+            await beginStep(output, status);
+            if (b === 'video') {
+              const { model, generate } = video();
+              await produceCornerVideos(output, frames, generate, videoPrompt(), { signal: options.signal, progress, model });
+            } else {
+              const box = await crop();
+              const finished = await runAxisGroups(output, {
+                seed: (g, folder) => seedAxis(folder, preparation, g, scale),
+                keep: (g) => checkDelivery(`step04_angles/model/${g}`),
+                async run(g, folder) {
+                  const id = `step04_angles/model/${g}`;
+                  builds[id] = () => g === 'left' ? buildHead(folder, head, box, scale, task) : buildAngleY(folder, preparation, g, scale);
+                  const injected = g === 'left' ? dependencies.fitHead : g === 'up' ? dependencies.fitUp : dependencies.fitDown;
+                  const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(frames, `${g}.png`)), `${id}/outline`, `描边 ${g}`, options.signal, directory)));
+                  if (outline) { const o = join(folder, 'outline'); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(task, g)); }
+                  const fit = injected ?? (await preflight(), createFitHead(agents(), faceTools, id, `单轴 ${g}`, options.signal, directory));
+                  await fit(folder, axisPrompt(task, g), async () => checkAxisSource(preparation, await builds[id]()));
+                  if (g === 'left') await finishHead(folder, head, box, scale, task); else await finishAngleY(folder, preparation, g, scale);
+                  await checkDelivery(id); progress(`${id} 已完成，其他分支独立继续`);
+                },
+                async merge() {
+                  const mergedDirectory = join(output, 'merged');
+                  await rm(mergedDirectory, { recursive: true, force: true });
+                  const sources = Object.fromEntries(axisGroups.map(g => [g, join(output, g)])) as Record<AxisGroup, string>;
+                  const merged = await mergeAxes(mergedDirectory, preparation, sources, scale, task);
+                  await writeBuilt(output, merged);
+                  await copyFile(join(mergedDirectory, 'axis-sources.json'), join(output, 'axis-sources.json'));
+                  await copyFile(join(preparation, 'source.json'), join(output, 'source.json'));
+                },
+              }, { group, signal: options.signal });
+              if (!finished) return;
+            }
+            options.signal?.throwIfAborted();
+            await checkDelivery(`step04_angles/${b}`);
+            await completeStep(output);
+          }
+          await createStepDispatcher().run(async () => {
+            const ready = await Promise.all(selected.map(async b => {
+              if ((await readStep(join(angles, b))).status === 'completed') {
+                await checkDelivery(`step04_angles/${b}`);
+                return;
               }
-              options.signal?.throwIfAborted(); await checkDelivery(`step04_angles/${b}`); await completeStep(output);
-            },
+              return { id: b, run: () => runBranch(b) };
+            }));
+            return ready.filter((item): item is NonNullable<typeof item> => !!item);
           });
           summary = group ? `nine-axis/step04_angles/model/${group} 已完成` : 'nine-axis/step04_angles 已完成：单轴模型与斜角视频';
         };
@@ -504,12 +514,19 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           if (options.dryRun) return preview([...corners.map(c => outlinePrompt(task, c)), angleXYPrompt(task)].join('\n\n'));
           await writeLinearCorners(xyDirectory, modelDirectory, scale); builds[step.id] = () => buildAngleXY(xyDirectory, modelDirectory, scale);
           const injected = Boolean(dependencies.fitAngleXY);
-          const outlines = await Promise.allSettled(corners.map(async c => {
-            const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(cornerFrames, `${c}.png`)), `${step.id}/outline/${c}`, `描边 ${c}`, options.signal, directory)));
-            if (outline) { const o = join(xyDirectory, 'outline', c); await mkdir(o, { recursive: true }); await outline(o, outlinePrompt(task, c)); }
+          await runStepBatch(corners.map(c => {
+            const id = `${step.id}/outline/${c}`;
+            return {
+              id,
+              async run() {
+                const outline = dependencies.outlineHead ?? (injected ? undefined : (await preflight(), createOutlineHead(agents(), outlineTools(join(cornerFrames, `${c}.png`)), id, `描边 ${c}`, options.signal, directory)));
+                if (!outline) return;
+                const output = join(xyDirectory, 'outline', c);
+                await mkdir(output, { recursive: true });
+                await outline(output, outlinePrompt(task, c));
+              },
+            };
           }));
-          const failed = outlines.find(result => result.status === 'rejected');
-          if (failed?.status === 'rejected') throw failed.reason;
           const fit = dependencies.fitAngleXY ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '脸部与双耳斜向', options.signal, directory));
           await fit(xyDirectory, angleXYPrompt(task), async () => { await checkCornerReferences(xyDirectory, (await crop()).size, cornerFrames, cornerVideos); await builds[step.id](); });
           summary = `nine-axis/step06_angle-xy 已完成：${await finishAngleXY(xyDirectory, modelDirectory, scale, cornerFrames, cornerVideos)} 个原图层的斜向四角`;
