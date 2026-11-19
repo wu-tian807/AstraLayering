@@ -8,7 +8,7 @@ import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { sectionIds, type SectionId } from '../shared/paths.ts';
 import { checkKrita, type KritaInstallation } from '../shared/raster/krita.ts';
 import type { SectionResult } from './sections.ts';
-import { acquireTaskLock, configureRun, directoryFor, now, saveRun, selectedSections, type TaskOptions, type TaskRun } from './state.ts';
+import { acquireTaskLock, checkTaskOriginal, configureRun, directoryFor, now, readRun, saveRun, selectedSections, type TaskOptions, type TaskRun } from './state.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { sectionAgentSteps, preflightAgentSteps } from '../shared/agents/preflight.ts';
 import { clearTaskStop, watchTaskStop } from './control.ts';
@@ -133,6 +133,9 @@ export async function runTask(options: TaskOptions, dependencies: {
   };
   const progress = (message: string) => { if (message) log.write(message); };
   try {
+    const saved = await readRun(directory);
+    if (saved?.archive) throw new Error('这是导出的成果归档；请在原运行目录继续制作。');
+    await checkTaskOriginal(options, directory, saved);
     // Krita is checked before the run is recorded as running, and before the agent
     // preflight: it is quick, while that may build the patched Codex. A refusal
     // leaves run.json as it was.
