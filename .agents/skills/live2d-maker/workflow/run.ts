@@ -12,7 +12,7 @@ import { requestTaskStop } from './control.ts';
 import { preflightKrita } from './krita.ts';
 import { preflightFFmpeg } from './ffmpeg.ts';
 import { applyStepAction, applyTaskAction } from './step-actions.ts';
-import { taskLogName } from './log.ts';
+import { retryLogOpen, taskLogName } from './log.ts';
 import { preflightTaskInputs } from './preflight-inputs.ts';
 
 export const help = [
@@ -93,7 +93,7 @@ export function parseArguments(args: string[]) {
 export async function startBackground(options: TaskOptions): Promise<number> {
   const directory = directoryFor(options);
   await mkdir(directory, { recursive: true });
-  const log = await open(join(directory, taskLogName), 'a', 0o600);
+  const log = await retryLogOpen(() => open(join(directory, taskLogName), 'a', 0o600));
   const args = ['--background-worker', '--name', options.name];
   if (options.shadowMode !== undefined) args.push('--shadow-mode', options.shadowMode);
   if (options.standard !== undefined) args.push(options.standard ? '--standard' : '--no-standard');
@@ -125,7 +125,9 @@ export async function startBackground(options: TaskOptions): Promise<number> {
       });
       child.once('error', error => finish(error));
       child.once('exit', (code, signal) => {
-        if (!settled) void lastLog(directory).then(log => finish(failure ?? new Error('后台未启动 (code=' + code + ', signal=' + signal + ')\n' + log)));
+        if (settled) return;
+        if (failure) return finish(failure);
+        void lastLog(directory).then(log => finish(new Error('后台未启动 (code=' + code + ', signal=' + signal + ')\n' + log)), finish);
       });
     });
   } finally { await log.close(); }

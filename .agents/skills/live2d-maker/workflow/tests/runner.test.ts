@@ -93,8 +93,8 @@ test('状态原子替换对短暂占用重试，永久失败保留旧状态并�
 
 test('真实后台启动失败只写主日志，不另建 service.log', async t => {
   const f = await fixture(t);
-  // A Krita path that is not executable fails the light check.
-  await assert.rejects(startBackground({ ...f.options, krita: join(f.directory, 'reference.png'), from: 'raster-layering', to: 'raster-layering' }), /Krita|krita/);
+  // A missing Krita path fails the light check on every platform.
+  await assert.rejects(startBackground({ ...f.options, krita: join(f.directory, 'missing-krita'), from: 'raster-layering', to: 'raster-layering' }), /Krita|krita/);
   assert.match(await readFile(join(f.directory, 'workflow.log'), 'utf8'), /Krita|krita/);
   assert.equal((await readdir(f.directory)).includes('service.log'), false);
 });

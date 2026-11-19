@@ -53,6 +53,41 @@ function savedProjectionGeometry([x, y, width, height], caster) {
   return { geometry, samples };
 }
 
+// A paint overlay can share the underlying texture's filtering when both
+// meshes follow the same affine map. Check the rendered vertices, including
+// parent deformation and roll, so independent edits still use their own mesh.
+function samePaintTransform(base, overlay, positions, overlayPositions) {
+  const [x0, y0, x1, y1] = base.bbox, cols = base.cols * SUB, rows = base.rows * SUB;
+  const dx = [0, 1].map(k => (positions[3 * cols + k] - positions[k]) / (x1 - x0));
+  const dy = [0, 1].map(k => (positions[3 * rows * (cols + 1) + k] - positions[k]) / (y1 - y0));
+  const follows = (part, points) => {
+    const [left, top, right, bottom] = part.bbox, columns = part.cols * SUB, rows = part.rows * SUB;
+    for (let j = 0, i = 0; j <= rows; j++) {
+      const y = top + (bottom - top) * j / rows - y0;
+      for (let c = 0; c <= columns; c++, i += 3) {
+        const x = left + (right - left) * c / columns - x0;
+        for (let k = 0; k < 2; k++) if (Math.abs(points[i + k] - positions[k] - dx[k] * x - dy[k] * y) > 1 / 64) return false;
+      }
+    }
+    return true;
+  };
+  return follows(base, positions) && follows(overlay, overlayPositions);
+}
+
+const rasterPaint = (p, image) => !p.role && !p.shadow && !p.clip && p.material !== 'transparent' &&
+  p.textureBounds.every(Number.isSafeInteger) && p.textureBounds[2] === image.width && p.textureBounds[3] === image.height;
+const inside = ([x, y, w, h], [left, top, right, bottom]) => x >= left && y >= top && x + w <= right && y + h <= bottom;
+
+// Filter the composed paint, so partially covered pixels in an overlay and
+// its underlying paint don't turn into separate pale fringes on magnification.
+function composedPaint(base, overlay, map, overlayMap) {
+  const [x, y, w, h] = base.textureBounds, [ox, oy] = overlay.textureBounds;
+  const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(map.image, 0, 0);
+  ctx.drawImage(overlayMap.image, ox - x, oy - y);
+  return paintTexture(new THREE.CanvasTexture(canvas), true);
+}
 
 // Parts the workbench draws at a level: the level's parts minus hidden ones,
 // and a mask only when it is selected or shown (tinted).
@@ -66,13 +101,15 @@ export class HeadNineAxisRenderer {
   constructor(canvas, renderer) {
     this.renderer = renderer ?? new THREE.WebGLRenderer({ canvas, alpha: true, premultipliedAlpha: true, antialias: true });
     if (!renderer) this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1); this.meshes = new Map(); this.targets = new Map(); this.scene = null; this.doc = null;
+    this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1); this.meshes = new Map(); this.targets = new Map(); this.paintPairs = []; this.scene = null; this.doc = null;
   }
   clear() {
     this.setStaticLayers([]);
     this.xyPose = null;
     for (const m of this.meshes.values()) { m.geometry.dispose(); m.material.uniforms.map.value.dispose(); m.material.dispose(); }
     for (const t of this.targets.values()) t.dispose();
+    for (const pair of this.paintPairs) pair.texture?.dispose();
+    this.paintPairs = [];
     this.meshes = new Map(); this.targets.clear(); this.scene = null; this.doc = null; this.renderer.clear();
   }
   setStaticLayers(layers) {
@@ -116,6 +153,7 @@ export class HeadNineAxisRenderer {
       const m = paintMesh(g, t);
       m.renderOrder = order; m.userData.part = p; this.scene.add(m); this.meshes.set(p.id, m);
     });
+    this.paintPairs = doc.parts.slice(1).flatMap((overlay, i) => {
       const base = doc.parts[i], [x, y, w, h] = base.textureBounds;
       if (!rasterPaint(base, images[i]) || !rasterPaint(overlay, images[i + 1]) || base.parent !== overlay.parent ||
           !inside(overlay.textureBounds, [x, y, x + w, y + h]) ||
@@ -192,6 +230,23 @@ export class HeadNineAxisRenderer {
       u.clipMode.value = clip ? (clip.invert ? 2 : 1) : 0;
       if (clip) { u.clip.value = this.targets.get(clipKey(clip)).texture; u.res.value.copy(size); }
     }
-    this.renderer.render(this.scene, this.camera);
+    const combined = [];
+    for (const pair of this.paintPairs) {
+      const { base, overlay } = pair, a = this.meshes.get(base.id), b = this.meshes.get(overlay.id);
+      const au = a.material.uniforms, bu = b.material.uniforms;
+      if (!a.visible || !b.visible || au.dim.value !== 1 || bu.dim.value !== 1 ||
+          au.paintOpacity.value !== 1 || bu.paintOpacity.value !== 1 ||
+          this.staticLayers.some(layer => layer.visible && a.renderOrder < layer.renderOrder && layer.renderOrder < b.renderOrder) ||
+          !samePaintTransform(base, overlay, a.geometry.attributes.position.array, b.geometry.attributes.position.array)) continue;
+      const original = au.map.value;
+      pair.texture ??= composedPaint(base, overlay, original, bu.map.value);
+      au.map.value = pair.texture; b.visible = false;
+      combined.push({ uniform: au.map, original, overlay: b });
+    }
+    try {
+      this.renderer.render(this.scene, this.camera);
+    } finally {
+      for (const { uniform, original, overlay } of combined) { uniform.value = original; overlay.visible = true; }
+    }
   }
 }

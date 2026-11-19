@@ -1,11 +1,13 @@
-import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
-import { preparePrivateKrita } from '../.agents/skills/live2d-maker/shared/krita/private-environment.ts';
+import { SectionKrita } from '../.agents/skills/live2d-maker/shared/krita/section-krita.ts';
+import { nativeMaterialExport } from '../.agents/skills/live2d-maker/nine-axis/kra-materials.ts';
+import { kraContents, kraLayers } from '../.agents/skills/live2d-maker/shadow/delivery.ts';
+import { parseXml } from '../.agents/skills/live2d-maker/shared/xml.ts';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const { values } = parseArgs({ options: {
@@ -13,31 +15,40 @@ const { values } = parseArgs({ options: {
   case: { type: 'string' },
 } });
 const supportedCases = ['jianma', 'pink-doll', 'pink-elf', 'black-white-doll'];
-if (values.case && !supportedCases.includes(values.case)) throw new Error(`Unknown case: ${values.case}. Choose ${supportedCases.join(', ')}.`);
-const selectedCases = values.case ? [values.case] : supportedCases;
-const temporary = await mkdtemp(join(process.platform === 'darwin' ? '/tmp' : tmpdir(), 'astra-showcase-'));
+if (values.case && !supportedCases.includes(values.case)) throw Error(`Unknown case: ${values.case}. Choose ${supportedCases.join(', ')}.`);
+
+const temporary = await mkdtemp(join(tmpdir(), 'astra-showcase-'));
+const krita = new SectionKrita({ section: 'showcase', krita: values.krita! });
+const exportLayers = nativeMaterialExport(async () => krita);
 try {
-  const cases = await Promise.all(selectedCases.map(async name => {
+  const results = [];
+  for (const name of values.case ? [values.case] : supportedCases) {
     const relativeKra = `demos/${name}/character-assembly/step01/character-assembled.kra`;
-    const kra = join(root, relativeKra);
-    return { name, kra, relativeKra, output: join(root, '.web/showcase-layers', name),
-      sha256: createHash('sha256').update(await readFile(kra)).digest('hex') };
-  }));
-  const job = join(temporary, 'job.json');
-  await writeFile(job, JSON.stringify({ cases }));
-  const prepared = await preparePrivateKrita(temporary, 'astra_showcase', join(root, 'scripts/export-showcase-layers.py'), process.env);
-  const env = { ...prepared.env, ASTRA_SHOWCASE_JOB: job, QT_QPA_PLATFORM: process.platform === 'darwin' ? 'cocoa' : 'offscreen' };
-  await new Promise<void>((resolve, reject) => {
-    const child = spawn(values.krita!, ['--nosplash', '--resource-location', prepared.resource],
-      { cwd: temporary, env, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
-    let log = '';
-    child.stdout.on('data', data => { log = (log + data).slice(-12000); });
-    child.stderr.on('data', data => { log = (log + data).slice(-12000); });
-    const timer = setTimeout(() => { child.kill('SIGTERM'); reject(new Error('Krita export timed out\n' + log)); }, 90_000);
-    child.once('error', error => { clearTimeout(timer); reject(error); });
-    child.once('exit', code => { clearTimeout(timer); code === 0 ? resolve() : reject(new Error(`Krita export exited ${code}\n${log}`)); });
-  });
-  const result = JSON.parse(await readFile(join(temporary, 'job.result.json'), 'utf8'));
-  if (result.error) throw new Error(result.error);
-  console.log(JSON.stringify(result, null, 2));
-} finally { await rm(temporary, { recursive: true, force: true }); }
+    const kra = join(root, relativeKra), source = await readFile(kra);
+    const { xml } = kraContents(source), layers = kraLayers(xml);
+    const image = parseXml(xml).getElementsByTagName('IMAGE')[0];
+    const canvas = [Number(image?.getAttribute('width')), Number(image?.getAttribute('height'))];
+    if (canvas.some(size => !size)) throw Error('Could not read KRA canvas: ' + name);
+    const rows = [...layers].reverse().filter(([, layer]) => layer.nodetype === 'paintlayer')
+      .map(([uuid, layer], index) => ({ id: layer.name, uuid, texture: `layers/${String(index).padStart(3, '0')}.png` }));
+    const staging = join(temporary, name), output = join(root, '.web/showcase-layers', name);
+    await mkdir(join(staging, 'layers'), { recursive: true });
+    const exported = await exportLayers(kra, staging, rows, []);
+    if (!(await readFile(kra)).equals(source)) throw Error('Source KRA changed during export: ' + name);
+    await mkdir(join(output, 'layers'), { recursive: true });
+    const records = [];
+    for (const row of exported) {
+      const layer = layers.get(row.uuid!)!, [x, y] = row.bounds;
+      await copyFile(join(staging, row.texture), join(output, row.texture));
+      records.push({ id: row.uuid, name: row.id, opacity: Number(layer.opacity ?? 255),
+        blend: layer.compositeop ?? 'normal', visible: layer.visible !== '0', original: { file: row.texture, x, y } });
+    }
+    await writeFile(join(output, 'layers.json'), JSON.stringify({ canvas, order: 'back-to-front', sourceKra: relativeKra,
+      sourceSha256: createHash('sha256').update(source).digest('hex'), layers: records }, null, 2) + '\n');
+    results.push({ name, layers: records.length });
+  }
+  console.log(JSON.stringify({ cases: results }, null, 2));
+} finally {
+  await krita.release();
+  await rm(temporary, { recursive: true, force: true });
+}
