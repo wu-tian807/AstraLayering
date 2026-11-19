@@ -99,6 +99,39 @@ test('真实后台启动失败只写主日志，不另建 service.log', async t 
   assert.equal((await readdir(f.directory)).includes('service.log'), false);
 });
 
+test('总调度检查新原图与已保存原图，超限时写入启动错误', async t => {
+  const f = await fixture(t);
+  const large = await sharp({ create: { width: 3000, height: 3000, channels: 3, background: '#cbbbaa' } }).png().toBuffer();
+  await writeFile(join(f.directory, 'reference.png'), large);
+  await assert.rejects(runTask({ ...f.options, image: 'reference.png' }, {
+    preflight, execute: async () => assert.fail('超限原图不应开始制作'),
+  }), /3000×3000.*2880×2880/);
+  assert.equal(await readRun(f.directory), undefined);
+  const original = join(f.directory, 'input/original.png');
+  await assert.rejects(readFile(original), { code: 'ENOENT' });
+
+  await mkdir(join(f.directory, 'input'));
+  await writeFile(original, large);
+  await assert.rejects(runTask(f.options, {
+    preflight, execute: async () => assert.fail('超限原图不应开始制作'),
+  }), /3000×3000/);
+  assert.deepEqual(await readFile(original), large);
+  assert.match(await readFile(join(f.directory, 'workflow.log'), 'utf8'), /3000×3000/);
+});
+
+test('总调度接受同时达到最长边和总像素上限的原图', async t => {
+  const f = await fixture(t);
+  const boundary = await sharp({ create: { width: 2160, height: 3840, channels: 3, background: '#cbbbaa' } }).png().toBuffer();
+  await writeFile(join(f.directory, 'reference.png'), boundary);
+  const calls: SectionId[] = [];
+  const run = await runTask({ ...f.options, image: 'reference.png', from: 'part-layering', to: 'part-layering' }, {
+    execute: async section => { calls.push(section); return { summary: 'done' }; },
+  });
+  assert.equal(run.status, 'completed');
+  assert.deepEqual(calls, ['part-layering']);
+  assert.deepEqual(await readFile(join(f.directory, 'input/original.png')), boundary);
+});
+
 test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 恢复', async t => {
   const f = await fixture(t), first: SectionId[] = [], second: SectionId[] = [];
   await runTask({ ...f.options, image: 'reference.png', jobs: 2, standard: true }, { preflight, execute: async (id, run) => {
