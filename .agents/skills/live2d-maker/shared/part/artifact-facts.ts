@@ -4,6 +4,7 @@ import { basename, dirname, join } from 'node:path';
 import type { ReviewedSvgArtifact } from './layering-types.ts';
 import { groupDepth, groupStepId, layerStepId } from './part-steps.ts';
 import { svgSource } from '../xml.ts';
+import { nextReviewAction, type ReviewProgress } from '../review-schedule.ts';
 
 export const svgHash = (bytes: Buffer | string): string => createHash('sha256')
   .update(bytes.toString().replace(/\r\n/g, '\n')).digest('hex');
@@ -57,6 +58,7 @@ export type Review = {
   updatedAt: string; repairedCandidateHash?: string;
 };
 export type ReviewReport = { groupId: string; reviews: Review[] };
+export const maxOutlineReviews = 2;
 export async function readReviewReport(path: string, id: string): Promise<ReviewReport> {
   const value = await readJson(path) ?? { groupId: id, reviews: [] };
   if (value.groupId !== id || !Array.isArray(value.reviews) || value.reviews.some((review: Review) =>
@@ -69,10 +71,23 @@ export async function readReviewReport(path: string, id: string): Promise<Review
 }
 // Failed inspections remain in the audit trail without consuming quality review rounds.
 export const completedReviewCount = (report: ReviewReport): number => report.reviews.filter(review => review.verdict !== 'blocked').length;
-export function reviewedArtifact(bytes: Buffer, path: string, report: ReviewReport): ReviewedSvgArtifact | undefined {
+
+export function outlineReviewProgress(report: ReviewReport, bytes?: Buffer): ReviewProgress {
+  const completedReviews = completedReviewCount(report);
   const last = report.reviews.at(-1);
-  if (last?.verdict === 'pass' && matchesHash(bytes, last.candidateHash)) return { path, reviewOutcome: 'pass' };
-  if (completedReviewCount(report) >= 2 && last?.verdict === 'revise' && matchesHash(bytes, last.repairedCandidateHash)) {
-    return { path, reviewOutcome: 'repaired', note: `已按第 ${completedReviewCount(report)} 轮意见返修并自检，不再复审` };
+  if (bytes && last?.verdict === 'pass' && matchesHash(bytes, last.candidateHash)) {
+    return { completedReviews, verdict: 'pass' };
   }
+  if (bytes && last?.verdict === 'revise') {
+    return { completedReviews, verdict: 'revise', repaired: matchesHash(bytes, last.repairedCandidateHash) };
+  }
+  return { completedReviews };
+}
+
+export function reviewedArtifact(bytes: Buffer, path: string, report: ReviewReport): ReviewedSvgArtifact | undefined {
+  const progress = outlineReviewProgress(report, bytes);
+  const action = nextReviewAction(progress, maxOutlineReviews);
+  if (action.kind !== 'done') return;
+  if (action.outcome === 'pass') return { path, reviewOutcome: 'pass' };
+  return { path, reviewOutcome: 'repaired', note: `已按第 ${progress.completedReviews} 轮意见返修并自检，不再复审` };
 }

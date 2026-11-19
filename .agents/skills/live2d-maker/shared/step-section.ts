@@ -1,6 +1,6 @@
 import { rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import { beginStep, completeStep, readStep, type ChainStep, type StepStatus } from './step-chain.ts';
+import { readStep, runStep, type ChainStep, type StepStatus } from './step-chain.ts';
 import { stepName } from './step-paths.js';
 
 // A section is one part of the pipeline: a directory of steps stepNN or
@@ -71,15 +71,13 @@ export async function runSection(run: SectionRun): Promise<SectionPlan> {
     }
     if (status === 'completed') throw new Error(`${step.id} 已完成，不能重跑`);
     if (run.dryRun) { await work(); continue; }
-    await beginStep(step.directory, status);
-    await work();
-    run.signal?.throwIfAborted();
-    if (run.finished && !await run.finished(step)) {
-      plan.statuses.set(step.id, 'running');
-      break;
-    }
-    await completeStep(step.directory);
-    plan.statuses.set(step.id, 'completed');
+    const outcome = await runStep(step.directory, status, async () => {
+      await work();
+      run.signal?.throwIfAborted();
+      return run.finished?.(step);
+    });
+    plan.statuses.set(step.id, outcome);
+    if (outcome === 'running') break;
   }
   return plan;
 }

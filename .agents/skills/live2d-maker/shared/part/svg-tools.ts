@@ -63,7 +63,7 @@ async function svgDocument(path: string, canvas: Canvas) {
   return { bytes, text, root, elements: parsed.elements };
 }
 
-async function alpha(path: string, canvas: Canvas, scale = 1): Promise<Buffer> {
+export async function renderSvgAlpha(path: string, canvas: Canvas, scale = 1): Promise<Buffer> {
   const document = await svgDocument(path, canvas);
   const width = canvas.width * scale, height = canvas.height * scale;
   const bytes = scale === 1 ? document.bytes : Buffer.from(updateSvgRoot(document.text, { width: String(width), height: String(height) }));
@@ -77,7 +77,7 @@ async function alpha(path: string, canvas: Canvas, scale = 1): Promise<Buffer> {
 // 不扩张父范围、不按越界数量放行；任一个未覆盖采样达到阈值即失败。
 export async function checkParentBounds(path: string, parent: string, canvas: Canvas) {
   const [childMask, parentMask] = await Promise.all([
-    alpha(path, canvas, boundsScale), alpha(parent, canvas, boundsScale),
+    renderSvgAlpha(path, canvas, boundsScale), renderSvgAlpha(parent, canvas, boundsScale),
   ]);
   const width = canvas.width * boundsScale, height = canvas.height * boundsScale;
   let outsideSamples = 0, left = width, top = height, right = -1, bottom = -1;
@@ -103,7 +103,7 @@ export async function validateGroupSvg(path: string, id: string, canvas: Canvas,
         element.getAttribute('data-group-path') === id)) {
     throw new Error(`SVG 必须仅绑定当前组 data-group-path="${id}"，容器须有 id`);
   }
-  const mask = await alpha(path, canvas);
+  const mask = await renderSvgAlpha(path, canvas);
   if (!allowEmpty && !mask.some(value => value >= 128)) throw new Error('组 SVG 没有可见填色区域');
   if (parent) {
     const bounds = await checkParentBounds(path, parent, canvas);
@@ -170,7 +170,7 @@ export function createSvgPreviewTool(options: {
           if (!Array.isArray(referenceRegion) || referenceRegion.length !== 4 || referenceRegion.some(n => !Number.isSafeInteger(n) || n < 0) ||
             !referenceRegion[2] || !referenceRegion[3] || referenceRegion[0] + referenceRegion[2] > meta.autoOrient.width ||
             referenceRegion[1] + referenceRegion[3] > meta.autoOrient.height) throw new Error('referenceRegion 须为生成图内有效的 [x,y,width,height] 整数选框');
-          const mask = await alpha(source, options.canvas);
+          const mask = await renderSvgAlpha(source, options.canvas);
           let x0 = options.canvas.width, y0 = options.canvas.height, x1 = -1, y1 = -1;
           for (let i = 0; i < mask.length; i++) {
             if (mask[i] < alphaThreshold) continue;

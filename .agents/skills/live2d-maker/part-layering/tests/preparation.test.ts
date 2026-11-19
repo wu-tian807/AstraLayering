@@ -57,14 +57,6 @@ async function fixture(t: TestContext, needsSimplification: boolean, needsAdjust
   return { original, generated, runName, calls, steps, bytes };
 }
 
-test('独立人物分块拒绝超限的新原图，进入准备前不调用模型', async t => {
-  const f = await fixture(t, false);
-  await sharp({ create: { width: 3841, height: 1024, channels: 3, background: '#cbbbaa' } }).png().toFile(f.original);
-  await assert.rejects(prepareReferences({ runName: f.runName, image: f.original }, f.steps), /3841×1024/);
-  assert.equal(f.calls.length, 0);
-  await assert.rejects(readFile(join(taskDirectory(f.runName), 'input/original.png')), { code: 'ENOENT' });
-});
-
 test('无需简化仍执行换装，判断和换装各收到正确的两张图片', async t => {
   const f = await fixture(t, false);
   const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);

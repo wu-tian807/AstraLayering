@@ -27,7 +27,7 @@ pnpm clothing-raster-layering --name jianma --krita /path/to/krita --knowledge /
 
 ## 两步制作
 
-- **step01：分件生图、补全与拼装。** 根据 `../clothing-part-layering/parts/` 和深度表逐件制作 RGB 控制图，清掉生成输入中的遮挡物和其他部件，使用内置生图生成当前衣片。逐张检查、必要时重生，在 Krita 中配准、收边和修画，保存 `clothing-depth.kra` 与 `report.md`，再由独立 reviewer 检查轮廓、画风与补绘衔接，反馈交回绘制会话。
+- **step01：分件生图、补全与拼装。** 调用 `prepare_part_reference` 取得衣片的颜色参考和三色控制图，再用 `imagegen` 绘制。逐张检查，在 Krita 中配准、收边和修画，保存 `clothing-depth.kra` 与 `report.md`，再由独立 reviewer 检查轮廓、画风与补绘衔接，反馈交回绘制会话。
 - **step02：边缘精修。** 将第一步工程另存为 `clothing-soft-edges.kra`，逐层处理锯齿、残色、过硬线条和补全接缝；保持画布、结构、名称、深度、薄纱透明度与开口。完成自检后交付，不另跑 reviewer。
 
 纯衣服参考 `../clothing-part-layering/references/clothing.png` 是绘画标准，原穿衣角色用于理解穿插关系。单深度衣片对应一个完整绘画层，多深度 part 对应多个保持共同归属与连续性的绘画分片层，按深度排列，无蒙版、无子节点。已经拆开的前后衣片保留独立图层，即使共同运动也不合并。交付衣服分层，不制作身体装配或身体插层说明。

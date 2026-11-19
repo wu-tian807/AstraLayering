@@ -52,3 +52,12 @@ export async function beginStep(directory: string, status: StepStatus): Promise<
 export async function completeStep(directory: string): Promise<void> {
   await rename(join(directory, '.running'), join(directory, '.completed'));
 }
+
+// A false result keeps the step open with its saved progress.
+export async function runStep(directory: string, status: StepStatus,
+  work: () => Promise<void | boolean>): Promise<'running' | 'completed'> {
+  await beginStep(directory, status);
+  if (await work() === false) return 'running';
+  await completeStep(directory);
+  return 'completed';
+}

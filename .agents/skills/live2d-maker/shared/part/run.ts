@@ -5,7 +5,7 @@ import { parseArgs } from 'node:util';
 import { AgentDispatcher, type AgentOptions } from '../agents/dispatcher.ts';
 import { defaultAgentConcurrency } from '../agents/runtime.ts';
 import { nodeKind, normalizeGroups, walkGroups } from './groups.ts';
-import { GroupExecutionError, runLayering } from './layering.ts';
+import { GroupExecutionError, runLayering, validateLayeringDepth } from './layering.ts';
 import { createLayeringSteps } from './layering-steps.ts';
 import { groupStages, type GroupInput, type GroupNode, type LayeringResult, type LayeringSteps, type SvgMerger } from './layering-types.ts';
 import type { PreparationInput, PreparationReferences } from './preparation-types.ts';
@@ -16,7 +16,6 @@ import { requireCurrentLayout } from '../../workflow/layout.ts';
 import { toolCatalog } from '../codex/tool-config.ts';
 import { sectionAgentSteps, preflightAgentSteps } from '../agents/preflight.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
-import { validateWorkflowOptions } from './workflow.ts';
 import type { ImageProcessingOptions } from '../image-processing.ts';
 export type PartSection = {
   profile: PartProfile; imageHelp: string; preparationHelp: string;
@@ -32,7 +31,7 @@ export async function runPartSection(
   section: PartSection, input: PartInput, adapters: PartAdapters = {},
   agentOptions: AgentOptions = {},
 ): Promise<{ references: PreparationReferences; layering: LayeringResult }> {
-  validateWorkflowOptions({ maxDepth: input.maxDepth });
+  validateLayeringDepth(input.maxDepth);
   if (section.profile.id === 'clothing-part-layering' && input.reference.image !== undefined) {
     throw new Error(`衣服 part 按 --name 读取上游，不接受 --image。请将简化穿衣角色图放到 ${join(sectionDirectory(input.reference.runName, 'part-layering', input.reference.dir), 'references/simplified-subject.png')}，或先执行同名 part-layering。`);
   }

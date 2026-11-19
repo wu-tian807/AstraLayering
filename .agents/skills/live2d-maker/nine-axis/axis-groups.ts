@@ -1,6 +1,6 @@
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
+import { createStepDispatcher, type StepInstance } from '../shared/step-dispatch.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { readUpstream, startContinuation } from './continuation.ts';
 import { angleScale, type AngleScale } from './angles.ts';
@@ -26,37 +26,44 @@ export async function seedAxis(directory: string, neutral: string, group: AxisGr
 }
 
 export async function runAxisGroups(directory: string, hooks: {
-  prepare(): Promise<void>;
+  prepare?(): Promise<void>;
   run(group: AxisGroup, directory: string): Promise<void>;
   seed?(group: AxisGroup, directory: string): Promise<void>;
   keep?(group: AxisGroup, directory: string): Promise<void>;
+  merge?(): Promise<void>;
 }, options: { group?: AxisGroup; groups?: readonly AxisGroup[]; signal?: AbortSignal } = {}) {
   const groups = options.groups ?? axisGroups;
   const selected = options.group ? [options.group] : groups;
   if (selected.some(group => !groups.includes(group))) throw Error('未定义的单轴分支');
-  await runGroups([...selected], {
-    preparation: hooks.prepare,
-    async initialize() {},
-    async ready() {
-      options.signal?.throwIfAborted();
-      const ready = [];
-      for (const group of selected) {
-        const output = join(directory, group);
-        if ((await readStep(output)).status === 'completed') await hooks.keep?.(group, output);
-        else ready.push({ id: group, group, depth: 0 });
+  await hooks.prepare?.();
+  const outcome = await createStepDispatcher().runAndJoin(async () => {
+    options.signal?.throwIfAborted();
+    const ready: StepInstance[] = [];
+    for (const group of selected) {
+      const output = join(directory, group);
+      if ((await readStep(output)).status === 'completed') {
+        await hooks.keep?.(group, output);
+        continue;
       }
-      return ready;
-    },
-    async runRound(group) {
-      const output = join(directory, group), { status } = await readStep(output);
-      await beginStep(output, status);
-      if (status !== 'running') await hooks.seed?.(group, output);
-      await hooks.run(group, output);
-      options.signal?.throwIfAborted();
-      await completeStep(output);
-    },
+      ready.push({
+        id: group,
+        async run() {
+          const { status } = await readStep(output);
+          await beginStep(output, status);
+          if (status !== 'running') await hooks.seed?.(group, output);
+          await hooks.run(group, output);
+          options.signal?.throwIfAborted();
+          await completeStep(output);
+        },
+      });
+    }
+    return ready;
+  }, {
+    members: groups,
+    completed: async group => (await readStep(join(directory, group))).status === 'completed',
+    run: async () => { await hooks.merge?.(); },
   });
-  return (await Promise.all(groups.map(async group => (await readStep(join(directory, group))).status === 'completed'))).every(Boolean);
+  return outcome === 'completed';
 }
 
 // Source layer geometry and pixels are shared; fitting may freely choose

@@ -1,5 +1,5 @@
 import type { SectionId } from '../paths.ts';
-import { isPartLayeringInput, resolvePartInput, type PartLayeringInput } from './input.ts';
+import { isPartLayeringInput, partReferenceFile, resolvePartInput, type PartLayeringInput } from './input.ts';
 import { buildPrompt, type StepDefinition } from './steps.ts';
 import type { KritaSection } from './workflow.ts';
 import { dirname, join } from 'node:path';
@@ -9,6 +9,7 @@ import { createStructureTools, validateRasterStructure } from './structure-tools
 import { readDressup } from '../part/dressup.ts';
 import { copyDelivery } from './passthrough.ts';
 import { partSteps } from '../step-paths.js';
+import { createPartReferenceTool } from '../tools/prepare_part_reference/index.ts';
 
 type PartRasterDefinition = {
   id: Extract<SectionId, 'raster-layering' | 'clothing-raster-layering'>;
@@ -28,7 +29,8 @@ export function partRasterSection<T extends PartRasterDefinition>(definition: T)
     tools: (output, input, step, phase) => step.id === 'step01' && phase.startsWith('review-')
       ? [createReviewAnnotationTool(dirname(output), dirname(dirname(output)), join(output, 'review-evidence'))]
       : step.id === 'step01' && (phase === 'draw' || phase.startsWith('repair-'))
-        ? createStructureTools(input) : [],
+        ? [...createStructureTools(input), createPartReferenceTool(input,
+          join(input.directory, partReferenceFile(definition.inputSection)))] : [],
     deliveryWarnings: async (input, step) => {
       if (step.id !== 'step01') return [];
       try { await validateRasterStructure(input); return []; }
