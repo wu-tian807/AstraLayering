@@ -176,7 +176,7 @@ Codex 的自定义生图请求通过[原生补丁](../patches/README.md)接入�
 
 Claude／AGV 注册与 Codex 原生工具同名的共享 `imagegen` 函数工具，其 [description.md](../knowledge/shared/tools/imagegen/description.md) 与 [schema.json](../shared/tools/imagegen/schema.json) 保持统一；Codex 使用原生工具定义。两条路径共用底层接口实现，绘图任务与验收要求由各管线自己的提示词约定。
 
-人物和衣服 Raster Step01 使用 1024 × 1024 部件参考图，部件最长边约占 85%。自定义 API 默认请求 1K 方图，`codex-native` 的返回尺寸由宿主决定。配准时按实际生图尺寸等比贴回原画布。
+人物和衣服 Raster Step01 的部件参考图长边为 1024 像素，画幅跟随部件比例，部件最长边约占 85%。生图自动选画幅，配准时按实际生图尺寸等比贴回原画布。
 
 参考图按顺序传入，生成结果保存在任务请求目录。共享函数工具返回 `hasAlpha`，原生工具路径也检查实际 PNG 的透明通道，并结合看图验收。
 

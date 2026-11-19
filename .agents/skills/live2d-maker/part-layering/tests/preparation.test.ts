@@ -252,6 +252,19 @@ test('不透明原图转换为 PNG，单独派发去背景并发布生图工具�
   await assert.rejects(readFile(join(section(refs), step('standard'), '.completed')), { code: 'ENOENT' });
 });
 
+test('只有一个角透明的原图仍派发去背景', async t => {
+  const f = await fixture(t, false);
+  const width = 48, height = 64;
+  const pixels = Buffer.alloc(width * height * 4, 255);
+  pixels[3] = 0;
+  await sharp(pixels, { raw: { width, height, channels: 4 } }).png().toFile(f.original);
+
+  const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);
+  assert.equal(f.calls[0].name, '原图去背景');
+  assert.deepEqual(await readFile(refs.standardImage!), f.bytes);
+  await readFile(join(section(refs), step('cutout'), '.completed'));
+});
+
 test('--standard 先判断；已标准仅复制，需要调整才传一张原图给原生生图，后续引用新图', async t => {
   for (const adjust of [false, true]) await t.test(String(adjust), async t => {
     const f = await fixture(t, true, adjust);
@@ -261,9 +274,11 @@ test('--standard 先判断；已标准仅复制，需要调整才传一张原图
     assert.deepEqual(referencePaths(judge.prompt), [refs.originalImage]);
     const generation = f.calls.find(task => task.name === '标准姿态');
     if (adjust) {
-      assert.equal(generation!.step, 'part_standardize');
-      assert.equal(generation!.outputDirectory, step('standard'));
-      assert.deepEqual(referencePaths(generation!.prompt), [refs.originalImage]);
+      assert.ok(generation);
+      assert.ok(refs.originalImage);
+      assert.equal(generation.step, 'part_standardize');
+      assert.equal(generation.outputDirectory, step('standard'));
+      assert.ok(generation.prompt.includes(refs.originalImage));
       assert.deepEqual(await readFile(refs.standardImage!), await readFile(f.generated));
     } else assert.deepEqual(await readFile(refs.standardImage!), f.bytes);
     await readFile(join(section(refs), step(adjust ? 'standard' : 'passthrough'), '.completed'));

@@ -11,7 +11,6 @@ import type { ImageProcessingOptions } from '../image-processing.ts';
 import { recommendBackground, type BackgroundRecommendation } from './background-selection.ts';
 import { imagePath } from '../task-paths.ts';
 import { agentImageGeneration } from '../agent-knowledge.ts';
-import { rasterPartImageSize, rasterPartImageSteps } from '../raster/part-image-size.ts';
 
 export function validateImageSelection(settings: WorkflowEnvironment, step: AgentStep): void {
   if (!agentImageGeneration(step)) return;
@@ -53,7 +52,7 @@ export function imageGenerationTool(settings: WorkflowEnvironment, step: AgentSt
         inputs.push({ bytes, mime: meta.format === 'jpeg' ? 'image/jpeg' : meta.format === 'webp' ? 'image/webp' : 'image/png' });
       }
       const png = await generateImage(api, model, step === 'shadow_maps' ? { ...args, background: 'opaque' } as ImageArguments : args as ImageArguments, inputs, signal,
-        { ...normalization, env: normalization.env ?? settings.codex.env, directory: output, step });
+        { ...normalization, env: normalization.env ?? settings.codex.env, directory: output });
       const meta = await sharp(png).metadata();
       await mkdir(dirname(savedPath), { recursive: true });
       await writeFile(savedPath, png, { mode: 0o600 });
@@ -68,9 +67,8 @@ export type ImageArguments = { prompt: string; background?: 'transparent' | 'aut
 
 // The native Codex route and registered tools share the same provider transport.
 export async function generateImage(api: ImageApi, model: ImageModel, args: ImageArguments,
-  inputs: ImageInput[], signal: AbortSignal, processing?: ImageProcessingOptions & { directory: string; step?: AgentStep }): Promise<Buffer> {
-  const original = processing?.step && rasterPartImageSteps.has(processing.step) && (!args.size || args.size === 'auto')
-    ? { ...args, size: rasterPartImageSize } : args;
+  inputs: ImageInput[], signal: AbortSignal, processing?: ImageProcessingOptions & { directory: string }): Promise<Buffer> {
+  const original = args;
   const solidBackground = needsSolidBackground(model, original, api.provider);
   let selection: BackgroundRecommendation | undefined;
   if (solidBackground) {
@@ -138,11 +136,7 @@ async function attemptImage(api: ImageApi, model: ImageModel, args: ImageArgumen
     headers = { 'content-type': 'application/json', 'x-goog-api-key': api.apiKey };
     body = JSON.stringify({ contents: [{ role: 'user', parts: [
       { text: args.prompt }, ...inputs.map(i => ({ inlineData: { mimeType: i.mime, data: i.bytes.toString('base64') } })),
-    ] }], generationConfig: {
-      responseModalities: ['TEXT', 'IMAGE'],
-      // The Gemini API defaults to the 1K tier, including models that only support that tier.
-      ...(args.size === rasterPartImageSize ? { imageConfig: { aspectRatio: '1:1' } } : {}),
-    } });
+    ] }], generationConfig: { responseModalities: ['TEXT', 'IMAGE'] } });
   } else if (inputs.length) {
     url = `${base}/images/edits`; headers = { authorization: `Bearer ${api.apiKey}` };
     const form = new FormData(); form.set('model', model); form.set('prompt', args.prompt); form.set('n', '1');

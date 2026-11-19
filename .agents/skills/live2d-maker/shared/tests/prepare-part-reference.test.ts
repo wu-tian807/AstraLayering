@@ -33,36 +33,39 @@ test('prepares an aligned pair from the reduced visible SVG and the completed SV
     const result = await tool.execute({ part_id, output_dir }, signal);
     const item = result.contentItems[0];
     assert.equal(item.type, 'inputText');
-    return JSON.parse(item.text) as { referencePath: string; controlPath: string; crop: number[]; placement: number[] };
+    return JSON.parse(item.text) as { referencePath: string; controlPath: string; canvas: number[]; crop: number[]; placement: number[] };
   };
-  async function sample(path: string, points: [number, number][]) {
+  async function sample(path: string, canvas: [number, number], points: [number, number][]) {
     const { data, info } = await sharp(path).raw().toBuffer({ resolveWithObject: true });
-    assert.deepEqual([info.width, info.height], [1024, 1024]);
+    assert.deepEqual([info.width, info.height], canvas);
     return points.map(([x, y]) => {
       const i = (y * info.width + x) * info.channels;
       return [...data.subarray(i, i + 3)];
     });
   }
-  const points: [number, number][] = [[60, 240], [140, 240], [423, 240]];
+  const canvas: [number, number] = [1024, 768];
+  const points: [number, number][] = [[60, 100], [140, 100], [423, 100]];
   const visibleDirectory = join(root, 'workspace', 'back');
   const result = await prepare(id, visibleDirectory);
   assert.equal(result.referencePath, join(visibleDirectory, 'reference.png'));
   assert.equal(result.controlPath, join(visibleDirectory, 'control.png'));
+  assert.deepEqual(result.canvas, canvas);
   assert.deepEqual(result.crop, [0, 12, 80, 60]);
-  assert.deepEqual(result.placement, [77, 185, 870, 653]);
-  assert.deepEqual(await sample(result.controlPath, points), [[0, 255, 0], [255, 0, 0], [255, 255, 0]]);
-  assert.deepEqual(await sample(result.referencePath, points), [[128, 128, 128], [60, 90, 180], [128, 128, 128]]);
+  assert.deepEqual(result.placement, [77, 57, 870, 653]);
+  assert.deepEqual(await sample(result.controlPath, canvas, points), [[0, 255, 0], [255, 0, 0], [255, 255, 0]]);
+  assert.deepEqual(await sample(result.referencePath, canvas, points), [[128, 128, 128], [60, 90, 180], [128, 128, 128]]);
 
   const custom = join(root, 'workspace', 'hidden');
   const hidden = await prepare('hair/hidden', custom);
   assert.equal(hidden.referencePath, join(custom, 'reference.png'));
   assert.equal(hidden.controlPath, join(custom, 'control.png'));
-  assert.deepEqual(await sample(hidden.controlPath, points), [[0, 255, 0], [255, 255, 0], [255, 255, 0]]);
-  assert.deepEqual(await sample(hidden.referencePath, points), Array.from({ length: 3 }, () => [128, 128, 128]));
+  assert.deepEqual(await sample(hidden.controlPath, canvas, points), [[0, 255, 0], [255, 255, 0], [255, 255, 0]]);
+  assert.deepEqual(await sample(hidden.referencePath, canvas, points), Array.from({ length: 3 }, () => [128, 128, 128]));
   const tiny = await prepare('hair/tiny', join(root, 'workspace', 'tiny'));
   assert.deepEqual(tiny.crop, [0, 12, 3, 1]);
-  assert.deepEqual(tiny.placement, [77, 367, 870, 290]);
-  assert.deepEqual(await sample(tiny.controlPath, [[77, 367], [946, 656], [76, 367], [77, 366]]),
+  assert.deepEqual(tiny.canvas, [1024, 341]);
+  assert.deepEqual(tiny.placement, [77, 25, 870, 290]);
+  assert.deepEqual(await sample(tiny.controlPath, [1024, 341], [[77, 25], [946, 314], [76, 25], [77, 24]]),
     [[255, 255, 0], [255, 255, 0], [0, 255, 0], [0, 255, 0]]);
   await assert.rejects(tool.execute({ part_id: 'hair', output_dir: custom }, signal), /终止部件/);
   await assert.rejects(tool.execute({ part_id: id }, signal), /output_dir/);

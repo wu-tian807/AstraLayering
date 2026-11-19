@@ -57,8 +57,14 @@ export async function hasTransparentBackground(path: string): Promise<boolean> {
   const metadata = await sharp(path).metadata();
   if (metadata.format !== 'png' || !metadata.hasAlpha) return false;
   const { data, info: { width, height } } = await sharp(path).extractChannel('alpha').raw().toBuffer({ resolveWithObject: true });
-  return data.some((alpha, pixel) => alpha <= 8 && (pixel < width || pixel >= (height - 1) * width
-    || pixel % width === 0 || pixel % width === width - 1)) && data.some(alpha => alpha > 8);
+  const bottom = (height - 1) * width;
+  for (let x = 0; x < width; x++) {
+    if (data[x] > 8 || data[bottom + x] > 8) return false;
+  }
+  for (let y = 1; y < height - 1; y++) {
+    if (data[y * width] > 8 || data[(y + 1) * width - 1] > 8) return false;
+  }
+  return data.some(alpha => alpha > 8);
 }
 
 // Each step's output stays at its existing reference path; the options and

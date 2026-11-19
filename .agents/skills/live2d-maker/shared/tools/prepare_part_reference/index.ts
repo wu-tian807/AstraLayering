@@ -7,9 +7,9 @@ import { artifactPath, readJson } from '../../part/artifact-facts.ts';
 import { normalizeGroups, walkGroups, writeAtomic } from '../../part/groups.ts';
 import { renderSvgAlpha, renderSvgCropAlpha, type Canvas } from '../../part/svg-tools.ts';
 import type { PartLayeringInput } from '../../raster/input.ts';
-import { rasterPartImageEdge } from '../../raster/part-image-size.ts';
 import { imagePath } from '../../task-paths.ts';
 
+const referenceEdge = 1024;
 const targetOccupancy = 0.85;
 const visibleColor = [255, 0, 0];
 const completionColor = [255, 255, 0];
@@ -28,11 +28,9 @@ function partCrop(mask: Buffer, { width, height }: Canvas, id: string) {
   return { left, top, width: right - left + 1, height: bottom - top + 1 };
 }
 
-function partPlacement(crop: Canvas) {
-  const scale = rasterPartImageEdge * targetOccupancy / Math.max(crop.width, crop.height);
-  const width = Math.max(1, Math.round(crop.width * scale));
-  const height = Math.max(1, Math.round(crop.height * scale));
-  return { left: Math.floor((rasterPartImageEdge - width) / 2), top: Math.floor((rasterPartImageEdge - height) / 2), width, height };
+function scaleToLongEdge({ width, height }: Canvas, longEdge: number): Canvas {
+  const scale = longEdge / Math.max(width, height);
+  return { width: Math.max(1, Math.round(width * scale)), height: Math.max(1, Math.round(height * scale)) };
 }
 
 async function visibleOutline(directory: string, id: string) {
@@ -63,7 +61,7 @@ export function createPartReferenceTool(input: PartLayeringInput, sourceImage: s
       const { autoOrient: canvas } = await source.metadata();
       const completed = join(input.parts, `${id}.svg`);
       const crop = partCrop(await renderSvgAlpha(completed, canvas), canvas, id);
-      const sample = partPlacement(crop);
+      const sample = scaleToLongEdge(crop, referenceEdge * targetOccupancy);
       const { width, height } = sample;
       const outline = part.hiddenInReference ? undefined : await visibleOutline(input.directory, id);
       const [full, visible, pixels] = await Promise.all([
@@ -77,7 +75,13 @@ export function createPartReferenceTool(input: PartLayeringInput, sourceImage: s
       // Use the enlarged SVG bounds so a subpixel edge in a tiny part does not
       // count as a whole source pixel of content when laying out the 1K image.
       const bounds = partCrop(full, sample, id);
-      const placement = partPlacement(bounds);
+      const scaleX = crop.width / width, scaleY = crop.height / height;
+      const onSource = { left: crop.left + bounds.left * scaleX, top: crop.top + bounds.top * scaleY,
+        width: bounds.width * scaleX, height: bounds.height * scaleY };
+      const referenceCanvas = scaleToLongEdge(onSource, referenceEdge);
+      const placement = scaleToLongEdge(onSource, referenceEdge * targetOccupancy);
+      const left = Math.floor((referenceCanvas.width - placement.width) / 2);
+      const top = Math.floor((referenceCanvas.height - placement.height) / 2);
       const shape = Buffer.alloc(width * height * 3, outsideColor);
       const reference = Buffer.alloc(shape.length, neutralGray);
       for (let pos = 0; pos < full.length; pos++) {
@@ -92,9 +96,8 @@ export function createPartReferenceTool(input: PartLayeringInput, sourceImage: s
       }
 
       const raw = { width, height, channels: 3 as const };
-      const border = { left: placement.left, top: placement.top,
-        right: rasterPartImageEdge - placement.left - placement.width,
-        bottom: rasterPartImageEdge - placement.top - placement.height };
+      const border = { left, top, right: referenceCanvas.width - left - placement.width,
+        bottom: referenceCanvas.height - top - placement.height };
       const frame = (pixels: Buffer, background: string) => sharp(pixels, { raw }).extract(bounds)
         .resize(placement.width, placement.height, { fit: 'fill', kernel: 'nearest' })
         .extend({ ...border, background }).png().toBuffer();
@@ -104,10 +107,10 @@ export function createPartReferenceTool(input: PartLayeringInput, sourceImage: s
       signal.throwIfAborted();
       const referencePath = join(output, 'reference.png'), controlPath = join(output, 'control.png');
       await Promise.all([writeAtomic(referencePath, referencePng), writeAtomic(controlPath, controlPng)]);
-      const scaleX = crop.width / width, scaleY = crop.height / height;
       return textResult({ part_id: id, referencePath, controlPath,
-        crop: [crop.left + bounds.left * scaleX, crop.top + bounds.top * scaleY, bounds.width * scaleX, bounds.height * scaleY],
-        placement: [placement.left, placement.top, placement.width, placement.height] });
+        canvas: [referenceCanvas.width, referenceCanvas.height],
+        crop: [onSource.left, onSource.top, onSource.width, onSource.height],
+        placement: [left, top, placement.width, placement.height] });
     },
   };
 }

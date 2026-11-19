@@ -26,7 +26,7 @@ pnpm part-layering --name my-character --groups /绝对路径/selection.json --k
 | --- | --- |
 | `step04_standard` | 调整姿态时开启生图工具的透明背景选项。 |
 | `step04_cutout` | 无需调整姿态且原图背景不透明时，用生图工具去背景，尽量保留原画。 |
-| `step04_passthrough` | 无需调整姿态且原图已有透明背景时，原样复制。 |
+| `step04_passthrough` | 无需调整姿态且原图外圈完整透明时，原样复制。 |
 
 两个生图分支共用 `part_standardize_image_model`。GPT 走原生透明输出，Nano Banana 复用双背景差分。之后依次制作简化和素体参考，拆分从 `step08_initial` 接续。素体保留手套、鞋袜和各自饰件，主体衣装以临时连体服替换。
 
