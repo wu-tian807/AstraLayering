@@ -1,7 +1,5 @@
 {
   "groupId": "arms/arm_left",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "258e146e52aa489fb33d12d57629af02178b764960b9043fe59a746c57dc313b",
-  "afterHash": "e61e60e452adcdb43299e0e53bc15bfc7518fb114963da403d9c0aeda4651344"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

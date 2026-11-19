@@ -1,0 +1,33 @@
+{
+  "groupId": "image_right_shoulder_assembly/left_shoulder_strap",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮通过。纯衣服参考确认本 part 为画面右侧的窄肩带。整体及 6 倍局部叠加、边缘图覆盖完整带身（约 x=744–793、y=133–269），肩顶弧线、领口侧边、荷叶根连续接缝及白褶边遮挡处均与参考吻合。下端越过白褶边遮挡线的数像素为合理隐藏搭接，领口敞区保持开放。该肩带没有独立薄纱、开孔或分离附件。父完成 SVG 的 4 倍采样包含检查为 0 越界样本。note 已说明实体范围、两侧分界、与肩体和前垂发的前后关系、领口与荷叶根随动及隐藏搭接。无确定需修改项。",
+      "candidateHash": "25fc14337438990904283c585be671e96394f3cff1ca215b474b961545a562e3",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/previews/2026-11-18T11-14-58-262Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/previews/2026-11-18T11-14-58-262Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/previews/2026-11-18T11-14-58-262Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/parts/image_right_shoulder_assembly.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/children/left_shoulder_strap/previews/2026-11-18T11-14-58-262Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:18:25.205Z"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "groupId": "face/eyes/eye_right/eyelid_crease",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮。参考图画面左侧眼睛上方（约 x582–605、y184–190）可见独立浅棕色睑褶。左端渐细，随后向鼻侧下弯，清晰段止于刘海邻接处。褶线两侧外缘可辨，下缘与深色上睑之间保留一带肤色。候选 SVG 为空组，局部 blend 与 edge 均无覆盖。同一局部叠加右眼父稿后确认，父稿上边界沿深色上睑行进，浅棕褶线的整个可确认线宽均在父范围外，父内没有可描的露出段。当前组空轮廓通过；参考中可见褶线的缺漏来自上游父范围。",
+      "candidateHash": "2a2b988263a529b30e558061aec63a2dd429a72a147c76378e39c906eddbf86e",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/previews/2026-11-18T14-14-20-384Z-1.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/previews/2026-11-18T14-14-20-384Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/previews/2026-11-18T14-14-20-384Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/previews/2026-11-18T14-14-20-384Z-4.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/eyelid_crease/previews/2026-11-18T14-14-20-384Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:19:34.906Z"
+    }
+  ]
+}

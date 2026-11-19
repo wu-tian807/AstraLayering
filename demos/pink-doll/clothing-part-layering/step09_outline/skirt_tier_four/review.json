@@ -1,0 +1,38 @@
+{
+  "groupId": "skirt_tier_four",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮。独立查看纯衣服参考后，确认本组是第三道裙摆下缘至最底部波浪摆缘之间的连续第四层裙片。整图叠加核对了位置、宽度及外展比例，局部叠加与左、中、右三段 3 倍边缘图覆盖了约 x=203–1038、y=971–1154 的全部可见区域。候选上缘沿第三、第四层弧形分界，两侧从接缝向外展开，底摆轮廓连续，保留了约 x=486–525 和 x=718–747 处向下敞开的两道主要凹口。参考中本区为连续裙布，无需另计薄纱、内部开孔或分离附件。未发现可见裙布遗漏或误包第三层、人体。note 已说明上口位于第三层摆缘之后、连续隐藏搭接且随接缝运动、下摆可相对摆动、可见裙面位于腿前。本节点按指定规则无父 SVG。无需返修。",
+      "candidateHash": "2ddd4e1579222af9de76ce964f00fa5cdb9770e20a725a70acd7867e35b9212f",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_four/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_four/previews/2026-11-18T10-09-42-116Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_four/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_four/previews/2026-11-18T10-09-42-116Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_four/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_four/previews/2026-11-18T10-09-42-116Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_four/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_four/previews/2026-11-18T10-09-42-116Z-4.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_four/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_four/previews/2026-11-18T10-09-42-116Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:22:15.762Z"
+    }
+  ]
+}

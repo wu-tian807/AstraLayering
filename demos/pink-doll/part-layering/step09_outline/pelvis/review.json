@@ -2,72 +2,92 @@
   "groupId": "pelvis",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "当前组 `pelvis` 轮廓色块审查通过：\n1. 覆盖范围完整：自腰部最窄处（约 y=536~538）延伸至骨盆与裆部底端（约 y=719.5），完整覆盖下半身躯干（临时白色连体服骨盆区）可见区域。\n2. 边缘与接缝对齐精确：经分块 4x/6x 放大（blend 与 edge 模式）逐段核对，左右两侧髋部外缘（x≈529.8~556.3、x≈700.4~727.2，与后发交界处）、左右大腿根部弧形接缝（y≈623.6~719.1）以及裆部底端外沿（x≈613.5~643.5, y≈719.1）均精准贴合原图结构线，腰髋交界与大腿外侧转折角保留清晰。\n3. 轮廓干净：单条闭合路径构成，无孤立噪点、碎片或无依据缺口，内部明暗与缝线未误作外轮廓。",
-      "candidateHash": "ba4469560b368ee954968dedceca715b2b156cfa6388a31b0a5c58c568366d8f",
+      "verdict": "revise",
+      "feedback": "第 1 轮，pelvis 为顶层组，无父范围限制。整图定位并以 4× 参考、blend、edge 及 8× 局部 edge 核对。上缘 y≈544–546 是组说明所定的肚脐附近分组接缝，参考中的浅色连体服在此连续，无横向线稿。两条纵向缝线及腿口内侧饰边保留在联合范围内。需修正：① 画面右侧发束遮挡边约 y=550–610，候选有一段落在衣料内，红线与深色发束之间仍露浅色衣料。局部向右贴到浅色衣料与深发的实际交界，至腿口交点止。② 左腿口起点及邻近短弧约 x=519–541、y=629–637，候选下缘压入肤色，向上贴回黑色腿口线靠皮肤的一侧，并以该线和发束的交点收口。此后两侧腿口向裆部下行的弧段（左 x≈550–610、右 x≈645–704）多处红线落在深色描边内，沿各侧实际弧度局部向大腿侧移至描边外缘，包含可见线宽。③ 裆底约 x=615–637、y=719–723，候选将中央短边接成过低的平缓弧，包进腿间开口上方的浅底。中央短边向上贴到深色底线的下缘，保留两端较低的短折转及其与左右腿口的衔接，保持腿间开口。",
+      "candidateHash": "97e2cb788319b3e9e262ae5e5076437d68df11e1811ba2943f1705dbfee38fa3",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-1.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-2.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-3.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-4.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-6.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-8.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/pelvis.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/pelvis/2026-10-22T01-06-31-522Z-12.png"
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T09-49-02-139Z-6.png"
         }
       ],
-      "updatedAt": "2026-10-22T01:11:04.141Z"
+      "updatedAt": "2026-11-18T10:10:48.516Z",
+      "repairedCandidateHash": "22feb5fe820ff165f11c16c418753fa51ca6bf3b3fb4849a0db504848a4aad06"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。整图确认 pelvis 为浅色连体服下段，无父组。以 4× 参考、blend、edge 及 8× 分段 edge 核对。上缘 y≈544–546 为肚脐附近的分组接缝，参考衣料在此连续。两侧发束遮挡边及左腿口起点已基本贴合，纵缝和腿口内侧饰边均在联合范围内。需修两处：① 右腿口靠发束的末段（约 x=708–729、y=630–638），候选落在深色腿口线下方的暖色皮肤过渡带，局部向上贴到深线靠皮肤侧的外缘，保留描边全宽，至发束交点收口。② 裆底中央短边（约 x=617–635、y=721–722）仍低于深色底线外缘，纳入了一条腿间浅底。中央段沿深线朝开口一侧的外缘上提约 1 个原图像素，保留两端较低的短折角及与左右腿口的连续衔接。",
+      "candidateHash": "22feb5fe820ff165f11c16c418753fa51ca6bf3b3fb4849a0db504848a4aad06",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/pelvis/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/pelvis/previews/2026-11-18T10-29-25-417Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:37:05.657Z",
+      "repairedCandidateHash": "2d7110ab980867657043e4f10cf586d6a7117f1f3c9531e9475e3a59b78dd9f6"
     }
   ]
 }

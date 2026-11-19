@@ -2,37 +2,57 @@
   "groupId": "face/mouth/mouth_interior",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已通过整图叠加定位及口部局部 8 倍放大（crop=[605,262,46,46]）对候选轮廓与参考图、父组完成稿（parts/face/mouth.svg）进行核对：\n1. 可见区域与接缝覆盖：口内位于 upper_teeth 下缘与 tongue 上缘之间的深暗红色口腔内壁可见区域（约 x=617..639, y=276..286）完整覆盖，左右两侧边缘伸入上下唇线（upper_lip / lower_lip）内侧中线处，衔接紧密无漏空。\n2. 完整底形与局部补形：作为口内最底层的完整口腔开口底形，候选轮廓在 upper_teeth 与 tongue 遮挡区域下方及上下唇线后方保持了平滑完整的椭圆形闭合底块（x=616.4..640.0, y=272.3..296.5），造型干净规整，无碎块或孤立噪点。\n3. 父组范围检查：四倍采样范围检查通过（outsideSamples=0, outsidePixels=0），完全收纳于父组 face/mouth.svg 轮廓之内。\n\n各项检查均符合要求，予以通过。",
-      "candidateHash": "305b402b68276a753da1e7f1b1441ef1888b176e3a5c261f226bfb2802162d98",
+      "verdict": "revise",
+      "feedback": "参考、blend 与 edge 在同一口部局部（608,250,48,35）放大 8 倍核对。左嘴角至左侧舌肩（约 x615–618、y257–268），候选从转角开始向口内退缩，把上齿左端外侧及左唇内侧连续可见的一窄条深红色排在外面。左上转角向左上补出，侧缘向左贴至唇线内侧的遮挡分界，下端顺着深红楔形收至舌肩。右嘴角至右侧舌肩（约 x647–649、y256–268）也有同类缺口，右上转角向右上补，侧缘向右贴至唇内侧，保留本侧较陡的转向并在舌缘收尖。两侧补线均以仍能确认的深红口腔露出为限，沿唇内侧收边。中央上缘对应浅色齿带下缘，中央下弧落在深红向粉色舌面过渡的带内，未见需另改的清晰偏差。父稿在同一裁区叠核，候选四倍采样无越界，两侧上述缺口位于父组范围内，可在本组修正。",
+      "candidateHash": "b7bfe01db70f2453556eb7585b0c9535487f75f65e15dec5b6c9c3b96849ace1",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/mouth_interior.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/mouth_interior/2026-10-22T08-28-27-834Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-02-53-044Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/mouth_interior.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/mouth_interior/2026-10-22T08-28-27-834Z-2.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/mouth_interior.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/mouth_interior/2026-10-22T08-28-27-834Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-02-53-044Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/mouth_interior.svg",
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-02-53-044Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
           "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/mouth_interior/2026-10-22T08-28-27-834Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face/mouth.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/mouth_interior/2026-10-22T08-28-27-834Z-5.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-02-53-044Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T08:59:38.992Z"
+      "updatedAt": "2026-11-18T13:10:09.933Z",
+      "repairedCandidateHash": "a8a8bfce86190b2b1eb08dd36eb8a92bf879d45a294d9df0ddce9697a061d5bd"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。已按原图坐标 [609,250,47,34] 用 8 倍参考、blend、edge 核对上齿接缝、两端转角、左右口壁和舌面接缝，并在同一局部叠加父稿。上中段贴近浅色齿带下缘，可作为接线依据。左嘴角至左口壁（约 x=615–618、y=258–267）红边落在深色线宽内，候选与外侧肤色之间仍可见一条深棕边；沿该线的可辨外缘向左微扩，保留从上缘下转的折点，并在舌侧交界收住。下方横跨约 x=618–647、y=261–268 的光滑弧主要沿舌面由暗粉转浅粉的明暗过渡，blend 中弧上仍压进一大片连续暗粉舌面；应沿左右深棕口壁与粉红舌面的实际交界收边，在齿带下方只落实可确认的深红露出范围，保留两侧各自的转向和收尖。右端去掉接舌处人为回折的小尖钩（约 x=647、y=268），在深棕右口壁与舌侧相遇处收束。候选父范围检测为零越界，同窗父稿对照也未见妨碍上述修正的上游裁切。",
+      "candidateHash": "a8a8bfce86190b2b1eb08dd36eb8a92bf879d45a294d9df0ddce9697a061d5bd",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-14-48-927Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-14-48-927Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/mouth_interior/previews/2026-11-18T13-14-48-927Z-3.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:19:29.249Z",
+      "repairedCandidateHash": "17a91922fad7e92131d92f5fa38ab4456b992fb1e9a74c3b0b85772cb4410600"
     }
   ]
 }

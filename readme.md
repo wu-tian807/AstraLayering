@@ -6,7 +6,7 @@ AstraLayering 是一个由 AI agent 驱动的角色分层工具。从一张角�
 
 人物与衣服分别绘制，保留独立图层和被遮挡部分，再按层次组装成完整角色。
 
-| Jianma | Pink Doll · 58 层人物、8 层衣服 |
+| Jianma | Pink Doll · 60 层人物、11 层衣服 |
 | --- | --- |
 | ![Jianma 分层展示](showcase/jianma-reference-composite-exploded.png) | ![Pink Doll 分层展示](showcase/pink-doll-reference-composite-exploded.png) |
 

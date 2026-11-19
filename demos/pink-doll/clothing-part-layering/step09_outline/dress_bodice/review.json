@@ -1,0 +1,57 @@
+{
+  "groupId": "dress_bodice",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮。候选 outline.svg 的几何通过，无需重画或调整路径。纯衣服图局部（x=448–798、y=230–475）确认胸衣组覆盖粉色横包边及下方整片前胸抽褶衣身。整体叠加和三倍局部叠加、边缘图确认上边沿白褶边与粉色包边的接线，左右边贴胸衣侧缘并在肩饰下端交接，下边沿腰带上沿短搭入腰带后方。领口敞开，白褶边和两侧肩饰的可见实体归相邻组，未见本组遗漏或误包。该组为根节点，无父范围限制。\n本轮仅返修 groups.json 中 dress_bodice 的 note。原说明写明了包边随胸衣上口变形、压住白褶边下缘和下口藏入腰带后方，但未明确胸衣相对身体的深度，以及下口与腰带的共同随动。参考中从粉色横包边至腰带的连续前胸衣面覆盖胸部及上腹前侧，下缘沿整条腰带上沿接合。请补明：胸衣及粉色包边位于躯干前方，胸衣下口随腰带上缘共同变形并保持腰带后方的短搭接。保留现有上口及肩根接缝说明。",
+      "candidateHash": "782edb7536122355de31aaaeee0d2a0aee738f8da159587f32a9a006284c9cd0",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T09-59-16-899Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T09-59-16-899Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T09-59-16-899Z-3.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:13:48.492Z",
+      "repairedCandidateHash": "782edb7536122355de31aaaeee0d2a0aee738f8da159587f32a9a006284c9cd0"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮通过。纯衣服图中，本组可见范围是粉色胸口横包边与其下方连续的抽褶前胸衣身。3 倍局部叠加及边缘图覆盖整片。上缘约 x=471–773、y=277–317，沿白褶边下缘与粉色横包边的分界，两端在肩荷叶下接点收住。两侧到腰点连续内收。下口沿腰带上缘，向腰带后方留约 2–3 像素连续搭接。整体叠加与独显确认方领敞口保留，组内未见独立附件、薄纱或其他真实开口遗漏。note 已说明胸衣位于躯干前方、粉边压住白褶边、腰口共同变形及腰带与两侧肩带根部的隐藏缝接。本组为顶层组，无父范围检查项。无需返修。",
+      "candidateHash": "782edb7536122355de31aaaeee0d2a0aee738f8da159587f32a9a006284c9cd0",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T10-28-54-196Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T10-28-54-196Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T10-28-54-196Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/dress_bodice/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/dress_bodice/previews/2026-11-18T10-28-54-196Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:31:38.961Z"
+    }
+  ]
+}

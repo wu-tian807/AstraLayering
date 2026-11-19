@@ -2,62 +2,82 @@
   "groupId": "body",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成 body 组全区域分块放大核对（包含肩带顶端与锁骨上缘接缝、左右腋下露肤与胸部外缘、左右腰侧外轮廓及下缘与 pelvis 的分界区域）。候选 SVG 完整覆盖锁骨、肩部至肚脐附近的上半身躯干可见范围（含肩带外侧腋下露肤区域），左右外缘与原图躯干外轮廓线精确贴合，上下分界位置与弧度自然合理，路径干净无孤立噪点或碎片，予以通过。",
-      "candidateHash": "fb23dc8104b6282d6f41d6f20829a507e399cff9f3f9c76f401af89455dad419",
+      "verdict": "revise",
+      "feedback": "第 1 轮 review，候选 part-layering\\step09_outline\\body\\outline.svg。整图定位后，以原图、blend 和 4–6 倍 edge 核对了中央躯干和两块分离的肩头残段。坐标均为原图，左右按画面。① 中央上缘两处肩带顶端（左 x≈566–570、右 x≈685–691，y≈326–330）：浅肩带与后发交界有小折角和深线宽度，候选用平顺弧线带过。向上贴合肩带顶端的深线外缘，逐侧保留折角，再接回颈根两侧的后发遮挡边。② 两块肩头的上外弧（左约 x509–525、y338–356；右约 x729–745、y339–357）均有红边沿深线靠皮肤的一侧走的段落。沿肩头与外侧后发相接的深线，分别向画面左上和右上补足线宽。左肩贴前发的一端在 y≈351–365 逐渐偏入发侧，按真实发皮分界微向左收，保留两个肩头与中央之间的前发间隔。③ 胸腰侧逐段贴回浅连体服与内侧长发的分界。画面左侧约 y≈493–515 的腰弧有少量压入暗发，向右收齐；画面右侧约 y≈487–519 的腰弧偏入发侧，向左收至深色交界，随后在 y≈529–544 向下外展处偏回衣料内，向右补齐至真实斜边，并让下接缝端点落在该边上。按两侧各自的弧度衔接。中央颈根色块边、锁骨和领口在底形内的连续覆盖均可保留。肩头与上臂、上腹与骨盆的切分处原图没有独立线稿，保留组说明对应的接缝范围。body 为根组，无父范围限制。",
+      "candidateHash": "1e6f6d92c8a9e965732140c8f159d85fcd9e35128156a96a9fa07c16cbca0f3a",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
+          "source": "part-layering/step09_outline/body/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-1.png"
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T09-42-55-470Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
+          "source": "part-layering/step09_outline/body/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-2.png"
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T09-42-55-470Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
+          "source": "part-layering/step09_outline/body/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-3.png"
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T09-42-55-470Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
+          "source": "part-layering/step09_outline/body/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-5.png"
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T09-42-55-470Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
+          "source": "part-layering/step09_outline/body/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/body.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/body/2026-10-21T16-33-36-721Z-10.png"
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T09-42-55-470Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-21T17:08:40.293Z"
+      "updatedAt": "2026-11-18T10:10:02.640Z",
+      "repairedCandidateHash": "db60fe7d2e2df92b2f77b27f602fe09a24469a8cae48c73e474032e58b485090"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮 body。已对照整图及放大的参考、blend、edge，检查中央躯干与两个分离肩头。body 为顶层组，无父稿范围限制。请修正以下局部（原图坐标）：\n1. 颈根两端约 (597,318–321)、(661,318–321)，候选各有一段约 2 px 的竖直折台。参考中中央深肤色颈根弧的两端经斜向色块过渡接到后发下缘。沿本侧色块交界斜接后发，去掉竖直折台，保留中央颈根弧和两侧锁骨区的连续范围。\n2. 画面左肩残段贴前发的一边（约 x525–527、y337–366），候选用直线从肩峰连到底，在 y350–365 留下一条肩侧的暗色边缘。把中下段微向画面右调，沿肩皮肤与前发间的暗线外缘接到下端。右肩对应边（约 x727–730、y338–366）也沿本侧实际暗边微调，中下段向画面左贴合，保留左右各自的肩峰及肩与外侧后发之间的圆弧。\n3. 中央躯干左侧贴前发的近直段（约 x557、y402–456）和右侧对应段（约 x697–698、y409–451），红线局部穿过浅衣面与长发之间的灰暗边带。左边向画面左、右边向画面右微调到该边带的发侧外缘，保留可见线宽。顺着参考在左约 y458、右约 y451 的转向接入腰弧，避免顺着发束内部黑影另取边。复核两侧腰弧至下腹截线端点的连续性。\n领口、锁骨及衣内缝线保持在联合底形内。两肩与中央躯干之间保留前发形成的可见断开。肩臂和躯干骨盆的分段处在参考中为连续皮肤或衣面，当前截线位置与组说明相符。",
+      "candidateHash": "db60fe7d2e2df92b2f77b27f602fe09a24469a8cae48c73e474032e58b485090",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/body/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/body/previews/2026-11-18T10-24-40-264Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:35:46.325Z",
+      "repairedCandidateHash": "498fb42fe827b61873b46d2518270f375969d29a99d84dd42f7f979c979d1176"
     }
   ]
 }

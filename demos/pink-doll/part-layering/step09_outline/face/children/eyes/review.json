@@ -1,0 +1,93 @@
+{
+  "groupId": "face/eyes",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "已读 face/eyes 与 face 的组说明，以原图、blend 和 edge 逐侧对照上睑、睫毛尖与缺口、鬓发接缝、内眼角及下眼缘，并在同一局部叠加父稿。坐标为原画布像素，左右按画面。\n1. 移除上方两条独立眉形（左 x581–603、y184–192，右 x654–680、y181–190）。其内是额面上的眉线，与深色上睑之间有浅色间隔。眉线归 face/eyebrows。\n2. 左眼外上缘约 x548–553、y199–201，候选把贴鬓发的短横痕连成向左的尖齿。沿下方深棕睫毛与浅肤色窄隙交界的斜边向右下收回该凸出，保留实际外眼角尖及更上方有明确浅色缺口的睫毛尖。内眼角约 x605–608、y207–209，主睫尖下的次凸角落进浅色过渡，向上收至确有深色的睫尖外缘，再接眼白内侧边。\n3. 右眼内上方约 x652–657、y197–201，候选多做了一道伸入粉肤过渡的台阶尖，沿深色上睑主体上沿向下贴回，保留下方清楚的向内下方扫出的睫尖。外侧约 x705–710、y191–195，候选尖齿伸进鬓发下沿的暖灰交接处，外凸应收至可辨的深棕睫毛边并保留实际转折。外眼角贴发处约 x711–713、y200–206，候选用折线向内回切；顺深棕睫毛到浅肤色窄缝的交界贴回，再接向下内侧收尖的睫毛边。\n4. 下眼缘保持眼白与虹膜联合底形连续。左眼约 x570–584、y231–236，右眼约 x677–691、y228–233，浅眼白下沿有可辨深色短线和小点。当前曲线把这些局部起伏接成均匀圆弧；左眼点间收回到眼白与粉肤的边界，点和短线处留足线宽，右眼底部短线附近也按线条外沿保留小转折，外侧点至睫毛尖之间贴眼白色块界。右眼靠鼻侧约 x656–659、y205–219 的弧向粉肤侧略鼓，向眼白侧微收。\n父稿叠加显示两侧可辨的外眼角尖抵近父边，上述可修位置均在父范围内，未确认有必须越出父稿的眼缘。候选四倍采样越界为 0。",
+      "candidateHash": "2d1aee891b7d6f3e7b6b627c5c54cd5e6e01ba98cba7b85b01385d58e28608f2",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-6.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-26-09-923Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:38:03.135Z",
+      "repairedCandidateHash": "3cb071b24c0d7d096994ef0b17dfe0c2de7b0d606bf5509359ac633e0c612d0f"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。按原图坐标，画面左眼（角色右眼）靠鼻侧，约 x=598–607、y=205–231，从内眦睫尖回折后沿眼白到虹膜右下缘的弧段，edge 红线比参考的眼白—肤色分界更向鼻侧鼓出，blend 可见罩色压到眼白外的浅粉皮肤。把这段弧向眼内（画面左侧）收回，逐段贴眼白可辨外缘，下接虹膜深色线的最外缘并保留线宽。保留内眦睫尖与眼白之间的尖形开口及眼白的连续范围。两眼已逐件核对上睑、睫尖、鬓发侧接缝、下眼缘及下缘短线。该处位于 face 父稿范围内，可在本组直接修正。父稿同坐标叠加及四倍采样检查未见候选越界或确认的上游范围缺漏。",
+      "candidateHash": "3cb071b24c0d7d096994ef0b17dfe0c2de7b0d606bf5509359ac633e0c612d0f",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/previews/2026-11-18T11-43-22-176Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:48:20.563Z",
+      "repairedCandidateHash": "e70dfff491b7a90250739a885ab8760dff6dd7efc8c87494a96c562c5a12539b"
+    }
+  ]
+}

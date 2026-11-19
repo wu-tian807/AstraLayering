@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "face/eyebrows/eyebrow_right",
+  "detectorVersion": 1,
+  "needsCompletion": true,
+  "reason": "mask-cuts-parent"
+}

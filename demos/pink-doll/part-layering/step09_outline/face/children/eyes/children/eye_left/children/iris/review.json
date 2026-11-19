@@ -1,0 +1,43 @@
+{
+  "groupId": "face/eyes/eye_left/iris",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮通过。整图定位于画面右侧的角色左眼。8 倍参考、blend 与 edge 对照显示，鼻侧窄眼白与鬓侧大片眼白之间的两段虹膜弧均沿深色外圈的外缘，包含可见线宽。底弧连续，在约 (679,231) 处沿虹膜外圈转向，保留与其右下方睫毛短痕的分界。上沿沿深色上睑与虹膜的可辨接缝闭合，两端接回可见外圈。瞳孔、内部明暗和叠放高光未将虹膜范围切断。同局部核对父稿，确认可见虹膜处于左眼父范围内，四倍采样越界为零，未见上游范围截断。",
+      "candidateHash": "6792a9cf90c10a5a8a07fe9051a3ef8d8937daa5368b3c1972b2b7af5c61bf50",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/iris/previews/2026-11-18T14-18-44-562Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:27:49.157Z"
+    }
+  ]
+}

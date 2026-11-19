@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eye_right/iris",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "8da1928645a44afc5acb69b0bf095ed48123f3c6b10dfdab2d9c95c6b1c96b41",
-  "afterHash": "4bea06c52e2f8c851eecec9cd28826759a5077b32915d044202b794e5979b27e"
-}

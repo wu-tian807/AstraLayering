@@ -1,7 +1,0 @@
-{
-  "groupId": "face/eyebrow_right",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。 raster step01 仅更新根元素深度注记，几何和可见像素形状不变；补全产物指纹同步。 raster step01：来源 SVG 同步最终深度/可见形状修订，保持补全新增路径合同；规范化前后渲染完全一致。",
-  "beforeHash": "ea12d15cf6c9d36e5db6e87a20303b7630220c230fc8e65987fd9cf6980eaf1c",
-  "afterHash": "b13e66762a238e581c948882047c4782bc79d1e9d738c76da1fc1bfaa991376c"
-}

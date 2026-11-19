@@ -1,69 +1,52 @@
 {
-  "subject": "character",
   "groups": [
     {
       "id": "face",
+      "kind": "group",
       "name": "face",
-      "note": "包含脸部、五官和耳朵，范围是脸型与耳朵；后续只补被遮挡的脸型、耳朵，不补头顶与后脑。",
-      "kind": "group"
+      "note": "包含脸型、五官及双耳。正面五官、双颊和下颌可见，额缘及两侧脸缘被刘海和鬓发遮挡，双耳仅局部露出。后续只补被遮挡的脸型与耳朵。"
     },
     {
       "id": "hair",
+      "kind": "group",
       "name": "hair",
-      "note": "包含前发、侧发、双麻花发髻及脑后长发。",
-      "kind": "group"
+      "note": "包含全部头发，从头顶、齐刘海、两颊鬓发和双侧编发髻延伸至髋侧的长发。画面左侧发髻局部被头饰遮挡。内侧长发垂在胸腰和髋侧前方，外侧长发在双臂后方可见。"
     },
     {
       "id": "head_accessories",
+      "kind": "group",
       "name": "head_accessories",
-      "note": "raster step01 落实上游已标注的发饰根部与辫环双向穿插：同一逻辑发饰保留完整补全，按原可见几何切成前部和根部两个普通绘画层，不删除根部、不增加运动节点。",
-      "metadata": {
-        "rasterDepth": {
-          "levels": [
-            {
-              "level": 0,
-              "region": "root：补全形状减去原可见叶瓣/圆珠形状的剩余像素；SVG data-completion-additions 区域中伸入辫环下方的根部，位于 bun_right 后。KRA 000 | head_accessories::root。"
-            },
-            {
-              "level": 4,
-              "region": "front：原可见形状（不含 data-completion-additions）覆盖的叶瓣与圆珠像素，位于 bun_right 前。KRA 004 | head_accessories::front。"
-            }
-          ],
-          "logicalPart": "head_accessories",
-          "motionIdentity": "head_accessories"
-        }
-      },
-      "kind": "group"
+      "note": "画面左侧发髻前方的黑色结饰，中心有一枚浅色圆珠。头饰轮廓完整在画内。"
     },
     {
       "id": "neck",
+      "kind": "group",
       "name": "neck",
-      "note": "颈部区域（锁骨归入 body）。",
-      "kind": "group"
+      "note": "包含下颌下方至颈根的颈部，正面可见，两侧紧邻后发，止于锁骨上方。"
     },
     {
       "id": "body",
+      "kind": "group",
       "name": "body",
-      "note": "锁骨、肩部至肚脐附近的上半身躯干（临时白色连体服仅用于辨认躯干形体范围，不单独建组）。",
-      "kind": "group"
+      "note": "包含锁骨、胸部、胸侧、左右肩头圆润残段、腋下及上腹至肚脐附近。正面以浅色临时连体服标示范围，两侧肩头、腋下和胸腰侧局部被长发遮挡。"
     },
     {
       "id": "arms",
+      "kind": "group",
       "name": "arms",
-      "note": "左右手臂与手掌。",
-      "kind": "group"
+      "note": "包含从左右肩关节向下的上臂、肘、前臂、手腕与双手。双臂自然下垂，整双手均在画内。靠躯干的上臂轮廓局部被前侧长发遮挡，前臂叠在外侧长发前方。"
     },
     {
       "id": "pelvis",
+      "kind": "group",
       "name": "pelvis",
-      "note": "肚脐附近延伸至骨盆的下半身躯干区域（临时白色连体服仅用于辨认形体范围）。",
-      "kind": "group"
+      "note": "包含肚脐附近至骨盆、髋部和裆部，对应浅色临时连体服下段。髋部两侧局部被发梢遮挡，下缘与双腿大腿根相接。"
     },
     {
       "id": "legs",
+      "kind": "group",
       "name": "legs",
-      "note": "左右双腿与双脚。",
-      "kind": "group"
+      "note": "包含双侧大腿根、膝、小腿、脚踝及双脚，连同可见的浅色荷叶边袜及带扣、鞋头有蝴蝶结的浅色圆头鞋。大腿根与连体服腿口相接，髋侧发梢局部压在大腿上端前方，双鞋鞋底轮廓均在画内。"
     }
   ]
 }

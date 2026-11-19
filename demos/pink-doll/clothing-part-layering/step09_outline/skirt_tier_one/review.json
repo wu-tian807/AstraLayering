@@ -1,0 +1,28 @@
+{
+  "groupId": "skirt_tier_one",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮，skirt_tier_one。纯衣服参考确认本组为腰带下缘至第一道横向摆缘之间的连续裙片。整图叠加、局部原图和 3 倍边缘图覆盖了完整可见范围。上缘在左右腰点（约 x=486、757，y=464）接入腰带，中央保留短搭接；两侧外展线与参考一致，底边（约 x=395–845，y=648–669）沿第一、二层交界，包含中央褶口的小折角。未见其他衣片或人体误包、可见覆盖遗漏、真实开口、薄纱或分离附件。note 交代了腰带在前、第一层摆缘在第二层收褶口前、连续搭接及腰部与裙摆随动关系，并保留人物遮挡区的衣片覆盖。该节点为顶层组，无父 SVG。",
+      "candidateHash": "b0dd039794b56b0ffb0d9e9ae58c32bcb06ecae9d705ed71e8e01af3b9d2dfe7",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_one/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_one/previews/2026-11-18T09-50-23-379Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_one/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_one/previews/2026-11-18T09-50-23-379Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_one/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_one/previews/2026-11-18T09-50-23-379Z-3.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:10:49.615Z"
+    }
+  ]
+}

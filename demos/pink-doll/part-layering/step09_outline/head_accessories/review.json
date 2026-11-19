@@ -2,42 +2,72 @@
   "groupId": "head_accessories",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成 head_accessories 组轮廓色块的整图与局部放大（crop=[440,40,130,140]、[455,55,95,65]、[455,100,95,65]，scale=8）核对：\n1. 覆盖完整性：画面左上方（角色右侧发髻上）的深绿色叶瓣状发饰及底部圆形饰扣均已完整覆盖，无遗漏独立组件。\n2. 边缘与接缝对齐：外缘各叶瓣尖端、弧度、转折以及右侧与头发/麻花发髻的接缝均精确对齐原图外轮廓与分界线。\n3. 轮廓质量：单一闭合路径干净平滑，无孤立噪点、碎片或无依据缺口。\n审查通过。",
-      "candidateHash": "951996e8435e1107953ad8c0854df42b6591b9f02d222beafa4cb089d6f3dbad",
+      "verdict": "revise",
+      "feedback": "核对了左发髻前黑色结饰及浅色圆珠的联合轮廓。本组无父稿。参考、blend 与 edge 的同位放大显示以下可修偏差（原图坐标约值）。① 左翼尖端至中瓣交点（x445–474，y49–57）以及中瓣外弧（x474–504，y30–57），红线局部浮在黑色描边外的背景中。沿黑线可见外缘微收，上沿向下贴回，中瓣弧段向右下贴回，保留 x474、y57 的转折。② 最高瓣尖端至右侧临背景的弧段（约 x519–539，y5–53），候选在尖端右肩和右弧局部多带一细条背景。将尖端右肩和右弧向左内收至深色描边外缘，保留尖端及与前发交会时的转向。③ 左翼下弧与下瓣相接处（约 x457–460，y91–96）偏左最明显。参考是黑色上翼外线向右下收、到下瓣左缘才折回，候选提前约 2 px 折回并包入背景。将折点右移至实际交点，并将相邻下瓣左凸段（约 y96–110）贴回黑线外缘，保留凹折和下瓣接入发髻的位置。下瓣底尖、与辫纹相接的阶折、圆珠下弧及右瓣贴前发段也已逐段核对，保留这些接缝及组内连续范围。",
+      "candidateHash": "960973f45dd996c42f7461a31476c0ed0ee46f2455993b562361049774eb85c4",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-1.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-2.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-3.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-5.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/head_accessories.svg",
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/head_accessories/2026-10-21T16-55-11-621Z-6.png"
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T09-41-09-350Z-6.png"
         }
       ],
-      "updatedAt": "2026-10-21T17:12:46.212Z"
+      "updatedAt": "2026-11-18T10:00:29.495Z",
+      "repairedCandidateHash": "455d1440106c6d165e23cb154dc45477247a41cce52c9aa716a818f058b1c216"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "整图确认本组为画面左侧发髻前的黑色结饰与浅色圆珠，二者取联合外轮廓。本组无父稿。7 倍参考、blend、edge 及 8 倍接缝对照已覆盖全周。顶尖、顶叶对背景的双弧、中瓣上弧及左瓣上沿整体贴合，三瓣交接处的折转保留。原图坐标下请修正以下局部：① 约 x522–538、y55–87，顶叶右边从透明背景转贴前发后，候选在中下段沿前发侧外扩。向左收至黑色叶缘与浅棕前发的分界，并保留叶缘汇入圆珠右上侧时的转向。② 约 x505–522、y90–96，珠底候选弧压到下方棕色编发及邻接阴影。将弧略上收，沿圆珠自身深色描边的外缘接回左下结饰。③ 约 x493–505、y94–113，圆珠左下到下垂尾片之间，候选在相邻编发凸起处略偏向发侧，局部折转也有轻微错位。按黑布与棕色辫股之间的深线外缘，逐段向结饰侧微调并对齐两处转折。④ 约 x466–493、y112–126，尾片下缘及朝下的尖端略压入辫股。沿尾片自身黑线外缘微向上收，保留实际尖端及与编发相接的折角。",
+      "candidateHash": "455d1440106c6d165e23cb154dc45477247a41cce52c9aa716a818f058b1c216",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T10-19-11-916Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T10-19-11-916Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T10-19-11-916Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/head_accessories/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/head_accessories/previews/2026-11-18T10-19-11-916Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:31:59.179Z",
+      "repairedCandidateHash": "7ae14dd77c1e97282b8ef0b8fa41170079694ad153b00b46245085b658eaff34"
     }
   ]
 }

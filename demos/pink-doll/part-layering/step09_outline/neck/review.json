@@ -2,52 +2,51 @@
   "groupId": "neck",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成颈部（neck）组轮廓色块的全图叠加定位与分块高倍放大（左半部 crop=[570,300,65,70]、右半部 crop=[620,300,65,70] 8倍放大及整体区域 6倍放大）核对：\n1. 可见区域与接缝覆盖完整：上沿与下巴（face）接缝、左右两侧颈部及斜方肌外缘（与脑后 hair 交界）、两侧肩带内缘及下方锁骨分界（与 body 交界，锁骨归入 body）均完整覆盖，无漏画或越界。\n2. 边缘精度与转折：各处曲线弧度、转向及转折角均精确贴合原图线稿中心与结构分界。\n3. 轮廓干净度：单一闭合路径结构清晰连续，无孤立噪点、碎块或无依据缺口。审查通过。",
-      "candidateHash": "b164275ab593bfb122cc3a065f1333d1aaf386580669333a08089ea90364fcdc",
+      "verdict": "revise",
+      "feedback": "已核对整图及原图坐标 [550,277,153,74] 的 7 倍参考、blend 和 edge。neck 为顶层组，无父稿。可见颈部为单一连续区域，上接下颌，两侧邻后发，下接锁骨上方浅肤色。请修正三处：① 上缘 x≈603–656、y≈287–299 目前贴着下颌黑线的颈侧边，左半尤其明显，线宽大多留在轮廓之外。沿黑线靠脸侧的清晰外缘上移，两端回接颈侧与下颌的交点，保留下巴尖及两边不同的斜率。② 左右颈侧直段大体对应后发遮挡线，转弯处需沿深线靠后发侧的外缘逐段贴合。左侧 x≈596–601、y≈313–320 的斜出段局部切入深线，向后发侧补齐线宽。右侧 x≈659–663、y≈315–321 的末端沿深线向外多走了一段，再折回浅肤色，形成突角。将接点向左下收至颈根粉肤色块实际与后发深线相交处，并保留参考本侧转弯。③ 下缘中央 x≈606–650、y≈324–332 已基本对齐，下缘两端应沿粉肤色颈根与浅肤色胸上部的清晰交界收口，特别是右端 x≈659–663 和左端 x≈596–598，去掉越过交界的尖角，保留连续底弧。锁骨线及衣肩带位于组外。",
+      "candidateHash": "f6d5298bcb312060633223a617b28f609310eea15e039b5222d13aeae9e4b091",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
+          "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-1.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T09-40-11-066Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
+          "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-2.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T09-40-11-066Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
+          "source": "part-layering/step09_outline/neck/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-3.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/neck.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/neck/2026-10-21T16-45-21-407Z-8.png"
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T09-40-11-066Z-3.png"
         }
       ],
-      "updatedAt": "2026-10-21T17:10:59.915Z"
+      "updatedAt": "2026-11-18T09:53:15.953Z",
+      "repairedCandidateHash": "09af89b0702d0ca87fcf014738975e2fb21b1cd2ae9a6c3d2c60ac705e895f61"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮。整图定位及 x=587–671、y=280–342 的 8 倍参考、blend、edge 对照显示，上缘沿 V 形下颌深线靠脸一侧的外缘，覆盖线宽并保留下巴转折；左右颈侧沿皮肤与后发之间的深线靠后发一侧的外缘，各自保留向外转弯的形状。两端短接缝落在遮挡线向颈根色块交接的位置，下缘沿锁骨上方深粉颈根与浅色胸口的分界连续闭合。可见范围连续，无独立露出区域或开口。neck 为顶层组，无父稿范围限制。",
+      "candidateHash": "09af89b0702d0ca87fcf014738975e2fb21b1cd2ae9a6c3d2c60ac705e895f61",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T10-12-59-477Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T10-12-59-477Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/neck/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/neck/previews/2026-11-18T10-12-59-477Z-3.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:30:03.980Z"
     }
   ]
 }

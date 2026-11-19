@@ -2,122 +2,137 @@
   "groupId": "hair/back_hair",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "已完成 `hair/back_hair` 候选轮廓的全图与分块放大核对（涵盖头顶中分凹口与顶弧、左右盘发髻内侧头盖补全边界、颈部与双肩两侧脑后内凹发面、双臂外侧后发长外缘与最外侧弯尖、前臂内侧与腰胯间左右底端发尖、以及骨盆后方底部补全弧线）：\n\n1. **可见区域覆盖与边缘精度**：\n   - 头顶区域（`crop=[530,50,200,70]`）：头顶中分凹口（约 `(628.5, 61.0)`）及向两侧发髻上方延伸的头盖顶弧外沿完整覆盖，与原图外轮廓及父组 `hair.svg` 精确贴合。\n   - 颈侧与躯干上方区域（`crop=[465,200,325,200]`）：颈部两侧与 `side_hair_left/right` 之间的深色脑后内凹发面已完整包含在连续后发底形内，无接缝漏画或孔洞。\n   - 左右外缘与外侧弯尖（`crop=[470,80,90,220]`、`[700,80,90,220]`、`[430,270,95,230]`、`[730,270,95,230]`、`[410,370,150,320]`、`[695,370,150,320]`）：从双发髻下方延伸至双臂外侧的后发长外缘、最外侧长弯尖（左 `(436, 612)`、右 `(821, 612)`）及内侧分叉折角（左 `(454.5, 504.0)`、右 `(800.5, 502.0)`）位置、弧度与尖端转折均精确对齐原图。\n   - 底部发尖（`crop=[460,580,340,110]`）：前臂内侧与腰胯之间露出的左右各两簇后发底端发尖及分叉凹口（左 `(471.5, 620.0)`、`(504.5, 615.0)`，右 `(786.0, 620.0)`、`(752.5, 614.0)`）完整覆盖、尖角清晰。\n\n2. **遮挡补全与形体连续性**：\n   - 上部头盖底形在两侧盘发髻（`bun_left/right`）及前发、侧发下方以平滑圆弧连续贯通；下部在脸部、颈部、躯干、双臂及长侧发后方保持整片式连续闭合底面，跨前臂与骨盆底部的补全曲线与父组 `hair.svg` 绿色补全范围一致，无碎块、孤点或无依据挖空。\n\n3. **父范围检查**：\n   - 四倍采样范围检查 `status=\"pass\"`，`outsideSamples=0`，完全位于父组 `hair.svg` 范围内。\n\n审查结论：通过（pass）。",
-      "candidateHash": "14593f50d00f21d8134d6379a3cbfa014d9244598d5263906b8262341c150cee",
+      "verdict": "revise",
+      "feedback": "第 1 轮，hair/back_hair。已对照整图及头部、双侧肩臂至腕髋的局部参考、blend 和 edge。候选四倍采样未越父稿。以下坐标均为原图坐标。\n1. 头顶至两鬓：冠顶外弧总体沿父稿。画面右侧内弧从分缝右峰到斜落段（约 x650–717、y23–99）切进前方宽侧发，向头顶外弧侧退到分缝后发与宽侧发之间的清晰弧线；画面左侧约 x509–521、y222–302 核对同一叠边，沿实际发束接缝修掉折线小台阶。左侧珠子下缘到发髻下端（约 x499–516、y94–179）沿发髻与后发的实际接触线转向，珠下接缝现被长弧拉直，不要跨入编发色块。右髻接缝约 x727–754、y70–179 也逐段贴头发外侧与编发相接的轮廓，保留髻底汇合点。\n2. 耳下、颈与肩带：两片深色后发应分别沿耳皮下缘、脸颊外线、颈侧线、肩带顶边和前侧尖束底边闭合。左耳下约 x552–565、y255–259 的近直线横切耳底，改贴耳底向下的小弧及脸颊起转点；两侧前发尖约 (583,299)、(678,298) 现提前收尖，沿深色后发与前侧发束交界绕足实际尖端后再折返。左肩带顶角约 x563–570、y327–331 清掉折返小缺口，按衣料顶线分段贴合；右颈根至肩带约 x656–701、y314–332 贴回黑色颈肩交界及肩带上角，收掉压到皮肤和衣料上的细条。\n3. 两侧肩臂及外垂大束：肩顶到臂外缘的深色交界应连贯。画面右侧约 x789–792、y608–611 红线在同一前臂遮挡边跳出一个台阶，顺实际连续斜边接到 (799,648) 附近的后发尖；两侧肩顶和肘弯沿皮肤与后发之间的清晰线复贴，保留实际转向。两条外侧细束的狭缝分别按本侧透明开口描绘，左侧约 (456,462) 的上端和 (443,617) 的下端、右侧约 (799,468) 的上端和 (811,610) 的下端尤需收准，沿实际针尖回折，避免把暗色线当作透明开口。左大束外缘约 y530–575、右大束外缘约 y530–590 的折线小起伏跟随连续墨线修顺。\n4. 腕内侧露出段：画面左侧约 x477–486、y637–668，腕边小尖的闭合斜边需移回前臂遮挡线，沿小尖实际外弧单独转折；主尖约 (508,667) 沿透明缝边保留锐尖。画面右侧约 x742–750、y625–668，主尖内侧目前有额外折返并擦入前发/腿侧，退回透明楔形开口和腿边实际相接处；约 x764–774、y644–668 的主尖外侧和腕旁独立小尖各自贴前臂遮挡边收尖。两侧均保留前臂造成的分离和背景开口。\n5. 父范围：已在同一头部及双腕、外侧开口局部叠加父稿。共享冠顶、外垂束外缘和细束开口有个别贴线微差，外侧净墨线如被共享父边截住，应由父边同步复核并保留线宽。上述前后发接缝、皮肤和肩带遮挡以及腕内多包、跳边可以在现父范围内修正。",
+      "candidateHash": "17f3e88398e2272feca90a5acbd4bf91060ce7ccabed05cbf50c6f84faf42eab",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-1.png"
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-2.png"
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-3.png"
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-4.png"
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-6.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
+          "source": "part-layering/parts/hair.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-5.png"
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-7.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
+          "source": "part-layering/parts/hair.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-12.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-13.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-14.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-15.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-16.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-17.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-18.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-19.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-20.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-21.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/back_hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/back_hair/2026-10-22T05-10-31-609Z-22.png"
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-33-27-899Z-8.png"
         }
       ],
-      "updatedAt": "2026-10-22T05:44:21.886Z"
+      "updatedAt": "2026-11-18T11:40:46.990Z",
+      "repairedCandidateHash": "6117e633b18315f72f3da13c5f4d9689b853d902931ee28133ed1ee04c5a864b"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮复核 hair/back_hair。整图定位后分区对照参考、blend、edge，核过头顶外弧、左结饰和两发髻接点、耳下与颈肩分界、两条臂后外束、细束间隙及腕旁分离露出段。候选四倍采样无越父像素。以下坐标为 1254×1254 原图坐标，左右按画面。\n1. 头顶分缝右支（约 x628–735、y28–100）：候选内缘偏向头顶，右半弧与参考中后发顶带和前侧贴头发面之间的暗接缝分开，漏掉暗线宽度。由分缝凹点沿右支暗线向画面中心一侧的外缘重描，到右上侧随实际弧度转下。保留顶部对背景的外弧及分缝凹点。\n2. 衣身两侧腰窝（左约 x517–564、右约 x688–733，y451–620）：候选在胸前长发与白衣之间没有覆盖。参考中此处两块深色发面从胸前长发的清晰叠边后露出，与白衣侧边形成独立深色轮廓。补两侧可追踪的露出楔形，衣侧取深色轮廓贴白衣的线外缘，另一侧止于压在前方的胸前长发叠边，上下随遮挡收尖。父稿在该局部覆盖这两片，属于本轮可修范围。\n3. 右外垂细束（约 x816–827、y510–596）：候选外弧切进对背景的暗描线，最鼓一段尤其明显。与同局部父稿叠对后，父边仍在候选右侧，可先将外弧推至父内可达的暗线外缘。保留细束与主束之间的真实窄缝及下端汇合。左侧单独核对，保留左开口及细尖分离形态。\n4. 左腕内侧最小露出发尖（约 x478–485、y659–668）：候选尖端略早收，参考中暗线还向右下探入背景。沿发尖两侧线外缘收至可见末端，保留它与相邻宽发尖之间的背景豁口。两侧腕旁露出段继续以各自前臂遮挡线和背景边缘收束。",
+      "candidateHash": "6117e633b18315f72f3da13c5f4d9689b853d902931ee28133ed1ee04c5a864b",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-7.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-8.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-9.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-10.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-11.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-12.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-13.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-14.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/back_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/back_hair/previews/2026-11-18T11-45-52-115Z-15.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:51:19.589Z",
+      "repairedCandidateHash": "e54ddabd408b4816aaaa4500a6efcb720c02c7d9371af5306719155f69ea08cf"
     }
   ]
 }

@@ -1,0 +1,33 @@
+{
+  "groupId": "skirt_tier_three",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮通过。纯衣服图独立确认第三道抽褶裙片为第二道摆缘与第三道摆缘之间的连续区域，约 x=255–985、y=829–1034。整体叠加及局部两倍边缘对照覆盖整片：上沿沿第二道摆缘保留短隐藏搭接，两侧外缘从第二道末端连续接到第四道起点，下沿随第三道各段弧形摆缘连续收口。候选覆盖完整，未见误包人体或邻片可见区域，参考该片范围内无真实开口、独立薄纱或分离附件。note 已交代边界、相邻裙片前后搭接、上口随动、摆缘独立运动及双手位于裙片之前。本组无父组 SVG。",
+      "candidateHash": "52caf60851745045a304c4730596b1b99d98c898a58d264582c577f1f57cb2e3",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_three/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_three/previews/2026-11-18T10-00-05-150Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_three/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_three/previews/2026-11-18T10-00-05-150Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_three/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_three/previews/2026-11-18T10-00-05-150Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/skirt_tier_three/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/skirt_tier_three/previews/2026-11-18T10-00-05-150Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:14:14.387Z"
+    }
+  ]
+}

@@ -21,11 +21,12 @@ const cases = [
       if (isBody(layer)) return /^hair\/(back_hair|bun|hair_cap)/.test(name) || /crown_ribbon\/(ribbon_tail|ribbon_body)$/.test(name) ? 0 : 1;
       return name.startsWith('inner_long_dress/') ? 2 : /^(outer_robe_body|sleeve_|collar_shoulder_cape)/.test(name) ? 3 : 4;
     } },
-  { id: 'pink-doll', title: 'Pink Doll', source: '.web/showcase-layers/pink-doll', reference: 'demos/pink-doll/input/original.jpg',
-    composite: 'demos/pink-doll/character-assembly/step01/character-assembled.png', counts: [58, 8], titles: ['Rear hair', 'Character', 'Bodice', 'Tiered skirt', 'Chest bow'],
+  { id: 'pink-doll', title: 'Pink Doll', source: '.web/showcase-layers/pink-doll', reference: 'demos/pink-doll/input/original.png',
+    composite: 'demos/pink-doll/character-assembly/step01/character-assembled.png', counts: [60, 11],
+    titles: ['Rear hair', 'Character', 'Bodice', 'Tiered skirt', 'Shoulder straps & ruffles'],
     classify(layer, name) {
-      if (isBody(layer)) return /^hair\/(back_hair|bun)/.test(name) || name === 'head_accessories::root' ? 0 : 1;
-      return name.startsWith('skirt/') ? 3 : name === 'chest_bow' ? 4 : 2;
+      if (isBody(layer)) return /^hair\/(back_hair|bun)/.test(name) ? 0 : 1;
+      return name.startsWith('skirt_tier_') ? 3 : /^image_(left|right)_shoulder_assembly\//.test(name) ? 4 : 2;
     } },
   { id: 'pink-elf', title: 'Pink Elf', source: '.web/showcase-layers/pink-elf', reference: 'demos/pink-elf/input/original.png',
     composite: 'demos/pink-elf/character-assembly/step01/character-assembled.png', counts: [70, 32], titles: ['Trailing skirt', 'Rear hair', 'Character', 'Dress & sleeves', 'Bow & pendant'],

@@ -1,7 +1,5 @@
 {
   "groupId": "hair",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，2 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "250458ebce60a94531cc98122ce5beb517db29b6f9b0eea765c35e84ee4d0bb3",
-  "afterHash": "e8a4f8f9abf7cdcccef3c6b8361c1956ffa1666fe05197ac8d68ea2dd7e34a61"
+  "note": "程序核对：原 SVG 正文保留，4 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

@@ -2,42 +2,62 @@
   "groupId": "face/mouth/tongue",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "审查通过。\n\n1. **可见区域与上缘对齐**：`face/mouth/tongue` 候选 SVG 以单条闭合平滑椭圆路径（`x=617.7..638.7, y=282.2..295.5`）完整覆盖口内中下部的粉红色舌面可见区域；上缘圆润上凸弧线（顶点 `y≈282.2`）与原图中粉红舌面同深红口腔内壁（`mouth_interior`）的分界弧度、位置精确贴合。\n2. **接缝延伸与父范围检查**：左右两侧及下缘（底端 `y≈295.5`）自然延伸入下唇深色唇线（`lower_lip`）内部，无漏白或缩入原图可见舌面，且完全位于父组 `../../../../../../../parts/face/mouth.svg` 范围内（四倍采样越界像素为 0，`bounds.status = pass`）。\n3. **轮廓质量**：路径干净闭合，无孤立噪点、碎片或多余折角。",
-      "candidateHash": "b6759d76dd2e1ebfe32897d78e35e8947dca0f4ca9e0d352898feefc6d59d174",
+      "verdict": "revise",
+      "feedback": "已对照整图及口部局部 [611,252,43,30] 的 8 倍原图、blend、edge，并在同一局部叠加父稿。① 上缘（x≈618–647，y≈263–268）沿浅粉亮面与偏深红舌面之间的柔和明暗过渡，漏掉上方连续的舌面。将上缘抬至上齿带下缘的可见遮挡接缝，两肩沿红粉舌面与左右深棕口腔的色块分界分别接回侧缘，保留两侧深色口腔楔区和浅色上齿带。② 左右下侧到下弧（约 x=618–647、y=268–278），红色候选边线切在粉色舌面内，尤其底部 y≈277.2 留出一条连续的粉红边。将两侧弧线及底部向外贴到舌面与下唇的可见接缝，收足舌侧可辨的粉红窄边，沿下唇遮挡弧连续闭合，避开唇外浅色边。父稿叠加覆盖这些可修范围，候选四倍采样越界为 0。",
+      "candidateHash": "799161d9fa4c58417271c2d6d8b8890ed54b7199390895c1cc2aec6a7e8c6146",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/tongue.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-01-26-290Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face/mouth.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-01-26-290Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/tongue.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-3.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/tongue.svg",
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-4.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-01-26-290Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/mouth/tongue.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face/mouth.svg",
+          "source": "part-layering/parts/face/mouth.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/mouth/tongue/2026-10-22T08-26-22-098Z-6.png"
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-01-26-290Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T08:59:14.790Z"
+      "updatedAt": "2026-11-18T13:08:43.424Z",
+      "repairedCandidateHash": "98dc01d693f5e5bd44e387f74bb2421c5612e97e568363b2195f964a3e439e7d"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮已查看整图定位，并对照口部 [610,252,44,30] 的 8 倍参考、blend、edge 和同局部父稿。上缘贴合浅色上齿带下的遮挡接缝，左右肩分别沿红粉舌面与深棕口腔的斜界转向，保留两侧深色楔区。下缘连续。仍需修正下侧与下唇的接缝，右侧最明显（x≈644–647、y≈269–275），左侧较短（x≈618–621、y≈269–274）。放大 edge 中，候选沿两侧深棕下唇线的线身走，包进了遮挡舌面的唇线。将右段向左、左段向右微收至粉红舌面与深棕唇线的内侧接缝，分别接回肩部和连续底弧，保留底部粉红窄边。父稿覆盖这些调整位置，候选四倍采样越界为 0。",
+      "candidateHash": "98dc01d693f5e5bd44e387f74bb2421c5612e97e568363b2195f964a3e439e7d",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-11-18-157Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-11-18-157Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/mouth.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-11-18-157Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/mouth/children/tongue/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/mouth/children/tongue/previews/2026-11-18T13-11-18-157Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T13:15:38.083Z",
+      "repairedCandidateHash": "69fae316ec971b3f9c0ce4a47e068f1ad66edcd14f9a3427f6cad98bb23882c8"
     }
   ]
 }

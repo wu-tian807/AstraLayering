@@ -1,8 +1,0 @@
-{
-  "groupId": "face/eye_left/highlight",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，0 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。 raster step01：来源 SVG 同步最终深度/可见形状修订，保持补全新增路径合同；规范化前后渲染完全一致。",
-  "beforeHash": "f404ab2e1d6667886991f6e27af64637774e0c7f95541b8f5eb1d932cdd152b8",
-  "afterHash": "0fb30cad68aa66fef7899a5811600f3484167c61950fcdb56147c144229b51ba",
-  "rasterAmendment": "raster step01 对照原图，将虹膜右下方遗漏的浅色反光加入现有 highlight SVG，与上部反光共用运动身份和深度42；虹膜底层补回棕色。"
-}

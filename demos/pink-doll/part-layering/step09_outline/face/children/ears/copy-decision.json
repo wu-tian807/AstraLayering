@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "face/ears",
+  "detectorVersion": 1,
+  "needsCompletion": true,
+  "reason": "mask-cuts-parent"
+}

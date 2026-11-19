@@ -3,160 +3,81 @@
   "reviews": [
     {
       "verdict": "revise",
-      "feedback": "需要对 `face` 组轮廓色块进行返修（涉及局部边界偏移与形体归属不准，无孤立噪点碎片），具体问题与修改要求如下：\n\n1. **左右眉毛独立色块位置整体偏下、弧度与端点未对齐原图**：\n   - **左眉（画面左侧，`x ≈ 554..606, y ≈ 178..194`）**：在 `crop=[540,145,95,75]` 的 `blend` 与 `edge` 图中可见，候选路径 `M 554.0 192.2 ... Z` 在中段至右端（`x ≈ 575..606`）明显偏下约 2~4px。原图深色眉线位于 `y ≈ 178.5..183`，而候选路径上沿切过原图眉线中部，下沿向下溢出到眉下皮肤与发丝区域（右端落到 `x=605.8, y=186.4`，而原图左眉内侧端点位于 `x ≈ 604, y ≈ 181.5`）。需将左眉路径上移并修正弧度与右端位置，使其上下边缘精准贴合原图左眉笔触。\n   - **右眉（画面右侧，`x ≈ 649..702, y ≈ 178..194`）**：在 `crop=[620,145,95,75]` 的 `blend` 与 `edge` 图中可见，候选路径 `M 649.8 184.2 ... Z` 全段整体偏下约 2~4px。左端（内侧端，`x ≈ 650..665`）原图眉线位于 `y ≈ 179..182`，候选路径却画在 `y ≈ 184..186`，脱离原图眉线落入下方区域；中段（`x ≈ 665..685`）候选上沿仅贴到原图眉线下沿，导致原图眉线主体未被覆盖；右端（外侧端，`x ≈ 685..702`）候选下探至 `y=192.2..193.5`，低于原图眉梢（`x ≈ 700, y ≈ 189..190`）。需将右眉路径整体上移并修正弧度与两端位置，完整、准确覆盖原图右眉。\n\n2. **额头刘海指缝处的脸部上缘轮廓多处偏移，误包深色发丝并漏画真实露肤区域**：\n   - **左眼上方刘海缝隙（`x ≈ 570..622, y ≈ 151..210`，见 `crop=[540,145,95,75]`）**：\n     - 左侧大三角露肤区右边线（`(596.2, 184.0)` 至 `(605.5, 208.8)`）向左缩入肤色区，漏画了 `x ≈ 598..606, y ≈ 185..207` 紧贴发丝左缘的一条肤色区域；其顶部左缘（`x ≈ 589..593, y ≈ 152..165`）则略向左超出到发丝线外；最左侧露肤缝顶点（`x=573.2, y=173.0`）略低于原图尖端（`x ≈ 574.5, y ≈ 168`）。\n     - 候选从 `(607.0, 208.8)` 向上画出的尖刺 `(604.8, 184.5)` 至 `(614.2, 210.2)` 上半段（`y ≈ 184.5..198`）直接穿入原图深色刘海发束内部，而原图该处两绺发尖之间的露肤小缺口仅位于 `x ≈ 606..613, y ≈ 198..210`。\n     - 内侧小露肤尖角 `(616.5, 210.2) -> (617.2, 198.5) -> (621.8, 210.2)` 偏左侵入发丝黑线，右侧 `x ≈ 619..621, y ≈ 202..209` 露肤略有缩入。\n   - **右眼上方刘海缝隙（`x ≈ 634..702, y ≈ 151..212`，见 `crop=[620,145,95,75]`）**：\n     - 内侧小露肤尖角 `(635.2, 210.2) -> (639.3, 198.5) -> (640.2, 210.2)` 整体偏右侵入深色发丝，左侧 `x ≈ 634..636, y ≈ 204..210` 露肤未覆盖。\n     - 尖刺 `(642.2, 210.2) -> (651.2, 184.5) -> (649.0, 208.8)` 严重偏右，上半段及右侧边直接覆盖了 `x ≈ 647..651, y ≈ 184..209` 的整绺深色发丝，而原图该处露肤缝仅位于左侧 `x ≈ 641..648, y ≈ 193..210`。\n     - 右侧大三角露肤区左边线 `(650.5, 208.8) -> (659.6, 184.0)` 向右缩入肤色内部，漏画了 `x ≈ 648..658, y ≈ 184..208` 的露肤左缘；其右边线 `(662.2, 151.8) -> (671.8, 181.5) -> (675.0, 208.8)` 及最右侧露肤缝右边线 `(682.2, 172.5) -> (692.5, 196.5)` 则略向右超出到深色发丝上。\n   - **修改要求**：逐一对照原图修正额头刘海各处露肤缝隙的边界走向与尖角位置，消除误包深色发束的错误尖刺并补齐漏画的露肤边缘。\n\n3. **左右外眼角睫毛尖端（外眦尖角）被磨成钝弧且上缘超出到侧发**：\n   - **左外眼角睫毛尖（`x ≈ 545.5..550.2, y ≈ 227.0..232.5`，见 `crop=[540,205,95,85]`）**：原图外眼角睫毛向左下伸出明确的尖锐折角（尖端约在 `x=545.5, y=230.2`），候选路径在 `x=546.8, y=228.4..230.6` 处将其磨成圆钝弧线，未覆盖到最左端尖点（`x ≈ 545.5`），且上缘 `y ≈ 227.5..229.5` 向上鼓出到睫毛上方的深色侧发区域。\n   - **右外眼角睫毛尖（`x ≈ 705.2..709.5, y ≈ 227.0..232.8`，见 `crop=[620,205,95,85]`）**：原图右外眼角睫毛向右下伸出尖锐折角（尖端约在 `x=709.5, y=230.2`），候选路径同样在 `x=708.5` 处磨成钝弧，未达真实尖端，且上缘 `x ≈ 706..708.5, y ≈ 227.5..229.5` 向上超出到深色侧发上。\n   - **修改要求**：保留左右外眼角睫毛尖端的明确尖角与转折，向外延伸覆盖至真实尖端（左 `x ≈ 545.5, y ≈ 230.2`，右 `x ≈ 709.5, y ≈ 230.2`），并收紧尖端上缘使其贴合睫毛上沿，不侵入上方侧发。\n\n4. **左右脸颊下方侧发搭脸处的折角外扩侵入深色发丝**：\n   - **左脸颊侧发缺口（`x ≈ 564.2..578.5, y ≈ 274.2..281.5`，见 `crop=[540,205,95,85]` 与 `crop=[555,265,145,65]`）**：候选路径在侧发下沿向外折回至 `(564.2, 274.2)`，该折点偏左上侵入了深色侧发内部（原图侧发下沿与脸颊下轮廓的交界折点约在 `x=565.5, y=276.5`），且内侧切口终点 `(575.2, 279.6)` 早于发梢尖端（`x ≈ 578.5, y ≈ 281.5`）。\n   - **右脸颊侧发缺口（`x ≈ 676.5..691.2, y ≈ 274.2..281.5`，见 `crop=[620,205,95,85]` 与 `crop=[555,265,145,65]`）**：候选外折点 `(691.2, 274.2)` 向右上突出约 2~3px 侵入深色侧发区域（原图交界折点约在 `x=689.5, y=276.5`），内侧切口终点 `(680.6, 279.6)` 同样未贴到发梢尖端（`x ≈ 676.5, y ≈ 281.5`）而横切了发梢。\n   - **修改要求**：将左右脸颊侧发下方的外折点分别向内收至真实交界处（左 `x ≈ 565.5, y ≈ 276.5`，右 `x ≈ 689.5, y ≈ 276.5`），并顺着侧发发梢上下沿修正缺口走向，消除对深色侧发的误覆盖。",
-      "candidateHash": "c9eb47cd3e9c66c342d1b3f2d122cac41c555f5251b20762ce850f72a7382204",
+      "feedback": "已按组说明核对脸型、五官及双耳，face 为顶层组。坐标均为原图，左右按画面计。五官位于连续脸底内，双耳各自保留鬓发遮挡形成的分离露出区。请修以下可见边界：\n1. 刘海下缘及发缝（约 x600–658、y154–194）。中央发束下边目前以平直段和硬折相接，局部压到发尖下连续的浅桃肤色带。沿灰棕发束与浅桃皮肤的实际交界将该段略向上提，并贴合各束根部的弧转。中央发束右侧约 x638–641 的两道细尖包含偏棕的发内细线，收回到发尖根部确实露出的浅桃窄缝，保留真实开口。右侧高额发缝约 x662–685、y117–156 的斜边按深色发缘与桃色额面的实际斜弧微调，尖端贴回发缝闭合点。\n2. 两侧外眼角上方的鬓发接缝（左约 x545–554、y194–205；右约 x704–713、y185–199）。左侧候选在浅肤色小楔的上边做出短横台阶，右侧在发尾与眼尾之间做出小折台。按深棕发边下方实际露出的窄肤色楔重贴，保留睫线外尖，并使发缘在交会处按参考转向。\n3. 两耳及鬓发尖（左约 x549–570、y238–258；右约 x694–709、y236–254）。耳上缘沿压在耳前的鬓发下缘走，分别贴合本侧斜弧。左耳下缘及右耳下缘向深色线外侧微扩，补足耳与后发之间可见的描线宽度，右耳下端按其短圆弧收尾。左侧切入口尖端约 x569、y253 当前偏低，沿参考深色鬓发尖向上微收，保留它与耳露出片之间的发丝间隔。\n4. 下颌（约 x565–699、y250–299）。左下颌弧中段约 x579–603 的候选略落入后发，向脸内微收至黑色颌线外缘。右下颌从耳下至颈右接点约 x654–697 的部分曲段切入黑色颌线，向后发及颈侧微扩到线外缘。两侧沿可见描线连续接到现有颏尖位置，保留下颌与颈的清楚折向。",
+      "candidateHash": "0c7d45a90987b8f545c00c2654cea675a3d2fb3d08abf4fcc167d7bc16cd24a5",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T09-38-48-963Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T09-38-48-963Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T09-38-48-963Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-6.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T09-38-48-963Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-12.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-13.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T01-07-11-174Z-14.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T09-38-48-963Z-5.png"
         }
       ],
-      "updatedAt": "2026-10-22T01:17:57.797Z",
-      "repairedCandidateHash": "5f0ce0c9fd1c35c699a5b1b10acd2171197d922e77ea9802664a31e3879674f7"
+      "updatedAt": "2026-11-18T09:52:16.810Z",
+      "repairedCandidateHash": "95e32cc4b6089f8210c263728d11d287665e3943e2c98408062ec4409a8b387d"
     },
     {
-      "verdict": "pass",
-      "feedback": "已完成 face 组轮廓色块的全图叠加与分块高倍（scale=4 及 scale=8）边缘、混合与原图对照审查，结论为通过（pass）：\n\n1. **可见区域与组件覆盖完整性**：\n   - 主体色块完整覆盖脸部可见肤色及内部五官区域（双眼、眼睑褶线、鼻、口均位于主体联合色块内部）。\n   - 伸出脸部主色块之外的独立/突出五官结构均已完整覆盖：左右两侧跨过刘海与侧发的眉毛弧线已由两条独立连续的 path（左眉约 x=554.5..604.5, y=179..192.4；右眉约 x=651.0..700.5, y=179..190.8）完整描绘；左右外眼角伸出侧发边缘的睫毛尖端（左 x=546.0, y=230.2；右 x=709.0, y=230.2）亦已准确包含在主轮廓内。\n   - 原图中耳朵完全被两侧头发遮挡，无可见外露部分，符合当前阶段职责。\n\n2. **接缝、边缘对齐与转折特征**：\n   - 额头与刘海交界处（x=550..702, y=152..210）：各处发丝分叉尖角、发梢平端及眉间细小露肤缺口均与原图发肤交界线精确贴合，折角清晰。\n   - 双颊与下颌线（x=550..705, y=232..318.2）：两侧脸颊处侧发搭靠形成的内凹折角（左 x=566.0..577.2, y=277..281；右 x=679.2..689.4, y=277..280.8）转折准确，下颌弧度至下巴尖端（x=627.8, y=318.2）平滑且与原图边缘一致。\n\n3. **轮廓干净度**：\n   - SVG 仅包含 1 条主脸部闭合路径与 2 条眉毛闭合路径，无孤立噪点、碎块堆砌或无依据缺口。",
-      "candidateHash": "5f0ce0c9fd1c35c699a5b1b10acd2171197d922e77ea9802664a31e3879674f7",
+      "verdict": "revise",
+      "feedback": "第 2 轮，已对照整图及放大的参考、blend、edge，核对刘海间露肤、双侧眼尾与鬓发、双耳及下颌。face 为顶层组，无父稿范围限制。坐标为原图像素。① 画面左眼外角上方约 (546–552,198–205)，候选用直角台阶连接外侧发缝与眼尾，兜入发束末端的暗色区；沿清晰的浅肤楔与鬓发分界收回，再接到黑色睫毛尖的外缘。约 (560–565,189–192) 的细横尖也要按实际黑线轮廓收整，去掉搭到灰发上的水平折边。② 中央刘海下缘约 (637–641,185–191)，候选在两段钝圆发梢之间抬出两个细尖，包进发梢间仍属棕灰或暖棕的暗部；按连贯可辨的发梢下缘压低尖口，仅保留明确露肤的开缝。画面右侧约 (685–688,183–185) 的额肤转向应沿斜发缘落到睫线顶缘，收回进入灰色发梢底部的平肩。③ 右眼外角约 (709–714,198–208) 保留黑色眼尾尖，尖下现有短直台阶略伸入鬓发；向脸侧收贴黑线外缘，按参考的转向接到颊缘。④ 双耳露出轮廓分别校准。左耳约 (552–565,239–257) 的外下缘在转角处切过原图的圆弧线宽，应补齐暗轮廓外缘并沿实际弧线转向；右耳约 (698–705,248–254) 底部红线低于清晰的耳缘暗线，向上收至线条外缘，保留鬓发夹出的上尖和耳颊之间的遮挡切口。⑤ 下颌尖右侧至颈侧接点约 (633–655,289–298)，候选落在暗色下颌线外的颈部浅粉带，向上贴到暗线的外缘，保留下颌尖和连续的双侧弧线。脸底及五官按联合范围保持连续。",
+      "candidateHash": "95e32cc4b6089f8210c263728d11d287665e3943e2c98408062ec4409a8b387d",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-5.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-4.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-7.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-8.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-6.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
+          "source": "part-layering/step09_outline/face/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-12.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-13.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/2026-10-22T02-07-31-439Z-14.png"
+          "savedPath": "part-layering/step09_outline/face/previews/2026-11-18T10-12-58-607Z-7.png"
         }
       ],
-      "updatedAt": "2026-10-22T02:12:57.664Z"
+      "updatedAt": "2026-11-18T10:30:33.292Z",
+      "repairedCandidateHash": "4944fd848a271b28de669431aaf7b26c058312b10540475bcfae97e349cc6145"
     }
   ]
 }

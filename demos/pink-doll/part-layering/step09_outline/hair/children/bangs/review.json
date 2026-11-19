@@ -2,107 +2,82 @@
   "groupId": "hair/bangs",
   "reviews": [
     {
-      "verdict": "pass",
-      "feedback": "全组可见区域与边界经整图叠加及分块 8 倍放大（覆盖上缘与左右分缝 `[540,70,95,85]`、`[620,70,95,85]`，以及下沿左侧偏束 `[540,145,75,80]`、中央齐刘海多尖主束 `[590,145,75,80]`、右侧偏束 `[645,145,70,80]`）逐一对照原图与父组 `../../../../../parts/hair.svg` 核对通过：\n1. 下沿各发尖、发隙开口及两侧眉上偏束的内外边缘位置、宽度、折角与弧度均与参考图精确贴合，跨过眉毛交叠处保持连续发束轮廓，未受眉毛线条干扰或产生缺口。\n2. 左右外缘沿前侧发清晰深色发缝线延伸至头顶内层分界弧线，上缘弧形收口平滑自然，完全处于父组 `hair.svg` 范围内（四倍采样越界像素为 0）。\n3. 轮廓为单一干净闭合路径，无孤立噪点、碎发块或误将内部高光/阴影拆出孔洞的情况。",
-      "candidateHash": "9433061d9637cbcce20d7e9075bd3c5f010bbd8b6aca96579bc071acec76bec7",
+      "verdict": "revise",
+      "feedback": "第 1 轮。以原图坐标记述。整图确认额前发面共根，两侧接宽侧发，眉线穿过发面及露肤区。6×参考、blend、edge 覆盖根部和两侧接缝，8×复查齐梢与眼上接缝。头顶两段根弧和中央短连接可保留。父稿在同一局部的 blend 与 edge 显示，下列调整均在父稿联合范围内。候选四倍采样越界为 0，无确认的上游范围限制。\n1. 两侧长接缝需沿深色分界的宽侧发侧外缘收准。画面左 x≈542–554、y≈140–195 的红边局部切入暗线，向画面左补齐线宽，并随线弧下转。画面右 x≈704–713、y≈155–191 的红边到下段仍近直下，按参考暗缝的实际弧度和末端转向接到发梢，勿顺入侧发亮面。\n2. 两处大露肤口的顶端（约 590,116 和 662,117）以及靠外窄口（约 572,148 和 690,161），目前起点普遍偏低。沿两侧发束面向皮肤的边缘把口尖向上提到可辨的第一段露肤，保留发侧暗线。尤其右大口斜边、右窄口斜边有直线化，按参考逐段调整为发束实际弧线。眉线横穿处延续发肤边界。\n3. 画面左眼上方 x≈547–565、y≈188–204。最外小束的平底漏掉向眼角斜下的末段深色发线，应沿清楚的发线补到与肤色分开的转折，仍保留与睫毛间的浅色间隙。内邻宽束朝睫毛的下缘在 x≈554–562 有一段可辨圆弧，当前折线顺着睫毛方向兜进浅色空隙，应向上收回发灰色块外缘，复原弧梢和开口。画面右眼上方 x≈684–713、y≈184–196，窄束平斜底压进黑色上睫缘，应收回到发束被睫缘切住的位置。最外宽束下端与睫尖邻接处也应沿发肤实际边转折，去掉 x≈710–712 处伸进浅色三角的折尾，保留眼角间隙。\n4. 中央齐梢 x≈596–653、y≈160–194。左侧两条细口（约 x=600、606）和中间细口（约 x=619、639）当前画成近直边的尖楔，部分口顶偏低，若干梢底还伸入粉肤。沿参考里连续可辨的窄露肤边缘往上回溯至真实口顶，按两侧各自的弯曲收窄，止于发肤交界，保留相连的发根。x≈604、618–636 一带梢底的平直折段需按实图上收并恢复细小圆角。最右中央束 x≈650–655、y≈160–191 的近直内缘和平底也需贴准露肤侧曲线与尖梢，去掉下面多包的肤色。",
+      "candidateHash": "846b09c264ab9585dc3bccb9e087ff9d092c023a00c7c3718052dec2feea9a6b",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-1.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-2.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-4.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-3.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-5.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
+          "source": "part-layering/parts/hair.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-7.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-8.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-9.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-10.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-11.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-12.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-13.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-14.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-15.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/hair/bangs.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-16.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-17.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-18.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/hair.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/hair/bangs/2026-10-22T04-13-45-204Z-19.png"
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-33-42-217Z-6.png"
         }
       ],
-      "updatedAt": "2026-10-22T05:32:35.706Z"
+      "updatedAt": "2026-11-18T11:40:38.775Z",
+      "repairedCandidateHash": "0f03bfe08092418abd56e61e2cb3207dcd986a101d129523772c604264c550bb"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。已按参考原图、放大 blend 与 edge 核对共同根区、左右宽侧发接缝、全部额前发梢及眉眼遮挡。根部双弧与中央短接可保留。四倍父范围检查无越界，父稿局部叠加未见下列位置受上游边界限制。\n1. 画面右侧刘海与宽侧发的长弧（约 x690–712、y110–191）中下段，候选落在深色接缝靠刘海的一侧，外侧仍有连续深线。沿接缝朝右侧宽侧发方向微移到线的外缘，保留原弧及下端转向。\n2. 画面右端外眼角上方（约 x697–710、y185–193），候选从睫毛尖沿斜线接向外侧发缝，包入发梢下方的桃色露肤。沿上方灰棕发梢与桃色皮肤的实际交界抬高这段，保持眼线和发梢之间可辨的露肤间隙，只在实际相接处收口。画面左端（约 x560–564、y189–192）的反钩伸进黑色睫毛尖，贴灰棕发梢到睫毛上缘的接触边收回反钩。\n3. 中央齐梢右端（约 x636–641、y180–191）候选在同一处可辨的窄露肤缝旁额外刻出折返小槽。按参考中宽平梢与右邻细梢之间的实际单缝收口，保留真实开口及两侧深色轮廓。中央偏左首个尖梢（约 x599–605、y184–193）候选尖端收在灰棕线内，沿线的皮肤侧外缘微向右下补齐至实际尖端，保留相邻窄缝。",
+      "candidateHash": "0f03bfe08092418abd56e61e2cb3207dcd986a101d129523772c604264c550bb",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/bangs/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/bangs/previews/2026-11-18T11-45-28-441Z-6.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:49:43.037Z",
+      "repairedCandidateHash": "b379bfc0e08d053e0c622aaa2004eac24a87b64f63a14a73f30d063c68e9a6f9"
     }
   ]
 }

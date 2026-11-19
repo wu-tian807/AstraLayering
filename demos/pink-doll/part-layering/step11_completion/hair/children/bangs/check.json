@@ -1,7 +1,5 @@
 {
   "groupId": "hair/bangs",
   "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。",
-  "beforeHash": "9433061d9637cbcce20d7e9075bd3c5f010bbd8b6aca96579bc071acec76bec7",
-  "afterHash": "e531281041d2c870854e880294fae7a068e052fd3c95750158b634c3e008dd39"
+  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。"
 }

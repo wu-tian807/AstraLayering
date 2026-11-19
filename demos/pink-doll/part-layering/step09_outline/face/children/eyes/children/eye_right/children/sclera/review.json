@@ -1,0 +1,73 @@
+{
+  "groupId": "face/eyes/eye_right/sclera",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "放大参考、blend 和 edge 核对了画面左侧的角色右眼。开口上沿沿深色上睑的内缘，外眼角侧绕开上睑下勾，鼻侧沿浅色眼白与肤色的交界收束。眼白底形跨虹膜连续，两颗独立下睫毛点留在轮廓外。需返修下沿中央至鼻侧起弯处（原图约 x584–596、y233–235）：候选红边穿过虹膜底部与肤色相接的深色短弧，弧线下侧仍有一窄带露在候选外。沿深色弧贴肤侧的外缘微向下移，纳入可见线宽，再接回鼻侧上转处，保持靠外眼角一侧与两颗下睫毛的间隔。同一局部叠加父稿可见父下缘在候选下方，为这段下沿留有可修空间。候选当前未超出父范围。",
+      "candidateHash": "e96d35f2b3c63a901a2558a2030c33f2de6aafe25c7a787ea0f7e7667170816a",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-14-57-227Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-14-57-227Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-14-57-227Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-14-57-227Z-4.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-14-57-227Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:23:04.048Z",
+      "repairedCandidateHash": "62fda30782b6e9300acbf28bf421e703f159caebd12f4b236043cf650ff03dfc"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮。整图确认本件为画面左侧右眼的开口底形。8 倍参考、blend、edge 对照中，上缘沿深色上睑朝眼白的内缘，鬓侧弧沿外眼角下勾的朝眼白侧，下缘从较宽的眼白过渡至虹膜底部贴皮肤的深线，虹膜后底形连续。需修鼻侧弧（画布约 x604–607、y207–224）：红边落在窄白带里，线内是眼白，线外仍留白，之后才转为粉色皮肤。相同裁区叠加父稿后，父边比候选略靠鼻侧，父内仍有一条细白边可纳入；将该段向画面右侧微移，沿白带与皮肤的交界收弧，达到父界即止。父边外仍可见一部分同一窄白带，尤其弧的中段，这部分属于上游范围限制。四倍采样当前越界为零。",
+      "candidateHash": "62fda30782b6e9300acbf28bf421e703f159caebd12f4b236043cf650ff03dfc",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-54-07-888Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-54-07-888Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-54-07-888Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-54-07-888Z-4.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/sclera/previews/2026-11-18T14-54-07-888Z-5.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:55:13.008Z",
+      "repairedCandidateHash": "ae8d71a2f43b543c24c501275cd928a54b41245bad83b6037a002ac26014ad5a"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "groupId": "image_right_shoulder_assembly",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮通过。先从纯衣服参考确认本组是画面右上方的窄肩带和沿其外侧连续缝接的整片肩荷叶。全图叠加及原图坐标 x724–886、y111–346 的四倍局部叠加和边缘对照显示，肩带内缘与肩顶、荷叶上缘和外侧各瓣的凹口、下端小瓣与胸衣侧缘收点均贴合参考。x744–776、y250–331 的内侧边沿白褶边、粉色胸口包边及胸衣侧缘交接，方领敞口保持通畅。独显确认联合轮廓连续，参考中没有另需覆盖的薄纱或分离附件。note 已交代肩带和荷叶的缝接、共同随肩、荷叶自由边摆动、相对上臂和头发的前后关系，以及肩顶隐接和领口根部的遮挡关系。本组为顶层，无父 SVG。",
+      "candidateHash": "073867b82a90d7d47ea066b68dab0ae3dbaecb385d40e8f79e01cf86994c8c47",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/previews/2026-11-18T10-08-48-997Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/previews/2026-11-18T10-08-48-997Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/previews/2026-11-18T10-08-48-997Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/image_right_shoulder_assembly/previews/2026-11-18T10-08-48-997Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:21:22.871Z"
+    }
+  ]
+}

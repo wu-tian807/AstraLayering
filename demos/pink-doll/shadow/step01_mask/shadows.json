@@ -8,15 +8,209 @@
         "character:face/face_base"
       ],
       "casterLayerUuids": [
-        "afba6c2a-e2c9-4741-8d14-b343a2aa86a0"
+        "8f52de64-6df2-498b-885b-4bfe234ad388"
       ],
       "receiverLayerUuids": [
-        "7800356f-9032-4024-869a-e72d6b74200a"
+        "33ed522e-65e8-4ff3-a48d-92ca9a407d70"
       ],
-      "shadowLayerUuid": "da96d840-c3c6-4f13-a200-64b167e40a0a",
-      "clipBaseLayerUuid": "7800356f-9032-4024-869a-e72d6b74200a",
-      "blendMode": "normal",
+      "shadowLayerUuid": "1f547986-0413-4040-b322-f1b3ef5d1c78",
+      "clipBaseLayerUuid": "a8bfece5-f341-4815-9184-d489f9275208",
       "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#c78f84",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -5,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "notes": "暖赭粉细影沿额上裂隙、各束尖底及内侧细丝，较前额底色稍深。冠部、尖端后方及两侧补全。"
+    },
+    {
+      "id": "right-side-hair-to-face",
+      "casterPartId": "character:hair/side_hair/side_hair_right",
+      "receiverPartIds": [
+        "character:face/face_base",
+        "character:face/ears/ear_right"
+      ],
+      "casterLayerUuids": [
+        "fcab6dd0-feac-4ddd-9261-2ea67425779e"
+      ],
+      "receiverLayerUuids": [
+        "33ed522e-65e8-4ff3-a48d-92ca9a407d70",
+        "36afd0de-0ba6-4e30-ab1e-8a8e13b89032"
+      ],
+      "shadowLayerUuid": "27dbb55b-1dd0-42c8-aa08-2a807c9045f3",
+      "clipBaseLayerUuid": "a8bfece5-f341-4815-9184-d489f9275208",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#be8981",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          -4,
+          1
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "notes": "淡暖褐粉在太阳穴、细发裂隙、外眼角和耳屏上方收成窄边。鬓发本体后绘足宽，脸颊段逐渐收尖。"
+    },
+    {
+      "id": "left-side-hair-to-face",
+      "casterPartId": "character:hair/side_hair/side_hair_left",
+      "receiverPartIds": [
+        "character:face/face_base",
+        "character:face/ears/ear_left"
+      ],
+      "casterLayerUuids": [
+        "8c891a9a-a54e-4b2a-9603-71b9fff80ce9"
+      ],
+      "receiverLayerUuids": [
+        "33ed522e-65e8-4ff3-a48d-92ca9a407d70",
+        "af7fbba5-8f9f-4d7c-af0f-fa841b046d1d"
+      ],
+      "shadowLayerUuid": "7f108565-333d-4c99-af72-03ce48c01bf7",
+      "clipBaseLayerUuid": "a8bfece5-f341-4815-9184-d489f9275208",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#be8981",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -5,
+          0
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "notes": "淡暖褐粉在太阳穴、细发裂隙、外眼角和耳屏上方收成窄边。鬓发本体后绘足宽，脸颊段逐渐收尖。"
+    },
+    {
+      "id": "right-upper-lid-to-eye",
+      "casterPartId": "character:face/eyes/eye_right/upper_eyelid",
+      "receiverPartIds": [
+        "character:face/eyes/eye_right/sclera",
+        "character:face/eyes/eye_right/iris"
+      ],
+      "casterLayerUuids": [
+        "0a88eacb-37dd-4fee-a591-94af26ddcee2"
+      ],
+      "receiverLayerUuids": [
+        "b3401516-70b8-4088-befd-8fb5a4b6afb5",
+        "7b511ccd-dd7c-442a-9ad5-8bcf9eafe39a"
+      ],
+      "shadowLayerUuid": "d81a64da-9109-4d74-bbca-83e2a5e54751",
+      "clipBaseLayerUuid": "86bf43eb-1e10-482e-9177-758b618ee37c",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#80686d",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          -3,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "notes": "柔灰紫随上睑弧下落，跨过眼白和虹膜的上部，在虹膜中段以上渐隐。原高光在影层上，眼开合蒙版及虹膜裁切保留。"
+    },
+    {
+      "id": "left-upper-lid-to-eye",
+      "casterPartId": "character:face/eyes/eye_left/upper_eyelid",
+      "receiverPartIds": [
+        "character:face/eyes/eye_left/sclera",
+        "character:face/eyes/eye_left/iris"
+      ],
+      "casterLayerUuids": [
+        "37c242f7-5c5d-4a1c-80f7-84b3bab48175"
+      ],
+      "receiverLayerUuids": [
+        "cd4a1308-54eb-421c-8eb1-83923cf36999",
+        "a0388200-56bf-4b7c-a367-c1c78ebe6f6f"
+      ],
+      "shadowLayerUuid": "92f35284-e39d-4dd2-b597-a2b647c3f776",
+      "clipBaseLayerUuid": "cbc163f2-cbcf-4d7d-8947-b77be5635ef6",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#80686d",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          -3,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "notes": "柔灰紫随上睑弧下落，跨过眼白和虹膜的上部，在虹膜中段以上渐隐。原高光在影层上，眼开合蒙版及虹膜裁切保留。"
+    },
+    {
+      "id": "chin-to-neck",
+      "casterPartId": "character:face/face_base",
+      "receiverPartIds": [
+        "character:neck"
+      ],
+      "casterLayerUuids": [
+        "33ed522e-65e8-4ff3-a48d-92ca9a407d70"
+      ],
+      "receiverLayerUuids": [
+        "ab20c25e-4f8a-47a7-9ff4-2b5ce80059c7"
+      ],
+      "shadowLayerUuid": "5bfcf714-08ba-4392-90d0-0c5c5a1d1a95",
+      "clipBaseLayerUuid": "ab20c25e-4f8a-47a7-9ff4-2b5ce80059c7",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#e7c8c3",
       "testOffsets": [
         [
           0,
@@ -24,40 +218,73 @@
         ],
         [
           -6,
-          0
+          1
         ],
         [
           6,
-          0
+          1
         ],
         [
           0,
-          -4
+          7
+        ]
+      ],
+      "notes": "参考颈中部约 #dda699，暖粉棕顺下颌压至颈根；中心比两端下探，边缘在颈根原线之上以柔笔收口。下巴后方与颈两侧留足延伸。"
+    },
+    {
+      "id": "headpiece-to-bun",
+      "casterPartId": "character:head_accessories",
+      "receiverPartIds": [
+        "character:hair/bun/bun_right"
+      ],
+      "casterLayerUuids": [
+        "4d89065d-283b-4ce8-bf27-240f10d567ba"
+      ],
+      "receiverLayerUuids": [
+        "cf4989b3-cff4-40e8-a727-1c200fd339ea"
+      ],
+      "shadowLayerUuid": "96ee1b81-845f-465e-be05-4e6e9aa49717",
+      "clipBaseLayerUuid": "cf4989b3-cff4-40e8-a727-1c200fd339ea",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#8c777b",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          -5,
+          1
         ],
         [
           0,
           6
         ]
       ],
-      "notes": "对照 simplified-subject.png 采样前额刘海投影实色 #d8b3ab（RGB 216, 179, 171），采用 normal 模式与两侧前侧发影层共享同一不透明发影色以避免重叠处叠黑。完整影层包含刘海被遮挡冠部、额角外扩余量、各分缝内侧投射与刘海尖下窄影带，置于 投影组｜face/face_base 内对 030 | face/face_base 启用原生透明度继承。"
+      "notes": "黑蝴蝶结及珠饰下缘的暖紫灰接触阴影，落在画面左侧编股上，保留编股亮线。蝴蝶结内和发髻外保留完整影层。"
     },
     {
-      "id": "front-side-hair-right-to-face",
-      "casterPartId": "character:hair/front_side_hair_right",
+      "id": "right-side-lock-to-rear-hair",
+      "casterPartId": "character:hair/side_hair/side_hair_right",
       "receiverPartIds": [
-        "character:face/face_base"
+        "character:hair/back_hair/base"
       ],
       "casterLayerUuids": [
-        "1e71109d-8aa2-47de-a18b-b2263dac69d9",
-        "50caed0f-2a51-41b8-abee-e1cca6f5574b"
+        "fcab6dd0-feac-4ddd-9261-2ea67425779e"
       ],
       "receiverLayerUuids": [
-        "7800356f-9032-4024-869a-e72d6b74200a"
+        "5627df70-765a-4db5-b68e-a4df570d050e"
       ],
-      "shadowLayerUuid": "ae087aea-4d09-45fc-8de7-e6cde295760e",
-      "clipBaseLayerUuid": "7800356f-9032-4024-869a-e72d6b74200a",
-      "blendMode": "normal",
+      "shadowLayerUuid": "fdb5bc40-b46b-4724-8329-5f0695a410bb",
+      "clipBaseLayerUuid": "5627df70-765a-4db5-b68e-a4df570d050e",
       "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#796366",
       "testOffsets": [
         [
           0,
@@ -68,33 +295,33 @@
           0
         ],
         [
-          -4,
-          0
+          -5,
+          2
         ],
         [
           0,
-          5
+          9
         ]
       ],
-      "notes": "右前侧发（画面左侧）仅在上方太阳穴至上睫外角上方（y=155..226）与脸缘实际接触并投出窄影，脸颊段（y=228..280）贴合脸缘无外露影带，完整影层保留该贴脸发束被遮挡主体与外侧余量以便向内偏移 [+6, 0] 时自然显影；外伸细发与下方离开脸缘的卷尾不向脸内搬移成影。采用与刘海一致的 #d8b3ab normal 模式避免叠黑。"
+      "notes": "下颌两旁，鬓发尖下的后发偏深灰棕；软刷顺后发纵向收边，避免吃掉后发纵向线。发束后方与受影外缘补全。"
     },
     {
-      "id": "front-side-hair-left-to-face",
-      "casterPartId": "character:hair/front_side_hair_left",
+      "id": "left-side-lock-to-rear-hair",
+      "casterPartId": "character:hair/side_hair/side_hair_left",
       "receiverPartIds": [
-        "character:face/face_base"
+        "character:hair/back_hair/base"
       ],
       "casterLayerUuids": [
-        "e9e0a043-bac8-43b9-9551-a96f91136236",
-        "1057823f-d760-4671-bfcd-e91cc0907013"
+        "8c891a9a-a54e-4b2a-9603-71b9fff80ce9"
       ],
       "receiverLayerUuids": [
-        "7800356f-9032-4024-869a-e72d6b74200a"
+        "5627df70-765a-4db5-b68e-a4df570d050e"
       ],
-      "shadowLayerUuid": "7be235e3-b70f-4809-8834-a0b56190afc6",
-      "clipBaseLayerUuid": "7800356f-9032-4024-869a-e72d6b74200a",
-      "blendMode": "normal",
+      "shadowLayerUuid": "20ad795f-1786-45e0-8ee4-956facd5ee12",
+      "clipBaseLayerUuid": "5627df70-765a-4db5-b68e-a4df570d050e",
       "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#796366",
       "testOffsets": [
         [
           0,
@@ -105,46 +332,120 @@
           0
         ],
         [
-          4,
-          0
+          5,
+          2
         ],
         [
           0,
-          5
+          9
         ]
       ],
-      "notes": "左前侧发（画面右侧）仅在上方太阳穴至上睫外角上方（y=155..226）与脸缘实际接触并投出窄影，脸颊段（y=228..281）收于贴脸发束轮廓内，完整影层保留贴脸发束被遮挡主体与外侧余量以支持 [-6, 0] 等偏移；外伸细发与下方卷尾不向脸内搬移成影。采用 #d8b3ab normal 模式避免与刘海影叠黑。"
+      "notes": "下颌两旁，鬓发尖下的后发偏深灰棕；软刷顺后发纵向收边，避免吃掉后发纵向线。发束后方与受影外缘补全。"
     },
     {
-      "id": "skirt-to-legs",
-      "casterPartId": "clothing:skirt/lower_tier",
+      "id": "right-sleeve-to-arm",
+      "casterPartId": "clothing:image_left_shoulder_assembly/right_shoulder_ruffle",
       "receiverPartIds": [
-        "character:legs/leg_right/leg",
-        "character:legs/leg_left/leg"
+        "character:arms/arm_right/upper_arm"
       ],
       "casterLayerUuids": [
-        "f16a16dc-91e9-448f-9e9a-fb3b096e5799",
-        "7381db10-bf7b-4238-bccf-25c11543179e"
+        "e6f46c91-6042-4b6b-9df2-1b21e87b256a"
       ],
       "receiverLayerUuids": [
-        "28730050-72ea-410f-98da-bb96875a6436",
-        "b7de4261-4b44-46ee-af8a-6f612d249448"
+        "9726363c-b14c-481a-8b21-d53757919b49"
       ],
-      "shadowLayerUuid": "3b090e20-4d6b-404b-961d-397373b46339",
-      "clipBaseLayerUuid": "80158e91-98bd-4e56-baff-8d32c3baa172",
-      "blendMode": "multiply",
+      "shadowLayerUuid": "81549979-9609-46c1-91fa-d3a2c1474828",
+      "clipBaseLayerUuid": "9726363c-b14c-481a-8b21-d53757919b49",
       "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#e5c2bc",
       "testOffsets": [
         [
           0,
           0
         ],
         [
-          -10,
+          6,
+          -2
+        ],
+        [
+          -5,
+          2
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "notes": "袖褶投在上臂的暖砖粉短带，起于袖片自身下缘，沿三瓣随形拐出，内端被前发盖住。参考阴影芯约 #e0a799；边缘略软。袖后及臂缘外有完整搭量。"
+    },
+    {
+      "id": "left-sleeve-to-arm",
+      "casterPartId": "clothing:image_right_shoulder_assembly/left_shoulder_ruffle",
+      "receiverPartIds": [
+        "character:arms/arm_left/upper_arm"
+      ],
+      "casterLayerUuids": [
+        "11d60bf3-1d94-4410-805c-738d7d168e4e"
+      ],
+      "receiverLayerUuids": [
+        "7160fadb-559e-4013-83d0-7eb59270b2f0"
+      ],
+      "shadowLayerUuid": "a32ba2f3-1da8-4ac4-8c0d-b02c93a2aa29",
+      "clipBaseLayerUuid": "7160fadb-559e-4013-83d0-7eb59270b2f0",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#e5c2bc",
+      "testOffsets": [
+        [
+          0,
           0
         ],
         [
-          10,
+          -6,
+          -2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "notes": "袖褶投在上臂的暖砖粉短带，起于袖片自身下缘，沿三瓣随形拐出，内端被前发盖住。参考阴影芯约 #e0a799；边缘略软。袖后及臂缘外有完整搭量。"
+    },
+    {
+      "id": "skirt-hem-to-legs",
+      "casterPartId": "clothing:skirt_tier_four",
+      "receiverPartIds": [
+        "character:legs/leg_right",
+        "character:legs/leg_left"
+      ],
+      "casterLayerUuids": [
+        "a9d521f0-13ce-4f17-b38b-ecfec1a65865"
+      ],
+      "receiverLayerUuids": [
+        "cad62bde-fd4f-4a80-b8a2-4ac6e55e2ac0",
+        "66897033-654d-48fb-b674-651fcce376eb"
+      ],
+      "shadowLayerUuid": "46e7c8a0-a9dc-4c87-a1c2-e46becfe6292",
+      "clipBaseLayerUuid": "ab84b486-6796-4801-b79b-d675205b6781",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#dfbdb7",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -11,
+          0
+        ],
+        [
+          11,
           0
         ],
         [
@@ -153,94 +454,347 @@
         ],
         [
           0,
-          12
+          13
         ]
       ],
-      "notes": "裙摆下层对双腿大腿根部投出连续弧形阴影，先局部清理 007/008 大腿内侧上端（y=710..815）残留的旧连体衣投影底色，再用隔离组 投影组｜legs/leg 内的 受影底座｜legs/leg 联合承载左右腿。阴影层采用 #e0c0be（RGB 224, 192, 190）multiply 模式，叠乘亮部肤色后与 simplified-subject.png 大腿受影色（RGB 222, 171, 159）一致并保留腿部线稿。"
+      "notes": "末层裙摆投在两腿上缘，参考受影核心为 #dda598 左右，近外侧随摆波抬高，内侧在膝上收成两个不对称的舌形。影层在裙下连成一整幅并超出双腿两侧。"
+    },
+    {
+      "id": "neckline-to-bodice",
+      "casterPartId": "clothing:neckline_ruffle",
+      "receiverPartIds": [
+        "clothing:dress_bodice"
+      ],
+      "casterLayerUuids": [
+        "348c01b1-835c-431c-8fa3-26ceb08abeaf"
+      ],
+      "receiverLayerUuids": [
+        "b6282e41-d197-42bc-b2b3-5e6d137d08a3"
+      ],
+      "shadowLayerUuid": "8a4e75e7-af55-47b9-b660-267fc92d6b73",
+      "clipBaseLayerUuid": "b6282e41-d197-42bc-b2b3-5e6d137d08a3",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#b8848a",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "notes": "粉布接缝下沿细窄的暖灰红，参考的褶谷线从影下透出。画笔顺接缝走向留软下缘，画过隐藏搭口并延至裙片两侧。"
+    },
+    {
+      "id": "waistband-to-tier-one",
+      "casterPartId": "clothing:waistband",
+      "receiverPartIds": [
+        "clothing:skirt_tier_one"
+      ],
+      "casterLayerUuids": [
+        "85fea1d3-7512-4f8b-92ba-8416b5537714"
+      ],
+      "receiverLayerUuids": [
+        "9fbb62a3-1677-4fc3-a72f-65e7f44b2f60"
+      ],
+      "shadowLayerUuid": "4a26db53-71c6-441f-a251-2b61e2923798",
+      "clipBaseLayerUuid": "9fbb62a3-1677-4fc3-a72f-65e7f44b2f60",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#ab7881",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "notes": "粉布接缝下沿细窄的暖灰红，参考的褶谷线从影下透出。画笔顺接缝走向留软下缘，画过隐藏搭口并延至裙片两侧。"
+    },
+    {
+      "id": "tier-one-to-tier-two",
+      "casterPartId": "clothing:skirt_tier_one",
+      "receiverPartIds": [
+        "clothing:skirt_tier_two"
+      ],
+      "casterLayerUuids": [
+        "9fbb62a3-1677-4fc3-a72f-65e7f44b2f60"
+      ],
+      "receiverLayerUuids": [
+        "9636d74e-ffbb-4aab-b288-8fe79648fd20"
+      ],
+      "shadowLayerUuid": "40fda49d-84c4-4278-9554-3cc141f3939a",
+      "clipBaseLayerUuid": "9636d74e-ffbb-4aab-b288-8fe79648fd20",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#b58388",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "notes": "粉布接缝下沿细窄的暖灰红，参考的褶谷线从影下透出。画笔顺接缝走向留软下缘，画过隐藏搭口并延至裙片两侧。"
+    },
+    {
+      "id": "tier-two-to-tier-three",
+      "casterPartId": "clothing:skirt_tier_two",
+      "receiverPartIds": [
+        "clothing:skirt_tier_three"
+      ],
+      "casterLayerUuids": [
+        "9636d74e-ffbb-4aab-b288-8fe79648fd20"
+      ],
+      "receiverLayerUuids": [
+        "2f17cd15-d015-48a7-b6d7-9fa19189da2c"
+      ],
+      "shadowLayerUuid": "00c21b5f-f697-4ead-9e50-d216e5a4838e",
+      "clipBaseLayerUuid": "2f17cd15-d015-48a7-b6d7-9fa19189da2c",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#be8f91",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "notes": "粉布接缝下沿细窄的暖灰红，参考的褶谷线从影下透出。画笔顺接缝走向留软下缘，画过隐藏搭口并延至裙片两侧。"
+    },
+    {
+      "id": "tier-three-to-tier-four",
+      "casterPartId": "clothing:skirt_tier_three",
+      "receiverPartIds": [
+        "clothing:skirt_tier_four"
+      ],
+      "casterLayerUuids": [
+        "2f17cd15-d015-48a7-b6d7-9fa19189da2c"
+      ],
+      "receiverLayerUuids": [
+        "a9d521f0-13ce-4f17-b38b-ecfec1a65865"
+      ],
+      "shadowLayerUuid": "e9f216a5-db06-40a4-9558-ff8ecc1747ba",
+      "clipBaseLayerUuid": "a9d521f0-13ce-4f17-b38b-ecfec1a65865",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#b68389",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          1
+        ],
+        [
+          7,
+          1
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "notes": "粉布接缝下沿细窄的暖灰红，参考的褶谷线从影下透出。画笔顺接缝走向留软下缘，画过隐藏搭口并延至裙片两侧。"
+    },
+    {
+      "id": "right-forelock-to-bodice",
+      "casterPartId": "character:hair/front_long_hair/front_long_hair_right",
+      "receiverPartIds": [
+        "clothing:dress_bodice"
+      ],
+      "casterLayerUuids": [
+        "3744e261-2aae-4e87-828f-b26b6412e3a0"
+      ],
+      "receiverLayerUuids": [
+        "b6282e41-d197-42bc-b2b3-5e6d137d08a3"
+      ],
+      "shadowLayerUuid": "b830a279-fc93-45b1-a63d-ffdb5033d9ec",
+      "clipBaseLayerUuid": "b6282e41-d197-42bc-b2b3-5e6d137d08a3",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#bd878a",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "notes": "长前发投在同侧粉布接触边，软窄淡梅红沿发束下垂方向，发下和裁切外各留余量。随同一前发部件，受衣片叠放深度分区。"
+    },
+    {
+      "id": "left-forelock-to-bodice",
+      "casterPartId": "character:hair/front_long_hair/front_long_hair_left",
+      "receiverPartIds": [
+        "clothing:dress_bodice"
+      ],
+      "casterLayerUuids": [
+        "f4198c1a-a6ff-4028-8fbd-f7e400b81a42"
+      ],
+      "receiverLayerUuids": [
+        "b6282e41-d197-42bc-b2b3-5e6d137d08a3"
+      ],
+      "shadowLayerUuid": "b58e3082-a60a-43f5-a13e-fff36c17c81a",
+      "clipBaseLayerUuid": "b6282e41-d197-42bc-b2b3-5e6d137d08a3",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#bd878a",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -7,
+          0
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "notes": "长前发投在同侧粉布接触边，软窄淡梅红沿发束下垂方向，发下和裁切外各留余量。随同一前发部件，受衣片叠放深度分区。"
+    },
+    {
+      "id": "right-forelock-to-skirt",
+      "casterPartId": "character:hair/front_long_hair/front_long_hair_right",
+      "receiverPartIds": [
+        "clothing:skirt_tier_one",
+        "clothing:skirt_tier_two"
+      ],
+      "casterLayerUuids": [
+        "3744e261-2aae-4e87-828f-b26b6412e3a0"
+      ],
+      "receiverLayerUuids": [
+        "9fbb62a3-1677-4fc3-a72f-65e7f44b2f60",
+        "9636d74e-ffbb-4aab-b288-8fe79648fd20"
+      ],
+      "shadowLayerUuid": "bb5e3808-2a43-44c3-8bd2-acfa4dd5f752",
+      "clipBaseLayerUuid": "1acf1a4f-2317-4dbe-86da-92ef7733e5ab",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#bd878a",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          8,
+          0
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "notes": "长前束沿前两层裙片的相邻边投下柔窄梅红。连续画过两片接缝，底部随发梢收细，发下、裙片轮廓外及腰带遮挡区留有搭量。"
+    },
+    {
+      "id": "left-forelock-to-skirt",
+      "casterPartId": "character:hair/front_long_hair/front_long_hair_left",
+      "receiverPartIds": [
+        "clothing:skirt_tier_one",
+        "clothing:skirt_tier_two"
+      ],
+      "casterLayerUuids": [
+        "f4198c1a-a6ff-4028-8fbd-f7e400b81a42"
+      ],
+      "receiverLayerUuids": [
+        "9fbb62a3-1677-4fc3-a72f-65e7f44b2f60",
+        "9636d74e-ffbb-4aab-b288-8fe79648fd20"
+      ],
+      "shadowLayerUuid": "91843f57-c07b-4035-ba0e-b2719ca1beec",
+      "clipBaseLayerUuid": "1acf1a4f-2317-4dbe-86da-92ef7733e5ab",
+      "follow": "caster",
+      "blendMode": "multiply",
+      "color": "#bd878a",
+      "testOffsets": [
+        [
+          0,
+          0
+        ],
+        [
+          -8,
+          0
+        ],
+        [
+          0,
+          9
+        ]
+      ],
+      "notes": "长前束沿前两层裙片的相邻边投下柔窄梅红。连续画过两片接缝，底部随发梢收细，发下、裙片轮廓外及腰带遮挡区留有搭量。"
     }
   ],
   "excluded": [
     {
-      "casterPartId": "character:hair/side_hair_right",
+      "casterPartId": "character:legs/leg_right",
       "receiverPartIds": [
-        "character:face/face_base",
-        "character:arms/arm_right/upper_arm",
-        "clothing:bodice",
-        "clothing:skirt/upper_tier"
+        "character:legs/leg_right"
       ],
-      "reason": "右后侧发（028 | hair/side_hair_right）深度在 face_base（030）之后且整体位于脸颊与躯干外侧，对照 simplified-subject.png 在脸部、上臂与衣身上均无该部件投出的落影。"
+      "reason": "画面左侧袜褶下的青灰短影以及鞋口压到袜面的细暗边，在参考中可辨。袜褶、袜筒和鞋在同一真实 leg_right 绘画层内，缺少独立运动来源，原画内保留。"
     },
     {
-      "casterPartId": "character:hair/side_hair_left",
+      "casterPartId": "character:legs/leg_left",
       "receiverPartIds": [
-        "character:face/face_base",
-        "character:arms/arm_left/upper_arm",
-        "clothing:bodice",
-        "clothing:skirt/upper_tier"
+        "character:legs/leg_left"
       ],
-      "reason": "左后侧发（029 | hair/side_hair_left）深度在 face_base（030）之后且位于脸外侧，对照 simplified-subject.png 无落脸或落衣身投影。"
-    },
-    {
-      "casterPartId": "character:hair/bun_right",
-      "receiverPartIds": [
-        "character:face/face_base"
-      ],
-      "reason": "右侧发髻位于头顶后方（001 | hair/bun_right），不遮挡前向光源且不接触脸部。"
-    },
-    {
-      "casterPartId": "character:hair/bun_left",
-      "receiverPartIds": [
-        "character:face/face_base"
-      ],
-      "reason": "左侧发髻位于头顶后方（002 | hair/bun_left），不遮挡前向光源且不接触脸部。"
-    },
-    {
-      "casterPartId": "character:hair/back_hair",
-      "receiverPartIds": [
-        "character:face/face_base",
-        "character:neck",
-        "character:body"
-      ],
-      "reason": "后发位于角色最底层，属于背景体积，不向前景脸部或颈胸投射阴影。"
-    },
-    {
-      "casterPartId": "character:face/face_base",
-      "receiverPartIds": [
-        "character:neck",
-        "character:body"
-      ],
-      "reason": "对照 simplified-subject.png，锁骨结构线以上的整个颈部平面（010 | neck 及 013 | body 颈窝交界）均为同一固有暗面（RGB 223, 173, 159），无下巴局部投射边界，且已在原图层完整保留。"
-    },
-    {
-      "casterPartId": "clothing:chest_bow",
-      "receiverPartIds": [
-        "clothing:bodice",
-        "character:body"
-      ],
-      "reason": "对照 simplified-subject.png，胸前蝴蝶结下方与四周仅存在衣服褶皱固有明暗与轮廓线稿，无独立飘带投影带。"
-    },
-    {
-      "casterPartId": "clothing:bodice",
-      "receiverPartIds": [
-        "clothing:skirt/upper_tier",
-        "character:arms/arm_right/upper_arm",
-        "character:arms/arm_left/upper_arm"
-      ],
-      "reason": "对照 simplified-subject.png，上衣下缘与上层裙摆、双侧上臂之间无跨部件投射影带；上臂内侧窄暗边为手臂体积固有暗，已保留在原图层。"
-    },
-    {
-      "casterPartId": "clothing:skirt/upper_tier",
-      "receiverPartIds": [
-        "clothing:skirt/middle_tier"
-      ],
-      "reason": "对照 simplified-subject.png，上层裙摆与中层裙摆交界处仅按竖向褶皱分面着色，无跨层横向投影带。"
-    },
-    {
-      "casterPartId": "clothing:skirt/middle_tier",
-      "receiverPartIds": [
-        "clothing:skirt/lower_tier"
-      ],
-      "reason": "对照 simplified-subject.png，中层裙摆与下层裙摆交界处仅按竖向褶皱分面着色，无跨层横向投影带。"
+      "reason": "画面右侧袜褶下的青灰短影以及鞋口接触暗边同属 leg_left 单层，缺少独立运动来源，原画内保留。"
     }
   ]
 }

@@ -3,46 +3,31 @@
   "reviews": [
     {
       "verdict": "pass",
-      "feedback": "已完成对 face/nose 候选轮廓的全图叠加定位、父组 face.svg 范围比对及 8 倍局部放大（crop=[600,230,56,44] 与 [616,242,24,24]）的 blend、edge、svg 对照审查：\n1. 覆盖完整性与边界对齐：候选 SVG 完整覆盖面部中央鼻尖处的圆形浅色鼻头高光（约 x=623.9..631.9, y=247.1..255.0）及其正下方紧邻的深色竖点状鼻点（约 x=626.95..629.55, y=255.0..259.9），外缘位置、宽度与弧度均与参考图精确贴合，未夹带周围普通脸底肤色。\n2. 轮廓干净度与形体归属：采用单一连续闭合路径描绘，无孤立噪点、碎片堆砌或无依据缺口，形体干净清晰。\n3. 父范围检查：完全位于父组 face.svg 范围内（outsideSamples=0, outsidePixels=0），无越界问题。\n审查通过。",
-      "candidateHash": "c2738f99005c7f47b433a417632165c07e2f5ee126d8faa7e9da1797e7ad84f1",
+      "feedback": "第 1 轮。整图定位于双眼下方、嘴上方。以原图 (621,225) 起的 22×22 像素局部作 8 倍参考、blend 和 edge 对照。上端收拢、右侧外弧、下端圆转和左侧回弧均贴合深色鼻点与周围肤色的分界，覆盖鼻点的可见宽度。轮廓连续闭合，周围无独立接缝、开口或遮挡切口。左上淡亮部柔和过渡到肤色，无明确色块外缘。同一局部叠加父稿确认鼻点位于脸底内，四倍采样越界数为 0。",
+      "candidateHash": "3bf0df9b5ceff653c84266779a0c20b49808c03136b1dea64a8136055d9a4089",
       "observations": [
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-1.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-18T11-26-50-505Z-1.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-2.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-18T11-26-50-505Z-2.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
+          "source": "part-layering/step09_outline/face/children/nose/outline.svg",
           "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-3.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-18T11-26-50-505Z-3.png"
         },
         {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
-          "mode": "svg",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-4.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/parts/face.svg",
+          "source": "part-layering/parts/face.svg",
           "mode": "blend",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-5.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-6.png"
-        },
-        {
-          "source": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/stages/outline/face/nose.svg",
-          "mode": "edge",
-          "savedPath": "/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/part-layering/observations/review/face/nose/2026-10-22T04-22-25-314Z-7.png"
+          "savedPath": "part-layering/step09_outline/face/children/nose/previews/2026-11-18T11-26-50-505Z-4.png"
         }
       ],
-      "updatedAt": "2026-10-22T05:35:20.061Z"
+      "updatedAt": "2026-11-18T11:38:10.223Z"
     }
   ]
 }

@@ -1,7 +1,0 @@
-{
-  "groupId": "hair/front_side_hair_left",
-  "passed": true,
-  "note": "程序核对：原 SVG 正文保留，1 条新增闭合路径位于原形下方；补形视觉自检在提交前完成。 raster step01 同步根部/主发束深度注记；原可见及补全几何均保留，普通绘画层分片并集不变。 raster step01：来源 SVG 同步最终深度/可见形状修订，保持补全新增路径合同；规范化前后渲染完全一致。",
-  "beforeHash": "254b66ff073719b06c9a654ff27b75b5fb66630aa165b83dc356cdd77700ef83",
-  "afterHash": "51ad0e2312d58da8a995dc0052049171d749a46ca88bdd317aaa68ff01cafa50"
-}

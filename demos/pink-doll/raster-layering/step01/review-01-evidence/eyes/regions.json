@@ -1,0 +1,67 @@
+{
+  "image": "raster-layering/step01/workspace/independent-review/composite.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "marked": "raster-layering/step01/review-01-evidence/eyes/marked.png",
+  "manifest": "raster-layering/step01/review-01-evidence/eyes/regions.json",
+  "regions": [
+    {
+      "id": "R01",
+      "bounds": [
+        541,
+        178,
+        71,
+        61
+      ],
+      "layers": [
+        "34 face/eyes/eye_right/sclera",
+        "35 face/eyes/eye_right/iris",
+        "38 face/eyes/eye_right/eyelid_crease",
+        "56 face/eyes/eye_right/upper_eyelid"
+      ],
+      "description": "画面左眼的眼白斜角灰紫面及睑褶被冲淡，眼白与上睫毛交接和内眼角需按原图恢复。",
+      "crop": [
+        533,
+        170,
+        87,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/eyes/R01-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/eyes/R01-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/eyes/R01-comparison.png"
+      }
+    },
+    {
+      "id": "R02",
+      "bounds": [
+        648,
+        177,
+        68,
+        60
+      ],
+      "layers": [
+        "29 face/eyes/eye_left/sclera",
+        "30 face/eyes/eye_left/iris",
+        "33 face/eyes/eye_left/eyelid_crease",
+        "55 face/eyes/eye_left/upper_eyelid"
+      ],
+      "description": "画面右眼的眼白灰紫折面和睑褶减弱，外眼角及睫毛与眼白衔接需复原。",
+      "crop": [
+        640,
+        169,
+        84,
+        76
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-01-evidence/eyes/R02-current.png",
+        "reference": "raster-layering/step01/review-01-evidence/eyes/R02-reference.png",
+        "comparison": "raster-layering/step01/review-01-evidence/eyes/R02-comparison.png"
+      }
+    }
+  ],
+  "note": "问题及坐标由 reviewer 看图确认后提供；左参考、右当前，局部图含上下文，不改变问题 bounds。"
+}

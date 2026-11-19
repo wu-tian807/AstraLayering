@@ -1,0 +1,33 @@
+{
+  "groupId": "face/eyes/eye_right/lower_eyelashes",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "第 1 轮。图面左侧右眼下缘的两处下睫毛均已覆盖。放大参考、blend 和 edge 对照显示，外眼角侧短点（约 x574–576、y233–234）沿深色圆点的可辨外缘闭合，周围保留与上睑下勾之间的间隔；靠虹膜侧短点（约 x580–582、y234–236）沿横向短痕的可辨外缘收口，保留两短点间的浅色缝及其与虹膜下缘之间的浅色间隔。候选未跨入眼白、虹膜线或下方肤色过渡。父稿同局部叠加确认两处均归于右眼，四倍采样无越界，未见明确的父范围限制。",
+      "candidateHash": "f9b52a4a10570c5e3cca35c7568e5d9e0f893e61800bf2e50e60fde570f0a3fe",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/previews/2026-11-18T14-16-40-310Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/previews/2026-11-18T14-16-40-310Z-2.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_right.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/previews/2026-11-18T14-16-40-310Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_right/children/lower_eyelashes/previews/2026-11-18T14-16-40-310Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:25:39.221Z"
+    }
+  ]
+}

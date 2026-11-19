@@ -1,88 +1,105 @@
 {
   "version": 3,
   "direction": "back-to-front",
-  "sourceHash": "b71352b6e16462bbedc05ae0a26a7a341ef3418405013752dac030e722795f32",
+  "sourceHash": "dc610fd659b801ae74229a0e2fabce3efd1e162ceb7f4eeee5f7a388c877d280",
   "layers": [
     {
-      "id": "skirt/lower_tier",
-      "note": "第三层/底层抽褶荷叶裙摆（可见范围约 x=380..873, y=717..847，含顶部隐藏搭接区约 y=702..740）。作为完整逻辑 part 随 middle_tier 下沿与双腿动作共同摆动，因底摆下沿开口环绕夹持角色左右大腿且后折边位于前裙面之后，在 Krita（clothing-depth.kra）中拆分为腿后回折沿 `001 | skirt/lower_tier::back`（level 1）与腿前主裙面 `002 | skirt/lower_tier::front`（level 2）两个普通绘画层，合起来保持完整连续的同一逻辑衣片，整体位于 `003 | skirt/middle_tier`（level 3）之后。",
-      "levels": [
-        {
-          "level": 1,
-          "region": "腿后回折沿深度区（KRA 图层 `001 | skirt/lower_tier::back`，包围盒 [472, 813, 303, 34]，位于角色左右大腿之后、腿前主裙面 `002 | skirt/lower_tier::front` 之后）：涵盖第三层底摆开口处向内后方翻折露出的左右两处真实里侧/后沿回折翼片——角色右侧/画面左下回折翼片（x=472..529, y=824..846）与角色左侧/画面右下回折翼片（x=722..774, y=827..846），并包含两处回折翼片越过正面波浪下沿深色描边下缘分界线 `y_cut(x)` 向腿前主裙面内侧上方延伸 12px（左翼 y=813..824、右翼 y=816..833，采用避开斜向折线与侧描边采样的里侧折面平滑暗粉色填充，并与下方可见回折面无接缝融合，侧边描边自然向上收口）的隐藏搭接区。以左右回折口处的正面波浪下沿深色描边下缘连续分界线 `y_cut(x)`（左回折口 x=472..529、右回折口 x=721..774）与腿前主裙面深度区（level 2）连续分界，整体排在腿前主裙面及角色双腿之后。"
-        },
-        {
-          "region": "腿前主裙面深度区（KRA 图层 `002 | skirt/lower_tier::front`，包围盒 [380, 708, 493, 135]，位于角色左右大腿之前、`003 | skirt/middle_tier` 之后）：涵盖第三层底摆正面宽幅波浪抽褶主衣面（可见范围约 x=380..873, y=717..842，含两腿间中央内凹折槽完整正面底边描边 x=613..645, y=834..842）及顶部向上穿入 `003 | skirt/middle_tier` 波浪底边后方的隐藏搭接区（约 y=708..740）。在左右回折口（x=472..529 与 x=721..774）处下界精确止于正面波浪下沿深色描边下缘连续分界线 `y_cut(x)`（两侧折角 x=472..474 与 x=772..774 顺应斜向内折边平顺过渡），从前方遮挡腿后回折沿深度区 `001 | skirt/lower_tier::back`（level 1）及其 12px 上延搭接边；上沿隐藏搭接区被 `003 | skirt/middle_tier`（level 3）波浪下沿从前方遮盖；主体位于角色左右大腿正前方，两侧最外缘（约 x<390 及 x>860）位于角色双手手掌/手指内侧之后。",
-          "level": 2
-        }
-      ],
+      "id": "skirt_tier_four",
+      "level": 10,
+      "note": "末层整幅裙片。默认露出自第三道摆缘接出的裙面、外展两侧及波浪下摆，连续上收口由前方 skirt_tier_three 的第三道弧形摆缘盖住。穿衣时裙面在腿前。",
       "check": {
         "passed": true,
-        "note": "已在 Krita（clothing-depth.kra）中完成配准、修画与多深度拆层返修核对：第三层/底层抽褶荷叶裙摆（约 x=380..873, y=708..846）顶部隐藏搭接带（约 y=708..740）被前方 `003 | skirt/middle_tier`（level 3）波浪下沿完整遮盖；底摆下沿开口环绕夹持角色左右大腿，沿左右回折口正面波浪下沿深色描边下缘连续分界线 `y_cut(x)` 切分为腿后回折沿 `001 | skirt/lower_tier::back`（level 1）与腿前主裙面 `002 | skirt/lower_tier::front`（level 2）两个普通绘画层（两腿间中央内凹折槽底沿 x=613..645 位于大腿内侧前方，完整保留于 `002 | skirt/lower_tier::front`），并向 `002` 后方补绘 12px 无条纹、无接缝的里侧暗粉隐藏搭接带，两层合起来与完整衣片像素完全连续一致。",
-        "regions": [
-          {
-            "level": 1,
-            "note": "已按 400%–600% 独显及腿部插层核对 `001 | skirt/lower_tier::back`（level 1，腿后回折沿深度区，bounds [472, 813, 303, 34]）：包含画面左下（x=472..529, y=824..846）与画面右下（x=722..774, y=827..846）两处向内后方翻折的真实里侧裙边翼片，以及向 `y_cut(x)` 上方延伸 12px 的平滑里侧暗粉隐藏搭接带（已彻底清除纵向串色条纹、横向接缝与中央多余残片），排在角色双腿与 `002 | skirt/lower_tier::front` 之后。"
-          },
-          {
-            "note": "已按 400%–600% 独显及腿部插层核对 `002 | skirt/lower_tier::front`（level 2，腿前主裙面深度区，bounds [380, 708, 493, 135]）：包含正面宽幅波浪抽褶主衣面、中央内凹折槽完整底边深色描边（x=613..645）及顶部隐藏搭接区（y=708..740），左右回折口下沿完整保留正面波浪深色描边并平顺止于 `y_cut(x)`，从前方自然遮盖 `001 | skirt/lower_tier::back` 的 12px 隐藏搭接带，顶部被 `003 | skirt/middle_tier`（level 3）完整遮盖。",
-            "level": 2
-          }
-        ]
+        "note": "完整件叠图在第三道摆缘之上有连续上搭量，在其下保留左右外展和完整波浪外缘。候选中 skirt_tier_three 从左至右连续盖住上收口，末层褶面和裙边仍按参考完整露出。穿衣图的腿部从该末层下缘之后接出，符合整幅末层裙面在腿前的判断。默认仅让第三道裙片在接缝处遮住末层上口，单深度相容。"
       }
     },
     {
-      "level": 3,
-      "id": "skirt/middle_tier",
-      "note": "第二层/中层抽褶荷叶裙摆（KRA 图层 `003 | skirt/middle_tier`，可见范围约 x=436..817, y=615..740，含顶部向 upper_tier 后方延伸的隐藏搭接区约 y=600..627）。单一深度（level 3）：下沿连续波浪底边（约 y=717..740）位于 `002 | skirt/lower_tier::front`（level 2）之前并遮盖其顶部隐藏搭接带（约 y=702..740）；顶部隐藏搭接区（约 y=600..627）穿入 `004 | skirt/upper_tier`（level 4）波浪底边之后被其遮盖。整体贴合骨盆与大腿上段正前方展开，无环绕至身体后方的可见回折片。",
+      "id": "skirt_tier_three",
+      "level": 20,
+      "note": "整幅第三道裙片接在 skirt_tier_two 后，第二道弧形摆缘遮住其上口。第三道摆缘在 skirt_tier_four 前并遮住其上收口。默认露出两道接缝之间的裙面，穿衣时双手局部覆在两侧裙面之前。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `003 | skirt/middle_tier`（level 3）独显及组合核对：顶部隐藏搭接带（约 y=600..627）纵向褶皱与明暗连续延伸，被 `004 | skirt/upper_tier`（level 4）波浪底边从前方完整遮盖；底部连续波浪下沿从前方完整遮盖 `002 | skirt/lower_tier::front`（level 2）顶部隐藏搭接带。"
+        "note": "完整件叠图上端的搭量沿第二道摆缘全宽向上，候选由 skirt_tier_two 的连续下摆盖住。第三道摆缘保有侧面转角和中间褶弧、连续压住 skirt_tier_four 的上收口，和参考的摆缘方向与走线一致。默认见第二与第三道摆缘之间的整幅裙面；穿衣图的手部遮挡只作为两侧前后关系依据。接缝默认藏量与单深度相容。"
       }
     },
     {
-      "id": "skirt/upper_tier",
-      "note": "第一层/上层抽褶荷叶裙摆（KRA 图层 `004 | skirt/upper_tier`，可见范围约 x=483..771, y=495..627，含顶部向 bodice 后方延伸的隐藏搭接区约 x=536..719, y=482..505）。单一深度（level 4）：下沿连续波浪底边（约 y=615..627）位于 `003 | skirt/middle_tier`（level 3）之前并遮盖其顶部隐藏搭接带（约 y=600..627）；顶部隐藏搭接区（约 y=482..505）穿入 `007 | bodice`（level 7）高腰底边之后被其遮盖。整体贴合腰腹与骨盆正前方自然散开，无环绕至身体后方的可见回折片。",
-      "level": 4,
+      "id": "skirt_tier_two",
+      "level": 30,
+      "note": "整幅第二道裙片接在 skirt_tier_one 后，第一道弧形摆缘遮住其上口。第二道摆缘压住后方 skirt_tier_three 的上收口。默认露出两道接缝之间的裙面，穿衣时前垂发和手臂局部遮住裙片两侧。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `004 | skirt/upper_tier`（level 4）独显及组合核对：顶部隐藏搭接带（约 x=536..719, y=482..505）纵向抽褶自然收拢并被 `007 | bodice`（level 7）高腰下沿完整遮盖；底部连续波浪下沿从前方完整遮盖 `003 | skirt/middle_tier`（level 3）顶部隐藏搭接带。"
+        "note": "完整件叠图显示上端补量沿第一道摆缘后方由左至右延伸。候选中 skirt_tier_one 的下缘连续遮住它，第二道裙片自己的下摆连同中央垂落段压在 skirt_tier_three 的上收褶前，对应参考第二道摆缘的细线和褶口。纯衣服默认见两条缝间的整幅裙面，上口搭量由第一道裙片盖住，保留穿衣图被手臂或头发局部遮住的侧面形体。"
       }
     },
     {
-      "note": "角色右侧（画面左侧）荷叶边肩带（KRA 图层 `005 | shoulder_straps/right_shoulder_strap`，可见范围约 x=502..568, y=345..435，含下端补全搭接范围约 x=502..570, y=345..442）。单一深度（level 5）：内侧纵向主肩带与外侧抽褶荷叶边翼片沿纵向缝合线固定拼接为同动整体，下端（约 y=413..442）统一插入 `007 | bodice`（level 7）右侧平口领上沿之后并被 bodice 遮盖；与左侧肩带互不重叠，无向肩后翻折的可见回折片。",
-      "level": 5,
-      "id": "shoulder_straps/right_shoulder_strap",
+      "id": "skirt_tier_one",
+      "level": 40,
+      "note": "整幅第一道裙片上口由前方 waistband 的下缘盖住，第一道弧形摆缘盖住后方 skirt_tier_two 的上收口。默认露出腰带下方至第一道摆缘的裙面，保留穿衣图中被前垂发和手臂盖住的两侧完整形体。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `005 | shoulder_straps/right_shoulder_strap`（level 5）独显及组合核对：底端隐藏搭接区（约 y=413..442）纵向条带与荷叶边纹理连续延伸、无横向伪折线，被前方 `007 | bodice`（level 7）右侧上沿完整遮盖。"
+        "note": "完整件叠图的上口狭长补量跨入腰带，下弧沿参考第一道摆缘横贯全宽。候选上端补量由 waistband 连续下缘盖住，下摆从左右转角至中央低点连续压在 skirt_tier_two 的上收褶前。默认见腰带以下的第一道完整裙面，上收口藏于腰带后，同层形体可满足两条接缝的显隐。"
       }
     },
     {
-      "level": 6,
-      "id": "shoulder_straps/left_shoulder_strap",
-      "note": "角色左侧（画面右侧）荷叶边肩带（KRA 图层 `006 | shoulder_straps/left_shoulder_strap`，可见范围约 x=687..752, y=345..434，含下端补全搭接范围约 x=685..752, y=345..441）。单一深度（level 6）：内侧纵向主肩带与外侧抽褶荷叶边翼片沿纵向缝合线固定拼接为同动整体，下端（约 y=413..441）统一插入 `007 | bodice`（level 7）左侧平口领上沿之后并被 bodice 遮盖；与右侧肩带互不重叠，无向肩后翻折的可见回折片。",
+      "id": "image_left_shoulder_assembly/right_shoulder_ruffle",
+      "level": 50,
+      "note": "画面左侧整片肩荷叶。沿 image_left_shoulder_assembly/right_shoulder_strap 外缘连续缝线的根部搭量由肩带盖住，领端窄段和下收端分别由 neckline_ruffle 与 dress_bodice 的包边及侧上缘盖住。自由波浪边及展开面默认可见，穿衣时展开面在右上臂与后侧长发之前，靠带根部在前垂发之后。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `006 | shoulder_straps/left_shoulder_strap`（level 6）独显及组合核对：底端隐藏搭接区（约 y=413..441）纵向条带与荷叶边纹理连续延伸、无横向伪折线，被前方 `007 | bodice`（level 7）左侧上沿完整遮盖。"
+        "note": "完整件叠图在画面左侧显示，从肩顶到白褶冠左端有一条向窄带内伸的狭长根部，尾端向胸衣侧缘内伸。参考及候选中，从肩顶往下连续走线由 image_left_shoulder_assembly/right_shoulder_strap 呈现，根部搭量压在这条带缘后；接近前领的小段与最下收尾分别藏于 neckline_ruffle 左端回折与 dress_bodice 左侧包边和侧上缘后。候选保住外侧波浪自由边与末端接点；同组肩带在前，组外前领件和胸衣仍能盖住其尾端，默认显隐由这些层序实现。"
       }
     },
     {
-      "note": "高腰抹胸胸衣主体（KRA 图层 `007 | bodice`，约 x=531..723, y=412..506）。单一深度（level 7）：上沿平口领及两侧肩带下接弧线（约 y=412..435）位于 `005 | shoulder_straps/right_shoulder_strap`（level 5）与 `006 | shoulder_straps/left_shoulder_strap`（level 6）下端搭接部之前并遮盖二者底端；下沿高腰弧线（约 y=495..506）位于 `004 | skirt/upper_tier`（level 4）顶部隐藏搭接区之前并遮盖其搭接带；前片正中上方作为完整连续底面位于 `008 | chest_bow`（level 8）之后为其提供承托。",
-      "id": "bodice",
-      "level": 7,
+      "id": "image_left_shoulder_assembly/right_shoulder_strap",
+      "level": 60,
+      "note": "画面左侧整条窄肩带。在外侧连续缝线上压住 image_left_shoulder_assembly/right_shoulder_ruffle 根部。前领接点下端藏到 neckline_ruffle 左端与 dress_bodice 胸口包边之后。现有肩顶圆收边接向可见前段，前段默认可见，穿衣时沿肩和上胸前侧且处于前垂发之后。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `007 | bodice`（level 7）独显及组合核对：前片正中被 `008 | chest_bow` 遮挡的区域已补全为平滑连续的浅粉抹胸布面（无蝴蝶结残影或色斑），上下沿分别完整遮盖双肩带下端与上层裙摆上端的隐藏搭接区。"
+        "note": "完整件叠图的画面左侧窄带从圆收的肩顶向右下走，底部圆封口伸入白褶端和粉包边下。候选中外带缘盖在 image_left_shoulder_assembly/right_shoulder_ruffle 的根部前，白褶冠左端在带身与前领的接点处盖住下段，dress_bodice 包边封住其更下方的余量，与参考走线一致。标准穿衣图该带所在的肩前接点被前垂发遮挡，纯衣服图和完整带形支持肩顶前段连续，肩顶没有独立后向搭量可分。组内压根、组外压带尾可以同时成立，默认带身可见、下端缝接量隐于 neckline_ruffle 和 dress_bodice。"
       }
     },
     {
-      "level": 8,
-      "note": "胸前蝴蝶结独立附件（KRA 图层 `008 | chest_bow`，约 x=591..666, y=415..475，含中心结头、左右环翼及两条下垂飘带）。单一深度（level 8）：位于整套衣服最前方，直接叠放在 `007 | bodice`（level 7）前片正中上沿表面之前，由后方 bodice 提供完整连续底色承托，不与其他衣片发生穿插。",
-      "id": "chest_bow",
+      "id": "image_right_shoulder_assembly/left_shoulder_ruffle",
+      "level": 70,
+      "note": "画面右侧整片肩荷叶。沿 image_right_shoulder_assembly/left_shoulder_strap 外缘连续缝线的根部搭量由肩带盖住。领端和下收端由 neckline_ruffle 与 dress_bodice 包边及侧上缘盖住。自由波浪边及展开面默认可见，穿衣时展开面在左上臂与后侧长发之前，靠带根部在前垂发之后。",
       "check": {
         "passed": true,
-        "note": "已对照原图与 KRA 图层 `008 | chest_bow`（level 8）独显及组合核对：蝴蝶结中心结头、左右环翼与下垂飘带完整清晰，边缘已去除下层抹胸混色，直接叠放于 `007 | bodice` 正前方。"
+        "note": "完整件叠图可见画面右侧从波浪外缘向内延伸的连续褶面，带下有窄根搭量，前领至胸衣侧上缘有内收尾端。候选中 image_right_shoulder_assembly/left_shoulder_strap 保有外带缘连续走线，neckline_ruffle 右端的褶冠及回折、dress_bodice 右端包边和侧上缘分别盖住根部下接和内收尾段，参考中的波浪自由边完整可见。组内缝线遮挡和组外领边、胸衣的局部遮挡相容，默认只在搭接处藏量。"
+      }
+    },
+    {
+      "id": "image_right_shoulder_assembly/left_shoulder_strap",
+      "level": 80,
+      "note": "画面右侧整条窄肩带。在外侧连续缝线上压住 image_right_shoulder_assembly/left_shoulder_ruffle 根部。下端缝接量藏在 neckline_ruffle 右端与 dress_bodice 胸口包边之后。现有肩顶圆收边接向可见前段，前段默认可见，穿衣时贴在肩和上胸前侧且处于前垂发之后。",
+      "check": {
+        "passed": true,
+        "note": "完整件叠图中画面右侧肩带从圆收肩顶斜向左下，底端圆封口越过白褶冠伸到粉包边内。候选中走线沿 image_right_shoulder_assembly/left_shoulder_ruffle 内侧连贯，肩带压住荷叶根，neckline_ruffle 右端先盖带尾，dress_bodice 包边继续遮住底端余量，带身在前领接点以上默认可见。标准穿衣图中该肩前接点处于前垂发之后，完整带的肩顶没有可辨后折区域。同组荷叶在后、组外前领和胸衣在前的层序支持默认遮挡。"
+      }
+    },
+    {
+      "id": "neckline_ruffle",
+      "level": 90,
+      "note": "整条白色前领褶边。两端褶冠及端部小回折盖住 image_left_shoulder_assembly/right_shoulder_strap、image_left_shoulder_assembly/right_shoulder_ruffle、image_right_shoulder_assembly/left_shoulder_strap、image_right_shoulder_assembly/left_shoulder_ruffle 各自进入领口的窄段。下沿搭量沿连续弧形接缝由 dress_bodice 粉色包边盖住。褶冠和端部回折默认可见，褶冠上方为敞口。",
+      "check": {
+        "passed": true,
+        "note": "完整件叠图显示连续白褶冠、两端回折及沿粉色横包边向下伸的一条窄搭量。候选的褶冠与两侧回折覆盖画面左组 image_left_shoulder_assembly/right_shoulder_strap、image_left_shoulder_assembly/right_shoulder_ruffle 和画面右组 image_right_shoulder_assembly/left_shoulder_strap、image_right_shoulder_assembly/left_shoulder_ruffle 的领口窄接点。下沿搭量由 dress_bodice 的粉包边沿弧线盖住。放大候选可见包边两端的少量胸衣补形侵入露白，见 dress_bodice 的局部绘画轮廓待修。现有层序支持褶冠和两端回折默认可见、下沿缝接默认隐藏、褶冠以上保有方领敞区。"
+      }
+    },
+    {
+      "id": "dress_bodice",
+      "level": 100,
+      "note": "前胸抽褶衣身和连体粉色包边同层。包边上缘前压 neckline_ruffle 下沿和两肩带下端，侧上缘盖住两侧肩荷叶收端。下口沿连续腰缝藏入 waistband 上缘背后。默认露出包边至腰带上缘的前胸裙身，穿衣时位于躯干前方。",
+      "check": {
+        "passed": true,
+        "note": "完整件带粉色横包边及下口藏量。候选与参考的主要走线一致：包边沿弧线压住 neckline_ruffle 下沿，侧上缘在 image_left_shoulder_assembly/right_shoulder_ruffle、image_right_shoulder_assembly/left_shoulder_ruffle 的收端前；下口伸入 waistband 的连续上缘后。放大与 outline-reduce 复核，包边弧线左右肩侧约 x=473–517、727–771 的补全片在局部微伸入白褶可见区，由 raster step01 按参考中的包边可见弧线收齐此处绘画轮廓。默认由层序盖住下口及接头，胸衣及包边保持同层。"
+      }
+    },
+    {
+      "id": "waistband",
+      "level": 110,
+      "note": "前腰整条腰带。连续上缘盖住 dress_bodice 下口，连续下缘盖住 skirt_tier_one 上收褶，左右两端止于腰部外轮廓，默认整带可见。",
+      "check": {
+        "passed": true,
+        "note": "完整件左右圆角贴合参考腰线。候选中上缘在 dress_bodice 前连续压住抽褶下口，下缘在 skirt_tier_one 前连续盖住上收褶，左右端均接到外轮廓，沿腰带没有两件藏量反盖走线。整带默认可见，上下搭量各自通过同一层序隐藏。"
       }
     }
   ]

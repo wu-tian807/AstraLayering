@@ -1,0 +1,33 @@
+{
+  "groupId": "face/eyes/eye_left/lower_eyelashes",
+  "reviews": [
+    {
+      "verdict": "pass",
+      "feedback": "放大参考、blend 和 edge 核对了画面右侧左眼下缘的两处短痕。虹膜下方短痕约在 x678–684、y231–233，左端在虹膜底缘旁起笔，上缘贴眼白，下缘沿皮肤侧的深色线外缘回收，右端顺原图收尖。外侧点痕约在 x688–690、y228–230，轮廓包含点痕的可见宽度，并保留与前一短痕及上睑外眼角下勾之间的间隔。同一局部叠加父稿核对，两处均位于父范围内，四倍采样无越界。",
+      "candidateHash": "ffe69ca4a5d7d73ede2ba3feec771e6e39ad8af510946982b8e4bbf6816aad37",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/previews/2026-11-18T14-17-37-759Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/previews/2026-11-18T14-17-37-759Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/previews/2026-11-18T14-17-37-759Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/face/eyes/eye_left.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/face/children/eyes/children/eye_left/children/lower_eyelashes/previews/2026-11-18T14-17-37-759Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T14:26:27.148Z"
+    }
+  ]
+}

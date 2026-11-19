@@ -1,0 +1,999 @@
+{
+  "image": "raster-layering/step01/review-02-evidence/current.png",
+  "reference": "part-layering/references/base-subject.png",
+  "canvas": [
+    1254,
+    1254
+  ],
+  "marked": [
+    "raster-layering/step01/review-02-evidence/marked-1.png",
+    "raster-layering/step01/review-02-evidence/marked-2.png"
+  ],
+  "regions": [
+    {
+      "id": "R01",
+      "bounds": [
+        542,
+        177,
+        69,
+        62
+      ],
+      "layers": [
+        "28 face/face_base",
+        "34 face/eyes/eye_right/sclera",
+        "35 face/eyes/eye_right/iris",
+        "37 face/eyes/eye_right/lower_eyelashes",
+        "38 face/eyes/eye_right/eyelid_crease",
+        "56 face/eyes/eye_right/upper_eyelid"
+      ],
+      "description": "画面左眼上方亮缘被抹平，眼白灰紫面与上睫毛、下缘的衔接趋硬，外角收笔变粗。",
+      "crop": [
+        534,
+        169,
+        85,
+        78
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R01-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R01-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R01-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R01-detail.png"
+      }
+    },
+    {
+      "id": "R02",
+      "bounds": [
+        647,
+        175,
+        69,
+        62
+      ],
+      "layers": [
+        "28 face/face_base",
+        "29 face/eyes/eye_left/sclera",
+        "30 face/eyes/eye_left/iris",
+        "32 face/eyes/eye_left/lower_eyelashes",
+        "33 face/eyes/eye_left/eyelid_crease",
+        "55 face/eyes/eye_left/upper_eyelid"
+      ],
+      "description": "画面右眼上缘亮面缺失，眼白灰面硬切，下睫毛与虹膜下圈挤成灰块。",
+      "crop": [
+        639,
+        167,
+        85,
+        78
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R02-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R02-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R02-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R02-detail.png"
+      }
+    },
+    {
+      "id": "R03",
+      "bounds": [
+        541,
+        148,
+        87,
+        59
+      ],
+      "layers": [
+        "54 hair/bangs",
+        "40 face/eyebrows/eyebrow_right"
+      ],
+      "description": "画面左额眉尾在发缝处硬截，刘海近眉段有补色台阶，眼上方窄绺被切成钝端。",
+      "crop": [
+        533,
+        140,
+        103,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R03-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R03-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R03-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R03-detail.png"
+      }
+    },
+    {
+      "id": "R04",
+      "bounds": [
+        628,
+        148,
+        85,
+        59
+      ],
+      "layers": [
+        "54 hair/bangs",
+        "39 face/eyebrows/eyebrow_left"
+      ],
+      "description": "画面右眉只余两端平截的横条，邻近发尖变宽、钝，数处细尖被简化。",
+      "crop": [
+        620,
+        140,
+        101,
+        75
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R04-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R04-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R04-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R04-detail.png"
+      }
+    },
+    {
+      "id": "R05",
+      "bounds": [
+        496,
+        58,
+        71,
+        107
+      ],
+      "layers": [
+        "04 hair/back_hair/base",
+        "53 hair/side_hair/side_hair_right",
+        "03 hair/bun/bun_right"
+      ],
+      "description": "左侧珠旁至髻内亮弧旁多一条断续黑线，04 独显有粗细不一的双线与补片浅边。",
+      "crop": [
+        488,
+        50,
+        87,
+        123
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R05-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R05-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R05-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R05-detail.png"
+      }
+    },
+    {
+      "id": "R06",
+      "bounds": [
+        704,
+        64,
+        68,
+        87
+      ],
+      "layers": [
+        "02 hair/bun/bun_left"
+      ],
+      "description": "画面右髻的隐藏内股出现横截短笔和阶梯状拼块，编股叠合线未连续完成。",
+      "crop": [
+        696,
+        56,
+        84,
+        103
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R06-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R06-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R06-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R06-detail.png"
+      }
+    },
+    {
+      "id": "R07",
+      "bounds": [
+        477,
+        66,
+        72,
+        74
+      ],
+      "layers": [
+        "03 hair/bun/bun_right",
+        "57 head_accessories"
+      ],
+      "description": "画面左髻珠后股间有孤立深点和白细跳线，隐藏股面与可见编股接不顺。",
+      "crop": [
+        469,
+        58,
+        88,
+        90
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R07-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R07-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R07-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R07-detail.png"
+      }
+    },
+    {
+      "id": "R08",
+      "bounds": [
+        489,
+        141,
+        52,
+        109
+      ],
+      "layers": [
+        "01 hair/back_hair/lock_right",
+        "04 hair/back_hair/base",
+        "53 hair/side_hair/side_hair_right"
+      ],
+      "description": "画面左后束的根段有横切，叠在露出段上的深线和亮边跳口。",
+      "crop": [
+        481,
+        133,
+        68,
+        125
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R08-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R08-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R08-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R08-detail.png"
+      }
+    },
+    {
+      "id": "R09",
+      "bounds": [
+        718,
+        143,
+        48,
+        118
+      ],
+      "layers": [
+        "00 hair/back_hair/lock_left",
+        "04 hair/back_hair/base",
+        "52 hair/side_hair/side_hair_left"
+      ],
+      "description": "画面右后束根段的暗边突起、截断，亮带接到根时变成分离条块。",
+      "crop": [
+        710,
+        135,
+        64,
+        134
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R09-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R09-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R09-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R09-detail.png"
+      }
+    },
+    {
+      "id": "R10",
+      "bounds": [
+        428,
+        522,
+        100,
+        149
+      ],
+      "layers": [
+        "01 hair/back_hair/lock_right"
+      ],
+      "description": "画面左后束下段亮面出现横台阶和直断暗褶，两个腕旁尖未沿长股自然收拢。",
+      "crop": [
+        420,
+        514,
+        116,
+        165
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R10-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R10-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R10-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R10-detail.png"
+      }
+    },
+    {
+      "id": "R11",
+      "bounds": [
+        729,
+        522,
+        100,
+        149
+      ],
+      "layers": [
+        "00 hair/back_hair/lock_left"
+      ],
+      "description": "画面右后束下段浅色带被接成台阶，末端有斜断拼色和深色残线。",
+      "crop": [
+        721,
+        514,
+        116,
+        165
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R11-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R11-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R11-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R11-detail.png"
+      }
+    },
+    {
+      "id": "R12",
+      "bounds": [
+        534,
+        519,
+        190,
+        134
+      ],
+      "layers": [
+        "04 hair/back_hair/base"
+      ],
+      "description": "中央底发隐藏下摆两侧有截断深线和贴片式边，股面在轮廓内突停。",
+      "crop": [
+        526,
+        511,
+        206,
+        150
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R12-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R12-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R12-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R12-detail.png"
+      }
+    },
+    {
+      "id": "R13",
+      "bounds": [
+        525,
+        182,
+        53,
+        91
+      ],
+      "layers": [
+        "53 hair/side_hair/side_hair_right",
+        "28 face/face_base",
+        "27 face/ears/ear_right"
+      ],
+      "description": "画面左鬓内缘外眼角下方有小缺口、杂色短线，耳旁细尖与颌线交界发粗。",
+      "crop": [
+        517,
+        174,
+        69,
+        107
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R13-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R13-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R13-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R13-detail.png"
+      }
+    },
+    {
+      "id": "R14",
+      "bounds": [
+        678,
+        177,
+        61,
+        94
+      ],
+      "layers": [
+        "52 hair/side_hair/side_hair_left",
+        "28 face/face_base",
+        "26 face/ears/ear_left"
+      ],
+      "description": "画面右鬓外眼角旁内缘有缺口与悬出的深点，耳前短尖比原图粗。",
+      "crop": [
+        670,
+        169,
+        77,
+        110
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R14-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R14-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R14-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R14-detail.png"
+      }
+    },
+    {
+      "id": "R15",
+      "bounds": [
+        494,
+        160,
+        70,
+        183
+      ],
+      "layers": [
+        "51 hair/front_long_hair/front_long_hair_right",
+        "53 hair/side_hair/side_hair_right"
+      ],
+      "description": "画面左胸前束隐藏根段成圆柱亮帽，接到斜暗带时发流和描线突然改变。",
+      "crop": [
+        486,
+        152,
+        86,
+        199
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R15-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R15-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R15-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R15-detail.png"
+      }
+    },
+    {
+      "id": "R16",
+      "bounds": [
+        689,
+        160,
+        65,
+        183
+      ],
+      "layers": [
+        "50 hair/front_long_hair/front_long_hair_left",
+        "52 hair/side_hair/side_hair_left"
+      ],
+      "description": "画面右胸前束隐藏根段光面与一块横斜暗面硬接，描边在交界处断进断出。",
+      "crop": [
+        681,
+        152,
+        81,
+        199
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R16-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R16-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R16-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R16-detail.png"
+      }
+    },
+    {
+      "id": "R17",
+      "bounds": [
+        558,
+        230,
+        48,
+        33
+      ],
+      "layers": [
+        "49 face/blush_right",
+        "28 face/face_base"
+      ],
+      "description": "画面左颊排线淡化，排线独显与随动红晕底的红色浓度分配不符。",
+      "crop": [
+        550,
+        222,
+        64,
+        49
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R17-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R17-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R17-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R17-detail.png"
+      }
+    },
+    {
+      "id": "R18",
+      "bounds": [
+        656,
+        225,
+        52,
+        34
+      ],
+      "layers": [
+        "48 face/blush_left",
+        "28 face/face_base"
+      ],
+      "description": "画面右颊排线右边变弱，红晕底留在脸底且近发缘出现过亮实白块。",
+      "crop": [
+        648,
+        217,
+        68,
+        50
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R18-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R18-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R18-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R18-detail.png"
+      }
+    },
+    {
+      "id": "R19",
+      "bounds": [
+        622,
+        226,
+        18,
+        19
+      ],
+      "layers": [
+        "41 face/nose",
+        "28 face/face_base"
+      ],
+      "description": "参考鼻点上方的柔亮笔触在合成里几乎消失，鼻头明暗只剩集中深点。",
+      "crop": [
+        614,
+        218,
+        34,
+        35
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R19-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R19-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R19-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R19-detail.png"
+      }
+    },
+    {
+      "id": "R20",
+      "bounds": [
+        610,
+        247,
+        46,
+        39
+      ],
+      "layers": [
+        "42 face/mouth/mouth_interior",
+        "43 face/mouth/lower_teeth",
+        "44 face/mouth/tongue",
+        "45 face/mouth/upper_teeth",
+        "46 face/mouth/lower_lip",
+        "47 face/mouth/upper_lip"
+      ],
+      "description": "嘴角与唇缘台阶，薄下唇线后缺少遮住下齿的连续唇面。",
+      "crop": [
+        602,
+        239,
+        62,
+        55
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R20-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R20-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R20-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R20-detail.png"
+      }
+    },
+    {
+      "id": "R21",
+      "bounds": [
+        553,
+        280,
+        152,
+        63
+      ],
+      "layers": [
+        "24 neck",
+        "25 body",
+        "04 hair/back_hair/base"
+      ],
+      "description": "颈侧到肩线缺失连续深描边，颈根与锁骨交界为跳色细线，原来的颈部体面变浅且压平。",
+      "crop": [
+        545,
+        272,
+        168,
+        79
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R21-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R21-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R21-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R21-detail.png"
+      }
+    },
+    {
+      "id": "R22",
+      "bounds": [
+        482,
+        329,
+        90,
+        113
+      ],
+      "layers": [
+        "23 arms/arm_right/upper_arm",
+        "25 body"
+      ],
+      "description": "画面左肩帽与上臂独显都有硬横带、竖向残线和底部补片。",
+      "crop": [
+        474,
+        321,
+        106,
+        129
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R22-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R22-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R22-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R22-detail.png"
+      }
+    },
+    {
+      "id": "R23",
+      "bounds": [
+        683,
+        329,
+        91,
+        113
+      ],
+      "layers": [
+        "15 arms/arm_left/upper_arm",
+        "25 body"
+      ],
+      "description": "画面右肩帽与上臂独显都有硬横带、竖向残线和直角贴片。",
+      "crop": [
+        675,
+        321,
+        107,
+        129
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R23-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R23-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R23-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R23-detail.png"
+      }
+    },
+    {
+      "id": "R24",
+      "bounds": [
+        463,
+        467,
+        81,
+        72
+      ],
+      "layers": [
+        "22 arms/arm_right/forearm",
+        "23 arms/arm_right/upper_arm"
+      ],
+      "description": "画面左肘近端线上有浅色孔点，上臂内弯独显残留直线和断开的三角色片。",
+      "crop": [
+        455,
+        459,
+        97,
+        88
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R24-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R24-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R24-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R24-detail.png"
+      }
+    },
+    {
+      "id": "R25",
+      "bounds": [
+        711,
+        467,
+        78,
+        72
+      ],
+      "layers": [
+        "14 arms/arm_left/forearm",
+        "15 arms/arm_left/upper_arm"
+      ],
+      "description": "画面右肘近端描边变断续，上臂的暖暗面在内缘形成独立小台阶和直残边。",
+      "crop": [
+        703,
+        459,
+        94,
+        88
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R25-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R25-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R25-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R25-detail.png"
+      }
+    },
+    {
+      "id": "R26",
+      "bounds": [
+        506,
+        442,
+        69,
+        178
+      ],
+      "layers": [
+        "25 body",
+        "07 pelvis",
+        "51 hair/front_long_hair/front_long_hair_right"
+      ],
+      "description": "画面左腰衣缘灰点和白虚线外露，原图长发与衣身连续相贴。",
+      "crop": [
+        498,
+        434,
+        85,
+        194
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R26-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R26-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R26-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R26-detail.png"
+      }
+    },
+    {
+      "id": "R27",
+      "bounds": [
+        680,
+        442,
+        70,
+        178
+      ],
+      "layers": [
+        "25 body",
+        "07 pelvis",
+        "50 hair/front_long_hair/front_long_hair_left"
+      ],
+      "description": "画面右腰有灰点和白锯齿边，体侧布缘与前发之间出现接片痕。",
+      "crop": [
+        672,
+        434,
+        86,
+        194
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R27-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R27-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R27-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R27-detail.png"
+      }
+    },
+    {
+      "id": "R28",
+      "bounds": [
+        423,
+        696,
+        55,
+        79
+      ],
+      "layers": [
+        "21 arms/arm_right/hand/palm",
+        "16 arms/arm_right/hand/ring_finger",
+        "17 arms/arm_right/hand/middle_finger",
+        "18 arms/arm_right/hand/index_finger",
+        "19 arms/arm_right/hand/little_finger",
+        "20 arms/arm_right/hand/thumb"
+      ],
+      "description": "画面左掌的虎口暖暗面只余细钩，指根接面为直切，内指明暗和描边在补段断开。",
+      "crop": [
+        415,
+        688,
+        71,
+        95
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R28-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R28-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R28-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R28-detail.png"
+      }
+    },
+    {
+      "id": "R29",
+      "bounds": [
+        771,
+        692,
+        56,
+        84
+      ],
+      "layers": [
+        "13 arms/arm_left/hand/palm",
+        "08 arms/arm_left/hand/little_finger",
+        "09 arms/arm_left/hand/ring_finger",
+        "10 arms/arm_left/hand/middle_finger",
+        "11 arms/arm_left/hand/index_finger",
+        "12 arms/arm_left/hand/thumb"
+      ],
+      "description": "画面右掌到内指之间可见灰窄隙，掌层截面直切，小指根变成细小钩状。",
+      "crop": [
+        763,
+        684,
+        72,
+        100
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R29-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R29-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R29-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R29-detail.png"
+      }
+    },
+    {
+      "id": "R30",
+      "bounds": [
+        500,
+        611,
+        119,
+        125
+      ],
+      "layers": [
+        "06 legs/leg_right",
+        "07 pelvis",
+        "51 hair/front_long_hair/front_long_hair_right"
+      ],
+      "description": "画面左大腿外缘持续呈粗细不一的断笔，髋端内侧有单独的斜红印，上补形体面被压成较平肤色。",
+      "crop": [
+        492,
+        603,
+        135,
+        141
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R30-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R30-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R30-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R30-detail.png"
+      }
+    },
+    {
+      "id": "R31",
+      "bounds": [
+        635,
+        611,
+        114,
+        125
+      ],
+      "layers": [
+        "05 legs/leg_left",
+        "07 pelvis",
+        "50 hair/front_long_hair/front_long_hair_left"
+      ],
+      "description": "画面右髋外缘在发梢处偏折、断续，腿根补片内侧有异向暖色短痕。",
+      "crop": [
+        627,
+        603,
+        130,
+        141
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R31-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R31-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R31-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R31-detail.png"
+      }
+    },
+    {
+      "id": "R32",
+      "bounds": [
+        596,
+        691,
+        65,
+        49
+      ],
+      "layers": [
+        "07 pelvis",
+        "05 legs/leg_left",
+        "06 legs/leg_right"
+      ],
+      "description": "裆底包边端角伸出细碎棕笔，弧线落到两腿之间时形成暗尖和断续双线。",
+      "crop": [
+        588,
+        683,
+        81,
+        65
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R32-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R32-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R32-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R32-detail.png"
+      }
+    },
+    {
+      "id": "R33",
+      "bounds": [
+        680,
+        1150,
+        44,
+        61
+      ],
+      "layers": [
+        "05 legs/leg_left"
+      ],
+      "description": "画面右鞋扣下方鞋侧轮廓有齐头阶梯及深色直跳，破坏原图平滑侧线。",
+      "crop": [
+        672,
+        1142,
+        60,
+        77
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R33-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R33-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R33-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R33-detail.png"
+      }
+    },
+    {
+      "id": "R34",
+      "bounds": [
+        525,
+        1150,
+        46,
+        62
+      ],
+      "layers": [
+        "06 legs/leg_right"
+      ],
+      "description": "画面左鞋扣下方外缘在鞋侧中段出现截平转角和略错开的两段深线。",
+      "crop": [
+        517,
+        1142,
+        62,
+        78
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R34-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R34-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R34-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R34-detail.png"
+      }
+    },
+    {
+      "id": "R35",
+      "bounds": [
+        510,
+        744,
+        111,
+        322
+      ],
+      "layers": [
+        "06 legs/leg_right"
+      ],
+      "description": "画面左腿大腿至小腿内外侧描线间断、忽深忽浅，局部有短白断带。",
+      "crop": [
+        502,
+        736,
+        127,
+        338
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R35-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R35-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R35-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R35-detail.png"
+      }
+    },
+    {
+      "id": "R36",
+      "bounds": [
+        637,
+        744,
+        111,
+        322
+      ],
+      "layers": [
+        "05 legs/leg_left"
+      ],
+      "description": "画面右腿大腿至小腿的连续描线被切成多段，膝侧明暗线有明显浅断和跳宽。",
+      "crop": [
+        629,
+        736,
+        127,
+        338
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R36-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R36-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R36-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R36-detail.png"
+      }
+    },
+    {
+      "id": "R37",
+      "bounds": [
+        597,
+        19,
+        66,
+        46
+      ],
+      "layers": [
+        "04 hair/back_hair/base",
+        "54 hair/bangs"
+      ],
+      "description": "头顶分缝 V 下方多出短水平色带，底发独显中的浅带在 V 下延成突点。",
+      "crop": [
+        589,
+        11,
+        82,
+        62
+      ],
+      "files": {
+        "current": "raster-layering/step01/review-02-evidence/R37-current.png",
+        "reference": "raster-layering/step01/review-02-evidence/R37-reference.png",
+        "comparison": "raster-layering/step01/review-02-evidence/R37-comparison.png",
+        "kritaDetail": "raster-layering/step01/review-02-evidence/R37-detail.png"
+      }
+    }
+  ]
+}

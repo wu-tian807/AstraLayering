@@ -1,103 +1,96 @@
 结论：需要修复
 
-## 一、 检查概况与方法说明
+# 第一步衣服分层独立 review
 
-1. **检查对象与输入核对**：
-   - **当前工程**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/clothing-depth.kra`（SHA256 `00b0401c7935a33d1548a66b8e9e983f665d74a9b663e6c6fb21ef11fe5c8186`，只读未修改；画布尺寸 `1254 × 1254` RGBA，共 8 个普通绘画层 `paintlayer`，无透明蒙版、无分组或子节点，全部可见且不透明度为 `255`）。
-   - **纯衣服绘画参考**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-part-layering/references/clothing.png`（穿衣穿插辅助参考：`../../part-layering/references/simplified-subject.png`）。
-   - **分层结构标准**：`../clothing-part-layering/parts/`、`../clothing-part-layering/groups.json`、`../clothing-part-layering/occlusion.json` 及 `step01/report.md`。
-2. **Krita 独立只读检视与分区域放大检查**：
-   - 使用 Krita `5.3.4.1 (git bd6e8d0)` 打开 `step01/clothing-depth.kra`，独立导出全部图层叠加投影（`review-01-evidence/krita-full-composite.png`）、8 个图层逐层独显视图（`review-01-evidence/solo/solo-001.png` .. `solo-008.png`）及逐级隐藏上层视图（`review-01-evidence/progressive/prog-001-to-001.png` .. `prog-001-to-008.png`）。
-   - 先按 `100%` 原尺寸比对整体造型、比例与色调，再按 `200%–600%` 分区域放大覆盖全部 7 个逻辑部件（8 个绘画层），逐一核查可见区还原度、遮挡补全区连续性、接缝过渡及多深度分片切分质量。
+本轮在当前 KRA 中确认 19 处需修。肩带、肩荷叶、白领褶、胸衣和四道裙片的藏量需要逐片接画。默认合成还可见左右领端重边、第一与第二道裙片左侧的轮廓断口，以及末层裙摆的重线和亮色短痕。以下坐标以 1254 × 1254 画布左上角为原点，格式为 `(x, y, 宽, 高)`，左右均指画面方向。局部对照统一为左参考、右当前。整图编号分布见 [默认合成框选](review-01-evidence/composite/marked.png) 和 [末层褶面框选](review-01-evidence/composite-folds/marked.png)。
 
----
+## 肩带与肩荷叶
 
-## 二、 五项检查范围与衣服专属核查结果
+### R1 · 左肩带下端 `(466, 257, 44, 45)`
 
-1. **内容完整性**：
-   - `008 | chest_bow`、`007 | bodice`、`006 | shoulder_straps/left_shoulder_strap`、`005 | shoulder_straps/right_shoulder_strap`、`004 | skirt/upper_tier`、`003 | skirt/middle_tier` 6 个图层内部绘画内容与遮挡补全完整，无遗漏或错误擦除。
-   - **存在问题**：`skirt/lower_tier` 拆分为 `001 | skirt/lower_tier::back`（`level 1`）与 `002 | skirt/lower_tier::front`（`level 2`）时，中央内凹折槽底沿（`x=613..645, y=834..843`）分界切线 `y_cut(x)` 偏高 `3–4px`，将原本属于 `002 | skirt/lower_tier::front` 的正面底边深色描边下半截及右侧整段描边（`x=635..645, y=837..841`）切断剥离并移入 `001 | skirt/lower_tier::back`，造成 `002 | skirt/lower_tier::front` 独显及与双腿插层时底边描边断裂缺口（详见问题 **R1**）。
-2. **形体与组合**：
-   - 全部图层叠加（`001..008`）时外轮廓与原图一致；但切换至单层独显及前后分片插层检查时，`002 | skirt/lower_tier::front` 与 `001 | skirt/lower_tier::back` 在三处底摆分界处（中央 `x=613..645`、左侧 `x=471..530`、右侧 `x=720..774`）存在垂直切割台阶、未收口硬切侧边及 `1–2px` 残留黑点（详见问题 **R1、R2、R3**）。
-3. **画风**：
-   - 各衣片可见区与主补全区（抹胸蝴蝶结后方平滑布面、双肩带下端搭接舌片、三层荷叶裙顶部收褶搭接区）色调、纵向褶皱与深棕红描边风格协调一致。
-   - **存在问题**：`001 | skirt/lower_tier::back` 向 `y_cut(x)` 上方延伸 `12px` 的隐藏搭接带在采样填充时，于中央分片右侧（`x=638..645`）、左侧回折片两侧（`x=472..476, 527..530`）及右侧回折片左侧（`x=721..724`）采样到了深色描边像素，形成突兀的深棕色与浅粉色纵向串色竖条纹（详见问题 **R1、R2、R3**）。
-4. **区域衔接**：
-   - `007 | bodice`（`x=590..666, y=415..475` 蝴蝶结遮挡补全区）、`005` / `006` 双肩带底部搭接舌片（`y=413..442`）、`004 | skirt/upper_tier` 顶部搭接区（`y=482..505`）、`003 | skirt/middle_tier` 顶部搭接区（`y=603..627`）及 `002 | skirt/lower_tier::front` 顶部搭接区（`y=708..740`）与各自可见区过渡自然连续（见 `step01/review-01-evidence/zoom-01..04` 及 `zoom-10`）。
-   - **存在问题**：`001 | skirt/lower_tier::back` 的三处 `12px` 上延搭接带采用按列常数填色，不仅带入深色描边纵向伪条纹，且在 `y_cut(x)` 附近与下方回折片原有的明暗过渡之间形成横向硬接缝（详见问题 **R1、R2、R3**）。
-5. **整体还原度与衣服专属检查**：
-   - 7 个逻辑部件职责、前后衣片独立分层、正常开口透明性及不画人体像素的要求均已落实；部件外轮廓与层间 `1px` 亚像素抗锯齿过渡留给第二步处理。当前唯一影响单层完整性与腿部前后插层还原度的问题集中在 `001 | skirt/lower_tier::back` 与 `002 | skirt/lower_tier::front` 的底摆切分边界及搭接带修画上。
+`image_left_shoulder_assembly/right_shoulder_strap` 独显时，带身接入圆尾前有一横明一暗两条线。纵包边在那里截断，靠肩荷叶的一边有一个台阶。纯衣服参考中的两条纵包边顺着带身走到白领褶遮挡处，分件色块把尾部归入同一条肩带。揭开遮挡后，当前肩带像拼上了一截。去掉横双线，从可见带身接画两边包线与中间浅粉明面，把台阶抹顺后再沿原圆尾收口。保留下端的缝接量。[框选](review-01-evidence/left-strap/marked.png) · [局部对照](review-01-evidence/left-strap/R1-comparison.png)
 
----
+### R2 · 右肩带下端 `(733, 263, 45, 54)`
 
-## 三、 确认需修复的问题清单（R1–R3）
+`image_right_shoulder_assembly/left_shoulder_strap` 的带身与圆尾间有醒目的斜向亮暗双线。两侧纵边在同一高度截断，随后由一段较软的描边围住圆尾。参考里窄带斜向前领接点，两条纵缘保持方向。分件色块的下端是这条带的延伸。把交界处及圆尾一起顺带长重画，将包边连续送入圆角，并沿用这一侧较长的搭量和原有斜度。[框选](review-01-evidence/right-strap/marked.png) · [局部对照](review-01-evidence/right-strap/R2-comparison.png)
 
-### 标注证据总览
-- **整图框选标注图**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-evidence/4c755be0-b471-448a-b984-37047741e72b/marked.png`
-- **标注坐标与元数据清单**：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-evidence/4c755be0-b471-448a-b984-37047741e72b/regions.json`
-- **400%–600% 独显与插层放大检查图**：
-  - `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-05b-lower-tier-hem-split-400x.png`
-  - `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-05c-three-folds-detail-500x.png`
-  - `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-07-center-fold-defect-600x.png`
-  - `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-08-left-right-folds-sandwich-500x.png`
-  - `/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-09-hem-vs-legs-400x.png`
+### R3 · 左肩荷叶内根与收尾 `(448, 229, 36, 107)`
 
----
+`image_left_shoulder_assembly/right_shoulder_ruffle` 独显时，暗褶止在一道平行于肩带的淡粉条上，淡粉条外又留一条深边。下收端有蛇形重线。参考里扇形褶向肩带边下汇入，近领口的分界由白褶和胸衣压出。色块中根部与下收端都属于同一荷叶。清掉根部的平行重线和窄亮条，从荷叶自身的扇褶逐笔接入藏量，并让下段长褶顺势收进尾部，保留自由波浪边和原下接点。[框选](review-01-evidence/left-ruffle/marked.png) · [局部对照](review-01-evidence/left-ruffle/R3-comparison.png)
 
-### 问题 R1：底层裙摆中央内凹折槽底沿切线偏高导致前摆底边描边断裂缺失、后层搭接带出现深色纵向伪条纹
+### R4 · 右肩荷叶内根与收尾 `(756, 228, 46, 108)`
 
-- **相关图层**：`002 | skirt/lower_tier::front`、`001 | skirt/lower_tier::back`
-- **具体位置（原画布 `bounds`）**：`[608, 820, 42, 26]`（核心问题区 `x=612..646, y=822..843`）
-- **当前表现**：
-  1. 在 `002 | skirt/lower_tier::front` 独显时，中央内凹折槽（`x=613..645`）的分界切线 `y_cut(x)` 被设在 `y=834..837`，比原图该处底边深色描边的实际下缘（`y=837..842`）偏高 `3–4px`。这导致 `002 | skirt/lower_tier::front` 在 `x=612->613` 与 `x=645->646` 两侧出现明显的 `3px` 垂直切割台阶，且在 `x=635..645, y=837..841` 处前裙面底边的深色描边被完全剥离缺失，只剩裸露的浅粉色布面下缘（`s2` 底缘像素为 `[221, 156, 161]` 至 `[249, 200, 206]`）。
-  2. 在 `001 | skirt/lower_tier::back` 独显时，本属于 `002 | skirt/lower_tier::front` 的前裙底边深色描边下半截残片（`x=613..645, y=835..840`）被错误切入后层，且其 `12px` 上延搭接带右侧（`x=638..645, y=823..837`）因采样到了深色描边与右侧亮粉像素，形成了深棕与浅粉相间的纵向伪条纹。
-- **参考依据**：
-  - 对照原图 `../../clothing-part-layering/references/clothing.png` 及穿衣辅助参考 `../../part-layering/references/simplified-subject.png`，`x=613..645` 处仅有一条位于双腿内侧前方的正面裙摆底边深色弧线，并无向腿后翻折露出于底边下方的第二层翼片；且上游 `../clothing-part-layering/occlusion.json` 明确规定 `002 | skirt/lower_tier::front`“下界精确止于底摆正面波浪下沿深色描边下缘连续分界线 `y_cut(x)`（完整保留正面波浪下沿深色描边于本层）”。
-- **对还原度或完整性的影响**：
-  - `002 | skirt/lower_tier::front` 单层底边轮廓在中央折槽处断裂缺边；当与角色双腿（右腿内侧 `x=544..616`、左腿内侧 `x=640..712`）按前后层级叠放或发生轻微相对变形时，大腿内侧会遮挡 `001 | skirt/lower_tier::back`，直接暴露出 `002 | skirt/lower_tier::front` 在 `x=613..616` 与 `x=635..645` 处的描边缺失和 `3–4px` 阶梯缺口（见 `zoom-07-center-fold-defect-600x.png`）。
-- **建议修复方向与需保留内容**：
-  - **修复方向**：将 `x=613..645, y=834..843` 处的正面底边深色描边及其下缘完整归还至 `002 | skirt/lower_tier::front`，消除 `x=612..613` 与 `x=645..646` 处的垂直切割台阶，确保 `002 | skirt/lower_tier::front` 独显时中央折槽底边深色描边连续完整。对于 `001 | skirt/lower_tier::back` 在该区域（`x=613..645`）：须清除其中被错误切入的前片底边深色描边残片以及 `x=638..645` 的纵向深色伪条纹（若保留后方隐藏搭接片，仅使用干净平滑的中央折槽暗粉底色填充于 `002` 底边描边内侧上方；若移除该处多余分片并仅保留左右两处真实腿后回折翼片，则同步更新 `../clothing-part-layering/occlusion.json` 中的 `bounds` 与区域说明）。
-  - **需保留内容**：保留 `002 | skirt/lower_tier::front` 中央折槽原有的纵向明暗色彩与顶部补全区（`y=708..740`），保持 `001` 与 `002` 叠加后与原图底摆的一致性。
-- **证据路径**：
-  - 标注局部对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-evidence/4c755be0-b471-448a-b984-37047741e72b/R1-comparison.png`（及 `R1-current.png`、`R1-reference.png`）
-  - 600% 独显与插层对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-07-center-fold-defect-600x.png`
+`image_right_shoulder_assembly/left_shoulder_ruffle` 的可见褶面与藏量之间夹一条淡粉窄带和弯曲深痕，下端叠成两条颜色相近的暗轮廓。参考在这里呈右侧自身的扇形褶，向肩带与前领收拢。分件色块把内侧接量画成荷叶的延续。重画转折处的褶面，延续各条斜褶的方向和各自明暗，去掉贯穿褶根的多余重线，并让藏量从右侧轮廓自然收尖。[框选](review-01-evidence/right-ruffle/marked.png) · [局部对照](review-01-evidence/right-ruffle/R4-comparison.png)
 
----
+### R5 · 右肩顶接点 `(784, 135, 16, 17)`
 
-### 问题 R2：底层裙摆左侧腿后回折翼片（`x=472..530`）搭接带纵向串色条纹及分界侧缘硬切瑕疵
+`image_right_shoulder_assembly/left_shoulder_ruffle` 独显时，靠 `image_right_shoulder_assembly/left_shoulder_strap` 的斜上缘冒出一个深色小钩。参考中荷叶上边向肩带交点顺势收入。该倒钩使根部单看有毛刺。沿现有荷叶斜边重画最后一小段，让线尾平顺进入肩带后的搭口。保留肩带顶端圆收，在两层同显时复核交点。[框选](review-01-evidence/right-ruffle/marked.png) · [局部对照](review-01-evidence/right-ruffle/R5-comparison.png)
 
-- **相关图层**：`001 | skirt/lower_tier::back`、`002 | skirt/lower_tier::front`
-- **具体位置（原画布 `bounds`）**：`[468, 810, 66, 38]`（核心问题区 `x=471..531, y=812..846`）
-- **当前表现**：
-  1. 在 `001 | skirt/lower_tier::back` 独显时，左侧回折翼片向 `y_cut(x)` 上方延伸的 `12px` 隐藏搭接带（`y=813..825`）在左缘（`x=472..476`）和右缘（`x=527..530`）采样到了下方斜向折线与侧边深色描边，形成纵向深浅跳变条纹，且在 `y=824..825` 处与下方回折片原有的明暗表面形成横向硬接缝。
-  2. 在 `002 | skirt/lower_tier::front` 独显时，左侧切线在 `x=471..472, y=826..840` 处直接从左侧外折裥粉面中间垂直硬切，未顺应 `(472, 840) -> (475, 824)` 的内折边走向自然过渡，且在右端 `x=527, y=825..826` 处残留 `1–2px` 属于后折片右竖边的垂落黑点。
-- **参考依据**：
-  - 对照原图 `../../clothing-part-layering/references/clothing.png` 及 `../clothing-part-layering/occlusion.json` 中“用不含前摆深色描边的里侧折面纯粉色平滑补绘”的要求，后层隐藏搭接带应与里侧折面自然衔接、无深色描边串色，前层下沿应干净止于正面波浪底边深色描边下缘。
-- **对还原度或完整性的影响**：
-  - 单层独显或前后裙片随腿部摆动发生相对位移时，`001 | skirt/lower_tier::back` 搭接带两侧的深色竖纹与横向硬接缝，以及 `002 | skirt/lower_tier::front` 在 `x=527` 的残留黑点和 `x=471..472` 的垂直硬切边会露底穿帮。
-- **建议修复方向与需保留内容**：
-  - **修复方向**：在 `001 | skirt/lower_tier::back` 中将左侧回折翼片上方 `12px` 隐藏搭接带（`x=472..530, y=813..826`）两侧的纵向串色条纹与 `y=824..825` 横向接缝用里侧回折面干净暗粉色（避开折线与外描边采样）平滑修补，并延续右侧深色竖描边自然向上收口；在 `002 | skirt/lower_tier::front` 中清理 `x=527, y=825..826` 残留的 `1–2px` 垂落黑点，并顺畅处理 `x=471..475, y=824..840` 左折角衔接处的切分边缘。
-  - **需保留内容**：保留 `001 | skirt/lower_tier::back` 左下回折翼片（`x=472..530, y=824..846`）原有的斜向内折线、里侧深粉阴影与底边描边，保持 `001` 与 `002` 叠合后的完整外观。
-- **证据路径**：
-  - 标注局部对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-evidence/4c755be0-b471-448a-b984-37047741e72b/R2-comparison.png`（及 `R2-current.png`、`R2-reference.png`）
-  - 500% 独显对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-08-left-right-folds-sandwich-500x.png`
+## 领口与胸衣
 
----
+### R6 · 白领褶全宽下沿 `(469, 272, 306, 38)`
 
-### 问题 R3：底层裙摆右侧腿后回折翼片（`x=721..773`）搭接带左侧深棕竖条纹及前摆交界台阶瑕疵
+`neckline_ruffle` 被粉包边盖住的搭量里，原接缝位置留下一道灰褐曲线，下方又排了一行白色尖瓣和暗斑，搭量底边还有一条深边。独显时一圈白褶被切成两排。参考和穿衣图可见的是一列连续的白褶冠及两端回折，分件色块下方只给一条窄搭量。清除藏量中间的横线和重复尖瓣。逐褶延长自身明面与灰紫阴面，沿统一弧线消融进底部接量。保留两端回折和方领上方的真实开口。[框选](review-01-evidence/neckline/marked.png) · [局部对照](review-01-evidence/neckline/R6-comparison.png)
 
-- **相关图层**：`001 | skirt/lower_tier::back`、`002 | skirt/lower_tier::front`
-- **具体位置（原画布 `bounds`）**：`[717, 814, 62, 36]`（核心问题区 `x=720..775, y=815..846`）
-- **当前表现**：
-  1. 在 `001 | skirt/lower_tier::back` 独显时，右侧回折翼片向 `y_cut(x)` 上方延伸的 `12px` 隐藏搭接带在左侧缘（`x=721..724, y=818..831`）采样到了下方回折翼片左侧的深色竖描边，形成一条宽 `3–4px`、贯穿搭接带全高的深棕色伪竖条纹；同时在 `y=825..833` 处存在按列常数填色与下方回折片折面明暗之间的横向硬接缝。
-  2. 在 `002 | skirt/lower_tier::front` 独显时，前摆波浪底边在进入右侧回折口起点 `x=720..722, y=829..832` 处深色描边下缘有 `2px` 阶梯缺口，并在右端 `x=773..774, y=827..842` 处从右侧外折裥粉面中间垂直硬切。
-- **参考依据**：
-  - 对照原图 `../../clothing-part-layering/references/clothing.png` 及 `../clothing-part-layering/occlusion.json`，`001 | skirt/lower_tier::back` 的隐藏搭接区应为平滑连续的里侧折面纯粉色（左侧外缘可延续干净收边，但不应把描边采样成粗糙的多列棕色条带），`002 | skirt/lower_tier::front` 在 `x=720..725` 的波浪底边描边应平顺连续。
-- **对还原度或完整性的影响**：
-  - 单层独显或裙摆变形时，`001 | skirt/lower_tier::back` 左侧 `x=721..724` 的粗重深棕竖条纹、横向硬接缝以及 `002 | skirt/lower_tier::front` 在 `x=720..722` 的描边台阶缺口会造成局部质感断层与边缘瑕疵。
-- **建议修复方向与需保留内容**：
-  - **修复方向**：在 `001 | skirt/lower_tier::back` 中清除 `x=721..724, y=818..831` 处的深棕色伪竖条纹（仅在最左外缘保留干净的侧边收口线，内部统一用里侧回折面干净暗粉色平滑过渡），并柔化 `y=825..833` 处搭接带与可见回折面之间的接缝；在 `002 | skirt/lower_tier::front` 中修平 `x=720..723, y=829..832` 处前摆波浪底边深色描边的 `2px` 阶梯缺口，并顺畅处理 `x=770..774, y=826..842` 右折角衔接处的切分边缘。
-  - **需保留内容**：保留 `001 | skirt/lower_tier::back` 右下回折翼片（`x=721..773, y=827..846`）原有的斜向内折线、里侧深粉阴影与底边描边，保持 `001` 与 `002` 叠合后的完整外观。
-- **证据路径**：
-  - 标注局部对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-evidence/4c755be0-b471-448a-b984-37047741e72b/R3-comparison.png`（及 `R3-current.png`、`R3-reference.png`）
-  - 500% 独显对比：`/data/home/lockliu/workspaces/AstraLayering-step-models/.run/pink-doll/clothing-raster-layering/step01/review-01-evidence/zoom-08-left-right-folds-sandwich-500x.png`
+### R7 · 左领端凸瓣与回折 `(465, 257, 33, 57)`
+
+`neckline_ruffle` 与 `image_left_shoulder_assembly/right_shoulder_ruffle`、`dress_bodice` 相交处，默认合成在白瓣边外留有一圈灰黑软重边，沿小回折下落并在进入粉包边前加粗。参考保有清晰的凸瓣、短凹转和回折，白边与粉底之间是一条窄而连贯的分界。先单看白褶把灰边归整为一条干净轮廓，再清理荷叶藏量上重叠的暗线。保持回折面积及粉包边原有弧度，复显后三者应各有一条清楚的边界。[框选](review-01-evidence/composite/marked.png) · [局部对照](review-01-evidence/composite/R7-comparison.png)
+
+### R8 · 右领端回折与肩带交点 `(744, 247, 35, 58)`
+
+`neckline_ruffle`、`image_right_shoulder_assembly/left_shoulder_strap`、`image_right_shoulder_assembly/left_shoulder_ruffle` 与 `dress_bodice` 的合成中，肩带内缘在领冠交点多出一小段暗钩。右白瓣到小回折的外侧有一圈比参考厚的灰重边，压暗荷叶根。参考的肩带线在白冠轮廓处收住，白瓣回转与下方粉包边仍分得清。收齐肩带被遮住的边线，去掉白边外侧和荷叶根相叠的灰暗残线，并在凸瓣转入回折的弯处恢复原线宽。保留右端白瓣与粉包边接点。[框选](review-01-evidence/composite/marked.png) · [局部对照](review-01-evidence/composite/R8-comparison.png) · [领端和肩根放大](review-01-evidence/upper-close.png)
+
+### R9 · 胸衣下沿左侧 `(483, 405, 81, 43)`
+
+隐藏 `waistband` 后，`dress_bodice` 左下斜褶一入藏量就扁成横向暗带，左角挤成三角形暗团并出现朝下的重线。参考的左下轮廓和内侧长褶各自收进腰缝，分件色块的藏量是狭窄延长。修顺从衣身侧缘穿过腰线的轮廓，逐条延长斜褶并清掉三角脏色和短重影。保留正常的腰带后搭量。[框选](review-01-evidence/bodice/marked.png) · [局部对照](review-01-evidence/bodice/R9-comparison.png)
+
+### R10 · 胸衣下沿右侧 `(690, 407, 74, 42)`
+
+`dress_bodice` 右下进入 `waistband` 后方的几条长斜褶在角部折成近水平的粉褐团块，底缘堆出重边。参考在腰线上方仍能读出数条方向不同的斜褶，各自收进腰缝。按这侧褶线的间距与方向接画短搭量，拉开各褶明暗，把暗团和重描边收成一条顺滑的下缘。保留右侧原轮廓和腰带的覆盖关系。[框选](review-01-evidence/bodice/marked.png) · [局部对照](review-01-evidence/bodice/R10-comparison.png)
+
+## 裙片上口与相邻摆缘
+
+### R11 · 第一层裙片腰口 `(477, 444, 290, 43)`
+
+隐藏 `waistband` 后，`skirt_tier_one` 上口呈一排密集浅粉亮竖纹，左右腰点的斜褶也被这排纹理切碎。合成中，参考腰带下方数个圆拱状明面被拉直或变浅，中段以及两侧斜褶起点尤其明显。先按纯衣服图恢复露在腰带下方的各个圆拱、短暗楔和左右斜褶转折，再逐个沿本褶走向延伸进藏量，清掉密排重复亮纹。保留长褶及腰带原走线。[框选](review-01-evidence/tier-one/marked.png) · [揭开对照](review-01-evidence/tier-one/R11-comparison.png) · [默认合成放大](review-01-evidence/seam-waist.png)
+
+### R12 · 第二层裙片上口 `(391, 635, 464, 64)`
+
+隐藏 `skirt_tier_one` 后，`skirt_tier_two` 的上口出现成排短亮纹、暗褶叠影和藏量两端的碎阶。合成中第一道摆缘下若干明确的拱状明面变为平头竖色条。参考在左半和右半均有大小不同的拱弧与深浅短楔。沿参考补回露出部分的拱顶和褶影，再分别把它们接进搭量直至上端。消除两端补量轮廓的小碎阶，保留第二道裙片主体长褶以及第一道摆缘的正常波浪。[框选](review-01-evidence/tier-two/marked.png) · [揭开对照](review-01-evidence/tier-two/R12-comparison.png) · [默认合成放大](review-01-evidence/seam-tier1.png)
+
+### R13 · 第三层裙片上口 `(310, 819, 625, 77)`
+
+隐藏 `skirt_tier_two` 后，`skirt_tier_three` 上口密排亮尖瓣和暗斑，在一些原有宽褶的顶部又复制出窄小亮纹。合成时左半及中央的第二道摆缘下，参考中清楚的圆顶明面与暗楔交替关系变得平、糊，右侧宽暗褶起点也失去明暗分隔。按参考定位各主要褶根，恢复有宽窄变化的明面和暗楔，再把这些同一条褶干净地向上接入藏量。保住中央长褶及向外展的两侧线势。[框选](review-01-evidence/tier-three/marked.png) · [揭开对照](review-01-evidence/tier-three/R13-comparison.png) · [默认合成放大](review-01-evidence/seam-tier2.png)
+
+### R14 · 第四层裙片上口 `(250, 957, 739, 105)`
+
+隐藏 `skirt_tier_three` 后，`skirt_tier_four` 上口两翼与中段均有重复亮尖和灰粉拖影。若干原有斜褶在接入补全带前变薄或分叉。参考中第三道摆缘下的长斜褶、明面和短暗楔均可分别跟踪，当前的短亮纹会在揭开后干扰布面走向，部分已经露到摆缘外。沿当前长褶回溯到对应的参考褶根，按两翼斜向、中段近竖向逐褶重画藏量的明暗连续性。保留原波浪裙边和末层长褶。[框选](review-01-evidence/tier-four/marked.png) · [揭开对照](review-01-evidence/tier-four/R14-comparison.png) · [默认合成放大](review-01-evidence/seam-tier3.png)
+
+### R15 · 第一与第二道裙片左侧断口 `(389, 644, 19, 20)`
+
+`skirt_tier_one` 左摆角与 `skirt_tier_two` 左侧外轮廓相接处约 `(396, 652)` 有向内咬进的透明浅口，深边断为两段。参考在此由上层圆角连续转入下层斜边。独显对照显示下层衣片左上侧在接点内收。优先在第二层上角接画本层布面和细描边，沿参考接点微补上搭量。用默认合成和第二层揭开各检查一次，确保透明边口合住且上层圆角仍清楚。[框选](review-01-evidence/composite/marked.png) · [局部对照](review-01-evidence/composite/R15-comparison.png) · [参考、合成及分层放大](review-01-evidence/tier1-gap.png)
+
+## 末层裙边和露出纹理
+
+### R16 · 左翼下摆转角 `(236, 1072, 22, 24)`
+
+`skirt_tier_four` 左翼两道裙弧交会处有一截朝下挑的黑重线，与新一段外轮廓夹成窄楔。参考同处的内褶线直接收进裙边转角。残线使边口出现双线和毛刺。把窄楔按相邻粉色与暗褶补顺，只沿参考的圆折接回一条边线。保留两段裙弧及向内的褶线。[框选](review-01-evidence/composite/marked.png) · [局部对照](review-01-evidence/composite/R16-comparison.png)
+
+### R17 · 右翼下摆转角 `(981, 1064, 26, 25)`
+
+`skirt_tier_four` 右翼外褶与相邻大裙弧相接的根部有额外向下的暗线，外翼底边在此并成发黑粗边。参考在交点收住里面的斜褶线，右上扬的轮廓保持细而连贯。清掉根部暗线和叠线形成的黑楔，沿参考以相邻线宽接回上扬弧线。保留实际裙褶折角。[框选](review-01-evidence/composite/marked.png) · [局部对照](review-01-evidence/composite/R17-comparison.png) · [两翼放大](review-01-evidence/hem-tips.png)
+
+### R18 · 第三道摆缘下方左侧亮线 `(495, 1020, 19, 18)`
+
+`skirt_tier_four` 在 `skirt_tier_three` 边下约 `(503, 1029)` 露出一截斜白亮纹，揭开时可见它接到第四层补全带的重复亮纹。参考同点是连续的暗粉褶面和柔和的暗尖褶。沿本层暗面取色融去短亮线，把该处参考短褶的色相和过渡接回去，保留第三道摆缘线。[框选](review-01-evidence/composite-folds/marked.png) · [局部对照](review-01-evidence/composite-folds/R18-comparison.png)
+
+### R19 · 末层右侧长斜褶边 `(900, 1019, 20, 20)`
+
+`skirt_tier_four` 约 `(907, 1030)` 的粉色斜褶边有两道亮短划，咬出两个小锯口。参考的明暗边沿同一斜势连续过渡。取该长褶两侧自身的粉色和暗粉，顺斜向重新接好边，保持过渡宽度和整条褶的方向。[框选](review-01-evidence/composite-folds/marked.png) · [局部对照](review-01-evidence/composite-folds/R19-comparison.png) · [参考、合成及独显放大](review-01-evidence/tier4-short-stroke.png)
+
+## 检查覆盖
+
+- 在 Krita 中重新打开 `clothing-raster-layering\step01\clothing-depth.kra`，导出当前默认合成。对照纯衣服图与穿衣角色图，同时逐一查看分件 SVG 色块、`groups.json` 与 `occlusion.json`。原穿衣角色图用于核对肩荷叶的开放形态、窄肩带走向和方领敞口。此处为两片自由边肩荷叶，袖口收拢和袖筒内壁检查不适用。方领开口保持透明。参考中这件衣服没有独立纱料衣片。
+- 11 个终止 part 均完成独显和隐藏上层后的补全区检查。照原画布坐标核对参考与默认合成，并放大检查肩顶、肩根、两领端、腰线、三道裙片交界和末层裙缘。`skirt_tier_four` 位于最底层，其独显与揭开视图相同。`waistband` 位于最上层，其揭开视图就是默认合成。
+- 检查的层包括 `skirt_tier_four`、`skirt_tier_three`、`skirt_tier_two`、`skirt_tier_one`、`image_left_shoulder_assembly/right_shoulder_ruffle`、`image_left_shoulder_assembly/right_shoulder_strap`、`image_right_shoulder_assembly/left_shoulder_ruffle`、`image_right_shoulder_assembly/left_shoulder_strap`、`neckline_ruffle`、`dress_bodice`、`waistband`。左右肩组件的肩带和荷叶分别看过，也分别按原层序成对查看。
+- 实际图层树为 11 个独立绘画层，均无子节点。没有显隐蒙版，启用与停用检查不适用。每个终止 part 只有一层，单独深度前后分片检查不适用。本轮采用 `report.md` 作为已有绘画记录，最终问题依据本轮重新导出的图像。只在内存中操作显隐，未保存对工程的改动。

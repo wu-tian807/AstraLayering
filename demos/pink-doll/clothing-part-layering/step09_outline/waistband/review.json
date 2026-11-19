@@ -1,0 +1,62 @@
+{
+  "groupId": "waistband",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "腰带轮廓通过，无需重画。纯衣服参考在 x≈485–758、y≈429–467 显示一条连续贴合的横腰带。四倍原图叠加与红色边缘图覆盖整条腰带，左右端贴合两侧腰部外轮廓，上缘沿胸衣下口，下缘沿第一道裙片收褶接缝。可见范围完整，无误包、开口、薄纱或分离附件。本组为顶层，无父 SVG 范围限制。\n仅返修 waistband 的 note。现有说明已写明上下接缝的覆盖、短隐藏搭接和共用腰部连接，但缺少相对人体的前后关系。参考中可见带面横跨胸衣与裙身正面的腰线，左右端在侧腰外轮廓收住。请明确「可见腰带位于躯干腰部前侧，覆盖胸衣下口和第一道裙片上收褶，并与两者的腰口共同随腰变形」，保留现有短隐藏搭接说明和完整逻辑组。",
+      "candidateHash": "882f0220358b9e48d9fd0ac970d9eae2255fb3f787ef2786396758b0a848a29b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-08-48-397Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-08-48-397Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-08-48-397Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-08-48-397Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:19:58.339Z",
+      "repairedCandidateHash": "882f0220358b9e48d9fd0ac970d9eae2255fb3f787ef2786396758b0a848a29b"
+    },
+    {
+      "verdict": "pass",
+      "feedback": "第 2 轮。纯衣服参考在约 x=484–758、y=429–467 显示一条连续的前腰带，从左侧腰线延伸到右侧腰线，上接胸衣下口，下接第一道裙片收褶。整体叠加确认位置、横跨宽度和带高，5 倍边缘图逐段核对了上缘弧线、下缘弧线和左右端的收角，4 倍叠加确认覆盖范围贴合两道接缝。独显为一条完整带体，与参考的可见归属一致。该区域无真实开口、薄纱或分离附件。note 已说明前腰位置、两处接缝的遮盖与短隐藏搭接，以及与胸衣和第一道裙片腰口的共同随动。waistband 为顶层组，无父范围约束。本轮无需要修改的问题。",
+      "candidateHash": "882f0220358b9e48d9fd0ac970d9eae2255fb3f787ef2786396758b0a848a29b",
+      "observations": [
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-30-48-000Z-1.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "edge",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-30-48-000Z-2.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "blend",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-30-48-000Z-3.png"
+        },
+        {
+          "source": "clothing-part-layering/step09_outline/waistband/outline.svg",
+          "mode": "svg",
+          "savedPath": "clothing-part-layering/step09_outline/waistband/previews/2026-11-18T10-30-48-000Z-4.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T10:34:20.060Z"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "kind": "parentCopy",
+  "groupId": "arms/arm_right",
+  "detectorVersion": 1,
+  "needsCompletion": false,
+  "reason": "whole-independent-geometry"
+}

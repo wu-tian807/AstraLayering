@@ -1,0 +1,98 @@
+{
+  "groupId": "hair/front_long_hair",
+  "reviews": [
+    {
+      "verdict": "revise",
+      "feedback": "第 1 轮。按画面左右核对两束前侧长发。整图及放大参考、blend、edge 确认两束分别从宽侧发下露出，沿上臂内缘和衣身下垂，髋侧发尖压在大腿前。返修以下局部（原图坐标）：\n1. 两束上端与宽侧发的弧形接缝（左 x≈514–551、右 x≈705–742，y≈229–283）。红边在弧段中下部偏向长发侧，参考中宽侧发压下来的深色轮廓线仍有一条可见宽度落在候选外。沿各自深线外缘向宽侧发侧微调，接到长发与颈后深发的分界；保留接点折向，勿顺着宽侧发继续包入颊旁尖梢。\n2. 画面左束肘下外侧（x≈500–521、y≈548–601）。候选从肘侧转入前臂的斜边局部伸进粉色皮肤，尤其转折下方。向发侧收回至前臂与发束之间的深色轮廓线外缘，按参考的弧度接到前发与臂后发的分界。\n3. 两束髋侧尖梢外缘由白色开口转接腿面的局部（左 x≈510–514、y≈648–656，右 x≈738–742、y≈646–653）。edge 可见裁切形成的小折钩，参考是前发的深色边沿开口连续转至腿面。贴着这条深线重描局部，保留白缝的尖端和发尖的回勾，勿填开口或并入臂后发。\n已核对肩带接点、两侧贴衣身的腰弧、贴臂的上段及两处尖端。候选在父稿范围内，四倍采样越界为零。髋侧已在同一局部叠加父稿，父稿边缘在汇接处也有转折，先在父内去掉候选折钩；本轮未确认有必须跨出父范围的可见缺漏。",
+      "candidateHash": "09a7dbdbb501fe891f101f3fddde62e99ed121594f4ae1450f96da76cdff204c",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-3.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-5.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-35-43-212Z-7.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:42:13.172Z",
+      "repairedCandidateHash": "350c4bf4f9198f023809f106032be0712a8c4a44d02bd228f8653c3746263685"
+    },
+    {
+      "verdict": "revise",
+      "feedback": "第 2 轮复核了两束胸前长发的侧发遮挡接缝、肩臂侧边、衣身侧边、髋侧开口和弯尖。以下为原图坐标，左右按画面方向。\n1. 左束上口约 x519–551、y246–281，右束约 x705–736、y245–281。红边局部压在宽侧发下缘的深线内，尤其是由斜弧转入下垂直边前。内侧是露出的长发，另一侧是压在上面的宽侧发。把左束接缝局部向画面左下、右束向右下退到该深线的长发侧边缘，分别保留两侧实际转角。\n2. 左束贴臂侧约 x509–523、y534–576，红边局部偏向皮肤。沿长发与手臂之间的深色边线外沿微向发束侧收，保留完整深线，去掉贴臂的粉色窄带。右束衣身侧约 x726–730、y608–629，红边提前向衣身张开。沿发深线与浅衣料的交界微向右收，跟到裤口接上发束的位置，避免纳入衣身投影。\n3. 右束髋侧外缘约 x738–750、y615–649，候选从贴臂段转向发尖时局部沿平滑弧接顺。上段应跟随前束与深色后发的叠边，下段接到白色开口的前束侧深边，微调外弧并保留开口上端的转向。左右两个向躯干回勾的尖端均已定位。\n父稿局部叠加及四倍采样确认候选在父范围内。裤口以下贴大腿的细边和尖端局部与父边共线，应保留现有父范围；本轮返修针对上述父范围内可调整的接缝和外缘。",
+      "candidateHash": "350c4bf4f9198f023809f106032be0712a8c4a44d02bd228f8653c3746263685",
+      "observations": [
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-1.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-2.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-3.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-4.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-5.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "blend",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-6.png"
+        },
+        {
+          "source": "part-layering/step09_outline/hair/children/front_long_hair/outline.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-7.png"
+        },
+        {
+          "source": "part-layering/parts/hair.svg",
+          "mode": "edge",
+          "savedPath": "part-layering/step09_outline/hair/children/front_long_hair/previews/2026-11-18T11-47-11-892Z-8.png"
+        }
+      ],
+      "updatedAt": "2026-11-18T11:51:15.995Z",
+      "repairedCandidateHash": "74c0ccc4218de29cabc76a2e27fe4fda1e367d1ab796eb8f27ba8b97d381c2f9"
+    }
+  ]
+}
