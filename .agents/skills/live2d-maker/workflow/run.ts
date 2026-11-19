@@ -157,7 +157,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     return;
   }
   if (parsed.action) {
-    await preflightTaskInputs(options, undefined, { original: true });
+    await preflightTaskInputs(options);
     // Complete startup checks before a recovery action changes any step.
     await preflightKrita(options);
     await preflightFFmpeg(options);

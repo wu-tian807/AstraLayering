@@ -9,7 +9,6 @@ import sharp from 'sharp';
 import { shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
-import { checkOriginalImage, originalImageLimits } from '../.agents/skills/live2d-maker/shared/original-image.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
 import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, taskKrita, taskFFmpeg, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
@@ -28,7 +27,7 @@ import { FFmpegUnavailable, preflightFFmpeg } from '../.agents/skills/live2d-mak
 import { checkFFmpeg, type FFmpegCheck } from '../.agents/skills/live2d-maker/shared/ffmpeg.ts';
 import { MissingDependencyError } from '../.agents/skills/live2d-maker/shared/missing-dependency.ts';
 import { checkKnowledge, defaultKnowledgeDirectory } from '../.agents/skills/live2d-maker/shared/knowledge.ts';
-import { preflightTaskInputs, preflightTaskOriginal } from '../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
+import { preflightTaskInputs } from '../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
 import { exportCompletedRun } from '../.agents/skills/live2d-maker/workflow/export.ts';
 import { LayerCompositor } from './layer-compositor.ts';
 import { isStudioPath, studioProject } from './studio-project.ts';
@@ -248,26 +247,27 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           // A route with Krita steps is refused before anything is created.
           try { await preflight(opts); }
           catch (error) { if (error instanceof KritaUnavailable || error instanceof FFmpegUnavailable) { json(softwareRefused(error), 409); return; } throw error; }
-          let source: Buffer | string;
-          if (value.upload) {
-            if (typeof value.upload !== 'string' || !/^[A-Za-z0-9+/]*={0,2}$/.test(value.upload)) throw new Error('无效的图片数据');
-            source = Buffer.from(value.upload, 'base64');
-            if (!source.length || source.length > 20 * 1024 * 1024) throw new Error('上传图片最大 20 MB');
-          } else {
-            if (!opts.image) throw new Error('新任务需要一张输入参考图');
-            source = resolve(directory, opts.image);
-          }
-          const meta = await checkOriginalImage(source);
-          if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
-          await sharp(source, { limitInputPixels: originalImageLimits.maxPixels }).resize(1, 1).raw().toBuffer();
           // Exclusive creation prevents changing the original of an existing named task.
           await mkdir(directory);
           let committed = false;
           try {
-            if (Buffer.isBuffer(source)) {
+            if (value.upload) {
+              if (typeof value.upload !== 'string' || !/^[A-Za-z0-9+/]*={0,2}$/.test(value.upload)) throw new Error('无效的图片数据');
+              const bytes = Buffer.from(value.upload, 'base64');
+              if (!bytes.length || bytes.length > 20 * 1024 * 1024) throw new Error('上传图片最大 20 MB');
+              const image = sharp(bytes, { limitInputPixels: 40_000_000 });
+              const meta = await image.metadata();
+              if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
+              await image.resize(1, 1).raw().toBuffer();
               await mkdir(join(directory, 'input'));
-              await writeFile(join(directory, 'input/original.png'), await encodePng(source), { flag: 'wx', mode: 0o600 });
+              await writeFile(join(directory, 'input/original.png'), await encodePng(bytes), { flag: 'wx', mode: 0o600 });
               delete opts.image;
+            } else {
+              if (!opts.image) throw new Error('新任务需要一张输入参考图');
+              const image = sharp(resolve(directory, opts.image), { limitInputPixels: 40_000_000 });
+              const meta = await image.metadata();
+              if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
+              await image.resize(1, 1).raw().toBuffer();
             }
             const release = await acquireTaskLock(directory);
             try {
@@ -327,7 +327,6 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           if (actionSection) opts.from = opts.to = actionSection;
           starts.add(directory);
           try {
-            await preflightTaskOriginal(opts, directory, recorded);
             // Krita is checked before an action changes any step.
             try { await preflight(opts); }
             catch (error) {

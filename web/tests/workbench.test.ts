@@ -144,44 +144,6 @@ test('网页后台启动同样只使用 workflow.log，失败时等待日志完�
   assert.equal(await readFile(join(f.dir, 'test/service.log')).then(() => true, () => false), false);
 });
 
-test('task imports and startup use the same original image limits', async t => {
-  const f = await fixture(t, async () => assert.fail('超限原图不应派发后台进程'));
-  const png = (width: number, height: number) =>
-    sharp({ create: { width, height, channels: 3, background: '#cbbbaa' } }).png().toBuffer();
-
-  const wide = await png(3841, 1024);
-  const edge = await f.post('tasks', { name: 'edge-over', upload: wide.toString('base64') });
-  assert.equal(edge.status, 400);
-  assert.match(edge.value.error, /3841×1024/);
-
-  const largePath = join(f.base, 'large.png');
-  const large = await png(3000, 3000);
-  await writeFile(largePath, large);
-  const area = await f.post('tasks', { name: 'area-over', image: largePath });
-  assert.equal(area.status, 400);
-  assert.match(area.value.error, /3000×3000.*2880×2880/);
-  for (const name of ['edge-over', 'area-over']) {
-    await assert.rejects(readFile(join(f.dir, name, 'run.json')), { code: 'ENOENT' });
-  }
-
-  const boundary = await png(3840, 2160);
-  assert.equal((await f.post('tasks', { name: 'limit', upload: boundary.toString('base64') })).status, 201);
-  const task = join(f.dir, 'limit');
-  const original = join(task, 'input/original.png');
-  assert.deepEqual(await readFile(original), boundary);
-
-  await writeFile(original, large);
-  await put(task, 'part-layering/step03_pose/.running');
-  for (const route of ['start', 'task-action']) {
-    const result = await f.post(route, { name: 'limit', action: 'retry' });
-    assert.equal(result.status, 400);
-    assert.match(result.value.error, /3000×3000/);
-  }
-  assert.equal(await readFile(join(task, 'part-layering/step03_pose/.running'), 'utf8'), 'content');
-  assert.deepEqual(await readFile(original), large);
-  assert.match(await readFile(join(task, 'workflow.log'), 'utf8'), /3000×3000/);
-});
-
 test('upload retains original/config; same name never overwrites; selection persists; stale tabs cannot start in another root', async t => {
   const f = await fixture(t);
   const bytes = await upload();
