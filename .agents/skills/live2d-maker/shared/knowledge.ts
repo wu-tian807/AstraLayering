@@ -4,7 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { AsyncLocalStorage } from 'node:async_hooks';
 import type { FunctionTool } from './codex/function-tools.ts';
 import { toolSchemaNames } from './codex/tool-config.ts';
-import { knowledgeSteps, runtimePrompts } from './knowledge-steps.ts';
+import { knowledgeSteps, runtimePrompts, type KnowledgeStep } from './knowledge-steps.ts';
+import { isPromptRounds, type PromptRound } from './prompt-rounds.ts';
 
 // Prior knowledge (prompts, references, tool descriptions) lives outside the
 // code. `--knowledge <dir>` replaces the whole directory; there is no fallback.
@@ -67,21 +68,27 @@ export function runtimePrompt(name: string, values: KnowledgeValues = {}, option
 }
 
 type AgentRole = { initial: string[]; tools?: string[] };
-type AgentConfig = { main: AgentRole; review?: AgentRole & { repair: { initial: string[] } } };
+type PromptPlan = { initial: string[]; then?: PromptRound[] };
+type AgentConfig = { main: AgentRole & PromptPlan; review?: AgentRole & { repair: PromptPlan } };
 
-function parseAgent(path: string, reviewDeclared: boolean): AgentConfig {
+function parseAgent(path: string, declaration: KnowledgeStep): AgentConfig {
   let config: any;
   try { config = JSON.parse(read(path)); }
   catch (error) { throw error instanceof SyntaxError ? new Error(`agent.json 无效：${path}`, { cause: error }) : error; }
   const list = (value: unknown) => Array.isArray(value) && value.every(item => typeof item === 'string' && item.length > 0);
   const role = (value: any, keys: string[]) => value && typeof value === 'object' && list(value.initial) && value.initial.length > 0
-    && (value.tools === undefined || list(value.tools)) && Object.keys(value).every(key => keys.includes(key));
-  const valid = config && typeof config === 'object' && role(config.main, ['initial', 'tools'])
+    && (value.tools === undefined || list(value.tools)) && Object.keys(value).every(key => keys.includes(key))
+    && (value.then === undefined || isPromptRounds(value.then) && value.then.every((round: PromptRound) => round.id !== 'initial'));
+  const valid = config && typeof config === 'object' && role(config.main, declaration.mainContinuation ? ['initial', 'tools', 'then'] : ['initial', 'tools'])
     && Object.keys(config).every(key => key === 'main' || key === 'review')
-    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial'])));
+    && (config.review === undefined || (role(config.review, ['initial', 'tools', 'repair']) && role(config.review.repair, ['initial', 'then'])));
   if (!valid) throw new Error(`agent.json 结构无效：${path}`);
-  if (config.review && !reviewDeclared) throw new Error(`本步骤没有 review，agent.json 不能声明 review：${path}`);
-  if (!config.review && reviewDeclared) throw new Error(`本步骤需要 review 与 repair：${path}`);
+  const mainRounds: PromptRound[] = config.main.then ?? [];
+  if (mainRounds.some(round => !declaration.mainContinuation?.includes(round.id))) {
+    throw new Error(`agent.json 中存在未登记的制作轮次：${path}`);
+  }
+  if (config.review && !declaration.review) throw new Error(`本步骤没有 review，agent.json 不能声明 review：${path}`);
+  if (!config.review && declaration.review) throw new Error(`本步骤需要 review 与 repair：${path}`);
   return config;
 }
 
@@ -91,15 +98,19 @@ export function stepKnowledge(section: string, step: string, root = knowledgeDir
   const sectionDirectory = sectionKnowledgeDirectory(section, root), directory = join(sectionDirectory, step);
   const declared = knowledgeSteps.find(item => item.section === section && item.step === step);
   if (!declared) throw new Error(`未登记的先验知识步骤：${section}/${step}`);
-  const agent = () => parseAgent(join(directory, 'agent.json'), Boolean(declared.review));
-  const initial = (role: KnowledgeRole) => {
+  const agent = () => parseAgent(join(directory, 'agent.json'), declared);
+  const plan = (role: KnowledgeRole): PromptPlan => {
     const config = agent();
-    if (role === 'main') return config.main.initial;
+    if (role === 'main') return config.main;
     if (!config.review) throw new Error(`${section}/${step} 没有 ${role}`);
-    return role === 'review' ? config.review.initial : config.review.repair.initial;
+    return role === 'review' ? config.review : config.review.repair;
+  };
+  const rounds = (role: KnowledgeRole): PromptRound[] => {
+    const { initial, then } = plan(role);
+    return [{ id: 'initial', prompts: initial }, ...(then ?? [])];
   };
   const filePath = (file: string, group?: string) => {
-    if (isAbsolute(file) || win32.isAbsolute(file) || file.split(/[\\/]/).includes('..')) throw new Error(`agent.json 的 initial 必须是知识目录内的相对路径：${file}`);
+    if (isAbsolute(file) || win32.isAbsolute(file) || file.split(/[\\/]/).includes('..')) throw new Error(`agent.json 的提示词必须是知识目录内的相对路径：${file}`);
     if (file.startsWith('shared/')) return join(root, file);
     if (file.startsWith(basename(sectionDirectory) + '/')) return join(root, file);
     const defaultPath = join(directory, file);
@@ -112,7 +123,8 @@ export function stepKnowledge(section: string, step: string, root = knowledgeDir
     }
     return defaultPath;
   };
-  const files = (role: KnowledgeRole, group?: string) => initial(role).map(file => filePath(file, group));
+  const files = (role: KnowledgeRole, group?: string, round?: PromptRound) =>
+    (round?.prompts ?? plan(role).initial).map(file => filePath(file, group));
   const toolNames = (role: KnowledgeRole): string[] => {
     const config = agent();
     // Repairs continue the drawing thread and use its original tool definitions.
@@ -121,12 +133,13 @@ export function stepKnowledge(section: string, step: string, root = knowledgeDir
   return {
     directory,
     files,
+    rounds,
     toolNames,
     imageGeneration: (role: KnowledgeRole) => toolNames(role).includes('imagegen'),
     reference: (name: string) => join(directory, 'references', name),
     // Each file is rendered on its own; the results are joined byte for byte.
-    render(role: KnowledgeRole, values: KnowledgeValues, options: { taskRoot?: string; group?: string } = {}): string {
-      return files(role, options.group).map(path => {
+    render(role: KnowledgeRole, values: KnowledgeValues, options: { taskRoot?: string; group?: string; round?: PromptRound } = {}): string {
+      return files(role, options.group, options.round).map(path => {
         const text = read(path);
         if (!text.trim()) throw new Error(`先验知识文件为空：${path}`);
         return renderKnowledge(text, values, { taskRoot: options.taskRoot, section, knowledge: root });
@@ -183,12 +196,13 @@ export function checkKnowledge(directory = knowledgeDirectory()): void {
     const schemas = new Set(toolSchemaNames());
     for (const declared of knowledgeSteps) {
       const step = stepKnowledge(declared.section, declared.step);
-      const config = parseAgent(join(step.directory, 'agent.json'), Boolean(declared.review));
+      const config = parseAgent(join(step.directory, 'agent.json'), declared);
       for (const name of declared.references ?? []) if (!existsSync(step.reference(name))) throw new Error(`先验知识缺少程序读取的文件：${step.reference(name)}`);
       for (const role of ['main', 'review', 'repair'] as const) {
         if (role !== 'main' && !config.review) continue;
         const groups = declared.promptGroups ?? [undefined];
-        for (const path of new Set(groups.flatMap(group => step.files(role, group)))) {
+        const rounds = step.rounds(role);
+        for (const path of new Set(groups.flatMap(group => rounds.flatMap(round => step.files(role, group, round))))) {
           if (!read(path).trim()) throw new Error(`先验知识文件为空：${path}`);
           checkReferences(path, declared.section);
         }

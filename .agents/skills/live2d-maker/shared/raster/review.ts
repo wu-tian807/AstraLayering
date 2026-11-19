@@ -7,6 +7,8 @@ import { fileInfo } from './run-store.ts';
 import type { StepDefinition } from './steps.ts';
 import { publishReportAssets } from '../report-assets.ts';
 import { nextReviewAction, runReviewSchedule, type ReviewProgress } from '../review-schedule.ts';
+import { pendingRepairRound, runRepairContinuation } from '../step-continuation.ts';
+import type { PromptRound } from '../prompt-rounds.ts';
 
 const reports = ['review-01.md', 'repair-01.md', 'review-02.md', 'repair-02.md'] as const;
 const maxRounds = reports.length / 2;
@@ -65,16 +67,30 @@ export async function nextReviewTask(directory: string): Promise<ReviewTask | un
   return reportTask(action.kind, action.round);
 }
 
-export async function buildReviewPrompt(step: StepDefinition, task: ReviewTask): Promise<string> {
+function reviewKnowledge(step: StepDefinition) {
   if (!step.review) throw new Error('步骤未配置 reviewer');
+  return stepKnowledge(step.knowledge.section, step.knowledge.step);
+}
+
+export async function buildReviewPrompt(step: StepDefinition, task: ReviewTask, round?: PromptRound): Promise<string> {
   // review-NN.md and repair-NN.md share their round; the prompts name the files.
-  return stepKnowledge(step.knowledge.section, step.knowledge.step).render(task.kind, { review_round: String(Math.floor(task.index / 2) + 1) });
+  return reviewKnowledge(step).render(task.kind, { review_round: String(Math.floor(task.index / 2) + 1) }, { round });
+}
+
+const repairProgressPath = (directory: string, filename: string) => join(directory, filename.replace(/\.md$/, '.continuation.json'));
+
+export async function previewReviewPrompt(step: StepDefinition, directory: string, task: ReviewTask): Promise<string> {
+  const round = task.kind === 'repair'
+    ? await pendingRepairRound(repairProgressPath(directory, task.filename), reviewKnowledge(step).rounds('repair'))
+    : undefined;
+  return buildReviewPrompt(step, task, round);
 }
 
 export async function discardReviewReports(directory: string, from = 0): Promise<void> {
   for (const name of reports.slice(from).reverse()) {
     await rm(join(directory, name), { force: true });
     await rm(join(directory, `${name}.tmp`), { force: true });
+    if (name.startsWith('repair-')) await rm(repairProgressPath(directory, name), { force: true });
   }
 }
 
@@ -83,7 +99,7 @@ type ReviewOptions = {
   directory: string;
   signal?: AbortSignal;
   progress?: (message: string) => void;
-  invoke: (prompt: string, task: ReviewTask, verify: () => Promise<void>) => Promise<StepResult>;
+  invoke: (prompt: string, task: ReviewTask, verify?: () => Promise<void>, continuation?: string) => Promise<StepResult>;
   validate: () => Promise<void>;
 };
 
@@ -91,9 +107,25 @@ export async function runReviews(options: ReviewOptions): Promise<void> {
   async function runTask(task: ReviewTask) {
     // Deleting an earlier report invalidates later reports, retaining the artwork.
     await discardReviewReports(options.directory, task.index + 1);
+    if (task.kind === 'review') {
+      await runReport(task, await buildReviewPrompt(options.step, task));
+      return;
+    }
+    await runRepairContinuation(repairProgressPath(options.directory, task.filename), reviewKnowledge(options.step).rounds('repair'),
+      async (round, { first, last }) => {
+        const prompt = await buildReviewPrompt(options.step, task, round);
+        const continuation = first ? undefined : round.id;
+        if (last) await runReport(task, prompt, continuation);
+        else {
+          const result = await options.invoke(prompt, task, undefined, continuation);
+          if (result.status !== 'completed') throw new Error(`本次修复未完成：${result.summary}`);
+        }
+      }, options.signal);
+  }
+  async function runReport(task: ReviewTask, prompt: string, continuation?: string) {
     const draft = `${task.filename}.tmp`;
     await rm(join(options.directory, draft), { force: true });
-    const result = await options.invoke(await buildReviewPrompt(options.step, task), task, () => checkReport(options.directory, draft, task.kind));
+    const result = await options.invoke(prompt, task, () => checkReport(options.directory, draft, task.kind), continuation);
     if (result.status !== 'completed') throw new Error(`本次${task.kind === 'review' ? '检查' : '修复'}未完成：${result.summary}`);
     const conclusion = await verdict(options.directory, draft, task.kind);
     if (!conclusion) throw new Error(`缺少完整报告：${draft}`);
