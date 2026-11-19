@@ -64,6 +64,20 @@ test('preflight checks only selected harnesses once, and reports missing interpr
   await assert.rejects(checkAgentCli(settings, 'agv'), /没有可用的全局入口/);
 });
 
+test('Windows interrupted Codex version check directs the user to continue and preserves the exit code', { skip: process.platform !== 'win32' }, async t => {
+  const root = await fixture(t), executable = join(root, 'codex.cmd');
+  await writeFile(executable, '@echo off\r\nexit /b -1073741510\r\n');
+  const settings = withCodex(loadWorkflowEnvironment(process.env, root), executable);
+  await assert.rejects(checkAgentCli(settings, 'codex'), error => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /Codex 启动检查被中断.*继续/);
+    assert.equal(((error.cause as { exitCode: number }).exitCode >>> 0), 0xc000013a);
+    return true;
+  });
+  await writeFile(executable, '@echo off\r\n>&2 echo missing interpreter\r\nexit /b 1\r\n');
+  await assert.rejects(checkAgentCli(settings, 'codex'), /解释器和系统依赖.*\nmissing interpreter/);
+});
+
 test('Krita preflight rejects a missing installation without starting Krita', { skip: process.platform === 'win32' }, async t => {
   const root = await fixture(t), executable = join(root, 'krita'), started = join(root, 'started');
   await writeFile(executable, `#!/bin/sh\ntouch ${JSON.stringify(started)}\n`, { mode: 0o700 });

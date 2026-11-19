@@ -12,6 +12,8 @@ import { appServerCommand } from '../codex/tool-agent.ts';
 import { withNodePath } from '../process-environment.ts';
 import type { Harness } from './models.ts';
 
+const windowsControlCExit = 0xc000013a;
+
 export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harness): Promise<string> {
   if (harness === 'codex' && !settings.codex.codexPathOverride) await checkCodexCapabilities(settings);
   const launch = harness === 'codex' ? appServerCommand(settings.codex.codexPathOverride)
@@ -36,7 +38,7 @@ export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harn
       child.once('error', error => { failure = error; });
       child.once('close', code => {
         clearTimeout(timeout);
-        if (failure || code !== 0) reject(failure ?? new Error(stderr.trim() || `CLI 退出码：${code}`));
+        if (failure || code !== 0) reject(failure ?? Object.assign(new Error(stderr.trim() || `CLI 退出码：${code}`), { exitCode: code }));
         else resolve({ stdout, stderr });
       });
     });
@@ -45,6 +47,10 @@ export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harn
     return version.split('\n')[0];
   } catch (error) {
     const detail = (error as { stderr?: string }).stderr || (error instanceof Error ? error.message : String(error));
+    const code = (error as { exitCode?: number | null }).exitCode;
+    if (harness === 'codex' && typeof code === 'number' && (code >>> 0) === windowsControlCExit) {
+      throw new Error(`Codex 启动检查被中断，请点击「继续」重试。未发起模型请求。\n${detail.trim()}`, { cause: error });
+    }
     throw new Error(`${harness} CLI 无法在工作流环境启动：${launch.command}。请检查解释器和系统依赖；未发起模型请求。\n${detail.trim()}`, { cause: error });
   }
 }
