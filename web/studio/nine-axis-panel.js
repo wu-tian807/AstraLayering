@@ -580,7 +580,7 @@ export class HeadNineAxisPanel {
         else await this.reloadProject(next);
         return;
       }
-      if (next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
+      if (this.doc && next.nineAxis?.path === project.nineAxis?.path && next.nineAxis?.version === project.nineAxis?.version) return;
       const x = this.value, y = this.valueY, z = this.valueZ ?? 0;
       await this.load(next);
       const limit = headRollLimit(this.doc);

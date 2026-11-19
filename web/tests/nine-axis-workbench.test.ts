@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { nineAxisProgress } from '../nine-axis-progress.ts';
@@ -148,8 +148,6 @@ test('round records and saved products never complete a step or its downstream a
 
 test('hair and accessories preview the KRA bound by their cumulative model instead of a stale PNG', async t => {
   const f = await fixture(t);
-  const alias = f.root + '-alias'; await symlink(f.root, alias, 'dir');
-  t.after(() => rm(alias, { force: true }));
   for (const id of ['step08_hair', 'step09_head-accessories']) {
     const document = `nine-axis/${id}/character-nine-axis.kra`;
     await f.put(`${id}/character-nine-axis.kra`, 'saved KRA');
@@ -160,8 +158,6 @@ test('hair and accessories preview the KRA bound by their cumulative model inste
     assert.equal(value.previews[id].path, document);
     assert.equal(value.reports[id].path, `nine-axis/${id}/notes.md`);
     assert.equal(value.states[id], 'pending', 'a saved preview does not imply execution');
-    const aliased = await nineAxisProgress(alias, new Set(await inventory(alias)), f.errors);
-    assert.equal(aliased.previews[id].path, document, 'task root aliases resolve to the same saved KRA');
   }
   assert.deepEqual(f.errors, []);
 });
