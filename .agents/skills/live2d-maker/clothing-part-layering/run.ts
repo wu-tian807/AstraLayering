@@ -1,8 +1,12 @@
-import { runCli, runPartSection, type PartSection, type PartInput, type PartAdapters } from '../shared/part/run.ts';
+import { parseRunArguments as parsePartArguments, runCli, runPartSection, type PartSection, type PartInput, type PartAdapters } from '../shared/part/run.ts';
 import type { AgentOptions } from '../shared/agents/dispatcher.ts';
 import { profile } from './profile.ts';
 import { getPreparationDirectory, loadPreparedReferences, prepareReferences, createPreparationSteps } from './preparation.ts';
-export { parseRunArguments, readGroupInput, formatLayeringSummary } from '../shared/part/run.ts';
+export { readGroupInput, formatLayeringSummary } from '../shared/part/run.ts';
+
+export function parseRunArguments(args?: string[]) {
+  return parsePartArguments(args, profile.id);
+}
 
 export const section: PartSection = {
   profile,

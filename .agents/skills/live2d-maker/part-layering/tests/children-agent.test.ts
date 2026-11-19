@@ -146,8 +146,11 @@ test('父完成稿改变后旧分析不能放行下一层，CLI 深度输入有�
   await runLayering({ ...f, groups: null, steps, maxDepth: 1 });
   await rm(join(f.directory, groupStepId('a', 'completion'), '.completed'));
   await assert.rejects(runLayering({ ...f, groups: { id: 'a/child' }, steps }), /前层尚未全部完成/);
-  assert.equal(parseRunArguments(['--max-depth', '2']).maxDepth, 2);
-  for (const value of ['0', '-1', '1.5', 'NaN', '9007199254740992']) assert.throws(() => parseRunArguments([`--max-depth=${value}`]), /正整数/);
+  assert.equal(parseRunArguments(['--max-recursive-counts', '2']).maxRecursiveCounts, 2);
+  assert.equal(parseRunArguments(['--max-recursive-counts', '0']).maxRecursiveCounts, 0);
+  for (const value of ['', '-1', '1.5', 'NaN', '9007199254740992']) {
+    assert.throws(() => parseRunArguments([`--max-recursive-counts=${value}`]), /非负整数/);
+  }
   assert.ok(await readFile(artifactPath(f.directory, 'a', 'completion')));
 });
 

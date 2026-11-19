@@ -75,14 +75,14 @@ async function requireDelivery(refs: PreparationReferences): Promise<void> {
   }
 }
 
-// Explicit groups only read an already prepared input; never invoke a model or mutate it.
+// A later start only reads the completed reference step and its delivery.
 export async function loadPreparedReferences(runName: string, root?: string): Promise<PreparationReferences> {
   const directory = getPreparationDirectory(runName, root), image = await simplifiedCharacter(runName, root);
   const refs = references(directory, image);
   await requireUpstreamSteps(runName, root);
   const plan = await inspectSection(sectionOf(directory), [step]);
   if (plan.statuses.get(clothingPreparationStep) !== 'completed') {
-    throw new Error('纯衣服参考尚未完成，请先不带 --groups 运行 preparation。');
+    throw new Error(`纯衣服参考尚未完成，请先运行 ${clothingPreparationStep}（${join(sectionOf(directory), clothingPreparationStep)}）。`);
   }
   await requireDelivery(refs);
   await checkImage(refs.baseSubject, join(sectionDirectory(runName, 'part-layering', root), 'references/standard.png'));

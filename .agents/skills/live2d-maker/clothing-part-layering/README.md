@@ -15,19 +15,21 @@
 ```bash
 pnpm clothing-part-layering --name jianma --knowledge /绝对路径/knowledge
 
-# 首次及续跑都通过任务名定位上游
-pnpm clothing-part-layering --name jianma --knowledge /绝对路径/knowledge
+# 处理当前待制作层并停在子组登记
+pnpm clothing-part-layering --name jianma --from-step step09 --to-step step12 --max-recursive-counts 0 --knowledge /绝对路径/knowledge
 ```
 
 preparation 使用当前配置的生图工具，将两张参考按顺序放入同一次请求；模型与接口配置见[模型与生图通道](../references/model-presets.md)。工具不可用或生成结果无效时明确失败，保留输入供重试，不以原图或脚本结果冒充生图。
 
-总调度下，本管线在人物 part 的 preparation 完成后即启动，与人物线（人物 part 逐层制作 → 人物 raster）并行，共用整次运行的 `--jobs` 名额，见 [workflow](../workflow/README.md#总入口)；素体判断为 `dressed: false` 时整条管线记为跳过。单独运行时 `--jobs` / `-j` 设置本进程所有步骤共用的 agent 并发上限，默认 3；`--agents` / `-a` 是同义参数。`--max-depth 1` 只完成第一层并登记下一层，省略时一直拆到终止 part。`--groups <JSON路径>` 选择本任务已有的组及其子组；不导入新树、不重新 preparation，须有已完成的参考图和相应前置产物。
+总调度下，本管线在人物 part 的 preparation 完成后即启动，与人物线（人物 part 逐层制作 → 人物 raster）并行，共用整次运行的 `--jobs` 名额，见 [workflow](../workflow/README.md#总入口)。素体判断为 `dressed: false` 时整条管线记为跳过。
+
+独立启动的步骤范围、回环和并发参数与[人物 Part](../part-layering/README.md#单独运行本-section)相同。衣服准备使用 `step01_preparation`，分件使用 `step08`～`step14`。
 
 ## 参考与拆分
 
-1. 按 `--name` 读取同名人物 part 的 `references/simplified-subject.png`与 `references/base-subject.png`，以及 `references/standard.png`（决定统一画布尺寸并用于生成图后处理，其指纹写入 preparation.json），不保存输入副本。缺少时明确提示上游命令与手动放置的路径。使用 [preparation 提示词](../knowledge/clothing-part-layering/step01_preparation/prompts/preparation.md) 提取两图之间的换装衣物，生成统一画布尺寸的透明 `references/clothing.png`。保留衣料、衣服自身附件、薄纱及正常开口，补全遮住的衣料；允许整套衣装等比缩放和移动，衣片间的相对比例与连接保持一致。
+1. 按 `--name` 读取同名人物 part 的 `references/simplified-subject.png`、`references/base-subject.png` 与用于确定画布尺寸的 `references/standard.png`。缺少时会提示上游命令与放置路径。使用 [preparation 提示词](../knowledge/clothing-part-layering/step01_preparation/prompts/preparation.md) 提取两图之间的换装衣物，生成统一画布尺寸的透明 `references/clothing.png`。保留衣料、衣服自身附件、薄纱及正常开口，补全遮住的衣料。整套衣装可等比缩放和移动，衣片间的相对比例与连接保持一致。
 2. 查看纯衣服图与原穿衣角色，按外到内检查结构、建立初始 group。纯衣服图是衣片轮廓与绘画标准，原角色用于判断穿插与随动关系。group 表示结构归属，包含关系和数组顺序不代表绘制深度。
-3. 逐层执行轮廓绘制、review / 返修、同层去重、遮挡补全、自检及直属 group / part 分析。各父组补全、自检及直属拆分完成后，立即派发其子组描边与 review；下一层统一去重仍等待所有父组拆分结束、名单固定且全部轮廓就绪，再开始该层补全。实际结构决定拆分深度，提前派发遵守 `--max-depth` 和所选分支范围。
+3. 逐层执行轮廓绘制、review / 返修、同层去重、遮挡补全、自检及直属 group / part 分析。允许回环时，各父组补全、自检和直属拆分完成后可提前派发子组描边与 review。下一层统一去重等待所有父组拆分结束、名单固定且全部子组轮廓就绪，去重完成后才开始该层补全。
 4. 合成 `preview.svg`，为所有终止 part 规划并逐件、逐区域检查深度，保存 `occlusion.json`。
 
 绘制者在首次绘制或返修中发现当前组 `note` 的职责或层序说明有误时，可用 `update_group_note` 精确替换唯一匹配的原句。工具只修改本组说明，通过调度器共用的写入队列保存；下一次 review 和后续拆分读取更新后的说明。仅有说明问题时保持正确 SVG，不修改父组或分组树。
@@ -65,7 +67,7 @@ preparation 使用当前配置的生图工具，将两张参考按顺序放入�
 
 同名续跑复用输入与正式文件，不依赖最初的外部图片路径。已完成的 preparation 直接沿用，衣服图缺失时拒绝续跑并提示恢复文件或重试；上游参考重做不会让它自动重画。生成图须为统一画布尺寸且含实际透明区域的 PNG；尺寸与文件检查不代替模型的视觉判断，组装阶段负责衣装与人物的整体配准。
 
-在停止当前进程后，删除 `references/clothing.png` 可重新生成衣服参考；下次启动会先清除依赖旧参考的分组、parts、阶段记录、观察图、预览和深度表。重新制作全部衣服时也可使用新的 `--name`。不要用同一个名字并发启动。
+要重新制作衣服参考，先停止当前进程，再使用工作台的「重试」或总入口的 `--retry` 选择 `step01_preparation`。重新制作全部衣服时也可使用新的 `--name`。不要用同一个名字并发启动。
 
 补全越界按人物 part 的相同规则处理：默认父内，提交 `outsideParentReason` 才调用共享配置 `part_completion_boundary_review_agent_model` 的独立评审（默认 `gpt-6.1-terra-medium`），仅批准当前候选；拒绝后保留草稿及会话，由原 agent 修正。
 

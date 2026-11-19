@@ -38,8 +38,8 @@ export async function executeSection(id: SectionId, directory: string, run: Task
       reference: { runName: name, dir, ...(id === 'part-layering' ? { image: await taskOriginal(directory), standard: run.standard } : {}) },
       groups: null,
     }, { prepared: events.prepared }, { agentConcurrency: run.jobs, progress });
-    if (result.layering.status !== 'completed') {
-      throw new Error('管线尚未完成：' + id + '\n' + formatLayeringSummary(result.layering.groups).join('\n')
+    if (result.layering?.status !== 'completed') {
+      throw new Error('管线尚未完成：' + id + '\n' + formatLayeringSummary(result.layering?.groups ?? []).join('\n')
         + '\n进度目录：' + join(directory, id));
     }
     return { summary: id + ' 已完成', output: result.layering.output && toTaskPath(directory, result.layering.output) };
