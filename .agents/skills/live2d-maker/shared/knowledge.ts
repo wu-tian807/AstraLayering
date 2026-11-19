@@ -102,13 +102,15 @@ export function stepKnowledge(section: string, step: string, root = knowledgeDir
     if (isAbsolute(file) || win32.isAbsolute(file) || file.split(/[\\/]/).includes('..')) throw new Error(`agent.json 的 initial 必须是知识目录内的相对路径：${file}`);
     if (file.startsWith('shared/')) return join(root, file);
     if (file.startsWith(basename(sectionDirectory) + '/')) return join(root, file);
+    const defaultPath = join(directory, file);
     if (group !== undefined && file.startsWith('prompts/')) {
       if (!groupId.test(group)) throw new Error('Invalid group prompt id');
-      // A group prior replaces the step file of the same name, nothing else.
+      // Resolve missing group-only files to the requested group's path so
+      // validation names the missing input.
       const own = join(directory, 'prompts', 'groups', group, file.slice('prompts/'.length));
-      if (existsSync(own)) return own;
+      if (existsSync(own) || !existsSync(defaultPath)) return own;
     }
-    return join(directory, file);
+    return defaultPath;
   };
   const files = (role: KnowledgeRole, group?: string) => initial(role).map(file => filePath(file, group));
   const toolNames = (role: KnowledgeRole): string[] => {
@@ -185,7 +187,8 @@ export function checkKnowledge(directory = knowledgeDirectory()): void {
       for (const name of declared.references ?? []) if (!existsSync(step.reference(name))) throw new Error(`先验知识缺少程序读取的文件：${step.reference(name)}`);
       for (const role of ['main', 'review', 'repair'] as const) {
         if (role !== 'main' && !config.review) continue;
-        for (const path of step.files(role)) {
+        const groups = declared.promptGroups ?? [undefined];
+        for (const path of new Set(groups.flatMap(group => step.files(role, group)))) {
           if (!read(path).trim()) throw new Error(`先验知识文件为空：${path}`);
           checkReferences(path, declared.section);
         }

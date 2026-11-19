@@ -4,9 +4,10 @@ import { runWorkflow as runGroups } from '../shared/part/workflow.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { readUpstream, startContinuation } from './continuation.ts';
 import { angleScale, type AngleScale } from './angles.ts';
+import { nineAxisGroups } from '../shared/nine-axis.ts';
 import { type FaceLeft, type Built } from './head.ts';
 
-export const axisGroups = ['left', 'up', 'down'] as const;
+export const axisGroups = nineAxisGroups;
 export type AxisGroup = typeof axisGroups[number];
 
 // Each group owns its author, session, workspace and markers. It starts from

@@ -9,7 +9,6 @@ import { buildContinuation, readUpstream, startContinuation } from './continuati
 export const cornerKey=(x:number,y:number)=>`${angleKey(x)},${angleKey(y)}`;
 export const corners=['left-up','left-down'] as const;
 export type Corner=typeof corners[number];
-export const cornerAngleValues=(scale:AngleScale=angleScale())=>({left_up:cornerKey(scale.x[0],scale.y[1]),left_down:cornerKey(scale.x[0],scale.y[0])});
 // Frames are chosen once by an agent; delivered frames are kept as is.
 export const runFrames=(directory:string,run:()=>Promise<void>)=>runFrameSelection(directory,corners,run);
 // Selection belongs to the agent; completion only verifies that both fits
