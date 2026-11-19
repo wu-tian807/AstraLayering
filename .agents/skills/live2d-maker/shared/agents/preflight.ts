@@ -45,7 +45,7 @@ export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harn
     return version.split('\n')[0];
   } catch (error) {
     const detail = (error as { stderr?: string }).stderr || (error instanceof Error ? error.message : String(error));
-    throw new Error(`${harness} CLI 无法在工作流环境启动：${launch.command}。请检查解释器和系统依赖；未发起模型请求。\n${detail.trim()}`, { cause: error });
+    throw new Error(`${harness} CLI 启动检查未通过，未发起模型请求。可使用「继续」重试。\n${launch.command}\n${detail.trim()}`, { cause: error });
   }
 }
 

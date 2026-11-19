@@ -55,9 +55,9 @@ test('preflight checks only selected harnesses once, and reports missing interpr
   assert.equal(await readFile(calls, 'utf8'), 'version\n');
   await writeFile(executable, '#!/usr/bin/env missing-layering-interpreter\n', { mode: 0o700 });
   await assert.rejects(preflightAgentSteps(settings, ['part_outline_review']), error => {
-    assert.match(String(error), /claude CLI 无法在工作流环境启动/);
-    assert.match(String(error), /missing-layering-interpreter/);
-    assert.match(String(error), /未发起模型请求/);
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /missing-layering-interpreter/);
+    assert.ok(error.message.includes(executable));
     return true;
   });
   assert.equal(await readFile(calls, 'utf8'), 'version\n');
