@@ -20,6 +20,7 @@ test('全部就绪组进入队列且同 ID 不重复，实际并发只受 agent 
   const runtime = new AgentRuntime(3);
   const release = Promise.withResolvers<void>();
   const allQueued = Promise.withResolvers<void>();
+  const threeStarted = Promise.withResolvers<void>();
   let active = 0;
   let peak = 0;
   const workflow = runWorkflow(groups.map(item => item.group), {
@@ -31,13 +32,14 @@ test('全部就绪组进入队列且同 ID 不重复，实际并发只受 agent 
       await runtime.run(async () => {
         active++;
         peak = Math.max(peak, active);
+        if (active === 3) threeStarted.resolve();
         await release.promise;
         active--;
       });
     },
   });
   try {
-    await allQueued.promise;
+    await Promise.all([allQueued.promise, threeStarted.promise]);
     assert.equal(active, 3);
     assert.equal(calls.length, 29);
   } finally { release.resolve(); }

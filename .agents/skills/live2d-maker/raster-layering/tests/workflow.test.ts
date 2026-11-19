@@ -12,6 +12,7 @@ import { test, type TestContext } from 'node:test';
 import sharp from 'sharp';
 import { rasterAppServer } from '../../shared/tests/raster-app-server.ts';
 import { runAgent, type AgentRequest, type StepResult } from '../../shared/raster/agent.ts';
+import { AgentRuntime, retryDelays } from '../../shared/agents/runtime.ts';
 import { checkKrita } from '../../shared/raster/krita.ts';
 import { resolvePartInput } from '../../shared/raster/input.ts';
 import { parseRunArguments } from '../run.ts';
@@ -339,7 +340,10 @@ test('raster 使用指定模型与 reasoning；临时 error 等待 CLI 终态，
   await assert.rejects(runAgent({ ...request, environment: failed.environment, threadId: 'thread-2' }), /测试回合失败/);
   assert.equal((await failed.protocol()).find(message => message.method === 'thread/resume').params.threadId, 'thread-2');
   const ended = await rasterAppServer(t, '', {}, 'eof');
-  await assert.rejects(runAgent({ ...request, environment: ended.environment }), /事件流结束/);
+  const waits: number[] = [];
+  const runtime = new AgentRuntime(1, async ms => { waits.push(ms); });
+  await assert.rejects(runAgent({ ...request, environment: ended.environment }, runtime), /事件流结束/);
+  assert.equal(waits.length, retryDelays.retries);
 });
 
 test('素体未换装时 step03 不调用 agent，直接沿用 step02 交付并标记完成', async t => {

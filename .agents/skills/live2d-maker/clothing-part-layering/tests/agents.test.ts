@@ -7,7 +7,7 @@ import { join } from 'node:path';
 import { test, type TestContext } from 'node:test';
 import { AgentDispatcher } from '../../shared/agents/dispatcher.ts';
 import { workflowLogPath } from '../../shared/codex/agent-log.ts';
-import { AgentCallError, AgentRuntime } from '../../shared/agents/runtime.ts';
+import { AgentCallError, AgentRuntime, retryDelays } from '../../shared/agents/runtime.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { nodeExecutables } from './node-executables.ts';
 
@@ -27,10 +27,10 @@ async function fixture(t: TestContext, ...server: Parameters<typeof fakeAppServe
   return { agents, directory, logDirectory, messages, protocol };
 }
 
-async function readLog(root: string) {
+async function readLog(root: string, attempts = 1) {
   const names = await requestLogNames(root);
-  assert.equal(names.length, 1);
-  const directory = join(root, names[0]);
+  assert.equal(names.length, attempts);
+  const directory = join(root, names.at(-1)!);
   return {
     directory,
     request: JSON.parse(await readFile(join(directory, 'request.json'), 'utf8')),
@@ -108,7 +108,7 @@ test('回合失败与提前 EOF 都记为失败', async t => {
   assert.equal((await readLog(failed.logDirectory)).result.status, 'failed');
   const eof = await fixture(t, [], 'eof');
   await assert.rejects(eof.agents.run({ name: '中断测试', prompt: 'test' }), /事件流结束/);
-  assert.equal((await readLog(eof.logDirectory)).result.status, 'failed');
+  assert.equal((await readLog(eof.logDirectory, retryDelays.retries + 1)).result.status, 'failed');
 });
 
 test('同名并发调用写入不同目录', async t => {

@@ -38,7 +38,18 @@ export function toTaskPath(root: string, path: string): string {
 export async function toTaskPathReal(root: string, path: string): Promise<string> {
   if (!isAbsolute(path) || inside(resolve(root), resolve(path))) return toTaskPath(root, path);
   const real = await realpath(root).catch(() => resolve(root));
-  return toTaskPath(inside(real, resolve(path)) ? real : root, path);
+  const target = await realPathWithMissingTail(resolve(path));
+  return inside(real, target) ? toTaskPath(real, target) : toTaskPath(root, path);
+}
+
+// A planned output can be absent while an ancestor already has a physical path.
+async function realPathWithMissingTail(path: string): Promise<string> {
+  try { return await realpath(path); }
+  catch (error) {
+    const parent = dirname(path);
+    if ((error as NodeJS.ErrnoException).code !== 'ENOENT' || parent === path) return path;
+    return resolve(await realPathWithMissingTail(parent), basename(path));
+  }
 }
 
 // Resolves a persisted or agent-supplied path. Relative paths use the task root

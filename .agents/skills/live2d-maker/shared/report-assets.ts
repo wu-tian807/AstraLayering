@@ -10,9 +10,12 @@ const inside = (root: string, path: string) => path === root || path.startsWith(
 // Preserve the agent's chosen layout. Only evidence cited from workspace is
 // copied beside the report; unrelated drafts remain intermediate files.
 export async function publishEvidence(path: string, workspace: string, output: string): Promise<string> {
-  if (!inside(resolve(workspace), resolve(path))) return path;
-  const root = await realpath(workspace), source = await realpath(path);
-  if (!inside(root, source)) return path;
+  const root = await realpath(workspace).catch(() => resolve(workspace));
+  const source = await realpath(path).catch(error => {
+    if (inside(resolve(workspace), resolve(path))) throw error;
+    return undefined;
+  });
+  if (!source || !inside(root, source)) return path;
   const base = await realpath(output);
   let target = join(base, relative(root, source));
   await mkdir(dirname(target), { recursive: true });
@@ -39,22 +42,22 @@ export async function publishObservations<T extends { savedPath: string }>(entri
 }
 
 export async function publishReportText(text: string, workspace: string, output: string): Promise<string> {
-  const root = resolve(workspace);
+  const root = await realpath(workspace).catch(() => resolve(workspace));
+  const base = await realpath(output).catch(() => resolve(output));
   for (const ref of reportReferences(text).reverse()) {
     let target: string;
     try { target = decodeURIComponent(ref.target); } catch { continue; }
     if (/^[a-z][a-z\d+.-]*:/i.test(target)) continue;
-    const candidates = isAbsolute(target) ? [target] : [resolve(output, target), resolve(root, target)];
+    const candidates = isAbsolute(target) ? [target] : [resolve(base, target), resolve(root, target)];
     let source: string | undefined;
     for (const candidate of candidates) {
-      if (!inside(root, candidate)) continue;
       // Report text is free prose: a target that names no readable file is left as written.
-      try { const path = await realpath(candidate); if ((await stat(path)).isFile()) { source = path; break; } }
+      try { const path = await realpath(candidate); if (inside(root, path) && (await stat(path)).isFile()) { source = path; break; } }
       catch {}
     }
     if (!source) continue;
     const published = await publishEvidence(source, workspace, output);
-    const newTarget = relative(output, published).split(sep).map(encodeURIComponent).join('/');
+    const newTarget = relative(base, published).split(sep).map(encodeURIComponent).join('/');
     text = text.slice(0, ref.targetStart) + newTarget + text.slice(ref.targetEnd);
   }
   return text;

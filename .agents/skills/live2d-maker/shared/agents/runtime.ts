@@ -65,13 +65,14 @@ function imageCountLimit(message: string): boolean {
 // A model refusal can come from anything in the history, its own reasoning included, so it gets a new session too.
 export type RecoverableAgentError = 'blockedImages' | 'modelRefusal' | 'unavailableSession' | 'contextWindow' | 'imageOverflow' | 'sessionProtocol';
 export function recoverableAgentError(error: unknown): RecoverableAgentError | undefined {
+  const code = error instanceof AgentCallError ? errorCode(error.info) : undefined;
+  if (code === 'localError' || code === 'invalidOutput') return undefined;
   if (blockedAgentError(error)) return 'blockedImages';
   if (error instanceof AgentCallError && error.info && typeof error.info === 'object' &&
       (error.info as { refusal?: { category?: string } }).refusal?.category === 'content_filter') return 'blockedImages';
   if (error instanceof AgentCallError && errorCode(error.info) === 'refusal') return 'modelRefusal';
   if (unavailableSessionText.test(String(error instanceof Error ? error.message : error))) return 'unavailableSession';
   if (!(error instanceof AgentCallError)) return undefined;
-  const code = errorCode(error.info);
   if (code === 'sessionProtocol') return 'sessionProtocol';
   if (code === 'contextWindowExceeded' || contextWindowText.test(error.message)) return 'contextWindow';
   if ((code && httpStatus(error.info, code) === 413) || imageCountLimit(error.message) || payloadTooLarge.test(error.message)) return 'imageOverflow';
@@ -103,7 +104,7 @@ export function retryableAgentError(error: unknown): boolean {
   if (!(error instanceof AgentCallError) || recoverableAgentError(error)) return false;
   const info = error.info;
   const code = errorCode(info);
-  if (code === 'localError' || (code && fatalCodes.has(code))) return false;
+  if (code === 'localError' || code === 'invalidOutput' || (code && fatalCodes.has(code))) return false;
   if (code === 'cliFailed' && fatalCliSubtype.test((info as { cliFailed: { subtype?: string } }).cliFailed?.subtype ?? '')) return false;
   // 文本只能否决重试：结构化 429 也可能是额度耗尽，重试要等很久。
   if (fatalText.test(error.message) || explicitFatalDetails(error.details)) return false;

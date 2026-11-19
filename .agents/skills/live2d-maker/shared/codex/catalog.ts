@@ -4,6 +4,7 @@ import { access, mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promise
 import { isAbsolute, join, relative } from 'node:path';
 import { promisify } from 'node:util';
 import type { CodexOptions } from '@openai/codex-sdk';
+import { agentCallError } from './diagnostics.ts';
 import { codexAuthenticationSource, codexSessionEnvironment, productionCodexConfig } from './session-data.ts';
 
 export const sharedCatalogVariable = 'ASTRA_LAYERING_RUN_CATALOG';
@@ -36,7 +37,12 @@ export async function catalogSignature(executable: Executable, options: CodexOpt
 }
 export async function writeDirectCatalog(executable: Executable, configArgs: string[], env: NodeJS.ProcessEnv, directory: string): Promise<string> {
   const { stdout } = await promisify(execFile)(executable.command, [...executable.args.slice(0, -1), 'debug', 'models', ...configArgs],
-    { env, timeout: 60_000, maxBuffer: 64 * 1024 * 1024 });
+    { env, timeout: 60_000, maxBuffer: 64 * 1024 * 1024 }).catch(error => {
+      if (['ENOENT', 'EACCES', 'EPERM', 'ENOTDIR', 'ENOEXEC'].includes(error.code)) {
+        throw agentCallError(error, '无法启动 Codex 模型目录查询', 'localError');
+      }
+      throw error;
+    });
   const catalog = JSON.parse(stdout);
   if (!Array.isArray(catalog?.models)) throw new Error('Codex debug models 未返回模型目录');
   for (const model of catalog.models) model.tool_mode = null;

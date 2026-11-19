@@ -12,7 +12,7 @@ import { steps } from '../../character-assembly/steps.ts';
 import { startBackground } from '../run.ts';
 import { runTask } from '../runner.ts';
 import { processAlive, taskStatus } from '../state.ts';
-import { fakePatchedCodex, patchedCodexCapabilities } from '../../shared/tests/fake-codex.ts';
+import { fakeModelCatalog, fakePatchedCodex, patchedCodexCapabilities } from '../../shared/tests/fake-codex.ts';
 
 // Real background workers inherit this and pass the Codex startup check without a build.
 process.env.ASTRA_TEST_CODEX_EXECUTABLE = await fakePatchedCodex();
@@ -36,6 +36,7 @@ async function fixture(t: TestContext, slow = false) {
     const codex = join(task, 'slow-codex.cjs'), seen = join(task, 'codex-checked');
     await writeFile(codex, '#!' + process.execPath + '\nconst fs = require("node:fs");\n'
       + 'if (process.argv[2] !== "debug") console.log("codex-cli 0.161.0");\n'
+      + 'else if (process.argv[3] === "models") console.log(' + JSON.stringify(JSON.stringify(fakeModelCatalog)) + ');\n'
       + 'else if (!fs.existsSync(' + JSON.stringify(seen) + ')) { fs.writeFileSync(' + JSON.stringify(seen) + ', ""); '
       + 'console.log(' + JSON.stringify(JSON.stringify(patchedCodexCapabilities)) + '); }\n'
       + 'else { fs.writeFileSync(' + JSON.stringify(join(task, 'probe.pid')) + ', String(process.pid)); setTimeout(() => {}, 60000); }\n', { mode: 0o755 });
@@ -107,6 +108,7 @@ test('后台启动转发 --knowledge，实际 worker 检查后才报告启动', 
 
 test('取消总调度会终止实际管线子进程及其工具进程，保留已有工程', { skip: process.platform === 'win32' }, async t => {
   const f = await fixture(t, true), controller = new AbortController();
+  t.after(() => controller.abort(new Error('cancel test')));
   const running = runTask(f.options, { signal: controller.signal,
     // Skip just the parent's check, so cancellation targets the actual worker and its tool child.
     preflight: async executable => ({ executable }),

@@ -215,7 +215,7 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
         // Codex saves native images under its cwd and reports absolute paths; anything else is a protocol change.
         let savedPath: string;
         try { savedPath = imagePath(item.savedPath, 'Codex 原生生图 savedPath'); }
-        catch (error) { failTurn(error); return; }
+        catch (error) { failTurn(agentCallError(error, '原生生图返回了无效路径', 'invalidOutput')); return; }
         if (!current.images.some(image => image.savedPath === savedPath)) current.images.push({ savedPath });
       }
     } else if (message.method === 'thread/tokenUsage/updated' && current && ownTurn) {
@@ -251,8 +251,9 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
     const configArgs = catalogConfigArgs(options);
     const catalog = await resolveCatalog(executable, options, env, paths.root, current!.log.directory);
     const args = [...executable.args, ...configArgs, '-c', `model_catalog_json=${JSON.stringify(catalog)}`];
-    child = spawn(executable.command, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] });
-    child.once('error', fail);
+    try { child = spawn(executable.command, args, { cwd, env, stdio: ['pipe', 'pipe', 'pipe'] }); }
+    catch (error) { throw agentCallError(error, '无法启动 Codex App Server', 'localError'); }
+    child.once('error', error => fail(agentCallError(error, '无法启动 Codex App Server', 'localError')));
     // Process exit does not require inherited stdout/stderr handles to close.
     child.once('exit', () => exited.resolve());
     child.once('close', (code, exitSignal) => {
@@ -382,7 +383,10 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
         }
         // dispatch assigns the validated turn ID before releasing buffered events.
         await completion.promise;
-        if (task.checkResult) state.images = task.checkResult(state.finalResponse, state.images);
+        if (task.checkResult) {
+          try { state.images = task.checkResult(state.finalResponse, state.images); }
+          catch (error) { throw agentCallError(error, '产物校验失败', 'invalidOutput'); }
+        }
         await log.finish({ status: 'completed', threadId, usage: state.usage, finalResponse: state.finalResponse, images: state.images });
         options.progress?.(`agent 回合结束：${task.name}`);
         return { text: state.finalResponse, images: state.images, threadId, logDirectory: log.directory };
