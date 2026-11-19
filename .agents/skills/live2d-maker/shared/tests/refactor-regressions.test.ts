@@ -15,17 +15,18 @@ import { profile as clothing } from '../../clothing-part-layering/profile.ts';
 import { fixture } from '../../part-layering/tests/layering-fixture.ts';
 
 test('共享目录保留 part 原有任务名范围，raster 仍执行自己的命名限制', () => {
+  const root = join(tmpdir(), 'runs');
   for (const name of ['demo 2', '_demo', '.draft', '衣服👕']) {
     for (const id of ['part-layering', 'clothing-part-layering'] as const) {
-      assert.equal(sectionDirectory(name, id, '/tmp/runs'), join('/tmp/runs', name, id));
+      assert.equal(sectionDirectory(name, id, root), join(root, name, id));
     }
     for (const id of ['raster-layering', 'clothing-raster-layering'] as const) {
-      assert.throws(() => sectionDirectory(name, id, '/tmp/runs'), /--name/);
+      assert.throws(() => sectionDirectory(name, id, root), /--name/);
     }
   }
   for (const id of sectionIds) {
     for (const name of ['', '.', '..', '../other', 'a/b', 'a\\b', 'a:b']) {
-      assert.throws(() => sectionDirectory(name, id, '/tmp/runs'));
+      assert.throws(() => sectionDirectory(name, id, root));
     }
   }
 });
