@@ -55,3 +55,7 @@ export function agentImageGeneration(step: AgentStep, directory?:string): boolea
   if (!agent) throw new Error(`未登记 agent 的先验知识：${step}`);
   return stepKnowledge(agent.section, agent.step, directory).imageGeneration(agent.role ?? 'main');
 }
+
+export function agentWorkflowStep(step: AgentStep): string {
+  return agents[step].step.split('/')[0];
+}

@@ -10,6 +10,7 @@ import { promisify } from 'node:util';
 import { test } from 'node:test';
 import { getPreparationDirectory, loadPreparedReferences } from '../preparation.ts';
 import { formatLayeringSummary, parseRunArguments, readGroupInput } from '../run.ts';
+import { parseRunArguments as parseClothingArguments } from '../../clothing-part-layering/run.ts';
 import { GroupStore, normalizeGroups } from '../../shared/part/groups.ts';
 import { seedPreparedReferences } from './preparation-fixture.ts';
 import { seedInitialGroups, shape, workingSteps } from './layering-fixture.ts';
@@ -68,7 +69,22 @@ test('--jobs / -j 只设置 agent 并发上限，默认 3，不产生组调度�
   assert.equal(parseRunArguments(['--name', 'test', '-j', '7']).agentConcurrency, 7);
   assert.equal(parseRunArguments(['--jobs=3']).agentConcurrency, 3);
   assert.ok(!('concurrency' in parseRunArguments(['--jobs=3'])));
-  assert.equal(parseRunArguments(['--groups', 'groups.json']).groups, 'groups.json');
+});
+
+test('Part 两个入口只接受各自的步骤范围，撤掉分组选择和绝对深度', () => {
+  assert.equal(parseRunArguments([]).range, undefined);
+  assert.deepEqual(parseRunArguments(['--from-step', 'step09']).range, { from: 9, to: 9 });
+  assert.deepEqual(parseRunArguments(['--from-step', 'step09_outline', '--to-step', 'step12_children']).range, { from: 9, to: 12 });
+  assert.deepEqual(parseRunArguments(['--to-step', 'step04_standard']).range, { from: undefined, to: 4 });
+  assert.throws(() => parseRunArguments(['--to-step', 'step09', '--from-step', 'step10']), /必须不晚于/);
+  assert.throws(() => parseClothingArguments(['--from-step', 'step02']), /没有对应的步骤/);
+  assert.deepEqual(parseClothingArguments(['--from-step', 'step01_preparation', '--to-step', 'step08']).range,
+    { from: 1, to: 8 });
+  for (const parse of [parseRunArguments, parseClothingArguments]) {
+    for (const flag of ['--groups=input.json', '--max-depth=1']) {
+      assert.throws(() => parse([flag]), { code: 'ERR_PARSE_ARGS_UNKNOWN_OPTION' });
+    }
+  }
 });
 
 test('--agents / -a 兼容别名设置同一个 agent 上限', () => {
@@ -100,9 +116,8 @@ test('模拟步骤完成后实际入口复用完整事实且强制禁止模型�
   await runLayering({ profile, directory, references: await loadPreparedReferences(runName), groups: null,
     steps: workingSteps([]), progress: message => progress.push(message) });
   assert.ok(progress.some(message => message.includes('最终预览合并：完成')));
-  const groupsPath = join(directory, 'input.json');
-  await writeFile(groupsPath, JSON.stringify([{ id: 'head', note: '不能覆盖已有的说明' }]));
-  const first = await runCli(['--name', runName, '--groups', groupsPath, '-j', '2']);
+  const first = await runCli(['--name', runName, '--from-step', 'step14', '-j', '2']);
+  assert.doesNotMatch(first.stdout, /首次分组|最终预览合并/);
   assert.doesNotMatch(first.stdout, /最终预览合并：开始/);
   assert.match(first.stdout, /遮挡层级规划：沿用/);
   assert.match(first.stdout, /\[head\] 本组流程已完成（part）/);
@@ -174,15 +189,13 @@ test('实际入口遇到组产物问题时报告组名、步骤和停止派发�
   });
 });
 
-test('显式 groups 缺少前置参考时直接退出，不启动准备 agent 或自动补齐文件', async t => {
+test('从描边开始时若缺少前置参考，直接退出且不补跑准备', async t => {
   const runName = `test-cli-${randomUUID()}`;
   const references = getPreparationDirectory(runName);
   const directory = dirname(references);
   t.after(() => rm(taskDirectory(runName), { recursive: true, force: true }));
   await mkdir(directory, { recursive: true });
-  const groupsPath = join(directory, 'input.json');
-  await writeFile(groupsPath, JSON.stringify([{ id: 'face' }]));
-  await assert.rejects(runCli(['--name', runName, '--groups', groupsPath]), error => {
+  await assert.rejects(runCli(['--name', runName, '--from-step', 'step09']), error => {
     const failure = error as Error & { stderr: string };
     assert.match(failure.stderr, /前置参考未完成/);
     return true;

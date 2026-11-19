@@ -2,6 +2,7 @@ import { rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { beginStep, completeStep, readStep, type ChainStep, type StepStatus } from './step-chain.ts';
 import { stepName } from './step-paths.js';
+import { includesStep, type StepRange } from './step-range.ts';
 
 // A section is one part of the pipeline: a directory of steps stepNN or
 // stepNN_<note> (step-paths.js), each run by its own marker (step-chain.ts).
@@ -31,6 +32,7 @@ export async function inspectSection(directory: string, steps: readonly SectionS
 export type SectionRun = {
   directory: string;
   steps: readonly SectionStep[];
+  range?: StepRange;
   dryRun?: boolean;
   signal?: AbortSignal;
   progress?: (message: string) => void;
@@ -51,12 +53,18 @@ export type SectionRun = {
 export async function runSection(run: SectionRun): Promise<SectionPlan> {
   const plan = await inspectSection(run.directory, run.steps);
   await run.check?.(plan);
-  for (const step of plan.chain) if (plan.statuses.get(step.id) === 'completed') await run.keep?.(step, plan);
+  const throughEnd = run.range?.to === undefined ? plan.chain
+    : plan.chain.filter(step => includesStep({ to: run.range?.to }, step.id));
+  for (const step of throughEnd) {
+    if (plan.statuses.get(step.id) === 'completed') await run.keep?.(step, plan);
+    else if (!includesStep(run.range, step.id)) throw new Error(`前置步骤 ${step.id} 尚未完成：${step.directory}`);
+  }
   if (!run.dryRun) {
     run.signal?.throwIfAborted();
     await run.prepare?.(plan);
   }
-  for (const step of plan.chain) {
+  for (const step of throughEnd) {
+    if (!includesStep(run.range, step.id)) continue;
     run.signal?.throwIfAborted();
     let status = plan.statuses.get(step.id)!;
     // An unmarked directory never started properly: remove it, then run the step afresh.

@@ -13,6 +13,7 @@ import sharp from 'sharp';
 import { formatAgentError } from '../../shared/codex/diagnostics.ts';
 import { readDressup } from '../../shared/part/dressup.ts';
 import { partSteps } from '../../shared/step-paths.js';
+import { readStep } from '../../shared/step-chain.ts';
 import { referencePaths } from '../../shared/tests/prompt-input.ts';
 import { pngBytes } from '../../shared/png.ts';
 
@@ -61,6 +62,20 @@ test('独立人物分块拒绝超限的新原图，进入准备前不调用模�
   await assert.rejects(prepareReferences({ runName: f.runName, image: f.original }, f.steps), /3841×1024/);
   assert.equal(f.calls.length, 0);
   await assert.rejects(readFile(join(taskDirectory(f.runName), 'input/original.png')), { code: 'ENOENT' });
+});
+
+test('参考准备停在指定步骤，续跑复用已保存的标准化选项', async t => {
+  const f = await fixture(t, false);
+  const input = { runName: f.runName, image: f.original };
+  await assert.rejects(prepareReferences(input, f.steps, undefined, undefined, { from: 4, to: 4 }), /前置步骤 step01_original/);
+  const refs = await prepareReferences({ ...input, standard: true }, f.steps, undefined, undefined, { to: 3 });
+  assert.deepEqual(f.calls.map(call => call.step), ['part_pose_judgment']);
+  const status = async (stage: keyof typeof partSteps) => (await readStep(join(section(refs), step(stage)))).status;
+  assert.equal(await status('standard'), 'absent');
+  await prepareReferences({ runName: f.runName }, f.steps, undefined, undefined, { from: 4, to: 4 });
+  assert.equal(await status('standard'), 'completed');
+  assert.equal(await status('simplified'), 'absent');
+  assert.deepEqual(f.calls.map(call => call.step), ['part_pose_judgment']);
 });
 
 test('无需简化仍执行换装，判断和换装各收到正确的两张图片', async t => {

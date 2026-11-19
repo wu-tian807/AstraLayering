@@ -1,13 +1,54 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { runLayering } from '../../shared/part/layering.ts';
-import { groupStep, readChildren } from '../../shared/part/part-steps.ts';
+import { groupStep, layerStep, readChildren } from '../../shared/part/part-steps.ts';
 import { readStep } from '../../shared/step-chain.ts';
 import * as character from './layering-fixture.ts';
 import * as clothing from '../../clothing-part-layering/tests/layering-fixture.ts';
 
 // Both sections share the scheduler, but keep their own directory/profile facts.
 for (const [name, fixtures] of [['人物', character], ['衣服', clothing]] as const) {
+  test(`${name}：范围只执行选定阶段，缺少前置步骤时不补跑`, async t => {
+    const f = await fixtures.fixture(t), events: string[] = [];
+    const steps = fixtures.workingSteps(events, [{ id: 'a' }], { a: [{ id: 'a/child' }] });
+    const run = { ...f, groups: null, steps, mergeSvg: fixtures.workingMerger(events) };
+    await runLayering({ ...run, range: { from: 8, to: 8 } });
+    await assert.rejects(runLayering({ ...run, range: { from: 10, to: 11 } }), /前置步骤 step09_outline/);
+    assert.deepEqual(events, ['initial']);
+    const groupStatus = async (id: string, stage: 'outline' | 'completion' | 'children') =>
+      (await readStep(groupStep(f.directory, id, stage).directory)).status;
+    await runLayering({ ...run, range: { from: 9, to: 9 } });
+    assert.deepEqual(events, ['initial', 'a:outline', 'a:review']);
+    assert.equal((await readStep(layerStep(f.directory, 0).directory)).status, 'absent');
+    await runLayering({ ...run, range: { from: 10, to: 11 } });
+    assert.equal(await groupStatus('a', 'completion'), 'completed');
+    assert.equal(await groupStatus('a', 'children'), 'absent');
+    await runLayering({ ...run, range: { from: 12, to: 12 }, maxRecursiveCounts: 1 });
+    assert.equal(await groupStatus('a', 'children'), 'completed');
+    assert.equal(await groupStatus('a/child', 'outline'), 'absent');
+    assert.deepEqual(events, ['initial', 'a:outline', 'a:review', 'a:completion', 'a:check', 'a:children']);
+  });
+
+  test(`${name}：回环次数从首个待制作层计数，停点约束子组提前派发`, async t => {
+    const f = await fixtures.fixture(t), events: string[] = [];
+    const steps = fixtures.workingSteps(events, [{ id: 'a' }], {
+      a: [{ id: 'a/b' }], 'a/b': [{ id: 'a/b/c' }], 'a/b/c': [{ id: 'a/b/c/d' }],
+    });
+    const run = { ...f, groups: null, steps, mergeSvg: fixtures.workingMerger(events) };
+    await runLayering({ ...run, range: { to: 12 } });
+    assert.ok(events.includes('a:children'));
+    assert.ok(!events.includes('a/b:outline'));
+    events.length = 0;
+    await runLayering({ ...run, range: { from: 9, to: 12 }, maxRecursiveCounts: 1 });
+    assert.ok(!events.includes('a:outline') && !events.includes('a:children'));
+    assert.ok(events.includes('a/b:outline') && events.includes('a/b/c:children'));
+    assert.ok(!events.includes('a/b/c/d:outline') && !events.includes('merge'));
+    assert.equal((await readStep(groupStep(f.directory, 'a/b/c/d', 'outline').directory)).status, 'absent');
+    const final = await runLayering({ ...run, range: { from: 9, to: 14 }, maxRecursiveCounts: 0 });
+    assert.equal(final.status, 'completed');
+    assert.ok(events.includes('a/b/c/d:outline') && events.includes('merge'));
+  });
+
   test(`${name}：四层树在每一层都提前描边，但去重与补全不会越过全层屏障`, { timeout: 5000 }, async t => {
     const f = await fixtures.fixture(t), events: string[] = [];
     const levels = [['a', 'b'], ['a/child', 'b/child'],
