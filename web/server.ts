@@ -423,9 +423,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       if (path === '/api/studio/nine-axis/materials' || path === '/api/studio/nine-axis/texture') {
         const { directory } = await studioFolder(url.searchParams.get('folder') ?? '');
         if (path.endsWith('/materials')) {
-          const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '');
+          const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '', url.searchParams.get('scene') === 'studio');
           json({ doc: built.doc, author: built.author, version: built.version, document: built.doc.source?.document, revision: built.sourceRevision,
-            textures: built.doc.parts.map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
+            studioLayers: built.studioLayers,
+            textures: [...built.doc.parts, ...(built.studioLayers ?? [])].map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
           return;
         }
         const file = nineMaterials.texture(directory, url.searchParams.get('key') ?? '', Number(url.searchParams.get('index')));

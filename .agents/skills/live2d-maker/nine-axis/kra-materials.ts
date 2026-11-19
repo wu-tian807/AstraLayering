@@ -8,17 +8,18 @@ import { layerPartName } from '../shared/layer-names.ts';
 import { submitJob } from '../shared/krita/bridge/client.mjs';
 import type { SectionKrita } from '../shared/krita/section-krita.ts';
 import { lattice, validateHeadNineAxis, type HeadDeformer } from '../shared/nine-axis-model.js';
-import { headMaterialSelection, type MaterialSelection } from './materials.ts';
+import { headMaterialSelection, type MaterialSelection, type ProjectionBinding } from './materials.ts';
 import { modelDocument, withDocument } from './source.ts';
 import { prepareNeutralBridge } from './neutral.ts';
 import type { Built } from './head.ts';
 
 type Bounds = [number, number, number, number];
-export type MaterialRow = { id: string; uuid?: string; partId?: string; bounds?: Bounds; transparent?: boolean; raw?: boolean; texture: string; scope?: 'face' | 'hair' | 'accessory'; shadowSource?: MaterialSelection };
+export type MaterialRow = { id: string; uuid?: string; partId?: string; bounds?: Bounds; transparent?: boolean; raw?: boolean; texture: string; scope?: 'face' | 'hair' | 'accessory'; shadowSource?: MaterialSelection; studio?: boolean };
 export type ShadowContextPart = HeadDeformer & { shadowSource?: MaterialSelection };
 type Exported = MaterialRow & { bounds: Bounds };
 export type MaterialExport = (document: string, directory: string, rows: MaterialRow[], shadows: string[], signal?: AbortSignal) => Promise<Exported[]>;
-export type MaterialBuilt = Built & { sourceDocument?: string; sourceRevision?: string };
+export type StudioPaintLayer = { uuid: string; texture: string; bounds: Bounds; order: number; visible: boolean; opacity: number; blend: string; projection?: ProjectionBinding };
+export type MaterialBuilt = Built & { sourceDocument?: string; sourceRevision?: string; studioLayers?: StudioPaintLayer[] };
 export type MaterialLoader = (directory: string, built: Built, signal?: AbortSignal, context?: boolean | 'shadows') => Promise<MaterialBuilt>;
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
 const uuid = (value: string) => value.replace(/[{}]/g, '').toLowerCase();
@@ -194,7 +195,7 @@ export class KraMaterials {
   private exportLayers: MaterialExport;
   constructor(exportLayers: MaterialExport) { this.exportLayers = exportLayers; }
 
-  async resolve(root: string, directory: string, built: Built, signal?: AbortSignal, context: boolean | 'shadows' = true): Promise<MaterialBuilt> {
+  async resolve(root: string, directory: string, built: Built, signal?: AbortSignal, context: boolean | 'shadows' | 'studio' = true): Promise<MaterialBuilt> {
     const document = await modelDocument(root, directory, built.doc);
     if (!document) throw Error('九轴模型缺少 source.document；请指定实际 KRA 来源');
     signal?.throwIfAborted();
@@ -214,7 +215,12 @@ export class KraMaterials {
       rows.push({ id: part.id, ...(id ? { uuid: uuid(id) } : {}), bounds, transparent,
         ...(part.shadow ? {raw:true}:{}), texture: `${rows.length}.png` });
     }
-    if (context) for (const material of selection.selections) {
+    if (context === 'studio') {
+      const shadows = new Set(selection.shadowLayerUuids);
+      for (const [id, layer] of layers) if (!bound.has(id) && layer.nodetype === 'paintlayer') {
+        rows.push({ id: '__studio__/' + id, uuid: id, texture: `${rows.length}.png`, studio: true, raw: shadows.has(id) });
+      }
+    } else if (context) for (const material of selection.selections) {
       if (bound.has(material.uuid)) continue;
       if (material.role==='shadow') {
         if(context==='shadows') rows.push({id:`__shadow__/${material.uuid}`,uuid:material.uuid,scope:material.scope,raw:true,shadowSource:material,texture:`${rows.length}.png`});
@@ -261,8 +267,29 @@ export class KraMaterials {
     }
     let exported: Exported[];
     try { exported = await request; } finally { if (this.pending.get(cache) === request) this.pending.delete(cache); }
-    const textures = new Map<string, string>();
+    const textures = new Map<string, string>(), studioLayers: StudioPaintLayer[] = [];
+    const nativeOrder = new Map<string, number>();
+    if (context === 'studio') {
+      const orderByUuid = new Map(doc.parts.flatMap((part, index) => part.uuid && !part.role ? [[part.uuid, index] as const] : []));
+      let above = doc.parts.length, index = 0;
+      for (const [id] of layers) {
+        above = orderByUuid.get(id) ?? above;
+        nativeOrder.set(id, above - .25 - .5 * index++ / layers.size);
+      }
+    }
     for (const row of exported) {
+      if (row.studio && row.uuid) {
+        const layer = layers.get(row.uuid)!;
+        let visible = true;
+        for (let at: string = row.uuid; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') visible = false;
+        const texture = 'studio/' + row.texture;
+        textures.set(texture, join(cache, row.texture));
+        const projection = selection.projectionBindings.get(row.uuid);
+        studioLayers.push({ uuid: row.uuid, texture, bounds: row.bounds, order: nativeOrder.get(row.uuid)!,
+          visible, opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal',
+          ...(projection ? { projection } : {}) });
+        continue;
+      }
       let part = doc.parts.find(part => part.id === row.id);
       if (!part) {
         const [x,y,w,h] = row.bounds, bbox = [x,y,x+w,y+h];
@@ -281,6 +308,6 @@ export class KraMaterials {
       if (!doc.levels.some(level => level.id === id)) doc.levels.push({ id, includes: id === 'hair' ? ['face', 'hair'] : ['face', 'hair', 'accessory'] });
     }
     validateHeadNineAxis(doc);
-    return { doc, textures, sourceDocument: document, sourceRevision: revision };
+    return { doc, textures, sourceDocument: document, sourceRevision: revision, ...(context === 'studio' ? { studioLayers } : {}) };
   }
 }

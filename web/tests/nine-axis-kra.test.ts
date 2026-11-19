@@ -15,19 +15,25 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
   const root=await mkdtemp(join(tmpdir(),'web-nine-kra-')), project=join(root,'case');
   const path=nineAxisArtifacts.neutralDeformers, stage=join(project,dirname(path));
   const source='shadow/step01_mask/character-shadowed.kra', kra=join(project,source), uuid='11111111-1111-1111-1111-111111111111';
+  const body = '22222222-2222-2222-2222-222222222222';
+  const shadow = '33333333-3333-3333-3333-333333333333';
   await mkdir(stage,{recursive:true}); await mkdir(dirname(kra),{recursive:true});
   await writeFile(join(project,'run.json'),JSON.stringify({
     version:1, name:'case', sections:{}, jobs:1, status:'ready', krita:join(root,'task-krita'),
   }));
   const doc={version:2,kind:'head-nine-axis',canvas:[12,12],source:{document:source},levels:[{id:'face',includes:['face']}],deformers:[],parts:[{id:'face/face_base',uuid,level:'face',texture:'layers/face.png',textureBounds:[0,0,12,12],bbox:[0,0,12,12],cols:1,rows:1,keyforms:{'0':[[0,0],[12,0],[0,12],[12,12]]}}]} as any;
   await writeFile(join(project,path),JSON.stringify(doc));
+  await writeFile(join(dirname(kra), 'shadows.json'), JSON.stringify({ shadows: [{
+    id: 'face-cast', casterPartId: 'character:face/face_base', casterLayerUuids: [uuid],
+    receiverPartIds: ['character:body'], receiverLayerUuids: [body], shadowLayerUuid: shadow, follow: 'caster',
+  }] }));
   const materializer=new KraMaterials(async (document,directory,rows)=>Promise.all(rows.map(async row=>{
     await writeFile(join(directory,row.texture),kraContents(await readFile(document)).merged);
-    return {...row,bounds:row.bounds!};
+    return {...row,bounds:row.bounds ?? [0,0,12,12]};
   })));
   const saveKra=async(colour:string)=>{
     const png=await sharp({create:{width:12,height:12,channels:4,background:colour}}).png().toBuffer();
-    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers><layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/></layers></IMAGE></DOC>`),'mergedimage.png':png}));
+    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers><layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/><layer uuid="{${body}}" name="body" nodetype="paintlayer" visible="1"/><layer uuid="{${shadow}}" name="cast" nodetype="paintlayer" visible="1" compositeop="multiply"/></layers></IMAGE></DOC>`),'mergedimage.png':png}));
   };
   await saveKra('#f00');
   const server=await createWorkbench({defaultDir:root,settingsPath:join(root,'settings.json')});
@@ -46,6 +52,15 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
   assert.equal(initial.document,source); assert.equal(initial.version,first.nineAxis.version);
   const readTexture=async(url:string)=>[...(await sharp(Buffer.from(await(await fetch(new URL(url,base+'/'))).arrayBuffer())).raw().toBuffer()).subarray(0,4)];
   assert.deepEqual(await readTexture(initial.textures[0]),[255,0,0,255]);
+  await materializer.resolve(project,stage,{doc,textures:new Map()},undefined,'studio');
+  const studioResponse = await get('/api/studio/nine-axis/materials',{path,scene:'studio'});
+  assert.equal(studioResponse.status, 200);
+  const studio = await studioResponse.json() as any;
+  assert.deepEqual(studio.doc.parts.map((part: any) => part.uuid), [uuid]);
+  assert.deepEqual(studio.studioLayers.map((layer: any) => [layer.uuid, layer.projection]), [
+    [body, undefined], [shadow, { casters: [uuid], receivers: [body] }],
+  ]);
+  assert.deepEqual(await readTexture(studio.textures[1]),[255,0,0,255]);
   await saveKra('#0f0');
   await materializer.resolve(project,stage,{doc,textures:new Map()});
   const next=await(await get('/api/studio/project')).json() as any;

@@ -4,6 +4,8 @@ import {
   layerTree,
   layerTypes,
   blends,
+  focusSuppression,
+  revealFocusedLayer,
 } from "./layer-model.js";
 const $ = (s) => document.querySelector(s);
 const esc = (s) =>
@@ -44,7 +46,7 @@ export class LayerPanel {
           ? this.collapsed.delete(l.id)
           : this.collapsed.add(l.id);
       } else if (e.target.closest("[data-eye]") && this.session) {
-        this.change(l.id, "visible", !l.visible);
+        this.setVisible(l.id, !this.visibleInPreview(l));
       } else this.selected = l.id;
       this.render();
     };
@@ -109,6 +111,7 @@ export class LayerPanel {
     this.undo = [];
     this.redo = [];
     this.selected = null;
+    this.focus = null;
     this.collapsed.clear();
     this.loading = this.working = this.gesture = false;
     this.message = "";
@@ -186,6 +189,22 @@ export class LayerPanel {
   assign(values) {
     const map = new Map(values.map((v) => [v.id, v]));
     this.layers = this.layers.map((l) => ({ ...l, ...map.get(l.id) }));
+  }
+  visibleInPreview(layer) { return layer.visible && !this.focus?.has(layer.id); }
+  previewLayers() {
+    return this.focus ? this.layers.map(layer => ({ ...layer, visible: this.visibleInPreview(layer) })) : this.layers;
+  }
+  setFocus(keep) {
+    this.focus = keep ? focusSuppression(this.layers, keep) : null;
+    this.render();
+  }
+  setVisible(id, visible) {
+    if (!this.session) return;
+    const row = this.layers.find(layer => layer.id === id);
+    if (!row || row.type === 'selectionmask') return;
+    if (visible && this.focus) revealFocusedLayer(this.layers, this.focus, id);
+    if (row.visible === visible) this.render();
+    else this.change(id, 'visible', visible);
   }
   change(id, key, value, gesture = false) {
     const l = this.layers.find((l) => l.id === id);
@@ -300,7 +319,7 @@ export class LayerPanel {
   render() {
     this.callbacks.rendered?.();
     const rows = layerTree(
-        this.layers,
+        this.previewLayers(),
         this.collapsed,
         $("#layer-filter").value,
       ),

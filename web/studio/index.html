@@ -159,6 +159,7 @@
           </div>
           <span class="divider"></span><button id="fit">适应</button
           ><button id="actual">100%</button><span id="zoom">100%</span>
+          <label id="nine-axis-focus-layers" class="toggle" hidden><input id="nine-axis-focus-hide" type="checkbox">隐藏关注范围外图层</label>
         </div>
         <div class="viewport" id="drop-zone">
           <canvas id="stage" aria-label="角色光照预览"></canvas>
@@ -200,7 +201,6 @@
             <div class="light-guide">拖动灯位 · Alt + 滚轮调整前后</div>
           </div>
           <div id="nine-axis-view" hidden>
-            <canvas id="nine-axis-canvas" aria-label="头部九轴预览"></canvas>
             <svg id="nine-axis-overlay" width="100%" height="100%"></svg>
             <span id="nine-axis-hud"></span>
           </div>
@@ -274,6 +274,7 @@
             </section>
             <section class="panel">
               <h3>参数</h3>
+              <label class="toggle"><input id="nine-axis-follow" type="checkbox">鼠标跟随</label>
               <div id="nine-axis-pad" data-region="horizontal" tabindex="0" role="group" aria-label="头部角度" aria-describedby="nine-axis-pad-hint" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Home">
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                   <path id="nine-axis-pad-plane" />
@@ -292,25 +293,25 @@
                 <div class="nine-param nine-angle-number"><label for="nine-axis-angle-y-number">角度 Y</label><input id="nine-axis-angle-y-number" type="number" step="any" value="0"></div>
                 <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys-y"></div></div>
               </div>
-              <div id="nine-axis-z" hidden>
+              <div id="nine-axis-z" aria-keyshortcuts="A D" hidden>
                 <div class="nine-param">
                   <label for="nine-axis-angle-z">角度 Z</label>
                   <input id="nine-axis-angle-z" type="range" min="0" max="0" step="1" value="0">
                   <output id="nine-axis-angle-z-value" for="nine-axis-angle-z">0°</output>
                 </div>
                 <div class="nine-keys"><span class="muted">关键形</span><div id="nine-axis-keys-z"></div></div>
+                <p class="muted">按住 A 左倾、D 右倾，Shift 加快</p>
               </div>
               <p id="nine-axis-other-params" class="muted"></p>
             </section>
             <section class="panel">
-              <div class="panel-heading"><h3>变形器</h3><button id="nine-axis-fit">适应</button></div>
+              <div class="panel-heading"><h3>变形器</h3></div>
               <div id="nine-axis-tree" aria-label="变形器"></div>
             </section>
             <section class="panel" id="nine-axis-selection" hidden>
               <h3 id="nine-axis-selected-name"></h3>
               <p id="nine-axis-selected-info" class="muted"></p>
               <label class="toggle"><input id="nine-axis-grid" type="checkbox" checked>显示变形网格</label>
-              <label class="toggle"><input id="nine-axis-isolate" type="checkbox" checked>淡化其他部件</label>
               <div class="nine-param"><span>软选择</span><input id="nine-axis-radius" type="range" min="0" max="160" step="2" value="40"><span id="nine-axis-radius-value">40 px</span></div>
               <p id="nine-axis-edit-hint" class="muted"></p>
               <button id="nine-axis-reset">还原该关键形</button>

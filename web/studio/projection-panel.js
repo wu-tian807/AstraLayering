@@ -7,7 +7,7 @@ export class ProjectionPanel {
   }
   render() {
     const bindings = this.source()?.shadowBindings, panel = this.layers;
-    const shadows = projectionLayers(bindings, panel.layers);
+    const shadows = projectionLayers(bindings, panel.previewLayers());
     const key = JSON.stringify([bindings, panel.session, panel.selected, panel.saving,
       shadows.map(s => [s.layer?.id, s.layer?.visible, s.layer?.opacity])]);
     if (key === this.key) return; this.key = key;
@@ -22,7 +22,7 @@ export class ProjectionPanel {
       const toggle = document.createElement('input'); toggle.type = 'checkbox';
       toggle.checked = s.layer?.visible ?? true; toggle.disabled = !s.layer || !panel.session || panel.saving;
       toggle.setAttribute('aria-label', `显示投影 ${s.id}`);
-      toggle.onchange = () => { panel.change(s.layer.id, 'visible', toggle.checked); this.render(); };
+      toggle.onchange = () => { panel.setVisible(s.layer.id, toggle.checked); this.render(); };
       const select = document.createElement('button'); select.className = 'projection-select';
       select.disabled = !s.layer; select.title = s.notes || s.id;
       const label = document.createElement('b'); label.textContent = short(s.layer?.name) || s.id;

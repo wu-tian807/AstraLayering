@@ -308,7 +308,7 @@ function sync() {
   $('#lighting-workspace').hidden = !lighting;
   $('#physics-workspace').hidden = !physical;
   $('#nine-axis-workspace').hidden = state.workspace !== 'nine-axis';
-  nineAxis?.activate(state.workspace === 'nine-axis');
+  nineAxis?.activate(state.workspace === 'nine-axis', state.workspace === 'mask' || state.workspace === 'nine-axis');
   $('[data-tool="disturb"]').hidden = !physical;
   $('[data-tool="disturb"]').disabled = !physics?.enabled || state.busy;
   $('#engine').textContent = [state.lightingEnabled && hasNormal ? '光照' : '', physics?.enabled ? '物理' : '', '原尺寸'].filter(Boolean).join(' · ');
@@ -446,6 +446,7 @@ for (const el of [$("#stage"), $("#light-handle")]) {
   el.onpointerdown = (e) => {
     if (state.busy || !state.source || e.button !== 0) return;
     if (state.tool === 'disturb') return;
+    nineAxis?.interruptCamera();
     pointer = {
       id: e.pointerId,
       x: e.clientX,
@@ -500,6 +501,7 @@ $("#drop-zone").addEventListener(
   (e) => {
     if (!state.source || state.busy) return;
     e.preventDefault();
+    nineAxis?.interruptCamera();
     if (state.tool === "light" && e.altKey) {
       state.settings.lightZ = Math.max(
         -4,
@@ -518,6 +520,11 @@ $("#drop-zone").addEventListener(
   { passive: false },
 );
 $("#fit").onclick = () => {
+  if (nineAxis?.canFocus) {
+    nineAxis.toggleFocus();
+    return;
+  }
+  nineAxis?.interruptCamera();
   stage.zoom = 1;
   stage.pan = [0, 0];
   stage.render();
@@ -525,6 +532,7 @@ $("#fit").onclick = () => {
 };
 $("#actual").onclick = () => {
   if (stage.source) {
+    nineAxis?.interruptCamera();
     stage.actualSize();
     sync();
   }
@@ -533,6 +541,7 @@ const layers = new LayerPanel({
   error: toast,
   rendered() {
     projections?.render();
+    nineAxis?.updateLayers();
     if (physics?.ready) {
       if (state.workspace === 'physics' && layers.selected !== physics.selected && physics.bindings.has(layers.selected)) physics.select(layers.selected);
     }
@@ -582,7 +591,8 @@ const surfaces = new SurfacePreview({stage, source:()=>state.source, session:()=
 physics = new PhysicsPanel({stage, surfaces, source:()=>state.source, fingerprint:()=>state.source?.authorHash,
   workspace:()=>state.workspace, tool:()=>state.tool, busy:()=>state.busy||state.layerBusy, error:toast,
   changed(){layers.render();if(!physics.enabled&&state.tool==='disturb')selectTool('move');sync();}, selectLayer(id){if(layers.selected!==id){layers.selected=id;layers.render();}}});
-nineAxis = new HeadNineAxisPanel({ error: toast });
+nineAxis = new HeadNineAxisPanel({ error: toast, stage, layers,
+  reloadProject: project => openProject(project.folder, project.previewMode, state.workspace, true) });
 $('#effect-lighting').onchange = e => {
   state.lightingEnabled = e.target.checked;
   if (!state.lightingEnabled) { if (state.tool === 'light') selectTool('move'); if (state.view === 'shading') selectView('lit'); }
@@ -982,6 +992,7 @@ window.addEventListener("pagehide", () => {
   surfaces.clear();
   layers.clear(true);
   cancelAnimationFrame(frame);
+  nineAxis.clear();
   stage.dispose();
 });
 window.studioDiagnostics = () => ({

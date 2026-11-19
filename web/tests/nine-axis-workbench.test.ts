@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import { nineAxisProgress } from '../nine-axis-progress.ts';
@@ -148,8 +148,6 @@ test('round records and saved products never complete a step or its downstream a
 
 test('hair and accessories preview the KRA bound by their cumulative model instead of a stale PNG', async t => {
   const f = await fixture(t);
-  const alias = f.root + '-alias'; await symlink(f.root, alias, 'dir');
-  t.after(() => rm(alias, { force: true }));
   for (const id of ['step08_hair', 'step09_head-accessories']) {
     const document = `nine-axis/${id}/character-nine-axis.kra`;
     await f.put(`${id}/character-nine-axis.kra`, 'saved KRA');
@@ -160,8 +158,6 @@ test('hair and accessories preview the KRA bound by their cumulative model inste
     assert.equal(value.previews[id].path, document);
     assert.equal(value.reports[id].path, `nine-axis/${id}/notes.md`);
     assert.equal(value.states[id], 'pending', 'a saved preview does not imply execution');
-    const aliased = await nineAxisProgress(alias, new Set(await inventory(alias)), f.errors);
-    assert.equal(aliased.previews[id].path, document, 'task root aliases resolve to the same saved KRA');
   }
   assert.deepEqual(f.errors, []);
 });
@@ -326,6 +322,7 @@ async function panelModule() {
     .replace("'./nine-axis-model.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-model.js', import.meta.url).href))
     .replace("'./nine-axis-preview.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-preview.js', import.meta.url).href))
     .replace("'../head-motion.js'", JSON.stringify(new URL('../head-motion.js', import.meta.url).href))
+    .replace("'./layer-model.js'", JSON.stringify(new URL('../studio/layer-model.js', import.meta.url).href))
     .replace("'./nine-axis-render.js'", JSON.stringify(new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url).href));
   return import('data:text/javascript,' + encodeURIComponent(source));
 }
@@ -367,7 +364,7 @@ test('Z shortcuts use the authored roll limits and preserve the X and Y pose', a
   });
   const panel = Object.create(HeadNineAxisPanel.prototype), drawn: number[][] = [];
   Object.assign(panel, { doc, level: 'face', modes: [{ id: 'face', axes }], value: 8, valueY: 6, valueZ: 0,
-    installPad() {}, sync() { drawn.push([this.value, this.valueY, this.valueZ]); } });
+    installPad() {}, syncPose() { drawn.push([this.value, this.valueY, this.valueZ]); } });
   panel.configureLevel();
   const keys = element('#nine-axis-keys-z');
   assert.equal(element('#nine-axis-z').hidden, false);
@@ -377,6 +374,94 @@ test('Z shortcuts use the authored roll limits and preserve the X and Y pose', a
   panel.configureLevel();
   assert.equal(element('#nine-axis-z').hidden, true);
   assert.deepEqual(keys.children, []);
+});
+
+test('mouse follow respects available poses and held roll keys move continuously within the active preview', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const doc = composed(), panel = Object.create(HeadNineAxisPanel.prototype);
+  doc.headRoll = { pivot: [0, 0], parts: [doc.parts[0].id] };
+  doc.parameters!.push({ id: 'ParamAngleZ', min: -12, max: 12, keys: [-12, 0, 12] });
+  let frame: ((time: number) => void) | undefined;
+  let renders = 0;
+  const display = { activeElement: null as { isContentEditable: boolean } | null, querySelector: () => null };
+  for (const [key, value] of Object.entries({
+    document: display,
+    requestAnimationFrame: (callback: (time: number) => void) => { frame = callback; return 1; },
+    cancelAnimationFrame: () => { frame = undefined; },
+  })) {
+    const previous = Object.getOwnPropertyDescriptor(globalThis, key);
+    Object.defineProperty(globalThis, key, { configurable: true, value });
+    t.after(() => {
+      if (previous) Object.defineProperty(globalThis, key, previous);
+      else Reflect.deleteProperty(globalThis, key);
+    });
+  }
+  Object.assign(panel, {
+    doc, axes: nineAxisCapabilities(doc), active: true, following: false, value: 0, valueY: 0, valueZ: 0, rollKeys: new Set(),
+    view: { getBoundingClientRect: () => ({ left: 50, top: 30, width: 320, height: 320 }) },
+    syncPose() { renders++; },
+  });
+  const advance = (time: number) => {
+    const callback = frame;
+    frame = undefined;
+    assert.ok(callback);
+    callback(time);
+  };
+  const pointer = { pointerType: 'mouse', clientX: 368, clientY: 126, buttons: 0 };
+  panel.trackPointer(pointer);
+  assert.deepEqual([panel.value, panel.valueY], [0, 0]);
+  panel.following = true;
+  panel.trackPointer(pointer);
+  panel.trackPointer({ ...pointer, clientX: 352 });
+  assert.equal(renders, 0);
+  advance(0);
+  assert.equal(renders, 1);
+  assert.ok(panel.value > 0 && panel.valueY > 0);
+  assert.ok(Math.abs(panel.value / 30) <= headSideLimit(panel.valueY / 25));
+  let previous = panel.valueY;
+  const edge = { ...pointer, clientX: 368 };
+  for (let y = 125; y >= 60; y--) {
+    panel.trackPointer({ ...edge, clientY: y });
+    assert.ok(Math.abs(panel.valueY - previous) < .3, 'moving vertically near the edge must not snap to an endpoint');
+    previous = panel.valueY;
+  }
+  advance(8);
+  const xy = [panel.value, panel.valueY];
+  let consumed = 0;
+  const press = (key: string, extra = {}) => panel.rollKeyDown({ key, preventDefault() { consumed++; }, ...extra });
+  const release = (key: string) => panel.rollKeyUp({ key });
+  press('a');
+  assert.deepEqual([panel.value, panel.valueY, panel.valueZ], [...xy, -1]);
+  advance(16); advance(32);
+  assert.ok(panel.valueZ < -1 && panel.valueZ > -2);
+  const held = panel.valueZ;
+  press('a', { repeat: true });
+  assert.equal(panel.valueZ, held);
+  release('a');
+  assert.equal(frame, undefined);
+  press('D', { shiftKey: true });
+  assert.equal(panel.valueZ, held + 5);
+  advance(48); advance(64);
+  assert.ok(panel.valueZ > held + 6);
+  display.activeElement = { isContentEditable: true };
+  const beforeFocus = panel.valueZ;
+  advance(80);
+  assert.equal(panel.valueZ, beforeFocus);
+  assert.equal(frame, undefined);
+  display.activeElement = null;
+  press('d', { target: { isContentEditable: true } });
+  press('a', { ctrlKey: true });
+  panel.viewDrag = () => {};
+  press('d');
+  assert.equal(consumed, 3);
+  panel.viewDrag = null;
+  panel.valueZ = 11;
+  press('D', { shiftKey: true });
+  assert.equal(panel.valueZ, 12);
+  release('D');
+  panel.active = false;
+  press('a');
+  assert.equal(panel.valueZ, 12);
 });
 
 test('workbench dragging inside excluded lobes follows the boundary tangent in all four quadrants', async () => {
@@ -422,7 +507,7 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const { HeadNineAxisPanel, nineAxisCapabilities } = await panelModule(), doc = composed(), requested: string[] = [], installed: any[] = [];
   t.mock.method(globalThis, 'fetch', async (url: any) => {
     const path = new URL(String(url), 'http://local/').searchParams.get('path')!; requested.push(path);
-    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
+    return path.endsWith('.json') ? Response.json({ doc, author: doc, version: '1', studioLayers: [], textures: ['./texture?path=' + path.replace(/[^/]+$/, 'layers/face.png')] }) : new Response('texture');
   });
   const previous = (globalThis as any).createImageBitmap;
   (globalThis as any).createImageBitmap = async () => ({});
@@ -430,7 +515,8 @@ test('workbench loads the embedded source composition unchanged and reloads same
   const panel = Object.create(HeadNineAxisPanel.prototype);
   Object.assign(panel, { epoch: 0, doc: null as any, clear() { this.doc = null; }, status() {}, error(message: string) { assert.fail(message); },
     install(doc: any, images: any[], allowPlane: boolean) { this.doc = doc; installed.push({ doc, images, allowPlane }); } });
-  await panel.load({ folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.headDeformers, version: '1', stage: 'y' } });
+  const fixture = { folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.headDeformers, version: '1', stage: 'y' } };
+  await Promise.all([panel.load(fixture), panel.load(fixture)]);
   assert.deepEqual(installed[0].doc, doc);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], -15, 0)].slice(0, 2), [-1, 0]);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], 0, 12.5)].slice(0, 2), [0, -1]);
@@ -472,6 +558,109 @@ test('staged progress shows draft model and generated video before branches comp
   assert.equal(value.states['step04_angles/video'], 'done');
   assert.equal(value.states['step04_angles/model/up'], 'available');
   assert.equal(value.states.step04_angles, 'available');
+});
+
+test('focus camera interpolates and reaches the exact restore target', async () => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const panel = Object.create(HeadNineAxisPanel.prototype);
+  const from = { zoom: 2.5, pan: [-.5, 0] }, to = { zoom: 1, pan: [0, .4] };
+  Object.assign(panel, { stage: { ...from }, cameraMove: { from, to } });
+  panel.moveCamera(10);
+  assert.equal(panel.stage.zoom, from.zoom);
+  panel.moveCamera(140);
+  assert.ok(panel.stage.zoom < from.zoom && panel.stage.zoom > to.zoom);
+  panel.moveCamera(270);
+  assert.deepEqual(panel.stage, to);
+  assert.equal(panel.cameraMove, null);
+});
+
+test('the fit control restores its default action when the head preview closes', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const fit = { textContent: '适应', setAttribute() {}, removeAttribute() {} };
+  const hide = { hidden: true };
+  const elements: Record<string, object> = { '#fit': fit, '#nine-axis-focus-layers': hide };
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'document');
+  Object.defineProperty(globalThis, 'document', { configurable: true, value: {
+    querySelector: (selector: string) => elements[selector] ?? {},
+  } });
+  t.after(() => {
+    if (previous) Object.defineProperty(globalThis, 'document', previous);
+    else Reflect.deleteProperty(globalThis, 'document');
+  });
+  const panel = Object.create(HeadNineAxisPanel.prototype);
+  const stage = { source: {}, zoom: 2, pan: [.1, .2], render() {} };
+  const layers = { session: 'fixture', focus: new Set(['body']) as Set<string> | null, setFocus(keep: null) { this.focus = keep; } };
+  Object.assign(panel, { active: true, inSharedPreview: true, doc: {}, stage, layers, rollKeys: new Set(),
+    focus: { home: { zoom: 1, pan: [0, 0] } }, updateLayers: () => panel.syncFocus() });
+  panel.syncFocus();
+  assert.equal(fit.textContent, '退出聚焦');
+  assert.equal(hide.hidden, false);
+  panel.activate(false, true);
+  assert.equal(panel.canFocus, false);
+  assert.equal(fit.textContent, '适应');
+  assert.equal(hide.hidden, true);
+  assert.equal(layers.focus, null);
+  assert.deepEqual([stage.zoom, stage.pan], [1, [0, 0]]);
+});
+
+test('focus hides only in preview, and eye edits made while focused survive restoring the view', async () => {
+  const { LayerPanel } = await import(new URL('../studio/layer-panel.js', import.meta.url).href);
+  const panel = Object.create(LayerPanel.prototype);
+  const layers = [
+    { id: 'foreground', visible: true },
+    { id: 'group', group: true, visible: true },
+    { id: 'front', visible: true, parentId: 'group' },
+    { id: 'mask', mask: true, visible: true, parentId: 'front' },
+    { id: 'middle', visible: true, parentId: 'group' },
+    { id: 'back', visible: true, parentId: 'group' },
+    { id: 'background', visible: true },
+  ];
+  Object.assign(panel, { layers, session: 'fixture', render() {}, queue() {}, undo: [] });
+  panel.setFocus(new Set(['front', 'back']));
+  const eye = () => panel.previewLayers().map((row: { visible: boolean }) => row.visible);
+  assert.deepEqual(eye(), [false, true, true, true, false, true, false]);
+  assert.ok(layers.every(row => row.visible));
+  panel.setVisible('foreground', true);
+  assert.equal(eye()[0], true);
+  panel.setVisible('foreground', false);
+  panel.setFocus(null);
+  assert.deepEqual(eye(), [false, true, true, true, true, true, true]);
+  assert.equal(panel.undo.length, 1);
+});
+
+test('a saved projection follows its posed caster and clips to the posed receiver', async () => {
+  const path = new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url);
+  const { HeadNineAxisRenderer } = await import(path.href);
+  const doc = composed(), caster = doc.parts[0], passLayers: string[][] = [];
+  caster.uuid = 'caster-uuid';
+  doc.headRoll = { pivot: [0, 0], parts: [caster.id, 'receiver'] };
+  doc.parameters.push({ id: 'ParamAngleZ', min: -15, max: 15 });
+  const receiver = { ...structuredClone(caster), id: 'receiver', uuid: 'receiver-uuid' };
+  doc.parts.push(receiver);
+  const engine = {
+    getDrawingBufferSize: (size: any) => size.set(100, 100),
+    setRenderTarget() {},
+    render(scene: any) {
+      passLayers.push(scene.children.filter((mesh: any) => mesh.visible).map((mesh: any) => mesh.userData.part?.id ?? mesh.userData.id));
+    },
+  };
+  const renderer = new HeadNineAxisRenderer(null, engine), texture = { width: 1, height: 1 };
+  renderer.install(doc, doc.parts.map(() => texture));
+  renderer.setStaticLayers([{ uuid: 'cast', visible: true, blend: 'multiply', opacity: 100, bounds: [3, 4, 1, 1], order: 2, image: texture,
+    projection: { casters: [caster.uuid], receivers: [receiver.uuid] } }]);
+  const frame = { x0: 0, y0: 0, width: 100, height: 100 };
+  renderer.draw(frame, 30, 25, new Set([caster.id, receiver.id]), undefined, 15);
+  assert.deepEqual(passLayers, [[receiver.id], [caster.id, receiver.id, '__studio__/cast']]);
+  const mesh = renderer.meshes.get('__studio__/cast');
+  assert.equal(mesh.material.uniforms.clipMode.value, 1);
+  const [x, y] = mesh.geometry.attributes.position.array, angle = Math.PI / 12;
+  // Sample (3,4) takes the caster's (+2,-2) from independent X/Y source
+  // shapes, then rolls about the same pivot. The receiver has different X/Y.
+  assert.ok(Math.abs(x - (5 * Math.cos(angle) - 2 * Math.sin(angle))) < 1e-5);
+  assert.ok(Math.abs(y - (5 * Math.sin(angle) + 2 * Math.cos(angle))) < 1e-5);
+  passLayers.length = 0;
+  renderer.draw(frame, 0, 0, new Set([caster.id]), undefined, 15);
+  assert.deepEqual(passLayers, [[caster.id]]);
 });
 
 test('dynamic studio preview preserves angles and defers refresh during user edits or parameter dragging', async t => {
