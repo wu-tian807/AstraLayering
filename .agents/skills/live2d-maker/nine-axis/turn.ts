@@ -131,14 +131,20 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
   const dataUrl='data:image/png;base64,'+image.toString('base64');
   const volc=api.provider==='volcengine', router=api.provider==='openrouter';
   const path=volc?'/contents/generations/tasks':'/videos';
-  const body=volc?{model:api.model,content:[{type:'text',text:prompt},
-    {type:'image_url',image_url:{url:dataUrl},role:'first_frame'}],duration:Number(turnSeconds),resolution:'720p',ratio:'1:1',generate_audio:false}
-    :router?{model:api.model,prompt,duration:Number(turnSeconds),resolution:'720p',aspect_ratio:'1:1',generate_audio:false,
+  const requestBody=(fixedRatio=false)=>volc?{model:api.model,content:[{type:'text',text:prompt},
+    {type:'image_url',image_url:{url:dataUrl},role:'first_frame'}],duration:Number(turnSeconds),resolution:'720p',
+    ...(fixedRatio?{ratio:'1:1'}:{}),generate_audio:false}
+    :router?{model:api.model,prompt,duration:Number(turnSeconds),resolution:'720p',
+      ...(fixedRatio?{aspect_ratio:'1:1'}:{}),generate_audio:false,
       frame_images:[{type:'image_url',image_url:{url:dataUrl},frame_type:'first_frame'}]}
     :{model:api.model,prompt,seconds:turnSeconds,input_reference:dataUrl};
-  const requestHash=createHash('sha256').update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
+  const hashRequest=(body:ReturnType<typeof requestBody>)=>createHash('sha256')
+    .update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
+  const body=requestBody(), requestHash=hashRequest(body);
   const saved=await checkpoint?.read(), job=saved===undefined?undefined:checkVideoJob(saved);
-  if(job && job.requestHash!==requestHash)throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
+  // Already-submitted jobs can still match the earlier request with a fixed ratio.
+  if(job && job.requestHash!==requestHash && (!(volc||router) || job.requestHash!==hashRequest(requestBody(true))))
+    throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
   const query=(id:string)=>retryVideoRead(async()=>
     (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Promise<Record<string,unknown>>,
     '生视频查询',signal!,progress,retryDelay);
