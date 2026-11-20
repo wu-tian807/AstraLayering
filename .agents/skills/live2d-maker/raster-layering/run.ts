@@ -1,9 +1,6 @@
-import { formatAgentError } from '../shared/codex/diagnostics.ts';
-import { runCli } from '../shared/raster/cli.ts';
 import { runWorkflow as runSharedWorkflow, type WorkflowOptions, type Dependencies } from '../shared/raster/workflow.ts';
 import { steps } from './steps.ts';
 import { partRasterSection } from '../shared/raster/part-section.ts';
-export { parseRunArguments } from '../shared/raster/cli.ts';
 
 export const help = `raster-layering — 按顺序执行 Krita 栅格分层流程
 
@@ -31,9 +28,4 @@ export function runWorkflow(options: WorkflowOptions, dependencies: Dependencies
   return runSharedWorkflow(section, options, dependencies);
 }
 
-if (import.meta.main) {
-  runCli(section, help).catch(error => {
-    console.error(formatAgentError(error));
-    process.exitCode = 1;
-  });
-}
+if (import.meta.main) void import('../workflow/section-cli.ts').then(cli => cli.launchSection('raster-layering'));

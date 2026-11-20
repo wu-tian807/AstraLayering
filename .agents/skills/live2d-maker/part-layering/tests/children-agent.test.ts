@@ -9,7 +9,7 @@ import { GroupStore, nodeKind, normalizeGroups, walkGroups, writeAtomic } from '
 import { createLayeringSteps } from '../../shared/part/layering-steps.ts';
 import { runLayering } from '../../shared/part/layering.ts';
 import { groupStepId } from '../../shared/part/part-steps.ts';
-import { parseRunArguments } from '../run.ts';
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { fixture, publishGroups, shape, workingMerger, workingSteps } from './layering-fixture.ts';
 import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
 import { partKnowledge } from '../../shared/part/group-prompts.ts';
@@ -141,13 +141,13 @@ test('分析期间或提交后修改父 SVG 会失败，未提交的最终文本
   } }), /修改了父组/);
 });
 
-test('父完成稿改变后旧分析不能放行下一层，CLI 深度输入有边界', async t => {
+test('父完成稿改变后旧分析不能放行下一层，CLI 回环次数有边界', async t => {
   const f = await fixture(t), steps = workingSteps([], [{ id: 'a' }], { a: [{ id: 'a/child', kind: 'part' }] });
   await runLayering({ ...f, groups: null, steps, maxDepth: 1 });
   await rm(join(f.directory, groupStepId('a', 'completion'), '.completed'));
   await assert.rejects(runLayering({ ...f, groups: { id: 'a/child' }, steps }), /前层尚未全部完成/);
-  assert.equal(parseRunArguments(['--max-depth', '2']).maxDepth, 2);
-  for (const value of ['0', '-1', '1.5', 'NaN', '9007199254740992']) assert.throws(() => parseRunArguments([`--max-depth=${value}`]), /正整数/);
+  assert.equal(parseRunArguments(['--max-recursive-counts', '2']).selection?.maxRecursiveCounts, 2);
+  for (const value of ['', '-1', '1.5', 'NaN', '9007199254740992']) assert.throws(() => parseRunArguments([`--max-recursive-counts=${value}`]), /非负整数/);
   assert.ok(await readFile(artifactPath(f.directory, 'a', 'completion')));
 });
 

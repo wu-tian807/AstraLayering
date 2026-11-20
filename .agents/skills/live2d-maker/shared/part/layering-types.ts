@@ -98,6 +98,7 @@ export type SvgMerger = (context: SvgMergeContext) => Promise<StepResult<SvgArti
 
 export type LayeringResult = {
   status: 'pending' | 'completed';
+  stoppedAt?: string;
   statePath: string;
   groupsPath: string;
   groups: GroupNode[];

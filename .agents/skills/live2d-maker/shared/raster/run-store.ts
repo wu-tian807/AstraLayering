@@ -56,7 +56,7 @@ export function rasterSteps(steps: readonly StepDefinition[]): SectionStep[] {
   return steps.map((step, index) => {
     if (stepNumber(step.id) !== index + 1) throw new Error('已定义步骤必须从 step01 开始连续排列。');
     const note = stepPattern.exec(step.id)![2];
-    return { number: index + 1, ...(note ? { note } : {}) };
+    return { number: index + 1, ...(note ? { note } : {}), requiredFiles: step.requiredFiles };
   });
 }
 

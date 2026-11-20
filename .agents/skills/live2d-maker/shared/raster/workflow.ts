@@ -14,7 +14,8 @@ import { checkKrita, type KritaInstallation } from './krita.ts';
 import type { StepDefinition } from './steps.ts';
 type ResolvedStep = StepDefinition & {model:string;effort:NonNullable<StepDefinition['effort']>;review?:NonNullable<StepDefinition['review']> & {model:string;effort:NonNullable<StepDefinition['effort']>}};
 import { readStep, type ChainStep, type StepStatus } from '../step-chain.ts';
-import { runSection } from '../step-section.ts';
+import { rangeSummary, runSection } from '../step-section.ts';
+import { includesStep, resolveStepRange, type StepSelection } from '../step-range.ts';
 import { clearStepSession, readStepSession, writeStepSession, type StepSession } from '../agents/step-session.ts';
 import { canonicalPath, fileInfo, rasterSteps, within } from './run-store.ts';
 import { taskRootOf } from '../task-paths.ts';
@@ -33,6 +34,7 @@ export type WorkflowOptions = {
   dryRun?: boolean;
   signal?: AbortSignal;
   progress?: (message: string) => void;
+  selection?: StepSelection;
 };
 export type Dependencies = {
   agent?: Agent;
@@ -90,14 +92,19 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
   if (info && (!info.isDirectory() || info.isSymbolicLink())) throw new Error(`管线目录必须是普通目录：${requested}`);
   const directory = await canonicalPath(requested);
   const environment = dependencies.environment ?? loadWorkflowEnvironment();
-  const definitions = (dependencies.steps ?? section.steps).map(step => ({ ...step,
+  const declared = dependencies.steps ?? section.steps;
+  const range = resolveStepRange(declared.map(step => step.id), options.selection);
+  const definitions = declared.map(step => ({ ...step,
     ...(step.modelStep ? environment.stepModels[step.modelStep] : step.modelTier ? environment.models[step.modelTier] : {}),
     ...(step.review ? { review: { ...step.review, ...(step.review.modelStep ? environment.stepModels[step.review.modelStep] : step.review.modelTier ? environment.models[step.review.modelTier] : {}) } } : {}),
   })).map(step => {
-    if (!step.model || !step.effort || step.review && (!step.review.model || !step.review.effort)) throw new Error(`${step.id} 缺少模型配置`);
+    if (includesStep(range, step.id) && (!step.model || !step.effort || step.review && (!step.review.model || !step.review.effort))) {
+      throw new Error(`${step.id} 缺少模型配置`);
+    }
     return step as ResolvedStep;
   });
   if (!dependencies.agent) for (const step of definitions) {
+    if (!includesStep(range, step.id)) continue;
     for (const key of [step.modelStep, step.review?.modelStep, step.review?.repairModelStep]) if (key) {
       validateImageSelection(environment, key);
       if (environment.stepModels[key].harness !== 'codex') await cliExecutable(environment, environment.stepModels[key].harness);
@@ -127,21 +134,23 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
   const sectionKrita = new SectionKrita({ section: directory, krita: krita.executable, env: environment.codex.env,
     record: join(directory, kritaRecordFile) });
   const kritaTool = createKritaTool(sectionKrita, taskRoot);
-  try { await runSection({ directory, steps: rasterSteps(definitions), dryRun: options.dryRun, signal: options.signal,
-    progress: options.progress,
-    // Validate retained deliveries before running anything.
-    async keep(chainStep) {
-      const step = byId.get(chainStep.id)!;
-      try { await checkFiles(chainStep.directory, step.requiredFiles); }
-      catch (error) { throw new Error(`${step.id} 已标记完成但交付缺失；请恢复文件，或重试该步骤（网页「重试」或 --retry）。`, { cause: error }); }
-      await section.validateDelivery?.(chainStep.directory, reference, step, krita, options.dryRun);
-      if (!options.dryRun) await logDeliveryWarnings(step);
-    },
-    async prepare() { await mkdir(directory, { recursive: true }); },
-    step: (chainStep, status) => stepWork(byId.get(chainStep.id)!, status),
-  }); } finally { await sectionKrita.release(); }
-  if (options.dryRun) return previews.join('\n\n') || '当前已定义步骤均已完成；无需调用模型。';
-  return `已完成当前已定义步骤。交付目录：${previous.at(-1) ?? directory}`;
+  try {
+    const plan = await runSection({ directory, steps: rasterSteps(definitions), range, dryRun: options.dryRun, signal: options.signal,
+      progress: options.progress,
+      async keep(chainStep) {
+        const step = byId.get(chainStep.id)!;
+        await section.validateDelivery?.(chainStep.directory, reference, step, krita, options.dryRun);
+        if (!options.dryRun) await logDeliveryWarnings(step);
+        // A retained prefix still supplies inputs to the selected steps.
+        if (!includesStep(range, chainStep.id)) previous.push(chainStep.directory);
+      },
+      async prepare() { await mkdir(directory, { recursive: true }); },
+      step: (chainStep, status) => stepWork(byId.get(chainStep.id)!, status),
+    });
+    if (options.dryRun) return previews.join('\n\n') || '当前已定义步骤均已完成；无需调用模型。';
+    if (range) return rangeSummary(plan);
+    return `已完成当前已定义步骤。交付目录：${previous.at(-1) ?? directory}`;
+  } finally { await sectionKrita.release(); }
 
   async function logDeliveryWarnings(step: StepDefinition) {
     for (const warning of await section.deliveryWarnings?.(reference, step) ?? []) {

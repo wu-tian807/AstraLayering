@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { test, type TestContext } from 'node:test';
 import type { AgentRequest, StepResult } from '../../shared/raster/agent.ts';
 import { resolvePartInput } from '../../shared/raster/input.ts';
-import { parseRunArguments } from '../run.ts';
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 
 import { steps } from '../steps.ts';
 import { runWorkflow } from '../run.ts';

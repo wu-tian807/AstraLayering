@@ -6,6 +6,12 @@
 
 跨 CLI 的任务分派和通用重试分别位于 `shared/agents/dispatcher.ts` 与 `shared/agents/runtime.ts`；`shared/codex/` 保存 Codex 专用的 App Server 与会话适配。
 
+## 注册 section
+
+在 [section 注册表](../workflow/sections.ts) 添加入口，将收到的 `selection` 和运行选项传给 [runSection](step-section.ts)。步骤声明填写编号、名称与必需文件 `requiredFiles`，并提供具体工作函数。通用命令按注册表发现该 section，解析范围、读步骤标记并验证前置交付。若 section 要加入总路线，在总调度中声明顺序与上游依赖。
+
+同编号分支由 section 按配置和已有记录选定后交给执行器。有回环的流程用 [createStepLoop](step-range.ts) 声明回环两端，以首个待处理轮次起算。步内并发与交付规则沿用各步骤实现。
+
 ## 工具与模型
 
 每个步骤的 `agent.json` 声明工具，启动时一次注册。工具参数、说明和实现分别维护：

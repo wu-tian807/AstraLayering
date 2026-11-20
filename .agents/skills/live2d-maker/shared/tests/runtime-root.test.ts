@@ -12,8 +12,7 @@ import sharp from 'sharp';
 import { defaultRunsDirectory, sectionDirectory, resolveInput, runsDirectory, taskDirectory, workflowsDirectory } from '../paths.ts';
 import { prepareReferences as preparePerson, loadPreparedReferences as loadPerson } from '../../part-layering/preparation.ts';
 import { prepareReferences as prepareClothing, loadPreparedReferences as loadClothing } from '../../clothing-part-layering/preparation.ts';
-import { parseRunArguments as parsePart } from '../part/run.ts';
-import { parseRunArguments as parseRaster } from '../raster/cli.ts';
+import { parseSectionArguments } from '../section-options.ts';
 import { runWorkflow as runPersonRaster } from '../../raster-layering/run.ts';
 import { runWorkflow as runClothingRaster } from '../../clothing-raster-layering/run.ts';
 import { steps as personSteps } from '../../raster-layering/steps.ts';
@@ -27,16 +26,14 @@ test('默认 root 是仓库 .run，独立 skill 使用上一级 .run；--dir 必
     ? join(repository, '.run') : resolve(workflowsDirectory, '../.run'));
   assert.equal(defaultRunsDirectory('/tmp/installed/live2d-maker'), '/tmp/installed/.run');
   assert.equal(taskDirectory('sample'), join(runsDirectory, 'sample'));
-  for (const parse of [parsePart, parseRaster]) {
-    assert.equal(parse(['--name', 'sample', '--dir', '/tmp/custom', '--knowledge', 'knowledge']).dir, '/tmp/custom');
-    assert.throws(() => parse(['--name', 'sample', '--dir', 'relative', '--knowledge', 'knowledge']), /绝对路径/);
-  }
+  assert.equal(parseSectionArguments(['--name', 'sample', '--dir', '/tmp/custom', '--knowledge', 'knowledge']).dir, '/tmp/custom');
+  assert.throws(() => parseSectionArguments(['--name', 'sample', '--dir', 'relative', '--knowledge', 'knowledge']), /绝对路径/);
   assert.throws(() => taskDirectory('live2d-maker', resolve(workflowsDirectory, '..')), /skill 之外/);
   assert.throws(() => taskDirectory('sample', workflowsDirectory), /skill 之外/);
   assert.equal(resolveInput('sample', 'source.png', '/tmp/custom'), '/tmp/custom/sample/source.png');
 });
 
-test('同名任务可在不同 root 独立准备、读取上游、按 name 续跑并选择 groups', async t => {
+test('同名任务可在不同 root 独立准备、读取上游、按 name 续跑并检查步骤范围前置', async t => {
   const temporary = await realpath(await mkdtemp(join(tmpdir(), 'skill-root-')));
   t.after(() => rm(temporary, { recursive: true, force: true }));
   const name = 'same-name';
@@ -63,11 +60,16 @@ test('同名任务可在不同 root 独立准备、读取上游、按 name 续�
     assert.deepEqual(await prepareClothing({ runName: name, dir }, clothing), clothes);
     assert.deepEqual(await loadClothing(name, dir), clothes);
     assert.equal(clothingCalls, 1);
-    for (const section of ['part-layering', 'clothing-part-layering']) {
-      await assert.rejects(promisify(execFile)(process.execPath, [join(workflowsDirectory, section, 'run.ts'),
-        '--name', name, '--dir', dir, '--groups', 'missing-groups.json', '--knowledge', defaultKnowledgeDirectory], { cwd: temporary }), error => {
-        assert.match(String(error), /ENOENT/);
-        assert.ok(String(error).includes(join(task, 'missing-groups.json')));
+    for (const [section, step] of [['part-layering', 'step07_ready'], ['clothing-part-layering', 'step01_preparation']]) {
+      const prerequisite = join(task, section, step);
+      await rm(join(prerequisite, '.completed'));
+      await assert.rejects(promisify(execFile)(process.execPath, [
+        '--import', new URL('../../part-layering/tests/forbid-model-processes.ts', import.meta.url).href,
+        join(workflowsDirectory, 'workflow/section-cli.ts'), section,
+        '--name', name, '--dir', dir, '--from-step', 'step09', '--knowledge', defaultKnowledgeDirectory,
+      ], { cwd: temporary, timeout: 10000 }), error => {
+        assert.match(String(error), /前置参考未完成|纯衣服参考尚未完成/);
+        assert.ok(String(error).includes(prerequisite));
         return true;
       });
     }

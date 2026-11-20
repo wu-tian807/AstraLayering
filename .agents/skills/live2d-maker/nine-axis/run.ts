@@ -1,12 +1,12 @@
-import { parseArgs } from 'node:util';
 import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { agentOutcomeError, formatAgentError } from '../shared/codex/diagnostics.ts';
-import { acquireTaskLock } from '../workflow/state.ts';
+import { agentOutcomeError } from '../shared/codex/diagnostics.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { renderKnowledge, selectKnowledge, stepKnowledge, type KnowledgeRole, type KnowledgeValues } from '../shared/knowledge.ts';
-import { runSection, stepName } from '../shared/step-section.ts';
+import { renderKnowledge, stepKnowledge, type KnowledgeRole, type KnowledgeValues } from '../shared/knowledge.ts';
+import { rangeSummary, runSection, stepName } from '../shared/step-section.ts';
+import { includesStep, resolveStepRange, type StepSelection } from '../shared/step-range.ts';
+import { agentWorkflowStep } from '../shared/agent-knowledge.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { AgentDispatcher, type AgentResult, type AgentTask } from '../shared/agents/dispatcher.ts';
 import { CheckFailure, asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
@@ -51,17 +51,16 @@ import sharp from 'sharp';
 import { createStepDispatcher, runStepBatch } from '../shared/step-dispatch.ts';
 import { headRollStep, nineAxisSteps, nineAxisBranches } from '../shared/nine-axis.ts';
 import { upperBodyBox } from './turn.ts';
-import { applyStepAction, applyTaskAction } from '../workflow/step-actions.ts';
 import { ffmpegEnvironment, type FFmpegCheck } from '../shared/ffmpeg.ts';
 import { requireFFmpeg } from '../workflow/ffmpeg.ts';
 import { createFrameTool } from './frame-tool.ts';
 import { missingDeliveries } from '../shared/step-deliveries.ts';
 import { requireVideoApi } from '../shared/video.ts';
-import { preflightTaskInputs } from '../workflow/preflight-inputs.ts';
 export { requireVideoApi } from '../shared/video.ts';
 
 export const help = `nine-axis — 头部九轴
-pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> --ffmpeg <可执行文件> [--dir <绝对运行根目录>] [--step <stepNN 或 step04_angles/model/left|up|down>] [--dry-run]
+pnpm nine-axis --name <任务名> --knowledge <先验知识目录> --krita <可执行文件> --ffmpeg <可执行文件> [--dir <绝对运行根目录>] [--dry-run]
+用 --from-step 选择单步，用 --step step04_angles/model/up 等路径选择步内分支或恢复目标。
 独立 section 启动无状态；每次启动及续跑显式传入软件路径与先验知识目录，不从步骤产物恢复配置。
 step01_preparation：从上游工程一次整理完整头部素材与独立投影，保留头发和头饰供后续制作。
 step02_video：生成 left/up/down 视频。
@@ -194,7 +193,8 @@ export function createFramesHead(agents: Agents, tools: (directory: string) => P
     verify: () => checkSelectedFrames(directory, names, undefined, video) }, signal); }, video); };
 }
 
-export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmpeg?: string; step?: string; dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
+export type NineAxisOptions = { name: string; dir?: string; krita?: string; ffmpeg?: string; step?: string; selection?: StepSelection;
+  dryRun?: boolean; signal?: AbortSignal; progress?: (message: string) => void };
 export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCheck?: FFmpegCheck; generate?: GenerateVideo; fitHead?: FitHead; outlineHead?: OutlineHead; viewFramesHead?: FramesHead; framesHead?: FramesHead; fitUp?: FitHead; fitDown?: FitHead; fitAngleXY?: FitHead; fitJawLine?: FitHead;
   materialize?: MaterialLoader;
   prepareNeutral?: (directory: string, input: HeadInput, box: Box, taskRoot: string) => Promise<void>;
@@ -203,22 +203,26 @@ export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCh
   fitHeadPitch?:Partial<Record<HeadPitchDirection,FitHead>>;
   fitHeadCorners?: FitHead;
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
-const isArtworkOnly = (step?: string) => ['step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy', headRollStep].includes(step ?? '');
+export const isArtworkOnly = (step?: string) => ['step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy', headRollStep].includes(step ?? '');
 
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
-  const requested = options.step?.split('/')[0], branch = options.step?.split('/')[1], group = options.step?.split('/')[2] as AxisGroup | undefined;
+  const [target, branch, part] = options.step?.split('/') ?? [];
+  const group = part as AxisGroup | undefined;
+  const range = resolveStepRange(nineAxisSteps, options.selection);
+  const selectedIds = nineAxisSteps.filter(id => target ? id === target : includesStep(range, id));
+  const requested = selectedIds.length === 1 ? selectedIds[0] : undefined;
   if (branch && !(requested==='step10_head-pitch'&&!group&&(headPitchDirections as readonly string[]).includes(branch))
     && (requested !== 'step04_angles' || !nineAxisBranches.includes(branch as 'model' | 'video') || group && (branch !== 'model' || !axisGroups.includes(group))))
     throw Error('--step 子项支持 step04_angles/model、video、model/left|up|down，或 step10_head-pitch/up|down');
-  const steps = nineAxisSteps.map((id, i) => ({ number: i + 1, note: id.slice(7) })).filter(step => !requested || stepName(step.number, step.note) === requested);
+  const steps = nineAxisSteps.map((id, i) => ({ number: i + 1, note: id.slice(7) })).filter(step => !target || stepName(step.number, step.note) === target);
   if (!steps.length) throw Error('--step 须为已定义的九轴步骤');
   const root = resolveRunsDirectory(options.dir), progress = options.progress ?? (() => {}), task = taskDirectory(options.name, root), directory = join(task, 'nine-axis');
   const preparation = join(directory, 'step01_preparation'), videos = join(directory, 'step02_video'), frames = join(directory, 'step03_frames');
   const angles = join(directory, 'step04_angles'), modelDirectory = join(angles, 'model'), cornerVideos = join(angles, 'video');
   const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
   const baseEnvironment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
-  const artworkOnly = isArtworkOnly(requested);
+  const artworkOnly = selectedIds.every(isArtworkOnly);
   if (!options.dryRun && !dependencies.generate && !artworkOnly) requireVideoApi(baseEnvironment);
   const requestedFFmpeg = options.ffmpeg || baseEnvironment.codex.env?.ASTRA_STUDIO_FFMPEG;
   const ffmpeg = options.dryRun || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
@@ -246,7 +250,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     return { run: pool.run.bind(pool), createSession: pool.createSession.bind(pool) };
   };
   let preflightPromise: Promise<unknown> | undefined;
-  const preflight = () => preflightPromise ??= preflightAgentSteps(environment, ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'], { runsRoot: root, progress, env: environment.codex.env });
+  const modelSteps = ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy',
+    'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'] as const;
+  const preflight = () => preflightPromise ??= preflightAgentSteps(environment,
+    modelSteps.filter(step => includesStep(range, agentWorkflowStep(step))), { runsRoot: root, progress, env: environment.codex.env });
   const video = () => {
     const api = dependencies.generate ? undefined : requireVideoApi(environment);
     return { model: api?.model ?? 'injected', generate: dependencies.generate ?? ((prompt, image, o) => generateVideo(api!, prompt, image, o)) as GenerateVideo };
@@ -340,8 +347,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     await checkDelivery(rollUpstream);
   };
   try {
-    if(!options.dryRun&&steps.some(step=>step.number===8))await upgradeHairProgress(join(directory,'step08_hair'));
-    await runSection({ directory, steps, dryRun: options.dryRun, signal: options.signal, progress,
+    const plan = await runSection({ directory, steps, range, dryRun: options.dryRun, signal: options.signal, progress,
       async check() {
         if (options.dryRun) return;
         if (requested === 'step09_head-accessories') await accessoriesUpstreamReady();
@@ -352,6 +358,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       async keep(step) {
         await checkDelivery(step.id);
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done')throw Error('头发轮次尚未全部完成，不能沿用整个步骤的完成标记');
+      },
+      async migrate(step) {
+        if (step.id !== 'step08_hair') return;
+        await upgradeHairProgress(step.directory);
+        return true;
       },
       async finished(step) {
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done') return false;
@@ -594,43 +605,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         };
       },
     });
+    return range && !options.dryRun ? `${summary}\n${rangeSummary(plan)}` : summary;
   } finally { await sectionKrita?.release(); }
-  return summary;
 }
 
 const exists = (path: string) => access(path).then(() => true, () => false);
 
-export function parseRunArguments(args: string[]) {
-  const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, knowledge: { type: 'string' },
-    krita: { type: 'string' }, ffmpeg: { type: 'string' }, step: { type: 'string' }, 'dry-run': { type: 'boolean' },
-    continue: { type: 'boolean' }, resume: { type: 'boolean' }, retry: { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
-  if (!values.help && !values.name?.trim()) throw new Error('必须提供 --name <任务名>。');
-  if (!values.help && !values.knowledge?.trim()) throw new Error('必须提供 --knowledge <先验知识目录>；独立 section 不保存配置，每次启动（含续跑）都须指定。');
-  if (values.dir !== undefined) resolveRunsDirectory(values.dir);
-  const actions = ['continue', 'resume', 'retry'].filter(action => values[action as 'continue' | 'resume' | 'retry']);
-  if (actions.length > 1) throw Error('--continue、--resume、--retry 只能选一个');
-  if (actions.length && values['dry-run']) throw Error('恢复操作不能与 --dry-run 一起使用');
-  return values;
-}
-if (import.meta.main) {
-  (async () => {
-    const args = parseRunArguments(process.argv.slice(2));
-    if (args.help) { console.log(help); return; }
-    selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
-    const action = args.retry ? 'retry' : args.resume ? 'resume' : args.continue ? 'continue' : undefined;
-    const artworkOnly = isArtworkOnly(args.step?.split('/')[0]);
-    const startupFFmpeg = args['dry-run'] || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
-      ffmpeg: args.ffmpeg ? resolveInput(args.name!, args.ffmpeg, args.dir) : loadWorkflowEnvironment().codex.env?.ASTRA_STUDIO_FFMPEG });
-    if (action) {
-      await preflightTaskInputs({ name: args.name!, dir: args.dir, knowledge: args.knowledge, from: 'nine-axis', to: 'nine-axis' },undefined,{video:!artworkOnly});
-      if (args.krita) await checkKrita(resolveInput(args.name!, args.krita, args.dir), loadWorkflowEnvironment().codex.env);
-      console.log(await (args.step ? applyStepAction({ name: args.name!, dir: args.dir, section: 'nine-axis', step: args.step, action })
-        : applyTaskAction({ name: args.name!, dir: args.dir, section: 'nine-axis', action })));
-    }
-    const controller = new AbortController(), stop = () => controller.abort(new Error('头部九轴已中断；续跑会重新生成未完成的步骤。'));
-    process.once('SIGINT', stop); process.once('SIGTERM', stop);
-    const release = args['dry-run'] ? undefined : await acquireTaskLock(taskDirectory(args.name!, args.dir));
-    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita, ffmpeg: args.ffmpeg, step: args.step, dryRun: args['dry-run'], signal: controller.signal, progress: console.log }, { ffmpegCheck: startupFFmpeg ? async () => startupFFmpeg : undefined })); }
-    finally { await release?.(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
-  })().catch(error => { console.error(formatAgentError(error)); process.exitCode = 1; });
-}
+if (import.meta.main) void import('../workflow/section-cli.ts').then(cli => cli.launchSection('nine-axis'));

@@ -1,10 +1,7 @@
-import { formatAgentError } from '../shared/codex/diagnostics.ts';
-import { runCli } from '../shared/raster/cli.ts';
 import { runWorkflow as runSharedWorkflow, type KritaSection, type WorkflowOptions, type Dependencies } from '../shared/raster/workflow.ts';
 import { inputDirectories, isAssemblyInput, resolveAssemblyInput, type AssemblyInput } from './input.ts';
 import { buildPrompt, steps } from './steps.ts';
 import { copyDelivery } from '../shared/raster/passthrough.ts';
-export { parseRunArguments } from '../shared/raster/cli.ts';
 
 export const help = `character-assembly — 单 agent 组装人物与衣服 KRA
 
@@ -40,9 +37,4 @@ export function runWorkflow(options: WorkflowOptions, dependencies: Dependencies
   return runSharedWorkflow(section, options, dependencies);
 }
 
-if (import.meta.main) {
-  runCli(section, help).catch(error => {
-    console.error(formatAgentError(error));
-    process.exitCode = 1;
-  });
-}
+if (import.meta.main) void import('../workflow/section-cli.ts').then(cli => cli.launchSection('character-assembly'));
