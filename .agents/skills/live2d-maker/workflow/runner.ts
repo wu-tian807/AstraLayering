@@ -22,6 +22,7 @@ import { AgentSlotPool, agentSlotsVariable } from './agent-slots.ts';
 import { requireVideoApi } from '../shared/video.ts';
 import { prepareRunCatalog, sharedCatalogVariable, type SharedCatalog } from '../shared/codex/catalog.ts';
 import { appServerCommand } from '../shared/codex/tool-agent.ts';
+import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
 
 export type SectionExecution = (id: SectionId, run: TaskRun, context: {
   // The task directory, <runs root>/<task name>.
@@ -154,6 +155,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     if (missing) throw missing;
     stopWatching = watchTaskStop(directory, run.runner.id, stopController,
       error => log.write('停止请求读取失败：' + formatAgentError(error)));
+    if (!dependencies.execute) await cleanLegacyCodexCache({ progress, preparing: () => dependencies.preparing?.(run!) });
     const selected = selectedSections(run.from, run.to);
     const steps = selected.flatMap(id => id === 'nine-axis'
       ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'] as const

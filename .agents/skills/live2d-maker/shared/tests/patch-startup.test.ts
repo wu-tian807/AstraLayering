@@ -1,12 +1,14 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import { dirname, join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
 import { setTimeout as delay } from 'node:timers/promises';
 import { execFileSync } from 'node:child_process';
+import lockfile from 'proper-lockfile';
 import { ensurePatchedCodex, codexCommit, pinnedGit, MissingToolchainError } from '../../patches/codex/build.ts';
+import { cleanLegacyCodexCache } from '../../patches/codex/legacy-cache.ts';
 import { withRust, rustVersion } from '../../patches/codex/rust.ts';
 import { runCommand, watchOutput, type Command } from '../../patches/codex/process.ts';
 import { formatAgentError } from '../codex/diagnostics.ts';
@@ -16,18 +18,46 @@ async function fixture(t: TestContext) {
   t.after(() => rm(root, {recursive: true, force: true})); return root;
 }
 const capabilities = {version: 1, image_provider_version: 2, image_compaction_version: 2, request_compaction_version: 1, failed_error_event_version: 1};
+test('启动只清理当前安装的旧版 Codex 缓存，跳过仍在构建的目录', async t => {
+  const skill = await fixture(t);
+  const previous = join(skill, '.codex-build'), build = join(previous, 'darwin-arm64', 'legacy-build');
+  const current = join(skill, 'data', 'codex');
+  let preparing = 0;
+  const options = { skill, preparing: () => preparing++ };
+  await cleanLegacyCodexCache(options);
+  assert.equal(preparing, 0);
+  await mkdir(build, { recursive: true });
+  await mkdir(current, { recursive: true });
+  await writeFile(join(current, 'ready.json'), 'current');
+  const release = await lockfile.lock(build, { stale: 30_000 });
+  try {
+    await cleanLegacyCodexCache(options);
+    assert.equal(preparing, 0);
+    await readdir(build);
+  } finally { await release(); }
+  await cleanLegacyCodexCache(options);
+  await assert.rejects(readdir(previous), { code: 'ENOENT' });
+  assert.equal(preparing, 1);
+  assert.equal(await readFile(join(current, 'ready.json'), 'utf8'), 'current');
+});
 test('并发自动构建只运行一次，校验缓存，损坏后重建，失败不写成功记录；构建或等待前通知调用方', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
   let builds = 0, building = 0, fail = true;
-  const run: Command = async (command, args) => {
+  const workspaces: string[] = [];
+  const run: Command = async (command, args, options) => {
     if (command === 'git') {
       if (args[0] === 'clone') await mkdir(args.at(-1)!, {recursive: true});
       if (args[0] === 'rev-parse') return codexCommit;
       if (args.includes('--reverse')) throw new Error('not applied');
     } else if (command === 'cargo') {
-      builds++; await delay(350); if (fail) throw new Error('compiler fixture failure');
-      const target = join(args[args.indexOf('--target-dir') + 1], 'dev-small');
+      const buildTarget = args[args.indexOf('--target-dir') + 1];
+      const workspace = dirname(buildTarget);
+      assert.equal(dirname(workspace), tmpdir());
+      assert.equal(options.env?.CARGO_HOME, join(workspace, 'cargo'));
+      workspaces.push(workspace);
+      const target = join(buildTarget, 'dev-small');
       await mkdir(target, {recursive: true});
+      builds++; await delay(350); if (fail) throw new Error('compiler fixture failure');
       await writeFile(join(target, process.platform === 'win32' ? 'codex.exe' : 'codex'), 'binary');
     } else return JSON.stringify(capabilities);
     return '';
@@ -39,16 +69,19 @@ test('并发自动构建只运行一次，校验缓存，损坏后重建，失�
   const [platform] = await readdir(opts.root), [key] = await readdir(join(opts.root, platform));
   const cache = join(opts.root, platform, key);
   await assert.rejects(readFile(join(cache, 'ready.json')), {code: 'ENOENT'});
+  await assert.rejects(readdir(workspaces[0]), {code: 'ENOENT'});
   fail = false;
   const results = await Promise.all([ensurePatchedCodex(opts, services), ensurePatchedCodex(opts, services)]);
   // The waiting call is notified too: it can take as long as the build.
   assert.equal(results[0], results[1]); assert.equal(builds, 2); assert.equal(building, 3);
+  await assert.rejects(readdir(workspaces[1]), {code: 'ENOENT'});
+  assert.equal(relative(cache, results[0]), join('bin', process.platform === 'win32' ? 'codex.exe' : 'codex'));
   await ensurePatchedCodex(opts, services); assert.equal(builds, 2); assert.equal(building, 3);
   await writeFile(results[0], 'corrupted'); await ensurePatchedCodex(opts, services); assert.equal(builds, 3);
   assert.equal(await readFile(results[0], 'utf8'), 'binary');
   assert.equal(await readFile(join(cache, 'bin', process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host'), 'utf8'), 'companion');
 });
-test('源码按固定 git 设置检出，不受用户换行与长路径配置影响；无法打补丁的旧缓存重新获取一次', async t => {
+test('源码按固定 git 设置检出；应用补丁失败后清理临时源码并重新检出', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
   // The user's own settings lose to the pinned ones; earlier GIT_CONFIG_* entries are kept.
   const global = join(root, 'gitconfig');
@@ -56,14 +89,18 @@ test('源码按固定 git 设置检出，不受用户换行与长路径配置影
   const env = pinnedGit({...process.env, GIT_CONFIG_GLOBAL: global, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'http.proxy', GIT_CONFIG_VALUE_0: 'http://proxy'});
   const read = (key: string) => execFileSync('git', ['config', '--get', key], {env, encoding: 'utf8'}).trim();
   assert.deepEqual(['core.autocrlf', 'core.eol', 'core.longpaths', 'core.attributesFile', 'http.proxy'].map(read), ['false', 'lf', 'true', '', 'http://proxy']);
-  const fetched: string[] = []; let checks = 0;
+  const upstream = join(root, 'upstream');
+  const fetched: string[] = []; let attempts = 0;
   const run: Command = async (command, args, options) => {
     if (command === 'git') {
       assert.equal(options.env?.GIT_CONFIG_KEY_0, 'core.autocrlf');
-      if (args[0] === 'clone') { fetched.push(args.at(-1)!); await mkdir(args.at(-1)!, {recursive: true}); }
-      if (args[0] === 'rev-parse') return codexCommit;
-      if (args.includes('--reverse')) throw new Error('not applied');
-      if (args.includes('--check') && checks++ < 2) throw new Error('patch does not apply');
+      if (args[0] === 'clone') {
+        assert.deepEqual(args.slice(-3, -1), ['--shared', upstream]);
+        const source = args.at(-1)!;
+        fetched.push(source); await mkdir(source, {recursive: true});
+      }
+      if (args[0] === 'checkout') assert.equal(args.at(-1), codexCommit);
+      if (args[0] === 'apply' && attempts++ === 0) throw new Error('patch does not apply');
     } else if (command === 'cargo') {
       const target = join(args[args.indexOf('--target-dir') + 1], 'dev-small');
       await mkdir(target, {recursive: true});
@@ -72,14 +109,13 @@ test('源码按固定 git 设置检出，不受用户换行与长路径配置影
     return '';
   };
   const services = {run, companion: () => sdkHost, rust: (async (env, action) => action({cargo: 'cargo', prefix: [], env})) as typeof withRust};
-  const opts = {root: join(root, 'cache'), env: {PATH: 'fixture'}, progress() {}};
-  // A fresh checkout that rejects the patch is a real failure; its source stays, and the next run that finds it
-  // unpatchable fetches it again.
+  const opts = {root: join(root, 'cache'), source: upstream, env: {PATH: 'fixture'}, progress() {}};
   await assert.rejects(ensurePatchedCodex(opts, services), /自动构建失败/);
   assert.equal(fetched.length, 1);
-  const messages: string[] = [];
-  await ensurePatchedCodex({...opts, progress: message => messages.push(message)}, services);
-  assert.equal(fetched.length, 2); assert.ok(messages.some(message => message.includes('重新获取')));
+  await assert.rejects(readdir(dirname(fetched[0])), {code: 'ENOENT'});
+  await ensurePatchedCodex(opts, services);
+  assert.equal(fetched.length, 2); assert.notEqual(fetched[0], fetched[1]);
+  await assert.rejects(readdir(dirname(fetched[1])), {code: 'ENOENT'});
   await ensurePatchedCodex(opts, services); assert.equal(fetched.length, 2);
 });
 
