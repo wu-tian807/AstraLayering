@@ -184,11 +184,17 @@ test('绘制会话同时开放原生生图和函数工具，保存生图路径�
   }]);
   const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, f.directory), codexPathOverride: server.executable, cwd: f.directory, logDirectory: f.logDirectory });
   const session = agents.createSession();
+  const saved: string[] = [];
   const task = { name: '绘制', prompt: '产出 SVG，必要时生图辅助辨认。', imageGeneration: true,
+    async onImageSaved(image: { savedPath: string }) {
+      await readFile(image.savedPath);
+      saved.push(image.savedPath);
+    },
     tools: [tool(async () => textResult('preview'))] };
   try {
     const first = await session.run(task);
     assert.deepEqual(first.images, [{ savedPath }]);
+    assert.deepEqual(saved, [savedPath]);
     const logged = await log(f.logDirectory);
     assert.deepEqual(logged.result.images, [{ savedPath: 'detail-reference.png' }]);
     assert.match(logged.events, /imageGeneration/);

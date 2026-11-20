@@ -331,7 +331,64 @@ test('标准生图异常保留选项和原图，带同一 --standard 从标准�
   assert.deepEqual(f.calls.map(task => task.name), ['标准姿态', '参考判断与简化', '素体换装']);
 });
 
-test('抠图交付拒绝无效文件，接受前景贴边的 PNG', async t => {
+test('标准 PNG 已存在但步骤未完成时，按尺寸交付并接着做简化', async t => {
+  for (const aligned of [true, false]) await t.test(String(aligned), async t => {
+    const f = await fixture(t, false, true, true);
+    await assert.rejects(prepareReferences({ runName: f.runName, image: f.original, standard: true }, {
+      ...f.steps,
+      async simplify() { throw new Error('测试中断'); },
+    }), /测试中断/);
+    const directory = getPreparationDirectory(f.runName);
+    const stage = join(section(directory), step('standard'));
+    await rename(join(stage, '.completed'), join(stage, '.running'));
+    const area = { left: 0, top: 0, width: aligned ? 48 : 47, height: aligned ? 64 : 63 };
+    const existing = aligned ? f.bytes : await sharp(f.bytes).extract(area).png().toBuffer();
+    await writeFile(join(directory, 'standard.png'), existing);
+
+    f.calls.length = 0;
+    const refs = await prepareReferences({ runName: f.runName, standard: true }, f.steps);
+    assert.deepEqual(f.calls.map(call => call.name), ['参考判断与简化', '素体换装']);
+    const image = sharp(refs.standardImage!);
+    const { width, height } = await image.metadata();
+    assert.deepEqual([width, height], [48, 64]);
+    if (aligned) assert.deepEqual(await readFile(refs.standardImage!), existing);
+    else assert.deepEqual(await image.extract(area).raw().toBuffer(), await sharp(existing).raw().toBuffer());
+    await readFile(join(stage, '.completed'));
+  });
+});
+
+test('生图工具写图后回合中断，继续补边并发布已有 PNG', async t => {
+  const f = await fixture(t, false, true, true);
+  const area = { left: 0, top: 0, width: 47, height: 63 };
+  const generated = await sharp(f.bytes).extract(area).png().toBuffer();
+  await writeFile(f.generated, generated);
+  const interrupted = createPreparationSteps({
+    async run(task) {
+      await task.onImageSaved!({ savedPath: f.generated });
+      throw new Error('工具保存后中断');
+    },
+  });
+  await assert.rejects(prepareReferences({ runName: f.runName, image: f.original, standard: true }, {
+    ...f.steps, generateStandardReference: interrupted.generateStandardReference,
+  }), /工具保存后中断/);
+  const directory = getPreparationDirectory(f.runName);
+  const stage = join(section(directory), step('standard'));
+  await readFile(join(stage, '.running'));
+  const pending = join(stage, 'standard-input.png');
+  assert.deepEqual(await readFile(pending), generated);
+  await assert.rejects(readFile(join(directory, 'standard.png')), { code: 'ENOENT' });
+
+  const refs = await prepareReferences({ runName: f.runName, standard: true }, f.steps);
+  assert.deepEqual(f.calls.map(call => call.name), ['参考判断与简化', '素体换装']);
+  const image = sharp(refs.standardImage!);
+  const { width, height } = await image.metadata();
+  assert.deepEqual([width, height], [48, 64]);
+  assert.deepEqual(await image.extract(area).raw().toBuffer(), await sharp(generated).raw().toBuffer());
+  await readFile(join(stage, '.completed'));
+  await assert.rejects(readFile(pending), { code: 'ENOENT' });
+});
+
+test('抠图交付拒绝无效文件，接受前景贴边的 PNG 并补齐画布', async t => {
   const f = await fixture(t, false);
   const opaque = await sharp(f.bytes).flatten({ background: 'white' }).png().toBuffer();
   await writeFile(f.original, opaque);
@@ -340,11 +397,38 @@ test('抠图交付拒绝无效文件，接受前景贴边的 PNG', async t => {
   await assert.rejects(readFile(join(getPreparationDirectory(f.runName), 'standard.png')), { code: 'ENOENT' });
 
   // Crop the transparent margin above the subject so it touches the top edge.
-  const touching = await sharp(f.bytes).extract({ left: 0, top: 10, width: 48, height: 54 }).png().toBuffer();
+  const area = { left: 0, top: 0, width: 47, height: 54 };
+  const touching = await sharp(f.bytes).extract({ ...area, top: 10 }).png().toBuffer();
   await writeFile(f.generated, touching);
   const refs = await prepareReferences({ runName: f.runName, standard: true }, f.steps);
-  assert.deepEqual(await readFile(refs.standardImage!), touching);
+  const standard = sharp(refs.standardImage!);
+  const { width, height } = await standard.metadata();
+  assert.deepEqual([width, height], [48, 64]);
+  assert.deepEqual(await standard.clone().extract(area).raw().toBuffer(), await sharp(touching).raw().toBuffer());
+  const alpha = await standard.extractChannel('alpha').raw().toBuffer();
+  assert.ok(alpha.subarray(area.height * width).every(value => value === 0));
+  for (let y = 0; y < area.height; y++) assert.equal(alpha[y * width + area.width], 0);
   await readFile(join(section(refs), step('standard'), '.completed'));
+});
+
+test('复用原图也补齐标准画布，并给简化和素体同一尺寸', async t => {
+  for (const standard of [true, false]) await t.test(String(standard), async t => {
+    const f = await fixture(t, false, false, true);
+    const area = { left: 0, top: 0, width: 47, height: 63 };
+    const source = await sharp(f.bytes).extract(area).png().toBuffer();
+    await writeFile(f.original, source);
+    const refs = await prepareReferences({ runName: f.runName, image: f.original, standard }, f.steps);
+    assert.deepEqual(f.calls.map(call => call.name), [...(standard ? ['标准姿态'] : []), '参考判断与简化', '素体换装']);
+    if (standard) assert.ok(f.standardReuse[0]?.savedPath);
+    assert.deepEqual(await readFile(refs.originalImage!), source);
+    const image = sharp(refs.standardImage!);
+    const { width, height } = await image.metadata();
+    assert.deepEqual([width, height], [48, 64]);
+    assert.deepEqual(await image.extract(area).raw().toBuffer(), await sharp(source).raw().toBuffer());
+    const delivered = await readFile(refs.standardImage!);
+    assert.deepEqual(await readFile(refs.simplifiedSubject), delivered);
+    assert.deepEqual(await readFile(refs.baseSubject), delivered);
+  });
 });
 
 test('切换模式时不修改文件、不调用模型，提示使用新的 --name；只读入口同样校验', async t => {

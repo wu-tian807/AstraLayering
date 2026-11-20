@@ -81,6 +81,7 @@ export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): Pr
     generateStandardReference: async (mode, image, output, prompt, outputDirectory) => {
       await prepareImage(agents, mode === 'standard' ? standard : cutout, {
         step: 'part_standardize', name: mode === 'standard' ? '标准姿态' : '原图去背景', outputDirectory, prompt,
+        onImageSaved: generated => saveImage(generated, output),
       }, image, output, { requireTransparentForReuse: true });
     },
     simplify: async (image, output, prompt, processGenerated) => {

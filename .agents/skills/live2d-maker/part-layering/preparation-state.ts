@@ -1,4 +1,4 @@
-import { lstat, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { lstat, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
@@ -60,8 +60,28 @@ export async function hasTransparentBackground(path: string): Promise<boolean> {
 export async function reuseReference(input: string, output: string, requireTransparent: boolean, signal?: AbortSignal): Promise<boolean> {
   if (requireTransparent && !await hasTransparentBackground(input)) return false;
   signal?.throwIfAborted();
-  await copyAsPng(input, output);
+  await produce(output, temporary => copyAsPng(input, temporary));
   signal?.throwIfAborted();
+  return true;
+}
+
+export async function publishStandardCanvas(input: string, output: string): Promise<boolean> {
+  if (!await exists(input)) return false;
+  const bytes = await readFile(input);
+  const image = sharp(bytes);
+  const metadata = await image.metadata().catch(() => undefined);
+  if (metadata?.format !== 'png') return false;
+
+  const right = (16 - metadata.width % 16) % 16;
+  const bottom = (16 - metadata.height % 16) % 16;
+  if (!right && !bottom && input === output) return true;
+
+  // Extend away from the origin to leave the existing pixel coordinates intact.
+  if (metadata.depth === 'ushort') image.toColourspace('rgb16');
+  const delivered = right || bottom
+    ? await image.extend({ right, bottom, background: '#00000000' }).keepIccProfile().png().toBuffer()
+    : bytes;
+  await produce(output, temporary => writeFile(temporary, delivered));
   return true;
 }
 
