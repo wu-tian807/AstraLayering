@@ -77,9 +77,11 @@ test('独立 section 接收默认 1K 和显式档位', async t => {
     },
   } };
   const args = ['example', '--name', 'case', '--dir', root, '--knowledge', defaultKnowledgeDirectory];
-  const launch = (...extra: string[]) => runSectionCommand([...args, ...extra], registry, () => {});
+  const launch = (...extra: string[]) => runSectionCommand([...args, ...extra], registry, () => {}, async () => ({ supported: true }));
   await launch();
   await launch('--size', '2K');
   await assert.rejects(launch('--size', '4096'), /--size/);
-  assert.deepEqual(sizes, ['1K', '2K']);
+  await runSectionCommand([...args, '--size', '4K'], registry, () => {}, async () => ({ supported: false, reason: 'GPU fixture' }));
+  assert.deepEqual(sizes, ['1K', '2K', '1K']);
+  assert.match(await readFile(join(root, 'case', 'workflow.log'), 'utf8'), /4K.*1K.*GPU fixture/);
 });

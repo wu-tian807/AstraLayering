@@ -8,9 +8,13 @@ import { acquireTaskLock, sectionId } from './state.ts';
 import { applyStepAction, applyTaskAction, validStepId } from './step-actions.ts';
 import { prepareSectionInvocation, sectionOptionsFrom, sections, type SectionDefinition } from './sections.ts';
 import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
+import { ensureUpscayl } from '../shared/upscayl.ts';
+import { probeUpscaleEnvironment, resolveUpscaleSize, type UpscaleEnvironmentCheck } from '../shared/upscale-environment.ts';
+import { createTaskLog } from './log.ts';
 
 export async function runSectionCommand(
   argv: string[], registry: Readonly<Record<string, SectionDefinition>> = sections, log = console.log,
+  upscaleEnvironment: UpscaleEnvironmentCheck = probeUpscaleEnvironment,
 ): Promise<void> {
   const [id, ...rest] = argv;
   if (id === undefined || id === '--help' || id === '-h') {
@@ -55,14 +59,26 @@ export async function runSectionCommand(
   process.once('SIGTERM', stop);
   let release: (() => Promise<void>) | undefined;
   try {
+    let sizeNotice: string | undefined;
+    options.size = await resolveUpscaleSize(options.size, upscaleEnvironment, message => { sizeNotice = message; });
     if (args.action) {
       await section.checkRecovery!(options);
       const target = { name: options.name, dir: options.dir, section: sectionId(id), action: args.action };
       log(await (options.step ? applyStepAction({ ...target, step: options.step }) : applyTaskAction(target)));
     }
-    if (!options.dryRun) {
+    if (options.dryRun) { if (sizeNotice) log(sizeNotice); }
+    else {
       release = await acquireTaskLock(directory);
-      if (registry === sections) await cleanLegacyCodexCache({ progress: log });
+      const taskLog = createTaskLog(directory, log);
+      try {
+        if (sizeNotice) taskLog.write(sizeNotice);
+        if (registry === sections) {
+          await cleanLegacyCodexCache({ progress: log });
+          if (options.size !== '1K') {
+            await ensureUpscayl({ signal: controller.signal, report: event => taskLog.preparation('standalone', event) });
+          }
+        }
+      } finally { await taskLog.flush(); }
     }
     log((await section.run(options, {})).summary);
   } finally {

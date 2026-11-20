@@ -10,10 +10,11 @@ import { workflowsDirectory } from '../../shared/paths.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 import { runCommand, watchOutput, type Command } from './process.ts';
 import { withRust } from './rust.ts';
+import type { PreparationProgress, ReportPreparation } from '../../shared/preparation-progress.ts';
 
 export const codexCommit = '29eb79e9866b3262a777fdf8195c1b9e63684c91';
 // building: called once before waiting for or running a build, which can take many minutes.
-type Options = { source?: string; jobs?: number; root?: string; env?: NodeJS.ProcessEnv; progress?: (message: string) => void; building?: () => void };
+type Options = { source?: string; jobs?: number; root?: string; env?: NodeJS.ProcessEnv; progress?: (message: string) => void; building?: () => void; report?: ReportPreparation };
 type Services = { run?: Command; rust?: typeof withRust; companion?: () => string; platform?: NodeJS.Platform };
 
 // Missing C/C++ build tools: the user installs them and continues the task, which checks again and builds.
@@ -126,6 +127,11 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
   const host = process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host';
   const output = join(root, 'bin'), executable = join(output, binary), receipt = join(root, 'ready.json');
   const progress = options.progress ?? (message => console.error(message));
+  const emit = (state: PreparationProgress['state'], message: string) => {
+    if (options.report) options.report({ tool: 'codex', state, message });
+    else progress(message);
+  };
+  const building = (message: string) => emit('running', message);
   const env = options.env ?? process.env, log = join(root, 'build.log');
   const run = services.run ?? runCommand, platform = services.platform ?? process.platform;
   const gitEnv = pinnedGit(env);
@@ -142,7 +148,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     try { release = await lockfile.lock(directory, { realpath: false, stale: 30_000, update: 5000, onCompromised(error) { compromised = error; } }); }
     catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'ELOCKED') throw error;
-      if (!waiting) { options.building?.(); progress('等待 Codex 缓存准备完成。'); waiting = true; }
+      if (!waiting) { options.building?.(); building('等待补丁版 Codex 准备完成'); waiting = true; }
       await delay(250);
     }
   }
@@ -153,7 +159,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     if (missing) throw new MissingToolchainError(missing, platform);
     const companionPath = services.companion ? services.companion() : await companion(version);
     if (!waiting) options.building?.();
-    progress(`正在构建 Codex ${version} 补丁；日志：${log}`);
+    building(`正在构建 Codex ${version} 补丁，准备源码。日志：${log}`);
     const work = await mkdtemp(join(tmpdir(), 'astra-codex-'));
     workspace = work;
     const source = join(work, 'source'), target = join(work, 'target');
@@ -161,10 +167,12 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
       run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, ...watch });
     const checkout = options.source ? ['--shared', resolve(options.source)]
       : ['--depth', '1', '--branch', `rust-v${version}`, 'https://github.com/openai/codex.git'];
-    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', progress, log));
-    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', progress, log));
+    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', building, log));
+    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building, log));
     await exec('git', ['apply', patch], source);
+    building('准备 Rust 工具链');
     await (services.rust ?? withRust)({ ...env, CARGO_HOME: join(work, 'cargo') }, async toolchain => {
+      building(`编译 Codex ${version} 补丁`);
       const start = await stat(log).then(info => info.size, () => 0);
       // Cargo’s bundled Git can fail on the deeply nested V8 submodules on Windows.
       const buildEnv = platform === 'win32'
@@ -172,14 +180,15 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
         : toolchain.env;
       await run(toolchain.cargo, [...toolchain.prefix, 'build', '-p', 'codex-cli', '--bin', 'codex', '--profile', 'dev-small',
         '--jobs', String(jobs), '--target-dir', target], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
-        ...watchOutput('编译 Codex 补丁', progress, log, { every: 30_000 }) })
+        ...watchOutput('编译 Codex 补丁', building, log, { every: 30_000 }) })
         .catch(async error => {
           const found = await missingToolInLog(log, start);
           throw found ? new MissingToolchainError(`构建日志中：${found}`, platform, log) : new Error(`编译失败；${compilers[platform] ?? '需要平台 C/C++ 编译工具'}。`, { cause: error });
         });
-    }, progress, { log, temporaryDirectory: work });
+    }, progress, { log, temporaryDirectory: work, report: options.report });
     if (compromised) throw compromised;
     const compiled = join(target, 'dev-small', binary);
+    building('校验 Codex 版本和补丁能力');
     const reported = await exec(compiled, ['--version']);
     if (reported.trim() !== `codex-cli ${version}`) {
       throw new Error(`Codex 补丁应为 ${version}，实际报告：${reported || '无版本输出'}。`);
@@ -218,8 +227,11 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     }
     if (compromised) throw compromised;
     await removePreviousBuilds(directory, key);
-    if (rebuilding) progress(`Codex 补丁已准备：${executable}`);
+    if (rebuilding || waiting) emit('completed', `Codex ${version} 补丁已准备`);
     return executable;
+  } catch (error) {
+    options.report?.({ tool: 'codex', state: 'failed', message: (error as Error).message.split('\n')[0]! });
+    throw error;
   } finally {
     try {
       if (workspace) await rm(workspace, { recursive: true, force: true, maxRetries: 3 }).catch(error => {

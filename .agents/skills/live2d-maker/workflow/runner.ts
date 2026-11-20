@@ -23,6 +23,10 @@ import { requireVideoApi } from '../shared/video.ts';
 import { prepareRunCatalog, sharedCatalogVariable, type SharedCatalog } from '../shared/codex/catalog.ts';
 import { appServerCommand } from '../shared/codex/tool-agent.ts';
 import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
+import { ensureUpscayl } from '../shared/upscayl.ts';
+import { sectionSize } from '../shared/section-size.ts';
+import { resolveUpscaleSize, type UpscaleEnvironmentCheck } from '../shared/upscale-environment.ts';
+import type { ReportPreparation } from '../shared/preparation-progress.ts';
 
 export type SectionExecution = (id: SectionId, run: TaskRun, context: {
   // The task directory, <runs root>/<task name>.
@@ -107,13 +111,13 @@ const clothingSkipped = '素体换装沿用了简化参考，没有衣服需要�
 export async function runTask(options: TaskOptions, dependencies: {
   execute?: SectionExecution; signal?: AbortSignal; progress?: (message: string) => void;
   ready?: (run: TaskRun) => void;
-  // Called instead of waiting for ready when the preflight has to build the
-  // patched Codex: the task lock is held and the run is recorded as running, so
-  // a launcher can confirm the start; the build and its outcome go to the log.
+  // Confirm launch while an installation or build is still in progress.
   preparing?: (run: TaskRun) => void;
   environment?: WorkflowEnvironment;
   preflight?: (path: string) => Promise<KritaInstallation>;
   preflightAgents?: typeof preflightAgentSteps;
+  prepareUpscale?: typeof ensureUpscayl;
+  upscaleEnvironment?: UpscaleEnvironmentCheck;
   prepareCatalog?: typeof prepareRunCatalog;
   ffmpegCheck?: FFmpegCheck;
   save?: typeof saveRun;
@@ -147,6 +151,7 @@ export async function runTask(options: TaskOptions, dependencies: {
     const missing = await requireKrita(configured, !!options.krita, dependencies.preflight ?? (path => checkKrita(path, environment?.codex.env)))
       .then(() => undefined, error => { if (error instanceof MissingDependencyError) return error; throw error; });
     await requireFFmpeg(configured, dependencies.ffmpegCheck);
+    configured.size = await resolveUpscaleSize(sectionSize(configured.size), dependencies.upscaleEnvironment, progress);
     run = configured;
     run.status = 'running'; delete run.error; delete run.output; delete run.activeSections;
     run.runner = { id: randomUUID(), pid: process.pid, startedAt: now() };
@@ -155,13 +160,18 @@ export async function runTask(options: TaskOptions, dependencies: {
     if (missing) throw missing;
     stopWatching = watchTaskStop(directory, run.runner.id, stopController,
       error => log.write('停止请求读取失败：' + formatAgentError(error)));
+    const runId = run.runner.id;
+    const report: ReportPreparation = event => log.preparation(runId, event);
     if (!dependencies.execute) await cleanLegacyCodexCache({ progress, preparing: () => dependencies.preparing?.(run!) });
+    if (run.size !== '1K' && (!dependencies.execute || dependencies.prepareUpscale)) {
+      await (dependencies.prepareUpscale ?? ensureUpscayl)({ signal, report, preparing: () => dependencies.preparing?.(run!) });
+    }
     const selected = selectedSections(run.from, run.to);
     const steps = selected.flatMap(id => id === 'nine-axis'
       ? ['nine_axis_view_frames', 'nine_axis_outline', 'nine_axis_head', 'nine_axis_frames', 'nine_axis_head_xy', 'nine_axis_head_jaw', 'nine_axis_head_hair', 'nine_axis_head_accessories', 'nine_axis_head_pitch', 'nine_axis_head_corners'] as const
       : sectionAgentSteps(id, run!.standard, run!.shadowMode));
     if (environment) {
-      await (dependencies.preflightAgents ?? preflightAgentSteps)(environment, steps, { runsRoot: dirname(directory), progress,
+      await (dependencies.preflightAgents ?? preflightAgentSteps)(environment, steps, { runsRoot: dirname(directory), progress, report,
         building: () => { progress('准备中：构建补丁版 Codex，完成后自动开始；构建期间的停止请求在构建结束后生效。'); dependencies.preparing?.(run!); } });
     }
     let catalog: SharedCatalog | undefined;

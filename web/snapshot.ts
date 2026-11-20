@@ -268,14 +268,14 @@ export async function snapshot(directory: string, name: string, dir: string) {
     return { ...section, krita };
   }));
   if (observedSections.some(section => section.krita)) kritaInUse = await kritaSlotsInUse();
-  const log = await readTaskLog(directory);
+  const log = await readTaskLog(directory, undefined, record.run?.runner?.id);
   // Server-side readers above may use agent records; the page only gets readable artifacts.
   const servedFiles = files.filter(path => !agentRecord(path));
   const servedVersions = Object.fromEntries(servedFiles.flatMap(path => fileVersions[path] ? [[path, fileVersions[path]]] : []));
   return { ...record, files: servedFiles, ...(kritaInUse !== undefined ? { kritaInUse } : {}), fileVersions: servedVersions, sections: observedSections, errors, logs: log.text,
     archived: !!record.run?.archive,
     canExport: completeRun(record.run) && !record.runnerAlive && !record.lockHeld,
-    logPath: log.path, logUpdatedAt: log.updatedAt, lastLogMessage: log.message,
+    logPath: log.path, logUpdatedAt: log.updatedAt, lastLogMessage: log.message, preparations: log.preparations,
     canStop: canStopTask(record.run?.runner, record.runnerAlive, record.lockHeld),
     original: files.find(path => /^input\/original\.(png|jpe?g|webp)$/i.test(path)),
     reference: files.find(path => /^part-layering\/references\/simplified-subject\.png$/i.test(path)),

@@ -17,6 +17,8 @@ pnpm start --name my-character --stop
 
 `--size` 接受 `1K`、`2K`、`3K`、`4K`。总调度将档位写入 `run.json` 并传给各个 section。新任务和独立 section 省略此参数时使用 `1K`，总调度续跑时省略则沿用已保存的档位。
 
+`2K` 至 `4K` 启动时检查图形环境，通过后自动准备 Upscayl CLI，缓存存放于 `data/upscayl/`。环境不可用时，各管线使用 `1K` 并跳过下载。准备进度写入 `workflow.log`，并在工作台“运行环境准备”显示。
+
 独立 section 启动无状态，每次传入 `--dir`、`--knowledge` 和所需软件路径。九轴需要 Krita、FFmpeg 和 Seedance 视频配置，选帧 agent 调用 `extract_video_frame` 工具。[参数与独立入口](../SKILL.md#单独运行一个-section)。
 
 启动时校验所选先验知识目录根部的 `version.json`。目录未标版本或版本不兼容时，请从当前发行包复制 `knowledge`，再迁移自定义内容。更改先验知识的目录或配置契约时，同步更新管线和内置目录的兼容版本。

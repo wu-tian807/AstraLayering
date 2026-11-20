@@ -1,6 +1,7 @@
 import { appendFile, lstat, open } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
+import { preparationLogPrefix, preparationMessage, type PreparationProgress } from '../shared/preparation-progress.ts';
 
 export const taskLogName = 'workflow.log';
 
@@ -42,38 +43,56 @@ export async function appendWorkflowLog(path: string, line: string): Promise<voi
 export function createTaskLog(directory: string, echo?: (message: string) => void) {
   let pending = Promise.resolve();
   const path = join(directory, taskLogName);
+  const append = (message: string) => {
+    const timestamp = new Date().toISOString();
+    pending = pending.then(() => appendWorkflowLog(path, `[${timestamp}] ${message}\n`));
+  };
   return {
     write(message: string) {
-      const timestamp = new Date().toISOString();
-      pending = pending.then(() => appendWorkflowLog(path, `[${timestamp}] ${message}\n`));
+      append(message);
       echo?.(message);
+    },
+    preparation(runId: string, event: PreparationProgress) {
+      append(preparationLogPrefix + JSON.stringify({ runId, ...event }));
+      echo?.(preparationMessage(event));
     },
     flush() { return pending; },
   };
 }
 
-export async function readTaskLog(directory: string, bytes = 24 * 1024) {
+export async function readTaskLog(directory: string, bytes = 24 * 1024, runId?: string) {
   const path = join(directory, taskLogName);
+  const preparations = new Map<PreparationProgress['tool'], PreparationProgress>();
   try {
     if (!(await lstat(path)).isFile()) throw new Error(`日志必须为普通文件：${taskLogName}`);
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return { path, text: '', updatedAt: undefined, message: undefined };
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return { path, text: '', updatedAt: undefined, message: undefined, preparations: [] };
     throw error;
   }
   const handle = await retryLogOpen(() => open(path, 'r')).catch(error => {
     if (!busyOpeningLog(error)) throw error;
     return undefined;
   });
-  if (!handle) return { path, text: 'workflow.log 正被占用，暂时无法读取。', updatedAt: undefined, message: undefined };
+  if (!handle) return { path, text: 'workflow.log 正被占用，暂时无法读取。', updatedAt: undefined, message: undefined, preparations: [] };
   try {
     const info = await handle.stat(), start = Math.max(0, info.size - bytes);
     const buffer = Buffer.alloc(Math.min(info.size, bytes));
     const { bytesRead } = await handle.read(buffer, 0, buffer.length, start);
-    const content = buffer.subarray(0, bytesRead).toString('utf8');
+    const content = buffer.subarray(0, bytesRead).toString('utf8').split('\n').map(line => {
+      const headerEnd = line.indexOf('] ') + 2;
+      if (!line.startsWith(preparationLogPrefix, headerEnd) || !line.startsWith('[')) return line;
+      try {
+        const { runId: recordRun, ...event } = JSON.parse(line.slice(headerEnd + preparationLogPrefix.length)) as PreparationProgress & { runId: string };
+        if (!['upscayl', 'rust', 'codex'].includes(event.tool) || !['running', 'completed', 'failed'].includes(event.state)
+          || typeof event.message !== 'string') return line;
+        if (runId && recordRun === runId) preparations.set(event.tool, event);
+        return line.slice(0, headerEnd) + preparationMessage(event);
+      } catch { return line; }
+    }).join('\n');
     const headers = [...content.matchAll(/^(?:\[\d{4}-\d{2}-\d{2}T[^\]]+\] (.+)|((?:\[[^\]\r\n]+\]) .+))$/gm)]
       .map(match => match[1] ?? match[2])
       .filter(line => !/收到 |完成：\{|工具结果：\{|思考摘要：\s*$/.test(line));
     return { path, text: (start ? '…（仅显示末尾）\n' : '') + content,
-      updatedAt: info.mtime.toISOString(), message: headers.at(-1) };
+      updatedAt: info.mtime.toISOString(), message: headers.at(-1), preparations: [...preparations.values()] };
   } finally { await handle.close(); }
 }

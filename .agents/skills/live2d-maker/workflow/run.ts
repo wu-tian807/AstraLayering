@@ -177,7 +177,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     const interrupt = () => controller.abort(new Error('总调度收到终止信号；保留进度，稍后可续跑。'));
     process.once('SIGINT', interrupt); process.once('SIGTERM', interrupt);
     try {
-      // A Codex build confirms the background start early; its progress goes to the log.
+      // Long environment preparation confirms background startup early.
       const ready = () => { if (parsed.worker && process.connected) process.send?.({ type: 'ready' }); };
       await runTask(options, { signal: controller.signal, progress: parsed.worker ? undefined : console.log, preparing: ready, ready });
     } catch (error) {
