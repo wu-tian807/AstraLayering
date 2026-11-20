@@ -52,7 +52,9 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。启动预检自动准备并复用管线补丁缓存。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
 
-缓存为 `.codex-build/<平台-架构>/<源码与补丁指纹>/`。进程锁防止并发重复构建，产物和官方 Code Mode companion 的 SHA-256 校验通过后才复用；失败不写成功标记，中断后可直接续跑。补丁更新使用新指纹目录，旧文件保留。所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
+源码、Cargo 依赖和编译中间文件建在系统临时目录，构建退出时清理。校验通过的补丁与官方 Code Mode companion 保存到 `data/codex/<平台-架构>/<源码与补丁指纹>/bin/`，同一版本通过 SHA-256 校验后复用。进程锁防止并发重复构建，失败时可从同目录的 `build.log` 排查。所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
+
+升级后首次启动管线时会清理安装目录里的旧版构建缓存，正在构建的缓存留待下次启动清理。
 
 ### 行为
 

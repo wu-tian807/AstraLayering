@@ -1,4 +1,5 @@
 node_modules/
 .run/
 .env
-.codex-build/
+/data/
+/.codex-build/

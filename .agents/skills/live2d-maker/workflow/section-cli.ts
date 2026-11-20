@@ -1,14 +1,12 @@
 import { parseSectionArguments, sectionRangeHelp } from '../shared/section-options.ts';
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
-import { selectKnowledge } from '../shared/knowledge.ts';
-import { resolveInput, taskDirectory } from '../shared/paths.ts';
 import { GroupExecutionError } from '../shared/part/layering.ts';
 import { formatLayeringSummary } from '../shared/part/run.ts';
 import { checkKrita } from '../shared/raster/krita.ts';
 import { acquireTaskLock, sectionId } from './state.ts';
 import { applyStepAction, applyTaskAction, validStepId } from './step-actions.ts';
-import { sections, type SectionDefinition, type SectionInvocation } from './sections.ts';
+import { prepareSectionInvocation, sectionOptionsFrom, sections, type SectionDefinition } from './sections.ts';
 import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
 
 export async function runSectionCommand(
@@ -46,15 +44,12 @@ export async function runSectionCommand(
   }
   if (explicitTarget && args.selection) throw new Error('步内分支与步骤范围不能同时选择');
   const selection = args.step !== undefined && !explicitTarget ? { ...args.selection, fromStep: args.step } : args.selection;
-  const directory = taskDirectory(args.name, args.dir);
-  selectKnowledge(resolveInput(args.name, args.knowledge, args.dir));
   const controller = new AbortController();
-  const options: SectionInvocation = {
-    name: args.name, dir: args.dir, image: args.image, knowledge: args.knowledge, krita: args.krita, ffmpeg: args.ffmpeg,
-    standard: args.standard, shadowMode: args.shadowMode, jobs: args.agentConcurrency,
+  const { directory, options } = prepareSectionInvocation({
+    ...sectionOptionsFrom({ ...args, jobs: args.agentConcurrency }), name: args.name, image: args.image,
     step: explicitTarget ? args.step : undefined, selection, standalone: true,
     dryRun: args['dry-run'], signal: controller.signal, progress: log,
-  };
+  });
   const stop = () => controller.abort(new Error('运行已中断；可用相同任务名和运行目录续跑。'));
   process.once('SIGINT', stop);
   process.once('SIGTERM', stop);

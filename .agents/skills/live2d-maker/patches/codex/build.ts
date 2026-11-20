@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
-import { copyFile, mkdir, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { copyFile, mkdir, mkdtemp, readFile, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -86,7 +86,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
   if (!Number.isSafeInteger(jobs) || jobs < 1) throw new Error('--jobs 必须为正整数');
   const patch = join(workflowsDirectory, 'patches/codex/layering-runtime.patch'), bytes = await readFile(patch);
   const key = sha256(Buffer.concat([Buffer.from(codexCommit + ':v1:' + process.platform + ':' + process.arch), bytes])).slice(0, 20);
-  const root = join(options.root ?? join(workflowsDirectory, '.codex-build'), `${process.platform}-${process.arch}`, key);
+  const root = join(options.root ?? join(workflowsDirectory, 'data', 'codex'), `${process.platform}-${process.arch}`, key);
   const binary = process.platform === 'win32' ? 'codex.exe' : 'codex';
   const host = process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host';
   const output = join(root, 'bin'), executable = join(output, binary), receipt = join(root, 'ready.json');
@@ -111,73 +111,47 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
       await delay(250);
     }
   }
+  let workspace: string | undefined;
   try {
     if (await cached()) return executable;
     const missing = await missingToolchain(run, env, platform);
     if (missing) throw new MissingToolchainError(missing, platform);
     if (!waiting) options.building?.();
     progress(`已开启 Codex 补丁功能，正在自动构建并缓存；日志：${log}`);
-    const source = join(root, 'source');
-    const exec = (command: string, args: string[], cwd = root, watch = {}) =>
+    const work = await mkdtemp(join(tmpdir(), 'astra-codex-'));
+    workspace = work;
+    const source = join(work, 'source'), target = join(work, 'target');
+    const exec = (command: string, args: string[], cwd = work, watch = {}) =>
       run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, ...watch });
-    async function checkout() {
-      if (options.source) await exec('git', ['-C', resolve(options.source), 'worktree', 'add', '--detach', source, codexCommit],
-        root, watchOutput('检出 Codex 源码', progress, log));
-      else {
-        const stage = join(root, 'source-clone');
-        await rm(stage, { recursive: true, force: true });
-        await exec('git', ['clone', '--progress', '--no-checkout', '--depth', '1', '--branch', 'rust-v0.170.0',
-          'https://github.com/openai/codex.git', stage], root, watchOutput('下载 Codex 源码', progress, log));
-        await exec('git', ['checkout', '--progress', '--detach', codexCommit], stage, watchOutput('检出 Codex 源码', progress, log));
-        await rename(stage, source);
-      }
-    }
-    let fresh = !existsSync(source);
-    if (fresh) await checkout();
-    if (await exec('git', ['rev-parse', 'HEAD'], source) !== codexCommit) throw new Error('补丁缓存的源码版本不符；未覆盖现有目录。');
-    const stamp = join(root, 'applied.patch');
-    if (!existsSync(stamp)) {
-      // Recover an interruption after git apply and before writing its receipt.
-      let applied = false;
-      try { await exec('git', ['apply', '--reverse', '--check', patch], source); applied = true; } catch {}
-      if (!applied) {
-        try { await exec('git', ['apply', '--check', patch], source); }
-        catch (error) {
-          // An unpatched source left by an earlier run (say, checked out with other line endings) is fetched
-          // again once; a fresh checkout that still rejects the patch is a real failure.
-          if (fresh) throw error;
-          progress('缓存中的 Codex 源码无法应用补丁，正在重新获取。');
-          if (options.source) await exec('git', ['-C', resolve(options.source), 'worktree', 'remove', '--force', source]);
-          else await rm(source, { recursive: true, force: true });
-          await checkout();
-          await exec('git', ['apply', '--check', patch], source);
-        }
-        await exec('git', ['apply', patch], source);
-      }
-      await writeFile(stamp, bytes);
-    } else if (!(await readFile(stamp)).equals(bytes)) throw new Error('补丁缓存不一致；未覆盖现有源码。');
-    await (services.rust ?? withRust)(env, async toolchain => {
+    const checkout = options.source ? ['--shared', resolve(options.source)]
+      : ['--depth', '1', '--branch', 'rust-v0.170.0', 'https://github.com/openai/codex.git'];
+    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', progress, log));
+    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', progress, log));
+    await exec('git', ['apply', patch], source);
+    await (services.rust ?? withRust)({ ...env, CARGO_HOME: join(work, 'cargo') }, async toolchain => {
       const start = await stat(log).then(info => info.size, () => 0);
       // Cargo’s bundled Git can fail on the deeply nested V8 submodules on Windows.
       const buildEnv = platform === 'win32'
         ? pinnedGit({ ...toolchain.env, CARGO_NET_GIT_FETCH_WITH_CLI: 'true' })
         : toolchain.env;
       await run(toolchain.cargo, [...toolchain.prefix, 'build', '-p', 'codex-cli', '--bin', 'codex', '--profile', 'dev-small',
-        '--jobs', String(jobs), '--target-dir', join(root, 'target')], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
+        '--jobs', String(jobs), '--target-dir', target], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
         ...watchOutput('编译 Codex 补丁', progress, log, { every: 30_000 }) })
         .catch(async error => {
           const found = await missingToolInLog(log, start);
           throw found ? new MissingToolchainError(`构建日志中：${found}`, platform, log) : new Error(`编译失败；${compilers[platform] ?? '需要平台 C/C++ 编译工具'}。`, { cause: error });
         });
-    }, progress, {log});
+    }, progress, { log, temporaryDirectory: work });
     if (compromised) throw compromised;
-    await mkdir(output, { recursive: true });
-    for (const [from, name] of [[join(root, 'target/dev-small', binary), binary], [(services.companion ?? companion)(), host]]) {
-      const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
-    }
-    const capabilities = JSON.parse(await exec(executable, ['debug', 'layering-capabilities']));
+    const compiled = join(target, 'dev-small', binary);
+    const capabilities = JSON.parse(await exec(compiled, ['debug', 'layering-capabilities']));
     if (capabilities.version !== 1 || capabilities.image_provider_version !== 2 || capabilities.image_compaction_version !== 2 || capabilities.request_compaction_version !== 1
       || capabilities.failed_error_event_version !== 1) throw new Error('新构建未通过补丁能力检查');
+    if (compromised) throw compromised;
+    await mkdir(output, { recursive: true });
+    for (const [from, name] of [[compiled, binary], [(services.companion ?? companion)(), host]]) {
+      const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
+    }
     if (compromised) throw compromised;
     await writeFile(receipt + '.tmp', JSON.stringify({ binary: sha256(await readFile(executable)), host: sha256(await readFile(join(output, host))) }));
     await rename(receipt + '.tmp', receipt);
@@ -188,11 +162,17 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     if (error instanceof MissingToolchainError) throw error;
     throw new Error(`Codex 补丁自动构建失败：${(error as Error).message}\n保留会话和产物，修复依赖后可直接续跑。日志：${log}`, { cause: error });
   }
-  finally { await release(); }
+  finally {
+    try {
+      if (workspace) await rm(workspace, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
+        progress(`清理 Codex 构建临时目录失败（${workspace}）：${String(error)}`);
+      });
+    } finally { await release(); }
+  }
 }
 
 if (import.meta.main) {
   const { values } = parseArgs({ options: { source: { type: 'string' }, jobs: { type: 'string', default: '4' }, help: { type: 'boolean' } } });
-  if (values.help) console.log('pnpm build:codex [--source <已有官方 Codex Git 仓库>] [--jobs 4]\n自动准备 Rust 1.95.0，仍需 Git 和平台 C/C++ 编译依赖。构建缓存位于 .codex-build/；不替换系统 Codex。');
+  if (values.help) console.log('pnpm build:codex [--source <已有官方 Codex Git 仓库>] [--jobs 4]\n在系统临时目录构建，成品缓存于 data/codex/。需要 Git 和平台 C/C++ 编译工具，Rust 1.95.0 按需准备。');
   else console.log(await ensurePatchedCodex({ source: values.source, jobs: Number(values.jobs) }));
 }

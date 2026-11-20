@@ -19,12 +19,20 @@ import { requireFFmpeg } from './ffmpeg.ts';
 import { preflightTaskInputs } from './preflight-inputs.ts';
 import { checkKrita } from '../shared/raster/krita.ts';
 import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
-import { defaultAgentConcurrency } from '../shared/agents/runtime.ts';
+import { defaultAgentConcurrency, shareAgentSlots, type AgentSlots } from '../shared/agents/runtime.ts';
+import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.ts';
+
+const sectionOptionKeys = ['dir', 'krita', 'ffmpeg', 'knowledge', 'standard', 'shadowMode', 'jobs'] as const;
+type SectionOptions = Pick<TaskOptions, typeof sectionOptionKeys[number]>;
+
+export function sectionOptionsFrom(source: SectionOptions): SectionOptions {
+  return Object.fromEntries(sectionOptionKeys.map(key => [key, source[key]])) as SectionOptions;
+}
 
 // Output is relative to the task root.
 export type SectionResult = { summary: string; output?: string; completed?: boolean };
 export type SectionInvocation = Pick<SectionRun, 'selection' | 'dryRun' | 'signal' | 'progress'>
-  & Pick<TaskOptions, 'name' | 'dir' | 'image' | 'knowledge' | 'krita' | 'ffmpeg' | 'standard' | 'shadowMode' | 'jobs'>
+  & Pick<TaskOptions, 'name' | 'image'> & SectionOptions
   & { step?: string; standalone?: boolean };
 type SectionEvents = { prepared?(): void };
 export type SectionDefinition = {
@@ -35,14 +43,24 @@ export type SectionDefinition = {
   run(options: SectionInvocation, events: SectionEvents): Promise<SectionResult>;
 };
 
+export function prepareSectionInvocation(options: SectionInvocation, agentSlots?: AgentSlots) {
+  const directory = taskDirectory(options.name, options.dir);
+  const dir = dirname(directory);
+  const knowledge = options.knowledge === undefined ? defaultKnowledgeDirectory : resolveInput(options.name, options.knowledge, dir);
+  selectKnowledge(knowledge);
+  if (agentSlots) shareAgentSlots(agentSlots);
+  return { directory, options: { ...options, dir, knowledge } };
+}
+
 function partSection(section: PartSection, help: string): SectionDefinition {
   const person = section.profile.id === 'part-layering';
   return { help: help + `\n--jobs / -j 设置 agent 并发上限，默认 ${defaultAgentConcurrency}。--agents / -a 是兼容别名。`, async run(options, events) {
     const { name, dir, standalone, progress } = options;
     const directory = taskDirectory(name, dir);
     const image = person && !standalone ? await taskOriginal(directory) : options.image;
+    const standard = person || standalone ? options.standard : undefined;
     const result = await runPartSection(section, {
-      reference: { runName: name, dir, image, standard: options.standard }, groups: null, selection: options.selection,
+      reference: { runName: name, dir, image, standard }, groups: null, selection: options.selection,
     }, { prepared: events.prepared }, { agentConcurrency: options.jobs, progress, signal: options.signal });
     if (!result.layering) {
       return { summary: '本次参考准备范围已完成，交付目录：' + result.references.directory, completed: false };
@@ -104,10 +122,9 @@ export const sections = {
   },
 } satisfies Record<SectionId, SectionDefinition> & Record<string, SectionDefinition>;
 
-export async function executeSection(id: SectionId, directory: string, run: TaskRun, progress: (message: string) => void,
-  events: SectionEvents = {}): Promise<SectionResult> {
+export async function executeSection(id: SectionId, directory: string, run: TaskRun,
+  { progress, agentSlots, prepared }: SectionEvents & { progress: (message: string) => void; agentSlots?: AgentSlots }): Promise<SectionResult> {
   const definition: SectionDefinition = sections[id];
-  return definition.run({ name: basename(directory), dir: dirname(directory), krita: run.krita, ffmpeg: run.ffmpeg,
-    standard: id === 'part-layering' ? run.standard : undefined,
-    shadowMode: run.shadowMode, jobs: run.jobs, progress }, events);
+  const { options } = prepareSectionInvocation({ ...sectionOptionsFrom(run), name: basename(directory), dir: dirname(directory), progress }, agentSlots);
+  return definition.run(options, { prepared });
 }

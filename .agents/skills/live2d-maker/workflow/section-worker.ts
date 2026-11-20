@@ -1,10 +1,8 @@
 import { readRun, sectionId } from './state.ts';
 import { executeSection } from './sections.ts';
-import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.ts';
 import { formatAgentError } from '../shared/codex/diagnostics.ts';
 import { GroupExecutionError } from '../shared/part/layering.ts';
 import { formatLayeringSummary } from '../shared/part/run.ts';
-import { shareAgentSlots } from '../shared/agents/runtime.ts';
 import { agentSlotsVariable, ipcAgentSlots } from './agent-slots.ts';
 import { releaseAllSectionKrita } from '../shared/krita/section-krita.ts';
 import { signalAgentProcesses } from '../shared/agents/cli.ts';
@@ -27,11 +25,11 @@ try {
   const [directory, requested, execution] = process.argv.slice(2);
   const run = await readRun(directory);
   if (!run || run.runner?.id !== execution) throw new Error('总控执行记录已改变，拒绝启动过期子进程。');
-  selectKnowledge(run.knowledge ?? defaultKnowledgeDirectory);
-  // Agents of all concurrent sections share the scheduler's slots.
-  if (process.send && process.env[agentSlotsVariable] === 'ipc') shareAgentSlots(ipcAgentSlots(process));
-  const result = await executeSection(sectionId(requested), directory, run, message => console.log(message),
-    { prepared: () => process.send?.({ type: 'prepared' }) });
+  const agentSlots = process.send && process.env[agentSlotsVariable] === 'ipc' ? ipcAgentSlots(process) : undefined;
+  const result = await executeSection(sectionId(requested), directory, run, {
+    progress: message => console.log(message), agentSlots,
+    prepared: () => process.send?.({ type: 'prepared' }),
+  });
   process.send?.({ type: 'result', result });
 } catch (error) {
   let message = formatAgentError(error);
