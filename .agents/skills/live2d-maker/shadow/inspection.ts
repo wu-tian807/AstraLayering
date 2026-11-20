@@ -62,7 +62,8 @@ async function currentReceipt(output: string, receipt: string, stamp: string) {
       // within() below rejects any key that leaves this step.
       const path = (p: string) => previous.version === 2 ? resolve(root, p) : join(output, p);
       const files = Object.entries(previous.fileHashes ?? {});
-      if (files.length && (await Promise.all(files.map(async ([p,h]) => { const file = path(p); return within(output,await realpath(file)) && await fileHash(file) === h; }))).every(Boolean)) return previous;
+      const base = await realpath(output);
+      if (files.length && (await Promise.all(files.map(async ([p,h]) => { const file = path(p); return within(base,await realpath(file)) && await fileHash(file) === h; }))).every(Boolean)) return previous;
     }
   } catch (e) { if (!(e instanceof SyntaxError) && !['ENOENT','ENOTDIR'].includes((e as NodeJS.ErrnoException).code ?? '')) throw e; }
 }
@@ -95,9 +96,10 @@ export async function inspectMask(output: string, bridge: string, signal?: Abort
   if (!result.success || result.relations.length !== bindings.shadows.length
     || result.relations.some((r,i) => r.id !== bindings.shadows[i].id || JSON.stringify(r.frames.map(f => f.offset)) !== JSON.stringify(bindings.shadows[i].testOffsets))) throw new Error('原生检查结果与声明关系不一致');
   const files: string[] = [], relations = [], warnings: string[] = [];
+  const inspectionRoot = await realpath(folder);
   const owned = async (name: string) => {
     const path = join(folder,name);
-    if (!within(folder, await realpath(path))) throw new Error('原生检查输出超出检查目录');
+    if (!within(inspectionRoot, await realpath(path))) throw new Error('原生检查输出超出检查目录');
     files.push(path); return path;
   };
   const base = await raster(await owned('without-shadows.png'));

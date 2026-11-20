@@ -62,7 +62,7 @@ OpenAI 兼容服务的 base URL 通常包含 `/v1`，程序追加 `/images/gener
 | 生图用途 | `.env` 配置键 | 默认选择 |
 | --- | --- | --- |
 | 全局默认 | `default_image_model` | `codex-native` |
-| 人物姿态标准化 | `part_standardize_image_model` | 继承默认 |
+| 人物标准参考（姿态调整与去背景共用） | `part_standardize_image_model` | 继承默认 |
 | 简化穿衣角色参考 | `part_simplify_image_model` | 继承默认 |
 | 人物素体参考 | `part_base_subject_image_model` | 继承默认 |
 | 纯衣服参考 | `clothing_preparation_image_model` | 继承默认 |
@@ -175,6 +175,8 @@ AGV 的 GenAI 网关 base URL 可以包含 `/v1beta`，转发会保留供应商�
 Codex 的自定义生图请求通过[原生补丁](../patches/README.md)接入；启动会核对补丁的 `image_provider_version: 2`，为本次请求准备本地生图路由。原生 imagegen 负责工具调用、保存图片与事件，路由复用共享 OpenAI／Google 适配器，模型与凭据通过运行配置传递。`codex-native` 直接使用宿主生图能力。
 
 Claude／AGV 注册与 Codex 原生工具同名的共享 `imagegen` 函数工具，其 [description.md](../knowledge/shared/tools/imagegen/description.md) 与 [schema.json](../shared/tools/imagegen/schema.json) 保持统一；Codex 使用原生工具定义。两条路径共用底层接口实现，绘图任务与验收要求由各管线自己的提示词约定。
+
+人物和衣服 Raster Step01 的部件参考图长边为 1024 像素，画幅跟随部件比例，部件最长边约占 85%。生图自动选画幅，配准时按实际生图尺寸等比贴回原画布。
 
 参考图按顺序传入，生成结果保存在任务请求目录。共享函数工具返回 `hasAlpha`，原生工具路径也检查实际 PNG 的透明通道，并结合看图验收。
 

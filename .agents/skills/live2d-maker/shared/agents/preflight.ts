@@ -49,9 +49,9 @@ export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harn
   }
 }
 
-export function sectionAgentSteps(section: SectionId, standard = false, shadowMode: 'mask' | 'normal-depth' = 'mask'): AgentStep[] {
+export function sectionAgentSteps(section: SectionId, _standard = false, shadowMode: 'mask' | 'normal-depth' = 'mask'): AgentStep[] {
   return (Object.keys(stepModelSlots) as AgentStep[]).filter(step => {
-    if (section === 'part-layering') return step.startsWith('part_') && (standard || !['part_pose_judgment', 'part_standardize'].includes(step));
+    if (section === 'part-layering') return step.startsWith('part_') && step !== 'part_pose_judgment';
     if (section === 'clothing-part-layering') return step.startsWith('clothing_') && !step.startsWith('clothing_raster_');
     if (section === 'raster-layering') return step.startsWith('raster_');
     if (section === 'clothing-raster-layering') return step.startsWith('clothing_raster_');

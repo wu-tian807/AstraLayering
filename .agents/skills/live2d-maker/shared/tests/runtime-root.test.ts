@@ -43,10 +43,11 @@ test('同名任务可在不同 root 独立准备、读取上游、按 name 续�
   for (const label of ['first root', "second'root"]) {
     const dir = join(temporary, label), task = taskDirectory(name, dir);
     await mkdir(task, { recursive: true });
-    await sharp({ create: { width: 16, height: 16, channels: 4, background: '#c090a080' } }).png().toFile(join(task, 'ref.png'));
+    const subject = Buffer.from('<svg width="16" height="16"><rect x="2" y="2" width="12" height="12" fill="#c090a0"/></svg>');
+    await sharp(subject).png().toFile(join(task, 'ref.png'));
     let personCalls = 0, clothingCalls = 0;
     const person = { async simplify(input: string, output: string) { personCalls++; await copyFile(input, output); },
-      async judgeStandard() { assert.fail('standard is disabled'); }, async standardize() { assert.fail('standard is disabled'); },
+      async generateStandardReference() { assert.fail('original already has transparency'); },
       async baseSubject(input: string, output: string) { personCalls++; await copyFile(input, output); } };
     const refs = await preparePerson({ runName: name, dir, image: 'ref.png' }, person);
     assert.equal(refs.directory, join(task, 'part-layering/references'));

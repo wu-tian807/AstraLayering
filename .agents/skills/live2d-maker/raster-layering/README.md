@@ -31,7 +31,7 @@ pnpm raster-layering --check-krita --krita /绝对路径/krita
 
 | 环节 | 工具 |
 | --- | --- |
-| step01 绘制与返修 | `edit_groups`、`edit_occlusion` |
+| step01 绘制与返修 | `prepare_part_reference`、`edit_groups`、`edit_occlusion` |
 | step01 review | `annotate_review_regions` |
 | step02、step03 | 无 |
 

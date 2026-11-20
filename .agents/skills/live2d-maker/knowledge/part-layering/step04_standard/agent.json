@@ -4,6 +4,7 @@
       "prompts/0-标准姿态.md"
     ],
     "tools": [
+      "reuse_reference",
       "imagegen"
     ]
   }

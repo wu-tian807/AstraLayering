@@ -1,0 +1,6 @@
+{
+  "main": {
+    "initial": ["prompts/去背景.md"],
+    "tools": ["imagegen"]
+  }
+}

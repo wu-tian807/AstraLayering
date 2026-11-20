@@ -5,13 +5,14 @@ import sharp from 'sharp';
 import { prepareReferences, type PreparationReferences } from '../preparation.ts';
 import { createPreparationSteps } from '../run.ts';
 
-// Completes the preparation steps of a task from a blank original, reusing it
+// Completes the preparation steps of a task from a transparent original, reusing it
 // as every reference, so later steps find complete step records.
 export async function seedPreparedReferences(runName: string, root?: string): Promise<PreparationReferences> {
   const temporary = await mkdtemp(join(tmpdir(), 'part-layering-prepared-'));
   try {
     const image = join(temporary, 'original.png');
-    await sharp({ create: { width: 100, height: 100, channels: 4, background: '#ffffff' } }).png().toFile(image);
+    const subject = Buffer.from('<svg width="100" height="100"><rect x="20" y="20" width="60" height="60" fill="white"/></svg>');
+    await sharp(subject).png().toFile(image);
     const steps = createPreparationSteps({
       async run(task) {
         const reuse = task.tools?.find(tool => tool.name === 'reuse_reference');

@@ -7,6 +7,7 @@
     "tools": [
       "edit_groups",
       "edit_occlusion",
+      "prepare_part_reference",
       "krita",
       "imagegen"
     ]

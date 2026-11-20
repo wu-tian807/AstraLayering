@@ -6,6 +6,7 @@ import { sectionDirectory, taskDirectory } from '../shared/paths.ts';
 import { inspectSection, runSection } from '../shared/step-section.ts';
 import { readStep } from '../shared/step-chain.ts';
 import { clothingPreparationStep, partSteps, stepNumber } from '../shared/step-paths.js';
+import { recordedReferenceBranch } from '../shared/part/preparation-steps.ts';
 import { requireUpstream, simplifiedCharacter } from '../shared/upstream.ts';
 import { randomUUID } from 'node:crypto';
 import { lstat, mkdir, readFile, rename, rm } from 'node:fs/promises';
@@ -57,11 +58,11 @@ export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): Pr
 // The section's one preparation step, built on the person part references it
 // reads, which must be completed first.
 const sectionOf = (references: string) => dirname(references);
-const personSteps = [partSteps.standard, partSteps.simplified, partSteps.base];
 const step = { number: stepNumber(clothingPreparationStep)!, note: 'preparation' };
 async function requireUpstreamSteps(runName: string, root?: string): Promise<void> {
   const person = sectionDirectory(runName, 'part-layering', root);
-  for (const id of personSteps) {
+  const standard = await recordedReferenceBranch(person);
+  for (const id of [standard?.id ?? partSteps.standard, partSteps.simplified, partSteps.base]) {
     const directory = join(person, id);
     if ((await readStep(directory)).status !== 'completed') {
       throw new Error(`上游步骤 part-layering/${id} 尚未完成（${directory}），请先执行同名 part-layering。`);

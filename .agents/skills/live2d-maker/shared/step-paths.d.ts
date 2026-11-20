@@ -5,10 +5,12 @@ export function stepPath(name: string, ...items: string[]): string;
 export const partSteps: {
   readonly original: 'step01_original'; readonly options: 'step02_options'; readonly pose: 'step03_pose';
   readonly standard: 'step04_standard'; readonly simplified: 'step05_simplified'; readonly base: 'step06_base';
+  readonly cutout: 'step04_cutout'; readonly passthrough: 'step04_passthrough';
   readonly ready: 'step07_ready'; readonly initial: 'step08_initial'; readonly outline: 'step09_outline';
   readonly reduce: 'step10_reduce'; readonly completion: 'step11_completion'; readonly children: 'step12_children';
   readonly merge: 'step13_merge'; readonly occlusion: 'step14_occlusion';
 };
+export const standardReferenceSteps: readonly [typeof partSteps.standard, typeof partSteps.cutout, typeof partSteps.passthrough];
 export type PartStep = keyof typeof partSteps;
 export const clothingPreparationStep: 'step01_preparation';
 export function shadowStep(mode: string): string;
