@@ -10,6 +10,7 @@ import { readDressup } from '../part/dressup.ts';
 import { copyDelivery } from './passthrough.ts';
 import { partSteps } from '../step-paths.js';
 import { createPartReferenceTool } from '../tools/prepare_part_reference/index.ts';
+import { createUpscaleImageTool } from '../tools/upscale_image/index.ts';
 
 type PartRasterDefinition = {
   id: Extract<SectionId, 'raster-layering' | 'clothing-raster-layering'>;
@@ -26,11 +27,12 @@ export function partRasterSection<T extends PartRasterDefinition>(definition: T)
     inputDirectories: input => [input.directory],
     // occlusion is the last part step.
     upstreamStep: input => ({ id: `${definition.inputSection}/${partSteps.occlusion}`, directory: join(input.directory, partSteps.occlusion) }),
-    tools: (output, input, step, phase) => step.id === 'step01' && phase.startsWith('review-')
+    tools: (output, input, step, phase, _krita, size = '1K') => step.id === 'step01' && phase.startsWith('review-')
       ? [createReviewAnnotationTool(dirname(output), dirname(dirname(output)), join(output, 'review-evidence'))]
       : step.id === 'step01' && (phase === 'draw' || phase.startsWith('repair-'))
         ? [...createStructureTools(input), createPartReferenceTool(input,
-          join(input.directory, partReferenceFile(definition.inputSection)))] : [],
+          join(input.directory, partReferenceFile(definition.inputSection))),
+          ...(size === '1K' ? [] : [createUpscaleImageTool()])] : [],
     deliveryWarnings: async (input, step) => {
       if (step.id !== 'step01') return [];
       try { await validateRasterStructure(input); return []; }

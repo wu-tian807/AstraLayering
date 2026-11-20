@@ -135,9 +135,10 @@ export function stepKnowledge(section: string, step: string, root = knowledgeDir
     },
     // agent.json decides which provided tools the agent sees and in what
     // order. Descriptions resolve step -> section -> shared -> provided tool.
-    tools<T extends FunctionTool>(role: KnowledgeRole, provided: readonly T[]): T[] {
+    tools<T extends FunctionTool>(role: KnowledgeRole, provided: readonly T[], disabled: readonly string[] = []): T[] {
       const names = toolNames(role);
       return names.flatMap(name => {
+        if (disabled.includes(name)) return [];
         const tool = provided.find(item => item.name === name);
         if (!tool) {
           // imagegen is a native capability or is attached by the CLI adapter.
