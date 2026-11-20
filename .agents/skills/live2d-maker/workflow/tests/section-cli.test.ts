@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { test } from 'node:test';
-import { defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
+import { defaultKnowledgeDirectory, knowledgeDirectory } from '../../shared/knowledge.ts';
 import { readStep } from '../../shared/step-chain.ts';
 import { rangeSummary, runSection } from '../../shared/step-section.ts';
 import { runSectionCommand } from '../section-cli.ts';
@@ -18,6 +18,9 @@ test('新注册的 section 直接获得起止范围、前置交付检查和续�
   const registry: Record<string, SectionDefinition> = {
     example: {
       async run(options) {
+        assert.equal(options.dir, root);
+        assert.equal(options.knowledge, resolve(defaultKnowledgeDirectory));
+        assert.equal(knowledgeDirectory(), options.knowledge);
         const result = await runSection({
           ...options, directory,
           steps: [{ number: 1, requiredFiles: ['delivery.txt'] }, { number: 2, note: 'selected' }, { number: 3 }],
