@@ -63,15 +63,18 @@ test('已有任务保存参数不启动也不改产物，继续恢复重试读�
 
 test('跟随输入图换算长边档位，保存具体档位并限制为最高 4K', async t => {
   const f = await fixture(t, async options => {
-    assert.equal((await readRun(join(f.dir, options.name)))!.size, '2K');
+    assert.equal((await readRun(join(f.dir, options.name)))!.size, '1K');
     return 4242;
   });
   const png = (width: number, height: number) => sharp({ create: { width, height, channels: 3, background: '#cbbbaa' } }).png().toBuffer();
   const portrait = (await png(64, 1025)).toString('base64');
   assert.equal((await f.post('tasks', { name: 'portrait', upload: portrait, size: 'follow' })).status, 201);
   const task = join(f.dir, 'portrait');
-  assert.equal((await readRun(task))!.size, '2K');
+  assert.equal((await readRun(task))!.size, '1K');
   assert.equal((await f.post('start', { name: 'portrait' })).status, 202);
+  const atTwoK = (await png(64, 2048)).toString('base64');
+  assert.equal((await f.post('tasks', { name: 'at-two-k', upload: atTwoK, size: 'follow' })).status, 201);
+  assert.equal((await readRun(join(f.dir, 'at-two-k')))!.size, '2K');
   const image = join(f.base, 'wide.png');
   await writeFile(image, await png(8192, 64));
   assert.equal((await f.post('tasks', { name: 'wide', image, size: 'follow' })).status, 201);

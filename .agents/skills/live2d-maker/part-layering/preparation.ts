@@ -1,8 +1,8 @@
-import { normalizeGeneratedReference } from '../shared/part/reference-normalization.ts';
-import type { ImageProcessingOptions } from '../shared/image-processing.ts';
+import { normalizeGeneratedReference, type ReferenceProcessingOptions } from '../shared/part/reference-normalization.ts';
 import { sectionDirectory, resolveInput, taskDirectory } from '../shared/paths.ts';
-import { mkdir, rm } from 'node:fs/promises';
+import { mkdir, rename, rm } from 'node:fs/promises';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
+import sharp from 'sharp';
 import { dirname, join, resolve } from 'node:path';
 import { readPreparationOptions } from '../shared/part/preparation-cache.ts';
 import { standardReferenceSteps } from '../shared/step-paths.js';
@@ -75,8 +75,9 @@ export async function preparationRoute(input: PreparationInput): Promise<Prepara
 
 // Each preparation step runs by its own marker (shared/step-chain.ts).
 export async function prepareReferences(input: PreparationInput, steps: PreparationSteps,
-  progress?: (message: string) => void, options: ImageProcessingOptions = {}, range?: StepRange, signal?: AbortSignal): Promise<PreparationReferences> {
-  const normalization = { ...options, runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
+  progress?: (message: string) => void, options: ReferenceProcessingOptions = {}, range?: StepRange, signal?: AbortSignal): Promise<PreparationReferences> {
+  const normalization = { ...options, size: input.size ?? options.size, signal: signal ?? options.signal,
+    runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
   const directory = getPreparationDirectory(input.runName, input.dir), inputs = inputDirectory(input.runName, input.dir);
   const source = input.image === undefined ? undefined : resolveInput(input.runName, input.image, input.dir);
   if (source) {
@@ -118,12 +119,33 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
     if (id === 'base') progress?.('素体换装：沿用已有参考');
   }
   async function prepared(stage: 'simplified' | 'base', target: string, refs: PreparationReferences,
-    generate: (output: string, processGenerated: ProcessGenerated) => Promise<void>) {
-    await produce(target, temporary => generate(temporary, async image => {
-      if (!refs.standardImage) throw new Error('参考后处理缺少 standard.png');
-      // Raw generation is retained outside the final reference filenames for diagnosis.
-      await normalizeGeneratedReference(image, refs.standardImage, join(sectionOf(directory), stageStep(stage)), stage, normalization);
-    }));
+    generate: (output: string, processGenerated: ProcessGenerated) => Promise<ReferenceChoice | void>) {
+    const standard = refs.standardImage;
+    if (!standard) throw new Error('参考后处理缺少 standard.png');
+    const records = join(sectionOf(directory), stageStep(stage));
+    const pending = join(records, `${stage}-input.png`);
+    if (await exists(target)) {
+      const canvas = (await sharp(standard).metadata()).autoOrient;
+      const published = await sharp(target).metadata().catch(() => undefined);
+      if (published?.format === 'png' && published.width === canvas.width && published.height === canvas.height) {
+        await rm(pending, { force: true });
+        return;
+      }
+    }
+    await produce(target, async temporary => {
+      if (!await exists(pending)) {
+        let generated: string | undefined;
+        const choice = await generate(temporary, async image => { generated = image; });
+        if (stage === 'base' && choice) await writeJson(join(records, 'decision.json'),
+          { version: 1, dressed: choice.generated, reason: choice.reason } satisfies DressupDecision);
+        if (!generated) return;
+        if (generated === temporary) await rename(temporary, pending);
+        else await produce(pending, path => copyAsPng(generated!, path));
+      }
+      await normalizeGeneratedReference(pending, standard, temporary, records, stage, normalization);
+      normalization.signal?.throwIfAborted();
+    });
+    await rm(pending, { force: true });
   }
   async function run(id: PreparationStage, output: string, refs: PreparationReferences) {
     switch (id) {
@@ -136,7 +158,7 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
       case 'cutout':
       case 'passthrough': {
         const pending = join(sectionOf(directory), stageStep(id), 'standard-input.png');
-        if (await publishStandardCanvas(output, output) || await publishStandardCanvas(pending, output)) {
+        if (await publishStandardCanvas(output, output) || await publishStandardCanvas(pending, output, normalization)) {
           await rm(pending, { force: true });
           reuse(id);
           return;
@@ -148,25 +170,16 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
         if (!reused) {
           await steps.generateStandardReference(mode, original, pending, readPrompt(stageStep(mode), refs), stageStep(id));
         }
-        if (!await publishStandardCanvas(pending, output)) throw new Error('标准参考须交付 PNG。');
+        if (!await publishStandardCanvas(pending, output, normalization)) throw new Error('标准参考须交付 PNG。');
         await rm(pending, { force: true });
         return;
       }
       case 'simplified':
         return prepared('simplified', output, refs, async (temporary, processGenerated) =>
           steps.simplify(refs.standardImage!, temporary, readPrompt('step05_simplified', refs), processGenerated));
-      case 'base': {
-        let choice: ReferenceChoice | undefined;
-        await prepared('base', output, refs, async (temporary, processGenerated) => {
-          choice = await steps.baseSubject(refs.simplifiedSubject, temporary, readPrompt('step06_base', refs), processGenerated) || undefined;
-        });
-        // Read by the scheduler to decide whether the clothing lane runs.
-        const records = join(sectionOf(directory), stageStep('base'));
-        const made = choice as ReferenceChoice | undefined;
-        if (made) await mkdir(records, { recursive: true }).then(() => writeJson(join(records, 'decision.json'),
-          { version: 1, dressed: made.generated, reason: made.reason } satisfies DressupDecision));
-        return;
-      }
+      case 'base':
+        return prepared('base', output, refs, async (temporary, processGenerated) =>
+          steps.baseSubject(refs.simplifiedSubject, temporary, readPrompt('step06_base', refs), processGenerated));
       case 'ready':
     }
   }

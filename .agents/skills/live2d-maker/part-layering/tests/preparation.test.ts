@@ -143,6 +143,45 @@ test('生图分支在准备函数内完成尺寸处理，两步直接交付 PNG 
   await assert.rejects(readFile(join(refs.directory, 'judgment.json')), { code: 'ENOENT' });
 });
 
+test('2K 的标准图、简化和素体在交付时各最多超分一次并共用同一画布', async t => {
+  const f = await fixture(t, true, true);
+  const generated = Buffer.from('<svg width="641" height="933"><rect x="75" y="100" width="450" height="700" fill="#a16b89"/></svg>');
+  await sharp(generated).png().toFile(f.generated);
+  const inputs: [number, number][] = [];
+  const upscale = async (bytes: Buffer) => {
+    const { width, height } = await sharp(bytes).metadata();
+    inputs.push([width, height]);
+    return sharp(bytes).resize(width * 4, height * 4).png().toBuffer();
+  };
+  const input = { runName: f.runName, image: f.original, standard: true, size: '2K' as const };
+  const refs = await prepareReferences(input, f.steps, undefined, { upscale });
+  assert.deepEqual(inputs, [[641, 933], [641, 933], [641, 933]]);
+  for (const path of [refs.standardImage!, refs.simplifiedSubject, refs.baseSubject]) {
+    const { width, height, hasAlpha } = await sharp(path).metadata();
+    assert.deepEqual([width, height, hasAlpha], [1408, 2048, true]);
+  }
+  assert.deepEqual(await readFile(refs.originalImage!), f.bytes);
+  assert.deepEqual(await prepareReferences(input, f.steps, undefined, { upscale }), refs);
+  assert.equal(inputs.length, 3);
+  assert.equal(f.calls.length, 3);
+});
+
+test('超分中断时保留已生成的简化图，续跑只补后处理并复用为素体', async t => {
+  const f = await fixture(t, true, false, true);
+  await sharp(f.original).resize(1536, 2048).png().toFile(join(dirname(f.original), '2k.png'));
+  const input = { runName: f.runName, image: join(dirname(f.original), '2k.png'), size: '2K' as const };
+  let attempts = 0;
+  const upscale = async (bytes: Buffer) => {
+    if (++attempts === 1) throw new Error('测试超分中断');
+    return sharp(bytes).resize(192, 256).png().toBuffer();
+  };
+  await assert.rejects(prepareReferences(input, f.steps, undefined, { upscale }), /测试超分中断/);
+  const refs = await prepareReferences(input, f.steps, undefined, { upscale });
+  assert.deepEqual(f.calls.map(call => call.name), ['参考判断与简化', '素体换装']);
+  assert.deepEqual(await readFile(refs.baseSubject), await readFile(refs.simplifiedSubject));
+  assert.equal(attempts, 2);
+});
+
 test('复用工具只接受理由，输入和输出路径固定且单次复制', async t => {
   const f = await fixture(t, false);
   const target = join(dirname(f.original), 'reused.png');

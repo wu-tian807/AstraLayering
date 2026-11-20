@@ -48,8 +48,6 @@ test('preparation sends clothed and base references in order through one configu
   assert.match(f.calls[0].prompt, /image_gen\.imagegen/);
   assert.deepEqual(referencePaths(f.calls[0].prompt), [refs.originalImage, f.base]);
   assert.equal(f.calls[0].step, 'clothing_preparation');
-  assert.ok(f.calls[0].prompt.includes('96×128'));
-  assert.ok(!f.calls[0].prompt.includes('{width}'));
   assert.deepEqual(await readFile(refs.originalImage!), await readFile(f.input));
   assert.deepEqual(await readFile(refs.baseSubject), await readFile(f.generated));
   assert.equal(refs.baseSubject, refs.simplifiedSubject);
@@ -59,6 +57,26 @@ test('preparation sends clothed and base references in order through one configu
   assert.deepEqual(await prepareReferences({ runName: f.runName }, f.steps), refs);
   assert.equal(f.calls.length, 0);
   assert.deepEqual(await loadPreparedReferences(f.runName), refs);
+});
+
+test('2K 的衣服参考在交付前超分，后处理失败后沿用已生成的 PNG', async t => {
+  const f = await fixture(t);
+  const standard = join(dirname(f.upstream), 'standard.png');
+  await sharp({ create: { width: 1536, height: 2048, channels: 4, background: '#c0c0c0' } }).png().toFile(standard);
+  const input = { runName: f.runName, size: '2K' as const };
+  let attempts = 0;
+  const upscale = async (bytes: Buffer) => {
+    if (++attempts === 1) throw new Error('测试超分中断');
+    return sharp(bytes).resize(384, 512).png().toBuffer();
+  };
+  await assert.rejects(prepareReferences(input, f.steps, undefined, { upscale }), /测试超分中断/);
+  await assert.rejects(readFile(join(f.directory, 'clothing.png')), { code: 'ENOENT' });
+  const refs = await prepareReferences(input, f.steps, undefined, { upscale });
+  const metadata = await sharp(refs.baseSubject).metadata();
+  assert.deepEqual([metadata.width, metadata.height], [1536, 2048]);
+  assert.equal((await sharp(refs.baseSubject).stats()).isOpaque, false);
+  assert.equal(f.calls.length, 1);
+  assert.equal(attempts, 2);
 });
 
 test('deleting clothing reference is refused; retrying the step regenerates from the saved character', async t => {
