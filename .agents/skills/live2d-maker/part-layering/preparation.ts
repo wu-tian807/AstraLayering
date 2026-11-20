@@ -1,14 +1,14 @@
 import { normalizeGeneratedReference } from '../shared/part/reference-normalization.ts';
 import type { ImageProcessingOptions } from '../shared/image-processing.ts';
 import { sectionDirectory, resolveInput, taskDirectory } from '../shared/paths.ts';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 import { copyAsPng, pngBytes } from '../shared/png.ts';
 import { dirname, join, resolve } from 'node:path';
 import { readPreparationOptions } from '../shared/part/preparation-cache.ts';
 import { standardReferenceSteps } from '../shared/step-paths.js';
 import { inspectSection, runSection, stepName, type SectionPlan } from '../shared/step-section.ts';
 import type { PreparationInput, PreparationReferences } from '../shared/part/preparation-types.ts';
-import { exists, findImage, preparationSteps, produce, reuseReference,
+import { exists, findImage, preparationSteps, produce, publishStandardCanvas, reuseReference,
   sectionOf, stageNumber, stageStep, stepStage, writeJson, type PreparationStage, type PreparationStep } from './preparation-state.ts';
 import { stepKnowledge } from '../shared/knowledge.ts';
 import { taskRootOf } from '../shared/task-paths.ts';
@@ -84,15 +84,16 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
   const initial = await references(input.runName, input.dir);
   const defined = await preparationSteps(initial, inputs, source), paths = outputs(defined);
   const branchNumber = stageNumber('standard');
+  const needsOriginal = () => new Error('首次启动或原图缺失时，需要 --image <角色图片路径>');
   await runSection({ directory: sectionOf(directory), steps: defined, progress,
     async check(plan) {
       const saved = await readPreparationOptions(directory);
       if (saved !== undefined && saved !== standard && !unfinished(plan, stageStep('options'))) throw modeError(directory, saved);
       if (source || initial.originalImage) return;
       const pending = plan.chain.find(step => unfinished(plan, step.id));
-      if (pending?.id === stageStep('original') || (pending && !initial.standardImage)
-        || standardReferenceSteps.some(id => plan.defined.has(id) && unfinished(plan, id))) {
-        throw new Error('首次启动或原图缺失时，需要 --image <角色图片路径>');
+      const pendingStandard = standardReferenceSteps.some(id => plan.defined.has(id) && unfinished(plan, id));
+      if (pending?.id === stageStep('original') || (pending && !initial.standardImage && !pendingStandard)) {
+        throw needsOriginal();
       }
     },
     async keep(step) {
@@ -130,13 +131,24 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
       case 'options': return writeJson(output, { standard });
       case 'standard':
       case 'cutout':
-      case 'passthrough':
-        return produce(output, async temporary => {
-          const original = refs.originalImage!;
-          const mode = standard && id === 'standard' ? 'standard' : 'cutout';
-          if (mode === 'cutout' && await reuseReference(original, temporary, true)) return;
-          await steps.generateStandardReference(mode, original, temporary, readPrompt(stageStep(mode), refs), stageStep(id));
-        });
+      case 'passthrough': {
+        const pending = join(sectionOf(directory), stageStep(id), 'standard-input.png');
+        if (await publishStandardCanvas(output, output) || await publishStandardCanvas(pending, output)) {
+          await rm(pending, { force: true });
+          reuse(id);
+          return;
+        }
+        const original = refs.originalImage;
+        if (!original) throw needsOriginal();
+        const mode = standard && id === 'standard' ? 'standard' : 'cutout';
+        const reused = mode === 'cutout' && await reuseReference(original, pending, true);
+        if (!reused) {
+          await steps.generateStandardReference(mode, original, pending, readPrompt(stageStep(mode), refs), stageStep(id));
+        }
+        if (!await publishStandardCanvas(pending, output)) throw new Error('标准参考须交付 PNG。');
+        await rm(pending, { force: true });
+        return;
+      }
       case 'simplified':
         return prepared('simplified', output, refs, async (temporary, processGenerated) =>
           steps.simplify(refs.standardImage!, temporary, readPrompt('step05_simplified', refs), processGenerated));

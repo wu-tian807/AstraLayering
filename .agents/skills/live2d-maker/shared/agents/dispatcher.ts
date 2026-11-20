@@ -30,6 +30,7 @@ export type AgentTask = {
   // Original task text a follow-up turn is preceded by when its thread is new.
   resumeContext?: string;
   imageGeneration?: boolean;
+  onImageSaved?: (image: GeneratedImage) => Promise<void>;
   outputSchema?: Record<string, unknown>;
   timeoutMs?: number;
   cwd?: string;
@@ -267,7 +268,12 @@ export class AgentDispatcher {
             image.execute = async (args, signal, context) => {
               const result = await execute(args, signal, context);
               for (const item of result.contentItems) if (item.type === 'inputText') {
-                const value = JSON.parse(item.text); if (value.savedPath) generated.push({ savedPath: value.savedPath });
+                const value = JSON.parse(item.text);
+                if (value.savedPath) {
+                  const saved = { savedPath: value.savedPath };
+                  await original.onImageSaved?.(saved);
+                  generated.push(saved);
+                }
               }
               return result;
             };

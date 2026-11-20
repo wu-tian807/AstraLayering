@@ -216,7 +216,13 @@ export function createFunctionToolSession(options: AgentOptions, resumeThreadId?
         let savedPath: string;
         try { savedPath = imagePath(item.savedPath, 'Codex 原生生图 savedPath'); }
         catch (error) { failTurn(agentCallError(error, '原生生图返回了无效路径', 'invalidOutput')); return; }
-        if (!current.images.some(image => image.savedPath === savedPath)) current.images.push({ savedPath });
+        const turn = current;
+        if (!turn.images.some(image => image.savedPath === savedPath)) {
+          const image = { savedPath };
+          try { await turn.task.onImageSaved?.(image); }
+          catch (error) { failTurn(agentCallError(error, '保存生图产物失败', 'localError')); return; }
+          turn.images.push(image);
+        }
       }
     } else if (message.method === 'thread/tokenUsage/updated' && current && ownTurn) {
       current.usage = message.params?.tokenUsage;
