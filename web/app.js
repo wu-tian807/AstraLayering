@@ -770,8 +770,22 @@ function executionFields(run) {
  return `<label class="standard-option"><div><b>标准化人物姿态</b><p>关闭时直接沿用输入姿态。</p></div><input type="checkbox" name="standard" ${run?.standard?'checked':''} role="switch" aria-label="标准化人物姿态"></label>
  <label class="standard-option live-option"><div><b>阴影完成后制作头部九轴</b><p>由总调度的 --live 控制，默认关闭。</p></div><input type="checkbox" name="live" ${run?.live?'checked':''} role="switch" aria-label="阴影完成后制作头部九轴"></label><p class="live-detail"></p>
  <label class="field-label" for="task-shadowMode">阴影方式</label><select id="task-shadowMode" name="shadowMode"><option value="mask" ${run?.shadowMode!=='normal-depth'?'selected':''}>Live2D 蒙版</option><option value="normal-depth" ${run?.shadowMode==='normal-depth'?'selected':''}>法线＋深度</option></select>
- <label class="field-label" for="task-size">分辨率</label><select id="task-size" name="size">${resolutions.map(value=>`<option value="${value}" ${value===size?'selected':''}>${value}</option>`).join('')}<option value="follow">跟随输入图（最大 4K）</option></select>
+ <label class="field-label" for="task-size">分辨率</label><select id="task-size" name="size" aria-describedby="task-size-note">${resolutions.map(value=>`<option value="${value}" ${value===size?'selected':''}>${value}</option>`).join('')}<option value="follow">跟随输入图（最大 4K）</option></select><p id="task-size-note" class="dialog-note" role="status" hidden></p>
  <label class="field-label" for="task-jobs">调度并发 jobs</label><input id="task-jobs" name="jobs" type="number" min="1" required value="${run?.jobs||3}">`;
+}
+async function bindUpscaleEnvironment(form) {
+ const choices=[...form.elements.size.options].filter(option=>option.value!==resolutions[0]);
+ const note=form.querySelector('#task-size-note');
+ for(const option of choices)option.disabled=true;
+ note.hidden=false;note.textContent='正在检测超分环境…';
+ const availability=await get('./api/upscale-environment').catch(()=>({supported:false,reason:'无法确认超分环境。'}));
+ if(!form.isConnected)return;
+ if(availability.supported){
+  for(const option of choices)option.disabled=false;
+  note.hidden=true;
+ }else{
+  note.textContent=availability.reason+' 仅可选 1K。';
+ }
 }
 function bindExecutionFields(form,run) {
  let rangeEdited=false;
@@ -839,6 +853,7 @@ function showNew() {
  dialog.querySelector('#image-input').onchange=event=>upload(event.target.files[0]);const zone=dialog.querySelector('#upload-zone');zone.ondragover=event=>event.preventDefault();zone.ondrop=event=>{event.preventDefault();upload(event.dataTransfer.files[0]);};
  dialog.addEventListener('close',()=>{if(previewURL)URL.revokeObjectURL(previewURL);},{once:true});
  const form=dialog.querySelector('form'),{update}=bindExecutionFields(form);
+ void bindUpscaleEnvironment(form);
  form.onsubmit=async event=>{
   event.preventDefault();const fields=new FormData(form),button=form.querySelector('[type=submit]');button.disabled=true;form.querySelector('.form-error').textContent='';
   try{
