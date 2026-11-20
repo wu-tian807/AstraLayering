@@ -65,3 +65,21 @@ test('公共命令检查启动必需参数', async () => {
   await assert.rejects(runSectionCommand(['example', '--name', 'case'], registry), /--knowledge/);
   await assert.rejects(runSectionCommand(['example', '--check-krita'], registry), /--krita/);
 });
+
+test('独立 section 接收默认 1K 和显式档位', async t => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'astra-section-size-')));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const sizes: string[] = [];
+  const registry: Record<string, SectionDefinition> = { example: {
+    async run(options) {
+      sizes.push(options.size);
+      return { summary: 'size fixture' };
+    },
+  } };
+  const args = ['example', '--name', 'case', '--dir', root, '--knowledge', defaultKnowledgeDirectory];
+  const launch = (...extra: string[]) => runSectionCommand([...args, ...extra], registry, () => {});
+  await launch();
+  await launch('--size', '2K');
+  await assert.rejects(launch('--size', '4096'), /--size/);
+  assert.deepEqual(sizes, ['1K', '2K']);
+});
