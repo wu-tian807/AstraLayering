@@ -41,7 +41,7 @@ export async function withRust<T>(env: NodeJS.ProcessEnv, action: (toolchain: Ru
       RUSTUP_INIT_SKIP_PATH_CHECK: 'yes', PATH: join(root, 'cargo/bin') + (platform === 'win32' ? ';' : ':') + (env.PATH ?? '') };
     const suffix = platform === 'win32' ? '.exe' : '';
     const url = `https://static.rust-lang.org/rustup/dist/${host}/rustup-init${suffix}`;
-    const bytes = await (services.download?.(url) ?? downloadBytes(url, { timeout: { idleMs: 60_000, totalMs: 600_000 },
+    const bytes = await (services.download?.(url) ?? downloadBytes(url, { idleTimeoutMs: 60_000,
       progress: sizes => emit('running', '下载 Rust 安装器', sizes) }));
     const checksumFile = await (services.download?.(url + '.sha256') ?? downloadBytes(url + '.sha256', { signal: AbortSignal.timeout(120_000) }));
     const checksum = checksumFile.toString('utf8').trim().split(/\s+/)[0];

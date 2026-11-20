@@ -2,26 +2,26 @@ import type { PreparationProgress } from './preparation-progress.ts';
 
 type DownloadOptions = {
   signal?: AbortSignal;
-  timeout?: { idleMs: number; totalMs: number };
+  idleTimeoutMs?: number;
   maxBytes?: number;
   progress?: (bytes: NonNullable<PreparationProgress['bytes']>) => void;
 };
 
-export async function downloadBytes(url: string, { signal, timeout, maxBytes, progress }: DownloadOptions = {}): Promise<Buffer> {
-  const deadline = timeout ? new AbortController() : undefined;
-  const requestSignal = deadline ? (signal ? AbortSignal.any([signal, deadline.signal]) : deadline.signal) : signal;
+export async function downloadBytes(url: string, { signal, idleTimeoutMs, maxBytes, progress }: DownloadOptions = {}): Promise<Buffer> {
+  const inactivity = idleTimeoutMs === undefined ? undefined : new AbortController();
+  const requestSignal = inactivity && signal ? AbortSignal.any([signal, inactivity.signal]) : inactivity?.signal ?? signal;
   let reader: ReadableStreamDefaultReader<Uint8Array> | undefined;
   let total: number | undefined;
   let idleTimer: ReturnType<typeof setTimeout> | undefined;
   let received = 0, last = 0;
-  const abortDownload = (reason: string) => deadline?.abort(new Error(
-    `下载超时（${reason}，已下载 ${received}${total === undefined ? '' : ` / ${total}`} 字节）：${url}`));
   const resetIdleTimer = () => {
-    if (!timeout) return;
+    if (idleTimeoutMs === undefined) return;
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(() => abortDownload(`连续 ${timeout.idleMs / 1000} 秒没有收到新数据`), timeout.idleMs);
+    idleTimer = setTimeout(() => {
+      const bytes = total === undefined ? String(received) : `${received} / ${total}`;
+      inactivity?.abort(new Error(`下载超时（连续 ${idleTimeoutMs / 1000} 秒没有收到新数据，已下载 ${bytes} 字节）：${url}`));
+    }, idleTimeoutMs);
   };
-  const totalTimer = timeout ? setTimeout(() => abortDownload(`总时长达到 ${timeout.totalMs / 1000} 秒`), timeout.totalMs) : undefined;
   resetIdleTimer();
 
   try {
@@ -48,11 +48,10 @@ export async function downloadBytes(url: string, { signal, timeout, maxBytes, pr
     return Buffer.concat(chunks, received);
   } catch (error) {
     // Fetch can report a generic AbortError when the response body has already started.
-    if (deadline?.signal.aborted) requestSignal?.throwIfAborted();
+    if (inactivity?.signal.aborted) requestSignal?.throwIfAborted();
     throw error;
   } finally {
     clearTimeout(idleTimer);
-    clearTimeout(totalTimer);
     if (reader) {
       await reader.cancel().catch(() => {});
       reader.releaseLock();

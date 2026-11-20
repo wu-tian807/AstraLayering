@@ -24,32 +24,20 @@ function fixture(t: TestContext, length: number) {
   };
 }
 
-test('byte progress keeps a slow download alive beyond the idle timeout', async t => {
-  const stream = fixture(t, 3);
-  const result = downloadBytes(url, { timeout: { idleMs: 60_000, totalMs: 600_000 } });
-  await stream.chunk(40_000, 1);
-  await stream.chunk(40_000, 2);
-  await stream.chunk(40_000, 3);
+test('a download can continue beyond ten minutes while bytes are arriving', async t => {
+  const expected = Buffer.from(Array.from({ length: 16 }, (_, i) => i));
+  const stream = fixture(t, expected.length);
+  const result = downloadBytes(url, { idleTimeoutMs: 60_000 });
+  for (const byte of expected) await stream.chunk(40_000, byte);
   stream.close();
-  assert.deepEqual(await result, Buffer.from([1, 2, 3]));
+  assert.deepEqual(await result, expected);
 });
 
 test('a stalled body reports the idle timeout and bytes already received', async t => {
   const stream = fixture(t, 3);
-  const result = downloadBytes(url, { timeout: { idleMs: 60_000, totalMs: 600_000 } });
+  const result = downloadBytes(url, { idleTimeoutMs: 60_000 });
   const failure = assert.rejects(result, /连续 60 秒没有收到新数据，已下载 1 \/ 3 字节/);
   await stream.chunk(40_000, 1);
   t.mock.timers.tick(60_000);
-  await failure;
-});
-
-test('the total deadline still applies while the body keeps making progress', async t => {
-  const stream = fixture(t, 4);
-  const result = downloadBytes(url, { timeout: { idleMs: 60_000, totalMs: 150_000 } });
-  const failure = assert.rejects(result, /总时长达到 150 秒，已下载 3 \/ 4 字节/);
-  await stream.chunk(40_000, 1);
-  await stream.chunk(40_000, 2);
-  await stream.chunk(40_000, 3);
-  t.mock.timers.tick(30_000);
   await failure;
 });
