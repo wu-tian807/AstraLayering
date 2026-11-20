@@ -38,6 +38,7 @@ import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './s
 import { createUpdateCheck } from './update-check.ts';
 import { installedVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
 import { projectDisplayName, saveProjectDisplayName, validateDisplayName } from './project-metadata.ts';
+import { createUpscaleEnvironmentCheck } from './upscale-environment.ts';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const maxBytes = 32 * 1024 * 1024;
@@ -90,12 +91,14 @@ function sizeFromImage({ width, height }: { width?: number; height?: number }) {
 type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
   start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
+  upscale = createUpscaleEnvironmentCheck(),
   preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); await preflightTaskInputs(options); },
   kritaScan = createSoftwareScan('krita'), ffmpegScan = createSoftwareScan('ffmpeg'),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
   kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>;
   kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan>;
+  upscale?: ReturnType<typeof createUpscaleEnvironmentCheck>;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
   const scans = new Map([['/api/krita-scan', kritaScan], ['/api/ffmpeg-scan', ffmpegScan]]);
   async function validateDir(path: string) {
@@ -248,6 +251,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (path === '/api/studio/review') { json(await saveStudioReview(root, dirname(settingsPath), value), 201); return; }
         const opts = options(value, requestDir), directory = directoryFor(opts), followSize = value.size === 'follow';
         if (path === '/api/tasks') {
+          if (followSize || (opts.size !== undefined && opts.size !== sectionSize())) {
+            const availability = await upscale();
+            if (!availability.supported) { json({ error: availability.reason + ' 当前只能选择 1K。' }, 409); return; }
+          }
           // Global settings are defaults for a new task. Existing tasks own their options.
           if (!opts.krita && settings.krita) opts.krita = settings.krita;
           if (!opts.ffmpeg && settings.ffmpeg) opts.ffmpeg = settings.ffmpeg;
@@ -360,6 +367,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       }
       if (path === '/healthz') { json({ status: 'ok', application: 'astra-layering', mode: 'workbench', version: (await installedVersion()).label }); return; }
       if (path === '/api/version') { json(await updates()); return; }
+      if (path === '/api/upscale-environment') { json(await upscale()); return; }
       if (path === '/api/settings') { json({ ...settings, defaults }); return; }
       if (path === '/api/fs') { json(await browse(url.searchParams.get('path'), url.searchParams.get('kind') === 'file' ? 'file' : 'dir')); return; }
       const scan = scans.get(path);

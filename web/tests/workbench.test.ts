@@ -14,11 +14,12 @@ import { runTask } from '../../.agents/skills/live2d-maker/workflow/runner.ts';
 import { stopRequestPath } from '../../.agents/skills/live2d-maker/workflow/control.ts';
 
 type WorkbenchOptions = NonNullable<Parameters<typeof createWorkbench>[0]>;
-async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}, initialKrita?: string) {
+async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: WorkbenchOptions['preflight'] = async () => {}, initialKrita?: string,
+  upscale: WorkbenchOptions['upscale'] = async () => ({ supported: true })) {
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-web-')));
   const dir = join(base, 'runs'), settingsPath = join(base, 'settings.json');
   if (initialKrita) await writeFile(settingsPath, JSON.stringify({ directory: dir, krita: initialKrita }));
-  const server = await createWorkbench({ defaultDir: dir, settingsPath, start, preflight });
+  const server = await createWorkbench({ defaultDir: dir, settingsPath, start, preflight, upscale });
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
   t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
   const port = (server.address() as any).port, url = 'http://127.0.0.1:' + port;
@@ -75,6 +76,22 @@ test('跟随输入图换算长边档位，保存具体档位并限制为最高 4
   await writeFile(image, await png(8192, 64));
   assert.equal((await f.post('tasks', { name: 'wide', image, size: 'follow' })).status, 201);
   assert.equal((await readRun(join(f.dir, 'wide')))!.size, '4K');
+});
+
+test('超分环境检查不通过时拒绝高分辨率和跟随输入图，仍可创建 1K 任务', async t => {
+  const unavailable = { supported: false, reason: '测试环境不支持超分。' } as const;
+  const f = await fixture(t, undefined, undefined, undefined, async () => unavailable);
+  const response = await fetch(f.url + '/api/upscale-environment');
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), unavailable);
+
+  const original = await upload();
+  for (const size of ['2K', '3K', '4K', 'follow']) {
+    assert.equal((await f.post('tasks', { name: 'blocked', upload: original, size })).status, 409);
+  }
+  await assert.rejects(readFile(join(f.dir, 'blocked', 'run.json')), { code: 'ENOENT' });
+  assert.equal((await f.post('tasks', { name: 'allowed', upload: original, size: '1K' })).status, 201);
+  assert.equal((await readRun(join(f.dir, 'allowed')))!.size, '1K');
 });
 
 test('参数保存沿用现有范围，字段未提交时保留原值，明确范围仍优先', async t => {
