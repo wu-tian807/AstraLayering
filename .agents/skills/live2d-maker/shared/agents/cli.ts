@@ -187,7 +187,10 @@ export async function runCliTask(task: AgentTask, model: AgentModel, settings: W
     const reportId = async (id: string) => {
       if (!id || id === threadId) return;
       // AGV opens a new conversation when the one asked for is gone, so the old session is unavailable and gets replaced.
-      if (threadId) throw new Error(threadId === resumed ? `原 session 不可用：CLI 未恢复 ${resumed}，返回了新的会话 ID ${id}` : 'CLI 返回了不同的原会话 ID');
+      if (threadId && threadId === resumed) {
+        throw new AgentCallError(`原 session 不可用：CLI 未恢复 ${resumed}，返回了新的会话 ID ${id}`, 'unavailableSession');
+      }
+      if (threadId) throw new Error('CLI 返回了不同的原会话 ID');
       threadId = id; await rememberSession(root, id, { harness: model.harness, data: toTaskPath(paths.root, data), workspace: toTaskPath(paths.root, cwd) });
       await options.onEvent?.({ type: 'thread.started', thread_id: id });
     };
