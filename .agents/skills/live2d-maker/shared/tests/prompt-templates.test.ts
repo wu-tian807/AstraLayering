@@ -8,14 +8,14 @@ test('模板明确要求变量和必要插入位置，填入的数据不进行�
   assert.throws(()=>renderPrompt('自定义正文',{runtime_context:'data'},'custom',['runtime_context']),/缺少显式提示词占位符/);
   assert.equal(renderPrompt('{task_prompt} / {runtime_context}',{task_prompt:'原文 {runtime_context}',runtime_context:'本次数据'}),'原文 {runtime_context} / 本次数据');
 });
-test('姿态与衣服提示词明确声明共享规则位置，展开后没有遗漏或重复规则',async()=>{
-  for(const [section,step] of [
-    ['part-layering','step04_standard'],
-    ['clothing-part-layering','step01_preparation'],
+test('姿态与衣服提示词展开后保留各自的绘制规则，且没有重复',()=>{
+  for(const [section,step,heading] of [
+    ['part-layering','step04_standard','【绘制提示词】'],
+    ['clothing-part-layering','step01_preparation','【执行规则】'],
   ] as const){
     const prompt=stepKnowledge(section,step).render('main',{width:'24',height:'32',input:'/task/input.png'},{taskRoot:'/task'});
     assert.ok(!/\{[a-z_]+\}/.test(prompt))
-    assert.equal(prompt.split('【执行规则】').length,2);
+    assert.equal(prompt.split(heading).length,2);
   }
 });
 test('外层 CLI 与背景适配也由 Markdown 声明替换位置',()=>{
