@@ -9,6 +9,7 @@ import { knowledgeSteps, runtimePrompts } from './knowledge-steps.ts';
 // Prior knowledge (prompts, references, tool descriptions) lives outside the
 // code. `--knowledge <dir>` replaces the whole directory; there is no fallback.
 export const defaultKnowledgeDirectory = fileURLToPath(new URL('../knowledge/', import.meta.url));
+const knowledgeVersion = 1;
 const selected = new AsyncLocalStorage<string>();
 export function useKnowledge(directory: string): void { selected.enterWith(resolve(directory)); }
 // A run checks the whole knowledge directory before it uses it, so a missing
@@ -174,6 +175,19 @@ function markdownFiles(directory: string): string[] {
 // Startup check for the whole knowledge directory, before any agent runs.
 export function checkKnowledge(directory = knowledgeDirectory()): void {
   if (!isAbsolute(directory) || !existsSync(directory)) throw new Error(`先验知识目录不存在：${directory}`);
+  const versionFile = join(directory, 'version.json');
+  let version: unknown;
+  try { version = JSON.parse(readFileSync(versionFile, 'utf8'))?.version; }
+  catch (error) {
+    const problem = (error as NodeJS.ErrnoException).code === 'ENOENT' ? '缺少 version.json'
+      : error instanceof SyntaxError ? 'version.json 无效' : null;
+    if (!problem) throw error;
+    throw new Error(`先验知识版本无法确认（${problem}），当前管线需要 v${knowledgeVersion}：${directory}`);
+  }
+  if (version !== knowledgeVersion) {
+    const actual = typeof version === 'number' && Number.isSafeInteger(version) ? `v${version}` : '无效';
+    throw new Error(`先验知识版本不兼容（实际 ${actual}，需要 v${knowledgeVersion}）：${directory}`);
+  }
   selected.run(directory, () => {
     for (const name of runtimePrompts) {
       const path = runtimePromptPath(name);
