@@ -38,7 +38,7 @@ import { studioCatalog, studioAsset, studioReviews, saveStudioReview } from './s
 import { createUpdateCheck } from './update-check.ts';
 import { installedVersion } from '../.agents/skills/live2d-maker/shared/version.ts';
 import { projectDisplayName, saveProjectDisplayName, validateDisplayName } from './project-metadata.ts';
-import { createUpscaleEnvironmentCheck } from './upscale-environment.ts';
+import { createUpscaleEnvironmentCheck, type UpscaleEnvironmentCheck } from '../.agents/skills/live2d-maker/shared/upscale-environment.ts';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const maxBytes = 32 * 1024 * 1024;
@@ -98,7 +98,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
   kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>;
   kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan>;
-  upscale?: ReturnType<typeof createUpscaleEnvironmentCheck>;
+  upscale?: UpscaleEnvironmentCheck;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
   const scans = new Map([['/api/krita-scan', kritaScan], ['/api/ffmpeg-scan', ffmpegScan]]);
   async function validateDir(path: string) {
@@ -337,6 +337,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         if (path === '/api/start' || path === '/api/task-action') {
           const recorded = await readRun(directory);
+          if (sectionSize(recorded?.size) !== '1K') {
+            const availability = await upscale();
+            if (!availability.supported) { json({ error: availability.reason + ' 此任务需要超分，无法启动。' }, 409); return; }
+          }
           opts.krita = taskKrita(opts, recorded);
           opts.ffmpeg = taskFFmpeg(opts, recorded);
           opts.knowledge ??= recorded?.knowledge;

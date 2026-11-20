@@ -16,6 +16,7 @@ import { fakeModelCatalog, fakePatchedCodex, patchedCodexCapabilities } from '..
 
 // Real background workers inherit this and pass the Codex startup check without a build.
 process.env.ASTRA_TEST_CODEX_EXECUTABLE = await fakePatchedCodex();
+process.env.ASTRA_TEST_UPSCAYL = 'fixture';
 
 const cli = fileURLToPath(new URL('../run.ts', import.meta.url));
 async function fixture(t: TestContext, slow = false) {
@@ -92,6 +93,20 @@ test('后台前置错误不假报启动；子管线错误完整进入总控', { 
   const status = await taskStatus(f.options);
   assert.equal(status.status, 'failed'); assert.match(status.error!, /clothing-soft-edges.kra/);
   assert.match(status.error!, /手动放置/);
+});
+
+test('后台 CLI 超分不可用时实际写入 1K，跳过下载并保留已有产物', { skip: process.platform === 'win32' }, async t => {
+  const f = await fixture(t);
+  const key = 'ASTRA_TEST_UPSCALE_UNAVAILABLE', before = process.env[key];
+  process.env[key] = '1';
+  t.after(() => { if (before === undefined) delete process.env[key]; else process.env[key] = before; });
+  await startFixtureBackground(f, f.options.krita, '--size', '4K');
+  await until(async () => !(await taskStatus(f.options)).lockHeld);
+  const saved = JSON.parse(await readFile(join(f.task, 'run.json'), 'utf8'));
+  assert.equal(saved.size, '1K');
+  assert.equal(saved.status, 'completed');
+  assert.match(await readFile(join(f.task, 'workflow.log'), 'utf8'), /4K.*1K.*GPU fixture/);
+  assert.equal(await readFile(join(f.output, 'step01', 'character-assembled.kra'), 'utf8'), 'retained');
 });
 
 test('后台启动转发标准化的显式开启和关闭，不悄悄忽略选项', { skip: process.platform === 'win32' }, async t => {

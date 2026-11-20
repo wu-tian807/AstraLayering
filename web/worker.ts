@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { lastLog, runTask } from '../.agents/skills/live2d-maker/workflow/runner.ts';
 import { retryLogOpen, taskLogName } from '../.agents/skills/live2d-maker/workflow/log.ts';
 import { directoryFor, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
+import { probeUpscaleEnvironment } from '../.agents/skills/live2d-maker/shared/upscale-environment.ts';
 
 // Only the process host is web-specific. Scheduling, locking, retries, markers and threads
 // remain owned by the existing coordinator and section entrypoints.
@@ -14,13 +15,19 @@ export async function runWebTask(options: TaskOptions, dependencies: Parameters<
   process.once('SIGTERM', interrupt); process.once('SIGINT', interrupt);
   let confirmed = false;
   try {
-    // The task lock is already held when either callback runs. A Codex build
-    // confirms the start early, so launch does not time out while it builds.
+    // Confirm the start once the runner holds the task lock, including when
+    // lengthy environment preparation must finish before dispatch.
     const confirm = (run: Parameters<NonNullable<typeof dependencies.ready>>[0]) => {
       if (confirmed) return;
       confirmed = true; dependencies.ready?.(run); process.send?.({ type: 'ready' });
     };
-    return await runTask(options, { ...dependencies, signal: controller.signal, preparing: confirm, ready: confirm });
+    return await runTask(options, { ...dependencies, signal: controller.signal, preparing: confirm, ready: confirm,
+      upscaleEnvironment: async () => {
+        const availability = await (dependencies.upscaleEnvironment ?? probeUpscaleEnvironment)();
+        if (!availability.supported) throw new Error(availability.reason + ' 此任务需要超分，无法启动。');
+        return availability;
+      },
+    });
   } finally {
     process.removeListener('SIGTERM', interrupt); process.removeListener('SIGINT', interrupt);
   }

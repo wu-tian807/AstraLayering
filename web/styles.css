@@ -157,6 +157,15 @@ button:disabled{opacity:.5;cursor:wait}.phase-mark.failed,.phase-mark.interrupte
 .project-main{flex:1;min-height:0;width:100%;display:flex;flex-direction:column}
 .project-main>.page-heading{flex-shrink:0;min-height:72px}
 .project-main>.run-notice{flex-shrink:0;margin-bottom:12px;max-height:30vh;overflow:auto}
+.preparation-panel{flex:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}
+.flow-area>.preparation-panel{margin:8px 12px}
+.preparation-panel h2{font-size:13px;margin:0 0 8px}
+.preparation-panel ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,218px),1fr));gap:8px 16px;list-style:none;padding:0;margin:0}
+.preparation-panel li{min-width:0;font-size:12px;overflow-wrap:anywhere}
+.preparation-row{display:flex;justify-content:space-between;gap:8px}
+.preparation-row span,.preparation-panel li p,.preparation-panel small{color:#536a77}
+.preparation-panel li p{margin:4px 0}
+.preparation-panel progress{display:block;width:100%;height:6px;margin:6px 0;accent-color:#28776d}
 .project-main>.workflow-shell{flex:1;height:auto;min-height:0}
 .flow-scroll{min-height:0}
 .flow-world{display:flex;gap:52px;padding:106px 24px 24px;--step-height:clamp(300px,calc(100dvh - 330px),510px)}

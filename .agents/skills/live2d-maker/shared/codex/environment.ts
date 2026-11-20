@@ -13,6 +13,7 @@ import { configurationSources } from '../configuration-sources.ts';
 import { resolveModelDefaults, modelSlotKey, defaultImageModelKey, imageModelKey, resolveImageDefaults, stepModelSlots, imageSteps, imageProvider, imageModelRules, type ImageModelRules, parseAgentModel, type ModelSlot, type AgentModel, type AgentStep, type Harness, type ImageModel, type ImageApi } from '../agents/models.ts';
 import { resolveHarnessProviders, validateApiUrl, type HarnessProviders } from '../agents/providers.ts';
 import { videoModel, videoProvider, type VideoApi } from '../video.ts';
+import type { ReportPreparation } from '../preparation-progress.ts';
 export type { VideoApi } from '../video.ts';
 export { validateApiUrl } from '../agents/providers.ts';
 
@@ -169,8 +170,8 @@ export function parseWorkflowEnvironment(source: string, shell: NodeJS.ProcessEn
 
 const checkedCapabilities = new Map<string, Promise<void>>();
 export async function checkCodexCapabilities(settings: WorkflowEnvironment, options = settings.codex,
-  needs: { image?: boolean; progress?: (message: string) => void; building?: () => void } = {},
-  prepare = async () => (await import('../../patches/codex/build.ts')).ensurePatchedCodex({ env: options.env, progress: needs.progress, building: needs.building })): Promise<void> {
+  needs: { image?: boolean; progress?: (message: string) => void; building?: () => void; report?: ReportPreparation } = {},
+  prepare = async () => (await import('../../patches/codex/build.ts')).ensurePatchedCodex({ env: options.env, progress: needs.progress, building: needs.building, report: needs.report })): Promise<void> {
   const needsBytes = settings.imageBudgets?.codex.bytes !== undefined;
   // Every Codex run needs the patched build: it reads the failure detail LiteLLM
   // sends after an empty response.failed, so blocked input is reported, not retried.

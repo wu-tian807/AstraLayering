@@ -16,6 +16,7 @@ import { fakePatchedCodex } from '../../shared/tests/fake-codex.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { defaultKnowledgeDirectory, knowledgeDirectory, selectKnowledge } from '../../shared/knowledge.ts';
 import { markBaseStep } from '../../shared/tests/dressup-fixture.ts';
+import { readTaskLog } from '../log.ts';
 
 // Real background workers inherit this and pass the Codex startup check without a build.
 process.env.ASTRA_TEST_CODEX_EXECUTABLE = await fakePatchedCodex();
@@ -35,6 +36,7 @@ async function fixture(t: TestContext) {
   return { options, directory };
 }
 const preflight = async (executable: string) => ({ executable, version: 'test' });
+const upscaleEnvironment = async () => ({ supported: true } as const);
 
 test('startup prepares one catalog before dispatch and shares it with sections', async t => {
   const f = await fixture(t); const order: string[] = [];
@@ -101,7 +103,7 @@ test('真实后台启动失败只写主日志，不另建 service.log', async t 
 
 test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 恢复', async t => {
   const f = await fixture(t), first: SectionId[] = [], second: SectionId[] = [];
-  await runTask({ ...f.options, image: 'reference.png', jobs: 2, size: '3K', standard: true }, { preflight, execute: async (id, run) => {
+  await runTask({ ...f.options, image: 'reference.png', jobs: 2, size: '3K', standard: true }, { preflight, upscaleEnvironment, execute: async (id, run) => {
     first.push(id);
     const disk = (await readRun(f.directory))!;
     assert.ok(disk.activeSections?.includes(id));
@@ -119,7 +121,7 @@ test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 
   assert.equal((await readRun(f.directory))!.output, 'shadow/output');
   assert.deepEqual(await readFile(join(f.directory, 'input/original.png')), originalImage);
   await rm(join(f.directory, 'reference.png'));
-  await runTask({ name: 'case', dir: f.options.dir }, { preflight, execute: async (id, run) => {
+  await runTask({ name: 'case', dir: f.options.dir }, { preflight, upscaleEnvironment, execute: async (id, run) => {
     second.push(id); assert.equal(run.jobs, 2); assert.equal(run.krita, process.execPath);
     assert.equal(run.size, '3K');
     assert.equal(run.standard, true);
@@ -143,6 +145,45 @@ test('总调度创建或续跑缺少 size 的旧任务时写入默认 1K', async
   await saveRun(f.directory, first);
   await runTask({ name: f.options.name, dir: f.options.dir }, dependencies);
   assert.equal((await readRun(f.directory))!.size, '1K');
+});
+
+test('高分辨率先准备 Upscayl，准备进度按本次启动记录，1K 直接执行', async t => {
+  const f = await fixture(t), calls: string[] = [];
+  const dependencies: NonNullable<Parameters<typeof runTask>[1]> = {
+    preflight, upscaleEnvironment,
+    preparing: () => { calls.push('preparing'); },
+    async prepareUpscale(options) {
+      options?.preparing?.();
+      options?.report?.({ tool: 'upscayl', state: 'running', message: '下载 Upscayl', bytes: { received: 10, total: 20 } });
+      options?.report?.({ tool: 'upscayl', state: 'completed', message: 'Upscayl 已准备' });
+      return 'fixture';
+    },
+    async execute() { calls.push('execute'); return { summary: 'fixture' }; },
+  };
+  const options = { ...f.options, from: 'character-assembly' as const, to: 'character-assembly' as const };
+  const large = await runTask({ ...options, size: '4K' }, dependencies);
+  assert.deepEqual(calls, ['preparing', 'execute']);
+  const log = await readTaskLog(f.directory, undefined, large.runner!.id);
+  assert.deepEqual(log.preparations, [{ tool: 'upscayl', state: 'completed', message: 'Upscayl 已准备' }]);
+  assert.match(log.text, /下载 Upscayl/);
+
+  calls.length = 0;
+  const small = await runTask({ ...options, size: '1K' }, dependencies);
+  assert.deepEqual(calls, ['execute']);
+  assert.deepEqual((await readTaskLog(f.directory, undefined, small.runner!.id)).preparations, []);
+});
+
+test('超分不可用时总调度保存 1K 并继续执行，不下载安装包', async t => {
+  const f = await fixture(t);
+  const options = { ...f.options, from: 'character-assembly' as const, to: 'character-assembly' as const, size: '4K' as const };
+  const result = await runTask(options, {
+    preflight, upscaleEnvironment: async () => ({ supported: false, reason: 'GPU fixture' }),
+    async prepareUpscale() { assert.fail('降级后不得下载'); },
+    async execute(_id, run) { assert.equal(run.size, '1K'); return { summary: 'fixture' }; },
+  });
+  assert.equal(result.status, 'completed');
+  assert.equal((await readRun(f.directory))!.size, '1K');
+  assert.match((await readTaskLog(f.directory)).text, /4K.*1K.*GPU fixture/);
 });
 
 test('一条线异常只阻断汇合后的管线，另一条线做完；展示模型原因，续跑沿用原始配置', async t => {

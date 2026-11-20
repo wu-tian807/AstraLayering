@@ -3,8 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { release } from 'node:os';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
+import type { SectionSize } from './section-size.ts';
 
 type UpscaleEnvironment = { supported: true } | { supported: false; reason: string };
+export type UpscaleEnvironmentCheck = () => Promise<UpscaleEnvironment>;
 const run = promisify(execFile);
 
 async function hasMetal(): Promise<boolean> {
@@ -47,4 +49,13 @@ export function createUpscaleEnvironmentCheck(probe = probeUpscaleEnvironment) {
     if (!cached || cached.expires <= Date.now()) cached = { expires: Date.now() + 60_000, result: probe() };
     return cached.result;
   };
+}
+
+export async function resolveUpscaleSize(size: SectionSize, check: UpscaleEnvironmentCheck = probeUpscaleEnvironment,
+  progress?: (message: string) => void): Promise<SectionSize> {
+  if (size === '1K') return size;
+  const environment = await check();
+  if (environment.supported) return size;
+  progress?.(`超分档位 ${size} 已调整为 1K。原因：${environment.reason}`);
+  return '1K';
 }

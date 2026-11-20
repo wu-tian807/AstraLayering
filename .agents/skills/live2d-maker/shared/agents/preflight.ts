@@ -11,6 +11,7 @@ import { stopCliProcess } from './process.ts';
 import { appServerCommand } from '../codex/tool-agent.ts';
 import { withNodePath } from '../process-environment.ts';
 import type { Harness } from './models.ts';
+import type { ReportPreparation } from '../preparation-progress.ts';
 
 export async function checkAgentCli(settings: WorkflowEnvironment, harness: Harness): Promise<string> {
   if (harness === 'codex' && !settings.codex.codexPathOverride) await checkCodexCapabilities(settings);
@@ -60,7 +61,7 @@ export function sectionAgentSteps(section: SectionId, _standard = false, shadowM
   });
 }
 export async function preflightAgentSteps(settings: WorkflowEnvironment, steps: readonly AgentStep[],
-  normalization: ImageProcessingOptions & { building?: () => void } = {}): Promise<void> {
+  normalization: ImageProcessingOptions & { building?: () => void; report?: ReportPreparation } = {}): Promise<void> {
   const harnesses = new Set<Harness>();
   for (const step of steps) {
     validateProviderModel(settings.providers, settings.stepModels[step], step);
@@ -71,7 +72,7 @@ export async function preflightAgentSteps(settings: WorkflowEnvironment, steps: 
   for (const harness of harnesses) {
     if (harness === 'codex') await checkCodexCapabilities(settings, settings.codex, {
       image: steps.some(step => settings.stepModels[step].harness === 'codex' && usesPatchedImageTool(settings, step)),
-      progress: normalization.progress, building: normalization.building,
+      progress: normalization.progress, building: normalization.building, report: normalization.report,
     });
     const version = await checkAgentCli(settings, harness);
     normalization.progress?.(`CLI 启动检查通过：${harness}；${version}`);

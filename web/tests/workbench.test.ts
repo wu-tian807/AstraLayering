@@ -91,7 +91,13 @@ test('超分环境检查不通过时拒绝高分辨率和跟随输入图，仍�
   }
   await assert.rejects(readFile(join(f.dir, 'blocked', 'run.json')), { code: 'ENOENT' });
   assert.equal((await f.post('tasks', { name: 'allowed', upload: original, size: '1K' })).status, 201);
-  assert.equal((await readRun(join(f.dir, 'allowed')))!.size, '1K');
+  const directory = join(f.dir, 'allowed');
+  const run = (await readRun(directory))!;
+  assert.equal(run.size, '1K');
+  await saveRun(directory, { ...run, size: '2K' });
+  assert.equal((await f.post('start', { name: 'allowed' })).status, 409);
+  assert.equal((await f.post('task-action', { name: 'allowed', action: 'retry' })).status, 409);
+  assert.equal((await readRun(directory))!.size, '2K');
 });
 
 test('参数保存沿用现有范围，字段未提交时保留原值，明确范围仍优先', async t => {
