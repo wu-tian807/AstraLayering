@@ -18,6 +18,7 @@ async function fixture(t: TestContext) {
   t.after(() => rm(root, {recursive: true, force: true})); return root;
 }
 const capabilities = {version: 1, image_provider_version: 2, image_compaction_version: 2, request_compaction_version: 1, failed_error_event_version: 1};
+const codexVersion = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8')).dependencies['@openai/codex-sdk'];
 test('启动只清理当前安装的旧版 Codex 缓存，跳过仍在构建的目录', async t => {
   const skill = await fixture(t);
   const previous = join(skill, '.codex-build'), build = join(previous, 'darwin-arm64', 'legacy-build');
@@ -43,6 +44,7 @@ test('启动只清理当前安装的旧版 Codex 缓存，跳过仍在构建的�
 test('并发自动构建只运行一次，校验缓存，损坏后重建，失败不写成功记录；构建或等待前通知调用方', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
   let builds = 0, building = 0, fail = true;
+  let reportedVersion = codexVersion;
   const workspaces: string[] = [];
   const run: Command = async (command, args, options) => {
     if (command === 'git') {
@@ -59,27 +61,59 @@ test('并发自动构建只运行一次，校验缓存，损坏后重建，失�
       await mkdir(target, {recursive: true});
       builds++; await delay(350); if (fail) throw new Error('compiler fixture failure');
       await writeFile(join(target, process.platform === 'win32' ? 'codex.exe' : 'codex'), 'binary');
-    } else return JSON.stringify(capabilities);
+    } else return args[0] === '--version' ? `codex-cli ${reportedVersion}` : JSON.stringify(capabilities);
     return '';
   };
   const services = {run, companion: () => sdkHost,
     rust: (async (env, action) => action({cargo: 'cargo', prefix: [], env})) as typeof withRust};
   const opts = {root: join(root, 'cache'), env: {PATH: 'fixture'}, progress() {}, building() { building++; }};
+  const directory = join(opts.root, `${process.platform}-${process.arch}`);
+  const previousKey = '1'.repeat(20), previous = join(directory, previousKey);
+  await mkdir(previous, { recursive: true });
+  await writeFile(join(previous, 'ready.json'), 'previous receipt');
   await assert.rejects(ensurePatchedCodex(opts, services), /自动构建失败/);
-  const [platform] = await readdir(opts.root), [key] = await readdir(join(opts.root, platform));
-  const cache = join(opts.root, platform, key);
+  const key = (await readdir(directory)).find(entry => entry !== previousKey)!;
+  const cache = join(directory, key);
+  assert.equal(await readFile(join(previous, 'ready.json'), 'utf8'), 'previous receipt');
   await assert.rejects(readFile(join(cache, 'ready.json')), {code: 'ENOENT'});
   await assert.rejects(readdir(workspaces[0]), {code: 'ENOENT'});
   fail = false;
   const results = await Promise.all([ensurePatchedCodex(opts, services), ensurePatchedCodex(opts, services)]);
   // The waiting call is notified too: it can take as long as the build.
   assert.equal(results[0], results[1]); assert.equal(builds, 2); assert.equal(building, 3);
+  assert.deepEqual(await readdir(directory), [key]);
   await assert.rejects(readdir(workspaces[1]), {code: 'ENOENT'});
   assert.equal(relative(cache, results[0]), join('bin', process.platform === 'win32' ? 'codex.exe' : 'codex'));
   await ensurePatchedCodex(opts, services); assert.equal(builds, 2); assert.equal(building, 3);
   await writeFile(results[0], 'corrupted'); await ensurePatchedCodex(opts, services); assert.equal(builds, 3);
   assert.equal(await readFile(results[0], 'utf8'), 'binary');
   assert.equal(await readFile(join(cache, 'bin', process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host'), 'utf8'), 'companion');
+  const receiptPath = join(cache, 'ready.json');
+  const receipt = JSON.parse(await readFile(receiptPath, 'utf8'));
+  assert.equal(receipt.version, codexVersion);
+  await writeFile(receiptPath, JSON.stringify({ ...receipt, version: '0.0.0' }));
+  reportedVersion = '0.0.0';
+  await assert.rejects(ensurePatchedCodex(opts, services), /Codex 补丁应为 .*实际报告：codex-cli 0\.0\.0/);
+  assert.equal(JSON.parse(await readFile(receiptPath, 'utf8')).version, '0.0.0');
+  reportedVersion = codexVersion;
+  await ensurePatchedCodex(opts, services);
+  assert.equal(builds, 5);
+  assert.equal(JSON.parse(await readFile(receiptPath, 'utf8')).version, codexVersion);
+  await mkdir(previous);
+  const release = await lockfile.lock(previous, { stale: 30_000 });
+  try {
+    await assert.rejects(ensurePatchedCodex(opts, services), /无法移除旧版 Codex 缓存/);
+  } finally { await release(); }
+  assert.equal(await ensurePatchedCodex(opts, services), results[0]);
+  assert.deepEqual(await readdir(directory), [key]);
+  assert.equal(builds, 5);
+  await writeFile(results[0], 'corrupted again');
+  await assert.rejects(ensurePatchedCodex(opts, { ...services, companion: () => join(root, 'missing-host') }), /自动构建失败/);
+  await assert.rejects(readdir(join(cache, 'bin')), { code: 'ENOENT' });
+  await assert.rejects(readFile(receiptPath), { code: 'ENOENT' });
+  assert.equal(await ensurePatchedCodex(opts, services), results[0]);
+  assert.deepEqual(await readdir(directory), [key]);
+  assert.equal(builds, 7);
 });
 test('源码按固定 git 设置检出；应用补丁失败后清理临时源码并重新检出', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
@@ -105,7 +139,7 @@ test('源码按固定 git 设置检出；应用补丁失败后清理临时源码
       const target = join(args[args.indexOf('--target-dir') + 1], 'dev-small');
       await mkdir(target, {recursive: true});
       await writeFile(join(target, process.platform === 'win32' ? 'codex.exe' : 'codex'), 'binary');
-    } else return JSON.stringify(capabilities);
+    } else return args[0] === '--version' ? `codex-cli ${codexVersion}` : JSON.stringify(capabilities);
     return '';
   };
   const services = {run, companion: () => sdkHost, rust: (async (env, action) => action({cargo: 'cargo', prefix: [], env})) as typeof withRust};
@@ -204,7 +238,7 @@ test('缺 C/C++ 工具链时先检查后报清楚的安装提示，不克隆；�
       const target = join(args[args.indexOf('--target-dir') + 1], 'dev-small');
       await mkdir(target, {recursive: true});
       await writeFile(join(target, process.platform === 'win32' ? 'codex.exe' : 'codex'), 'binary');
-    } else return JSON.stringify(capabilities);
+    } else return args[0] === '--version' ? `codex-cli ${codexVersion}` : JSON.stringify(capabilities);
     return '';
   };
   const services = {run, companion: () => sdkHost, rust: (async (env, action) => action({cargo: 'cargo', prefix: [], env})) as typeof withRust};

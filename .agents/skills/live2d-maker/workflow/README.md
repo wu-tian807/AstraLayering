@@ -17,6 +17,8 @@ pnpm start --name my-character --stop
 
 独立 section 启动无状态，每次传入 `--dir`、`--knowledge` 和所需软件路径。九轴需要 Krita、FFmpeg 和 Seedance 视频配置，选帧 agent 调用 `extract_video_frame` 工具。[参数与独立入口](../SKILL.md#单独运行一个-section)。
 
+启动时校验所选先验知识目录根部的 `version.json`。目录未标版本或版本不兼容时，请从当前发行包复制 `knowledge`，再迁移自定义内容。更改先验知识的目录或配置契约时，同步更新管线和内置目录的兼容版本。
+
 ### 姿态与参考
 
 `--standard` 开启姿态标准化，`--no-standard` 保留原图姿态，默认关闭。两种模式都准备透明的[标准参考](../part-layering/README.md#参考准备)。已有任务沿用保存的选项，切换姿态标准化请使用新任务名。画法足够简单时直接沿用标准参考。没有独立衣服时，自动跳过两条衣服管线。

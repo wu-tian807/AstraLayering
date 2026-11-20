@@ -44,7 +44,7 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 ## 原生 Codex 补丁
 
-固定官方 `rust-v0.170.0`，提交 `29eb79e9866b3262a777fdf8195c1b9e63684c91`。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
+官方版本采用 [package.json](../package.json) 固定的 SDK 版本，源码采用 [build.ts](codex/build.ts) 固定的提交。升级时同步更新 SDK、锁文件、源码提交和补丁。`layering-runtime.patch` 修正 Responses 失败流的错误读取，并增加独立 Images API 路由、模型选择及按图片数量／请求字节触发的原 thread compact；正常订阅或已有 provider 在未启用后几项选项时沿用原路径。
 
 构建目标为 Codex CLI。Code Mode Host 来自同版本官方 SDK 随附的二进制，构建工作区无需再次编译 Host 或下载它专用的 V8 源码。
 
@@ -52,9 +52,11 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 使用 Codex harness 时始终需要补丁版：错误读取修正对所有请求生效。启动预检自动准备并复用管线补丁缓存。构建命令、平台依赖与恢复办法见 [setup · Codex 补丁构建与恢复](../references/setup.md#codex-补丁构建与恢复)。
 
-源码、Cargo 依赖和编译中间文件建在系统临时目录，构建退出时清理。校验通过的补丁与官方 Code Mode companion 保存到 `data/codex/<平台-架构>/<源码与补丁指纹>/bin/`，同一版本通过 SHA-256 校验后复用。进程锁防止并发重复构建，失败时可从同目录的 `build.log` 排查。所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
+启动时按 SDK 版本、源码提交和补丁内容选取 `data/codex/<平台-架构>/<构建指纹>/bin/`。版本和 SHA-256 匹配时复用，否则自动构建。新版通过二进制版本和补丁能力检查后，移除同平台的旧成品，再启动 Codex。进程锁防止并发重复构建，构建失败详情在同目录的 `build.log`。源码、Cargo 依赖和编译中间文件在系统临时目录构建，退出时清理。
 
-升级后首次启动管线时会清理安装目录里的旧版构建缓存，正在构建的缓存留待下次启动清理。
+从旧缓存路径升级时，启动管线会清理安装目录下的 `.codex-build`，正在构建的目录留待下次启动清理。
+
+所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
 
 ### 行为
 

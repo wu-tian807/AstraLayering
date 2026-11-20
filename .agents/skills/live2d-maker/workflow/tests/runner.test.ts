@@ -259,7 +259,7 @@ test('同名任务锁阻止重复启动，取消保留状态并释放锁', async
   const unlock = await acquireTaskLock(f.directory); await unlock();
 });
 
-test('--knowledge 记入 run.json，续跑省略沿用；缺失文件时拒绝启动，写入 workflow.log 且不改任务记录', async t => {
+test('--knowledge 记入 run.json，续跑省略沿用；版本或文件不合规时记录拒绝原因并保留任务记录', async t => {
   const f = await fixture(t);
   t.after(() => selectKnowledge(defaultKnowledgeDirectory));
   const knowledge = join(f.options.dir, 'knowledge');
@@ -270,6 +270,14 @@ test('--knowledge 记入 run.json，续跑省略沿用；缺失文件时拒绝�
   assert.equal((await readRun(f.directory))!.knowledge, knowledge);
   assert.equal(knowledgeDirectory(), callerKnowledge);
   const before = await readFile(join(f.directory, 'run.json'), 'utf8');
+  const versionFile = join(knowledge, 'version.json'), version = await readFile(versionFile);
+  await writeFile(versionFile, JSON.stringify({ version: 0 }));
+  await assert.rejects(runTask({ name: 'case', dir: f.options.dir, to: 'part-layering' }, done), /先验知识版本不兼容（实际 v0，需要 v\d+）/);
+  assert.match(await readFile(join(f.directory, 'workflow.log'), 'utf8'), /先验知识版本不兼容/);
+  await rm(versionFile);
+  await assert.rejects(runTask({ name: 'case', dir: f.options.dir, to: 'part-layering' }, done), /缺少 version\.json/);
+  assert.equal(await readFile(join(f.directory, 'run.json'), 'utf8'), before);
+  await writeFile(versionFile, version);
   await rm(join(knowledge, 'shared/prompts/runtime/interrupted-task.md'));
   await assert.rejects(runTask({ name: 'case', dir: f.options.dir, to: 'part-layering' }, done), /先验知识缺少文件：.*interrupted-task\.md/);
   assert.equal(await readFile(join(f.directory, 'run.json'), 'utf8'), before, '拒绝启动不能改动任务记录');
