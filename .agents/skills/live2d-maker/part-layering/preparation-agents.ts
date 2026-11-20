@@ -3,7 +3,6 @@ import { randomUUID } from 'node:crypto';
 import { readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { stepKnowledge } from '../shared/knowledge.ts';
 import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { taskRootOf, toAgentPath } from '../shared/task-paths.ts';
 import type { AgentTask, AgentDispatcher, GeneratedImage } from '../shared/agents/dispatcher.ts';
 import { textResult } from '../shared/codex/function-tools.ts';
@@ -39,7 +38,7 @@ async function prepareImage(agents: Pick<AgentDispatcher, 'run'>, knowledge: Ret
   } = {}): Promise<ReferenceChoice> {
   let reusedReason: string | undefined;
   const checked = await checkedTurn({ agents, task: { ...task, tools: knowledge.tools('main', [{
-    ...toolDefinition('reuse_reference', fileURLToPath(new URL('./tools/', import.meta.url))),
+    ...toolDefinition('reuse_reference'),
     async execute(value, signal, context) {
       if (!value || typeof value !== 'object' || Array.isArray(value)
         || Object.keys(value).some(key => key !== 'reason')
