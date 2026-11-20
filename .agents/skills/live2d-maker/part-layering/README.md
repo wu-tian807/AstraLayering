@@ -20,15 +20,12 @@ pnpm part-layering --name my-character --groups /绝对路径/selection.json --k
 
 ## 参考准备
 
-输出 `references/standard.png`、`simplified-subject.png`、`base-subject.png`。原图保留在任务 `input/`。`--standard` 开启后先判断是否需要调整姿态，目标是自然放松地正视站立，双眼和嘴自然张开，手臂放松。程序随后选择一个 `step04` 交付 `standard.png`。
+输出 `references/standard.png`、`simplified-subject.png`、`base-subject.png`。原图保留在任务 `input/`。标准参考由 `step04_standard` 交付。
 
-| 步骤 | 处理方式 |
-| --- | --- |
-| `step04_standard` | 调整姿态时开启生图工具的透明背景选项。 |
-| `step04_cutout` | 无需调整姿态且原图背景不透明时，用生图工具去背景，尽量保留原画。 |
-| `step04_passthrough` | 无需调整姿态且原图外圈完整透明时，原样复制。 |
+- `--standard` 开启时，agent 判断是否需要调整为标准姿态。需要调整时开启透明背景生图，姿态合适时调用 `reuse_reference`。原图外圈透明时工具直接复制，否则返回去背景提示词，由同一个 agent 调用生图工具。
+- `--no-standard` 保留原图姿态。程序直接检查透明背景，能复用就复制，否则调用生图工具去背景。
 
-两个生图分支共用 `part_standardize_image_model`。GPT 走原生透明输出，Nano Banana 复用双背景差分。之后依次制作简化和素体参考，拆分从 `step08_initial` 接续。素体保留手套、鞋袜和各自饰件，主体衣装以临时连体服替换。
+生图分支以生图工具交付的 PNG 为准。标准姿态与去背景共用 `part_standardize_image_model`。GPT 走原生透明输出，Nano Banana 复用双背景差分。之后依次制作简化和素体参考，拆分从 `step08_initial` 接续。素体保留手套、鞋袜和各自饰件，主体衣装以临时连体服替换。
 
 简化与素体各由一个 preparation agent 完成“判断 → 复制或生图”。简化 agent 另收到画风参考 [简化参考图片.png](../knowledge/part-layering/step05_simplified/references/简化参考图片.png)（只比较画法），素体 agent 另收到连体服款式参考 [连体服参考.jpg](../knowledge/part-layering/step06_base/references/连体服参考.jpg)。图1画法已足够简单（平涂色块、边界清楚、细节概括，有无线稿均可）时，简化 agent 直接复用，只在半写实、厚涂或晕染明显时转换；当前画幅没有主体衣装、角色已是素体或已有合适的临时连体服时，素体 agent 直接复用。复制工具 `reuse_reference` 绑定当前参考与输出位置，PNG 原样复制，其他格式转换为 PNG；需要转换或换装时调用本步骤配置的生图工具。两份完整提示词为 [2-简化图片.md](../knowledge/part-layering/step05_simplified/prompts/2-简化图片.md)、[3-素体参考.md](../knowledge/part-layering/step06_base/prompts/3-素体参考.md)。
 

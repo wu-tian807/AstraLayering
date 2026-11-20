@@ -64,6 +64,7 @@ test('model roles are shared by character/clothing, repairs use drawing roles, g
   assert.ok(sectionAgentSteps('part-layering').includes('part_standardize'));
   assert.ok(!sectionAgentSteps('part-layering').includes('part_pose_judgment'));
   assert.ok(sectionAgentSteps('part-layering', true).includes('part_standardize'));
+  assert.ok(!sectionAgentSteps('part-layering', true).includes('part_pose_judgment'));
 });
 
 test('unsupported Argon and Carbon effort is rejected before selecting or starting a CLI', async t => {
