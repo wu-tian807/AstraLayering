@@ -7,6 +7,7 @@ import { basename, extname, resolve, join, isAbsolute, dirname } from 'node:path
 import { parseArgs } from 'node:util';
 import sharp from 'sharp';
 import { shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
+import { sectionSize, sectionSizes } from '../.agents/skills/live2d-maker/shared/section-size.ts';
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
@@ -63,6 +64,7 @@ function options(value: any, dir: string): TaskOptions {
   if (value.to) result.to = sectionId(value.to);
   if (result.from || result.to) selectedSections(result.from ?? sectionIds[0], result.to ?? sectionIds.at(-1)!);
   if (value.shadowMode !== undefined) result.shadowMode = shadowMode(value.shadowMode);
+  if (value.size !== undefined && value.size !== 'follow') result.size = sectionSize(value.size);
   if (value.standard !== undefined) {
     if (typeof value.standard !== 'boolean') throw new Error('standard 必须是布尔值');
     result.standard = value.standard;
@@ -77,6 +79,13 @@ function options(value: any, dir: string): TaskOptions {
   }
   return result;
 }
+
+function sizeFromImage({ width, height }: { width?: number; height?: number }) {
+  if (!width || !height) throw new Error('无法读取输入图尺寸。');
+  const tier = Math.min(sectionSizes.length, Math.ceil(Math.max(width, height) / 1024));
+  return sectionSizes[tier - 1]!;
+}
+
 // Global web settings supply defaults for new tasks.
 type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?: string };
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
@@ -237,7 +246,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           return;
         }
         if (path === '/api/studio/review') { json(await saveStudioReview(root, dirname(settingsPath), value), 201); return; }
-        const opts = options(value, requestDir), directory = directoryFor(opts);
+        const opts = options(value, requestDir), directory = directoryFor(opts), followSize = value.size === 'follow';
         if (path === '/api/tasks') {
           // Global settings are defaults for a new task. Existing tasks own their options.
           if (!opts.krita && settings.krita) opts.krita = settings.krita;
@@ -251,23 +260,24 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           await mkdir(directory);
           let committed = false;
           try {
+            let input: Buffer | string;
             if (value.upload) {
               if (typeof value.upload !== 'string' || !/^[A-Za-z0-9+/]*={0,2}$/.test(value.upload)) throw new Error('无效的图片数据');
-              const bytes = Buffer.from(value.upload, 'base64');
-              if (!bytes.length || bytes.length > 20 * 1024 * 1024) throw new Error('上传图片最大 20 MB');
-              const image = sharp(bytes, { limitInputPixels: 40_000_000 });
-              const meta = await image.metadata();
-              if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
-              await image.resize(1, 1).raw().toBuffer();
-              await mkdir(join(directory, 'input'));
-              await writeFile(join(directory, 'input/original.png'), await encodePng(bytes), { flag: 'wx', mode: 0o600 });
-              delete opts.image;
+              input = Buffer.from(value.upload, 'base64');
+              if (!input.length || input.length > 20 * 1024 * 1024) throw new Error('上传图片最大 20 MB');
             } else {
               if (!opts.image) throw new Error('新任务需要一张输入参考图');
-              const image = sharp(resolve(directory, opts.image), { limitInputPixels: 40_000_000 });
-              const meta = await image.metadata();
-              if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
-              await image.resize(1, 1).raw().toBuffer();
+              input = resolve(directory, opts.image);
+            }
+            const image = sharp(input, { limitInputPixels: 40_000_000 });
+            const meta = await image.metadata();
+            if (!['png', 'jpeg', 'webp'].includes(meta.format) || (meta.pages ?? 1) > 1) throw new Error('请选择单张 PNG、JPG 或 WebP 图片');
+            await image.resize(1, 1).raw().toBuffer();
+            if (followSize) opts.size = sizeFromImage(meta);
+            if (Buffer.isBuffer(input)) {
+              await mkdir(join(directory, 'input'));
+              await writeFile(join(directory, 'input/original.png'), await encodePng(input), { flag: 'wx', mode: 0o600 });
+              delete opts.image;
             }
             const release = await acquireTaskLock(directory);
             try {
@@ -284,6 +294,10 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (path === '/api/convert-layout') { json(await convertLayout(directory)); return; }
         if (['/api/start', '/api/task-action', '/api/stop', '/api/task-options'].includes(path) && (await readRun(directory))?.archive) {
           json({ error: '这是成果归档；请在原运行目录继续制作。' }, 409); return;
+        }
+        if (['/api/start', '/api/task-action', '/api/task-options'].includes(path)
+          && (value.standard !== undefined || value.size !== undefined || value.shadowMode !== undefined)) {
+          json({ error: '标准化人物姿态、分辨率和阴影方式仅在新建任务时设置。' }, 409); return;
         }
         if (path === '/api/project-name') {
           await saveProjectDisplayName(directory, value.displayName);
@@ -309,7 +323,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
             await saveRun(directory, configured);
             if (displayName !== undefined) await saveProjectDisplayName(directory, displayName);
             json({ name: opts.name, from: configured.from, to: configured.to, live: configured.live, jobs: configured.jobs,
-              standard: configured.standard, shadowMode: configured.shadowMode, status: configured.status,
+              standard: configured.standard, shadowMode: configured.shadowMode, size: configured.size, status: configured.status,
               krita: configured.krita, knowledge: configured.knowledge });
           } finally { await release(); }
           return;

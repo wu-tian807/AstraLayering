@@ -2,9 +2,11 @@ import { parseArgs } from 'node:util';
 import { defaultAgentConcurrency } from './agents/runtime.ts';
 import { resolveRunsDirectory } from './paths.ts';
 import { shadowMode } from './shadow.ts';
+import { sectionSize } from './section-size.ts';
 import type { StepSelection } from './step-range.ts';
 
 export const sectionRangeHelp = [
+  '--size <1K|2K|3K|4K> 设置分辨率档位，默认 1K。',
   '--from-step <步骤> --to-step <步骤> 选择包含起止步骤的范围。只给起点时执行单步，只给停点时从开头执行。',
   '--max-recursive-counts <非负整数> 限制回到较早步骤的次数。0 允许当前轮完成，停在回环之前。',
 ].join('\n');
@@ -12,7 +14,7 @@ export const sectionRangeHelp = [
 export function parseSectionArguments(args: string[]) {
   const { values } = parseArgs({ args, options: {
     name: { type: 'string' }, dir: { type: 'string' }, knowledge: { type: 'string' },
-    image: { type: 'string' }, krita: { type: 'string' }, ffmpeg: { type: 'string' },
+    image: { type: 'string' }, krita: { type: 'string' }, ffmpeg: { type: 'string' }, size: { type: 'string' },
     'shadow-mode': { type: 'string' }, standard: { type: 'boolean' }, 'no-standard': { type: 'boolean' },
     'from-step': { type: 'string' }, 'to-step': { type: 'string' }, 'max-recursive-counts': { type: 'string' },
     jobs: { type: 'string', short: 'j' }, agents: { type: 'string', short: 'a' },
@@ -47,6 +49,7 @@ export function parseSectionArguments(args: string[]) {
   const selection: StepSelection | undefined = fromStep !== undefined || toStep !== undefined || limit !== undefined
     ? { fromStep, toStep, maxRecursiveCounts: limit === undefined ? undefined : Number(limit) } : undefined;
   return { ...values, selection, action: actions[0], shadowMode: shadowMode(values['shadow-mode']),
+    size: sectionSize(values.size),
     standard: values['no-standard'] ? false : values.standard,
     agentConcurrency: Number(values.jobs ?? values.agents ?? defaultAgentConcurrency) };
 }

@@ -101,12 +101,13 @@ test('真实后台启动失败只写主日志，不另建 service.log', async t 
 
 test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 恢复', async t => {
   const f = await fixture(t), first: SectionId[] = [], second: SectionId[] = [];
-  await runTask({ ...f.options, image: 'reference.png', jobs: 2, standard: true }, { preflight, execute: async (id, run) => {
+  await runTask({ ...f.options, image: 'reference.png', jobs: 2, size: '3K', standard: true }, { preflight, execute: async (id, run) => {
     first.push(id);
     const disk = (await readRun(f.directory))!;
     assert.ok(disk.activeSections?.includes(id));
     assert.equal(disk.status, 'running');
     assert.equal(run.jobs, 2);
+    assert.equal(run.size, '3K'); assert.equal(disk.size, '3K');
     assert.equal(run.standard, true); assert.equal(disk.standard, true);
     return { summary: id, output: join(f.directory, id, 'output') };
   } });
@@ -120,6 +121,7 @@ test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 
   await rm(join(f.directory, 'reference.png'));
   await runTask({ name: 'case', dir: f.options.dir }, { preflight, execute: async (id, run) => {
     second.push(id); assert.equal(run.jobs, 2); assert.equal(run.krita, process.execPath);
+    assert.equal(run.size, '3K');
     assert.equal(run.standard, true);
     return { summary: '管线自身检查并跳过', output: 'retained' };
   } });
@@ -128,6 +130,19 @@ test('总控保留输入与配置，按依赖推进；后续仅用 name 和 dir 
   const status = await taskStatus(f.options);
   assert.equal(status.status, 'completed'); assert.equal(status.runnerAlive, false); assert.equal(status.lockHeld, false);
   assert.equal(status.output, 'retained');
+  assert.equal(status.size, '3K');
+});
+
+test('总调度创建或续跑缺少 size 的旧任务时写入默认 1K', async t => {
+  const f = await fixture(t);
+  const options = { ...f.options, image: 'reference.png', to: 'part-layering' as const };
+  const dependencies = { preflight, execute: async () => ({ summary: 'fixture' }) };
+  const first = await runTask(options, dependencies);
+  assert.equal((await readRun(f.directory))!.size, '1K');
+  delete first.size;
+  await saveRun(f.directory, first);
+  await runTask({ name: f.options.name, dir: f.options.dir }, dependencies);
+  assert.equal((await readRun(f.directory))!.size, '1K');
 });
 
 test('一条线异常只阻断汇合后的管线，另一条线做完；展示模型原因，续跑沿用原始配置', async t => {
@@ -290,6 +305,7 @@ test('CLI 区分只读查询、后台启动和恢复，拒绝冲突参数', () =
   for (const args of [ ['--name', 'case', '--dir', 'relative'], ['--name', 'case', '--json'],
     ['--name', 'case', '--status', '--background'], ['--name', 'case', '--status', '--image', 'x'],
     ['--name', 'case', '--jobs', '0'],
+    ['--name', 'case', '--size', '1024'], ['--name', 'case', '--status', '--size', '1K'],
     ['--name', 'case', '--standard', '--no-standard'], ['--name', 'case', '--status', '--standard'],
     ['--name', 'case', '--status', '--no-standard'] ]) {
     assert.throws(() => parseArguments(args));

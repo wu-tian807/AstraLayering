@@ -1,5 +1,6 @@
 import { runWorkflow as shadow, help as shadowHelp } from '../shadow/run.ts';
 import { shadowMode } from '../shared/shadow.ts';
+import { sectionSize, type SectionSize } from '../shared/section-size.ts';
 import { basename, dirname, join } from 'node:path';
 import { shadowStep } from '../shared/step-paths.js';
 import { toTaskPath } from '../shared/task-paths.ts';
@@ -22,7 +23,7 @@ import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
 import { defaultAgentConcurrency, shareAgentSlots, type AgentSlots } from '../shared/agents/runtime.ts';
 import { defaultKnowledgeDirectory, selectKnowledge } from '../shared/knowledge.ts';
 
-const sectionOptionKeys = ['dir', 'krita', 'ffmpeg', 'knowledge', 'standard', 'shadowMode', 'jobs'] as const;
+const sectionOptionKeys = ['dir', 'krita', 'ffmpeg', 'knowledge', 'standard', 'shadowMode', 'jobs', 'size'] as const;
 type SectionOptions = Pick<TaskOptions, typeof sectionOptionKeys[number]>;
 
 export function sectionOptionsFrom(source: SectionOptions): SectionOptions {
@@ -31,9 +32,10 @@ export function sectionOptionsFrom(source: SectionOptions): SectionOptions {
 
 // Output is relative to the task root.
 export type SectionResult = { summary: string; output?: string; completed?: boolean };
-export type SectionInvocation = Pick<SectionRun, 'selection' | 'dryRun' | 'signal' | 'progress'>
+type SectionStartup = Pick<SectionRun, 'selection' | 'dryRun' | 'signal' | 'progress'>
   & Pick<TaskOptions, 'name' | 'image'> & SectionOptions
   & { step?: string; standalone?: boolean };
+export type SectionInvocation = SectionStartup & { size: SectionSize };
 type SectionEvents = { prepared?(): void };
 export type SectionDefinition = {
   help?: string;
@@ -43,13 +45,13 @@ export type SectionDefinition = {
   run(options: SectionInvocation, events: SectionEvents): Promise<SectionResult>;
 };
 
-export function prepareSectionInvocation(options: SectionInvocation, agentSlots?: AgentSlots) {
+export function prepareSectionInvocation(options: SectionStartup, agentSlots?: AgentSlots) {
   const directory = taskDirectory(options.name, options.dir);
   const dir = dirname(directory);
   const knowledge = options.knowledge === undefined ? defaultKnowledgeDirectory : resolveInput(options.name, options.knowledge, dir);
   selectKnowledge(knowledge);
   if (agentSlots) shareAgentSlots(agentSlots);
-  return { directory, options: { ...options, dir, knowledge } };
+  return { directory, options: { ...options, dir, knowledge, size: sectionSize(options.size) } };
 }
 
 function partSection(section: PartSection, help: string): SectionDefinition {

@@ -1,4 +1,5 @@
 import { shadowMode } from '../shared/shadow.ts';
+import { sectionSize } from '../shared/section-size.ts';
 import { fork } from 'node:child_process';
 import { mkdir, open } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -41,6 +42,7 @@ export const help = [
   '管线：part-layering、raster-layering、clothing-part-layering、clothing-raster-layering、character-assembly、shadow、nine-axis',
   '--shadow-mode mask|normal-depth 选择阴影路线，首次默认 mask；续跑省略沿用保存值。',
   '--jobs <正整数> 整次运行所有管线（含 raster、组装、阴影）共用的 agent 名额，默认 3；并行管线不增加总并发。',
+  '--size <1K|2K|3K|4K> 设置分辨率档位，首次默认 1K，续跑省略则沿用保存值。',
   '--standard 在人物 preparation 中先判断姿态，必要时生成 standard.png；默认关闭，仅复制原图。',
   '续跑省略选项则沿用已保存配置；--no-standard 显式关闭。切换选项须通过 preparation 指纹检查。',
   '省略 --background 则在前台执行；总入口不会自行创建定时任务。',
@@ -49,7 +51,7 @@ export const help = [
 export function parseArguments(args: string[]) {
   const { values } = parseArgs({ args, options: {
     name: { type: 'string' }, dir: { type: 'string' }, image: { type: 'string' }, krita: { type: 'string' }, ffmpeg: { type: 'string' }, knowledge: { type: 'string' },
-    'shadow-mode': { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, jobs: { type: 'string' },
+    'shadow-mode': { type: 'string' }, from: { type: 'string' }, to: { type: 'string' }, jobs: { type: 'string' }, size: { type: 'string' },
     standard: { type: 'boolean' }, 'no-standard': { type: 'boolean' }, live: { type: 'boolean' }, 'no-live': { type: 'boolean' },
     background: { type: 'boolean' }, 'background-worker': { type: 'boolean' },
     status: { type: 'boolean' }, json: { type: 'boolean' }, help: { type: 'boolean', short: 'h' },
@@ -61,6 +63,7 @@ export function parseArguments(args: string[]) {
   if (values.standard && values['no-standard']) throw new Error('--standard 与 --no-standard 不能同时使用。');
   if (values.live && values['no-live']) throw new Error('--live 与 --no-live 不能同时使用。');
   const options: TaskOptions = { name: values.name, dir: values.dir, image: values.image, krita: values.krita, ffmpeg: values.ffmpeg, knowledge: values.knowledge,
+    size: values.size === undefined ? undefined : sectionSize(values.size),
     standard: values['no-standard'] ? false : values.standard,
     live: values['no-live'] ? false : values.live,
     shadowMode: values['shadow-mode'] === undefined ? undefined : shadowMode(values['shadow-mode']),
@@ -81,7 +84,8 @@ export function parseArguments(args: string[]) {
   }
   if (values.json && !values.status) throw new Error('--json 只能与 --status 一起使用。');
   if (values.status || values.stop) {
-    if (values.image || values.krita || values.ffmpeg || values.knowledge || values.from || values.to || values.jobs || options.standard !== undefined || options.shadowMode !== undefined || options.live !== undefined) throw new Error('查询或停止时不修改启动配置。');
+    if (values.image || values.krita || values.ffmpeg || values.knowledge || values.from || values.to || values.jobs || options.size !== undefined
+      || options.standard !== undefined || options.shadowMode !== undefined || options.live !== undefined) throw new Error('查询或停止时不修改启动配置。');
   }
   if (values.stop) return { mode: 'stop' as const, options };
   // Without --section the action applies to the whole task; with it and no --step, to that section.
@@ -98,7 +102,7 @@ export async function startBackground(options: TaskOptions): Promise<number> {
   if (options.shadowMode !== undefined) args.push('--shadow-mode', options.shadowMode);
   if (options.standard !== undefined) args.push(options.standard ? '--standard' : '--no-standard');
   if (options.live !== undefined) args.push(options.live ? '--live' : '--no-live');
-  for (const key of ['dir', 'image', 'krita', 'ffmpeg', 'knowledge', 'from', 'to', 'jobs'] as const) {
+  for (const key of ['dir', 'image', 'krita', 'ffmpeg', 'knowledge', 'from', 'to', 'jobs', 'size'] as const) {
     if (options[key] !== undefined) args.push('--' + key, String(options[key]));
   }
   try {

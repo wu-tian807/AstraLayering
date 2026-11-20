@@ -1,4 +1,5 @@
 import { shadowMode, type ShadowMode } from '../shared/shadow.ts';
+import { sectionSize, type SectionSize } from '../shared/section-size.ts';
 import { stepPattern } from '../shared/step-paths.js';
 import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, readdir, rename, stat, unlink, writeFile } from 'node:fs/promises';
@@ -17,6 +18,7 @@ import { copyAsPng, pngBytes } from '../shared/png.ts';
 
 export type TaskOptions = {
   name: string; dir?: string; image?: string; krita?: string; ffmpeg?: string; knowledge?: string;
+  size?: SectionSize;
   from?: SectionId; to?: SectionId; jobs?: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
 };
 export type SectionProgress = {
@@ -29,6 +31,7 @@ export type TaskRun = {
   archive?: true;
   version: 1; from: SectionId; to: SectionId;
   krita?: string; ffmpeg?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
+  size?: SectionSize; // Older run.json files have no size.
   // The knowledge directory given with --knowledge; absent, the skill's own knowledge/.
   knowledge?: string;
   status: 'ready' | 'running' | 'completed' | 'failed' | 'interrupted';
@@ -74,6 +77,7 @@ export async function readRun(directory: string): Promise<TaskRun | undefined> {
   }
   selectedSections(sectionId(run.from), sectionId(run.to));
   if (run.shadowMode !== undefined) shadowMode(run.shadowMode);
+  if (run.size !== undefined) sectionSize(run.size);
   return run;
 }
 export async function saveRun(directory: string, run: TaskRun, replace = rename): Promise<void> {
@@ -168,13 +172,14 @@ export async function configureRun(options: TaskOptions, directory: string): Pro
     throw new Error('--standard / --no-standard 需要本次路线包含 part-layering；请用 --from part-layering 运行人物 preparation。');
   }
   const standard = options.standard ?? saved?.standard ?? false;
+  const size = sectionSize(options.size ?? saved?.size);
   const jobs = options.jobs ?? saved?.jobs ?? defaultAgentConcurrency;
   if (!Number.isSafeInteger(jobs) || jobs < 1) throw new Error('--jobs 必须为正整数。');
   await keepOriginal(directory, options.image && resolveInput(options.name, options.image, options.dir));
   const run: TaskRun = saved ?? {
     version: 1, from, to, jobs, status: 'ready', createdAt: now(), updatedAt: now(), sections: {},
   };
-  Object.assign(run, { from, to, live, jobs, standard, shadowMode: shadowMode(options.shadowMode ?? saved?.shadowMode) });
+  Object.assign(run, { from, to, live, jobs, size, standard, shadowMode: shadowMode(options.shadowMode ?? saved?.shadowMode) });
   const { label } = await installedVersion();
   if (!saved) run.createdWith = label;
   run.lastRunWith = label;

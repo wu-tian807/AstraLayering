@@ -38,19 +38,43 @@ test('已有任务保存参数不启动也不改产物，继续恢复重试读�
     starts.push(await readRun(join(f.dir, options.name)));
     return 4242;
   }, async () => { preflights++; });
-  assert.equal((await f.post('tasks', { name: 'test', upload: await upload(), jobs: 2 })).status, 201);
+  assert.equal((await f.post('tasks', { name: 'test', upload: await upload(), jobs: 2, size: '2K' })).status, 201);
   const task = join(f.dir, 'test');
+  assert.equal((await readRun(task))!.size, '2K');
   await put(task, 'nine-axis/step01_preparation/author-note.txt', '保留已有作者内容');
   const saved = await f.post('task-options', { name: 'test', jobs: 4, live: true });
-  assert.equal(saved.status, 200); assert.equal(saved.value.to, 'nine-axis');
+  assert.equal(saved.status, 200); assert.equal(saved.value.to, 'nine-axis'); assert.equal(saved.value.size, '2K');
+  for (const change of [{size:'3K'}, {size:'follow'}, {standard:true}, {shadowMode:'normal-depth'}]) {
+    assert.equal((await f.post('task-options', { name: 'test', ...change })).status, 409);
+  }
+  assert.equal((await f.post('start', { name: 'test', size: '3K' })).status, 409);
+  assert.equal((await f.post('task-action', { name: 'test', action: 'retry', standard: true })).status, 409);
+  assert.equal((await f.post('task-options', { name: 'test', size: 4096 })).status, 400);
   assert.equal(preflights, 1); assert.equal(starts.length, 0);
   assert.equal(await readFile(join(task, 'nine-axis/step01_preparation/author-note.txt'), 'utf8'), '保留已有作者内容');
   for (const action of ['continue', 'resume', 'retry']) {
     await put(task, 'character-assembly/step01/.running', '');
     assert.equal((await f.post('task-action', { name: 'test', action })).status, 202);
     const run = starts.at(-1);
-    assert.equal(run.jobs, 4); assert.equal(run.live, true); assert.equal(run.to, 'nine-axis');
+    assert.equal(run.jobs, 4); assert.equal(run.live, true); assert.equal(run.to, 'nine-axis'); assert.equal(run.size, '2K');
   }
+});
+
+test('跟随输入图换算长边档位，保存具体档位并限制为最高 4K', async t => {
+  const f = await fixture(t, async options => {
+    assert.equal((await readRun(join(f.dir, options.name)))!.size, '2K');
+    return 4242;
+  });
+  const png = (width: number, height: number) => sharp({ create: { width, height, channels: 3, background: '#cbbbaa' } }).png().toBuffer();
+  const portrait = (await png(64, 1025)).toString('base64');
+  assert.equal((await f.post('tasks', { name: 'portrait', upload: portrait, size: 'follow' })).status, 201);
+  const task = join(f.dir, 'portrait');
+  assert.equal((await readRun(task))!.size, '2K');
+  assert.equal((await f.post('start', { name: 'portrait' })).status, 202);
+  const image = join(f.base, 'wide.png');
+  await writeFile(image, await png(8192, 64));
+  assert.equal((await f.post('tasks', { name: 'wide', image, size: 'follow' })).status, 201);
+  assert.equal((await readRun(join(f.dir, 'wide')))!.size, '4K');
 });
 
 test('参数保存沿用现有范围，字段未提交时保留原值，明确范围仍优先', async t => {
@@ -169,13 +193,12 @@ test('upload retains original/config; same name never overwrites; selection pers
 });
 test('web forwards shadow mode to the existing coordinator and shows artifacts of both modes', async t => {
   let received: any;
-  const f = await fixture(t, async options => { received = options; return 123; });
-  assert.equal((await f.post('tasks', { name: 'shadow-case', upload: await upload(), shadowMode: 'mask' })).status, 201);
-  assert.equal((await f.post('start', { name: 'shadow-case', from: 'shadow', to: 'shadow', shadowMode: 'normal-depth' })).status, 202);
+  const f = await fixture(t, async options => { received = await configureRun(options, join(f.dir, options.name)); return 123; });
+  assert.equal((await f.post('tasks', { name: 'shadow-case', upload: await upload(), shadowMode: 'normal-depth', from: 'shadow', to: 'shadow' })).status, 201);
+  assert.equal((await f.post('start', { name: 'shadow-case' })).status, 202);
   assert.equal(received.shadowMode, 'normal-depth'); assert.equal(received.from, 'shadow');
   assert.equal((await f.post('start', { name: 'shadow-case', shadowMode: '../mask' })).status, 400);
   const root = join(f.dir, 'shadow-case');
-  const run = (await readRun(root))!; run.shadowMode = 'normal-depth'; await saveRun(root, run);
   await put(root, 'shadow/step01_mask/character-shadowed.png');
   assert.equal((await snapshot(root, 'shadow-case', f.dir)).sections.find(stage => stage.id === 'shadow')!.states.mask, 'pending', 'an unmarked step is a leftover');
   await put(root, 'shadow/step01_mask/.running');

@@ -15,6 +15,8 @@ pnpm start --name my-character --stop
 
 `--from`、`--to` 指定制作范围，`--dir` 指定运行根目录。总调度在任务 `run.json` 中保存参数，续跑沿用；网页全局设置用于新任务默认值，已有任务在“执行参数”中修改。
 
+`--size` 接受 `1K`、`2K`、`3K`、`4K`。总调度将档位写入 `run.json` 并传给各个 section。新任务和独立 section 省略此参数时使用 `1K`，总调度续跑时省略则沿用已保存的档位。
+
 独立 section 启动无状态，每次传入 `--dir`、`--knowledge` 和所需软件路径。九轴需要 Krita、FFmpeg 和 Seedance 视频配置，选帧 agent 调用 `extract_video_frame` 工具。[参数与独立入口](../SKILL.md#单独运行一个-section)。
 
 启动时校验所选先验知识目录根部的 `version.json`。目录未标版本或版本不兼容时，请从当前发行包复制 `knowledge`，再迁移自定义内容。更改先验知识的目录或配置契约时，同步更新管线和内置目录的兼容版本。

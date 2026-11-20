@@ -36,6 +36,7 @@ pnpm start --name my-character --stop
 | `--standard`、`--no-standard` | 开启或关闭姿态标准化，默认关闭 |
 | `--shadow-mode mask\|normal-depth` | 投影蒙版或法线／深度，默认 mask |
 | `--jobs` | 全流程共用的 agent 并发名额，默认 3 |
+| `--size` | 分辨率档位，支持 `1K`、`2K`、`3K`、`4K`，首次默认 `1K` |
 | `--background` | 后台运行 |
 
 网页全局设置提供新任务的默认值。总调度在任务 `run.json` 中维护本任务参数，已有任务可在“执行参数”中调整 Krita、knowledge 和制作选项。
