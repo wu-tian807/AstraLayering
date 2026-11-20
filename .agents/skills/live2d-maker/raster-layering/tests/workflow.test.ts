@@ -15,7 +15,7 @@ import { runAgent, type AgentRequest, type StepResult } from '../../shared/raste
 import { AgentRuntime, retryDelays } from '../../shared/agents/runtime.ts';
 import { checkKrita } from '../../shared/raster/krita.ts';
 import { resolvePartInput } from '../../shared/raster/input.ts';
-import { parseRunArguments } from '../run.ts';
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { inspectRun } from '../../shared/raster/run-store.ts';
 import { readStepSession } from '../../shared/agents/step-session.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
@@ -64,10 +64,6 @@ test('任务名限制为单个目录；默认仓库 .run 任务目录与 cwd 无
   } finally { process.chdir(cwd); }
   for (const name of ['', '.', '..', '../other', '/tmp/other', 'a/b', 'a\\b']) assert.throws(() => runDirectory(name), /--name/);
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
-  // A single section keeps no configuration, so every start names its knowledge.
-  assert.throws(() => parseRunArguments(['--name', 'test']), /--knowledge/);
-  assert.throws(() => parseRunArguments([]), /--name/);
-  assert.throws(() => parseRunArguments(['--check-krita']), /--krita/);
   assert.throws(() => parseRunArguments(['--name', 'test', '--output', 'x']), /Unknown option/);
 });
 
@@ -160,6 +156,24 @@ test('已完成第一步的任务可按 name 预览第二步，显示实际输�
   assert.ok(!prompt.includes(process.execPath), 'Krita 只经 krita 工具使用，路径不进提示词');
   assert.ok(!prompt.includes('demos/soft-edge-krita'), '不引用历史示例工程');
   await assert.rejects(readdir(join(f.output, 'step02')), { code: 'ENOENT' });
+});
+
+test('步骤范围沿用前置交付生成提示词，停在所选步骤', async t => {
+  const f = await fixture(t);
+  await runWorkflow(f.options, { ...f.deps, agent: request => deliver(request) });
+  const calls: string[] = [];
+  await runWorkflow({ ...f.resume, selection: { fromStep: 'step02' } }, {
+    ...f.deps, steps: f.definitions,
+    async agent(request) {
+      calls.push(request.step ?? '');
+      assert.ok(request.prompt.includes(join(f.output, 'step01/character-depth.kra')));
+      return deliver(request, f.definitions[1]);
+    },
+  });
+  assert.deepEqual(calls, ['raster_step02']);
+  await readFile(join(f.output, 'step02/.completed'));
+  await absent(join(f.output, 'step03/.running'));
+  await absent(join(f.output, 'step03/.completed'));
 });
 
 test('直接读取上游；中断保留 .running、产物和 thread；只用 name 续跑', async t => {

@@ -12,6 +12,7 @@ import { exists, findImage, preparationSteps, produce, publishStandardCanvas, re
   sectionOf, stageNumber, stageStep, stepStage, writeJson, type PreparationStage, type PreparationStep } from './preparation-state.ts';
 import { stepKnowledge } from '../shared/knowledge.ts';
 import { taskRootOf } from '../shared/task-paths.ts';
+import type { StepRange } from '../shared/step-range.ts';
 import type { DressupDecision } from '../shared/part/dressup.ts';
 
 export type { PreparationInput, PreparationReferences };
@@ -62,13 +63,19 @@ export async function loadPreparedReferences(runName: string, root?: string, sta
     const path = paths.get(step.id);
     if (unfinished(plan, step.id) || (path && !await exists(path))) missing.push(`${step.id}：${path ?? step.directory}`);
   }
-  if (missing.length) throw new Error(`显式 groups 的前置参考未完成：\n${missing.join('\n')}\n请先使用默认流程完成参考准备。`);
+  if (missing.length) throw new Error(`前置参考未完成：\n${missing.join('\n')}\n请先完成参考准备。`);
   return refs;
+}
+
+export async function preparationRoute(input: PreparationInput): Promise<PreparationStep[]> {
+  const refs = await references(input.runName, input.dir);
+  const source = input.image === undefined ? undefined : resolveInput(input.runName, input.image, input.dir);
+  return preparationSteps(refs, inputDirectory(input.runName, input.dir), source);
 }
 
 // Each preparation step runs by its own marker (shared/step-chain.ts).
 export async function prepareReferences(input: PreparationInput, steps: PreparationSteps,
-  progress?: (message: string) => void, options: ImageProcessingOptions = {}): Promise<PreparationReferences> {
+  progress?: (message: string) => void, options: ImageProcessingOptions = {}, range?: StepRange, signal?: AbortSignal): Promise<PreparationReferences> {
   const normalization = { ...options, runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
   const directory = getPreparationDirectory(input.runName, input.dir), inputs = inputDirectory(input.runName, input.dir);
   const source = input.image === undefined ? undefined : resolveInput(input.runName, input.image, input.dir);
@@ -79,26 +86,22 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
       throw new Error(`任务已有不同的原图：${original}。制作另一张图请使用新的 --name。`);
     }
   }
-  await mkdir(directory, { recursive: true });
-  const standard = input.standard ?? false;
+  const standard = input.standard ?? await readPreparationOptions(directory) ?? false;
   const initial = await references(input.runName, input.dir);
   const defined = await preparationSteps(initial, inputs, source), paths = outputs(defined);
   const branchNumber = stageNumber('standard');
   const needsOriginal = () => new Error('首次启动或原图缺失时，需要 --image <角色图片路径>');
-  await runSection({ directory: sectionOf(directory), steps: defined, progress,
+  await runSection({ directory: sectionOf(directory), steps: defined, progress, range, signal,
+    async prepare() { await mkdir(directory, { recursive: true }); },
     async check(plan) {
       const saved = await readPreparationOptions(directory);
       if (saved !== undefined && saved !== standard && !unfinished(plan, stageStep('options'))) throw modeError(directory, saved);
       if (source || initial.originalImage) return;
-      const pending = plan.chain.find(step => unfinished(plan, step.id));
+      const pending = plan.selected.find(step => unfinished(plan, step.id));
       const pendingStandard = standardReferenceSteps.some(id => plan.defined.has(id) && unfinished(plan, id));
       if (pending?.id === stageStep('original') || (pending && !initial.standardImage && !pendingStandard)) {
         throw needsOriginal();
       }
-    },
-    async keep(step) {
-      const path = paths.get(step.id);
-      if (path && !await exists(path)) throw new Error(`${step.id} 已标记完成但交付缺失：${path}；请恢复文件，或重试该步骤（网页「重试」或 --retry）。`);
     },
     async step(step, status) {
       const stage = stepStage(step.id);

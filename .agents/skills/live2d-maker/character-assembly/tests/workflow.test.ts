@@ -1,10 +1,11 @@
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { readStepSession } from '../../shared/agents/step-session.ts';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, realpath, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
-import { runWorkflow, section, parseRunArguments } from '../run.ts';
+import { runWorkflow, section } from '../run.ts';
 import { resolveAssemblyInput, isAssemblyInput } from '../input.ts';
 import { steps } from '../steps.ts';
 import { formatAgentError } from '../../shared/codex/diagnostics.ts';

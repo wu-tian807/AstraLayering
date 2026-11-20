@@ -52,6 +52,7 @@ export type AgentSession = {
   close(): Promise<void>;
 };
 export type AgentOptions = CodexOptions & {
+  signal?: AbortSignal;
   imageNormalization?: ImageProcessingOptions;
   resumeHarness?: AgentModel['harness'];
   onSessionStarted?: (id: string, harness: AgentModel['harness']) => Promise<void>;
@@ -237,6 +238,7 @@ export class AgentDispatcher {
     const closing = new AbortController();
     return {
       run: async (original, externalSignal) => {
+        this.options.signal?.throwIfAborted();
         if (closed) throw new Error('会话已关闭');
         if (busy) throw new Error('同一会话不能并发运行');
         busy = true;
@@ -280,7 +282,8 @@ export class AgentDispatcher {
           }
           let task = image ? { ...original, imageGeneration: false, tools: [...original.tools || [], image] } : original;
           if (!id && (original.recoveryPrompt || original.resumeContext)) task = { ...task, prompt: freshPrompt(original) };
-          const signal = taskSignal(task, [closing.signal, ...(externalSignal ? [externalSignal] : [])]);
+          const signals = [closing.signal, externalSignal, this.options.signal].filter((signal): signal is AbortSignal => !!signal);
+          const signal = taskSignal(task, signals);
           let result: AgentResult;
           try {
             if (selected.harness === 'codex') {

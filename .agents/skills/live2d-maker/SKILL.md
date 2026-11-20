@@ -48,11 +48,15 @@ pnpm start --name my-character --stop
 
 ## 单独运行一个 section
 
-先停止同一任务的总调度，再单独启动所需管线。独立 section 启动无状态：**每次传入 `--dir`、`--knowledge` 和所需软件路径**。总调度负责保存参数并传给 section；独立入口沿用工程和会话。
+先停止同一任务的总调度，再单独启动所需管线。独立 section 每次传入 `--knowledge` 和所需软件路径，并沿用任务的运行根目录 `--dir`。它从步骤记录沿用工程和会话。原有的 `pnpm <section-id>` 命令与通用的 `pnpm section <section-id>` 使用同一个入口。
 
 ```sh
-pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 --knowledge /绝对路径/knowledge --krita /绝对路径/krita
+pnpm section raster-layering --name my-character --dir /绝对路径/运行根目录 --knowledge /绝对路径/knowledge --krita /绝对路径/krita --from-step step02 --to-step step03
 ```
+
+- `--from-step` 和 `--to-step` 包含两端。只给起点时只执行该步，只给停点时从开头执行，两项都省略时执行整个 section。
+- 从中间开始前，前置步骤须已完成且必需交付存在。范围内的中断步骤沿用当前会话，已完成步骤直接复用。
+- `--max-recursive-counts` 限制返回较早步骤的次数。`0` 只执行当前轮。线性 section 的回环次数为零。
 
 | 管线 | 用途 |
 | --- | --- |

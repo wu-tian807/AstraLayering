@@ -98,5 +98,7 @@ export async function preparationSteps(refs: PreparationReferences, inputDirecto
   steps.push(['options', preparationOptionsPath(refs.directory)]);
   if (selected || original || refs.standardImage) steps.push([selected ?? 'standard', join(refs.directory, 'standard.png')]);
   steps.push(['simplified', refs.simplifiedSubject], ['base', refs.baseSubject], ['ready']);
-  return steps.map(([stage, output]) => ({ number: stageNumber(stage), note: stageNote(stage), ...(output ? { output } : {}) }));
+  return steps.map(([stage, output]) => ({
+    number: stageNumber(stage), note: stageNote(stage), ...(output ? { output, requiredFiles: [output] } : {}),
+  }));
 }

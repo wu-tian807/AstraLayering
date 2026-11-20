@@ -1,11 +1,6 @@
-import { parseArgs } from 'node:util';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import { formatAgentError } from '../shared/codex/diagnostics.ts';
-import { acquireTaskLock } from '../workflow/state.ts';
-import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { selectKnowledge } from '../shared/knowledge.ts';
 import { shadowMode, type ShadowMode } from '../shared/shadow.ts';
 import { shadowStep } from '../shared/step-paths.js';
 import { runWorkflow as runSharedWorkflow, type KritaSection, type WorkflowOptions, type Dependencies } from '../shared/raster/workflow.ts';
@@ -59,25 +54,5 @@ async function publishDelivery(output: string, input: ShadowInput, mode: ShadowM
 export async function runWorkflow(options: WorkflowOptions & { shadowMode?: ShadowMode }, dependencies: Dependencies = {}) {
   return runSharedWorkflow(makeSection(shadowMode(options.shadowMode)), options, dependencies);
 }
-export function parseRunArguments(args: string[]) {
-  const { values } = parseArgs({ args, options: { name: { type: 'string' }, dir: { type: 'string' }, krita: { type: 'string' }, knowledge: { type: 'string' },
-    'shadow-mode': { type: 'string' }, 'dry-run': { type: 'boolean' }, help: { type: 'boolean', short: 'h' } }, allowPositionals: false });
-  if (!values.help && !values.name?.trim()) throw new Error('必须提供 --name <任务名>。');
-  if (!values.help && !values.knowledge?.trim()) throw new Error('必须提供 --knowledge <先验知识目录>；独立 section 不保存配置，每次启动（含续跑）都须指定。');
-  if (values.dir !== undefined) resolveRunsDirectory(values.dir);
-  return { ...values, shadowMode: shadowMode(values['shadow-mode']) };
-}
-if (import.meta.main) {
-  (async () => {
-    const args = parseRunArguments(process.argv.slice(2));
-    if (args.help) { console.log(help); return; }
-    selectKnowledge(resolveInput(args.name!, args.knowledge!, args.dir));
-    const controller = new AbortController(), stop = () => controller.abort(new Error('阴影制作已中断；同名同模式续跑保留进度。'));
-    process.once('SIGINT', stop); process.once('SIGTERM', stop);
-    // CLI shares the coordinator lock. The coordinator calls the exported runner under its own lock.
-    const release = args['dry-run'] ? undefined : await acquireTaskLock(taskDirectory(args.name!, args.dir));
-    try { console.log(await runWorkflow({ name: args.name!, dir: args.dir, krita: args.krita,
-      shadowMode: args.shadowMode, dryRun: args['dry-run'], signal: controller.signal, progress: console.log })); }
-    finally { await release?.(); process.removeListener('SIGINT', stop); process.removeListener('SIGTERM', stop); }
-  })().catch(error => { console.error(formatAgentError(error)); process.exitCode = 1; });
-}
+
+if (import.meta.main) void import('../workflow/section-cli.ts').then(cli => cli.launchSection('shadow'));

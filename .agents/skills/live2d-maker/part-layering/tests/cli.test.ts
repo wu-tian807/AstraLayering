@@ -9,7 +9,8 @@ import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
 import { test } from 'node:test';
 import { getPreparationDirectory, loadPreparedReferences } from '../preparation.ts';
-import { formatLayeringSummary, parseRunArguments, readGroupInput } from '../run.ts';
+import { formatLayeringSummary } from '../../shared/part/run.ts';
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { GroupStore, normalizeGroups } from '../../shared/part/groups.ts';
 import { seedPreparedReferences } from './preparation-fixture.ts';
 import { seedInitialGroups, shape, workingSteps } from './layering-fixture.ts';
@@ -68,7 +69,8 @@ test('--jobs / -j 只设置 agent 并发上限，默认 3，不产生组调度�
   assert.equal(parseRunArguments(['--name', 'test', '-j', '7']).agentConcurrency, 7);
   assert.equal(parseRunArguments(['--jobs=3']).agentConcurrency, 3);
   assert.ok(!('concurrency' in parseRunArguments(['--jobs=3'])));
-  assert.equal(parseRunArguments(['--groups', 'groups.json']).groups, 'groups.json');
+  assert.throws(() => parseRunArguments(['--groups', 'groups.json']), { code: 'ERR_PARSE_ARGS_UNKNOWN_OPTION' });
+  assert.throws(() => parseRunArguments(['--max-depth', '1']), { code: 'ERR_PARSE_ARGS_UNKNOWN_OPTION' });
 });
 
 test('--agents / -a 兼容别名设置同一个 agent 上限', () => {
@@ -100,13 +102,11 @@ test('模拟步骤完成后实际入口复用完整事实且强制禁止模型�
   await runLayering({ profile, directory, references: await loadPreparedReferences(runName), groups: null,
     steps: workingSteps([]), progress: message => progress.push(message) });
   assert.ok(progress.some(message => message.includes('最终预览合并：完成')));
-  const groupsPath = join(directory, 'input.json');
-  await writeFile(groupsPath, JSON.stringify([{ id: 'head', note: '不能覆盖已有的说明' }]));
-  const first = await runCli(['--name', runName, '--groups', groupsPath, '-j', '2']);
+  const first = await runCli(['--name', runName, '--from-step', 'step14', '-j', '2']);
   assert.doesNotMatch(first.stdout, /最终预览合并：开始/);
   assert.match(first.stdout, /遮挡层级规划：沿用/);
   assert.match(first.stdout, /\[head\] 本组流程已完成（part）/);
-  assert.match(first.stdout, /Layering 已完成：.*preview\.svg/);
+  assert.match(first.stdout, /本次范围已完成，停在 step14_occlusion/);
   assert.match(await readFile(join(directory, 'preview.svg'), 'utf8'), /data-part-preview="1"/);
   await assert.rejects(readFile(join(directory, 'progress.json')), { code: 'ENOENT' });
   const second = await runCli(['--name', runName]);
@@ -119,7 +119,6 @@ test('模拟步骤完成后实际入口复用完整事实且强制禁止模型�
   const tree = JSON.parse(await readFile(join(directory, 'groups.json'), 'utf8'));
   assert.ok(!('initial' in tree) && !('merge' in tree) && !('steps' in tree.groups[0]));
   assert.equal(tree.groups[0].note, '已有识别的组');
-  assert.deepEqual((await readGroupInput(join(directory, 'groups.json')) as { id: string }[]).map(group => group.id), ['head']);
   // 让最后一步重跑，证明隔离保护会立即报错，不能启动真实 SDK / app-server。
   await rm(join(directory, 'step14_occlusion/.completed'));
   await assert.rejects(runCli(['--name', runName]), /CLI 测试禁止启动模型或其他外部进程/);
@@ -174,34 +173,19 @@ test('实际入口遇到组产物问题时报告组名、步骤和停止派发�
   });
 });
 
-test('显式 groups 缺少前置参考时直接退出，不启动准备 agent 或自动补齐文件', async t => {
+test('从描边启动时前置参考缺失，直接退出', async t => {
   const runName = `test-cli-${randomUUID()}`;
   const references = getPreparationDirectory(runName);
   const directory = dirname(references);
   t.after(() => rm(taskDirectory(runName), { recursive: true, force: true }));
   await mkdir(directory, { recursive: true });
-  const groupsPath = join(directory, 'input.json');
-  await writeFile(groupsPath, JSON.stringify([{ id: 'face' }]));
-  await assert.rejects(runCli(['--name', runName, '--groups', groupsPath]), error => {
+  await assert.rejects(runCli(['--name', runName, '--from-step', 'step09']), error => {
     const failure = error as Error & { stderr: string };
     assert.match(failure.stderr, /前置参考未完成/);
     return true;
   });
   await assert.rejects(readFile(join(directory, 'groups.json')), { code: 'ENOENT' });
   await assert.rejects(readFile(join(references, 'judgment.json')), { code: 'ENOENT' });
-});
-
-test('读取 groups 选择文件不加载外部进度，也不迁移或改写输入文件', async t => {
-  const directory = await mkdtemp(join(tmpdir(), 'part-layering-selection-'));
-  t.after(() => rm(directory, { recursive: true, force: true }));
-  const groupsPath = join(directory, 'groups.json');
-  const progressPath = join(directory, 'progress.json');
-  const contents = JSON.stringify({ groups: [{ id: 'face' }], initial: { status: 'completed' }, merge: { status: 'pending' } });
-  await writeFile(groupsPath, contents);
-  await writeFile(progressPath, '{broken external progress');
-  assert.deepEqual((await readGroupInput(groupsPath) as { id: string }[]).map(group => group.id), ['face']);
-  assert.equal(await readFile(groupsPath, 'utf8'), contents);
-  assert.equal(await readFile(progressPath, 'utf8'), '{broken external progress');
 });
 
 test('命令行并发参数拒绝零、负数、小数、空值及非数字', () => {

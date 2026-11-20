@@ -1,13 +1,36 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { runLayering } from '../../shared/part/layering.ts';
-import { groupStep, readChildren } from '../../shared/part/part-steps.ts';
+import { groupStep, layerStep, readChildren } from '../../shared/part/part-steps.ts';
 import { readStep } from '../../shared/step-chain.ts';
 import * as character from './layering-fixture.ts';
 import * as clothing from '../../clothing-part-layering/tests/layering-fixture.ts';
 
 // Both sections share the scheduler, but keep their own directory/profile facts.
 for (const [name, fixtures] of [['人物', character], ['衣服', clothing]] as const) {
+  test(`${name}：共享停点限制去重与回环，续跑从首个待制作层计数`, async t => {
+    const f = await fixtures.fixture(t), events: string[] = [];
+    const steps = fixtures.workingSteps(events, [{ id: 'a' }], {
+      a: [{ id: 'a/b' }], 'a/b': [{ id: 'a/b/c' }], 'a/b/c': [{ id: 'a/b/c/d' }],
+    });
+    const run = { ...f, groups: null, steps, mergeSvg: fixtures.workingMerger(events) };
+    const outlineOnly = await runLayering({ ...run, range: { from: 8, to: 9 } });
+    assert.equal(outlineOnly.stoppedAt, 'step09_outline');
+    assert.deepEqual(events, ['initial', 'a:outline', 'a:review']);
+    assert.equal((await readStep(layerStep(f.directory, 0).directory)).status, 'absent');
+
+    await runLayering({ ...run, range: { from: 10, to: 12 } });
+    assert.ok(events.includes('a:children'));
+    assert.ok(!events.includes('a/b:outline'));
+    events.length = 0;
+    const bounded = await runLayering({ ...run, range: { from: 9, to: 12 }, maxRecursiveCounts: 1 });
+    assert.equal(bounded.stoppedAt, 'step12_children');
+    assert.ok(events.includes('a/b:outline') && events.includes('a/b/c:children'));
+    assert.deepEqual(events.filter(event => event.endsWith(':outline')), ['a/b:outline', 'a/b/c:outline']);
+    assert.equal((await readStep(groupStep(f.directory, 'a/b/c/d', 'outline').directory)).status, 'absent');
+    assert.ok(!events.includes('merge'));
+  });
+
   test(`${name}：四层树在每一层都提前描边，但去重与补全不会越过全层屏障`, { timeout: 5000 }, async t => {
     const f = await fixtures.fixture(t), events: string[] = [];
     const levels = [['a', 'b'], ['a/child', 'b/child'],

@@ -1,3 +1,4 @@
+import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { withCodex } from '../../shared/tests/fake-codex.ts';
 // First, so a direct `node --test` of this file also keeps its own Krita slots and
 // ignores the local .env, as `pnpm test` does through --import.
@@ -9,7 +10,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { zipSync, strToU8 } from 'fflate';
-import { runWorkflow, parseRunArguments } from '../run.ts';
+import { runWorkflow } from '../run.ts';
 import type { NativeInspect } from '../native.ts';
 import { inspectMask, createInspectionTool } from '../inspection.ts';
 import type { SectionKrita } from '../../shared/krita/section-krita.ts';
@@ -86,7 +87,6 @@ async function fixture(t: TestContext) {
 }
 test('默认蒙版；全局保存、透传并仅预检所选 step01', async t => {
   assert.equal(parseRunArguments(['--name', 'case', '--knowledge', 'knowledge']).shadowMode, 'mask');
-  assert.throws(() => parseRunArguments(['--name', 'case']), /--knowledge/);
   assert.throws(() => parseRunArguments(['--name', 'case', '--knowledge', 'knowledge', '--shadow-mode', 'unknown']));
   const parsed = parseArguments(['--name', 'case', '--shadow-mode', 'normal-depth']);
   assert.ok(parsed.mode !== 'help'); assert.equal(parsed.options.shadowMode, 'normal-depth');
@@ -117,6 +117,16 @@ test('dry-run 与缺上游不调用模型、不写文件，提示词包含精度
   await assert.rejects(readFile(join(f.task, 'shadow/selection.json')), { code: 'ENOENT' });
   await rm(join(f.source, 'character-assembled.kra'));
   await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async () => assert.fail('missing upstream') }), /缺少上游/);
+});
+
+test('公共步骤范围只接受本次选中的 Shadow 分支', async t => {
+  const f = await fixture(t);
+  const deps = { ...f.deps, agent: async () => assert.fail('dry run must not call models') };
+  const options = { ...f.options, shadowMode: 'normal-depth' as const, dryRun: true };
+  await assert.rejects(runWorkflow({ ...options, selection: { fromStep: 'step01_mask' } }, deps), /不在本次步骤路线中/);
+  const preview = await runWorkflow({ ...options, selection: { fromStep: 'step01' } }, deps);
+  assert.ok(preview.includes(join(f.task, 'shadow/step01_normal-depth')));
+  await assert.rejects(readFile(join(f.task, 'shadow/step01_normal-depth/.running')), { code: 'ENOENT' });
 });
 test('中断保留同模式 thread；两种 step01 产物共存，重跑只检查选择的产物', async t => {
   const f = await fixture(t); let calls = 0;

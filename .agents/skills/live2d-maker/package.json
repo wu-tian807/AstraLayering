@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node workflow/run.ts",
+    "section": "node workflow/section-cli.ts",
     "export": "node workflow/export-run.ts",
     "convert-layout": "node workflow/convert-layout.ts",
     "part-layering": "node part-layering/run.ts",

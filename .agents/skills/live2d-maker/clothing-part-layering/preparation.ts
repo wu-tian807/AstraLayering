@@ -59,6 +59,7 @@ export function createPreparationSteps(agents: Pick<AgentDispatcher, 'run'>): Pr
 // reads, which must be completed first.
 const sectionOf = (references: string) => dirname(references);
 const step = { number: stepNumber(clothingPreparationStep)!, note: 'preparation' };
+export const preparationRoute = () => [step];
 async function requireUpstreamSteps(runName: string, root?: string): Promise<void> {
   const person = sectionDirectory(runName, 'part-layering', root);
   const standard = await recordedReferenceBranch(person);
@@ -83,7 +84,7 @@ export async function loadPreparedReferences(runName: string, root?: string): Pr
   await requireUpstreamSteps(runName, root);
   const plan = await inspectSection(sectionOf(directory), [step]);
   if (plan.statuses.get(clothingPreparationStep) !== 'completed') {
-    throw new Error('纯衣服参考尚未完成，请先不带 --groups 运行 preparation。');
+    throw new Error(`纯衣服参考尚未完成，请先运行 ${clothingPreparationStep}（${join(sectionOf(directory), clothingPreparationStep)}）。`);
   }
   await requireDelivery(refs);
   await checkImage(refs.baseSubject, join(sectionDirectory(runName, 'part-layering', root), 'references/standard.png'));
@@ -91,7 +92,7 @@ export async function loadPreparedReferences(runName: string, root?: string): Pr
 }
 
 export async function prepareReferences(input: PreparationInput, steps: PreparationSteps,
-  progress?: (message: string) => void, options: ImageProcessingOptions = {}): Promise<PreparationReferences> {
+  progress?: (message: string) => void, options: ImageProcessingOptions = {}, signal?: AbortSignal): Promise<PreparationReferences> {
   const normalization = { ...options, runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
   const directory = getPreparationDirectory(input.runName, input.dir);
   if (input.image !== undefined) throw new Error('clothing-part-layering 按 --name 读取上游简化角色，不接受 --image；请将图片放到同名 part-layering/references/simplified-subject.png。');
@@ -102,8 +103,7 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
   const standard = join(sectionDirectory(input.runName, 'part-layering', input.dir), 'references/standard.png');
   await requireUpstreamSteps(input.runName, input.dir);
   await runSection({
-    directory: sectionOf(directory), steps: [step], progress,
-    keep: () => requireDelivery(refs),
+    directory: sectionOf(directory), steps: [{ ...step, requiredFiles: [refs.baseSubject] }], progress, signal,
     async step(_step, status) {
       if (status === 'completed') { progress?.('preparation：沿用已保存的纯衣服参考。'); return; }
       return async () => {

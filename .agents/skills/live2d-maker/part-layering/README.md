@@ -8,15 +8,13 @@
 
 ```sh
 pnpm part-layering --name my-character --image /绝对路径/角色.png --knowledge /绝对路径/knowledge
-# 姿态标准化按需追加 --standard；单独续跑须带同一选项（总入口续跑沿用总控记录）
-pnpm part-layering --name my-character --knowledge /绝对路径/knowledge
-# 只处理根层，登记下一层
-pnpm part-layering --name my-character --max-depth 1 --knowledge /绝对路径/knowledge
-# 选择已有组及后代，需已有参考、祖先与前层成果
-pnpm part-layering --name my-character --groups /绝对路径/selection.json --knowledge /绝对路径/knowledge
+# 已有首次分组时，制作当前待处理层并登记子组
+pnpm section part-layering --name my-character --knowledge /绝对路径/knowledge --from-step step09 --to-step step12 --max-recursive-counts 0
 ```
 
-`--dir` 为运行根目录，相对输入从 `<dir>/<name>/` 解析。`--jobs`／`-j`（别名 `--agents`／`-a`）控制全局实际 agent 并发，默认 3。`--max-depth` 从根深度 0 计数，1 制作根层，2 制作至第二层；省略则处理完整树。`--groups` JSON 按 ID 选择本任务已有组，沿用准备参考与前置事实；前层去重尚未完成时需要完整处理该层。独立调试先停止同任务总调度。
+`--jobs`／`-j`（别名 `--agents`／`-a`）设置实际 agent 并发上限，默认 3。首次准备可用 `--standard` 调整姿态，续跑沿用已保存的选项。通用范围规则见 [独立 section](../SKILL.md#单独运行一个-section)。
+
+回环次数从首个待制作层计算。`0` 停在当前层，`1` 允许再做一层。停点在 `step09` 到 `step12` 时默认回环零次。允许回环时，`step09` 和 `step12` 都须在选定范围内。
 
 ## 参考准备
 
@@ -40,7 +38,7 @@ preparation 完成后，总控同时推进人物线（本管线逐层制作 → 
 1. 各组轮廓绘制、自检、独立 review 与返修。
 2. 全层轮廓结束后统一去重。
 3. 各组直接遮挡补全、自检与直属 group／part 拆分。
-4. 各父组补全、自检和直属拆分完成后，立即派发其子组描边与 review，可与本层其他组的补全、拆分并行。下一层统一去重仍等待本层所有父组拆分结束、名单固定且全部子组轮廓就绪；去重完成后才开始该层补全。`--max-depth` 和所选分支仍限制提前派发范围。
+4. 允许回环时，父组补全、自检和直属拆分完成后可提前派发子组描边与 review。下一层统一去重等待本层所有父组拆分结束、名单固定且全部子组轮廓就绪，去重完成后才开始补全。
 
 轮廓使用纯矢量色块，对照原图可见形体、开口、可靠边缘和联合覆盖；完整位于父底形内的纹样可留给下层。`write_outline_svg` 绑定指定草稿，`preview_svg` 提供独显、blend、edge 与局部观察。`read_svg` 支持本地 SVG 路径及带哈希分页；几何读取与视觉核对分别完成。
 

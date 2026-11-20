@@ -16,7 +16,8 @@ import { occlusionPath, occlusionSourceHash, validateOcclusionPlan } from './occ
 import { beginStep, checkStep, completeStep, runStep, type ChainStep, type StepAction, type StepStatus } from '../step-chain.ts';
 import { taskRootOf } from '../task-paths.ts';
 import { copiedOutlineNote, groupStep, layerStep, readInitialGroups } from './part-steps.ts';
-import { partSteps } from '../step-paths.js';
+import { partSteps, stepNumber } from '../step-paths.js';
+import { createStepLoop, includesStep, type StepRange } from '../step-range.ts';
 
 const labels = { outline: '组轮廓与自检', review: '外轮廓与去噪 review', reduction: '同层轮廓去重',
   completion: '直接遮挡补形', completionCheck: '补形自检', children: '子组分析' };
@@ -58,19 +59,24 @@ export function validateLayeringDepth(maxDepth = Infinity): void {
 export async function runLayering(input: {
   profile?: PartProfile; directory: string; references: PreparationReferences; groups: GroupInput | GroupInput[] | null;
   steps: LayeringSteps; mergeSvg?: SvgMerger; maxDepth?: number;
+  range?: StepRange; maxRecursiveCounts?: number;
+  signal?: AbortSignal;
   progress?: (message: string) => void;
 }): Promise<LayeringResult> {
   validateLayeringDepth(input.maxDepth);
+  const loop = createStepLoop(partSteps.outline, partSteps.children, input.range, input.maxRecursiveCounts);
   const directory = resolve(input.directory);
   const store = await GroupStore.open(directory);
-  // 即使本次没有新工作，也将由步骤记录重建的树落盘。
-  await store.update(() => {});
   const report = input.progress ?? (() => {});
   const dispatcher = createStepDispatcher();
   const initial = { profile: input.profile, directory, references: input.references, store };
   const statePath = directory;
   let selected: Set<string> | undefined;
   let completedOcclusion: string | undefined;
+  let lastLayer: number | undefined;
+  const allows = (stage: keyof typeof partSteps) => includesStep(input.range, partSteps[stage]);
+  const runOutline = allows('outline'), runReduction = allows('reduce');
+  const runCompletion = allows('completion'), runChildren = allows('children');
   // directory is the part section directory, which sits in the task root.
   const root = taskRootOf(directory);
 
@@ -157,7 +163,11 @@ export async function runLayering(input: {
     const check = await guard(id, 'outline', () => checkStep(step.directory));
     const outline = artifactPath(directory, id, 'outline');
     const hidden = context(id).group.hiddenInReference === true;
-    if (check.action === 'keep' || !run) return;
+    if (!run) return;
+    if (check.action === 'keep') {
+      if (input.range && !await exists(outline)) throw new GroupExecutionError(id, 'outline', new Error(`缺少已完成步骤的轮廓：${outline}`));
+      return;
+    }
     await begin(step, check);
     if (hidden) {
       await clearCopyDecision(directory, id);
@@ -246,7 +256,7 @@ export async function runLayering(input: {
     return true;
   }
   // step02: completion + check; step03: children split.
-  async function finish(id: string) {
+  async function completeGroup(id: string): Promise<boolean> {
     const step = groupStep(directory, id, 'completion');
     const check = await guard(id, 'completion', () => checkStep(step.directory));
     if (check.action !== 'keep') {
@@ -272,7 +282,7 @@ export async function runLayering(input: {
         else if (!await drawing(id, 'completion', check.action === 'continue', async (outputPath, resumeDraft) => {
           if (removedByReduction) { await writeAtomic(outputPath, await readFile(reduced.path)); return { status: 'completed', output: { path: outputPath } }; }
           return input.steps.completeOcclusion({ ...context(id), outputPath, resumeDraft, reviewed: reduced });
-        })) return;
+        })) return false;
         if (!await execute(id, 'completionCheck', async () => {
           const after = artifact(id, 'completion');
           const result = removedByReduction ? { status: 'completed' as const, output: { passed: true as const, note: '去重后为空组' } }
@@ -282,10 +292,14 @@ export async function runLayering(input: {
             await writeAtomic(reportPath(directory, id, 'completion-check'), JSON.stringify({ groupId: id, ...result.output }, null, 2) + '\n');
           }
           return result;
-        })) return;
+        })) return false;
       }
       await guard(id, 'completionCheck', () => completeStep(step.directory));
     }
+    return true;
+  }
+
+  async function splitGroup(id: string) {
     const split = groupStep(directory, id, 'children');
     const splitCheck = await guard(id, 'children', () => checkStep(split.directory));
     if (splitCheck.action === 'keep') {
@@ -316,17 +330,26 @@ export async function runLayering(input: {
     });
   }
   function outlineStep(id: string, selected: boolean): StepInstance {
-    return { id: groupStep(directory, id, 'outline').id, run: () => prepare(id, selected) };
+    return { id: groupStep(directory, id, 'outline').id, run: () => {
+      input.signal?.throwIfAborted();
+      return prepare(id, selected);
+    } };
   }
 
-  function finishStep(id: string, depth: number): StepInstance {
+  function finishStep(id: string, canLoop: boolean): StepInstance {
     return {
-      id: groupStep(directory, id, 'children').id,
+      id: groupStep(directory, id, runChildren ? 'children' : 'completion').id,
       async run() {
-        await finish(id);
+        input.signal?.throwIfAborted();
+        if (runCompletion && !await completeGroup(id)) return;
+        if (!runChildren) return;
+        if (input.range && context(id).group.steps.completionCheck.status !== 'completed') {
+          throw new GroupExecutionError(id, 'completion', new Error(`前置步骤 ${partSteps.completion} 尚未完成或交付缺失`));
+        }
+        await splitGroup(id);
         const { group } = context(id);
-        if (!groupCompleted(group) || depth + 1 >= (input.maxDepth ?? Infinity)) return;
-        // finish() has committed the child list. Only the child outlines can
+        if (!groupCompleted(group) || !canLoop) return;
+        // The split has committed the child list. Only the child outlines can
         // start now. The layer loop still owns the reduction barrier. A selected
         // parent includes its descendants in scope.
         return group.groups.map(child => outlineStep(child.id, true));
@@ -334,6 +357,7 @@ export async function runLayering(input: {
     };
   }
   try {
+    input.signal?.throwIfAborted();
     if (input.groups !== null) {
       const requested = normalizeGroups(Array.isArray(input.groups) ? input.groups : [input.groups]);
       if (!requested.length) throw new Error('显式 groups 不能为空；自动流程请使用 null');
@@ -357,7 +381,7 @@ export async function runLayering(input: {
       for (const path of [input.references.simplifiedSubject, input.references.baseSubject]) {
         if (!(await stat(resolve(directory, path))).isFile()) throw new Error(`显式 groups 缺少前置参考：${path}`);
       }
-    } else {
+    } else if (allows('initial')) {
       const step: ChainStep = { id: partSteps.initial, directory: join(directory, partSteps.initial) };
       const check = await checkStep(step.directory);
       if (check.action === 'keep') report('首次分组：沿用已有结果');
@@ -377,31 +401,50 @@ export async function runLayering(input: {
           document.groups = normalizeGroups(groups.map(nodeSeed));
         });
       });
+    } else if (!store.snapshot().groups.length) {
+      throw new Error(`前置步骤 ${partSteps.initial} 尚未完成或交付缺失`);
     }
+    // Agents read the editable view reconstructed from the step records.
+    await store.update(() => {});
 
-    for (let depth = 0; depth < (input.maxDepth ?? Infinity); depth++) {
+    const runLayers = runOutline || runReduction || runCompletion || runChildren;
+    const maxDepth = input.maxDepth ?? Infinity;
+    for (let depth = 0; runLayers && depth < maxDepth; depth++) {
+      input.signal?.throwIfAborted();
       const entries = walkGroups(store.snapshot().groups).filter(entry => entry.depth === depth);
       if (!entries.length) break;
-      // --groups only filters the work; every group of the layer is still checked.
+      if ((input.range || input.maxRecursiveCounts !== undefined) && entries.every(entry => groupCompleted(entry.group))) continue;
+      lastLayer = depth;
+      const canLoop = loop.enter(depth).canLoop && depth + 1 < maxDepth;
+      // A programmatic selection limits dispatch. Reduction still needs the full layer.
       const selectedIds = scope();
-      const reduced = await dispatcher.runAndJoin(
-        entries.map(({ group: { id } }) => outlineStep(id, !selectedIds || selectedIds.has(id))),
-        {
+      const outlines = runOutline
+        ? entries.map(({ group: { id } }) => outlineStep(id, !selectedIds || selectedIds.has(id))) : [];
+      if (runReduction) {
+        const reduced = await dispatcher.runAndJoin(outlines, {
           members: entries,
           completed: entry => context(entry.group.id).group.steps.review.status === 'completed',
           async run() {
             try { return await reduce(depth, entries); }
             catch (error) { throw new GroupExecutionError(`第 ${depth} 层`, 'reduction', error); }
           },
-        },
-      );
-      if (reduced === 'waiting') {
-        report(`第 ${depth} 层仍有未完成轮廓，等待本层齐备后去重`);
+        });
+        if (reduced === 'waiting') {
+          if (!runOutline) throw new Error(`前置步骤 ${partSteps.outline} 第 ${depth + 1} 层尚未全部完成`);
+          report(`第 ${depth} 层仍有未完成轮廓，等待本层齐备后去重`);
+        }
+        if (reduced !== 'completed') break;
+      } else await dispatcher.run(outlines);
+      if (!runCompletion && !runChildren) break;
+      if (!runReduction && entries.some(({ group }) => group.steps.reduction.status !== 'completed')) {
+        throw new Error(`前置步骤 ${partSteps.reduce} 第 ${depth + 1} 层尚未完成或交付缺失`);
       }
-      if (reduced !== 'completed') break;
       const finishIds = scope();
       const finishTargets = entries.filter(entry => !finishIds || finishIds.has(entry.group.id));
-      await dispatcher.run(finishTargets.map(({ group: { id } }) => finishStep(id, depth)));
+      if (!runCompletion && finishTargets.some(({ group }) => group.steps.completionCheck.status !== 'completed')) {
+        throw new Error(`前置步骤 ${partSteps.completion} 第 ${depth + 1} 层尚未完成或交付缺失`);
+      }
+      await dispatcher.run(finishTargets.map(({ group: { id } }) => finishStep(id, canLoop)));
       if (finishTargets.some(entry => !groupCompleted(context(entry.group.id).group))) break;
       // 下一层去重必须等待本层所有拆分完成，固定完整名单；
       // 已提前描边的子组沿用步骤记录，显式选择不派发未选分支。
@@ -409,14 +452,21 @@ export async function runLayering(input: {
         report(`第 ${depth} 层还有未完成分支，下一层等待`);
         break;
       }
+      if (!canLoop) break;
     }
     const document = store.snapshot(), all = walkGroups(document.groups);
-    if (all.length && all.every(entry => groupCompleted(entry.group))) {
+    input.signal?.throwIfAborted();
+    const treeComplete = all.length > 0 && all.every(entry => groupCompleted(entry.group));
+    if (!runLayers && allows('merge') && !treeComplete) throw new Error('前置分组制作尚未完成，无法合并预览');
+    if (allows('merge') && treeComplete) {
       const step: ChainStep = { id: partSteps.merge, directory: join(directory, partSteps.merge) };
       const output = join(directory, 'preview.svg');
       const check = await checkStep(step.directory);
       let merged = check.action === 'keep';
-      if (merged) report('最终预览合并：沿用');
+      if (merged) {
+        if (!await exists(output)) throw new Error(`${step.id} 已标记完成但交付缺失：${output}`);
+        report('最终预览合并：沿用');
+      }
       else {
         const outcome = await runStandaloneStep(step, check, async () => {
           const draft = draftPath(output);
@@ -433,10 +483,17 @@ export async function runLayering(input: {
         if (merged) report(`最终预览合并：完成 ${output}`);
       }
       await store.update(draft => { draft.merge = merged ? { status: 'completed', output: { path: output } } : { status: 'pending' }; });
-    } else if (document.merge.status !== 'pending') await store.update(draft => { draft.merge = { status: 'pending' }; });
+    } else if (allows('merge') && document.merge.status !== 'pending') {
+      await store.update(draft => { draft.merge = { status: 'pending' }; });
+    }
     // 独立的最后一步。raster 会改写层级表中的深度，已完成时直接沿用现有层级表。
     const merged = store.snapshot();
-    if (merged.merge.status === 'completed') {
+    input.signal?.throwIfAborted();
+    if (allows('occlusion') && !allows('merge') && (!treeComplete || merged.merge.status !== 'completed'
+      || !await exists(join(directory, 'preview.svg')))) {
+      throw new Error(`前置步骤 ${partSteps.merge} 尚未完成或交付缺失`);
+    }
+    if (allows('occlusion') && merged.merge.status === 'completed') {
       const context = { ...initial, groups: merged.groups, preview: merged.merge.output! };
       const step: ChainStep = { id: partSteps.occlusion, directory: join(directory, partSteps.occlusion) };
       const check = await checkStep(step.directory);
@@ -471,7 +528,17 @@ export async function runLayering(input: {
     throw error;
   } finally { await input.steps.close?.(); }
   const final = store.snapshot();
-  return { status: final.merge.status === 'completed' && completedOcclusion ? 'completed' : 'pending', statePath, groupsPath: store.path,
+  const complete = final.merge.status === 'completed' && !!completedOcclusion;
+  const end = input.range && Object.values(partSteps).find(id => stepNumber(id) === input.range!.to);
+  const stage: GroupStage | undefined = end === partSteps.outline ? 'review' : end === partSteps.reduce ? 'reduction'
+    : end === partSteps.completion ? 'completionCheck' : end === partSteps.children ? 'children' : undefined;
+  const reached = end === partSteps.initial ? final.groups.length > 0
+    : end === partSteps.merge ? final.merge.status === 'completed'
+    : end === partSteps.occlusion ? complete
+    : stage && final.groups.length > 0 && walkGroups(final.groups)
+      .filter(entry => lastLayer === undefined || entry.depth === lastLayer)
+      .every(({ group }) => group.steps[stage].status === 'completed');
+  return { status: complete ? 'completed' : 'pending', ...(end && reached ? { stoppedAt: end } : {}), statePath, groupsPath: store.path,
     ...(completedOcclusion ? { occlusionPath: completedOcclusion } : {}),
     groups: final.groups, ...(final.merge.status === 'completed' ? { output: final.merge.output!.path } : {}) };
 }
