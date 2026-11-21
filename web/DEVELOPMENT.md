@@ -67,6 +67,7 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 | 九轴头部饰品交付 | `nine-axis/step09_head-accessories/deformers.json`、`character-nine-axis.kra`、`notes.md` |
 | 完整头部上下 | `nine-axis/step10_head-pitch/{up,down}/head-{up,down}.json`、`deformers.json`、`notes.md`，父级 `deformers.json` 为合并结果 |
 | 完整头部斜角 | `nine-axis/step11_head-angle-xy/head-xy.json`、`deformers.json`、`source.json`、`notes.md`；单会话完成四角 |
+| 头部 Z 轴 | `nine-axis/step12_head-roll/deformers.json`；复用斜角模型引用的 KRA |
 
 流程预览每 4 秒同步变化。过程文件按文件夹分配展示名额，上限为 1000 个；agent 请求与会话由服务器保留。九轴预览使用共享模型和渲染器，中间成果保存后即可读取。
 
@@ -88,7 +89,7 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 
 ## 角色工作台
 
-`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 打开所选文件夹。`nineStage=neutral|x|up|down|y|xy|jaw|hair|accessories` 选择九轴阶段，默认读取最新累计阶段；旧四步成果保留兼容读取。
+`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 直接打开项目文件夹。`workspace=mask|lighting|physics|nine-axis` 指定打开的工作区。`nineStage=neutral|x|up|down|y|xy|jaw|hair|accessories|headPitch|headCorners|headRoll` 指定九轴模型阶段，省略时读取最新可用的累计模型。旧四步成果保留兼容读取。
 
 Krita 原生合成支持图层属性与已有蒙版。PSD 导入处理连续剪贴链、组不透明度和蒙版停用状态；高级效果、复合矢量蒙版及智能对象按 Krita 导入能力读取。无法完整映射结构时展示保存合成图，使用者可在 Krita 中另存 KRA 后打开。
 

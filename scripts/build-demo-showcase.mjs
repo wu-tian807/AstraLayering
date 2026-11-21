@@ -12,7 +12,7 @@ const width = 3000, height = 1780;
 const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
 const text = (x, y, value, size = 22, fill = '#727a8c', attributes = '') => `<text x="${x}" y="${y}" font-family="sans-serif" font-size="${size}" fill="${fill}" ${attributes}>${escape(value)}</text>`;
 const image = (bytes, x, y, w, h) => `<image x="${x}" y="${y}" width="${w}" height="${h}" href="data:image/png;base64,${bytes.toString('base64')}"/>`;
-const cleanName = name => name.replace(/^(?:人物|衣服)\s*\|\s*/, '').replace(/^\d+(?:\.\d+)?\s*(?:\|\s*)?/, '');
+const cleanName = name => name.replace(/^(?:人物|衣服)\s*\|\s*/, '').replace(/^D?\d+(?:\.\d+)?(?:\s*\|\s*|__|\s+)/, '');
 const isBody = layer => layer.name.startsWith('衣服 |') ? false : layer.name.startsWith('人物 |') ? true : layer.source ? layer.source === 'body' : /^(hair|face|head_accessories|neck|body|arms|pelvis|legs)(\/|::|$)/.test(cleanName(layer.name));
 const cases = [
   { id: 'jianma', title: 'Jianma', source: '.web/showcase-layers/jianma', reference: 'demos/jianma/input/original.png',
@@ -35,10 +35,11 @@ const cases = [
       return name.startsWith('trailing_skirt_') ? 0 : /^(waist_bow|chest_pendant)/.test(name) ? 4 : 3;
     } },
   { id: 'black-white-doll', title: 'Black White Doll', source: '.web/showcase-layers/black-white-doll', reference: 'demos/black-white-doll/input/original.png',
-    composite: 'demos/black-white-doll/character-assembly/step01/character-assembled.png', counts: [81, 19],
+    composite: 'demos/black-white-doll/character-assembly/step01/character-assembled.png', counts: [77, 15],
+    hiddenLayers: 5,
     titles: ['Rear hair', 'Character', 'Camisole', 'Pleated skirt', 'Chest bow'],
     classify(layer, name) {
-      if (isBody(layer)) return /^hair\/(back_hair|ponytail_)/.test(name) ? 0 : 1;
+      if (isBody(layer)) return /^hair\/(back_hair|hair_cap|ponytail\/|ponytail_)/.test(name) ? 0 : 1;
       return name.startsWith('pleated_skirt/') ? 3 : name.startsWith('chest_bow/') ? 4 : 2;
     } },
 ];
@@ -79,7 +80,8 @@ async function render(profile, caseIndex) {
   const depths = profile.depths ?? [-280, 0, 245, 505, 775];
   const modules = profile.titles.map((title, index) => ({ title, z: depths[index] * ch / 1536, layers: [] }));
   for (const layer of manifest.layers) {
-    if (layer.visible === false || (layer.blend && layer.blend !== 'normal')) throw new Error(`Review source layer: ${layer.name}`);
+    if (layer.visible === false) continue;
+    if (layer.blend && layer.blend !== 'normal') throw new Error(`Review source layer: ${layer.name}`);
     const file = join(source, layer.original.file), metadata = await sharp(file).metadata();
     let input = file;
     if (layer.opacity !== undefined && layer.opacity !== 255) {
@@ -195,11 +197,11 @@ async function render(profile, caseIndex) {
     svg.push(text(1575, 1640, legend.slice(4).join('   /   '), 20, '#7c8698'));
   } else svg.push(text(1575, 1630, legend.join('   /   '), 20, '#7c8698'));
   svg.push('<path d="M76 1670 H2924" stroke="#adb5c4" stroke-opacity=".3"/>');
-  svg.push(text(76, 1720, `${rendered} PAINT LAYERS`, 21, '#546176', 'letter-spacing="2"'));
+  svg.push(text(76, 1720, `${manifest.layers.length} PAINT LAYERS`, 21, '#546176', 'letter-spacing="2"'));
   svg.push(text(430, 1720, `${profile.counts[0]} character  +  ${profile.counts[1]} clothing`, 21));
   svg.push(text(2924, 1720, `Source KRA pixels / ${modules.length === 5 ? 'five' : modules.length} structural assemblies / perspective projection`, 20, '#8a93a2', 'text-anchor="end"'));
   svg.push('</svg>');
-  if (rendered !== manifest.layers.length) throw new Error('Every source layer must appear exactly once.');
+  if (rendered !== manifest.layers.length - (profile.hiddenLayers ?? 0)) throw new Error('Every visible source layer must appear exactly once.');
   await sharp(Buffer.from(svg.join(''))).png().toFile(join(output, `${profile.id}-reference-composite-exploded.png`));
   console.log(`${profile.id}: ${rendered} source layers, ${modules.length} assemblies; comparison 50% / explosion 50%.`);
 }

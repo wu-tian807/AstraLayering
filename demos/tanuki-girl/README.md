@@ -19,4 +19,4 @@
 | 阴影 | [KRA](shadow/step01_mask/character-shadowed.kra) · [PNG](shadow/step01_mask/character-shadowed.png) · [投影关系](shadow/step01_mask/shadows.json) |
 | 头部九轴 | [最新 KRA](nine-axis/step09_head-accessories/character-nine-axis.kra) · [变形模型](nine-axis/step12_head-roll/deformers.json) |
 
-从角色工作台“打开项目”选择本目录，切到“头部九轴”即可预览。Z 滑杆需要支持 Z 轴的版本。导出来源与文件清单见 [manifest.json](manifest.json)。
+在角色工作台的“打开项目”中把基准文件夹切到 `demos/`，选择本案例后切到“头部九轴”。可用“鼠标跟随”控制转头和俯仰，用 Z 滑杆、关键形按钮或 A／D 歪头。导出来源与文件清单见 [manifest.json](manifest.json)。

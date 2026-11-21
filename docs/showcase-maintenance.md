@@ -1,6 +1,6 @@
 # 展示图维护
 
-README 使用的图片与 GIF 放在仓库根目录 `showcase/`。
+README 的角色展示图与 GIF 放在 `showcase/`，界面截图放在 `web/demo-screenshots/`。
 
 分层展示图由工程图层生成。在仓库根目录执行：
 
@@ -9,16 +9,9 @@ node scripts/export-showcase-layers.ts --krita /path/to/krita
 node scripts/build-demo-showcase.mjs
 ```
 
-第一步将图层导出到 `.web/showcase-layers/`，第二步生成原图、合成图与分层展开图。Jianma 使用组装工程图层与阴影合成图，其他案例使用各自组装工程与合成图。
-
-头部九轴 GIF 使用已保存的模型和共享渲染器。更新时保留循环播放，并压缩尺寸和帧率，便于 GitHub 页面加载。
+第一步将图层导出到 `.web/showcase-layers/`，第二步生成原图、合成图与分层展开图。Jianma 使用组装工程图层与阴影合成图，其他案例使用各自组装工程与合成图。Pink Doll 展开时会暂时隐藏裙腰的躯干遮罩，好让分开的裙片旁边显示完整腰腹。
 
 ## 头部九轴与界面
 
-- `showcase/tanuki-face-nine-axis.gif`：仅脸部与五官，展示左右、俯仰和斜向。
-- `showcase/tanuki-whole-head-left-right.gif`：脸部、五官、全部头发与头饰，仅展示左右。
-- `web/demo-screenshots/`：当前流程、九轴工作台、模型服务配置与头部先验截图。
-
-从现有 KRA 和累计模型读取素材，用工作台共享渲染器导出；保持实际制作方向，不混入手动姿态覆盖。更新后检查循环、端点、连接遮挡和页面尺寸，清理临时逐帧图。
-
-全向 GIF 的每帧角度复用 [head-motion.js](../web/head-motion.js) 的 `constrainHeadPoint`：斜角与正角之间沿向内收窄的边界过渡，保留九个关键姿态，避免直线经过侧边禁区。
+- `showcase/tanuki-head-nine-axis.gif` 包含狸娘表演的完整 38 秒和片尾署名。更新时从成片转出循环 GIF，保留片尾并核对回放时长。
+- `web/demo-screenshots/` 包含制作流程、九轴流程预览、角色工作台、环境与模型和先验知识的截图。使用当前界面与 `demos/` 中的项目录入；拍摄配置页时使用示例配置。
