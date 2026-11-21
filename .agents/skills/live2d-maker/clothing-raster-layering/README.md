@@ -32,6 +32,8 @@ pnpm clothing-raster-layering --name jianma --krita /path/to/krita --knowledge /
 
 纯衣服参考 `../clothing-part-layering/references/clothing.png` 是绘画标准，原穿衣角色用于理解穿插关系。单深度衣片对应一个完整绘画层，多深度 part 对应多个保持共同归属与连续性的绘画分片层，按深度排列，无蒙版、无子节点。已经拆开的前后衣片保留独立图层，即使共同运动也不合并。交付衣服分层，不制作身体装配或身体插层说明。
 
+衣片原尺寸满足摆放要求时直接使用。在 step01 需要放大时，可用 [upscale_image](../knowledge/shared/tools/upscale_image/description.md) 等比批量处理，再配准到任务画布。此工具复用[管线准备的 Upscayl CLI](../references/setup.md#超分环境与自动安装)。
+
 reviewer 每次新建上下文，读取当前 KRA、参考及已有正式 Markdown；不保存或恢复其 threadId。`review-01.md` 有问题时，原绘制 agent 必须全部解决并完成自检，才发布 `repair-01.md`，然后开始第二次 review。第一次无问题直接结束；第二次有问题也须全部修完，发布 `repair-02.md` 后结束，不再做第三次 review。
 
 两次上限只针对 review，不限制解决同一份反馈的修复调用。无法解决或工具受阻时保留未完成状态。只有初次绘制和必要 review / 修复全部结束、KRA 及报告存在，才把第一步标记为 `.completed`。程序的文件检查不代替逐层看图和保存后重开核对。

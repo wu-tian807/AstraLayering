@@ -47,6 +47,12 @@ pnpm start --name my-character --stop
 
 单步操作使用 `--section <管线> --step <步骤>`，例如 `--retry --section raster-layering --step step02`。制作成功以实际交付文件为准，详细操作见[总流程](workflow/README.md)。
 
+### 引导用户选择分辨率
+
+- 用户没指定分辨率时，新任务用默认 `1K`，总调度续跑沿用已有任务的档位。希望整套产物换档时，用新任务重新制作。
+- 用户想跟随原图或制作更高分辨率时，先确认运行管线的机器支持超分。通过检查后，网页新建任务可选固定档位或“跟随输入图（最大 4K）”。CLI 传具体值，例如 `--size 2K`。想用 CLI 跟随原图时，按[长边分档](workflow/README.md#分辨率与画布)换算。
+- 首次以 `2K` 至 `4K` 启动时，管线自动准备 Upscayl CLI，可在任务的“运行环境准备”查看进度。环境检测未通过时，引导用户选择 `1K`。网页仅开放 `1K`，CLI 会以 `1K` 执行并记录原因。[平台支持与检查方式](references/setup.md#超分环境与自动安装)。
+
 ## 单独运行一个 section
 
 先停止同一任务的总调度，再单独启动所需管线。独立 section 每次传入 `--knowledge` 和所需软件路径，并沿用任务的运行根目录 `--dir`。它从步骤记录沿用工程和会话。原有的 `pnpm <section-id>` 命令与通用的 `pnpm section <section-id>` 使用同一个入口。
@@ -58,6 +64,7 @@ pnpm section raster-layering --name my-character --dir /绝对路径/运行根�
 - `--from-step` 和 `--to-step` 包含两端。只给起点时只执行该步，只给停点时从开头执行，两项都省略时执行整个 section。
 - 从中间开始前，前置步骤须已完成且必需交付存在。范围内的中断步骤沿用当前会话，已完成步骤直接复用。
 - `--max-recursive-counts` 限制返回较早步骤的次数。`0` 只执行当前轮。线性 section 的回环次数为零。
+- 独立 section 每次读取 `--size`，省略时用 `1K`。续接已有高分辨率任务时，传入任务的档位。
 
 | 管线 | 用途 |
 | --- | --- |

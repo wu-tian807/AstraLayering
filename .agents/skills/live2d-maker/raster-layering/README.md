@@ -31,11 +31,13 @@ pnpm raster-layering --check-krita --krita /绝对路径/krita
 
 | 环节 | 工具 |
 | --- | --- |
-| step01 绘制与返修 | `prepare_part_reference`、`edit_groups`、`edit_occlusion` |
+| step01 绘制与返修 | `prepare_part_reference`、`edit_groups`、`edit_occlusion`、`upscale_image` |
 | step01 review | `annotate_review_regions` |
 | step02、step03 | 无 |
 
 step01 交付时的结构诊断失败只记为“结构检查提示”，不阻止完成，见 [shared](../shared/README.md#多深度与上游修正)。
+
+部件原尺寸满足摆放要求时直接使用。需要放大时，可用 [upscale_image](../knowledge/shared/tools/upscale_image/description.md) 等比批量处理，再配准到任务画布。此工具复用[管线准备的 Upscayl CLI](../references/setup.md#超分环境与自动安装)。
 
 素体未换装（见 [总控](../workflow/README.md#姿态与参考)）时，step03 不调用 agent，直接把 step02 的 KRA 与 PNG 复制为 step03 成果，并标记为已完成。
 

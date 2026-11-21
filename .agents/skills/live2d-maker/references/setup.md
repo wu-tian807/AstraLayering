@@ -10,6 +10,7 @@
 | C/C++ 编译工具 | 构建 Codex 补丁：macOS 用 Xcode Command Line Tools，Windows 用 Visual Studio Build Tools 的 C++ 桌面开发组件，Ubuntu／Debian 用 build-essential |
 | Xvfb | Linux 无桌面环境 |
 | FFmpeg、Seedance 视频服务 | 九轴 |
+| Upscayl CLI | `2K` 至 `4K` 任务启动时自动准备 |
 
 Claude、Gemini、GPT Image 和 Nano Banana 的配置见[模型方案](model-presets.md)。按用户选择准备所需软件，复用已有安装和配置。
 
@@ -41,6 +42,26 @@ pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 
 ```
 
 默认制作目录是 `.run/`，导出案例放在 `demos/`。相对路径以任务目录为基准，绝对路径直接使用。自定义 knowledge 使用完整目录；启动时检查必要文件，缺失或空文件会直接报错。
+
+## 超分环境与自动安装
+
+检查的是运行制作管线的机器。远程工作台以其服务器的检测结果为准。
+
+| 运行环境 | 可用分辨率 |
+| --- | --- |
+| macOS 12 或更新版本，Apple 芯片或 Intel，且检测到 Metal 图形设备 | `1K` 至 `4K` |
+| Windows 10 或更新版本，x64 Node.js，且检测到支持 Vulkan 计算的 GPU 和驱动 | `1K` 至 `4K` |
+| Linux、仅 CPU，或检测未通过 | `1K` |
+
+Windows 的集成显卡、独立显卡或虚拟 GPU 通过 Vulkan 计算检测即可。网页在新建任务的“分辨率”下显示检测结果。只用 CLI 时，可在 skill 目录用以下命令进行同一项检查。
+
+```sh
+node --input-type=module -e "import { probeUpscaleEnvironment } from './shared/upscale-environment.ts'; console.log(await probeUpscaleEnvironment());"
+```
+
+以 `2K` 至 `4K` 启动时，管线在检测通过后自动下载并校验 Upscayl CLI，Windows 同时准备所需运行库。CLI 缓存在 skill 的 `data/upscayl/`，后续复用。首次实际超分时，同一缓存目录还会下载 Digital Art 模型。任务的“运行环境准备”和 `workflow.log` 可查看 CLI 下载进度。下载失败时，按日志检查运行机器访问 GitHub 的网络，再继续任务。
+
+raster Step01 的 `upscale_image` 复用已准备的 CLI。缓存缺失、安装损坏或图形环境不可用时，工具会返回原因。
 
 ## 模型 CLI 与生图
 
