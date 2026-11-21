@@ -2,9 +2,9 @@
 
 AstraLayering 是一个由 AI agent 驱动的角色分层工具。从一张角色图开始，完成人物与衣服分层、遮挡补全、穿戴组装、阴影与头部九轴，交付可编辑的 Krita KRA、透明 PNG 和制作报告。
 
-## 4K 衣服分层
+## 工作流最高支持 4K 分辨率
 
-Black White Doll 的衣服分为 10 个衣片、15 个绘画层，Krita 工程画布为 3258 × 4344。
+可选择固定档位或跟随输入图。下图是 Black White Doll 的衣服分层，工程画布为 3258 × 4344，共 15 个绘画层。
 
 ![Black White Doll 4K 衣片分层预览](showcase/black-white-doll-clothing-4k.png)
 
