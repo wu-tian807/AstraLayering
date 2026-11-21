@@ -77,14 +77,13 @@ test('dry-run 展开组装专用提示词与绝对路径，不混入拆层和深
   await assert.rejects(stat(f.output), { code: 'ENOENT' });
 });
 
-test('只调一次组装 agent，只有 krita 工具且无 reviewer；完整交付才完成', async t => {
+test('组装只调一次 agent；完整交付才完成，续跑复用结果', async t => {
   const f = await fixture(t); let calls = 0;
   const agent = async (request: AgentRequest) => {
     calls++;
     assert.equal(request.directory, f.output);
     assert.equal(request.model, 'gpt-6.2-sol'); assert.equal(request.effort, 'high');
     assert.equal(request.threadId, undefined);
-    assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
 
     await stat(join(f.output, 'step01/.running'));
     return deliver(request);

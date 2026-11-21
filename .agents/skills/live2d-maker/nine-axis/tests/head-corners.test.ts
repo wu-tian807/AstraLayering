@@ -11,7 +11,7 @@ import { nineAxisPreviewModes } from '../../shared/nine-axis-preview.js';
 import { readStep } from '../../shared/step-chain.ts';
 import { stepDeliveries } from '../../shared/step-deliveries.ts';
 import { readStepSession, writeStepSession } from '../../shared/agents/step-session.ts';
-import type { FunctionTool } from '../../shared/codex/function-tools.ts';
+import { stubStepTools } from '../../shared/tests/knowledge-fixture.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { defaultKnowledgeDirectory, useKnowledge } from '../../shared/knowledge.ts';
 import { applyStepAction } from '../../workflow/step-actions.ts';
@@ -21,6 +21,7 @@ import { runWorkflow, createFitHead } from '../run.ts';
 import type { MaterialLoader } from '../kra-materials.ts';
 
 const step = 'step11_head-angle-xy';
+const tools = () => stubStepTools('nine-axis', step);
 function source(): HeadNineAxis & { axis: number } {
   const doc = joint() as HeadNineAxis & { axis: number };
   doc.parameters = [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [-25, 0, 25] }];
@@ -145,8 +146,6 @@ test('continue, resume and retry reuse normal single-step session recovery and r
   useKnowledge(defaultKnowledgeDirectory); const f = await fixture(t), seen: (string | undefined)[] = [], roles: string[] = [];
   await seedHeadCorners(f.output, f.upstream, f.task, scale); await f.put(join(f.output, '.running'), '');
   await writeStepSession(f.nine, 'step10_head-pitch/up', { threadId: 'upstream-thread', harness: 'codex' });
-  const tools = async (): Promise<FunctionTool[]> => ['view_bitmap', 'preview_svg', 'edit_nine_axis', 'view_nine_axis'].map(name =>
-    ({ name, description: 'fixture', inputSchema: { type: 'object' }, async execute() { assert.fail('fixture does not execute drawing tools'); } }));
   const agents = { async run() { assert.fail('saved step session required'); }, createSession(id?: string) {
     seen.push(id); const threadId = id ?? `corners-${seen.length}`;
     return { async run(task: { step: string }) { roles.push(task.step); return { text: '{"error":null}', images: [], threadId, harness: 'codex' as const }; }, async close() {} };
@@ -168,8 +167,6 @@ test('continue, resume and retry reuse normal single-step session recovery and r
 
 for (const repaired of [true, false]) test(`missing corner notes get at most two correction turns in the same session: ${repaired}`, async t => {
   useKnowledge(defaultKnowledgeDirectory); const f = await fixture(t); let calls = 0, sessions = 0;
-  const tools = async (): Promise<FunctionTool[]> => ['view_bitmap', 'preview_svg', 'edit_nine_axis', 'view_nine_axis'].map(name =>
-    ({ name, description: 'fixture', inputSchema: { type: 'object' }, async execute() { assert.fail('unused'); } }));
   const agents = { async run() { assert.fail('saved step session required'); }, createSession() { sessions++; return { async run() {
     calls++; if (calls === 1) { await f.paint(f.output); await rm(join(f.output, 'notes.md')); }
     if (repaired && calls === 3) await f.put(join(f.output, 'notes.md'), 'all four corners checked');

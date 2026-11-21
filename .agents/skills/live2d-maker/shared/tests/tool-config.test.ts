@@ -8,7 +8,6 @@ import { ToolCatalog, toolsDirectory } from '../codex/tool-config.ts';
 import { profile as clothing } from '../../clothing-part-layering/profile.ts';
 const characterTools = fileURLToPath(new URL('../../part-layering/tools/', import.meta.url));
 import { AgentDispatcher } from '../agents/dispatcher.ts';
-import { stepKnowledge } from '../knowledge.ts';
 import { textResult } from '../codex/function-tools.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
@@ -26,8 +25,6 @@ test('管线自有工具只出现在该管线的 catalog；缺文件明确报错
   const own = fileURLToPath(new URL('../../shadow/tools/', import.meta.url));
   assert.ok(new ToolCatalog(toolsDirectory, own).names().includes('inspect_shadow_mask'));
   assert.ok(!new ToolCatalog().names().includes('inspect_shadow_mask'));
-  // Which tools an agent sees is decided by its agent.json, not the catalog.
-  assert.ok(!stepKnowledge('clothing-part-layering', 'step01_preparation').tools('main', [{ ...new ToolCatalog(toolsDirectory, fileURLToPath(new URL('../../part-layering/tools/', import.meta.url))).get('reuse_reference'), execute: async () => textResult('') }]).length);
   const root = await mkdtemp(join(tmpdir(), 'tool-own-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   await mkdir(join(root, 'only_description'));

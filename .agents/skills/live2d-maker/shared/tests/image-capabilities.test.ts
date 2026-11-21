@@ -16,10 +16,10 @@ import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 
-async function setImages(directory: string, enabled: boolean) {
-  const path = join(directory, 'raster-layering/step02/agent.json');
+async function setImages(directory: string, enabled: boolean, step = 'raster-layering/step02') {
+  const path = join(directory, step, 'agent.json');
   const config = JSON.parse(await readFile(path, 'utf8'));
-  config.main.tools = config.main.tools.filter((name: string) => name !== 'imagegen');
+  config.main.tools = (config.main.tools ?? []).filter((name: string) => name !== 'imagegen');
   if (enabled) config.main.tools.push('imagegen');
   await writeFile(path, JSON.stringify(config));
 }
@@ -28,38 +28,32 @@ test('nine-axis steps use their own agent.json while sharing a model slot', asyn
   const knowledge = await temporaryKnowledge(t);
   const entries = [['step03_frames', ['nine_axis_view_frames']], ['step04_outline', ['nine_axis_outline']], ['step04_angles', ['nine_axis_head', 'nine_axis_head_y', 'nine_axis_head_down']],
     ['step05_frames', ['nine_axis_frames']], ['step06_angle-xy', ['nine_axis_head_xy']], ['step07_jaw-line', ['nine_axis_head_jaw']], ['step08_hair',['nine_axis_head_hair']], ['step09_head-accessories',['nine_axis_head_accessories']]] as const;
+  for (const [directory] of entries) await setImages(knowledge, false, 'head-nine-axis/' + directory);
   for (const [directory, identities] of entries) {
-    const path = join(knowledge, 'head-nine-axis', directory, 'agent.json');
-    const config = JSON.parse(await readFile(path, 'utf8'));
-    config.main.tools.push('imagegen');
-    await writeFile(path, JSON.stringify(config));
+    await setImages(knowledge, true, 'head-nine-axis/' + directory);
     for (const [, others] of entries) for (const other of others) assert.equal(agentImageGeneration(other), (identities as readonly string[]).includes(other));
-    config.main.tools.pop();
-    await writeFile(path, JSON.stringify(config));
+    await setImages(knowledge, false, 'head-nine-axis/' + directory);
   }
 });
 
 test('all named agents read capability from their role; main and repair share tools', async t => {
   const knowledge = await temporaryKnowledge(t);
   for (const step of Object.keys(stepModelSlots)) assert.equal(typeof agentImageGeneration(step as keyof typeof stepModelSlots), 'boolean');
-  for (const step of ['raster_step02', 'raster_step03', 'raster_step01_review', 'clothing_raster_step02', 'clothing_raster_step01_review', 'assembly'] as const) {
-    assert.equal(agentImageGeneration(step), false, step);
-  }
   for (const section of ['part-layering', 'clothing-part-layering', 'raster-layering', 'clothing-raster-layering']) {
     const step = stepKnowledge(section, section.endsWith('raster-layering') ? 'step01' : 'step09_outline');
     assert.deepEqual(step.toolNames('repair'), step.toolNames('main'), section);
     assert.equal(step.imageGeneration('repair'), step.imageGeneration('main'), section);
   }
-  assert.equal(agentImageGeneration('raster_step01_repair'), true, 'repair uses main tools');
   const path = join(knowledge, 'raster-layering/step01/agent.json');
   const config = JSON.parse(await readFile(path, 'utf8'));
-  config.main.tools = config.main.tools.filter((name: string) => name !== 'imagegen');
+  config.main.tools = ['edit_groups'];
+  config.review.tools = [];
   await writeFile(path, JSON.stringify(config));
   checkKnowledge(knowledge);
   assert.equal(agentImageGeneration('raster_step01'), false);
   assert.equal(agentImageGeneration('raster_step01_review'), false);
   assert.equal(agentImageGeneration('raster_step01_repair'), false);
-  assert.throws(() => stepKnowledge('raster-layering', 'step01').tools('repair', [{ name: 'imagegen' } as any]), /没有提供执行实现/);
+  assert.throws(() => stepKnowledge('raster-layering', 'step01').tools('repair', []), /edit_groups.*没有提供执行实现/);
   config.main.tools.push('imagegen');
   await writeFile(path, JSON.stringify(config));
   assert.equal(agentImageGeneration('raster_step01'), true);

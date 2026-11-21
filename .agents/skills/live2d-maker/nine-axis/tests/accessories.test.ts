@@ -7,6 +7,7 @@ import {tmpdir} from 'node:os';
 import {zipSync,unzipSync,strToU8,strFromU8} from 'fflate';
 import sharp from 'sharp';
 import {joint,grid,pts} from './axis-fixtures.ts';
+import { stubStepTools } from '../../shared/tests/knowledge-fixture.ts';
 import {prepareAccessories,buildAccessories,checkAccessories,checkAccessoryShadows,accessoryPreviewScope,isAccessoryId} from '../accessories.ts';
 import {KraMaterials,type MaterialLoader} from '../kra-materials.ts';
 import {createContinuationEditTool} from '../continuation-edit-tool.ts';
@@ -60,7 +61,7 @@ async function fixture(t:TestContext,withAccessory=true){
   const dependencies={environment:loadWorkflowEnvironment({}),materialize,ffmpegCheck:async()=>assert.fail('artwork-only step must not require FFmpeg'),resolveInput:async()=>({document:source,color:join(upstream,'character-nine-axis.png'),parts:[],source:{id:'hair',directory:upstream}})};
   return {root,task,nine,upstream,output,source,doc,colors,makeKra,materialize,edit,build,select,options,dependencies};
 }
-const tools=async()=>['krita','view_bitmap','edit_nine_axis','view_nine_axis'].map(name=>({name,description:'fixture',inputSchema:{type:'object'},async execute(){throw Error('unused');}}));
+const tools = () => stubStepTools('nine-axis', 'step09_head-accessories');
 
 test('accessories bind only UUIDs, preserve the owned KRA on continue, and inherit all face/hair axes',async t=>{
   const f=await fixture(t);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);

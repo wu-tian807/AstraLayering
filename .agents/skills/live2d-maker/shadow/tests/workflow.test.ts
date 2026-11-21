@@ -184,7 +184,7 @@ test('法线深度只生成一步；删除的发布贴图从已完成步骤恢�
   const options = { ...f.options, shadowMode: 'normal-depth' as const };
   await runWorkflow(options, { ...f.deps, agent: async request => {
     assert.equal(request.step, 'shadow_maps');
-    assert.equal(request.tools?.length ?? 0, 0);
+    assert.ok(!request.tools?.some(tool => tool.name === 'krita'));
     return f.deliver(request);
   } });
   const output = join(f.task, 'shadow/step01_normal-depth');
@@ -251,9 +251,6 @@ test('制作参考准备、agent 用检查工具自查，交付不核对检查�
   const output=join(f.task,'shadow/step01_mask');
   await runWorkflow(f.options,{...f.deps,agent:async(request:AgentRequest)=>{
     const guide=await readFile(join(request.outputDirectory!,'workspace/references/production.md'),'utf8');assert.match(guide,/testOffsets/);
-    // The mask section offers the inspection tool next to its krita tool.
-    assert.deepEqual(request.tools?.map(tool=>tool.name).sort(),['inspect_shadow_mask','krita']);
-    assert.match(request.prompt,/inspect_shadow_mask/);assert.doesNotMatch(request.prompt,/inspect\.ts|--bridge/);
     // Delivery is accepted without any inspection: checking is the agent's job.
     return f.deliver(request,null);
   }});

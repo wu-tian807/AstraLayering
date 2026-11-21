@@ -17,8 +17,10 @@ import { stepDeliveries } from '../../shared/step-deliveries.ts';
 import { readStep } from '../../shared/step-chain.ts';
 import { applyStepAction } from '../../workflow/step-actions.ts';
 import { readStepSession, writeStepSession } from '../../shared/agents/step-session.ts';
-import type { FunctionTool } from '../../shared/codex/function-tools.ts';
+import { stubStepTools } from '../../shared/tests/knowledge-fixture.ts';
 import type { MaterialLoader } from '../kra-materials.ts';
+
+const tools = () => stubStepTools('nine-axis', 'step10_head-pitch');
 
 function source(): HeadNineAxis & { axis: number } {
   const doc = joint() as HeadNineAxis & { axis: number };
@@ -130,7 +132,6 @@ test('parent resume replaces only unfinished direction sessions and a failed bra
 test('head-pitch sessions start independently of the hair session and continue each direction separately',async t=>{
   useKnowledge(defaultKnowledgeDirectory);const f=await fixture(t),seen:(string|undefined)[]=[],roles:string[]=[];
   await writeStepSession(f.nine,'step08_hair',{threadId:'previous-hair',harness:'codex'});
-  const tools=async():Promise<FunctionTool[]>=>['view_bitmap','edit_nine_axis','view_nine_axis'].map(name=>({name,description:'fixture',inputSchema:{type:'object'},async execute(){throw Error('unused');}}));
   const agents={async run(){assert.fail('step session required');},createSession(id?:string){seen.push(id);const next=id??`pitch-${seen.length}`;return{async run(task:{step:string}){roles.push(task.step);return{text:'{"error":null}',images:[],threadId:next,harness:'codex' as const};},async close(){}};}};
   for(const direction of headPitchDirections){const folder=join(f.output,direction);await mkdir(folder,{recursive:true});
     await createFitHead(agents,tools,`step10_head-pitch/${direction}`,'fixture',undefined,f.nine)(folder,'fixture',async()=>{});
@@ -143,7 +144,6 @@ test('head-pitch sessions start independently of the hair session and continue e
 
 for (const repaired of [true, false]) test(`head-pitch missing notes uses the normal two correction turns: ${repaired ? 'repaired' : 'exhausted'}`, async t => {
   useKnowledge(defaultKnowledgeDirectory); const f = await fixture(t); let calls = 0;
-  const tools = async (): Promise<FunctionTool[]> => ['view_bitmap', 'edit_nine_axis', 'view_nine_axis'].map(name => ({ name, description: 'fixture', inputSchema: { type: 'object' }, async execute() { throw Error('unused'); } }));
   const agents = { async run() { assert.fail('saved branch session required'); }, createSession() { return { async run() {
     calls++; const folder = join(f.output, 'up');
     if (calls === 1) { await f.paint('up', folder); await rm(join(folder, 'notes.md')); }
