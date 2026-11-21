@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
+import { access, constants, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { unzipSync } from 'fflate';
@@ -28,12 +28,25 @@ const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest(
 
 type InstallOptions = {
   signal?: AbortSignal;
+  installedOnly?: boolean;
   preparing?: () => void;
   report?: ReportPreparation;
 };
 type InstallServices = { root?: string; platform?: string; asset?: Asset; download?: typeof downloadBytes };
 
-export async function ensureUpscayl({ signal, preparing, report }: InstallOptions = {}, {
+async function installedExecutable(directory: string, asset: Asset): Promise<string | undefined> {
+  const executable = join(directory, asset.binary);
+  const receipt = await readFile(join(directory, 'ready.json'), 'utf8')
+    .then(text => JSON.parse(text)).catch(() => undefined);
+  const cachedHash = (path: string) => readFile(path).then(sha256, () => undefined);
+  if (receipt?.archive !== asset.digest || typeof receipt.binary !== 'string' ||
+      receipt.binary !== await cachedHash(executable)) return;
+  if (asset.runtime && asset.runtime.digest !== await cachedHash(join(directory, asset.runtime.file))) return;
+  if (!await access(executable, constants.X_OK).then(() => true, () => false)) return;
+  return executable;
+}
+
+export async function ensureUpscayl({ signal, installedOnly, preparing, report }: InstallOptions = {}, {
   root = join(workflowsDirectory, 'data', 'upscayl'), platform = `${process.platform}-${process.arch}`,
   asset = releases[platform], download = downloadBytes,
 }: InstallServices = {}): Promise<string> {
@@ -44,6 +57,10 @@ export async function ensureUpscayl({ signal, preparing, report }: InstallOption
   try {
     if (!asset) throw new Error(`当前平台 ${platform} 暂不支持超分，请选择 1K。`);
     const executable = join(directory, asset.binary);
+    if (installedOnly) {
+      if (await installedExecutable(directory, asset)) return executable;
+      throw new Error('Upscayl 未安装或安装已损坏。');
+    }
     await mkdir(root, { recursive: true });
     while (!unlock) {
       signal?.throwIfAborted();
@@ -57,13 +74,10 @@ export async function ensureUpscayl({ signal, preparing, report }: InstallOption
       }
     }
     await rm(pending, { recursive: true, force: true, maxRetries: 3 });
-    const receipt = await readFile(join(directory, 'ready.json'), 'utf8').then(text => JSON.parse(text), () => undefined).catch(() => undefined);
-    const cachedHash = async (path: string) => readFile(path).then(sha256, () => undefined);
-    if (receipt?.archive === asset.digest && typeof receipt.binary === 'string' && receipt.binary === await cachedHash(executable)) {
-      if (!asset.runtime || asset.runtime.digest === await cachedHash(join(directory, asset.runtime.file))) {
-        if (waiting) emit('completed', 'Upscayl 已准备');
-        return executable;
-      }
+    const installed = await installedExecutable(directory, asset);
+    if (installed) {
+      if (waiting) emit('completed', 'Upscayl 已准备');
+      return installed;
     }
     if (!waiting) preparing?.();
     const name = `upscayl-bin-${version}-${asset.platform}`;

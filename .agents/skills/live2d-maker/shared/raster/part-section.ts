@@ -10,6 +10,7 @@ import { readDressup } from '../part/dressup.ts';
 import { copyDelivery } from './passthrough.ts';
 import { partSteps } from '../step-paths.js';
 import { createPartReferenceTool } from '../tools/prepare_part_reference/index.ts';
+import { createUpscaleImageTool } from '../tools/upscale_image/index.ts';
 
 type PartRasterDefinition = {
   id: Extract<SectionId, 'raster-layering' | 'clothing-raster-layering'>;
@@ -30,7 +31,8 @@ export function partRasterSection<T extends PartRasterDefinition>(definition: T)
       ? [createReviewAnnotationTool(dirname(output), dirname(dirname(output)), join(output, 'review-evidence'))]
       : step.id === 'step01' && (phase === 'draw' || phase.startsWith('repair-'))
         ? [...createStructureTools(input), createPartReferenceTool(input,
-          join(input.directory, partReferenceFile(definition.inputSection)))] : [],
+          join(input.directory, partReferenceFile(definition.inputSection))),
+          createUpscaleImageTool()] : [],
     deliveryWarnings: async (input, step) => {
       if (step.id !== 'step01') return [];
       try { await validateRasterStructure(input); return []; }

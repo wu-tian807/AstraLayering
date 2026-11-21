@@ -39,9 +39,9 @@ async function ensureModel(directory: string, { signal, progress }: UpscaleOptio
   }
 }
 
-async function runUpscayl(input: string, output: string, jobs: string, scale: UpscaleFactor, { signal, progress }: UpscaleOptions) {
+async function runUpscayl(executable: string, input: string, output: string, jobs: string, scale: UpscaleFactor,
+  { signal, progress }: UpscaleOptions) {
   signal?.throwIfAborted();
-  const executable = await ensureUpscayl({ signal });
   const models = join(dirname(dirname(executable)), 'models');
   await ensureModel(models, { signal, progress });
   // Upscayl builds the model path in a fixed-length native buffer.
@@ -61,9 +61,10 @@ async function runUpscayl(input: string, output: string, jobs: string, scale: Up
   });
 }
 
-export function upscaleImageDirectory(input: string, output: string, scale: UpscaleFactor, options: UpscaleOptions = {}): Promise<void> {
+export function upscaleImageDirectory(executable: string, input: string, output: string, scale: UpscaleFactor,
+  options: UpscaleOptions = {}): Promise<void> {
   // Let the native CLI overlap image I/O and use up to two Vulkan compute queues.
-  return runUpscayl(input, output, '1:2:2', scale, options);
+  return runUpscayl(executable, input, output, '1:2:2', scale, options);
 }
 
 export type PngGeometry = { width: number; height: number; hasAlpha: boolean };
@@ -83,7 +84,8 @@ export async function upscaleReferenceImage(bytes: Buffer, options: UpscaleOptio
     const source = await sharp(bytes).metadata();
     await writeFile(input, bytes);
     options.progress?.(`Upscayl 超分参考图（${source.width} × ${source.height}）`);
-    await runUpscayl(input, output, '1:1:1', 4, options);
+    const executable = await ensureUpscayl({ signal: options.signal });
+    await runUpscayl(executable, input, output, '1:1:1', 4, options);
     const result = await readFile(output);
     await checkUpscaledPng(result, source);
     return result;
