@@ -78,6 +78,8 @@ reviewer 逐层检查视觉效果，只提交观察确认的问题。blocked 用
 
 工作流自己提供的任务文字以 `knowledge/` 下的 Markdown 为来源，每步由 `agent.json` 声明拼接的文件与工具。代码不在正文后临时拼接制作要求；占位符单次替换，输入正文或 JSON 数据里的花括号不会再次求值。
 
+九轴头发的 `main` 和 raster、part 轮廓的 `review.repair` 可在 `initial` 后声明可选的 `then`。每项形如 `{ "id": "finish", "prompts": ["prompts/收尾.md"] }`，组内文件按顺序拼成一次指令。各轮使用同一制作会话，进度沿用本次开始时的文件列表和轮次顺序。Review 每次只读取 `review.initial`，独立启动会话。多轮返修的最后一轮交付正式返修结果。
+
 每次调用绑定启动时的知识目录；同进程的其他调用不能改变它。Web 全局设置只提供新任务默认值，总控在任务根 run.json 保存本任务的 knowledge、Krita 等参数，已有任务可单独修改，section 每次接收这些启动值。
 
 ### 动态位置

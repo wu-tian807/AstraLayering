@@ -19,7 +19,7 @@ import { includesStep, resolveStepRange, type StepSelection } from '../step-rang
 import { clearStepSession, readStepSession, writeStepSession, type StepSession } from '../agents/step-session.ts';
 import { canonicalPath, fileInfo, rasterSteps, within } from './run-store.ts';
 import { taskRootOf } from '../task-paths.ts';
-import { buildReviewPrompt, discardReviewReports, nextReviewTask, runReviews } from './review.ts';
+import { discardReviewReports, nextReviewTask, previewReviewPrompt, runReviews } from './review.ts';
 import { modelHarness } from '../agents/models.ts';
 import { requireCurrentLayout } from '../../workflow/layout.ts';
 import { cliExecutable } from '../agents/cli.ts';
@@ -212,7 +212,7 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       if (!drawingReady) previews.push(await section.buildPrompt(step, reference, output, previous));
       if (step.review) {
         const task = drawingReady ? reviewTask : { kind: 'review' as const, filename: 'review-01.md' as const, index: 0 };
-        if (task) previews.push(await buildReviewPrompt(step, task));
+        if (task) previews.push(await previewReviewPrompt(step, output, task));
       }
       options.progress?.(`${step.id}：${drawingReady ? '接续 review / 修复' : status === 'running' ? '恢复未完成步骤' : '开始步骤'} (${model.model} / ${model.effort})`);
       previous.push(output);
@@ -327,7 +327,8 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
         // An interrupted repair may still need to regenerate a deliverable.
         if (!drawingReady || reviewTask?.kind !== 'repair') await repairing(() => checkFiles(output, step.requiredFiles));
         await runReviews({ step, directory: output, signal: options.signal, progress: options.progress,
-          invoke: (prompt, task, verify) => invoke(prompt, task.filename.slice(0, -3), task.kind === 'review', verify),
+          invoke: (prompt, task, verify, continuation) => invoke(prompt,
+            continuation ? `${task.filename.slice(0, -3)}-${continuation}` : task.filename.slice(0, -3), task.kind === 'review', verify),
           validate: () => repairing(() => checkFiles(output, step.requiredFiles)),
         });
       }

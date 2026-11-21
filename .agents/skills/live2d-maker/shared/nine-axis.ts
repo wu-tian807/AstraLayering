@@ -41,6 +41,7 @@ export const nineAxisSteps = ['step01_preparation', 'step02_video', 'step03_fram
 export const previousNineAxisSteps = ['step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line'] as const;
 export const nineAxisGroups = ['left', 'up', 'down'] as const;
 export const nineAxisBranches = ['model', 'video'] as const;
+export const nineAxisHairRounds = ['front', 'side', 'back', 'remaining'] as const;
 export const nineAxisGroupSteps = nineAxisGroups.map(group => `step04_angles/model/${group}`);
 export const nineAxisBranchSteps = nineAxisBranches.map(branch => `step04_angles/${branch}`);
 export const nineAxisPitchSteps = ['up', 'down'].map(direction => `step10_head-pitch/${direction}`);

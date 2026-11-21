@@ -1,4 +1,4 @@
-import { nineAxisGroups } from './nine-axis.ts';
+import { nineAxisGroups, nineAxisHairRounds } from './nine-axis.ts';
 
 // Steps whose prompts and tools come from knowledge/<section>/<step>/agent.json.
 // The code decides whether a step has a review; `required` names the tools a
@@ -10,6 +10,7 @@ export type KnowledgeStep = {
   references?: readonly string[];
   /** Exhaustive groups selected by the workflow when resolving prompts. */
   promptGroups?: readonly string[];
+  mainContinuation?: readonly string[];
   review?: { required?: readonly string[] };
 };
 
@@ -39,7 +40,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step05_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step06_angle-xy', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },
-  { section: 'nine-axis', step: 'step08_hair', required: ['krita', 'edit_nine_axis', 'view_nine_axis'] },
+  { section: 'nine-axis', step: 'step08_hair', mainContinuation: nineAxisHairRounds.slice(1), required: ['krita', 'edit_nine_axis', 'view_nine_axis'] },
   { section: 'nine-axis', step: 'step09_head-accessories', required: ['krita', 'edit_nine_axis', 'view_nine_axis'] },
   { section: 'nine-axis', step: 'step10_head-pitch', required: ['edit_nine_axis', 'view_nine_axis'] },
   { section: 'nine-axis', step: 'step11_head-angle-xy', required: ['edit_nine_axis', 'view_nine_axis'] },

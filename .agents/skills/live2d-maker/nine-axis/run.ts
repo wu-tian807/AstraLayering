@@ -1,12 +1,12 @@
 import { join } from 'node:path';
-import { readFileSync } from 'node:fs';
 import { access, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { agentOutcomeError } from '../shared/codex/diagnostics.ts';
 import { taskDirectory, resolveInput, resolveRunsDirectory } from '../shared/paths.ts';
-import { renderKnowledge, stepKnowledge, type KnowledgeRole, type KnowledgeValues } from '../shared/knowledge.ts';
+import { stepKnowledge, type KnowledgeRole, type KnowledgeValues } from '../shared/knowledge.ts';
 import { rangeSummary, runSection, stepName } from '../shared/step-section.ts';
 import { includesStep, resolveStepRange, type StepSelection } from '../shared/step-range.ts';
 import { agentWorkflowStep } from '../shared/agent-knowledge.ts';
+import { runContinuation } from '../shared/step-continuation.ts';
 import { loadWorkflowEnvironment, type WorkflowEnvironment } from '../shared/codex/environment.ts';
 import { AgentDispatcher, type AgentResult, type AgentTask } from '../shared/agents/dispatcher.ts';
 import { CheckFailure, asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
@@ -24,6 +24,7 @@ import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
 import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
+import { hairRounds, isHairPromptPlan, readHairState, saveHairPlan, type HairPromptRound } from './hair-progress.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
 import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
 import { finishHeadRoll } from './head-roll.ts';
@@ -97,14 +98,19 @@ export const headPitchPrompt = (taskRoot: string, group: HeadPitchDirection) => 
 });
 export const headCornersPrompt = (taskRoot: string) => stepPrompt('step11_head-angle-xy', taskRoot, { values: angleValues() });
 
-export const hairPrompt = (taskRoot: string, round: HairRound = 'front') => {
-  // Only the first round uses the step initial. Later rounds keep the same
-  // workspace and thread and receive the file selected by workflow progress.
-  const values = angleValues();
-  if (round === 'front') return stepPrompt('step08_hair', taskRoot, { values });
+function hairPromptPlan(legacy = false): HairPromptRound[] {
+  const [initial, ...then] = stepKnowledge('nine-axis', 'step08_hair').rounds('main');
+  const remaining = legacy ? hairRounds.slice(1).map(id => ({ id, prompts: [`prompts/${hairRoundLabel(id)}制作.md`] })) : then;
+  const plan = [{ ...initial, id: 'front' }, ...remaining];
+  if (!isHairPromptPlan(plan)) throw Error('头发轮次必须使用已有的制作和检查规则');
+  return plan;
+}
+
+export const hairPrompt = (taskRoot: string, round: HairRound = 'front', plan: readonly HairPromptRound[] = hairPromptPlan()) => {
+  const prompt = plan.find(item => item.id === round);
+  if (!prompt) throw Error(`头发接续中没有轮次：${round}`);
   const knowledge = stepKnowledge('nine-axis', 'step08_hair');
-  return renderKnowledge(readFileSync(join(knowledge.directory, 'prompts', `${hairRoundLabel(round)}制作.md`), 'utf8'),
-    values, { taskRoot, section: 'nine-axis' }).trim();
+  return knowledge.render('main', angleValues(), { taskRoot, round: prompt }).trim();
 };
 
 type Agents = Pick<AgentDispatcher, 'run'> & Partial<Pick<AgentDispatcher, 'createSession'>>;
@@ -545,10 +551,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         if (step.id === 'step08_hair') return async () => {
           const { input } = await getTurnInput();
           const hair=stepDocument(input,step.directory), upstream=join(directory,'step07_jaw-line');
-          const {next:round}=await readHairProgress(step.directory);
+          const saved = await readHairState(step.directory);
+          const completed = saved?.progress.completed ?? [];
+          const plan = saved?.plan ?? hairPromptPlan(!!saved);
+          const round = plan.at(completed.length)?.id ?? 'done';
           if(round!=='front')await checkDelivery(step.id);
           if(round==='done') { summary='nine-axis/step08_hair：全部头发左右制作已完成'; return; }
-          if(options.dryRun) return preview(hairPrompt(task, round));
+          if(options.dryRun) return preview(hairPrompt(task, round, plan));
+          if (!saved?.plan) await saveHairPlan(step.directory, plan, completed);
           await (dependencies.prepareHair ?? prepareHair)(step.directory,upstream,task,materialize,scale,options.signal);
           builds[step.id]=()=>buildHair(step.directory,upstream,scale,materialize);
           const before=await materialize(step.directory,await builds[step.id](),options.signal);
@@ -563,11 +573,16 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           };
           // Deliveries belong to the checked turn: a missing or empty product
           // gets the same two repair rounds before progress can advance.
-          await fit(step.directory,hairPrompt(task, round),verify);
-          if(!verified)await verify();
-          await completeHairRound(step.directory,round);
+          await runContinuation({
+            rounds: plan, completed, oneRound: true,
+            async run() {
+              await fit(step.directory, hairPrompt(task, round, plan), verify);
+              if (!verified) await verify();
+            },
+            commit: () => completeHairRound(step.directory, round),
+          });
           const next=(await readHairProgress(step.directory)).next;
-          summary=next==='done'?'nine-axis/step08_hair：其余头发轮次已完成并保存，头发步骤完成':`nine-axis/step08_hair：${hairRoundLabel(round)}轮次已完成并保存，等待同一会话的${hairRoundLabel(next)}提示词`;
+          summary=next==='done'?`nine-axis/step08_hair：${hairRoundLabel(round)}轮次已完成并保存，头发步骤完成`:`nine-axis/step08_hair：${hairRoundLabel(round)}轮次已完成并保存，等待同一会话的${hairRoundLabel(next)}提示词`;
         };
         if(step.id==='step09_head-accessories')return async()=>{
           const { input } = await getTurnInput();

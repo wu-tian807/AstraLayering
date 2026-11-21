@@ -146,6 +146,19 @@ test('round records and saved products never complete a step or its downstream a
   assert.match(f.errors.at(-1)!, /hair-progress\.json/);
 });
 
+test('hair status uses the saved set and order of configured rounds', async t => {
+  const f = await fixture(t);
+  await f.put('step08_hair/.running');
+  const order = ['front', 'back', 'side'];
+  await f.put('step08_hair/hair-progress.json', { version: 2, completed: ['front'], next: 'back',
+    rounds: order.map(id => ({ id, prompts: [`prompts/${id}.md`] })) });
+  const value = await f.get();
+  assert.deepEqual(Object.keys(value.hair!.rounds), order);
+  assert.equal(value.hair!.next, 'back');
+  assert.equal(value.hair!.rounds.front, 'done');
+  assert.equal(value.hair!.rounds.remaining, undefined);
+});
+
 test('hair and accessories preview the KRA bound by their cumulative model instead of a stale PNG', async t => {
   const f = await fixture(t);
   for (const id of ['step08_hair', 'step09_head-accessories']) {

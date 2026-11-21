@@ -2,6 +2,7 @@ import { readStepSession } from '../../shared/agents/step-session.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { splitStructure } from '../../shared/tests/structure-fixture.ts';
 import { seedUpstream } from '../../shared/tests/upstream-fixture.ts';
+import { temporaryKnowledge } from '../../shared/tests/knowledge-fixture.ts';
 import assert from 'node:assert/strict';
 import { mkdtemp, realpath, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -180,6 +181,42 @@ test('第二次修复受阻不能按次数结束，下次只继续该次修复',
   } });
   assert.equal(calls, 1);
   await readFile(join(f.output, 'step01/.completed'));
+});
+
+test('同一轮返修的 then 中断时从待完成子轮继续，最后才发布报告', async t => {
+  const f = await fixture(t), knowledge = await temporaryKnowledge(t);
+  const directory = join(knowledge, 'raster-layering/step01'), path = join(directory, 'agent.json');
+  const config = JSON.parse(await readFile(path, 'utf8'));
+  const [repair] = config.review.repair.initial;
+  await writeFile(join(directory, 'prompts/finish-repair.md'), (await readFile(join(directory, repair), 'utf8')) + '\nfixture final repair turn');
+  config.review.repair.then = [{ id: 'finish', prompts: ['prompts/finish-repair.md'] }];
+  await writeFile(path, JSON.stringify(config));
+  const calls: string[] = [];
+  await assert.rejects(runWorkflow(f.resume, { ...f.deps, agent: async request => {
+    if (isReview(request)) { calls.push('review'); return report(request, '需要修复'); }
+    assert.equal(request.threadId, 'drawing-thread');
+    if (request.prompt.includes('fixture final repair turn')) {
+      calls.push('finish');
+      throw new Error('finish interrupted');
+    }
+    calls.push('repair');
+    return completed;
+  } }), /finish interrupted/);
+  assert.deepEqual(calls, ['review', 'repair', 'finish']);
+  await absent(join(f.output, 'step01/repair-01.md'));
+  await runWorkflow(f.resume, { ...f.deps, agent: async request => {
+    if (isReview(request)) {
+      assert.equal(reportName(request), 'review-02.md.tmp');
+      return report(request, '通过');
+    }
+    assert.equal(request.threadId, 'drawing-thread');
+    assert.ok(request.prompt.includes('fixture final repair turn'));
+    calls.push('finish');
+    return report(request, '已修复');
+  } });
+  assert.deepEqual(calls, ['review', 'repair', 'finish', 'finish']);
+  await readFile(join(f.output, 'step01/repair-01.md'));
+  await absent(join(f.output, 'step01/repair-01.continuation.json'));
 });
 
 test('修复交付缺失不发布 repair.md，恢复后能继续补齐文件', async t => {
