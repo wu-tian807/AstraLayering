@@ -5,7 +5,8 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { downloadBytes } from './download.ts';
-import { ensureUpscayl } from './upscayl.ts';
+import { createUpscaleEnvironmentCheck } from './upscale-environment.ts';
+import { ensureUpscayl, requireInstalledUpscayl } from './upscayl.ts';
 
 const model = 'digital-art-4x';
 const modelUrl = 'https://raw.githubusercontent.com/upscayl/upscayl/4f39acfc6f88260d105920a64deff8431d5e1544/resources/models';
@@ -17,6 +18,7 @@ const sha256 = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex
 
 type UpscaleOptions = { signal?: AbortSignal; progress?: (message: string) => void };
 export type UpscaleFactor = 2 | 3 | 4;
+const checkEnvironment = createUpscaleEnvironmentCheck();
 
 async function ensureModel(directory: string, { signal, progress }: UpscaleOptions) {
   await mkdir(directory, { recursive: true });
@@ -39,9 +41,9 @@ async function ensureModel(directory: string, { signal, progress }: UpscaleOptio
   }
 }
 
-async function runUpscayl(input: string, output: string, jobs: string, scale: UpscaleFactor, { signal, progress }: UpscaleOptions) {
+async function runUpscayl(executable: string, input: string, output: string, jobs: string, scale: UpscaleFactor,
+  { signal, progress }: UpscaleOptions) {
   signal?.throwIfAborted();
-  const executable = await ensureUpscayl({ signal });
   const models = join(dirname(dirname(executable)), 'models');
   await ensureModel(models, { signal, progress });
   // Upscayl builds the model path in a fixed-length native buffer.
@@ -61,9 +63,17 @@ async function runUpscayl(input: string, output: string, jobs: string, scale: Up
   });
 }
 
-export function upscaleImageDirectory(input: string, output: string, scale: UpscaleFactor, options: UpscaleOptions = {}): Promise<void> {
+export async function requireUpscaleRuntime(): Promise<string> {
+  const executable = await requireInstalledUpscayl();
+  const environment = await checkEnvironment();
+  if (!environment.supported) throw new Error(environment.reason);
+  return executable;
+}
+
+export function upscaleImageDirectory(executable: string, input: string, output: string, scale: UpscaleFactor,
+  options: UpscaleOptions = {}): Promise<void> {
   // Let the native CLI overlap image I/O and use up to two Vulkan compute queues.
-  return runUpscayl(input, output, '1:2:2', scale, options);
+  return runUpscayl(executable, input, output, '1:2:2', scale, options);
 }
 
 export type PngGeometry = { width: number; height: number; hasAlpha: boolean };
@@ -83,7 +93,8 @@ export async function upscaleReferenceImage(bytes: Buffer, options: UpscaleOptio
     const source = await sharp(bytes).metadata();
     await writeFile(input, bytes);
     options.progress?.(`Upscayl 超分参考图（${source.width} × ${source.height}）`);
-    await runUpscayl(input, output, '1:1:1', 4, options);
+    const executable = await ensureUpscayl({ signal: options.signal });
+    await runUpscayl(executable, input, output, '1:1:1', 4, options);
     const result = await readFile(output);
     await checkUpscaledPng(result, source);
     return result;
