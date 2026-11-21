@@ -11,7 +11,7 @@ import type { Status } from './snapshot.ts';
 import { executionStatus, aggregateStatus } from './execution-state.js';
 import { modelDocument } from '../.agents/skills/live2d-maker/nine-axis/source.ts';
 import { isStudioPath } from './studio-project.ts';
-import { hairRounds, hairRoundLabel, readHairProgress, type HairProgress, type HairRound } from '../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
+import { hairRounds, hairRoundLabel, readHairState, type HairProgress, type HairRound } from '../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
 import { toTaskPathReal } from '../.agents/skills/live2d-maker/shared/task-paths.ts';
 
 type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
@@ -74,18 +74,18 @@ export async function nineAxisProgress(directory: string, files: Set<string>, er
     if (status !== 'pending' && status !== 'done') states[parent] = aggregateStatus([states[parent], status]);
   }
   const mergeComplete = states[model] === 'done';
-  let hair: { rounds: Record<HairRound, Status>; next: HairProgress['next']; awaitingContinue: boolean } | undefined;
+  let hair: { rounds: Partial<Record<HairRound, Status>>; next: HairProgress['next']; awaitingContinue: boolean } | undefined;
   const hairFile = 'nine-axis/step08_hair/hair-progress.json';
   if (staged && (files.has(hairFile) || ['running', 'throttled', 'failed', 'interrupted'].includes(states.step08_hair))) {
     try {
       // Snapshot reads never migrate progress or change completion markers.
-      const progress: Pick<HairProgress, 'completed' | 'next'> = files.has(hairFile)
-        ? await readHairProgress(dirname(await safePath(directory, hairFile))) : { completed: [], next: hairRounds[0] };
+      const saved = files.has(hairFile) ? await readHairState(dirname(await safePath(directory, hairFile))) : undefined;
+      const progress: Pick<HairProgress, 'completed' | 'next'> = saved?.progress ?? { completed: [], next: hairRounds[0] };
       const ownCalls = calls.filter(call => call.outputDirectory === 'nine-axis/step08_hair');
       const call = ownCalls.filter(call => !call.finished).at(-1) ?? ownCalls.at(-1);
       const currentCall = progress.next !== 'done' && call?.name === `${hairRoundLabel(progress.next)}左右制作`;
-      const rounds = Object.fromEntries(hairRounds.map(round => [round, progress.completed.includes(round) ? 'done'
-        : round === progress.next && currentCall && states.step08_hair !== 'done' ? states.step08_hair : 'pending'])) as Record<HairRound, Status>;
+      const rounds = Object.fromEntries((saved?.order ?? hairRounds).map(round => [round, progress.completed.includes(round) ? 'done'
+        : round === progress.next && currentCall && states.step08_hair !== 'done' ? states.step08_hair : 'pending'])) as Partial<Record<HairRound, Status>>;
       hair = { rounds, next: progress.next, awaitingContinue: progress.next !== 'done' && progress.completed.length > 0
         && ['interrupted', 'done'].includes(states.step08_hair) && rounds[progress.next] === 'pending' };
     } catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') errors.push(hairFile + ': ' + String(error)); }

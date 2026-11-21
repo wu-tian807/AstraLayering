@@ -76,7 +76,7 @@ KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_prepa
 
 四轮使用同一份 KRA 和通用 `session.json`，不中途新建 thread；中断仍继续当前轮次，不跳过未通过的产物。前三轮完成时保持头发步骤未完成；其余头发与整体协调通过且交付齐全后，进度记为 `next:"done"`，才完成整个头发步骤。
 
-整个步骤的 `.running`／`.completed`、轮次的 `hair-progress.json`、会话的 `agents/steps/step08_hair/session.json` 分别记录完成状态、待制作轮次和 thread。`hair-progress.json` 的 `completed` 只能按前发→侧发→后发→其余头发累积，`next` 依次为 `front`、`side`、`back`、`remaining`、`done`，通过全部交付检查后才原子更新。每次派发都按 `next` 选择提示词，不根据有没有旧会话退回 `agent.json` 的前发 initial。
+整个步骤的 `.running`／`.completed`、轮次的 `hair-progress.json`、会话的 `agents/steps/step08_hair/session.json` 分别记录完成状态、待制作轮次和 thread。前发由 `agent.json` 的 `main.initial` 声明，后续轮次由 `main.then` 配置文件列表与顺序，轮次 ID 对应现有编辑和交付检查规则。默认顺序为 `front`、`side`、`back`、`remaining`。已开始任务沿用保存的轮次定义，每轮通过全部交付检查后才原子更新 `next`，新会话同样从 `next` 发本轮提示词。
 
 | 操作 | 头发步骤中的行为 |
 | --- | --- |

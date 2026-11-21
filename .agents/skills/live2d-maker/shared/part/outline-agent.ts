@@ -20,6 +20,10 @@ import { createParentRegionTool, withoutCopyAttributes } from './parent-region.t
 import { clearCopyDecision } from './parent-copy-decision.ts';
 import { completedReviewCount, draftPath, maxOutlineReviews, outlineReviewProgress, publishSvg, readReviewReport, svgHash as hash, type Review } from './artifact-facts.ts';
 import { runReviewSchedule } from '../review-schedule.ts';
+import { runRepairContinuation } from '../step-continuation.ts';
+import type { PromptRound } from '../prompt-rounds.ts';
+
+const repairProgressPath = (reportPath: string, round: number) => join(dirname(reportPath), `repair-${round}.continuation.json`);
 
 async function recordRepair(output: string, round: number, prompt: string) {
   const directory = output.replace(/\.svg$/, '.repairs');
@@ -88,7 +92,7 @@ function groupNoteTool(context: GroupContext): FunctionTool {
 
 export async function drawGroupOutline(
   context: DrawingContext, agents: Pick<AgentDispatcher, 'run'>,
-  repair?: { candidate: string; round: number },
+  repair?: { candidate: string; round: number; promptRound?: PromptRound },
 ): Promise<SvgArtifact> {
   const profile = partProfile(context);
   const knowledge = partKnowledge(profile, 'outline');
@@ -130,9 +134,12 @@ export async function drawGroupOutline(
   const drawingPrompt = knowledge.render('main', runtime(context, input), { taskRoot: taskRootOf(context.directory), group: context.group.id });
   // 返修是绘制 thread 的下一轮，只给出 review 报告与返修要求；本次输入已在绘制轮给出。
   // 原 thread 不可用时 recoveryPrompt 在新会话中补上原绘制任务。
-  const repairPrompt = repair && knowledge.render('repair', runtime(context, input, repair.round), { taskRoot: taskRootOf(context.directory), group: context.group.id });
+  const repairPrompt = repair && knowledge.render('repair', runtime(context, input, repair.round), {
+    taskRoot: taskRootOf(context.directory), group: context.group.id, round: repair.promptRound,
+  });
   if (repairPrompt) await recordRepair(output, repair.round, repairPrompt);
-  await checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'outline'), repair ? `repair-${repair.round}-checks` : 'checks'),
+  const continuation = repair?.promptRound && repair.promptRound.id !== 'initial' ? `-${repair.promptRound.id}` : '';
+  await checkedTurn({ agents, records: join(context.directory, groupStepId(context.group.id, 'outline'), repair ? `repair-${repair.round}${continuation}-checks` : 'checks'),
     task: {
       step: partStep(profile.id, repair ? 'outline_repair' : 'outline'),
       name: `${repair ? '组轮廓返修' : '组轮廓绘制'}-${context.group.id}`, cwd: context.directory, outputDirectory: join(context.directory, groupStepId(context.group.id, 'outline')),
@@ -160,6 +167,7 @@ async function reviewOnce(
   const knowledge = partKnowledge(profile, 'outline');
   const bytes = await validateGroupSvg(candidate, context.group.id, input.canvas, undefined, true);
   const candidateHash = hash(bytes);
+  await rm(repairProgressPath(reportPath, round), { force: true });
   const observations: SvgObservation[] = [];
   const preview = createSvgPreviewTool({ ...input, parent: input.parent, directory: context.directory,
     observationDirectory: join(context.directory, 'observations', 'review', context.group.id),
@@ -229,9 +237,16 @@ export async function reviewGroupOutline(
     async repair(round) {
       // The latest committed revise decision supplied this repair.
       const decision = report.reviews.at(-1)!;
-      await drawGroupOutline({ ...context, outputPath: candidate }, drawing, { candidate, round });
-      decision.repairedCandidateHash = hash(await readFile(candidate));
-      await writeAtomic(reportPath, JSON.stringify(report, null, 2) + '\n');
+      const checkpoint = repairProgressPath(reportPath, round);
+      if (decision.repairedCandidateHash) await rm(checkpoint, { force: true });
+      const prompts = partKnowledge(partProfile(context), 'outline').rounds('repair');
+      await runRepairContinuation(checkpoint, prompts, async (promptRound, { last }) => {
+        await drawGroupOutline({ ...context, outputPath: candidate }, drawing, { candidate, round, promptRound });
+        if (last) {
+          decision.repairedCandidateHash = hash(await readFile(candidate));
+          await writeAtomic(reportPath, JSON.stringify(report, null, 2) + '\n');
+        }
+      });
       progress = { completedReviews: round, verdict: 'revise', repaired: true };
     },
   });
