@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "scale": {"type": "string", "enum": ["2x", "3x", "4x"], "description": "整批图片统一使用的宽高倍率"},
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "input_path": {"type": "string", "description": "图片或目录的绝对路径"},
+          "output_path": {"type": "string", "description": "对应的 PNG 文件或输出目录的绝对路径"}
+        },
+        "required": ["input_path", "output_path"]
+      }
+    }
+  },
+  "required": ["scale", "items"]
+}

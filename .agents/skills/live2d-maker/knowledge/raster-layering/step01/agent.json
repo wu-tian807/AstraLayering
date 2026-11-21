@@ -8,6 +8,7 @@
       "edit_groups",
       "edit_occlusion",
       "prepare_part_reference",
+      "upscale_image",
       "krita",
       "imagegen"
     ]

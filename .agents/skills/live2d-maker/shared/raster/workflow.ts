@@ -26,11 +26,13 @@ import { cliExecutable } from '../agents/cli.ts';
 import { validateImageSelection } from '../agents/images.ts';
 import { SectionKrita, kritaRecordFile } from '../krita/section-krita.ts';
 import { createKritaTool } from '../krita/tool.ts';
+import type { SectionSize } from '../section-size.ts';
 
 export type WorkflowOptions = {
   name: string;
   dir?: string;
   krita?: string;
+  size?: SectionSize;
   dryRun?: boolean;
   signal?: AbortSignal;
   progress?: (message: string) => void;
@@ -56,7 +58,7 @@ export type Passthrough = { reason: string; deliver(): Promise<void> };
 export type KritaSection<Input> = {
   id: Extract<SectionId, 'raster-layering' | 'clothing-raster-layering' | 'character-assembly' | 'shadow'>;
   // `krita`: the section's Krita, reserved when the step uses Krita.
-  tools?(output: string, input: Input, step: StepDefinition, phase: string, krita?: SectionKrita): NonNullable<AgentRequest['tools']>;
+  tools?(output: string, input: Input, step: StepDefinition, phase: string, krita?: SectionKrita, size?: SectionSize): NonNullable<AgentRequest['tools']>;
   // The upstream section's final step, which must be completed before this section runs.
   upstreamStep?(input: Input): ChainStep;
   prepareStep?(output: string, input: Input, step: StepDefinition, krita: KritaInstallation): Promise<void>;
@@ -252,13 +254,17 @@ export async function runWorkflow<Input>(section: KritaSection<Input>, options: 
       await rm(resultFile, { force: true });
       await rm(join(records, 'error.txt'), { force: true });
       options.progress?.(`${step.id} ${phase}：${fresh ? '新建 reviewer 会话' : session.threadId ? '继续原 thread' : '新建 thread'} (${selected.model} / ${selected.effort})`);
+      const role = fresh ? 'review' : phase === 'draw' ? 'main' : 'repair';
+      const providedTools = [
+        ...section.tools?.(output, reference, step, phase, sectionKrita, options.size) ?? [],
+        // A fresh reviewer thread still shares the section's reserved Krita.
+        ...(step.krita === false || !sectionKrita.reserved ? [] : [kritaTool]),
+      ];
+      const tools = stepKnowledge(step.knowledge.section, step.knowledge.step).tools(role, providedTools,
+        (options.size ?? '1K') === '1K' ? ['upscale_image'] : []);
       const result = await (dependencies.agent ?? runAgent)({
         prompt, directory, outputDirectory: output, model: selected.model, effort: selected.effort, environment, step: key,
-        tools: stepKnowledge(step.knowledge.section, step.knowledge.step).tools(fresh ? 'review' : phase === 'draw' ? 'main' : 'repair', [
-          ...section.tools?.(output, reference, step, phase, sectionKrita) ?? [],
-          // Drawing, review and repairs run one after another in this section
-          // and share its Krita; a fresh reviewer thread is still the same section.
-          ...(step.krita === false || !sectionKrita.reserved ? [] : [kritaTool])]),
+        tools,
         imageNormalization: { env: environment.codex.env, runsRoot: root, progress: options.progress },
         recoveryPrompt: session.threadId && !fresh && phase !== 'draw' ? workspacePrompt(await resumeRepair(repairPrompt), paths) : undefined,
         threadId: fresh ? undefined : session.threadId, signal: options.signal, verify,
