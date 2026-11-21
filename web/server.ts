@@ -7,7 +7,7 @@ import { basename, extname, resolve, join, isAbsolute, dirname } from 'node:path
 import { parseArgs } from 'node:util';
 import sharp from 'sharp';
 import { shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
-import { sectionSize, sectionSizes } from '../.agents/skills/live2d-maker/shared/section-size.ts';
+import { sectionSize, sectionSizeForLongEdge } from '../.agents/skills/live2d-maker/shared/section-size.ts';
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
@@ -83,8 +83,7 @@ function options(value: any, dir: string): TaskOptions {
 
 function sizeFromImage({ width, height }: { width?: number; height?: number }) {
   if (!width || !height) throw new Error('无法读取输入图尺寸。');
-  const tier = Math.min(sectionSizes.length, Math.ceil(Math.max(width, height) / 1024));
-  return sectionSizes[tier - 1]!;
+  return sectionSizeForLongEdge(Math.max(width, height));
 }
 
 // Global web settings supply defaults for new tasks.

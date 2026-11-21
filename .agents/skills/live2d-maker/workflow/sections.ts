@@ -62,7 +62,7 @@ function partSection(section: PartSection, help: string): SectionDefinition {
     const image = person && !standalone ? await taskOriginal(directory) : options.image;
     const standard = person || standalone ? options.standard : undefined;
     const result = await runPartSection(section, {
-      reference: { runName: name, dir, image, standard }, groups: null, selection: options.selection,
+      reference: { runName: name, dir, image, standard, size: options.size }, groups: null, selection: options.selection,
     }, { prepared: events.prepared }, { agentConcurrency: options.jobs, progress, signal: options.signal });
     if (!result.layering) {
       return { summary: '本次参考准备范围已完成，交付目录：' + result.references.directory, completed: false };

@@ -1,6 +1,5 @@
 import { stepKnowledge } from '../shared/knowledge.ts';
-import { normalizeGeneratedReference } from '../shared/part/reference-normalization.ts';
-import type { ImageProcessingOptions } from '../shared/image-processing.ts';
+import { normalizeGeneratedReference, type ReferenceProcessingOptions } from '../shared/part/reference-normalization.ts';
 import { asCheck, checkedTurn } from '../shared/codex/checked-turn.ts';
 import { sectionDirectory, taskDirectory } from '../shared/paths.ts';
 import { inspectSection, runSection } from '../shared/step-section.ts';
@@ -92,8 +91,9 @@ export async function loadPreparedReferences(runName: string, root?: string): Pr
 }
 
 export async function prepareReferences(input: PreparationInput, steps: PreparationSteps,
-  progress?: (message: string) => void, options: ImageProcessingOptions = {}, signal?: AbortSignal): Promise<PreparationReferences> {
-  const normalization = { ...options, runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
+  progress?: (message: string) => void, options: ReferenceProcessingOptions = {}, signal?: AbortSignal): Promise<PreparationReferences> {
+  const normalization = { ...options, size: input.size ?? options.size, signal: signal ?? options.signal,
+    runsRoot: input.dir ?? options.runsRoot, progress: progress ?? options.progress };
   const directory = getPreparationDirectory(input.runName, input.dir);
   if (input.image !== undefined) throw new Error('clothing-part-layering 按 --name 读取上游简化角色，不接受 --image；请将图片放到同名 part-layering/references/simplified-subject.png。');
   if (input.standard !== undefined) throw new Error('--standard / --no-standard 只适用于人物 part 的 preparation；衣服按 --name 读取上游简化角色。');
@@ -101,27 +101,45 @@ export async function prepareReferences(input: PreparationInput, steps: Preparat
   await mkdir(directory, { recursive: true });
   const refs = references(directory, image);
   const standard = join(sectionDirectory(input.runName, 'part-layering', input.dir), 'references/standard.png');
+  const records = join(sectionOf(directory), clothingPreparationStep);
+  const pending = join(records, 'clothing-input.png');
   await requireUpstreamSteps(input.runName, input.dir);
   await runSection({
     directory: sectionOf(directory), steps: [{ ...step, requiredFiles: [refs.baseSubject] }], progress, signal,
     async step(_step, status) {
       if (status === 'completed') { progress?.('preparation：沿用已保存的纯衣服参考。'); return; }
       return async () => {
-        const baseImage = await characterBase(input.runName, input.dir);
-        const meta = await sharp(standard).metadata();
-        const prompt = stepKnowledge('clothing-part-layering', 'step01_preparation')
-          .render('main', { width: String(meta.autoOrient.width), height: String(meta.autoOrient.height) }, { taskRoot: taskDirectory(input.runName, input.dir) });
-        progress?.('preparation：使用已配置生图工具生成纯衣服参考。');
+        if (await regularFile(refs.baseSubject)) {
+          await checkImage(refs.baseSubject, standard);
+          await rm(pending, { force: true });
+          return;
+        }
         const temporary = `${refs.baseSubject}.${randomUUID()}.tmp`;
         try {
-          await steps.extract(image, baseImage, temporary, prompt);
-          await normalizeGeneratedReference(temporary, standard, join(sectionOf(directory), clothingPreparationStep), 'clothing', normalization);
+          if (!await regularFile(pending)) {
+            const baseImage = await characterBase(input.runName, input.dir);
+            const prompt = stepKnowledge('clothing-part-layering', 'step01_preparation')
+              .render('main', {}, { taskRoot: taskDirectory(input.runName, input.dir) });
+            progress?.('preparation：使用已配置生图工具生成纯衣服参考。');
+            await steps.extract(image, baseImage, temporary, prompt);
+            await rename(temporary, pending);
+          }
+          await normalizeGeneratedReference(pending, standard, temporary, records, 'clothing', normalization);
           await checkImage(temporary, standard);
+          normalization.signal?.throwIfAborted();
           await rename(temporary, refs.baseSubject);
+          await rm(pending, { force: true });
         } finally { await rm(temporary, { force: true }); }
       };
     },
   });
   await checkImage(refs.baseSubject, standard);
   return refs;
+}
+
+function regularFile(path: string): Promise<boolean> {
+  return lstat(path).then(info => info.isFile(), error => {
+    if (error.code === 'ENOENT') return false;
+    throw error;
+  });
 }

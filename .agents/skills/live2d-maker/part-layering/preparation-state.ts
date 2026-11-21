@@ -5,6 +5,9 @@ import sharp from 'sharp';
 import { type SectionStep } from '../shared/step-section.ts';
 import { copyAsPng } from '../shared/png.ts';
 import { preparationOptionsPath } from '../shared/part/preparation-cache.ts';
+import type { ReferenceProcessingOptions } from '../shared/part/reference-normalization.ts';
+import { sectionSizePixels } from '../shared/section-size.ts';
+import { upscaleReferenceImage } from '../shared/upscale-image.ts';
 import type { PreparationReferences } from '../shared/part/preparation-types.ts';
 import { recordedReferenceBranch, stageNote, stageNumber, stageStep, stepStage, type PreparationStage } from '../shared/part/preparation-steps.ts';
 export { preparationStages, stageNumber, stageStep, stepStage, type PreparationStage } from '../shared/part/preparation-steps.ts';
@@ -65,22 +68,44 @@ export async function reuseReference(input: string, output: string, requireTrans
   return true;
 }
 
-export async function publishStandardCanvas(input: string, output: string): Promise<boolean> {
+const canvasGrid = 16;
+
+export async function publishStandardCanvas(input: string, output: string, options: ReferenceProcessingOptions = {}): Promise<boolean> {
   if (!await exists(input)) return false;
-  const bytes = await readFile(input);
-  const image = sharp(bytes);
-  const metadata = await image.metadata().catch(() => undefined);
+  const source = await readFile(input);
+  let bytes: Buffer = source;
+  let metadata = await sharp(bytes).metadata().catch(() => undefined);
   if (metadata?.format !== 'png') return false;
 
-  const right = (16 - metadata.width % 16) % 16;
-  const bottom = (16 - metadata.height % 16) % 16;
-  if (!right && !bottom && input === output) return true;
+  if (options.size) {
+    const nominal = sectionSizePixels(options.size);
+    // The largest aligned size before the next tier starts.
+    const ceiling = nominal + 1024 - canvasGrid;
+    let bound = ceiling;
+    if (options.size !== '1K' && Math.max(metadata.width, metadata.height) < nominal) {
+      bytes = await (options.upscale ?? upscaleReferenceImage)(bytes, options);
+      metadata = await sharp(bytes).metadata();
+      bound = nominal;
+    }
+    if (Math.max(metadata.width, metadata.height) > bound) {
+      const resized = sharp(bytes).resize(bound, bound, { fit: 'inside' });
+      if (metadata.depth === 'ushort') resized.toColourspace('rgb16');
+      bytes = await resized.keepIccProfile().png().toBuffer();
+      metadata = await sharp(bytes).metadata();
+    }
+  }
+
+  const right = (canvasGrid - metadata.width % canvasGrid) % canvasGrid;
+  const bottom = (canvasGrid - metadata.height % canvasGrid) % canvasGrid;
+  if (!right && !bottom && input === output && bytes === source) return true;
 
   // Extend away from the origin to leave the existing pixel coordinates intact.
+  const image = sharp(bytes);
   if (metadata.depth === 'ushort') image.toColourspace('rgb16');
   const delivered = right || bottom
     ? await image.extend({ right, bottom, background: '#00000000' }).keepIccProfile().png().toBuffer()
     : bytes;
+  options.signal?.throwIfAborted();
   await produce(output, temporary => writeFile(temporary, delivered));
   return true;
 }

@@ -8,6 +8,14 @@ import type { ImageProcessingOptions } from '../image-processing.ts';
 import { keyReferencePixels } from './reference-key.ts';
 import { sectionDirectory, type SectionId } from '../paths.ts';
 import { clothingPreparationStep } from '../step-paths.js';
+import { sectionSizePixels, type SectionSize } from '../section-size.ts';
+import { upscaleReferenceImage } from '../upscale-image.ts';
+
+export type ReferenceProcessingOptions = ImageProcessingOptions & {
+  size?: SectionSize;
+  signal?: AbortSignal;
+  upscale?: typeof upscaleReferenceImage;
+};
 
 const stepCompleted = (directory: string) => stat(join(directory, '.completed')).then(info => info.isFile(), () => false);
 
@@ -29,11 +37,11 @@ export async function referenceNeedsGeneration(section: SectionId, name: string,
 }
 
 // Archives are write-only history, never preparation inputs or recovery checkpoints.
-export async function normalizeGeneratedReference(input: string, standard: string, outputDirectory: string, name: string, options: ImageProcessingOptions = {}): Promise<void> {
+export async function normalizeGeneratedReference(input: string, standard: string, output: string, outputDirectory: string, name: string, options: ReferenceProcessingOptions = {}): Promise<void> {
+  const report = await normalizeReference(input, standard, output, options);
   const archive = join(dirname(referencesDirectory(outputDirectory)), 'generation', `${name}-${Date.now()}-${randomUUID()}`);
   await mkdir(archive, { recursive: true });
   await copyAsPng(input, join(archive, 'original.png'));
-  const report = await normalizeReference(input, standard, input, options);
   await writeFile(join(archive, 'normalization.json'), JSON.stringify(report, null, 2) + '\n');
 }
 
@@ -46,7 +54,7 @@ export type NormalizationReport = {
 
 // Detect the perimeter's modal colour in small bins, then refine it from nearby samples.
 // Fully transparent pixels carry arbitrary RGB and must not vote for a key colour.
-export async function normalizeReference(input: string, standard: string, output: string, options: ImageProcessingOptions = {}): Promise<NormalizationReport> {
+export async function normalizeReference(input: string, standard: string, output: string, options: ReferenceProcessingOptions = {}): Promise<NormalizationReport> {
   const bytes = await readFile(input);
   const target = (await sharp(standard).metadata()).autoOrient;
   const { data, info } = await sharp(bytes).rotate().toColourspace('srgb').ensureAlpha().raw().toBuffer({ resolveWithObject: true });
@@ -79,8 +87,14 @@ export async function normalizeReference(input: string, standard: string, output
   if (!key && w === target.width && h === target.height && (await sharp(bytes).metadata()).format === 'png' && !(await sharp(bytes).metadata()).orientation) {
     await writeFile(output, bytes);
   } else {
-    const result = await sharp(data, { raw: { width: w, height: h, channels: 4 } })
-      .resize(rw, rh).extend({ left, right: target.width - rw - left, top, bottom: target.height - rh - top,
+    let image = sharp(data, { raw: { width: w, height: h, channels: 4 } });
+    const size = options.size ?? '1K';
+    const threshold = Math.min(sectionSizePixels(size), Math.max(target.width, target.height));
+    if (size !== '1K' && scale > 1 && Math.max(w, h) < threshold) {
+      const enlarged = await (options.upscale ?? upscaleReferenceImage)(await image.png().toBuffer(), options);
+      image = sharp(enlarged);
+    }
+    const result = await image.resize(rw, rh).extend({ left, right: target.width - rw - left, top, bottom: target.height - rh - top,
         background: { r: 0, g: 0, b: 0, alpha: 0 } }).png().toBuffer();
     await writeFile(output, result);
   }
