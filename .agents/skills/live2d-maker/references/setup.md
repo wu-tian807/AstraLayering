@@ -10,6 +10,7 @@
 | C/C++ 编译工具 | 构建 Codex 补丁：macOS 用 Xcode Command Line Tools，Windows 用 Visual Studio Build Tools 的 C++ 桌面开发组件，Ubuntu／Debian 用 build-essential |
 | Xvfb | Linux 无桌面环境 |
 | FFmpeg、Seedance 视频服务 | 九轴 |
+| Upscayl CLI | `2K` 至 `4K` 任务启动时自动准备 |
 
 Claude、Gemini、GPT Image 和 Nano Banana 的配置见[模型方案](model-presets.md)。按用户选择准备所需软件，复用已有安装和配置。
 
@@ -41,6 +42,12 @@ pnpm character-assembly --name my-character --dir /绝对路径/运行根目录 
 ```
 
 默认制作目录是 `.run/`，导出案例放在 `demos/`。相对路径以任务目录为基准，绝对路径直接使用。自定义 knowledge 使用完整目录；启动时检查必要文件，缺失或空文件会直接报错。
+
+## 超分环境与自动安装
+
+macOS 12+（Metal）和 Windows 10+ x64（Vulkan 计算）通过检测后可用 `2K` 至 `4K`。Linux 或检测未通过时使用 `1K`。远程工作台以服务器的检测结果为准。
+
+启动 `2K` 至 `4K` 任务时，管线自动准备 Upscayl。进度见“运行环境准备”，失败原因见 `workflow.log`。
 
 ## 模型 CLI 与生图
 
