@@ -44,7 +44,7 @@ async function saveGrouping(task: AgentTask, value: unknown = wingGroups) {
   return tool.execute(value, new AbortController().signal);
 }
 
-test('首次识别一次调用，绑定 view_bitmap 和 write_groups；直接保存正式分组，忽略最终回复', async t => {
+test('首次识别一次调用，write_groups 直接保存正式分组，忽略最终回复', async t => {
   const context = await fixture(t);
   context.references.baseSubject = 'references/base-subject.png';
   const calls: AgentTask[] = [];
@@ -60,8 +60,6 @@ test('首次识别一次调用，绑定 view_bitmap 和 write_groups；直接保
   assert.ok(calls[0].prompt.startsWith(staticPromptPrefix(await readFile(partKnowledge(profile, 'initial').files('main')[0], 'utf8'))));
   assert.ok(calls[0].prompt.includes(`素体参考图：${join(context.directory, 'references/base-subject.png')}`));
   assert.equal(calls[0].outputSchema, undefined);
-  assert.deepEqual(calls[0].tools!.map(tool => tool.name), ['view_bitmap', 'write_groups']);
-  assert.match(calls[0].tools!.find(tool => tool.name === 'view_bitmap')!.description, /crop=.*scale/);
   assert.deepEqual(result, { status: 'completed', output: {
     groups: [
       { id: 'left_wing', name: 'left_wing', note: '主体左翼' },

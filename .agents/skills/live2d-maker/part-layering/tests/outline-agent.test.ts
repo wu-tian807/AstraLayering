@@ -189,7 +189,7 @@ test('revise 由原绘制会话返修，每次 review 新会话，报告保留�
   assert.doesNotMatch(mock.calls[2].task.prompt, /左侧可见边界 x=10/);
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/round.txt'), 'utf8'), '1\n');
   assert.equal(await readFile(join(f.directory, 'step09_outline/face/outline.repairs/1/prompt.txt'), 'utf8'), mock.calls[2].task.prompt);
-  assert.deepEqual(mock.calls[2].task.tools!.map(tool => tool.name), ['preview_svg', 'write_outline_svg', 'read_svg', 'view_bitmap', 'update_group_note']);
+  assert.deepEqual(mock.calls[2].task.tools!.map(tool => tool.name), mock.calls[0].task.tools!.map(tool => tool.name));
   const report = JSON.parse(await readFile(join(f.directory, 'step09_outline/face/review.json'), 'utf8'));
   assert.deepEqual(report.reviews.map((review: { verdict: string }) => review.verdict), ['revise', 'pass']);
   assert.notEqual(report.reviews[0].candidateHash, report.reviews[1].candidateHash);

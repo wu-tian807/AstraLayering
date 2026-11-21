@@ -106,8 +106,6 @@ test('简化和素体各一次 agent 调用，复用分支保持参考字节且�
   const refs = await prepareReferences({ runName: f.runName, image: f.original }, f.steps);
   assert.deepEqual(f.calls.map(call => call.name), ['参考判断与简化', '素体换装']);
   for (const task of f.calls) {
-    assert.equal(task.tools?.length, 1);
-    assert.equal(task.tools![0].name, 'reuse_reference');
     assert.ok(!task.prompt.includes('{image_execution_rules}'));
   }
   assert.deepEqual(await readFile(refs.simplifiedSubject), await readFile(refs.standardImage!));
@@ -323,7 +321,6 @@ test('--standard 在同一回合判断姿态并复用或生图，由标准参考
     const standard = f.calls[0];
     assert.equal(standard.step, 'part_standardize');
     assert.equal(standard.outputDirectory, step('standard'));
-    assert.deepEqual(standard.tools?.map(tool => tool.name), ['reuse_reference']);
     assert.deepEqual(referencePaths(standard.prompt), [refs.originalImage]);
     assert.equal(standard.outputSchema, undefined);
     if (mode === 'adjust') assert.deepEqual(f.standardReuse, []);

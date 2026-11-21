@@ -16,7 +16,7 @@ import { readStepSession, sessionPath, writeStepSession } from '../../shared/age
 import { readStep } from '../../shared/step-chain.ts';
 import { applyStepAction, applyTaskAction, validStepId } from '../../workflow/step-actions.ts';
 import type { AgentDispatcher, AgentTask } from '../../shared/agents/dispatcher.ts';
-import type { FunctionTool } from '../../shared/codex/function-tools.ts';
+import { stubStepTools } from '../../shared/tests/knowledge-fixture.ts';
 import { evaluatePoints, kraReferences } from '../../shared/nine-axis-model.js';
 import { createNineAxisViewTool } from '../view-tool.ts';
 import { frontPreviewScope } from '../hair.ts';
@@ -122,7 +122,7 @@ async function selectRemaining(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:hairIds[3],uuid:uuid(f.doc.parts.length+4),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
 }
 
-const fixtureTools=async():Promise<FunctionTool[]>=>['krita','view_bitmap','edit_nine_axis','view_nine_axis'].map(name=>({name,description:'fixture',inputSchema:{type:'object'},async execute(){throw Error('not used');}}));
+const fixtureTools = () => stubStepTools('nine-axis', 'step08_hair');
 const selectRound=(f:Awaited<ReturnType<typeof fixture>>,round:HairRound)=>round==='front'?selectFront(f):round==='side'?selectSide(f):round==='back'?selectBack(f):selectRemaining(f);
 async function reachRound(f:Awaited<ReturnType<typeof fixture>>,target:HairRound){
   for(const round of hairRounds){
@@ -278,8 +278,7 @@ test('hair dispatch runs four rounds in the same thread and completes only after
       },async close(){}};
     },
   } satisfies Parameters<typeof createHairHead>[0];
-  const tools=async():Promise<FunctionTool[]>=>['krita','view_bitmap','edit_nine_axis','view_nine_axis'].map(name=>({name,description:'fixture',inputSchema:{type:'object'},async execute(){throw Error('not used');}}));
-  const fitHair=createHairHead(agents,tools,undefined,f.nine),deps={...f.dependencies,fitHair};
+  const fitHair=createHairHead(agents,fixtureTools,undefined,f.nine),deps={...f.dependencies,fitHair};
   await assert.rejects(runWorkflow(f.options,deps),/interrupted front turn/);
   assert.equal((await readStep(f.output)).status,'running');
   assert.equal((await readStepSession(f.nine,'step08_hair'))?.threadId,'hair-thread');

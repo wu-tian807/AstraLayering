@@ -31,15 +31,14 @@ async function fixture(t: TestContext) {
   return { source, output: join(runsDirectory, 'test', 'clothing-raster-layering'), options: { name: 'test', krita: process.execPath }, deps: { environment: loadWorkflowEnvironment({}, directory), runsDirectory, preflight } };
 }
 async function deliver(request: AgentRequest, thread = request.threadId ?? 'drawing-1'): Promise<StepResult> {
-  if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
+  if (request.step === 'clothing_raster_step01_review') {
     assert.equal(request.threadId, undefined);
-    assert.equal(request.tools?.[0].name, 'annotate_review_regions');
     await request.onEvent({ type: 'thread.started', thread_id: 'temporary-reviewer' });
     await writeFile(join(request.directory, 'step01/review-01.md.tmp'), '结论：通过\n\n已检查全部衣片。');
   } else {
     await request.onEvent({ type: 'thread.started', thread_id: thread });
-    const id = request.prompt.startsWith('在 clothing-raster-layering/step01/') ? 'step02' : 'step01';
-    assert.deepEqual(request.tools?.map(tool => tool.name), id === 'step02' ? ['krita'] : ['edit_groups', 'edit_occlusion', 'prepare_part_reference', 'krita']);
+    assert.ok(request.step === 'clothing_raster_step01' || request.step === 'clothing_raster_step02');
+    const id = request.step === 'clothing_raster_step02' ? 'step02' : 'step01';
     const step = steps.find(step => step.id === id)!;
     for (const file of step.requiredFiles) await writeFile(join(request.directory, id, 'review' in step && step.review && file === 'report.md' ? 'report.md.tmp' : file), `${id} ${file}`);
   }
@@ -65,7 +64,6 @@ test('each drawing stage starts its own thread; review completes before step01 m
     assert.equal(request.model, 'gpt-6.2-sol');
     if (requests.length === 2) assert.equal(request.threadId, undefined);
     if (requests.length === 2) await assert.rejects(readFile(join(f.output, 'step01/.completed')), { code: 'ENOENT' });
-    // step01's thread keeps step01's tools; step02 must start a thread with its own.
     if (requests.length === 3) assert.equal(request.threadId, undefined);
     return deliver(request, requests.length === 3 ? 'drawing-step02' : undefined);
   } });

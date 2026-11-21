@@ -42,6 +42,30 @@ test('declared handlers are required while native imagegen remains an adapter ca
   assert.deepEqual(knowledge.tools('main',[]),[]);
 });
 
+test('tool selection follows the active agent.json for each role', async t => {
+  const f = await fixture(t), step = stepKnowledge('raster-layering', 'step01', f.root);
+  const path = join(step.directory, 'agent.json');
+  const config = {
+    main: { initial: ['prompts/draw.md'], tools: ['edit_groups'] },
+    review: { initial: ['prompts/review.md'], tools: ['annotate_review_regions'], repair: { initial: ['prompts/repair.md'] } },
+  };
+  const provided = ['edit_groups', 'annotate_review_regions', 'edit_occlusion'].map(name => ({
+    ...toolDefinition(name), execute: async () => textResult('fixture'),
+  }));
+  const mounted = (role: 'main' | 'review' | 'repair') => step.tools(role, provided).map(tool => tool.name);
+  await f.put(path, JSON.stringify(config));
+  assert.deepEqual(mounted('main'), config.main.tools);
+  assert.deepEqual(mounted('repair'), config.main.tools);
+  assert.deepEqual(mounted('review'), config.review.tools);
+
+  config.main.tools.unshift('edit_occlusion');
+  config.review.tools = [];
+  await f.put(path, JSON.stringify(config));
+  assert.deepEqual(mounted('main'), config.main.tools);
+  assert.deepEqual(mounted('repair'), config.main.tools);
+  assert.deepEqual(mounted('review'), config.review.tools);
+});
+
 test('prompt filenames stay within the selected knowledge root',async t=>{
   const f=await fixture(t),root=await f.prior('A');useKnowledge(root);
   const config=join(root,'head-nine-axis/step03_frames/agent.json');

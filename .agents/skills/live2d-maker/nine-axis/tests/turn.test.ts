@@ -19,6 +19,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from '../continuation.ts';
 import { stepKnowledge } from '../../shared/knowledge.ts';
+import { stubStepTools } from '../../shared/tests/knowledge-fixture.ts';
 import { MissingDependencyError } from '../../shared/missing-dependency.ts';
 import { kraContents, kraLayers } from '../../shadow/delivery.ts';
 import { hairPreviewScope, readHairProgress, type HairRound } from '../hair.ts';
@@ -547,7 +548,7 @@ test('九轴停止信号传入真实绘制 agent，已取消时不再启动', as
     started++; assert.equal(signal, controller.signal);
     controller.abort(new Error('cancel face fitting')); signal!.throwIfAborted();
     return { text: '{"error":null}', images: [] };
-  } }, async () => stepKnowledge('nine-axis','step06_angle-xy').toolNames('main').filter(name=>name!=='imagegen').map(name=>({name,description:'fixture',inputSchema:{type:'object'},execute:async()=>assert.fail('cancel fixture')})), 'step06_angle-xy', '斜向', controller.signal);
+  } }, () => stubStepTools('nine-axis', 'step06_angle-xy'), 'step06_angle-xy', '斜向', controller.signal);
   await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);
   assert.equal(started, 1);
   await assert.rejects(fit(join(task, 'nine-axis/step06_angle-xy'), 'test'), /cancel face fitting/);

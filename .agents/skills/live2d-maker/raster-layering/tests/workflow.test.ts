@@ -100,20 +100,23 @@ test('step01 绘制和 review 完成后才执行 step02；缺 PNG 保留中断�
   const calls: string[] = [];
   let step02Calls = 0;
   await assert.rejects(runWorkflow(f.options, { ...deps, agent: async request => {
-    if (request.prompt.startsWith('你负责独立 review 第一步的交付')) {
+    if (request.step === 'raster_step01_review') {
       calls.push('review'); assert.equal(request.threadId, undefined);
-      assert.equal(request.tools?.[0].name, 'annotate_review_regions');
       await absent(join(f.output, 'step01/.completed'));
       await absent(join(f.output, 'step02/.running'));
       await request.onEvent({ type: 'thread.started', thread_id: 'fresh-review' });
       await writeFile(join(f.output, 'step01/review-01.md.tmp'), '结论：通过\n完整检查。');
       return complete;
     }
-    if (calls.length === 0) { calls.push('step01'); assert.deepEqual(request.tools?.map(tool => tool.name), ['edit_groups', 'edit_occlusion', 'prepare_part_reference', 'krita']); return deliver(request, steps[0]); }
+    if (calls.length === 0) {
+      assert.equal(request.step, 'raster_step01');
+      calls.push('step01');
+      return deliver(request, steps[0]);
+    }
     const first = step02Calls++ === 0;
+    if (first) assert.equal(request.step, 'raster_step02');
     calls.push(first ? 'step02' : 'repair-step02');
     assert.equal(request.threadId, first ? undefined : 'thread-step02');
-    assert.deepEqual(request.tools?.map(tool => tool.name), ['krita']);
     if (first) await request.onEvent({ type: 'thread.started', thread_id: 'thread-step02' });
     else {
       assert.match(request.prompt, /character-soft-edges\.png/);

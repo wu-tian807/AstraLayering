@@ -11,7 +11,6 @@ import { runWorkflow } from '../raster/workflow.ts';
 import { seedUpstream } from './upstream-fixture.ts';
 import { deliverRasterStep } from './raster-delivery.ts';
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
-import { buildReviewPrompt } from '../raster/review.ts';
 import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
 import { nodeExecutables } from '../../part-layering/tests/node-executables.ts';
@@ -32,25 +31,20 @@ async function fixture(t: TestContext, section: typeof character | typeof clothi
   return { root, directory, input, tool, tools, json, snapshot };
 }
 
-test('两套 step01 绘制与两轮返修提供编辑工具；reviewer 和后续阶段保持原工具边界', async t => {
+test('人物与衣服只在第一步绘制和返修时提供结构编辑能力', async t => {
   for (const section of [character, clothing]) {
-    const f = await fixture(t, section), step = section.steps[0];
-    const output = join(f.root, 'case', section.id, 'step01');
-    for (const phase of ['draw', 'repair-01', 'repair-02']) {
-      assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name),
-        ['edit_groups', 'edit_occlusion', 'prepare_part_reference', 'upscale_image']);
+    const f = await fixture(t, section);
+    for (const step of section.steps) {
+      const output = join(f.root, 'case', section.id, step.id);
+      for (const phase of step.id === 'step01' ? ['draw', 'repair-01', 'repair-02', 'review-01', 'review-02'] : ['draw']) {
+        const tools = section.tools!(output, f.input, step, phase);
+        const review = phase.startsWith('review-');
+        const canEdit = step.id === 'step01' && !review;
+        assert.equal(tools.some(tool => tool.name === 'edit_groups'), canEdit);
+        assert.equal(tools.some(tool => tool.name === 'edit_occlusion'), canEdit);
+        assert.equal(tools.some(tool => tool.name === 'annotate_review_regions'), review);
+      }
     }
-    for (const phase of ['review-01', 'review-02']) {
-      assert.deepEqual(section.tools!(output, f.input, step, phase).map(tool => tool.name), ['annotate_review_regions']);
-    }
-    assert.deepEqual(section.tools!(output, f.input, section.steps[1], 'draw'), []);
-    if (section.id === character.id) assert.deepEqual(section.tools!(output, f.input, section.steps[2], 'draw'), []);
-    const draw = await section.buildPrompt(step, f.input, output, []);
-    const repair = await buildReviewPrompt(step, { kind: 'repair', filename: 'repair-01.md', index: 1 });
-    assert.ok(draw.includes('修改 groups.json 用 edit_groups，修改 occlusion.json 用 edit_occlusion'));
-    assert.ok(!draw.includes('直接编辑上游 groups.json'));
-    // Repairs continue the drawing thread, or get the drawing prompt prepended in a new one.
-    assert.ok(!repair.includes('你负责当前阶段的绘画质量和分层结构'));
   }
 });
 
@@ -194,7 +188,7 @@ test('编辑工具真实注册到 Codex App Server 并执行校验写入', async
   const agents = new AgentDispatcher({ cwd: f.root, codexPathOverride: server.executable, logDirectory: join(f.root, 'logs') });
   await agents.run({ name: 'controlled edit', prompt: '保存深度', tools: f.tools });
   const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
-  assert.deepEqual(protocol.find(message => message.method === 'thread/start').params.dynamicTools.map((tool: any) => tool.name), ['edit_groups', 'edit_occlusion']);
+  assert.deepEqual(protocol.find(message => message.method === 'thread/start').params.dynamicTools.map((tool: any) => tool.name), f.tools.map(tool => tool.name));
   assert.equal((await f.json('occlusion.json')).layers[0].level, 0.75);
 });
 
@@ -209,7 +203,7 @@ test('Claude 共用 MCP 与 AGV 注册同一 schema；错误反馈后可再次�
       return (await response.json()).result;
     };
     const listed = (await call('tools/list')).tools;
-    assert.deepEqual(listed.map((tool: any) => tool.name), ['edit_groups', 'edit_occlusion']);
+    assert.deepEqual(listed.map((tool: any) => tool.name), f.tools.map(tool => tool.name));
     const failed = await call('tools/call', { name: 'edit_occlusion', arguments: { layers: [{ ...row('fixture', 0), layer: 'bad' }] } });
     assert.equal(failed.isError, true); assert.match(failed.content[0].text, /layers\[0\]\.layer：不支持的字段/);
     assert.equal((await call('tools/call', { name: 'edit_occlusion', arguments: { layers: [row('fixture', 0.8)] } })).isError, false);
