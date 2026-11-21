@@ -2,7 +2,7 @@ import { profile } from '../profile.ts';
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,6 +34,7 @@ test('独立 section 每次启动都须提供 --knowledge；目录缺失文件�
   });
   const empty = await mkdtemp(join(tmpdir(), 'knowledge-'));
   try {
+    await copyFile(join(defaultKnowledgeDirectory, 'version.json'), join(empty, 'version.json'));
     await assert.rejects(runCli(['--name', 'test', '--knowledge', empty], { knowledge: false }), error => {
       assert.match(String((error as { stderr?: string }).stderr), /先验知识缺少文件/);
       return true;
