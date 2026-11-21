@@ -7,7 +7,9 @@ import { toolDefinition } from '../../codex/tool-config.ts';
 import { writeAtomic } from '../../part/groups.ts';
 import { canonicalPath } from '../../raster/run-store.ts';
 import { imagePath } from '../../task-paths.ts';
-import { checkUpscaledPng, requireUpscaleRuntime, upscaleImageDirectory, type PngGeometry } from '../../upscale-image.ts';
+import { probeUpscaleEnvironment } from '../../upscale-environment.ts';
+import { ensureUpscayl } from '../../upscayl.ts';
+import { checkUpscaledPng, upscaleImageDirectory, type PngGeometry } from '../../upscale-image.ts';
 
 type Job = { input_path: string; output_path: string };
 type Result = Job & ({ status: 'upscaled'; width: number; height: number }
@@ -70,7 +72,14 @@ async function planJobs(items: unknown[]): Promise<Job[]> {
   return jobs;
 }
 
-export function createUpscaleImageTool({ requireRuntime = requireUpscaleRuntime, runBatch = upscaleImageDirectory } = {}): FunctionTool {
+async function installedRuntime() {
+  const executable = await ensureUpscayl({ installedOnly: true });
+  const environment = await probeUpscaleEnvironment();
+  if (!environment.supported) throw new Error(environment.reason);
+  return executable;
+}
+
+export function createUpscaleImageTool({ requireRuntime = installedRuntime, runBatch = upscaleImageDirectory } = {}): FunctionTool {
   return {
     ...toolDefinition('upscale_image'),
     async execute(value, signal) {

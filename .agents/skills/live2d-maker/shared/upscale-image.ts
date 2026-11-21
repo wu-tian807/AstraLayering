@@ -5,8 +5,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import sharp from 'sharp';
 import { downloadBytes } from './download.ts';
-import { createUpscaleEnvironmentCheck } from './upscale-environment.ts';
-import { ensureUpscayl, requireInstalledUpscayl } from './upscayl.ts';
+import { ensureUpscayl } from './upscayl.ts';
 
 const model = 'digital-art-4x';
 const modelUrl = 'https://raw.githubusercontent.com/upscayl/upscayl/4f39acfc6f88260d105920a64deff8431d5e1544/resources/models';
@@ -18,7 +17,6 @@ const sha256 = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex
 
 type UpscaleOptions = { signal?: AbortSignal; progress?: (message: string) => void };
 export type UpscaleFactor = 2 | 3 | 4;
-const checkEnvironment = createUpscaleEnvironmentCheck();
 
 async function ensureModel(directory: string, { signal, progress }: UpscaleOptions) {
   await mkdir(directory, { recursive: true });
@@ -61,13 +59,6 @@ async function runUpscayl(executable: string, input: string, output: string, job
       reject(new Error(`Upscayl 超分失败：${detail}`));
     });
   });
-}
-
-export async function requireUpscaleRuntime(): Promise<string> {
-  const executable = await requireInstalledUpscayl();
-  const environment = await checkEnvironment();
-  if (!environment.supported) throw new Error(environment.reason);
-  return executable;
 }
 
 export function upscaleImageDirectory(executable: string, input: string, output: string, scale: UpscaleFactor,

@@ -25,11 +25,10 @@ const releases: Record<string, Asset> = {
       url: 'https://raw.githubusercontent.com/upscayl/upscayl/4f39acfc6f88260d105920a64deff8431d5e1544/resources/win/bin/vcomp140.dll' } },
 };
 const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
-const cacheRoot = join(workflowsDirectory, 'data', 'upscayl');
-const hostPlatform = `${process.platform}-${process.arch}`;
 
 type InstallOptions = {
   signal?: AbortSignal;
+  installedOnly?: boolean;
   preparing?: () => void;
   report?: ReportPreparation;
 };
@@ -47,17 +46,8 @@ async function installedExecutable(directory: string, asset: Asset): Promise<str
   return executable;
 }
 
-export async function requireInstalledUpscayl({
-  root = cacheRoot, platform = hostPlatform, asset = releases[platform],
-}: Omit<InstallServices, 'download'> = {}): Promise<string> {
-  if (!asset) throw new Error(`当前平台 ${platform} 暂不支持超分。`);
-  const executable = await installedExecutable(join(root, platform), asset);
-  if (!executable) throw new Error('Upscayl 未安装或安装已损坏。');
-  return executable;
-}
-
-export async function ensureUpscayl({ signal, preparing, report }: InstallOptions = {}, {
-  root = cacheRoot, platform = hostPlatform,
+export async function ensureUpscayl({ signal, installedOnly, preparing, report }: InstallOptions = {}, {
+  root = join(workflowsDirectory, 'data', 'upscayl'), platform = `${process.platform}-${process.arch}`,
   asset = releases[platform], download = downloadBytes,
 }: InstallServices = {}): Promise<string> {
   const emit = (state: PreparationProgress['state'], message: string, bytes?: PreparationProgress['bytes']) =>
@@ -67,6 +57,10 @@ export async function ensureUpscayl({ signal, preparing, report }: InstallOption
   try {
     if (!asset) throw new Error(`当前平台 ${platform} 暂不支持超分，请选择 1K。`);
     const executable = join(directory, asset.binary);
+    if (installedOnly) {
+      if (await installedExecutable(directory, asset)) return executable;
+      throw new Error('Upscayl 未安装或安装已损坏。');
+    }
     await mkdir(root, { recursive: true });
     while (!unlock) {
       signal?.throwIfAborted();
