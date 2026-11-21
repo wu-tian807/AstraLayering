@@ -33,7 +33,10 @@ try {
       .map(([uuid, layer], index) => ({ id: layer.name, uuid, texture: `layers/${String(index).padStart(3, '0')}.png` }));
     const staging = join(temporary, name), output = join(root, '.web/showcase-layers', name);
     await mkdir(join(staging, 'layers'), { recursive: true });
-    const exported = await exportLayers(kra, staging, rows, []);
+    // The exploded view separates the skirt. Show the torso underneath its assembly mask.
+    const unpackedWaistMask = 'a64583a4-bd70-4faf-b5b6-36f6860ba102';
+    const hiddenForExplosion = name === 'pink-doll' && layers.has(unpackedWaistMask) ? [unpackedWaistMask] : [];
+    const exported = await exportLayers(kra, staging, rows, hiddenForExplosion);
     if (!(await readFile(kra)).equals(source)) throw Error('Source KRA changed during export: ' + name);
     await mkdir(join(output, 'layers'), { recursive: true });
     const records = [];

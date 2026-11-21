@@ -10,35 +10,29 @@ AstraLayering 是一个由 AI agent 驱动的角色分层工具。从一张角�
 | --- | --- |
 | ![Jianma 分层展示](showcase/jianma-reference-composite-exploded.png) | ![Pink Doll 分层展示](showcase/pink-doll-reference-composite-exploded.png) |
 
-| Pink Elf · 70 层人物、32 层衣服 | Black White Doll · 81 层人物、19 层衣服 |
+| Pink Elf · 70 层人物、32 层衣服 | Black White Doll · 77 层人物、15 层衣服 |
 | --- | --- |
 | ![Pink Elf 分层展示](showcase/pink-elf-reference-composite-exploded.png) | ![Black White Doll 分层展示](showcase/black-white-doll-reference-composite-exploded.png) |
 
 ## 可视化工作台
 
-制作工作台展示任务进度、部件结构、绘制过程和每一步的成果，支持暂停、继续和导出。
+制作工作台展示任务进度、部件结构、绘制过程和每一步的成果，支持停止、继续和导出。
 
 ![制作流程预览](web/demo-screenshots/workflow.png)
 
-角色工作台支持图层编辑、光照调整、九轴变形和布料摆动预览。
+角色工作台支持图层编辑和头部九轴预览。
 
 ![角色工作台](web/demo-screenshots/head-nine-axis-studio.png)
 
 ## 头部九轴
 
-脸部、五官、耳朵与下颌已支持左右、抬头、低头和斜向九轴；头发、发辫及头饰已接入左右与上下。左右头发按前发、侧发、后发、其余发片依次制作，随后制作头饰；头部上下以完整组合为基础，独立并发制作抬头与低头。其后的整头斜角步骤使用一个新会话统一协调四角。
+工作台可预览转头、抬头、低头和斜向姿态。有 Z 轴的模型也支持歪头。下面是狸娘的完整演示，包含头部、头发和头饰的联动与表情。
 
-| 脸＋五官 · 完整九轴 | 脸＋五官＋头发＋头饰 · 仅左右 |
-| --- | --- |
-| ![脸部与五官九轴](showcase/tanuki-face-nine-axis.gif) | ![完整头部左右转动](showcase/tanuki-whole-head-left-right.gif) |
+![狸娘头部九轴与表情完整演示](showcase/tanuki-head-nine-axis.gif)
 
-制作工作台和角色工作台都能切换“脸＋五官”“＋头发”“＋头饰”，各自按已完成的方向开放预览。左右、上下单轴齐备后，即可预览叠加形成的斜角；后续斜角制作在此基础上修正。[使用头部九轴](.agents/skills/live2d-maker/nine-axis/README.md)。
+感谢形象原创：**@楓山狸**。
 
-## 布料与光照
-
-裙摆、袖片和飘带可以随风摆动，和角色光照、投影一起预览。
-
-![裙摆与飘带动图](showcase/jianma-wind-skirt.gif)
+制作工作台和角色工作台都能切换“脸＋五官”“＋头发”“＋头饰”，按各模型已完成的方向开放预览。[使用头部九轴](.agents/skills/live2d-maker/nine-axis/README.md)
 
 ## 开始使用
 

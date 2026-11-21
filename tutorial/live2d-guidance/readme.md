@@ -54,7 +54,7 @@
 
 当前入口见 [layering-references.md](layering-references.md)。本机已取得的三套模型、两份原 ZIP、头发参考板与裁片、原研究资料、制作记录和脚本、完整指体参考板及来源清单均随仓库保存。现有工作流的图片位置和引用配置保持原样。云端尚未取得的包继续列为未取得。
 
-可执行工作流：[角色文件与静态光照工作流 v2](workflows/lighting-preview.md)，包含 KRA / PSD 预览、成熟材质选型、法线 / 深度绑定、位置光控制和参数留存。
+[静态光照研究](workflows/lighting-preview.md)记录了材质选型、法线与深度验证和灯位验收。[当前角色工作台操作](../../web/README.md#角色工作台)
 
 ## 2026-10-20 QQ 邮箱模型资料
 
