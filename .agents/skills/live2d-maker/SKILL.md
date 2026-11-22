@@ -1,17 +1,17 @@
 ---
 name: live2d-maker
-description: 从角色参考图制作人物与衣服分层 KRA、透明 PNG、穿戴组装及阴影。用于配置、启动、续跑制作和打开工作台，也可开启头部九轴。
+description: 任何 Live2D 工作流操作前必读，包括工作台、配置、启动、续跑、停止和头部九轴。交付分层 KRA、透明 PNG、穿戴组装与阴影。
 ---
 
 # Live2D Maker
 
-在安装好的 skill 目录执行命令。人物与衣服并行制作，完成后组装、制作阴影；加 `--live` 继续头部九轴。
+**面向用户的启动、续跑、停止等执行操作一律走工作台总调度，CLI 在本 skill 目录用 `pnpm start` 并沿用同一任务目录。**
 
 ## 执行流程
 
 1. 确定参考图、任务名、运行目录、制作范围和是否标准化姿态。新任务读取原图尺寸并确定分辨率档位。沿用用户已确认的选择及已有任务参数，只补问缺失信息。
 2. 按[安装说明](references/setup.md)准备环境，运行 `pnpm env:check` 核对模型配置。已有任务先查状态；正在运行的任务直接跟进。
-3. 后台启动，打开工作台中的任务页面并给出链接。复用已有工作台，确保网页和 CLI 使用同一个运行根目录。
+3. 后台启动，打开任务页面并给出链接，优先复用已有工作台。
 4. 使用宿主的定时能力每 2 小时检查进展、处理可恢复故障。在任务 `monitor.md` 记下任务路径、启动参数和定时 ID；宿主没有定时能力时告知用户。
 5. 完成后查看合成图，核对 KRA、PNG 和报告，给出文件及网页入口，关闭本任务的定时检查。
 
@@ -55,7 +55,7 @@ pnpm start --name my-character --stop
 
 ## 单独运行一个 section
 
-先停止同一任务的总调度，再单独启动所需管线。独立 section 每次传入 `--knowledge` 和所需软件路径，并沿用任务的运行根目录 `--dir`。它从步骤记录沿用工程和会话。原有的 `pnpm <section-id>` 命令与通用的 `pnpm section <section-id>` 使用同一个入口。
+单独运行用于开发调试，先停止同一任务的总调度。独立 section 每次传入 `--knowledge` 和所需软件路径，并沿用任务的运行根目录 `--dir`。它从步骤记录沿用工程和会话。原有的 `pnpm <section-id>` 命令与通用的 `pnpm section <section-id>` 使用同一个入口。
 
 ```sh
 pnpm section raster-layering --name my-character --dir /绝对路径/运行根目录 --knowledge /绝对路径/knowledge --krita /绝对路径/krita --from-step step02 --to-step step03
