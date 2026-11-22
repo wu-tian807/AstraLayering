@@ -14,7 +14,7 @@ import { isStudioPath } from './studio-project.ts';
 import { hairRounds, hairRoundLabel, readHairState, type HairProgress, type HairRound } from '../.agents/skills/live2d-maker/nine-axis/hair-progress.ts';
 import { toTaskPathReal } from '../.agents/skills/live2d-maker/shared/task-paths.ts';
 
-type Observation = { active?: boolean; failed?: boolean; archive?: boolean; since?: string; reason?: string };
+type Observation = { active?: boolean; failed?: boolean; since?: string; reason?: string };
 
 // Project the existing step/group facts. Only a current agent call is running;
 // saved partial products remain available without implying completion.

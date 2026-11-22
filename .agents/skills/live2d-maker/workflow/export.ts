@@ -37,9 +37,9 @@ export const completeRun = (run?: TaskRun) => !!run && run.status === 'completed
 
 // Completion facts are portable. CLI configuration, model selection and thread
 // records stay at the source; an export cannot accidentally resume old sessions.
-export function archiveRun(run: TaskRun, nineAxis = false): TaskRun {
+function exportedRun(run: TaskRun, nineAxis: boolean): TaskRun {
   const sections = [...exportSectionIds, ...nineAxis ? ['nine-axis'] : []];
-  return { version: 1, archive: true, from: 'part-layering', to: nineAxis ? 'nine-axis' : 'shadow',
+  return { version: 1, from: 'part-layering', to: nineAxis ? 'nine-axis' : 'shadow',
     jobs: run.jobs, standard: run.standard, shadowMode: run.shadowMode, status: run.status,
     createdAt: run.createdAt, updatedAt: run.updatedAt,
     sections: Object.fromEntries(Object.entries(run.sections).filter(([id]) => sections.includes(id)).map(([id, value]) => [id,
@@ -119,12 +119,12 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
   }
   await add('.web-project.json');
   for (const section of ['part-layering', 'clothing-part-layering']) {
-    for (const step of [partSteps.initial, partSteps.merge, partSteps.occlusion]) await add(join(section, step, '.completed'), !run.archive);
+    for (const step of [partSteps.initial, partSteps.merge, partSteps.occlusion]) await add(join(section, step, '.completed'), true);
     for (const path of ['groups.json', 'occlusion.json', 'preview.svg']) await add(join(section, path), true);
     const groups = normalizeGroups(JSON.parse(await readFile(join(root, section, 'groups.json'), 'utf8')).groups);
     for (const { group } of walkGroups(groups)) {
-      for (const step of groupSteps) await add(join(section, groupStepId(group.id, step), '.completed'), !run.archive);
-      await add(join(section, layerStepId(groupDepth(group.id)), '.completed'), !run.archive);
+      for (const step of groupSteps) await add(join(section, groupStepId(group.id, step), '.completed'), true);
+      await add(join(section, layerStepId(groupDepth(group.id)), '.completed'), true);
       for (const stage of ['outline', 'reduction', 'completion'] as const) await add(artifactPath(section, group.id, stage), true);
       for (const kind of ['review', 'completion-check', 'children'] as const) await add(reportPath(section, group.id, kind));
     }
@@ -135,7 +135,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
   ] as const;
   for (const [section, definitionsForSection] of definitions) {
     for (const step of definitionsForSection) {
-      await add(join(section, step.id, '.completed'), !run.archive);
+      await add(join(section, step.id, '.completed'), true);
       for (const path of step.requiredFiles) await add(join(section, step.id, path), true);
       for (const pattern of ('previewFiles' in step ? step.previewFiles ?? [] : []) as readonly string[]) {
         const full = slash(join(section, step.id, pattern));
@@ -189,7 +189,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
       : JSON.stringify(await rewriteJSON(JSON.parse(original), path), null, 2) + '\n';
     if (text !== original) entries.set(path, { bytes: Buffer.from(text) });
   }
-  entries.set('run.json', { bytes: Buffer.from(JSON.stringify(archiveRun(run, nineAxis), null, 2) + '\n') });
+  entries.set('run.json', { bytes: Buffer.from(JSON.stringify(exportedRun(run, nineAxis), null, 2) + '\n') });
   return { entries, warnings: [...new Set(warnings)] };
 }
 

@@ -27,7 +27,7 @@ test('directory/ZIP exports retain artwork, completion facts and cited workspace
   assert.ok(manifest.files['shadow/step01_mask/inspection/overview.png']);
   assert.ok(manifest.files['shadow/step01_mask/inspection/relation-000-review.png']);
   const run = JSON.parse(await readFile(join(destination, 'run.json'), 'utf8'));
-  assert.equal(run.archive, true); assert.equal(run.krita, undefined); assert.equal(run.runner, undefined); assert.equal('dir' in run, false);
+  assert.equal(run.archive, undefined); assert.equal(run.krita, undefined); assert.equal(run.runner, undefined); assert.equal('dir' in run, false);
   assert.equal(JSON.stringify(run).includes(f.root), false);
   const depth = await readFile(join(destination, 'part-layering/step14_occlusion/preview.svg'), 'utf8');
   assert.match(depth, /data-depth-preview="whole-parts"/);
@@ -40,7 +40,8 @@ test('directory/ZIP exports retain artwork, completion facts and cited workspace
   // Source and workspace have not been moved, rewritten or deleted.
   assert.equal((JSON.parse(await readFile(join(f.root, 'run.json'), 'utf8'))).archive, undefined);
   assert.match(await readFile(join(f.root, 'raster-layering/step01/report.md'), 'utf8'), /workspace/);
-  await assert.rejects(configureRun({ name: f.name, dir: f.base }, destination), /成果归档/);
+  const configured = await configureRun({ name: f.name, dir: f.base }, destination);
+  assert.deepEqual(configured.sections, run.sections);
   await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: zipPath }), /已存在/);
 });
 

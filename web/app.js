@@ -105,7 +105,7 @@ function laneFailure(section){
 }
 const taskStatusNames = {ready:'待启动', running:'运行中', completed:'所选路线已完成', failed:'执行失败', interrupted:'已中断', untracked:'无总控记录', layout:'需转换目录'};
 function pageHeading() {
- return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
+ return `<div class="page-heading"><div class="task-heading"><select id="task-select" aria-label="选择任务"><option value="" ${!state.name?'selected':''}>选择任务</option>${tasks.map(task=>`<option value="${esc(task.name)}" ${task.name===state.name?'selected':''}>${esc(task.displayName||task.name)} · ${taskStatusNames[task.status]||task.status}</option>`).join('')}</select></div><div class="heading-actions"><button class="button" data-action="new">${icon('plus')}新建任务</button>${state.name?`${!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}<button class="button" data-action="files">${icon('folder')}全部产物</button>${stepToolbar()}`:''}</div></div>`;
 }
 let archivedFiles = new Set();
 const assetLookup = new Map();
@@ -278,11 +278,9 @@ function stepTargets() {
 }
 const brokenSteps=(targets=stepTargets(),action='continue')=>targets.filter(target=>target.status==='running');
 const stepLabel=target=>`${stages[target.index].name} ${target.id}`;
-const visibleStage=index=>!data.archived||Object.hasOwn(data.run?.sections||{},stages[index].id);
 function stepToolbar() {
  if(!state.name)return '';
  const exportButton=data.canExport?`<a class="button" data-export href="./api/export?${taskParams()}" title="下载正式产物、完整流程预览与报告；不包含过程文件">导出成果</a>`:'';
- if(data.archived)return `<div class="step-toolbar" role="group" aria-label="成果归档">${exportButton}<span>成果归档</span></div>`;
  const targets=stepTargets(),busy=data.runnerAlive||data.lockHeld;
  if(busy)return `<div class="step-toolbar" role="group" aria-label="任务控制"><button class="button" data-action="stop" title="${data.canStop?'停止运行，保留产物与续跑记录（命令行 --stop）':'当前运行未提供可用的停止入口'}" ${data.canStop?'':'disabled'}>${icon('stop')}停止</button></div>`;
  const allowed=action=>action==='continue'||brokenSteps(targets,action).length>0;
@@ -481,7 +479,7 @@ function preparationPanel() {
 function projectPage() {
  if(!state.name)return `${pageHeading()}<section class="empty-workspace"><h2>开始一次角色制作</h2><p>新建任务并提供一张角色图，或选择已有任务所在的运行目录。</p><p>${esc(state.directory)}</p><button class="primary" data-action="new">新建任务</button></section>`;
  // The character preparation is shared; then the character and clothing lanes run in parallel and merge.
- const cards=indexes=>indexes.filter(index=>stages[index]&&visibleStage(index)).map(index=>overviewCard(stages[index],index)).join('');
+ const cards=indexes=>indexes.filter(index=>stages[index]).map(index=>overviewCard(stages[index],index)).join('');
  const column=(kind,title,html)=>html?`<div class="overview-column ${kind}"><small class="overview-column-title">${title}</small>${html}</div>`:'';
  const lanes=[{name:'人物线',stages:[1]},{name:'衣服线',stages:[2,3]}].map(lane=>({...lane,html:cards(lane.stages)})).filter(lane=>lane.html);
  return `${pageHeading()}${preparationPanel()}${runNotice()}<section class="section-overview">
@@ -502,10 +500,10 @@ function kritaBadge(index) {
 }
 function graph() {
  if(!state.name)return '<section class="empty-workspace"><h2>尚未选择任务</h2><button class="button" data-page="project">选择任务</button></section>';
- const cards=indexes=>indexes.filter(visibleStage).map(flowCard).join('');
+ const cards=indexes=>indexes.map(flowCard).join('');
  const lanes=flowLanes.map((lane,i)=>({...lane,html:cards(lane.stages),i})).filter(lane=>lane.html),merge=cards(mergeStages);
  const switcher=lanes.length>1?`<nav class="lane-switch" aria-label="切换关注的管线">${lanes.map(lane=>`<button data-lane="${lane.i}" class="${state.lane===lane.i?'active':''}" aria-label="查看${lane.name}" aria-pressed="${state.lane===lane.i}" title="${lane.name}"><span></span><small>${lane.name}</small></button>`).join('')}</nav>`:'';
- return `<section class="workflow-shell"><div class="flow-area"><div class="flow-toolbar"><button class="button preview-back" data-page="project">${icon('branch')}执行控制</button><span>${esc(state.name)} · ${data.run?esc(stages.find(stage=>stage.id===data.run.from)?.name)+' → '+esc(stages.find(stage=>stage.id===data.run.to)?.name):'已有产物'}</span><div class="flow-legend">${Object.keys(statusNames).map(status=>`<span>${statusMark(status)}${statusNames[status]}</span>`).join('')}</div><div class="canvas-tools"><button data-action="zoom-out" aria-label="缩小画布">−</button><button data-action="zoom-reset" id="zoom-label">100%</button><button data-action="zoom-in" aria-label="放大画布">＋</button><button data-action="zoom-fit">适合高度</button></div>${!data.archived&&!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}${stepToolbar()}</div>
+ return `<section class="workflow-shell"><div class="flow-area"><div class="flow-toolbar"><button class="button preview-back" data-page="project">${icon('branch')}执行控制</button><span>${esc(state.name)} · ${data.run?esc(stages.find(stage=>stage.id===data.run.from)?.name)+' → '+esc(stages.find(stage=>stage.id===data.run.to)?.name):'已有产物'}</span><div class="flow-legend">${Object.keys(statusNames).map(status=>`<span>${statusMark(status)}${statusNames[status]}</span>`).join('')}</div><div class="canvas-tools"><button data-action="zoom-out" aria-label="缩小画布">−</button><button data-action="zoom-reset" id="zoom-label">100%</button><button data-action="zoom-in" aria-label="放大画布">＋</button><button data-action="zoom-fit">适合高度</button></div>${!data.runnerAlive&&!data.lockHeld?'<button class="button" data-action="run-options">执行参数</button>':''}${stepToolbar()}</div>
  ${preparationPanel()}<div class="flow-scroll" tabindex="0" aria-label="完整流程画布：横向滚动或拖动浏览，上下拖动或 Ctrl/⌘ + 滚轮切换人物线与衣服线"><div class="flow-size" data-flow-layout><div class="flow-world preview-world" data-flow-layout><svg class="flow-connectors" aria-hidden="true"></svg><div class="flow-input">${data.original?`<a href="${artifact(data.original)}" target="_blank" rel="noopener"><img src="${artifact(data.original)}" alt="原始输入图"></a>`:icon('image')}<span><b>输入角色图</b><small>original → standard</small></span></div><div class="flow-grid"><div class="flow-lanes">${lanes.map(lane=>`<div class="flow-lane" data-lane-row="${lane.i}">${lane.html}</div>`).join('')}</div>${merge?`<div class="flow-merge" style="margin-top:${state.mergeShift}px">${merge}</div>`:''}</div></div></div></div>${switcher}
  <footer class="flow-footnote">人物分块准备完成后，人物线与衣服线并行，在穿戴组装合流 · 滚轮或左右拖动横向浏览 · 上下拖动、上下滑动或 Ctrl/⌘ + 滚轮切换两条线 · 点击产物放大查看</footer></div>${state.inspect?inspector():''}</section>`;
 }

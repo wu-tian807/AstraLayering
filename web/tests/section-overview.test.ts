@@ -7,13 +7,12 @@ import { displayStatus, sectionSteps, previousNineAxisSectionSteps, shadowInspec
 
 const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const renderer = source.slice(source.indexOf('function overviewCard('), source.indexOf('function graph('));
-const visibleStage = source.match(/^const visibleStage=.*$/m)![0];
 const lanes = source.match(/^const flowLanes = .*$/m)![0];
 const observed = source.slice(source.indexOf('function observedDisplayStatus('), source.indexOf('function rasterItems('));
-function render(statuses: string[], files: string[] = [], running = false, locked = false, archive?: { sections: Record<string, unknown> }, sections?: unknown[], kritaInUse?: number) {
-  return runInNewContext(lanes + '\n' + visibleStage + '\n' + observed + renderer + '\nprojectPage();', {
+function render(statuses: string[], files: string[] = [], running = false, locked = false, sections?: unknown[], kritaInUse?: number) {
+  return runInNewContext(lanes + '\n' + observed + renderer + '\nprojectPage();', {
     stages: statuses.map((status, i) => ({ name: '管线 ' + i, id: i === 6 ? 'nine-axis' : 'section-' + i, status })),
-    state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse, ...(archive ? { archived: true, run: archive } : {}) },
+    state: { name: 'case', stage: 0 }, data: { files, runnerAlive: running, lockHeld: locked, ...(sections ? { sections } : {}), kritaInUse },
     stepArtifacts: {}, available: () => [], pageHeading: () => '', runNotice: () => '',
     esc: String, icon: () => '', displayStatus, statusLabel,
     statusMark: (status: string) => `<i data-status="${status}"></i>`,
@@ -70,7 +69,7 @@ test('执行面板逐管线展示真实状态，完成与失败不再显示为�
 });
 
 test('失败的管线卡片在概览上直接给出失败原因', () => {
-  const html = render(['done', 'failed'], [], false, false, undefined, [{ status: 'done' }, { status: 'failed', summary: 'ENAMETOOLONG\nstack' }]);
+  const html = render(['done', 'failed'], [], false, false, [{ status: 'done' }, { status: 'failed', summary: 'ENAMETOOLONG\nstack' }]);
   const card = (i: number) => html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
   assert.match(card(1), /class="overview-reason status-error"[^>]*>ENAMETOOLONG<\/p>/);
   assert.doesNotMatch(card(0), /overview-reason/);
@@ -80,7 +79,7 @@ test('section 占用或排队等 Krita 时，在原有执行状态旁加标识',
   const running = { state: 'running', since: '2026-10-27T08:00:00.000Z', limit: 3, pid: 4242, version: '5.3.4', startedAt: '2026-10-27T08:00:00.000Z' };
   const reserved = { state: 'reserved', since: '2026-10-27T08:00:00.000Z', limit: 3 };
   const waiting = { state: 'waiting', since: '2026-10-27T08:00:00.000Z', limit: 3 };
-  const html = render(['running', 'running', 'running', 'pending'], [], true, true, undefined,
+  const html = render(['running', 'running', 'running', 'pending'], [], true, true,
     [{ krita: running }, { krita: reserved }, { krita: waiting }, { krita: null }], 3);
   const card = (i: number) => html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
   assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>正在使用 Krita<small>3\/3<\/small>/);
@@ -90,11 +89,6 @@ test('section 占用或排队等 Krita 时，在原有执行状态旁加标识',
   for (const i of [0, 1, 2]) assert.ok(card(i).includes('进行中'));
   assert.doesNotMatch(card(3), /krita-badge/);
   assert.doesNotMatch(render(['running']), /krita-badge/);
-});
-
-test('归档任务只展示实际运行过的管线', () => {
-  const html = render(['done', 'pending', 'done'], [], false, false, { sections: { 'section-0': {}, 'section-2': {} } });
-  assert.deepEqual([...html.matchAll(/data-overview="(\d+)"/g)].map(match => match[1]), ['0', '2']);
 });
 
 test('停止后的中断与待续跑状态各自保留，不能误报完成或进行中', () => {

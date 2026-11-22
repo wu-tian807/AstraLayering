@@ -9,7 +9,6 @@ import { createTaskLog } from './log.ts';
 // Check the startup inputs before a recovery action removes any files.
 export async function preflightTaskInputs(options: TaskOptions, environment?: WorkflowEnvironment, { video = true }: { video?: boolean } = {}): Promise<void> {
   const directory = directoryFor(options), saved = await readRun(directory);
-  if (saved?.archive) throw new Error('这是导出的成果归档；请在原运行目录继续制作。');
   const knowledge = options.knowledge === undefined ? saved?.knowledge ?? defaultKnowledgeDirectory
     : options.knowledge ? resolveInput(options.name, options.knowledge, options.dir) : defaultKnowledgeDirectory;
   try {

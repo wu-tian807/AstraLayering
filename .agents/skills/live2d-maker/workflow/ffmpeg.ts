@@ -18,6 +18,5 @@ export async function requireFFmpeg(run: Pick<TaskRun, 'from' | 'to' | 'ffmpeg'>
 
 export async function preflightFFmpeg(options: TaskOptions, check: FFmpegCheck = checkFFmpeg): Promise<FFmpegInstallation | undefined> {
   const saved = await readRun(directoryFor(options));
-  if (saved?.archive) return;
   return requireFFmpeg({ ...taskRoute(options, saved), ffmpeg: taskFFmpeg(options, saved) }, check);
 }

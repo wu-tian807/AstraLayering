@@ -8,21 +8,22 @@ import { exportCompletedRun } from '../../.agents/skills/live2d-maker/workflow/e
 import { createWorkbench } from '../server.ts';
 import { snapshot } from '../snapshot.ts';
 
-test('archive snapshot preserves all section/group states, reports and KRA previews with no workspace', async t => {
+test('exported snapshot preserves section/group states, reports and KRA previews with no workspace', async t => {
   const f = await exportFixture(t), destination = join(f.base, 'archive/case');
   const before = await snapshot(f.root, f.name, f.dir);
   await exportCompletedRun({ name: f.name, dir: f.dir, output: destination });
   const after = await snapshot(destination, f.name, join(f.base, 'archive'));
-  assert.deepEqual(after.errors, []); assert.equal(after.archived, true); assert.equal(after.canExport, true); assert.equal(after.canStop, false);
+  assert.deepEqual(after.errors, []); assert.equal(after.canExport, true); assert.equal(after.canStop, false);
+  assert.equal(after.sections.length, before.sections.length);
   assert.equal(after.files.some(path => path.includes('workspace')), false);
   for (const [index, section] of after.sections.entries()) {
     assert.deepEqual(section.states, before.sections[index].states);
-    assert.equal(section.status, 'done');
+    assert.equal(section.status, before.sections[index].status);
     assert.deepEqual(section.groups.map(group => group.webPhases), before.sections[index].groups.map(group => group.webPhases));
     assert.equal(Object.keys(section.previews).length, Object.keys(before.sections[index].previews).length);
   }
   assert.deepEqual(after.sections[1].reports.step01.images, [], 'exports omit report images');
-  // Archive metadata and files cannot replace a missing completion marker.
+  // Exported metadata and files cannot replace a missing completion marker.
   await rm(join(destination, 'raster-layering/step01/.completed'));
   await rm(join(destination, 'shadow/step01_mask/.completed'));
   const legacy = await snapshot(destination, f.name, join(f.base, 'archive'));

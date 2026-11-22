@@ -36,14 +36,6 @@ test('video configuration is required only for a route containing nine-axis', as
   await preflightTaskInputs({ ...f.options, to: 'nine-axis' }, environment, { video: false });
 });
 
-test('CLI recovery refuses an exported archive before deleting its files', async t => {
-  const f = await fixture(t), run = JSON.parse(await readFile(join(f.task, 'run.json'), 'utf8'));
-  await saveRun(f.task, { ...run, archive: true });
-  await assert.rejects(main(['--name', 'case', '--dir', f.dir, '--retry']), /成果归档/);
-  assert.equal(await readFile(f.output, 'utf8'), 'existing output');
-  assert.equal(await readFile(join(f.step, '.running'), 'utf8'), '');
-});
-
 test('web retry uses the saved task knowledge and preserves files when it is unavailable', async t => {
   const f = await fixture(t);
   await saveRun(f.task, await configureRun({ ...f.options, knowledge: join(f.dir, 'missing') }, f.task));

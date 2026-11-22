@@ -298,9 +298,6 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         }
         await task(opts.name, requestDir);
         if (path === '/api/convert-layout') { json(await convertLayout(directory)); return; }
-        if (['/api/start', '/api/task-action', '/api/stop', '/api/task-options'].includes(path) && (await readRun(directory))?.archive) {
-          json({ error: '这是成果归档；请在原运行目录继续制作。' }, 409); return;
-        }
         if (['/api/start', '/api/task-action', '/api/task-options'].includes(path)
           && (value.standard !== undefined || value.size !== undefined || value.shadowMode !== undefined)) {
           json({ error: '标准化人物姿态、分辨率和阴影方式仅在新建任务时设置。' }, 409); return;
