@@ -26,14 +26,6 @@ export type HeadInput = TurnInput & { document: string };
 export const stepDocument = (turn: TurnInput, directory: string): HeadInput =>
   ({ ...turn, document: join(directory, 'character-nine-axis.kra'), color: join(directory, 'character-nine-axis.png') });
 
-// Legacy helper for callers explicitly requesting a document copy.
-export async function copyDocument(from: { document: string; color: string }, to: HeadInput) {
-  for (const file of [from.document, from.color]) await access(file).catch(error => { throw new Error(`缺少源文件：${file}`, { cause: error }); });
-  await mkdir(dirname(to.document), { recursive: true });
-  await copyFile(from.document, to.document);
-  await copyFile(from.color, to.color);
-}
-
 type Point = [number, number];
 export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; uuid?: string; partId?: string; material?: 'transparent'; texture?: string; textureBounds: number[]; bbox: number[];
   cols: number; rows: number; keyforms: Record<string, Point[]>; parent?: string; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; role?: 'mask'; clip?: { by: string[]; invert?: boolean } };
@@ -163,9 +155,9 @@ async function atomic(path: string, text: string) {
 export type Built = { doc: HeadNineAxis; textures: Map<string, string> };
 export async function writeBuilt(directory: string, { doc, textures }: Built) {
   const references = kraReferences(doc);
-  const legacy = new Set(references.parts.flatMap(p => p.texture ? [p.texture] : []));
-  if (legacy.size) await mkdir(join(directory, 'layers'), { recursive: true });
-  for (const [texture, source] of textures) if (legacy.has(texture) && source !== join(directory, texture)) await copyFile(source, join(directory, texture));
+  const referencedTextures = new Set(references.parts.flatMap(p => p.texture ? [p.texture] : []));
+  if (referencedTextures.size) await mkdir(join(directory, 'layers'), { recursive: true });
+  for (const [texture, source] of textures) if (referencedTextures.has(texture) && source !== join(directory, texture)) await copyFile(source, join(directory, texture));
   await atomic(join(directory, 'deformers.json'), JSON.stringify(references) + '\n');
 }
 

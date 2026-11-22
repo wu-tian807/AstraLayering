@@ -460,38 +460,39 @@ test('总入口显式九轴路线独立执行，默认路线仍止于 shadow，�
     calls.push(id);
     assert.equal(run.jobs, 3);
     assert.equal(context.slots?.limit, 3);
-    return { summary: 'nine-axis complete', output: 'nine-axis/step04_jaw-line/deformers.json' };
+    return { summary: 'nine-axis complete', output: 'nine-axis/step07_jaw-line/deformers.json' };
   };
   await runTask({ ...f.options, from: 'nine-axis', to: 'nine-axis', ffmpeg: process.execPath }, { preflight, ffmpegCheck, execute });
   assert.deepEqual(calls, ['nine-axis']);
   const saved = (await readRun(f.directory))!;
   assert.deepEqual(Object.keys(saved.sections), ['nine-axis']);
-  assert.equal(saved.output, 'nine-axis/step04_jaw-line/deformers.json');
+  assert.equal(saved.output, 'nine-axis/step07_jaw-line/deformers.json');
   calls.length = 0;
   await runTask({ name: 'case', dir: f.options.dir }, { preflight, ffmpegCheck, execute });
   assert.deepEqual(calls, ['nine-axis']);
 });
 
-test('总入口状态读取九轴独立子会话，父步骤无会话时选择正在运行的 child，neutral 不展示', async t => {
+test('总入口状态读取九轴独立子会话，父步骤无会话时选择正在运行的 child', async t => {
   const f = await fixture(t), root = join(f.directory, 'nine-axis');
   await saveRun(f.directory, await configureRun({ ...f.options, from: 'nine-axis', to: 'nine-axis' }, f.directory));
-  for (const [id, marker] of [['step01_video', '.completed'], ['step02_angles', '.running'],
-    ['step02_angles/neutral', '.completed'], ['step02_angles/left', '.completed'],
-    ['step02_angles/up', '.running'], ['step02_angles/down', '.running']] as const) {
+  for (const [id, marker] of [['step02_video', '.completed'], ['step04_angles/model', '.running'],
+    ['step01_preparation', '.completed'], ['step04_angles/model/left', '.completed'],
+    ['step04_angles/model/up', '.running'], ['step04_angles/model/down', '.running']] as const) {
     await mkdir(join(root, id), { recursive: true });
     await writeFile(join(root, id, marker), '');
   }
   for (const group of ['left', 'up', 'down']) {
-    const path = sessionPath(root, `step02_angles/${group}`);
+    const path = sessionPath(root, `step04_angles/model/${group}`);
     await mkdir(join(path, '..'), { recursive: true });
     await writeFile(path, JSON.stringify({ threadId: `${group}-thread` }));
   }
   const status = await taskStatus(f.options), nine = status.sections[0];
   assert.equal(nine.threadId, 'up-thread');
   assert.deepEqual(nine.steps.map(step => [step.name, step.status, step.threadId]), [
-    ['step01_video', 'completed', undefined], ['step02_angles', 'running', undefined],
-    ['step02_angles/left', 'completed', 'left-thread'], ['step02_angles/up', 'running', 'up-thread'],
-    ['step02_angles/down', 'running', 'down-thread'],
+    ['step01_preparation', 'completed', undefined], ['step02_video', 'completed', undefined], ['step04_angles', 'unmarked', undefined],
+    ['step04_angles/model', 'running', undefined],
+    ['step04_angles/model/left', 'completed', 'left-thread'], ['step04_angles/model/up', 'running', 'up-thread'],
+    ['step04_angles/model/down', 'running', 'down-thread'],
   ]);
 });
 

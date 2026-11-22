@@ -23,7 +23,7 @@ export function prepareHeadRoll(upstream: HeadNineAxis): HeadNineAxis {
 
 export async function finishHeadRoll(directory: string, upstreamDirectory: string, taskRoot: string) {
   const { doc: upstream } = await readUpstream(upstreamDirectory);
-  const document = await modelDocument(taskRoot, upstreamDirectory, upstream);
+  const document = modelDocument(taskRoot, upstream);
   if (!document || !await stat(document).then(info => info.isFile(), error => {
     if (error.code === 'ENOENT') return false;
     throw error;

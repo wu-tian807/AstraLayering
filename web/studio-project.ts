@@ -1,23 +1,22 @@
 import { lstat, readFile } from 'node:fs/promises';
-import { dirname, relative } from 'node:path';
+import { relative } from 'node:path';
 import { createHash } from 'node:crypto';
 import { studioArtifacts } from '../.agents/skills/live2d-maker/shared/studio-artifacts.ts';
 import { shadowArtifacts, shadowMode } from '../.agents/skills/live2d-maker/shared/shadow.ts';
 import { inspectDraftPreview } from '../.agents/skills/live2d-maker/shadow/preview.ts';
 import { safePath } from './files.ts';
 import { readStep } from '../.agents/skills/live2d-maker/shared/step-chain.ts';
-import { nineAxisArtifacts, previousNineAxisArtifacts, legacyNineAxisArtifacts, nineAxisStages, previousNineAxisStages, type NineAxisStage } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisArtifacts, nineAxisStages, type NineAxisStage } from '../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { modelDocument, modelVersion } from '../.agents/skills/live2d-maker/nine-axis/source.ts';
 
 type Selection = { version: number; mode: 'mask' | 'normal-depth'; sourceKraHash: string; sourceColorHash: string };
 const previewModes = ['mask', 'normal-depth', 'mixed'] as const;
 const { selection: _selection, ...shadowOutputs } = shadowArtifacts;
 // Every output the studio may read from a project folder.
-export const studioPaths = new Set<string>([...Object.values(studioArtifacts), ...Object.values(shadowOutputs), ...Object.values(nineAxisArtifacts), ...Object.values(previousNineAxisArtifacts), ...Object.values(legacyNineAxisArtifacts)]);
+export const studioPaths = new Set<string>([...Object.values(studioArtifacts), ...Object.values(shadowOutputs), ...Object.values(nineAxisArtifacts)]);
 // Nine-axis layer textures: numbered by draw order, or named by the jaw step's new parts.
 export const isStudioPath = (path: string) => studioPaths.has(path)
-  || /^nine-axis\/(?:step01_preparation|step04_angles\/model(?:\/(?:left|up|down|merged))?|step06_angle-xy|step07_jaw-line|step08_hair|step09_head-accessories|step10_head-pitch(?:\/(?:up|down))?|step11_head-angle-xy|step12_head-roll)\/layers\/[\w-]+\.png$/.test(path)
-  || /^nine-axis\/(?:step02_angles(?:\/(?:neutral|left|up|down|merged))?|step03_angle-xy|step04_jaw-line|step02_angle-x|step04_angle-up|step05_angle-down|step06_angle-xy|step07_jaw-line)\/layers\/[\w-]+\.png$/.test(path);
+  || /^nine-axis\/(?:step01_preparation|step04_angles\/model(?:\/(?:left|up|down|merged))?|step06_angle-xy|step07_jaw-line|step08_hair|step09_head-accessories|step10_head-pitch(?:\/(?:up|down))?|step11_head-angle-xy|step12_head-roll)\/layers\/[\w-]+\.png$/.test(path);
 
 export async function studioProject(directory: string, name: string, dir: string, preview?: string | null, nineStage?: string | null) {
   if (preview && !previewModes.includes(preview as any)) throw Error('预览方式必须为 mask、normal-depth 或 mixed');
@@ -85,69 +84,39 @@ export async function studioProject(directory: string, name: string, dir: string
   };
   // The newest editable document wins: a nine-axis KRA made from the chosen
   // document replaces it; layer UUIDs are kept, so shadow bindings still apply.
-  // A nested folder selects the new contract even while a requested child or
-  // the merge is missing. Old model folders retain their original stage routes.
-  const hasDirectory = async (path: string) => {
-    try { return (await lstat(await safePath(directory, path))).isDirectory(); }
-    catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw error; }
-  };
-  const staged = await hasDirectory('nine-axis/step01_preparation') || await hasDirectory('nine-axis/step04_angles');
-  const nested = staged || await hasDirectory('nine-axis/step02_angles') || !await hasDirectory('nine-axis/step02_angle-x');
-  const artifacts = staged ? nineAxisArtifacts : nested ? previousNineAxisArtifacts : legacyNineAxisArtifacts;
-  const stages = staged ? nineAxisStages : nested ? previousNineAxisStages : { x: legacyNineAxisArtifacts.headDeformers,
-    up: legacyNineAxisArtifacts.angleUpDeformers, down: legacyNineAxisArtifacts.angleDownDeformers, y: legacyNineAxisArtifacts.angleDownDeformers,
-    xy: legacyNineAxisArtifacts.angleXYDeformers, jaw: legacyNineAxisArtifacts.jawLineDeformers };
-  const order: NineAxisStage[] = staged ? ['headRoll','headCorners','headPitch','accessories','hair', 'jaw', 'xy', 'y', 'x', 'up', 'down', 'neutral'] : nested ? ['jaw', 'xy', 'y', 'x', 'up', 'down'] : ['jaw', 'xy', 'down', 'up', 'x'];
-  const modelPath = staged ? 'nine-axis/step04_angles/model' : 'nine-axis/step02_angles';
-  const mergeComplete = !nested || (await Promise.all(['', '/left', '/up', '/down'].map(async suffix => {
-    try {
-      const path = modelPath + suffix;
-      return (await readStep(await safePath(directory, path))).status === 'completed' && (await file(path + '/deformers.json')).available;
-    } catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw error; }
-  }))).every(Boolean);
+  const order: NineAxisStage[] = ['headRoll','headCorners','headPitch','accessories','hair', 'jaw', 'xy', 'y', 'x', 'up', 'down', 'neutral'];
   const stageFile = async (stage: NineAxisStage) => {
-    const path = (stages as Partial<Record<NineAxisStage, string>>)[stage];
-    if (!path) return { path: '', available: false, version: '' };
-    const value = await file(path);
+    const value = await file(nineAxisStages[stage]);
     if (stage === 'headRoll' && value.available && (await readStep(await safePath(directory, 'nine-axis/step12_head-roll'))).status !== 'completed') return { ...value, available: false };
     if(stage==='headPitch'&&value.available&&(await readStep(await safePath(directory,'nine-axis/step10_head-pitch'))).status!=='completed')return {...value,available:false};
-    // Drafts in a staged workflow are real published models and can be viewed
-    // before the parallel video branch or the whole step finishes.
-    return !staged && nested && ['y', 'xy', 'jaw'].includes(stage) && !mergeComplete ? { ...value, available: false } : value;
+    return value;
   };
-  let selectedStage: NineAxisStage = 'x', nineAxis = await stageFile('x');
+  let selectedStage: NineAxisStage = 'neutral', nineAxis = await stageFile('neutral');
   if (nineStage) { selectedStage = nineStage as NineAxisStage; nineAxis = await stageFile(selectedStage); }
   else for (const stage of order) {
     const candidate = await stageFile(stage);
     if (candidate.available) { selectedStage = stage; nineAxis = candidate; break; }
   }
-  // New models name their actual KRA. PNG availability never selects artwork.
-  // Retain explicit legacy stage paths only for pre-provenance deliveries.
+  // Models name their own KRA. A matching PNG is only a display asset.
   let nineAxisDocument = false;
-  const useHair = staged && selectedStage === 'hair' && nineAxis.available;
-  const useJaw = nested && selectedStage === 'jaw' && nineAxis.available;
-  let [document, color] = await Promise.all([file(useJaw ? staged ? nineAxisArtifacts.jawLineDocument : previousNineAxisArtifacts.jawLineDocument : artifacts.headDocument), file(useJaw ? staged ? nineAxisArtifacts.jawLineColor : previousNineAxisArtifacts.jawLineColor : artifacts.headColor)]);
-  if(useHair) [document,color]=await Promise.all([file(nineAxisArtifacts.hairDocument),file(nineAxisArtifacts.hairColor)]);
-  if(staged&&selectedStage==='accessories'&&nineAxis.available)[document,color]=await Promise.all([file(nineAxisArtifacts.accessoriesDocument),file(nineAxisArtifacts.accessoriesColor)]);
-  if (useJaw && !document.available) [document, color] = await Promise.all([file(artifacts.headDocument), file(artifacts.headColor)]);
   if (nineAxis.available) {
-    // Metadata can still describe a legacy/incomplete delivery; the renderer
-    // reports malformed models when opened rather than hiding the whole task.
+    // The materials endpoint reports invalid models without hiding the project.
     let model;
     try { model = JSON.parse(await readFile(await safePath(directory, nineAxis.path), 'utf8')); }
     catch (error) { if (!(error instanceof SyntaxError)) throw error; model = {}; }
-    const modelDirectory = dirname(await safePath(directory, nineAxis.path));
-    const source = await modelDocument(directory, modelDirectory, model);
+    const source = modelDocument(directory, model);
     if (source) {
       const sourcePath = relative(directory, source).split('\\').join('/');
       if (!isStudioPath(sourcePath) || !sourcePath.endsWith('.kra')) throw Error('九轴来源必须是任务内已知的 KRA 工程');
-      document = await file(sourcePath);
+      const document = await file(sourcePath);
       if (!document.available) throw Error('九轴引用的 KRA 不存在：' + sourcePath);
-      nineAxis = { ...nineAxis, version: await modelVersion(directory, modelDirectory, model, nineAxis.version!) };
+      files.document = document;
+      files.color = await file(sourcePath.replace(/\.kra$/, '.png'));
+      nineAxisDocument = true;
+      nineAxis = { ...nineAxis, version: await modelVersion(directory, model, nineAxis.version!) };
     }
   }
-  if ((staged || mergeComplete) && document.available) { files.document = document; files.color = color; nineAxisDocument = true; }
-  return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage, layout: staged ? 'staged' : nested ? 'nested' : 'legacy', mergeComplete }, nineAxisDocument, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
+  return { name, dir, files, nineAxis: { ...nineAxis, stage: selectedStage }, nineAxisDocument, previewMode: mode, previewModes: availableModes, maskStale, mapsStale,
     previewDraft: useDraft, ...(useDraft ? { previewReview: draftRecord!.status, previewReviewReason: draftRecord!.reason } : {}),
     ...(selection ? { shadowMode: selection.mode, shadowStale: stale(selection) } : {}) };
 }

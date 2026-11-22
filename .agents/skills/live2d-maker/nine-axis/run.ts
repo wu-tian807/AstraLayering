@@ -23,8 +23,8 @@ import { buildHead, finishHead, stepDocument, type Built, type HeadInput } from 
 import { buildAngleY, finishAngleY } from './angle-y.ts';
 import { buildAngleXY, checkCornerReferences, corners, finishAngleXY, writeLinearCorners, type Corner } from './angle-xy.ts';
 import { buildJawLine, finishJawLine } from './jaw-line.ts';
-import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, checkHairRound, type HairRound } from './hair.ts';
-import { hairRounds, isHairPromptPlan, readHairState, saveHairPlan, type HairPromptRound } from './hair-progress.ts';
+import { prepareHair, buildHair, finishHair, hairPreviewScope, hairRoundLabel, readHairProgress, completeHairRound, checkHairRound, type HairRound } from './hair.ts';
+import { isHairPromptPlan, readHairState, saveHairPlan, type HairPromptRound } from './hair-progress.ts';
 import { prepareAccessories, buildAccessories, finishAccessories, checkAccessories, checkAccessoryShadows, accessoryPreviewScope } from './accessories.ts';
 import { headPitchDirections, headPitchStage, headPitchAngle, headPitchScope, headPitchPreviewScope, seedHeadPitch, buildHeadPitch, mergeHeadPitch, checkHeadPitchDelivery, type HeadPitchDirection } from './head-pitch.ts';
 import { finishHeadRoll } from './head-roll.ts';
@@ -34,14 +34,14 @@ import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool } from './fit-tool.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
-import { readUpstream } from './continuation.ts';
+import { readUpstream, startContinuation } from './continuation.ts';
 import { angleScale, angleValues } from './angles.ts';
 import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { writeBuilt } from './head.ts';
 import { prepareNeutral } from './neutral.ts';
 import { kraContents } from '../shadow/delivery.ts';
 import { KraMaterials, nativeMaterialExport, type MaterialLoader } from './kra-materials.ts';
-import { modelDocument } from './source.ts';
+import { modelDocument, withDocument } from './source.ts';
 import { fromTaskPath } from '../shared/task-paths.ts';
 import { mergeAxes } from './axis-merge.ts';
 import { axisGroups, checkAxisSource, runAxisGroups, seedAxis, type AxisGroup } from './axis-groups.ts';
@@ -98,10 +98,9 @@ export const headPitchPrompt = (taskRoot: string, group: HeadPitchDirection) => 
 });
 export const headCornersPrompt = (taskRoot: string) => stepPrompt('step11_head-angle-xy', taskRoot, { values: angleValues() });
 
-function hairPromptPlan(legacy = false): HairPromptRound[] {
+function hairPromptPlan(): HairPromptRound[] {
   const [initial, ...then] = stepKnowledge('nine-axis', 'step08_hair').rounds('main');
-  const remaining = legacy ? hairRounds.slice(1).map(id => ({ id, prompts: [`prompts/${hairRoundLabel(id)}制作.md`] })) : then;
-  const plan = [{ ...initial, id: 'front' }, ...remaining];
+  const plan = [{ ...initial, id: 'front' }, ...then];
   if (!isHairPromptPlan(plan)) throw Error('头发轮次必须使用已有的制作和检查规则');
   return plan;
 }
@@ -239,8 +238,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const getTurnInput = () => turnInput ??= (async () => {
     const input = await (dependencies.resolveInput ?? resolveTurnInput)(options.name, root);
     const head: HeadInput = { ...input, document: input.document ?? input.color.replace(/\.png$/, '.kra') };
-    // Resume the neutral's declared source, including legacy tasks that already
-    // own a preparation copy. A retried child must keep its siblings' provenance.
+    // A resumed child uses the same saved KRA source as its siblings.
     const neutralPath = join(preparation, 'deformers.json');
     if (await exists(neutralPath)) {
       const neutral = JSON.parse(await readFile(neutralPath, 'utf8'));
@@ -354,8 +352,13 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   };
   try {
     const plan = await runSection({ directory, steps, range, dryRun: options.dryRun, signal: options.signal, progress,
-      async check() {
+      async check(plan) {
         if (options.dryRun) return;
+        const hair = plan.selected.find(step => step.id === 'step08_hair');
+        if (hair) {
+          const { completed } = await readHairProgress(hair.directory);
+          if (completed.length && plan.statuses.get(hair.id) === 'unmarked') throw Error('已有头发轮次进度，但步骤标记缺失');
+        }
         if (requested === 'step09_head-accessories') await accessoriesUpstreamReady();
         if (requested === 'step10_head-pitch') await headPitchUpstreamReady();
         if (requested === 'step11_head-angle-xy') await headCornersUpstreamReady();
@@ -364,11 +367,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
       async keep(step) {
         await checkDelivery(step.id);
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done')throw Error('头发轮次尚未全部完成，不能沿用整个步骤的完成标记');
-      },
-      async migrate(step) {
-        if (step.id !== 'step08_hair') return;
-        await upgradeHairProgress(step.directory);
-        return true;
       },
       async finished(step) {
         if(step.id==='step08_hair'&&(await readHairProgress(step.directory)).next!=='done') return false;
@@ -404,7 +402,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           if(options.dryRun)return preview(headPitchDirections.filter(d=>!branch||d===branch).map(d=>headPitchPrompt(task, d)).join('\n\n'));
           await headPitchUpstreamReady();
           const { doc } = await readUpstream(upstream);
-          if (!await modelDocument(task, upstream, doc)) throw Error('头部上下缺少最新 KRA 来源');
+          if (!modelDocument(task, doc)) throw Error('头部上下缺少最新 KRA 来源');
           const finished=await runAxisGroups(step.directory,{
             seed:(g,folder)=>seedHeadPitch(folder,upstream,task,g as HeadPitchDirection,scale),
             async keep(g,folder){
@@ -553,7 +551,7 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           const hair=stepDocument(input,step.directory), upstream=join(directory,'step07_jaw-line');
           const saved = await readHairState(step.directory);
           const completed = saved?.progress.completed ?? [];
-          const plan = saved?.plan ?? hairPromptPlan(!!saved);
+          const plan = saved?.plan ?? hairPromptPlan();
           const round = plan.at(completed.length)?.id ?? 'done';
           if(round!=='front')await checkDelivery(step.id);
           if(round==='done') { summary='nine-axis/step08_hair：全部头发左右制作已完成'; return; }
@@ -604,13 +602,19 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           summary='nine-axis/step09_head-accessories：头部饰品左右形变与组合检查已完成';
         };
         return async () => {
-          const { input, head } = await getTurnInput();
+          const { input } = await getTurnInput();
           const jaw = stepDocument(input, step.directory);
           if (options.dryRun) return preview(jawLinePrompt(task));
+          const { doc: upstream } = await readUpstream(xyDirectory);
           if (!await exists(jaw.document)) {
-            const upstream = JSON.parse(await readFile(join(xyDirectory, 'deformers.json'), 'utf8'));
-            const document = await modelDocument(task, xyDirectory, upstream) ?? head.document;
+            const document = modelDocument(task, upstream);
+            if (!document) throw Error('斜向九轴模型缺少 KRA 来源');
             await copyFile(document, jaw.document);
+          }
+          const authorPath = join(step.directory, 'jaw.json');
+          if (!await exists(authorPath)) {
+            const author = withDocument(startContinuation(upstream, 'jaw', scale), task, jaw.document);
+            await writeFile(authorPath, JSON.stringify(author) + '\n', { flag: 'wx' });
           }
           builds[step.id] = () => buildJawLine(step.directory, xyDirectory, scale, materialize);
           const fit = dependencies.fitJawLine ?? (await preflight(), createFitHead(agents(), faceTools, step.id, '下颌线与脖子', options.signal, directory));

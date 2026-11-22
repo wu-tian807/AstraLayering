@@ -39,7 +39,7 @@ test('preparation UUID identities survive arbitrary native layer names and model
   await writeFile(kra,zipSync({'maindoc.xml':strToU8(xml.replace('hair/bangs','renamed in Krita').replace('face/face_base','another display label')),'mergedimage.png':await sharp({create:{width:12,height:12,channels:4,background:'#f00'}}).png().toBuffer()}));
   const input=materialFixture().doc,part={...structuredClone(input.parts[0]),id:'arbitrary paint alias',uuid:hairUuid,level:'accessory' as const,partId:'character:head_accessories/fake'};
   input.parts.push(part);
-  const bound=await bindKraDocument(root,directory,input);
+  const bound=await bindKraDocument(root,input);
   assert.equal(bound.parts[1].partId,'character:hair/bangs');assert.equal(bound.parts[1].level,'hair');
   assert.equal(bound.parts[0].partId,'character:face/face_base');
   assert.equal(input.parts[1].partId,'character:head_accessories/fake','binding normalizes a clone');
@@ -53,7 +53,7 @@ test('KRA is authoritative: stale PNG is ignored, saved KRA invalidates the shar
   let exports=0;
   const materials=new KraMaterials(async (...args)=>{exports++;return fixtureExport(...args);});
   const input=materialFixture(), original=structuredClone(input.doc);
-  const first=await materials.resolve(root,directory,input), version=await modelVersion(root,directory,input.doc,'json-version');
+  const first=await materials.resolve(root,directory,input), version=await modelVersion(root,input.doc,'json-version');
   const pixels=await sharp(first.textures.get('layers/face.png')!).raw().toBuffer();
   assert.deepEqual([...pixels.subarray(0,4)],[255,0,0,255]);
   assert.equal(first.doc.parts.at(-1)!.uuid,hairUuid,'KRA front hair remains above the deformed face');
@@ -63,7 +63,7 @@ test('KRA is authoritative: stale PNG is ignored, saved KRA invalidates the shar
   await writeFile(kra,await kraFixture('#0f0'));
   const next=await materials.resolve(root,directory,input);
   assert.notEqual(next.sourceRevision,first.sourceRevision);
-  assert.notEqual(await modelVersion(root,directory,input.doc,'json-version'),version);
+  assert.notEqual(await modelVersion(root,input.doc,'json-version'),version);
   assert.deepEqual([...(await sharp(next.textures.get('layers/face.png')!).raw().toBuffer()).subarray(0,4)],[0,255,0,255]);
   assert.equal(exports,2); assert.deepEqual(input.doc,original,'hydration must not rewrite author data');
   assert.equal(await readFile(join(directory,'layers/face.png'),'utf8'),'stale PNG that must never be read');
@@ -74,8 +74,11 @@ test('jaw owns the edited KRA and retains geometry provenance; missing UUID neve
   const directory=join(root,'nine-axis/step07_jaw-line'); await mkdir(directory,{recursive:true});
   await writeFile(join(directory,'character-nine-axis.kra'),await kraFixture('#f00'));
   const materials=new KraMaterials(fixtureExport), input=materialFixture();
+  await assert.rejects(materials.resolve(root,directory,input), { code: 'ENOENT' });
+  const source = {document:'nine-axis/step07_jaw-line/character-nine-axis.kra',geometryDocument:input.doc.source!.document};
+  input.doc.source = source;
   const result=await materials.resolve(root,directory,input,undefined,false);
-  assert.deepEqual(result.doc.source,{document:'nine-axis/step07_jaw-line/character-nine-axis.kra',geometryDocument:input.doc.source!.document});
+  assert.deepEqual(result.doc.source,source);
   assert.equal(result.doc.parts.length,1,'delivery exports do not persist static preview context');
   input.doc.parts[0].uuid='missing';
   await assert.rejects(materials.resolve(root,directory,input),/没有有效的 KRA 图层 UUID/);
@@ -124,7 +127,7 @@ test('edited artwork may use a new UUID while immutable axis sources keep their 
   const root=await mkdtemp(join(tmpdir(),'nine-source-uuid-'));t.after(()=>rm(root,{recursive:true,force:true}));
   const input=materialFixture(),original=structuredClone(input.doc),fresh='33333333-3333-3333-3333-333333333333';
   original.source={document:'original.kra'};
-  input.doc.source={document:input.doc.source!.document,geometryDocument:'original.kra'};
+  input.doc.source={document:'nine-axis/step07_jaw-line/character-nine-axis.kra',geometryDocument:'original.kra'};
   input.doc.parts[0].uuid=fresh;
   input.doc.axisSources=['x','up','down'].map(axis=>({axis:axis as any,doc:structuredClone(original)}));
   const directory=join(root,'nine-axis/step07_jaw-line');await mkdir(directory,{recursive:true});

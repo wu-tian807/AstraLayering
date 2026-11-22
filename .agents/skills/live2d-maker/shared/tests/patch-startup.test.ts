@@ -119,7 +119,8 @@ test('源码按固定 git 设置检出；应用补丁失败后清理临时源码
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
   // The user's own settings lose to the pinned ones; earlier GIT_CONFIG_* entries are kept.
   const global = join(root, 'gitconfig');
-  await writeFile(global, '[core]\n\tautocrlf = true\n\teol = crlf\n\tlongpaths = false\n\tattributesFile = ' + join(root, 'attrs') + '\n');
+  await writeFile(global, '[core]\n\tautocrlf = true\n\teol = crlf\n\tlongpaths = false\n');
+  execFileSync('git', ['config', '--file', global, 'core.attributesFile', join(root, 'attrs')]);
   const env = pinnedGit({...process.env, GIT_CONFIG_GLOBAL: global, GIT_CONFIG_COUNT: '1', GIT_CONFIG_KEY_0: 'http.proxy', GIT_CONFIG_VALUE_0: 'http://proxy'});
   const read = (key: string) => execFileSync('git', ['config', '--get', key], {env, encoding: 'utf8'}).trim();
   assert.deepEqual(['core.autocrlf', 'core.eol', 'core.longpaths', 'core.attributesFile', 'http.proxy'].map(read), ['false', 'lf', 'true', '', 'http://proxy']);
@@ -266,6 +267,16 @@ test('缺 C/C++ 工具链时先检查后报清楚的安装提示，不克隆；�
   const other = await ensurePatchedCodex({...opts, root: join(root, 'other')}, {...services, platform: 'linux',
     run: async (command, args, options) => command === 'cargo' ? Promise.reject(new Error('cargo 退出码 101')) : run(command, args, options)}).catch(error => error);
   assert.ok(!(other instanceof MissingToolchainError)); assert.match(other.message, /自动构建失败/);
+  await assert.rejects(ensurePatchedCodex({...opts, root: join(root, 'long-path')}, {...services, platform: 'win32',
+    run: async (command, args, options) => {
+      if (command !== 'cargo') return run(command, args, options);
+      await writeFile(options.log!, "  path too long: 'C:/fixture/cargo/git/checkouts/dependency'; class=Filesystem (30)\n", {flag: 'a'});
+      throw new Error('cargo 退出码 101');
+    }}), (error: Error) => {
+    assert.ok(!(error instanceof MissingToolchainError));
+    assert.match(error.message, /Windows.*TEMP\/TMP/);
+    return true;
+  });
 });
 test('真实进程：PATH 里没有编译器时直接报缺少工具链', { skip: process.platform === 'win32' }, async t => {
   const root = await fixture(t);
