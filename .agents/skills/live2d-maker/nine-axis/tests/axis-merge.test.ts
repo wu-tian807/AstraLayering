@@ -105,10 +105,14 @@ test('existing scheduled parent keeps its axis authors and other files; only new
   await assert.rejects(mergeAxes(f.root, d.baseline, d, scale, f.root), /已存在/);
 });
 
-test('UUID-only independent authors merge without any material PNGs or layers directories',async t=>{
+test('UUID-only independent authors merge split paint under a shared Warp without resampling the original motion',async t=>{
   const f=await fixture(t);
   for(const dir of Object.values(f.directories)){
-    await update(dir,doc=>doc.parts.forEach((p,i)=>{p.uuid=`native-${i}`;delete p.texture;}));
+    await update(dir,doc=>doc.parts.forEach((p,i)=>{
+      p.uuid=`native-${i}`;
+      if (i === 1 || i === 4) p.partId = 'character:face/split';
+      delete p.texture;
+    }));
     await rm(join(dir,'layers'),{recursive:true});
   }
   const neutral=JSON.parse(await readFile(join(f.directories.baseline,'deformers.json'),'utf8'));
@@ -116,6 +120,9 @@ test('UUID-only independent authors merge without any material PNGs or layers di
   const merged=await mergeAxes(f.output,f.directories.baseline,f.directories,scale,f.root);
   assert.equal(merged.textures.size,0);assert.deepEqual(merged.manifest.textures,[]);
   assert.ok(merged.doc.parts.every(p=>p.uuid&&!p.texture));
+  const [a,b] = [merged.doc.parts[1], merged.doc.parts[4]];
+  assert.ok(a.parent && a.parent === b.parent);
+  assert.deepEqual(merged.doc.parts.map(part => part.uuid), neutral.parts.map((part: { uuid: string }) => part.uuid));
   assert.ok(merged.manifest.checks.samples.every(p=>p.maxError<=1e-5));
   await assert.rejects(stat(join(f.output,'layers')),{code:'ENOENT'});
 });

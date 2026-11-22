@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { layerPartName, matchLayerPart } from '../shared/layer-names.ts';
+import { partPath } from './ownership.ts';
 
 type Scope = 'face' | 'hair' | 'accessory';
 export type ProjectionBinding = { casters: string[]; receivers: string[] };
@@ -10,7 +11,10 @@ export type MaterialSelection = {
   casterPartId?: string; receiverPartIds?: string[]; receiverLayerUuids?: string[]; follow?: string;
 };
 const uuid = (value: string) => value.replace(/[{}]/g, '').toLowerCase();
-const partPath = (id: string) => id.replace(/^(?:character|clothing):/, '');
+export function savedLayerVisible(layers: Map<string, Record<string, string>>, layerId: string): boolean {
+  for (let at = layerId; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') return false;
+  return true;
+}
 const scopeOf = (id: string): Scope | undefined => {
   const path = partPath(id);
   if (path === 'face' || path.startsWith('face/') || path === 'neck' || path.startsWith('neck/')) return 'face';
@@ -22,18 +26,17 @@ const scopeOf = (id: string): Scope | undefined => {
 // Prefer those UUIDs to a receiver container's name. Name matching remains a
 // fallback for artwork that has not gone through shadow production.
 export function selectHeadMaterials(layers: Map<string, Record<string, string>>, partIds: string[], shadows: any[]): MaterialSelection[] {
-  const authored = new Set<string>();
   const selected = new Map<string, MaterialSelection>(), shadowIds = new Set(shadows.map(s => uuid(s.shadowLayerUuid ?? '')));
   for (const shadow of shadows) {
     for (const [ids, parts] of [[shadow.casterLayerUuids, [shadow.casterPartId]], [shadow.receiverLayerUuids, shadow.receiverPartIds]] as const) {
       for (const [i, layerId] of (ids ?? []).entries()) {
         const partId = parts?.length === 1 ? parts[0] : parts?.[i], scope = typeof partId === 'string' ? scopeOf(partId) : undefined;
-        if (scope && layers.has(uuid(layerId))) { selected.set(uuid(layerId), { uuid: uuid(layerId), id: partPath(partId), partId, scope }); authored.add(uuid(layerId)); }
+        if (scope && layers.has(uuid(layerId))) selected.set(uuid(layerId), { uuid: uuid(layerId), id: partPath(partId), partId, scope });
       }
     }
   }
   for (const [layerId, layer] of layers) {
-    if (selected.has(layerId) || shadowIds.has(layerId) || layer.nodetype.endsWith('mask')) continue;
+    if (selected.has(layerId) || shadowIds.has(layerId) || layer.nodetype.endsWith('mask') || !savedLayerVisible(layers, layerId)) continue;
     const name = layerPartName(layer.name ?? '').name, partId = matchLayerPart(layer.name ?? '', partIds);
     const scope = partId ? scopeOf(partId) : undefined;
     if (partId && scope) selected.set(layerId, { uuid: layerId, id: name, partId, scope });
@@ -43,7 +46,7 @@ export function selectHeadMaterials(layers: Map<string, Record<string, string>>,
     return false;
   };
   // Never export the same part twice through its receiver group and paint layer.
-  for (const [layerId, selection] of selected) {
+  for (const layerId of selected.keys()) {
     if (layers.get(layerId)?.nodetype !== 'grouplayer') continue;
     if ([...selected.values()].some(other => other.uuid !== layerId && descendant(other.uuid, layerId))) selected.delete(layerId);
   }
@@ -56,7 +59,9 @@ export function selectHeadMaterials(layers: Map<string, Record<string, string>>,
       receiverLayerUuids: (shadow.receiverLayerUuids ?? []).map(uuid), follow: shadow.follow });
   }
   const values = [...selected.values()];
-  for (const value of values) if (value.role !== 'shadow' && authored.has(value.uuid) && values.some(other => other !== value && other.id === value.id)) value.id += '::' + value.uuid;
+  for (const [id, paints] of Map.groupBy(values.filter(row => !row.role), row => row.id)) {
+    if (paints.length > 1) for (const paint of paints) paint.id = `${id}::${paint.uuid}`;
+  }
   return values;
 }
 

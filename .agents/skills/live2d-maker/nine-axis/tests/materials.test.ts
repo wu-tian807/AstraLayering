@@ -2,23 +2,23 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { selectHeadMaterials } from '../materials.ts';
 
-test('split native layers retain every UUID and a distinct region within the same face part', () => {
+test('split eyebrows retain their UUIDs with or without region names and skip hidden backups', () => {
+  const left = 'face/eyebrows/eyebrow_left', right = 'face/eyebrows/eyebrow_right';
   const layers = new Map([
-    ['left-front', { name: 'D84.1 | face/eyebrows/eyebrow_left | front', nodetype: 'paintlayer' }],
-    ['left-back', { name: 'D80 | face/eyebrows/eyebrow_left | back', nodetype: 'paintlayer' }],
-    ['right-front', { name: 'D84.2 | face/eyebrows/eyebrow_right | front', nodetype: 'paintlayer' }],
-    ['right-back', { name: 'D81 | face/eyebrows/eyebrow_right | back', nodetype: 'paintlayer' }],
+    ['left-front', { name: `D84.1 | ${left} | front`, nodetype: 'paintlayer' }],
+    ['left-back', { name: `D80 | ${left} | back`, nodetype: 'paintlayer' }],
+    ['right-front', { name: `84.2 ${right}`, nodetype: 'paintlayer' }],
+    ['hidden', { name: 'Backup', nodetype: 'grouplayer', visible: '0' }],
+    ['backup', { name: `81 ${right}`, nodetype: 'paintlayer', parent: 'hidden', visible: '1' }],
+    ['right-back', { name: `81 ${right}`, nodetype: 'paintlayer' }],
   ]);
-  const selected = selectHeadMaterials(layers, ['character:face/eyebrows/eyebrow_left', 'character:face/eyebrows/eyebrow_right'], []);
-  assert.equal(selected.length, 4);
-  assert.equal(new Set(selected.map(row => row.id)).size, 4);
-  assert.deepEqual(selected.map(row => row.uuid), [...layers.keys()]);
-  assert.ok(selected.every(row => row.scope === 'face'));
-  for (const side of ['left', 'right']) {
-    const partId = `character:face/eyebrows/eyebrow_${side}`;
-    assert.deepEqual(selected.filter(row => row.partId === partId).map(row => row.id),
-      [`face/eyebrows/eyebrow_${side}::front`, `face/eyebrows/eyebrow_${side}::back`]);
-  }
+  const selected = selectHeadMaterials(layers, [`character:${left}`, `character:${right}`], []);
+  assert.deepEqual(selected, [
+    { uuid: 'left-front', id: `${left}::front`, partId: `character:${left}`, scope: 'face' },
+    { uuid: 'left-back', id: `${left}::back`, partId: `character:${left}`, scope: 'face' },
+    { uuid: 'right-front', id: `${right}::right-front`, partId: `character:${right}`, scope: 'face' },
+    { uuid: 'right-back', id: `${right}::right-back`, partId: `character:${right}`, scope: 'face' },
+  ]);
 });
 
 test('head selection preserves an explicit namespace when character and clothing paths overlap', () => {

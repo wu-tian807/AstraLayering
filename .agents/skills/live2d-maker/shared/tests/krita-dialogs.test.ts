@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { once } from 'node:events';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -8,7 +9,7 @@ import { submitJob } from '../krita/bridge/client.mjs';
 
 // Opt in with the native executable: this exercises real Qt timers and nested
 // event loops, including the guard's delayed cancellation, without artwork.
-test('native Krita: wait for progress while rejecting interactive dialogs',
+test('native Krita: wait for progress, reject interactive dialogs, and quit with an unsaved document',
   { skip: !process.env.ASTRA_TEST_KRITA, timeout: 180_000 }, async t => {
     const root = await mkdtemp(join(tmpdir(), 'krita-dialog-test-'));
     const section = new SectionKrita({ section: root, krita: process.env.ASTRA_TEST_KRITA! });
@@ -61,4 +62,17 @@ result = dialog.exec_()
 `);
     assert.equal(unrelated.ok, false); assert.equal(unrelated.result, 0);
     assert.equal(unrelated.dialogs?.length, 1);
+
+    const unsaved = await run('unsaved', `app = Krita.instance()
+doc = app.createDocument(16, 16, "Unsaved test", "RGBA", "U8", "", 72.0)
+app.activeWindow().addView(doc)
+doc.setModified(True)
+result = doc.modified()
+`);
+    assert.equal(unsaved.ok, true, unsaved.error);
+    assert.equal(unsaved.result, true);
+    const running = section['current']!;
+    const closed = once(running.child, 'close');
+    await section.release();
+    assert.deepEqual(await closed, [0, null], running.log);
   });

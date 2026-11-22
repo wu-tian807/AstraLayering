@@ -4,11 +4,49 @@ import { test, type TestContext } from 'node:test';
 import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { axisGroups, runAxisGroups, type AxisGroup } from '../axis-groups.ts';
+import { axisGroups, runAxisGroups, seedAxis, type AxisGroup } from '../axis-groups.ts';
 import { beginStep, completeStep, readStep } from '../../shared/step-chain.ts';
 import { runSection } from '../../shared/step-section.ts';
+import { evaluatePoints } from '../../shared/nine-axis-model.js';
+import { editNineAxis } from '../../shared/nine-axis-edit.js';
+import { mirrorDocument } from '../head.ts';
+import { partWarpId } from '../ownership.ts';
+import { baseline, grid, pts, scale } from './axis-fixtures.ts';
 
 type Hooks = Parameters<typeof runAxisGroups>[1];
+
+test('split brows keep their draw positions and share the same mirrored and pitch motion', async t => {
+  const { section: neutral } = await fixture(t);
+  const doc = baseline();
+  const paint = (side: 'left' | 'right', uuid: string, x: number) => {
+    const part = `face/brow_${side}`, node = grid(`${part}::${uuid}`, [x, 20, x + 10, 30]);
+    node.keyforms['-30'] = pts(node);
+    return { ...node, uuid, partId: `character:${part}`, textureBounds: [x, 20, 10, 10] };
+  };
+  const [base, separator] = doc.parts.slice(0, 2).map(part => ({ ...part, uuid: part.id }));
+  doc.parts = [base, paint('left', 'a', 20), paint('right', 'b', 70), separator, paint('right', 'c', 72), paint('left', 'd', 23)];
+  await writeFile(join(neutral, 'deformers.json'), JSON.stringify(doc));
+  await writeFile(join(neutral, 'source.json'), '{}');
+  const left = partWarpId('character:face/brow_left'), right = partWarpId('character:face/brow_right');
+  for (const [axis, x, y] of [['left', scale.x[0], 0], ['up', 0, scale.y[1]], ['down', 0, scale.y[0]]] as const) {
+    const directory = join(neutral, axis), mirrored = axis === 'left';
+    await seedAxis(directory, neutral, axis, scale);
+    const value = JSON.parse(await readFile(join(directory, `face-${axis}.json`), 'utf8'));
+    const seeded = { ...doc, deformers: value.deformers, parts: mirrored ? value.parts.toReversed() : value.parts };
+    assert.deepEqual(seeded.parts.map(p => p.id), doc.parts.map(p => p.id));
+    assert.equal(seeded.deformers.length, 2);
+    for (const p of seeded.parts.filter(p => p.partId)) assert.equal(p.parent, partWarpId(p.partId));
+    const edited = editNineAxis(seeded, [{ action: 'transform', id: left, x, y, translate: [4, 0] }]);
+    const posed = mirrored ? mirrorDocument(edited, doc.axis!, 'keyforms') : edited;
+    for (const p of posed.parts.filter(p => p.parent === (mirrored ? right : left))) {
+      const rest = evaluatePoints(posed, p, 0, 0);
+      const moved = evaluatePoints(posed, p, mirrored ? -x : x, y);
+      const shift = mirrored ? -4 : 4;
+      assert.ok(moved.every((v, i) => Math.abs(v - rest[i] - (i % 2 ? 0 : shift)) < 0.001),
+        `${axis}/${p.id}: ${Array.from(moved, (v, i) => v - rest[i])}`);
+    }
+  }
+});
 
 async function fixture(t: TestContext) {
   const section = await mkdtemp(join(tmpdir(), 'astra-axis-groups-'));
