@@ -1,6 +1,6 @@
 ---
 name: live2d-maker
-description: 任何 Live2D 工作流操作前必读，包括工作台、配置、启动、续跑、停止和头部九轴。交付分层 KRA、透明 PNG、穿戴组装与阴影。
+description: 任何 Live2D 工作流操作前必读，涵盖工作台使用及从配置到交付的完整流程。产物包括分层 KRA、透明 PNG、穿戴组装与阴影。
 ---
 
 # Live2D Maker
