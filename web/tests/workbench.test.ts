@@ -117,27 +117,30 @@ test('参数保存沿用现有范围，字段未提交时保留原值，明确�
   assert.equal(narrow.status, 200); assert.equal(narrow.value.to, 'shadow'); assert.equal(narrow.value.live, true);
 });
 
-test('保存参数不要求当前 Krita 在线，运行或归档任务拒绝修改', async t => {
+test('保存参数不要求当前 Krita 在线，仅在运行期间拒绝修改', async t => {
   const f = await fixture(t, async () => assert.fail('不能启动制作'), async () => assert.fail('保存参数不执行启动检查'), '/global/krita');
   const task = join(f.dir, 'test'); await mkdir(task, { recursive: true });
-  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, krita: '/task/krita', knowledge: '/task/knowledge' }, task));
+  const krita = join(f.dir, 'task-krita'), knowledge = join(f.dir, 'task-knowledge');
+  await saveRun(task, await configureRun({ name: 'test', dir: f.dir, krita, knowledge }, task));
   assert.equal((await f.post('task-options', { name: 'test', jobs: 4 })).status, 200);
-  assert.equal((await readRun(task))!.krita, '/task/krita', '仅改并发不把任务 Krita 替换为全局设置');
-  assert.equal((await readRun(task))!.knowledge, '/task/knowledge');
-  const modified=await f.post('task-options',{name:'test',krita:'/new/krita',knowledge:'/new/knowledge'});
+  assert.equal((await readRun(task))!.krita, krita, '仅改并发不把任务 Krita 替换为全局设置');
+  assert.equal((await readRun(task))!.knowledge, knowledge);
+  const nextKrita = join(f.dir, 'new-krita'), nextKnowledge = join(f.dir, 'new-knowledge');
+  const modified=await f.post('task-options',{name:'test',krita:nextKrita,knowledge:nextKnowledge});
   assert.equal(modified.status,200);
-  assert.equal((await readRun(task))!.krita,'/new/krita');
-  assert.equal((await readRun(task))!.knowledge,'/new/knowledge');
+  assert.equal((await readRun(task))!.krita,nextKrita);
+  assert.equal((await readRun(task))!.knowledge,nextKnowledge);
   assert.equal((await f.post('task-options',{name:'test',jobs:3})).status,200);
-  assert.equal((await readRun(task))!.krita,'/new/krita');
-  assert.equal((await readRun(task))!.knowledge,'/new/knowledge');
+  assert.equal((await readRun(task))!.krita,nextKrita);
+  assert.equal((await readRun(task))!.knowledge,nextKnowledge);
   const before = await readFile(join(task, 'run.json'));
   const release = await acquireTaskLock(task);
   try { assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409); }
   finally { await release(); }
   assert.deepEqual(await readFile(join(task, 'run.json')), before);
-  const run = (await readRun(task))!; run.archive = true; await saveRun(task, run);
-  assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 409);
+  await writeFile(join(task, 'run.json'), JSON.stringify({ ...JSON.parse(before.toString()), archive: true }));
+  assert.equal((await f.post('task-options', { name: 'test', jobs: 5 })).status, 200);
+  assert.equal((await readRun(task))!.jobs, 5);
 });
 
 test('调整完成路线后只登记待启动步骤，不删除或倒退已完成 section', async t => {

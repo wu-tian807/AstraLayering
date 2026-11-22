@@ -86,7 +86,6 @@ export async function snapshot(directory: string, name: string, dir: string) {
   let kritaInUse: number | undefined;
   for (const id of sectionIds) {
     if (id === 'nine-axis') continue; // Parallel child observation is handled below.
-    if (record.run?.archive && !record.run.sections[id]) continue;
     // The character and clothing lanes run side by side: several sections can be active at once.
     const current = !!record.run?.activeSections?.includes(id);
     const saved = record.run?.sections[id];
@@ -251,12 +250,10 @@ export async function snapshot(directory: string, name: string, dir: string) {
     sections.push({ id, ...(id === 'shadow' ? { mode } : {}), status, states, messages, products, previews, feedback, reports, groups, steps,
       threadId, summary: saved?.summary, ...(saved?.skipped ? { skipped: true } : {}) });
   }
-  // Nine-axis currently also has a standalone runner. Show its artifacts and
-  // markers without registering or starting another workflow here.
   const nineSaved = record.run?.sections['nine-axis'];
-  if (!record.run?.archive || nineSaved) sections.push({ ...await nineAxisProgress(directory, fileSet, errors, {
+  sections.push({ ...await nineAxisProgress(directory, fileSet, errors, {
     active: record.runnerAlive && record.lockHeld && record.run?.activeSections?.includes('nine-axis') && nineSaved?.status !== 'failed',
-    failed: nineSaved?.status === 'failed', archive: !!record.run?.archive,
+    failed: nineSaved?.status === 'failed',
     since: record.run?.runner?.startedAt, reason: nineSaved?.status === 'failed' ? nineSaved.summary : undefined,
   }), summary: nineSaved?.summary, ...(nineSaved?.skipped ? { skipped: true } : {}) });
   // Every section, including nine-axis, reads the existing machine-wide slot
@@ -273,7 +270,6 @@ export async function snapshot(directory: string, name: string, dir: string) {
   const servedFiles = files.filter(path => !agentRecord(path));
   const servedVersions = Object.fromEntries(servedFiles.flatMap(path => fileVersions[path] ? [[path, fileVersions[path]]] : []));
   return { ...record, files: servedFiles, ...(kritaInUse !== undefined ? { kritaInUse } : {}), fileVersions: servedVersions, sections: observedSections, errors, logs: log.text,
-    archived: !!record.run?.archive,
     canExport: completeRun(record.run) && !record.runnerAlive && !record.lockHeld,
     logPath: log.path, logUpdatedAt: log.updatedAt, lastLogMessage: log.message, preparations: log.preparations,
     canStop: canStopTask(record.run?.runner, record.runnerAlive, record.lockHeld),

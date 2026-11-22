@@ -28,7 +28,6 @@ export type SectionProgress = {
   skipped?: true;
 };
 export type TaskRun = {
-  archive?: true;
   version: 1; from: SectionId; to: SectionId;
   krita?: string; ffmpeg?: string; jobs: number; standard?: boolean; shadowMode?: ShadowMode; live?: boolean;
   size?: SectionSize; // Older run.json files have no size.
@@ -165,7 +164,6 @@ export function taskFFmpeg(options: Pick<TaskOptions, 'name' | 'dir' | 'ffmpeg'>
 }
 export async function configureRun(options: TaskOptions, directory: string): Promise<TaskRun> {
   const saved = await readRun(directory);
-  if (saved?.archive) throw new Error('这是导出的成果归档；请在原运行目录继续制作。');
   const { from, to, live } = taskRoute(options, saved);
   const selected = selectedSections(from, to);
   if (options.standard !== undefined && !selected.includes('part-layering')) {

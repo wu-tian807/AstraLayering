@@ -22,7 +22,6 @@ export const workflowKrita: KritaCheck = path => checkKrita(path, loadWorkflowEn
 // refuse the start: the run records it as failed, so workflow.log and the page show it.
 export async function preflightKrita(options: TaskOptions, check: KritaCheck = workflowKrita): Promise<KritaInstallation | undefined> {
   const directory = directoryFor(options), saved = await readRun(directory);
-  if (saved?.archive) return; // Refused as an archive by the caller.
   try { return await requireKrita({ ...taskRoute(options, saved), krita: taskKrita(options, saved) }, !!options.krita, check); }
   catch (error) { if (!(error instanceof MissingDependencyError)) throw error; }
 }
