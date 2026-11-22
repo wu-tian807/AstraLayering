@@ -160,12 +160,12 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     const work = await mkdtemp(join(tmpdir(), 'al-'));
     workspace = work;
     const source = join(work, 'source'), target = join(work, 'target');
-    const exec = (command: string, args: string[], cwd = work, watch = {}) =>
-      run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, ...watch });
+    const exec = (command: string, args: string[], cwd = work, line?: (text: string) => void) =>
+      run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, line });
     const checkout = options.source ? ['--shared', resolve(options.source)]
       : ['--depth', '1', '--branch', `rust-v${version}`, 'https://github.com/openai/codex.git'];
-    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', building, log));
-    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building, log));
+    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', building));
+    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building));
     await exec('git', ['apply', patch], source);
     building('准备 Rust 工具链');
     await (services.rust ?? withRust)({ ...env, CARGO_HOME: join(work, 'cargo') }, async toolchain => {
@@ -177,7 +177,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
         : toolchain.env;
       await run(toolchain.cargo, [...toolchain.prefix, 'build', '-p', 'codex-cli', '--bin', 'codex', '--profile', 'dev-small',
         '--jobs', String(jobs), '--target-dir', target], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
-        ...watchOutput('编译 Codex 补丁', building, log, { every: 30_000 }) })
+        line: watchOutput('编译 Codex 补丁', building, { every: 30_000 }) })
         .catch(async error => {
           const output = await buildLogTail(log, start), found = output.match(missingToolText)?.[0];
           if (found) throw new MissingToolchainError(`构建日志中：${found}`, platform, log);

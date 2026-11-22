@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { chmod, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { runCommand, watchOutput, type Command } from './process.ts';
@@ -49,11 +49,14 @@ export async function withRust<T>(env: NodeJS.ProcessEnv, action: (toolchain: Ru
     const installer = join(root, 'rustup-init' + suffix);
     await writeFile(installer, bytes, { mode: 0o700 }); await chmod(installer, 0o700);
     const log = services.log ?? join(root, 'install.log');
+    const start = await stat(log).then(info => info.size, () => 0);
     emit('running', `安装临时 Rust ${rustVersion}`);
     await run(installer, ['-y', '--no-modify-path', '--profile', 'minimal', '--default-toolchain', rustVersion],
-      { env: rustEnv, log, ...watchOutput('安装临时 Rust', message => emit('running', message), log) }).catch(async error => {
-        const detail = await readFile(log, 'utf8').catch(() => '');
-        throw new Error(`临时 Rust 安装失败；需要可访问官方 Rust 下载站点。${detail ? '\n' + detail.slice(-8000) : ''}`, { cause: error });
+      { env: { ...rustEnv, RUSTUP_TERM_PROGRESS_WHEN: 'always' }, log,
+        line: watchOutput('安装临时 Rust', message => emit('running', message)) }).catch(async error => {
+        const output = await readFile(log).catch(() => Buffer.alloc(0));
+        const detail = output.subarray(Math.max(start, output.length - 8000)).toString('utf8').trim();
+        throw new Error(`临时 Rust 安装失败。${detail ? '\n' + detail : ''}`, { cause: error });
       });
     const cargo = join(root, 'cargo/bin/cargo' + suffix);
     await run(cargo, [`+${rustVersion}`, '--version'], { env: rustEnv });
