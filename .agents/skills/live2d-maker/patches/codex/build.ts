@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createRequire, findPackageJSON } from 'node:module';
-import { copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -119,6 +119,8 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
   const key = sha256(Buffer.concat([Buffer.from(`v2:${version}:${codexCommit}:${process.platform}:${process.arch}:`), bytes])).slice(0, 20);
   const directory = join(options.root ?? join(workflowsDirectory, 'data', 'codex'), `${process.platform}-${process.arch}`);
   const root = join(directory, key);
+  // Keep the same short path across interrupted downloads and Cargo builds.
+  const work = join(tmpdir(), 'al-' + sha256(Buffer.from(resolve(root))).slice(0, 10));
   const binary = process.platform === 'win32' ? 'codex.exe' : 'codex';
   const host = process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host';
   const output = join(root, 'bin'), executable = join(output, binary), receipt = join(root, 'ready.json');
@@ -148,7 +150,6 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
       await delay(250);
     }
   }
-  let workspace: string | undefined;
   const build = async () => {
     await mkdir(root, { recursive: true });
     const missing = await missingToolchain(run, env, platform);
@@ -156,17 +157,21 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     const companionPath = services.companion ? services.companion() : await companion(version);
     if (!waiting) options.building?.();
     building(`正在构建 Codex ${version} 补丁，准备源码。日志：${log}`);
-    // Cargo checks out dependencies deeply inside this directory on Windows.
-    const work = await mkdtemp(join(tmpdir(), 'al-'));
-    workspace = work;
     const source = join(work, 'source'), target = join(work, 'target');
+    await mkdir(source, { recursive: true, mode: 0o700 });
     const exec = (command: string, args: string[], cwd = work, line?: (text: string) => void) =>
       run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, line });
-    const checkout = options.source ? ['--shared', resolve(options.source)]
-      : ['--depth', '1', '--branch', `rust-v${version}`, 'https://github.com/openai/codex.git'];
-    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', building));
-    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building));
-    await exec('git', ['apply', patch], source);
+    const checkSource = (args: string[]) => run('git', args, { cwd: source, env: gitEnv }).then(() => true, () => false);
+    await exec('git', ['init', '--quiet'], source);
+    if (!await checkSource(['cat-file', '-e', `${codexCommit}^{commit}`])) {
+      const upstream = options.source ? [resolve(options.source), codexCommit]
+        : ['https://github.com/openai/codex.git', `refs/tags/rust-v${version}`];
+      await exec('git', ['fetch', '--progress', '--depth', '1', ...upstream], source, watchOutput('准备 Codex 源码', building));
+    }
+    if (!await checkSource(['apply', '--reverse', '--check', patch])) {
+      await exec('git', ['checkout', '--progress', '--force', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building));
+      await exec('git', ['apply', '--index', patch], source);
+    }
     building('准备 Rust 工具链');
     await (services.rust ?? withRust)({ ...env, CARGO_HOME: join(work, 'cargo') }, async toolchain => {
       building(`编译 Codex ${version} 补丁`);
@@ -198,48 +203,35 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     if (capabilities.version !== 1 || capabilities.image_provider_version !== 2 || capabilities.image_compaction_version !== 2 || capabilities.request_compaction_version !== 1
       || capabilities.failed_error_event_version !== 1) throw new Error('新构建未通过补丁能力检查');
     if (compromised) throw compromised;
-    try {
-      await rm(receipt, { force: true });
-      await mkdir(output, { recursive: true });
-      for (const [from, name] of [[compiled, binary], [companionPath, host]]) {
-        const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
-      }
-      if (compromised) throw compromised;
-      await writeFile(receipt + '.tmp', JSON.stringify({ version, binary: sha256(await readFile(executable)), host: sha256(await readFile(join(output, host))) }));
-      if (compromised) throw compromised;
-      await rename(receipt + '.tmp', receipt);
-    } catch (error) {
-      if (!compromised) await Promise.allSettled([
-        rm(output, { recursive: true, force: true, maxRetries: 3 }),
-        rm(receipt + '.tmp', { force: true, maxRetries: 3 }),
-      ]).then(results => {
-        for (const result of results) if (result.status === 'rejected') progress(`清理 Codex 未完成的成品失败：${String(result.reason)}`);
-      });
-      throw error;
+    await rm(receipt, { force: true });
+    await mkdir(output, { recursive: true });
+    for (const [from, name] of [[compiled, binary], [companionPath, host]]) {
+      const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
     }
+    if (compromised) throw compromised;
+    await writeFile(receipt + '.tmp', JSON.stringify({ version, binary: sha256(await readFile(executable)), host: sha256(await readFile(join(output, host))) }));
+    if (compromised) throw compromised;
+    await rename(receipt + '.tmp', receipt);
   };
   try {
     const rebuilding = !await cached();
     if (rebuilding) {
       await build().catch(error => {
         if (error instanceof MissingToolchainError) throw error;
-        throw new Error(`Codex 补丁自动构建失败：${(error as Error).message}\n保留会话和产物，修复依赖后可直接续跑。日志：${log}`, { cause: error });
+        throw new Error(`Codex 补丁自动构建失败：${(error as Error).message}\n续跑会复用构建目录 ${work}\n构建日志 ${log}`, { cause: error });
       });
     }
     if (compromised) throw compromised;
+    await rm(work, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
+      progress(`清理 Codex 构建临时目录失败（${work}）：${String(error)}`);
+    });
     await removePreviousBuilds(directory, key);
     if (rebuilding || waiting) emit('completed', `Codex ${version} 补丁已准备`);
     return executable;
   } catch (error) {
     options.report?.({ tool: 'codex', state: 'failed', message: (error as Error).message.split('\n')[0]! });
     throw error;
-  } finally {
-    try {
-      if (workspace) await rm(workspace, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
-        progress(`清理 Codex 构建临时目录失败（${workspace}）：${String(error)}`);
-      });
-    } finally { await release(); }
-  }
+  } finally { await release(); }
 }
 
 if (import.meta.main) {
