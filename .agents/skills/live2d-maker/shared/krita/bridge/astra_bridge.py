@@ -46,9 +46,9 @@ DIALOG_HINT = ('Krita 弹出了对话框“{title}”，无人操作的界面会
 DIALOG_GRACE = 0.5
 # Common mistakes, matched against the traceback text.
 ERROR_HINTS = [
-    (re.compile(r"paint\w*\(.*unexpected type 'QPointF'|argument \d+ has unexpected type 'QPointF'"),
-     'Krita 5.3 的 Node.paintLine / paintRectangle / paintEllipse 接受整数 QPoint，'
-     '用 QPoint(round(x), round(y))；paintLine 第 3、4 个参数是两端压感（0–1）。'),
+    (re.compile(r"(?:paintLine|paintRectangle|paintEllipse)\([^\n]*has unexpected type 'Q(?:PointF?|RectF?)'"),
+     'Krita 5.3 的 Node.paintLine 使用两个整数 QPoint，第 3、4 个参数是两端压感（0–1）。'
+     'Node.paintRectangle 和 Node.paintEllipse 使用一个 QRectF。'),
     (re.compile(r"'NoneType' object has no attribute '(activeView|addView|currentBrushPreset|setCurrentBrushPreset|setForeGroundColor|setBrushSize)'"),
      '当前没有可用窗口或视图。绘制使用视图的笔刷、颜色和尺寸：先 Krita.instance().activeWindow().addView(doc)，'
      '再从 activeWindow().activeView() 设置笔刷后调用 paint* 接口。'),
@@ -172,7 +172,12 @@ class Bridge(Extension):
         if os.path.exists(os.path.join(ROOT, 'quit')):
             self.timer.stop()
             self.guard.stop()
-            Krita.instance().quit()
+            application = Krita.instance()
+            # Ending the private section discards unsaved changes. Keep the
+            # normal quit action from blocking on a save prompt.
+            for document in application.documents():
+                document.setModified(False)
+            QTimer.singleShot(0, application.action('file_quit').trigger)
             return
         try:
             names = sorted(name for name in os.listdir(JOBS) if name.endswith('.py'))

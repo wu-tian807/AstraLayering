@@ -3,6 +3,7 @@ import { nodes, descendants, type HeadNineAxis, type WarpGrid, type HeadDeformer
 export type OwnershipScope = { label: string; allows: (partId: string) => boolean;
   includes?: (part: HeadDeformer, doc: HeadNineAxis) => boolean };
 export const partPath = (partId: string) => partId.replace(/^(?:character|clothing):/, '');
+export const partWarpId = (partId: string) => `warp/${partId}`;
 export const withinPart = (partId: string, root: string) => {
   const path = partPath(partId);
   return path === root || path.startsWith(root + '/') || path.startsWith(root + '::');

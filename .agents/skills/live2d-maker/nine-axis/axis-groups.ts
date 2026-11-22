@@ -5,7 +5,8 @@ import { beginStep, completeStep, readStep } from '../shared/step-chain.ts';
 import { readUpstream, startContinuation } from './continuation.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { nineAxisGroups } from '../shared/nine-axis.ts';
-import { type FaceLeft, type Built } from './head.ts';
+import { initializeKeyforms } from '../shared/nine-axis-edit.js';
+import { wrapSplitParts, type FaceLeft, type Built } from './head.ts';
 
 export const axisGroups = nineAxisGroups;
 export type AxisGroup = typeof axisGroups[number];
@@ -18,9 +19,12 @@ export async function seedAxis(directory: string, neutral: string, group: AxisGr
   if (upstream.doc.parts.some(p => p.texture && !p.uuid)) await mkdir(join(directory, 'layers'), { recursive: true });
   for (const p of upstream.doc.parts) if (p.texture && !p.uuid) await copyFile(join(neutral, p.texture), join(directory, p.texture));
   const name = `face-${group}.json`;
+  const doc = wrapSplitParts(upstream.doc);
   const value = group === 'left'
-    ? { version: 2, axis: upstream.doc.axis, deformers: [], parts: upstream.doc.parts.toReversed() } as FaceLeft
-    : startContinuation(upstream.doc, group, scale);
+    ? { version: 2, axis: doc.axis, deformers: doc.deformers, parts: doc.parts.toReversed() } as FaceLeft
+    : startContinuation(doc, group, scale);
+  const pose = group === 'left' ? [scale.x[0], 0] as const : [0, scale.y[group === 'up' ? 1 : 0]] as const;
+  for (const warp of value.deformers) initializeKeyforms(warp, [pose]);
   await writeFile(join(directory, name), JSON.stringify(value) + '\n', { flag: 'wx' });
   await writeFile(join(directory, 'source.json'), await readFile(join(neutral, 'source.json')));
 }

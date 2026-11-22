@@ -5,7 +5,7 @@ import { isDeepStrictEqual } from 'node:util';
 import sharp from 'sharp';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { angleParameter, angleScale, type AngleScale } from './angles.ts';
-import type { Built } from './head.ts';
+import { wrapSplitParts, type Built } from './head.ts';
 import { checkWarpGeometry, evaluatePoints, keyValues, lattice, nodes, refine, validateHeadNineAxis,
   type HeadNineAxis, type IndependentAxis, type WarpGrid } from '../shared/nine-axis-model.js';
 
@@ -120,7 +120,7 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     textures.push(p.texture!);
     for (const [i, dir] of inputs.slice(1).entries()) if (!(await readFile(join(dir, p.texture!))).equals(bytes)) throw new Error(axes[i] + '/' + p.id + '：原贴图与 neutral 不同，需重跑该方向');
   }
-  const doc = structuredClone(baseline.doc);
+  let doc = structuredClone(baseline.doc);
   // Retain baseline presentation/UV, remove stale author-specific metadata.
   delete (doc as any).authoring;
   doc.deformers = [];
@@ -133,6 +133,8 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     return p;
   });
   doc.parameters = [angleParameter('ParamAngleX', '角度 X', scale.x), angleParameter('ParamAngleY', '角度 Y', scale.y)];
+  // Attach the identity controls before assigning the already composed axes.
+  doc = wrapSplitParts(doc);
   doc.axisSources = sources.map((s, i) => ({ axis: axes[i], doc: structuredClone(s.doc) }));
   validateHeadNineAxis(doc);
   const samples: AxisMergeManifest['checks']['samples'] = [];

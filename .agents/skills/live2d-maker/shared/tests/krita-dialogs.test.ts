@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { once } from 'node:events';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -61,4 +62,26 @@ result = dialog.exec_()
 `);
     assert.equal(unrelated.ok, false); assert.equal(unrelated.result, 0);
     assert.equal(unrelated.dialogs?.length, 1);
+  });
+
+test('native Krita: quit with an unsaved private document',
+  { skip: !process.env.ASTRA_TEST_KRITA, timeout: 180_000 }, async t => {
+    const root = await mkdtemp(join(tmpdir(), 'krita-quit-test-'));
+    const section = new SectionKrita({ section: root, krita: process.env.ASTRA_TEST_KRITA! });
+    t.after(async () => { await section.release(); await rm(root, { recursive: true, force: true }); });
+    await section.reserve(); await section.start();
+    const path = join(root, 'unsaved.py');
+    await writeFile(path, `app = Krita.instance()
+doc = app.createDocument(16, 16, "Unsaved test", "RGBA", "U8", "", 72.0)
+app.activeWindow().addView(doc)
+doc.setModified(True)
+result = doc.modified()
+`);
+    const reply = await submitJob(section.bridge!, path, { timeoutSeconds: 30 });
+    assert.equal(reply.ok, true, reply.error);
+    assert.equal(reply.result, true);
+    const running = section['current']!;
+    const closed = once(running.child, 'close');
+    await section.release();
+    assert.deepEqual(await closed, [0, null], running.log);
   });

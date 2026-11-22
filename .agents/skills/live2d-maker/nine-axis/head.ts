@@ -10,6 +10,8 @@ export async function artworkCanvas(input: HeadInput) {
 import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import { angleKey, angleParameter, angleScale, type AngleScale } from './angles.ts';
 import type { Box, TurnInput } from './turn.ts';
+import { partPath, partWarpId, withinPart } from './ownership.ts';
+import { editNineAxis } from '../shared/nine-axis-edit.js';
 import { validateHeadNineAxis, keyformAt, parentPoint, nodes, checkWarpGeometry, kraReferences, warpPoint as sampleWarp, type WarpGrid, type HeadNineAxis, type HeadLevel } from '../shared/nine-axis-model.js';
 
 // step04_angles: the agent fits the face to the left view and delivers the
@@ -33,7 +35,7 @@ export async function copyDocument(from: { document: string; color: string }, to
 }
 
 type Point = [number, number];
-export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; uuid?: string; material?: 'transparent'; texture?: string; textureBounds: number[]; bbox: number[];
+export type Part = { level?: HeadLevel; mirror?: string; id: string; group: string; uuid?: string; partId?: string; material?: 'transparent'; texture?: string; textureBounds: number[]; bbox: number[];
   cols: number; rows: number; keyforms: Record<string, Point[]>; parent?: string; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; role?: 'mask'; clip?: { by: string[]; invert?: boolean } };
 export type FaceLeft = { version: 2; axis: number; notes?: string; deformers: WarpGrid[]; parts: Part[] };
 
@@ -61,10 +63,10 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
     // Nothing is hidden by fading: the far ear moves behind the head and the face covers it.
     if ('opacity' in p) throw new Error(`${p.id}：不用不透明度隐藏部件；远侧耳移到脑后，由脸遮挡`);
   }
-  if (!ids.has('face/face_base')) throw new Error('face-left.json：缺少 face/face_base');
   // parts run top to bottom in draw order; ears sit under the face so it can cover them.
-  const base = face.parts.findIndex(p => p.id === 'face/face_base');
-  const above = face.parts.slice(0, base).find(p => isEar(p.id));
+  const base = face.parts.findIndex(p => partPath(p.partId ?? p.id) === 'face/face_base');
+  if (base < 0) throw new Error('face-left.json：缺少 face/face_base');
+  const above = face.parts.slice(0, base).find(p => isEar(partPath(p.partId ?? p.id)));
   if (above) throw new Error(`${above.id}：耳朵须排在 face/face_base 之下，才能被脸遮挡`);
   validateHeadNineAxis({ version: 2, kind: 'head-nine-axis', levels: [faceLevel], deformers: face.deformers,
     parts: face.parts.map(p => ({ level: 'face', ...p })) });
@@ -83,12 +85,19 @@ export function stepTexture(directory: string, task: string, id: string, texture
 }
 
 // The first level is neck + face + features: the neck layer comes along by default.
-export const isHeadPartId = (id: string) => /^(face\/|neck(\/|$))/.test(id);
+export const isHeadPartId = (id: string) => /^face\//.test(id) || withinPart(id, 'neck');
 export const faceLevel: HeadNineAxis['levels'][number] = { id: 'face', name: '脖子＋脸＋五官', includes: ['face'] };
+export function wrapSplitParts<T extends HeadNineAxis>(doc: T): T {
+  const paint = doc.parts.filter(part => part.uuid && part.partId && !withinPart(part.partId, 'neck')
+    && !part.shadow && !part.role && !part.context);
+  const operations = [...Map.groupBy(paint, part => part.partId!)].flatMap(([partId, parts]) => parts.length > 1
+    ? [{ action: 'create_warp', id: partWarpId(partId), name: partPath(partId), targets: parts.map(part => part.id) }] : []);
+  return operations.length ? editNineAxis(doc, operations) as T : doc;
+}
 const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
-export const pairId = (id: string) => id.replace(/(^|[/_.-])(left|right)(?=$|[/_.-])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
+export const pairId = (id: string) => id.replace(/(^|[/_.:-])(left|right)(?=$|[/_.:-])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
 
 // A part's keyform position of a canvas point: bilinear in its control lattice;
 // outside the lattice the nearest edge's displacement carries on.
@@ -123,10 +132,14 @@ export function mirrorDocument<T extends HeadNineAxis>(document: T, axis: number
       const [x, y = 0] = key.split(',').map(Number); if (!(x < 0)) continue;
       const left = keyformAt(pair, x, y), right = field === 'keyforms' ? angleKey(-x) : `${angleKey(-x)},${angleKey(y)}`;
       p[field]![right] = p.keyforms['0'].map(([px, py]) => {
-        if (/^neck(?:\/|$)/.test(p.id)) return [px, py];
+        if (withinPart(p.id, 'neck')) return [px, py];
         let [mx, my] = sampleWarp(pair, left, 2 * axis - px, py);
-        [mx, my] = parentPoint(source, pair, x, y, mx, my);
-        const q = parentPoint(target, p, -x, y, 2 * axis - mx, my, true);
+        // A split fragment without a counterpart mirrors only its local edit.
+        // Its shared Warp supplies the mirrored motion for the whole part.
+        const partId = 'partId' in p ? p.partId : undefined;
+        const local = typeof partId === 'string' && p.parent === partWarpId(partId) && pair.id === p.id;
+        if (!local) [mx, my] = parentPoint(source, pair, x, y, mx, my);
+        const q = local ? [2 * axis - mx, my] : parentPoint(target, p, -x, y, 2 * axis - mx, my, true);
         return q.map(v => Math.round(v * 10000) / 10000) as Point;
       });
     }

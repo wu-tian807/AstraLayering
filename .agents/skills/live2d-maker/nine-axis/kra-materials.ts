@@ -8,7 +8,7 @@ import { layerPartName } from '../shared/layer-names.ts';
 import { submitJob } from '../shared/krita/bridge/client.mjs';
 import type { SectionKrita } from '../shared/krita/section-krita.ts';
 import { lattice, validateHeadNineAxis, type HeadDeformer } from '../shared/nine-axis-model.js';
-import { headMaterialSelection, type MaterialSelection, type ProjectionBinding } from './materials.ts';
+import { headMaterialSelection, savedLayerVisible, type MaterialSelection, type ProjectionBinding } from './materials.ts';
 import { modelDocument, withDocument } from './source.ts';
 import { prepareNeutralBridge } from './neutral.ts';
 import type { Built } from './head.ts';
@@ -227,11 +227,7 @@ export class KraMaterials {
         continue;
       }
       if (material.scope === 'face') continue;
-      const layer = layers.get(material.uuid)!;
-      // Honour saved visibility through all ancestors, including hidden backups.
-      let visible = true;
-      for (let at: string = material.uuid; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') visible = false;
-      if (visible) rows.push({ id: `__kra__/${material.uuid}`, uuid: material.uuid, partId: material.partId, scope: material.scope, texture: `${rows.length}.png` });
+      if (savedLayerVisible(layers, material.uuid)) rows.push({ id: `__kra__/${material.uuid}`, uuid: material.uuid, partId: material.partId, scope: material.scope, texture: `${rows.length}.png` });
     }
     if(hash(await readFile(document))!==revision)throw Error('KRA 在解析期间已变化，请重试');
     const key = hash(JSON.stringify({ version: 2, revision, rows, shadows: selection.shadowLayerUuids }));
@@ -280,13 +276,11 @@ export class KraMaterials {
     for (const row of exported) {
       if (row.studio && row.uuid) {
         const layer = layers.get(row.uuid)!;
-        let visible = true;
-        for (let at: string = row.uuid; at; at = layers.get(at)?.parent ?? '') if (layers.get(at)?.visible === '0') visible = false;
         const texture = 'studio/' + row.texture;
         textures.set(texture, join(cache, row.texture));
         const projection = selection.projectionBindings.get(row.uuid);
         studioLayers.push({ uuid: row.uuid, texture, bounds: row.bounds, order: nativeOrder.get(row.uuid)!,
-          visible, opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal',
+          visible: savedLayerVisible(layers, row.uuid), opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal',
           ...(projection ? { projection } : {}) });
         continue;
       }

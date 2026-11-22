@@ -28,6 +28,21 @@ test('head selection preserves an explicit namespace when character and clothing
   assert.deepEqual(selected, [{ uuid: 'character-neck', id: 'neck::back', partId: 'character:neck', scope: 'face' }]);
 });
 
+test('depth-only layer names retain both eyebrow fragments and skip hidden backups', () => {
+  const brow = 'face/eyebrows/eyebrow_right';
+  const layers = new Map([
+    ['front', { name: '54.2 ' + brow, nodetype: 'paintlayer' }],
+    ['hidden', { name: 'Backup', nodetype: 'grouplayer', visible: '0' }],
+    ['backup', { name: '40 ' + brow, nodetype: 'paintlayer', parent: 'hidden', visible: '1' }],
+    ['back', { name: '40 ' + brow, nodetype: 'paintlayer' }],
+  ]);
+  const selected = selectHeadMaterials(layers, ['character:' + brow], []);
+  assert.deepEqual(selected.map(row => [row.uuid, row.id, row.partId]), [
+    ['front', brow + '::front', 'character:' + brow],
+    ['back', brow + '::back', 'character:' + brow],
+  ]);
+});
+
 test('split hair and accessory layers keep both depth regions in their own preview scope', () => {
   const rows = [
     ['hair-front', 'D57 | hair/braid_right | front'],

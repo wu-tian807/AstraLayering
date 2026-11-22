@@ -7,7 +7,11 @@
 
 脚本中可直接使用 Krita、krita、BRIDGE（桥接目录）、持续到本 Krita 关闭的 session 字典；把要返回的 JSON 值赋给 result。脚本按提交顺序一个个执行。
 
-对话框会让无人操作的 Krita 卡住：桥接让新建、打开的文档以及 exportImage / saveAs / save 始终处于批处理模式，其他仍弹出的对话框会被自动取消，该次 ok 为 false，dialogs 列出标题。导出参数用 InfoObject 传入，导出后核对文件。关闭文档后丢弃它的文档、图层和视图引用；重新打开后先 doc.waitForDone()，确认 doc.rootNode() 不是 None 再继续，视图另行 addView。绘制前用 Krita.instance().activeWindow().addView(doc) 打开视图，笔刷、颜色、尺寸从 activeView() 设置；Krita 5.3 的 paintLine 等接受整数 QPoint，paintLine 第 3、4 个参数是两端压感。需要看结果时导出 PNG 再查看。失败时先读 hints。
+对话框会让无人操作的 Krita 卡住。桥接让新建、打开的文档以及 exportImage / saveAs / save 始终处于批处理模式，其他仍弹出的对话框会被自动取消，该次 ok 为 false，dialogs 列出标题。导出参数用 InfoObject 传入，导出后核对文件。失败时先读 hints。
+
+绘制前用 `Krita.instance().activeWindow().addView(doc)` 打开视图，笔刷、颜色、尺寸从 activeView() 设置。Krita 5.3 的 paintLine 使用两个整数 QPoint，第 3、4 个参数是两端压感。paintRectangle 和 paintEllipse 使用一个 QRectF。需要看结果时导出 PNG 再查看。
+
+后台读取的文档可在当前脚本中用 `doc.close()` 关闭。通过 addView 打开的文档保存完成后，另一次调用 `krita`，通过 `Krita.instance().activeDocument()` 重新取得并确认要关闭的文档，再调用 `close()`。关闭后丢弃它的文档、图层和视图引用。重新打开后先调用 `doc.waitForDone()`，确认 `doc.rootNode()` 不是 None 再继续，视图另行 addView。
 
 局部恢复原始笔触可用 Krita 原生选区复制与粘贴，在同画布坐标将本件的指定局部取样到目标绘画层：
 
