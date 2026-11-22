@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { appendFile, mkdtemp, mkdir, readFile, readdir, rm, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
@@ -165,22 +165,33 @@ test('缺 Rust 时隔离临时安装，校验官方文件，成功失败均清�
   const before = {...env}, bytes = Buffer.from('installer-fixture'), checksum = createHash('sha256').update(bytes).digest('hex');
   for (const mode of ['success', 'install-failure', 'build-failure', 'checksum-failure']) {
     let downloads = 0, installed = false, used = false; const messages: string[] = [];
+    const log = mode === 'install-failure' ? join(root, 'build.log') : undefined;
+    if (log) await writeFile(log, 'error: unrelated earlier run\n');
     const result = withRust(env, async tc => {
       used = true; assert.equal(installed, true); assert.ok(tc.cargo.startsWith(root));
       assert.ok(tc.env.CARGO_HOME!.startsWith(root)); assert.ok(tc.env.RUSTUP_HOME!.startsWith(root));
       if (mode === 'build-failure') throw new Error('compile failed'); return 'ok';
-    }, message => messages.push(message), {temporaryDirectory: root,
+    }, message => messages.push(message), {temporaryDirectory: root, log,
       download: async url => { downloads++; assert.ok(url.startsWith('https://static.rust-lang.org/rustup/dist/'));
         return url.endsWith('.sha256') ? Buffer.from(mode === 'checksum-failure' ? 'bad checksum' : checksum) : bytes; },
       run: async (command, args, options) => {
         if (command === 'cargo') throw new Error('ENOENT');
         if (command.includes('rustup-init')) {
           assert.ok(args.includes('--no-modify-path')); assert.ok(args.includes(rustVersion)); assert.ok(options.env.CARGO_HOME!.startsWith(root));
-          if (mode === 'install-failure') throw new Error('download failed'); installed = true;
+          assert.equal(options.env.RUSTUP_TERM_PROGRESS_WHEN, 'always');
+          if (log) {
+            await appendFile(log, 'error: component checksum mismatch\n');
+            throw new Error('installer exited');
+          }
+          installed = true;
         } return `cargo ${rustVersion} (fixture)`;
       }});
     if (mode === 'success') assert.equal(await result, 'ok');
-    else await assert.rejects(result, mode === 'checksum-failure' ? /SHA-256/ : mode === 'install-failure' ? /临时 Rust 安装失败/ : /compile failed/);
+    else if (log) {
+      await assert.rejects(result, (error: Error) => error.message.split('\n').at(-1) === 'error: component checksum mismatch'
+        && !error.message.includes('unrelated earlier run'));
+      await unlink(log);
+    } else await assert.rejects(result, mode === 'checksum-failure' ? /SHA-256/ : /compile failed/);
     assert.equal(used, ['success', 'build-failure'].includes(mode)); assert.equal(downloads, 2);
     assert.match(messages[0], /当前环境不可用.*临时目录/); assert.deepEqual(await readdir(root), []); assert.deepEqual(env, before);
   }
@@ -206,19 +217,17 @@ test('Linux、Windows、macOS 均使用传入的系统临时根和对应官方�
     assert.deepEqual(await readdir(root), []);
   }
 });
-test('长命令按行汇报进度，节流并统计编译数；静默时提示但不中止', async () => {
-  const lines: string[] = [], warnings: number[] = [];
-  const script = "process.stderr.write('Receiving 10%\\rReceiving 50%\\r'); setTimeout(() => console.log('   Compiling a v1\\n   Compiling b v1'), 400)";
-  assert.equal(await runCommand(process.execPath, ['-e', script], {env: process.env, line: text => lines.push(text),
-    quiet: {after: 200, notify: silent => warnings.push(silent)}}), 'Compiling a v1\n   Compiling b v1');
-  assert.deepEqual(lines, ['Receiving 10%', 'Receiving 50%', 'Compiling a v1', 'Compiling b v1']);
-  assert.ok(warnings.length >= 1 && warnings[0] >= 200, 'silence between the two bursts is reported');
+test('长命令转发实际输出，清理终端控制符并节流编译进度', async () => {
+  const lines: string[] = [];
+  const script = "process.stderr.write('\\x1b[2Krustc 10 MiB / 70 MiB\\r\\x1b[2Krustc 20 MiB / 70 MiB\\r'); "
+    + "setTimeout(() => console.log('   Compiling a v1\\n   Compiling b v1'), 100)";
+  assert.equal(await runCommand(process.execPath, ['-e', script], {env: process.env, line: text => lines.push(text)}),
+    'Compiling a v1\n   Compiling b v1');
+  assert.deepEqual(lines, ['rustc 10 MiB / 70 MiB', 'rustc 20 MiB / 70 MiB', 'Compiling a v1', 'Compiling b v1']);
   let clock = 0; const messages: string[] = [];
-  const watch = watchOutput('编译 Codex 补丁', message => messages.push(message), '/logs/build.log', {every: 1000, now: () => clock});
-  watch.line!('Updating crates.io index'); clock = 500; watch.line!('Compiling a v1'); clock = 1500; watch.line!('Compiling b v1');
+  const line = watchOutput('编译 Codex 补丁', message => messages.push(message), {every: 1000, now: () => clock});
+  line('Updating crates.io index'); clock = 500; line('Compiling a v1'); clock = 1500; line('Compiling b v1');
   assert.deepEqual(messages, ['编译 Codex 补丁：Updating crates.io index（已用 0 秒）', '编译 Codex 补丁：已编译 2 个 crate，最近 Compiling b v1（已用 2 秒）']);
-  watch.quiet!.notify(180_000);
-  assert.match(messages[2], /已 3 分 0 秒没有新输出.*网络受阻.*HTTPS_PROXY.*补丁构建会复用.*\/logs\/build\.log/);
 });
 test('缺 C/C++ 工具链时先检查后报清楚的安装提示，不克隆；构建日志里的缺工具也同样提示；装好后继续即构建', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
