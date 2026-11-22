@@ -16,43 +16,32 @@ import { baseline, grid, pts, scale } from './axis-fixtures.ts';
 type Hooks = Parameters<typeof runAxisGroups>[1];
 
 test('split brows keep their draw positions and share the same mirrored and pitch motion', async t => {
-  const { section } = await fixture(t);
-  const neutral = join(section, 'neutral');
-  await beginStep(neutral, 'pending');
+  const { section: neutral } = await fixture(t);
   const doc = baseline();
-  const paint = (name: string, partId: string, bbox: number[]) => {
-    const node = grid('face/' + name, bbox);
+  const paint = (side: 'left' | 'right', uuid: string, x: number) => {
+    const part = `face/brow_${side}`, node = grid(`${part}::${uuid}`, [x, 20, x + 10, 30]);
     node.keyforms['-30'] = pts(node);
-    return { ...node, group: 'face', uuid: name, partId: 'character:face/' + partId, textureBounds: [bbox[0], bbox[1], 10, 10] };
+    return { ...node, uuid, partId: `character:${part}`, textureBounds: [x, 20, 10, 10] };
   };
-  const fragments = [
-    paint('brow_left::a', 'brow_left', [20, 20, 30, 30]),
-    paint('brow_right::b', 'brow_right', [70, 20, 80, 30]),
-    paint('brow_right::c', 'brow_right', [72, 21, 82, 31]),
-    paint('brow_left::d', 'brow_left', [23, 21, 33, 31]),
-  ];
-  doc.parts = [doc.parts[0], ...fragments.slice(0, 2), doc.parts[1], ...fragments.slice(2)];
-  doc.parts[0].uuid = 'base';
-  doc.parts[3].uuid = 'separator';
+  const [base, separator] = doc.parts.slice(0, 2).map(part => ({ ...part, uuid: part.id }));
+  doc.parts = [base, paint('left', 'a', 20), paint('right', 'b', 70), separator, paint('right', 'c', 72), paint('left', 'd', 23)];
   await writeFile(join(neutral, 'deformers.json'), JSON.stringify(doc));
   await writeFile(join(neutral, 'source.json'), '{}');
   const left = partWarpId('character:face/brow_left'), right = partWarpId('character:face/brow_right');
-  for (const axis of axisGroups) {
-    const directory = join(section, axis);
+  for (const [axis, x, y] of [['left', scale.x[0], 0], ['up', 0, scale.y[1]], ['down', 0, scale.y[0]]] as const) {
+    const directory = join(neutral, axis), mirrored = axis === 'left';
     await seedAxis(directory, neutral, axis, scale);
     const value = JSON.parse(await readFile(join(directory, `face-${axis}.json`), 'utf8'));
-    const seeded = { ...doc, deformers: value.deformers, parts: axis === 'left' ? value.parts.toReversed() : value.parts };
+    const seeded = { ...doc, deformers: value.deformers, parts: mirrored ? value.parts.toReversed() : value.parts };
     assert.deepEqual(seeded.parts.map(p => p.id), doc.parts.map(p => p.id));
     assert.equal(seeded.deformers.length, 2);
     for (const p of seeded.parts.filter(p => p.partId)) assert.equal(p.parent, partWarpId(p.partId));
-    const y = axis === 'up' ? scale.y[1] : scale.y[0];
-    const edited = editNineAxis(seeded, [{ action: 'transform', id: left, x: axis === 'left' ? -30 : 0,
-      y: axis === 'left' ? 0 : y, translate: [4, 0] }]);
-    const posed = axis === 'left' ? mirrorDocument(edited, doc.axis!, 'keyforms') : edited;
-    for (const p of posed.parts.filter(p => p.parent === (axis === 'left' ? right : left))) {
+    const edited = editNineAxis(seeded, [{ action: 'transform', id: left, x, y, translate: [4, 0] }]);
+    const posed = mirrored ? mirrorDocument(edited, doc.axis!, 'keyforms') : edited;
+    for (const p of posed.parts.filter(p => p.parent === (mirrored ? right : left))) {
       const rest = evaluatePoints(posed, p, 0, 0);
-      const moved = evaluatePoints(posed, p, axis === 'left' ? 30 : 0, axis === 'left' ? 0 : y);
-      const shift = axis === 'left' ? -4 : 4;
+      const moved = evaluatePoints(posed, p, mirrored ? -x : x, y);
+      const shift = mirrored ? -4 : 4;
       assert.ok(moved.every((v, i) => Math.abs(v - rest[i] - (i % 2 ? 0 : shift)) < 0.001),
         `${axis}/${p.id}: ${Array.from(moved, (v, i) => v - rest[i])}`);
     }
