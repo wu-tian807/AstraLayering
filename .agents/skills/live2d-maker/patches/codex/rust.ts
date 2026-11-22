@@ -33,7 +33,7 @@ export async function withRust<T>(env: NodeJS.ProcessEnv, action: (toolchain: Ru
     if (services.report) services.report({ tool: 'rust', state, message, bytes });
     else progress(message);
   };
-  const root = await mkdtemp(join(services.temporaryDirectory ?? tmpdir(), 'layering-rust-'));
+  const root = await mkdtemp(join(services.temporaryDirectory ?? tmpdir(), 'rs-'));
   let installed = false;
   try {
     emit('running', `Codex 补丁需要 Rust ${rustVersion}，当前环境不可用，正在临时目录安装。`);

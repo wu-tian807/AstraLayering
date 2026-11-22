@@ -49,17 +49,13 @@ async function missingToolchain(run: Command, env: NodeJS.ProcessEnv, platform: 
   return missing.length ? `未找到 ${missing.join('、')}` : undefined;
 }
 // Reads only what this build appended, so an earlier failure in the same log is not reported again.
-async function missingToolInLog(log: string, start: number): Promise<string | undefined> {
+async function buildLogTail(log: string, start: number): Promise<string> {
   const added = (await readFile(log).catch(() => Buffer.alloc(0))).subarray(start);
-  return added.subarray(-256 * 1024).toString('utf8').match(missingToolText)?.[0];
+  return added.subarray(-256 * 1024).toString('utf8');
 }
 const platforms: Record<string, string> = { 'linux-x64': 'x86_64-unknown-linux-musl', 'linux-arm64': 'aarch64-unknown-linux-musl',
   'darwin-x64': 'x86_64-apple-darwin', 'darwin-arm64': 'aarch64-apple-darwin', 'win32-x64': 'x86_64-pc-windows-msvc', 'win32-arm64': 'aarch64-pc-windows-msvc' };
 const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
-const compilers: Partial<Record<NodeJS.Platform, string>> = {
-  win32: 'Windows 需要安装 Visual Studio Build Tools 并勾选「使用 C++ 的桌面开发」（MSVC 与 Windows SDK），装好后续跑；路径过长时可把项目放到更短的目录',
-  darwin: 'macOS 需要 Xcode 命令行工具（xcode-select --install）',
-  linux: 'Linux 需要 gcc 或 clang 等 C/C++ 编译工具' };
 // The build must not depend on the user's git setup. These settings decide what lands on disk, so they are
 // pinned for our git commands only (GIT_CONFIG_COUNT, git 2.31+; no config file is written): LF as committed,
 // which the patch and the sources compiled into the binary expect, whatever autocrlf, eol or a global
@@ -160,7 +156,8 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     const companionPath = services.companion ? services.companion() : await companion(version);
     if (!waiting) options.building?.();
     building(`正在构建 Codex ${version} 补丁，准备源码。日志：${log}`);
-    const work = await mkdtemp(join(tmpdir(), 'astra-codex-'));
+    // Cargo checks out dependencies deeply inside this directory on Windows.
+    const work = await mkdtemp(join(tmpdir(), 'al-'));
     workspace = work;
     const source = join(work, 'source'), target = join(work, 'target');
     const exec = (command: string, args: string[], cwd = work, watch = {}) =>
@@ -182,8 +179,12 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
         '--jobs', String(jobs), '--target-dir', target], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
         ...watchOutput('编译 Codex 补丁', building, log, { every: 30_000 }) })
         .catch(async error => {
-          const found = await missingToolInLog(log, start);
-          throw found ? new MissingToolchainError(`构建日志中：${found}`, platform, log) : new Error(`编译失败；${compilers[platform] ?? '需要平台 C/C++ 编译工具'}。`, { cause: error });
+          const output = await buildLogTail(log, start), found = output.match(missingToolText)?.[0];
+          if (found) throw new MissingToolchainError(`构建日志中：${found}`, platform, log);
+          const reason = platform === 'win32' && /\b(?:path too long|file ?name too long|filename or extension is too long|os error 206|ENAMETOOLONG)\b/i.test(output)
+            ? '构建依赖的路径超出 Windows 长度限制。请为本次运行设置更短的临时目录（TEMP/TMP）后继续。'
+            : '编译失败，请查看构建日志。';
+          throw new Error(reason, { cause: error });
         });
     }, progress, { log, temporaryDirectory: work, report: options.report });
     if (compromised) throw compromised;

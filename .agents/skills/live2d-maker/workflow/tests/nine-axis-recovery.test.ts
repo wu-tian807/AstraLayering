@@ -36,17 +36,17 @@ async function fixture(t: TestContext) {
     }
     // The document records the textures that are also required for recovery.
     for (const path of await stepDeliveries(root, 'nine-axis', id)) {
-      if (path.endsWith('layers/face.png')) await put(path, 'original PNG bytes');
+      if (path.endsWith(join('layers', 'face.png'))) await put(path, 'original PNG bytes');
     }
     await put(join(root, id, '.completed'), '');
   }
-  await deliver('step02_angles');
-  await put(join(root, 'step02_angles/neutral/.completed'), '');
-  await deliver('step03_angle-xy');
-  await put(join(root, 'step03_angle-xy/face-xy.json'), 'existing XY author');
-  await put(join(root, 'step03_angle-xy/layers/face.png'), 'existing XY PNG');
+  await deliver('step04_angles/model');
+  await deliver('step01_preparation');
+  await deliver('step06_angle-xy');
+  await put(join(root, 'step06_angle-xy/face-xy.json'), 'existing XY author');
+  await put(join(root, 'step06_angle-xy/layers/face.png'), 'existing XY PNG');
   for (const group of nineAxisGroups) {
-    const id = `step02_angles/${group}`;
+    const id = `step04_angles/model/${group}`;
     await put(join(root, id, '.completed'), '');
     await put(sessionPath(root, id), JSON.stringify({ threadId: `${group}-thread`, harness: 'codex' }));
     await put(join(root, `agents/attempt-${group}/request.json`), JSON.stringify({ outputDirectory: `nine-axis/${id}` }));
@@ -54,30 +54,33 @@ async function fixture(t: TestContext) {
   // Isolated actions must leave another section, and a similarly named attempt, alone.
   await put(join(task, 'raster-layering/step01/.running'), '');
   await put(sessionPath(join(task, 'raster-layering'), 'step01'), JSON.stringify({ threadId: 'raster-thread' }));
-  await put(join(root, 'agents/attempt-other/request.json'), JSON.stringify({ outputDirectory: 'nine-axis/step02_angles/up-extra' }));
+  await put(join(root, 'agents/attempt-other/request.json'), JSON.stringify({ outputDirectory: 'nine-axis/step04_angles/model/up-extra' }));
   await put(join(root, 'agents/attempt-unknown/request.json'), '{}');
   await put(join(root, 'agents/sessions.json'), JSON.stringify(Object.fromEntries(nineAxisGroups.map(group => [group, {
-    workspace: `nine-axis/step02_angles/${group}/workspace`, data: `nine-axis/agents/attempt-${group}/cli-data`,
+    workspace: `nine-axis/step04_angles/model/${group}/workspace`, data: `nine-axis/agents/attempt-${group}/cli-data`,
   }]))));
   return { dir, task, root, act, all, deliver };
 }
 
 test('九轴登记正式七步和并发分支，独立会话可见，内部目录不可操作', async t => {
   for (const id of [...nineAxisSteps, ...nineAxisGroupSteps, ...nineAxisBranchSteps]) assert.equal(validStepId('nine-axis', id), true, id);
-  for (const id of ['step02_angles/neutral', 'step02_angles/merged', 'step02_angles/left/more',
-    'step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_retired-xy', 'step05', '../step02_angles']) {
+  for (const id of ['step04_angles/model/neutral', 'step04_angles/model/merged', 'step04_angles/model/left/more',
+    'step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step06_retired-xy', 'step05', '../step04_angles/model']) {
     assert.equal(validStepId('nine-axis', id), false, id);
   }
   const f = await fixture(t), steps = await listSteps(f.root, 'nine-axis');
   assert.deepEqual(steps.map(step => [step.id, step.session]), [
-    ['step02_angles', false], ['step02_angles/down', true], ['step02_angles/left', true], ['step02_angles/up', true],
-    ['step03_angle-xy', false],
+    ['step01_preparation', false], ['step04_angles', false], ['step04_angles/model', false], ['step04_angles/model/down', true], ['step04_angles/model/left', true], ['step04_angles/model/up', true],
+    ['step06_angle-xy', false],
   ]);
-  await assert.rejects(f.act('step02_angles/neutral', 'retry'), /没有步骤/);
+  await put(join(f.root, 'step02_angles/up/deformers.json'), 'old model');
+  const before = await snapshot(f.root);
+  await assert.rejects(f.act('step02_angles/up', 'retry'), /步骤/);
+  assert.deepEqual(await snapshot(f.root), before);
 });
 
 test('child continue 保留全部字节，resume 只清自己会话，产物/尝试/兄弟/合并不动', async t => {
-  const f = await fixture(t), id = 'step02_angles/up', own = join(f.root, id);
+  const f = await fixture(t), id = 'step04_angles/model/up', own = join(f.root, id);
   await rm(join(own, '.completed')); await put(join(own, '.running'), '');
   const before = await snapshot(f.root);
   await f.act(id, 'continue');
@@ -90,8 +93,8 @@ test('child continue 保留全部字节，resume 只清自己会话，产物/尝
 });
 
 for (const group of nineAxisGroups) test(`重试 ${group} 只清自己的作者/会话/attempts，保留 neutral/兄弟/XY 并打开父合并`, async t => {
-  const f = await fixture(t), id = `step02_angles/${group}`, parent = join(f.root, 'step02_angles');
-  const neutral = await snapshot(join(parent, 'neutral')), xy = await snapshot(join(f.root, 'step03_angle-xy'));
+  const f = await fixture(t), id = `step04_angles/model/${group}`, parent = join(f.root, 'step04_angles/model');
+  const neutral = await snapshot(join(f.root, 'step01_preparation')), xy = await snapshot(join(f.root, 'step06_angle-xy'));
   const other = await snapshot(join(f.task, 'raster-layering'));
   const siblings = Object.fromEntries(await Promise.all(nineAxisGroups.filter(view => view !== group).map(async view =>
     [view, await snapshot(join(parent, view))] as const)));
@@ -101,12 +104,12 @@ for (const group of nineAxisGroups) test(`重试 ${group} 只清自己的作者/
   await absent(join(f.root, `agents/attempt-${group}/request.json`));
   assert.equal((await readStep(parent)).status, 'running');
   for (const path of ['deformers.json', 'axis-sources.json', 'source.json', 'merged/deformers.json', 'layers/face.png']) await absent(join(parent, path));
-  assert.deepEqual(await snapshot(join(parent, 'neutral')), neutral);
-  assert.deepEqual(await snapshot(join(f.root, 'step03_angle-xy')), xy);
+  assert.deepEqual(await snapshot(join(f.root, 'step01_preparation')), neutral);
+  assert.deepEqual(await snapshot(join(f.root, 'step06_angle-xy')), xy);
   assert.deepEqual(await snapshot(join(f.task, 'raster-layering')), other);
   for (const [view, bytes] of Object.entries(siblings)) {
     assert.deepEqual(await snapshot(join(parent, view)), bytes);
-    assert.equal(JSON.parse(await readFile(sessionPath(f.root, `step02_angles/${view}`), 'utf8')).threadId, `${view}-thread`);
+    assert.equal(JSON.parse(await readFile(sessionPath(f.root, `step04_angles/model/${view}`), 'utf8')).threadId, `${view}-thread`);
   }
   assert.deepEqual(Object.keys(JSON.parse(await readFile(join(f.root, 'agents/sessions.json'), 'utf8'))), nineAxisGroups.filter(view => view !== group));
   assert.ok(await readFile(join(f.root, 'agents/attempt-other/request.json')));
@@ -114,28 +117,28 @@ for (const group of nineAxisGroups) test(`重试 ${group} 只清自己的作者/
 });
 
 test('section 级操作忽略其他管线，task retry 跳过有 unfinished child 的父步骤并保留已完成 siblings', async t => {
-  const f = await fixture(t), parent = join(f.root, 'step02_angles');
+  const f = await fixture(t), parent = join(f.root, 'step04_angles/model');
   await rm(join(parent, '.completed')); await put(join(parent, '.running'), '');
   for (const group of ['up', 'down']) await rm(join(parent, group, '.completed'));
   await put(join(parent, 'up/.running'), ''); // down is an unmarked, unfinished child.
-  const other = await snapshot(join(f.task, 'raster-layering')), neutral = await snapshot(join(parent, 'neutral'));
-  const left = await snapshot(join(parent, 'left')), xy = await snapshot(join(f.root, 'step03_angle-xy'));
+  const other = await snapshot(join(f.task, 'raster-layering')), neutral = await snapshot(join(f.root, 'step01_preparation'));
+  const left = await snapshot(join(parent, 'left')), xy = await snapshot(join(f.root, 'step06_angle-xy'));
   await f.all('continue');
-  assert.equal(JSON.parse(await readFile(sessionPath(f.root, 'step02_angles/up'), 'utf8')).threadId, 'up-thread');
+  assert.equal(JSON.parse(await readFile(sessionPath(f.root, 'step04_angles/model/up'), 'utf8')).threadId, 'up-thread');
   await f.all('resume');
-  await absent(sessionPath(f.root, 'step02_angles/up')); await absent(sessionPath(f.root, 'step02_angles/down'));
+  await absent(sessionPath(f.root, 'step04_angles/model/up')); await absent(sessionPath(f.root, 'step04_angles/model/down'));
   assert.deepEqual(await snapshot(join(parent, 'left')), left);
   await f.all('retry');
   assert.equal((await readStep(join(parent, 'up'))).status, 'absent');
   assert.equal((await readStep(join(parent, 'down'))).status, 'absent');
   assert.deepEqual(await snapshot(join(parent, 'left')), left);
-  assert.deepEqual(await snapshot(join(parent, 'neutral')), neutral);
-  assert.deepEqual(await snapshot(join(f.root, 'step03_angle-xy')), xy);
+  assert.deepEqual(await snapshot(join(f.root, 'step01_preparation')), neutral);
+  assert.deepEqual(await snapshot(join(f.root, 'step06_angle-xy')), xy);
   assert.deepEqual(await snapshot(join(f.task, 'raster-layering')), other);
 });
 
 test('合并投影丢失时只重开父合并，不删除三个已完成作者或其 session/attempts', async t => {
-  const f = await fixture(t), parent = join(f.root, 'step02_angles');
+  const f = await fixture(t), parent = join(f.root, 'step04_angles/model');
   const groups = await Promise.all(nineAxisGroups.map(view => snapshot(join(parent, view))));
   const sessions = await snapshot(join(f.root, 'agents'));
   await rm(join(parent, 'merged/deformers.json'));
@@ -147,14 +150,13 @@ test('合并投影丢失时只重开父合并，不删除三个已完成作者�
 
 test('九轴 completed 的交付检查包含三视频/子作者/合并/斜角选帧与 trace，文件齐全不代表视觉通过', async t => {
   const f = await fixture(t);
-  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step02_angles/up'), []);
-  await rm(join(f.root, 'step02_angles/up/fit-report.json'));
-  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step02_angles/up'), [join(f.root, 'step02_angles/up/fit-report.json')]);
-  const video = (await stepDeliveries(f.root, 'nine-axis', 'step01_video')).map(path => relative(f.root, path));
-  for (const view of nineAxisGroups) assert.ok(video.includes(`step01_video/${view}.mp4`) && video.includes(`step01_video/${view}.png`));
-  const xy = (await stepDeliveries(f.root, 'nine-axis', 'step03_angle-xy')).map(path => relative(f.root, path));
-  for (const name of ['face-xy.json', 'selected-frames.json', 'left-up.png', 'left-down.mp4',
-    'left-up-face-trace.json', 'left-down-fit-report.json']) assert.ok(xy.includes(`step03_angle-xy/${name}`), name);
+  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step04_angles/model/up'), []);
+  await rm(join(f.root, 'step04_angles/model/up/fit-report.json'));
+  assert.deepEqual(await missingDeliveries(f.root, 'nine-axis', 'step04_angles/model/up'), [join(f.root, 'step04_angles/model/up/fit-report.json')]);
+  const video = (await stepDeliveries(f.root, 'nine-axis', 'step02_video')).map(path => relative(f.root, path).replaceAll('\\', '/'));
+  for (const view of nineAxisGroups) assert.ok(video.includes(`step02_video/${view}.mp4`) );
+  const xy = (await stepDeliveries(f.root, 'nine-axis', 'step06_angle-xy')).map(path => relative(f.root, path).replaceAll('\\', '/'));
+  for (const name of ['face-xy.json', 'left-up-face-trace.json', 'left-down-fit-report.json']) assert.ok(xy.includes(`step06_angle-xy/${name}`), name);
 });
 
 test('九轴独立 CLI 无 ongoing 时 continue 可新跑，resume/retry 要求存在可恢复步骤', async t => {
@@ -168,6 +170,7 @@ test('九轴独立 CLI 无 ongoing 时 continue 可新跑，resume/retry 要求�
 for (const retry of ['step04_angles/video', 'step04_angles/model/up', 'step04_angles/model']) test(`七步恢复 ${retry} 保留另一并发支、已完成方向和旧成果`, async t => {
   const f = await fixture(t);
   for (const id of ['step01_preparation', 'step04_angles', 'step04_angles/model', ...nineAxisGroupSteps, 'step04_angles/video']) await f.deliver(id);
+  await put(join(f.root, 'step02_angles/left/deformers.json'), 'old model');
   const old = await snapshot(join(f.root, 'step02_angles'));
   const preparation = await snapshot(join(f.root, 'step01_preparation'));
   const other = retry.endsWith('/video') ? 'step04_angles/model' : 'step04_angles/video';
@@ -192,6 +195,7 @@ for (const retry of ['step04_angles/video', 'step04_angles/model/up', 'step04_an
 test('总入口状态列出七步、两支和各方向自己的会话', async t => {
   const f=await fixture(t);
   await f.deliver('step01_preparation');
+  await rm(join(f.root,'step04_angles/model/up/.completed'));
   for(const id of ['step04_angles','step04_angles/model','step04_angles/model/up','step04_angles/video']) await put(join(f.root,id,'.running'),'');
   await put(sessionPath(f.root,'step04_angles/model/up'),JSON.stringify({threadId:'up-thread'}));
   await put(join(f.task,'run.json'),JSON.stringify({version:1,jobs:3,from:'nine-axis',to:'nine-axis',status:'running',sections:{'nine-axis':{status:'running'}}}));

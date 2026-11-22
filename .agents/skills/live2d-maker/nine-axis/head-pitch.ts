@@ -75,7 +75,7 @@ export function checkHeadPitchDelivery(doc: HeadNineAxis, direction: HeadPitchDi
 }
 
 export async function seedHeadPitch(directory: string, upstreamDirectory: string, root: string, direction: HeadPitchDirection, scale = angleScale()) {
-  const { doc } = await readUpstream(upstreamDirectory), document = await modelDocument(root, upstreamDirectory, doc);
+  const { doc } = await readUpstream(upstreamDirectory), document = modelDocument(root, doc);
   if (!document) throw Error('头部上下缺少上游 KRA');
   const initial = initializeHeadPitch(doc, headPitchStage(direction), scale);
   await mkdir(directory, { recursive: true });

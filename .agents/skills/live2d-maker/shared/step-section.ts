@@ -49,8 +49,6 @@ export type SectionRun = {
   // Read-only checks for the plan and for kept deliveries.
   check?(plan: SectionRunPlan): Promise<void>;
   keep?(step: ChainStep, plan: SectionRunPlan): Promise<void>;
-  // Upgrade old step records only for selected steps, after checking the prefix.
-  migrate?(step: ChainStep): Promise<boolean | void>;
   // Right before steps run; not in a dry run.
   prepare?(plan: SectionRunPlan): Promise<void>;
   // The work a step still needs, or nothing for a completed step that is kept.
@@ -87,12 +85,6 @@ export async function runSection(run: SectionRun): Promise<SectionRunPlan> {
   }
   await run.check?.(plan);
   for (const step of prefix) await keep(step);
-  if (!run.dryRun && run.migrate) {
-    for (const step of plan.selected) {
-      run.signal?.throwIfAborted();
-      if (await run.migrate(step)) plan.statuses.set(step.id, (await readStep(step.directory)).status);
-    }
-  }
   for (const step of plan.selected) if (plan.statuses.get(step.id) === 'completed') await keep(step);
   async function keep(step: PlannedStep) {
     await requireDeliveries(step, true);
