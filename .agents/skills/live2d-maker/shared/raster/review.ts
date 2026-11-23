@@ -14,7 +14,7 @@ const reports = ['review-01.md', 'repair-01.md', 'review-02.md', 'repair-02.md']
 const maxRounds = reports.length / 2;
 export type ReviewTask = { kind: 'review' | 'repair'; filename: typeof reports[number]; index: number };
 
-async function verdict(directory: string, filename: string, kind: ReviewTask['kind']): Promise<string | undefined> {
+async function verdict(directory: string, filename: string, kind: ReviewTask['kind'], draft = false): Promise<string | undefined> {
   const path = join(directory, filename), info = await fileInfo(path);
   if (!info) return;
   if (!info.isFile() || info.isSymbolicLink()) throw new Error(`报告必须是普通文件：${path}`);
@@ -22,7 +22,8 @@ async function verdict(directory: string, filename: string, kind: ReviewTask['ki
   const value = first?.match(/^结论[：:]\s*(\S+)\s*$/)?.[1];
   const allowed = kind === 'review' ? ['通过', '需要修复', '无法完成检查'] : ['已修复'];
   if (!value || !allowed.includes(value) || !body.join('\n').trim()) {
-    throw new Error(`报告缺少有效结论或正文：${path}`);
+    if (draft) throw new Error(`报告缺少有效结论或正文：${path}`);
+    return;
   }
   return value;
 }
@@ -31,7 +32,7 @@ async function verdict(directory: string, filename: string, kind: ReviewTask['ki
 // in that agent's own turn (runAgent), so a reviewer thread stays unsaved.
 export async function checkReport(directory: string, filename: string, kind: ReviewTask['kind']): Promise<void> {
   if (!await fileInfo(join(directory, filename))) throw new CheckFailure('missing-file', `缺少完整报告：${filename}`, { detail: `报告 ${filename} 未写出` });
-  await asCheck('invalid-output', () => verdict(directory, filename, kind));
+  await asCheck('invalid-output', () => verdict(directory, filename, kind, true));
 }
 
 // Only the consecutive prefix of finalized Markdown reports counts. A repair
@@ -41,9 +42,8 @@ async function reviewProgress(directory: string): Promise<ReviewProgress> {
   for (let round = 1; round <= maxRounds; round++) {
     const index = (round - 1) * 2;
     const review = await verdict(directory, reports[index], 'review');
-    if (!review) return progress;
+    if (!review || review === '无法完成检查') return progress;
     if (review === '通过') return { completedReviews: round, verdict: 'pass' };
-    if (review !== '需要修复') return { completedReviews: round - 1, verdict: 'blocked' };
     const repaired = Boolean(await verdict(directory, reports[index + 1], 'repair'));
     progress = { completedReviews: round, verdict: 'revise', repaired };
     if (!repaired) return progress;
@@ -57,7 +57,7 @@ function reportTask(kind: ReviewTask['kind'], round: number): ReviewTask {
 }
 
 function blockedReview(round: number): never {
-  throw new Error(`检查尚未完成：${reportTask('review', round).filename}。删除该报告后可重新检查。`);
+  throw new Error(`检查尚未完成：${reportTask('review', round).filename}`);
 }
 
 export async function nextReviewTask(directory: string): Promise<ReviewTask | undefined> {
@@ -127,7 +127,7 @@ export async function runReviews(options: ReviewOptions): Promise<void> {
     await rm(join(options.directory, draft), { force: true });
     const result = await options.invoke(prompt, task, () => checkReport(options.directory, draft, task.kind), continuation);
     if (result.status !== 'completed') throw new Error(`本次${task.kind === 'review' ? '检查' : '修复'}未完成：${result.summary}`);
-    const conclusion = await verdict(options.directory, draft, task.kind);
+    const conclusion = await verdict(options.directory, draft, task.kind, true);
     if (!conclusion) throw new Error(`缺少完整报告：${draft}`);
     if (conclusion === '无法完成检查') throw new Error(`检查尚未完成：${result.summary}`);
     await options.validate();
