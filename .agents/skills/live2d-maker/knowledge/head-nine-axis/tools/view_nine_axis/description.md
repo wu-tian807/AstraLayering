@@ -1,6 +1,6 @@
 从当前工程引用的已保存 KRA 按 UUID 读取像素，应用当前累计九轴 JSON，用工作台同一渲染器返回图片。无需自行导出或刷新素材；读取结果按 KRA 内容版本缓存，缺失图层时报错。未保存的 Krita 修改不进入预览。返回 document、revision 和 savedPath。
 
-x/y 为参数角度，默认 0；level 为当前工程的预览层级。crop=[x,y,width,height] 使用原画布坐标，默认工程视框；scale 为每画布像素对应的屏幕像素，范围 0.25..8。可预览范围由运行环境提供，不改变作者数据。
+x/y 为参数角度，默认 0。level 选择预览层级，默认值由当前制作步骤指定。crop=[x,y,width,height] 使用原画布坐标，默认工程视框。scale 为每画布像素对应的屏幕像素，范围 0.25..8。可预览范围由当前制作步骤提供。
 
 only、hidden 指定部件或 Warp；Warp 展开到后代，部件选择不自动包含关联节点。masks 可用青色显示指定蒙版。grid 指定要显示网格的部件或 Warp，另返回 cols、rows、points；points 是变形后的画布坐标，按行排列，索引为 row×(cols+1)+col。有父级时另返回 parent 和 localPoints；edit_nine_axis 接受画布坐标。
 

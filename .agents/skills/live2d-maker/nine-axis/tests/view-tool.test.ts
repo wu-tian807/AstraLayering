@@ -19,12 +19,15 @@ test('a multiply cast shadow keeps KRA opacity, moves with hair and clips agains
   const shade={...part('hair/bangs::shadow','hair',[35,25,55,45],'#808080','hair/turn'),clip:{by:[face.id]},shadow:{casters:[hair.id],receivers:[face.id],blendMode:'multiply' as const,opacity:.5}};
   const textures=new Map<string,string>();
   for(const p of [face,shade,hair]){const file=join(directory,`${textures.size}.png`);await sharp({create:{width:p.textureBounds[2],height:p.textureBounds[3],channels:4,background:p.colour}}).png().toFile(file);textures.set(p.texture,file);}
-  const doc:Built['doc']={version:2,kind:'head-nine-axis',canvas:[100,80],parameters:[{id:'ParamAngleX',keys:[-30,0,30],min:-30,max:30}],levels:[{id:'hair',includes:['face','hair']}],
+  const doc:Built['doc']={version:2,kind:'head-nine-axis',canvas:[100,80],parameters:[{id:'ParamAngleX',keys:[-30,0,30],min:-30,max:30}],levels:[{id:'hair',includes:['face','hair']},{id:'face',includes:['face']}],
     deformers:[{id:'hair/turn',level:'hair',bbox:[0,0,100,80],cols:1,rows:1,keyforms:{'-30':grid(0,0,100,80),0:grid(0,0,100,80),30:grid(0,0,100,80,20)}}],parts:[face,shade,hair]};
   const tool=createNineAxisViewTool(directory,join(directory,'observations'),async()=>({doc,textures})),signal=new AbortController().signal;
-  const render=async(args:object)=>{const r=await tool.execute({crop:[0,0,100,80],...args},signal),info=JSON.parse((r.contentItems[0] as {text:string}).text);return {info,pixels:await sharp(info.savedPath).removeAlpha().raw().toBuffer()};};
+  const render=async(args:object, view=tool)=>{const r=await view.execute({crop:[0,0,100,80],...args},signal),info=JSON.parse((r.contentItems[0] as {text:string}).text);return {info,pixels:await sharp(info.savedPath).removeAlpha().raw().toBuffer()};};
   const pixel=(p:Buffer,x:number,y:number)=>[...p.subarray((y*100+x)*3,(y*100+x)*3+3)];
   const initial=await render({});pixel(initial.pixels,45,37).forEach((v,i)=>assert.ok(Math.abs(v-[150,90,75][i])<=1));
+  const faceView = createNineAxisViewTool(directory, join(directory, 'observations'), async () => ({ doc, textures }), undefined, undefined, 'face');
+  assert.deepEqual(pixel((await render({}, faceView)).pixels, 45, 25), [200, 120, 100]);
+  assert.deepEqual(pixel((await render({ level: 'hair' }, faceView)).pixels, 45, 25), [255, 0, 0]);
   const moved=await render({x:30}),plain=await render({x:30,hidden:[shade.id]});
   assert.deepEqual(pixel(moved.pixels,40,37),[200,120,100]);
   pixel(moved.pixels,63,37).forEach((v,i)=>assert.ok(Math.abs(v-[150,90,75][i])<=1));
