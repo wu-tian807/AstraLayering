@@ -19,10 +19,10 @@ export const canStopTask = (runner: TaskRun['runner'], alive: boolean, locked: b
 
 export async function requestTaskStop(options: Pick<TaskOptions, 'name' | 'dir'>) {
   const directory = directoryFor(options), run = await readRun(directory);
-  if (!run?.runner?.id) throw new Error('当前没有可停止的运行任务');
+  if (!run) throw new Error('缺少总控记录：' + join(directory, 'run.json'));
   const { runnerAlive, lockHeld } = await observeRun(directory, run);
   if (!canStopTask(run.runner, runnerAlive, lockHeld)) throw new Error('当前没有可停止的运行任务');
-  await writeJSON(stopRequestPath(directory), { runnerId: run.runner.id });
+  await writeJSON(stopRequestPath(directory), { runnerId: run.runner!.id });
 }
 
 export function watchTaskStop(directory: string, runnerId: string, controller: AbortController, onError: (error: unknown) => void) {
