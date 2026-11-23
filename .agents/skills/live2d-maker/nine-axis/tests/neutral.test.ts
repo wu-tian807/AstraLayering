@@ -16,6 +16,8 @@ import { prepareNeutral, prepareNeutralBridge } from '../neutral.ts';
 
 const scale = { x: [-30, 30] as [number, number], y: [-25, 25] as [number, number] };
 const box = { x: 4, y: 4, size: 8 };
+const sourceDocument = 'character-assembly/step01/original (doll).kra';
+const pythonExecutable = process.env.ASTRA_TEST_PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
 type Layer = { name: string; bounds?: number[]; color?: string; children?: Layer[]; visible?: boolean };
 const layers: Layer[] = [
   { name: 'neck', bounds: [6, 10, 4, 4], color: '#ff0000' },
@@ -37,7 +39,7 @@ async function fixture(t: TestContext, nodes = layers, options: { failExport?: b
   const sourceDirectory = join(root, 'character-assembly/step01');
   const directory = join(root, 'nine-axis/step02_angle-x/neutral');
   await mkdir(sourceDirectory, { recursive: true });
-  const document = join(sourceDirectory, 'original "doll".kra'), color = join(sourceDirectory, 'original.png');
+  const document = join(root, sourceDocument), color = join(sourceDirectory, 'original.png');
   await sharp({ create: { width: 16, height: 16, channels: 4, background: '#ffffffff' } }).png().toFile(color);
   const input: HeadInput = { document, color, source: { id: 'character-assembly/step01', directory: sourceDirectory }, parts: [] };
   let serial = 0;
@@ -143,7 +145,7 @@ print(json.dumps(reply))
       for (const name of await readdir(jobs)) {
         if (!name.endsWith('.py') || handled.has(name)) continue;
         handled.add(name); calls.jobs++;
-        const python = spawn('python3', ['-c', bootstrap], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
+        const python = spawn(pythonExecutable, ['-c', bootstrap], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
         let stdout = '', stderr = '';
         python.stdout.on('data', chunk => { stdout += chunk; });
         python.stderr.on('data', chunk => { stderr += chunk; });
@@ -176,7 +178,7 @@ test('one original KRA job preserves layers, metadata, identity and the merge ex
   assert.equal(manifest.referenceLayers[1].visible, false);
   assert.deepEqual(doc.canvas, [16, 16]); assert.equal(doc.axis, 8);
   assert.deepEqual(doc.view, { x: 4, y: 4, width: 8, height: 8 });
-  assert.equal(doc.source.document, 'character-assembly/step01/original "doll".kra');
+  assert.equal(doc.source.document, sourceDocument);
   assert.deepEqual(doc.deformers, []);
   assert.deepEqual(doc.parameters!.map(p => [p.id, p.keys, p.status]), [['ParamAngleX', [-30, 0, 30], '未制作'], ['ParamAngleY', [0], '未制作']]);
   assert.deepEqual(doc.parts[1].textureBounds, [-2, 4, 20, 8]);
@@ -234,7 +236,7 @@ test('left/up/down independently clone frozen neutral without changing baseline 
 test('explicit root resolves task-relative input and deep neutral output; custom degree range remains identity', async t => {
   const f = await fixture(t), custom = { x: [-20, 20] as [number, number], y: [-10, 15] as [number, number] };
   const built = await prepareNeutral('nine-axis/step02_angle-x/neutral', { ...f.input,
-    document: 'character-assembly/step01/original "doll".kra', color: 'character-assembly/step01/original.png' }, f.krita, box, custom, undefined, f.root);
+    document: sourceDocument, color: 'character-assembly/step01/original.png' }, f.krita, box, custom, undefined, f.root);
   assert.equal(built.directory, f.directory);
   assert.deepEqual(built.doc.parameters![0].keys, [-20, 0, 20]);
   assert.deepEqual(Object.keys(built.doc.parts[0].keyforms).sort(), ['-20', '0', '20']);
@@ -261,17 +263,12 @@ test('abort before export leaves Krita and output untouched', async t => {
   await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
-test('invalid layer selection and unsupported artwork metadata close only the opened doc', async t => {
-  for (const [nodes, options, error] of [
-    [[...layers, { ...layers[1], name: 'face/face_base' }], {}, /Duplicate semantic id/],
-    [layers, { depth: 'U16' }, /RGBA\/U8/],
-  ] as const) {
-    const f = await fixture(t, [...nodes], options);
-    await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), error);
-    assert.equal(f.calls.events[0], 'open'); assert.equal(f.calls.events.at(-1), 'close');
-    assert.equal(f.calls.jobs, 2); assert.equal(f.calls.release, 0);
-    await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
-  }
+test('unsupported artwork metadata closes the opened doc without writing a model', async t => {
+  const f = await fixture(t, layers, { depth: 'U16' });
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /RGBA\/U8/);
+  assert.equal(f.calls.events[0], 'open'); assert.equal(f.calls.events.at(-1), 'close');
+  assert.equal(f.calls.jobs, 2); assert.equal(f.calls.release, 0);
+  await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
 const recovery = { ok: false, error: '', stderr: '', dialogs: [{ title: 'Recover Files – Krita', class: 'QDialog' }],

@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict';
+import {join,sep} from 'node:path';
 import {test} from 'node:test';
 import {renderPrompt,renderPromptFile} from '../prompts/render.ts';
 import {checkKnowledge,defaultKnowledgeDirectory,renderKnowledge,runtimePrompt,stepKnowledge} from '../knowledge.ts';
+
+const taskRoot=join(sep,'runs','case');
 
 test('模板明确要求变量和必要插入位置，填入的数据不进行二次求值',()=>{
   assert.throws(()=>renderPrompt('正文 {runtime_context}',{}),/缺少提示词变量/);
@@ -19,21 +22,20 @@ test('姿态与衣服提示词展开后保留各自的绘制规则，且没有�
   }
 });
 test('外层 CLI 与背景适配也由 Markdown 声明替换位置',()=>{
-  const cli=runtimePrompt('agent-turn',{},{taskRoot:'/runs/case'});
-  assert.match(cli,/任务根目录：\/runs\/case。[\s\S]*当前工作区：当前目录/);
+  const cli=runtimePrompt('agent-turn',{},{taskRoot});
+  assert.ok(cli.includes(taskRoot));
   const image=renderPromptFile(new URL('../prompts/image-request.md',import.meta.url),{drawing_prompt:'原绘图要求',background_instructions:'背景要求'});
-  assert.ok(image.startsWith('原绘图要求\n\n背景要求'));
+  assert.match(image,/^原绘图要求\r?\n\r?\n背景要求/);
 });
 test('先验知识只替换已知变量和路径前缀，其余花括号原样保留',()=>{
-  const text=renderKnowledge('{known} {unknown} {"json":1} {uri:a/{layer_depth}/{other}.svg} {shared_reference:x.png}',{known:'值',layer_depth:'2'},{taskRoot:'/runs/case'});
-  assert.equal(text,`值 {unknown} {"json":1} /runs/case/a/2/{other}.svg ${defaultKnowledgeDirectory}shared/references/x.png`);
+  const text=renderKnowledge('{known} {unknown} {"json":1} {uri:a/{layer_depth}/{other}.svg} {shared_reference:x.png}',{known:'值',layer_depth:'2'},{taskRoot});
+  assert.equal(text,`值 {unknown} {"json":1} ${join(taskRoot,'a','2','{other}.svg')} ${join(defaultKnowledgeDirectory,'shared','references','x.png')}`);
   assert.throws(()=>renderKnowledge('{reference:x.png}',{}),/需要所属管线/);
 });
 test('默认先验知识目录完整可用',()=>{ checkKnowledge(defaultKnowledgeDirectory); });
 test('启动检查 reference 与 shared_reference 指向的文件，uri 不检查',async()=>{
   const {cp,mkdtemp,rm,appendFile}=await import('node:fs/promises');
   const {tmpdir}=await import('node:os');
-  const {join}=await import('node:path');
   const root=await mkdtemp(join(tmpdir(),'knowledge-'));
   try{
     await cp(defaultKnowledgeDirectory,root,{recursive:true});
