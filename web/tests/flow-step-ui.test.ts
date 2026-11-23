@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { flowStepHeading, flowStepList } from '../flow-step-ui.js';
-import { sectionSteps, previousNineAxisSectionSteps, statusLabel, type ProgressStep } from '../progress.js';
+import { sectionSteps, statusLabel, type ProgressStep } from '../progress.js';
 
 const context = {
   index: 6, esc: (value: unknown) => String(value),
@@ -11,7 +11,7 @@ const context = {
 const flatten = (steps: ProgressStep[]): ProgressStep[] => steps.flatMap(step => [step, ...flatten(step.children)]);
 
 test('pending overview lists every configured stage and child before any products exist', () => {
-  for (const { index, steps } of [{ index: 6, steps: sectionSteps[6] }, { index: 6, steps: previousNineAxisSectionSteps }, { index: 1, steps: sectionSteps[1] }]) {
+  for (const { index, steps } of [{ index: 6, steps: sectionSteps[6] }, { index: 1, steps: sectionSteps[1] }]) {
     const before = JSON.stringify(steps), html = flowStepList(steps, { ...context, index });
     for (const step of flatten(steps)) {
       assert.equal(html.split(`data-step="${index}:${step.id}"`).length - 1, 1, step.id);

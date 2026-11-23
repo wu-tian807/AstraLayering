@@ -16,7 +16,7 @@ import type { VideoApi } from '../shared/codex/environment.ts';
 // the front once; pitch and corners reuse that registration without recropping.
 export const profileAngle = 90, turnSeconds = '5';
 const background = 128, margin = 0.06, neckFaces = 0.5;
-const terminal = new Set(['completed', 'succeeded', 'failed', 'cancelled', 'expired']);
+const terminal = new Set(['completed','succeeded','failed','cancelled','expired']);
 
 export type TurnInput = { color: string; document?: string; source: ChainStep; parts: string[] };
 export type Box = { x: number; y: number; size: number };
@@ -113,28 +113,18 @@ async function call(api: VideoApi, method: string, path: string, signal: AbortSi
 }
 
 export type VideoResult = { id: string; status: Record<string, unknown>; bytes: Buffer };
-export type VideoJob = { version: 1; requestHash: string } & (
-  { id: string; submittedAt?: string } | { id?: undefined; submittedAt: string }
-);
-export type VideoJobStore = { read: () => Promise<VideoJob | undefined>; write: (job: VideoJob | undefined) => Promise<void> };
+export type VideoJob = { version: 1; id: string; requestHash: string };
+export type VideoJobStore = { read: () => Promise<VideoJob | undefined>; write: (job: VideoJob) => Promise<void> };
 export type VideoGenerationOptions = { signal?: AbortSignal; progress?: (message: string) => void;
   poll?: number; timeout?: number; retryDelay?: number; checkpoint?: VideoJobStore };
-function checkVideoJob(value: unknown): VideoJob {
-  const job = value as Partial<VideoJob> | null | undefined;
-  if (job?.version !== 1 || !/^[a-f0-9]{64}$/.test(job.requestHash ?? '')
-    || (job.id === undefined ? !Number.isFinite(Date.parse(job.submittedAt ?? ''))
-      : typeof job.id !== 'string' || !job.id.trim()))
+function checkVideoJob(value: unknown): VideoJob | undefined {
+  const job = value as Partial<VideoJob> | undefined;
+  const id = job?.id;
+  if (id == null || (typeof id === 'string' && !id.trim())) return;
+  if (job?.version !== 1 || typeof id !== 'string' || !/^[a-f0-9]{64}$/.test(job.requestHash ?? ''))
     throw new Error('生视频任务记录无效，不能自动重新提交');
   return job as VideoJob;
 }
-
-function unconfirmedVideoJob(submittedAt: string, cause?: unknown) {
-  return new Error(`未收到生视频任务 ID（提交时间 ${submittedAt}）。供应商可能已接单，请先核对原任务，避免重复扣费。`, { cause });
-}
-
-// A validation or authorization rejection means the provider did not accept the
-// request. A timeout, gateway error, or unreadable reply leaves that unknown.
-const rejectedSubmissions = new Set([400, 401, 403, 404, 405, 413, 415, 422, 429]);
 // Business inputs are stable; provider adapters own the wire format.
 export async function generateVideo(api: VideoApi, prompt: string, image: Buffer,
   { signal, progress, poll = 10_000, timeout = 30 * 60_000, retryDelay = 1000, checkpoint }: VideoGenerationOptions = {}): Promise<VideoResult> {
@@ -153,32 +143,21 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
   const hashRequest=(body:ReturnType<typeof requestBody>)=>createHash('sha256')
     .update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
   const body=requestBody(), requestHash=hashRequest(body);
-  const saved=await checkpoint?.read(), job=saved===undefined?undefined:checkVideoJob(saved);
-  if (job && job.id === undefined) throw unconfirmedVideoJob(job.submittedAt);
+  const job=checkVideoJob(await checkpoint?.read());
   // Already-submitted jobs can still match the earlier request with a fixed ratio.
   if(job && job.requestHash!==requestHash && (!(volc||router) || job.requestHash!==hashRequest(requestBody(true))))
-    throw new Error('已有生视频任务与当前服务、模型或输入不一致，请用原配置核对该任务');
+    throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
   const query=(id:string)=>retryVideoRead(async()=>
     (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Promise<Record<string,unknown>>,
     '生视频查询',signal!,progress,retryDelay);
   let id: string, status: Record<string,unknown>;
   if(job){
-    id=job.id;
-    progress?.(`续接生视频 ${id}（${api.model}）`);
-    status=await query(id);
+    id=job.id;progress?.(`续接生视频 ${id}（${api.model}）`);status=await query(id);
   }else{
-    const submission = { version: 1 as const, requestHash, submittedAt: new Date().toISOString() };
-    await checkpoint?.write(submission);
-    try {
-      status=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
-      id=String(status?.id??'').trim();
-      if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(status),api)}`);
-    } catch (error) {
-      if (error instanceof VideoHTTPError && rejectedSubmissions.has(error.status)) await checkpoint?.write(undefined);
-      else if (checkpoint) throw unconfirmedVideoJob(submission.submittedAt, error);
-      throw error;
-    }
-    await checkpoint?.write({ ...submission, id });
+    status=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
+    id=String(status?.id??'').trim();
+    if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(status),api)}`);
+    await checkpoint?.write({version:1,id,requestHash});
     progress?.(`已提交生视频 ${id}（${api.model}）`);
   }
   while(!terminal.has(String(status.status))) {
@@ -267,18 +246,18 @@ async function takeVideo(directory: string, video: string, prompt: string, image
   const mp4 = join(directory, `${video}.mp4`);
   const checkpointFile = join(directory, `${video}.job.json`);
   const checkpoint: VideoJobStore = {
-    async read() {
+    read: async () => {
       try { return checkVideoJob(JSON.parse(await readFile(checkpointFile, 'utf8'))); }
       catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
     },
-    write: job => job ? atomic(checkpointFile, JSON.stringify(job, null, 2) + '\n') : rm(checkpointFile, { force: true }),
+    write: job => atomic(checkpointFile, JSON.stringify(job, null, 2) + '\n'),
   };
   const existing = await stat(mp4).catch(error => { if (error.code !== 'ENOENT') throw error; });
   if (existing?.isFile() && existing.size > 0) {
     progress?.(`${video}：沿用本步已产出的视频`);
     const job = await checkpoint.read();
     return { ...previous, path: `${video}.mp4`, bytes: existing.size, first: previous?.first ?? first,
-      prompt: previous?.prompt ?? prompt, ...(previous?.videoId || !job?.id ? {} : { videoId: job.id }) };
+      prompt: previous?.prompt ?? prompt, ...(previous?.videoId ? {} : job ? {videoId:job.id} : {}) };
   }
   await rm(mp4, { force: true });
   const result = await generate(prompt, image, { signal, checkpoint, progress: message => progress?.(`${video}：${message}`) });

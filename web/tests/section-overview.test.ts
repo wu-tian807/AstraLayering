@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
 import { runInNewContext } from 'node:vm';
-import { displayStatus, sectionSteps, previousNineAxisSectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
+import { displayStatus, sectionSteps, shadowInspectionArtifacts, statusLabel, stepArtifacts } from '../progress.js';
 
 const source = await readFile(new URL('../app.js', import.meta.url), 'utf8');
 const renderer = source.slice(source.indexOf('function overviewCard('), source.indexOf('function graph('));
@@ -30,9 +30,9 @@ test('九轴与其他管线共用总览卡片，编号、状态与预览入口�
   assert.match(preview, /stage\.id==='nine-axis'\?headThumbnail\(\)/);
 });
 
-test('新旧九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {
+test('九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {
   const defaults = source.slice(source.indexOf('function defaultStep('), source.indexOf('if (Number.isInteger(requestedStage)'));
-  for (const steps of [sectionSteps[6], previousNineAxisSectionSteps]) {
+  for (const steps of [sectionSteps[6] ]) {
     assert.equal(runInNewContext(defaults + '\ndefaultStep(6);', { sectionSteps: [...sectionSteps.slice(0, 6), steps] }), steps[0].id);
   }
   const focus = source.slice(source.indexOf('function focusPreviewStep('), source.indexOf('function updateViewURL('));

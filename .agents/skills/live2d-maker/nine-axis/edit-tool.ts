@@ -58,7 +58,7 @@ export function createHeadEditTool(directory: string, input: HeadInput, box: Box
       await writeFile(temporary, JSON.stringify(kraReferences(edited)) + '\n'); await rename(temporary, path); text = await readFile(path, 'utf8');
     }
     if (built.doc.parts.length) await writeBuilt(directory, built);
-    return textResult({ revision: hash(text), source: path, axis: doc.axis, ...(neutralDirectory&&built.doc.source?{materials:await kraCatalog(taskRoot,directory,built.doc)}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
+    return textResult({ revision: hash(text), source: path, axis: doc.axis, ...(neutralDirectory&&built.doc.source?{materials:await kraCatalog(taskRoot, built.doc)}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id: n.id, name: n.name, kind: doc.deformers.some(p => p.id === n.id) ? 'warp' : 'part', parent: n.parent ?? null,
       bbox: n.bbox, cols: n.cols, rows: n.rows, keys: Object.keys(n.keyforms), interpolation: n.interpolation ?? 'linear', parameterInterpolation: n.parameterInterpolation,
     })) });

@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createRequire, findPackageJSON } from 'node:module';
-import { copyFile, mkdir, mkdtemp, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -49,17 +49,13 @@ async function missingToolchain(run: Command, env: NodeJS.ProcessEnv, platform: 
   return missing.length ? `未找到 ${missing.join('、')}` : undefined;
 }
 // Reads only what this build appended, so an earlier failure in the same log is not reported again.
-async function missingToolInLog(log: string, start: number): Promise<string | undefined> {
+async function buildLogTail(log: string, start: number): Promise<string> {
   const added = (await readFile(log).catch(() => Buffer.alloc(0))).subarray(start);
-  return added.subarray(-256 * 1024).toString('utf8').match(missingToolText)?.[0];
+  return added.subarray(-256 * 1024).toString('utf8');
 }
 const platforms: Record<string, string> = { 'linux-x64': 'x86_64-unknown-linux-musl', 'linux-arm64': 'aarch64-unknown-linux-musl',
   'darwin-x64': 'x86_64-apple-darwin', 'darwin-arm64': 'aarch64-apple-darwin', 'win32-x64': 'x86_64-pc-windows-msvc', 'win32-arm64': 'aarch64-pc-windows-msvc' };
 const sha256 = (bytes: Uint8Array) => createHash('sha256').update(bytes).digest('hex');
-const compilers: Partial<Record<NodeJS.Platform, string>> = {
-  win32: 'Windows 需要安装 Visual Studio Build Tools 并勾选「使用 C++ 的桌面开发」（MSVC 与 Windows SDK），装好后续跑；路径过长时可把项目放到更短的目录',
-  darwin: 'macOS 需要 Xcode 命令行工具（xcode-select --install）',
-  linux: 'Linux 需要 gcc 或 clang 等 C/C++ 编译工具' };
 // The build must not depend on the user's git setup. These settings decide what lands on disk, so they are
 // pinned for our git commands only (GIT_CONFIG_COUNT, git 2.31+; no config file is written): LF as committed,
 // which the patch and the sources compiled into the binary expect, whatever autocrlf, eol or a global
@@ -123,6 +119,8 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
   const key = sha256(Buffer.concat([Buffer.from(`v2:${version}:${codexCommit}:${process.platform}:${process.arch}:`), bytes])).slice(0, 20);
   const directory = join(options.root ?? join(workflowsDirectory, 'data', 'codex'), `${process.platform}-${process.arch}`);
   const root = join(directory, key);
+  // Keep the same short path across interrupted downloads and Cargo builds.
+  const work = join(tmpdir(), 'al-' + sha256(Buffer.from(resolve(root))).slice(0, 10));
   const binary = process.platform === 'win32' ? 'codex.exe' : 'codex';
   const host = process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host';
   const output = join(root, 'bin'), executable = join(output, binary), receipt = join(root, 'ready.json');
@@ -152,7 +150,6 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
       await delay(250);
     }
   }
-  let workspace: string | undefined;
   const build = async () => {
     await mkdir(root, { recursive: true });
     const missing = await missingToolchain(run, env, platform);
@@ -160,16 +157,21 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     const companionPath = services.companion ? services.companion() : await companion(version);
     if (!waiting) options.building?.();
     building(`正在构建 Codex ${version} 补丁，准备源码。日志：${log}`);
-    const work = await mkdtemp(join(tmpdir(), 'astra-codex-'));
-    workspace = work;
     const source = join(work, 'source'), target = join(work, 'target');
-    const exec = (command: string, args: string[], cwd = work, watch = {}) =>
-      run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, ...watch });
-    const checkout = options.source ? ['--shared', resolve(options.source)]
-      : ['--depth', '1', '--branch', `rust-v${version}`, 'https://github.com/openai/codex.git'];
-    await exec('git', ['clone', '--progress', '--no-checkout', ...checkout, source], work, watchOutput('准备 Codex 源码', building, log));
-    await exec('git', ['checkout', '--progress', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building, log));
-    await exec('git', ['apply', patch], source);
+    await mkdir(source, { recursive: true, mode: 0o700 });
+    const exec = (command: string, args: string[], cwd = work, line?: (text: string) => void) =>
+      run(command, args, { cwd, env: command === 'git' ? gitEnv : env, log, line });
+    const checkSource = (args: string[]) => run('git', args, { cwd: source, env: gitEnv }).then(() => true, () => false);
+    await exec('git', ['init', '--quiet'], source);
+    if (!await checkSource(['cat-file', '-e', `${codexCommit}^{commit}`])) {
+      const upstream = options.source ? [resolve(options.source), codexCommit]
+        : ['https://github.com/openai/codex.git', `refs/tags/rust-v${version}`];
+      await exec('git', ['fetch', '--progress', '--depth', '1', ...upstream], source, watchOutput('准备 Codex 源码', building));
+    }
+    if (!await checkSource(['apply', '--reverse', '--check', patch])) {
+      await exec('git', ['checkout', '--progress', '--force', '--detach', codexCommit], source, watchOutput('检出 Codex 源码', building));
+      await exec('git', ['apply', '--index', patch], source);
+    }
     building('准备 Rust 工具链');
     await (services.rust ?? withRust)({ ...env, CARGO_HOME: join(work, 'cargo') }, async toolchain => {
       building(`编译 Codex ${version} 补丁`);
@@ -180,10 +182,14 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
         : toolchain.env;
       await run(toolchain.cargo, [...toolchain.prefix, 'build', '-p', 'codex-cli', '--bin', 'codex', '--profile', 'dev-small',
         '--jobs', String(jobs), '--target-dir', target], { cwd: join(source, 'codex-rs'), env: buildEnv, log,
-        ...watchOutput('编译 Codex 补丁', building, log, { every: 30_000 }) })
+        line: watchOutput('编译 Codex 补丁', building, { every: 30_000 }) })
         .catch(async error => {
-          const found = await missingToolInLog(log, start);
-          throw found ? new MissingToolchainError(`构建日志中：${found}`, platform, log) : new Error(`编译失败；${compilers[platform] ?? '需要平台 C/C++ 编译工具'}。`, { cause: error });
+          const output = await buildLogTail(log, start), found = output.match(missingToolText)?.[0];
+          if (found) throw new MissingToolchainError(`构建日志中：${found}`, platform, log);
+          const reason = platform === 'win32' && /\b(?:path too long|file ?name too long|filename or extension is too long|os error 206|ENAMETOOLONG)\b/i.test(output)
+            ? '构建依赖的路径超出 Windows 长度限制。请为本次运行设置更短的临时目录（TEMP/TMP）后继续。'
+            : '编译失败，请查看构建日志。';
+          throw new Error(reason, { cause: error });
         });
     }, progress, { log, temporaryDirectory: work, report: options.report });
     if (compromised) throw compromised;
@@ -197,48 +203,35 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     if (capabilities.version !== 1 || capabilities.image_provider_version !== 2 || capabilities.image_compaction_version !== 2 || capabilities.request_compaction_version !== 1
       || capabilities.failed_error_event_version !== 1) throw new Error('新构建未通过补丁能力检查');
     if (compromised) throw compromised;
-    try {
-      await rm(receipt, { force: true });
-      await mkdir(output, { recursive: true });
-      for (const [from, name] of [[compiled, binary], [companionPath, host]]) {
-        const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
-      }
-      if (compromised) throw compromised;
-      await writeFile(receipt + '.tmp', JSON.stringify({ version, binary: sha256(await readFile(executable)), host: sha256(await readFile(join(output, host))) }));
-      if (compromised) throw compromised;
-      await rename(receipt + '.tmp', receipt);
-    } catch (error) {
-      if (!compromised) await Promise.allSettled([
-        rm(output, { recursive: true, force: true, maxRetries: 3 }),
-        rm(receipt + '.tmp', { force: true, maxRetries: 3 }),
-      ]).then(results => {
-        for (const result of results) if (result.status === 'rejected') progress(`清理 Codex 未完成的成品失败：${String(result.reason)}`);
-      });
-      throw error;
+    await rm(receipt, { force: true });
+    await mkdir(output, { recursive: true });
+    for (const [from, name] of [[compiled, binary], [companionPath, host]]) {
+      const staged = join(output, name + '.tmp'); await copyFile(from, staged); await rename(staged, join(output, name));
     }
+    if (compromised) throw compromised;
+    await writeFile(receipt + '.tmp', JSON.stringify({ version, binary: sha256(await readFile(executable)), host: sha256(await readFile(join(output, host))) }));
+    if (compromised) throw compromised;
+    await rename(receipt + '.tmp', receipt);
   };
   try {
     const rebuilding = !await cached();
     if (rebuilding) {
       await build().catch(error => {
         if (error instanceof MissingToolchainError) throw error;
-        throw new Error(`Codex 补丁自动构建失败：${(error as Error).message}\n保留会话和产物，修复依赖后可直接续跑。日志：${log}`, { cause: error });
+        throw new Error(`Codex 补丁自动构建失败：${(error as Error).message}\n续跑会复用构建目录 ${work}\n构建日志 ${log}`, { cause: error });
       });
     }
     if (compromised) throw compromised;
+    await rm(work, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
+      progress(`清理 Codex 构建临时目录失败（${work}）：${String(error)}`);
+    });
     await removePreviousBuilds(directory, key);
     if (rebuilding || waiting) emit('completed', `Codex ${version} 补丁已准备`);
     return executable;
   } catch (error) {
     options.report?.({ tool: 'codex', state: 'failed', message: (error as Error).message.split('\n')[0]! });
     throw error;
-  } finally {
-    try {
-      if (workspace) await rm(workspace, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
-        progress(`清理 Codex 构建临时目录失败（${workspace}）：${String(error)}`);
-      });
-    } finally { await release(); }
-  }
+  } finally { await release(); }
 }
 
 if (import.meta.main) {

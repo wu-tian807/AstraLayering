@@ -6,6 +6,7 @@ import { once } from 'node:events';
 import { finished } from 'node:stream/promises';
 import { Zip, ZipPassThrough, unzipSync } from 'fflate';
 import { sectionIds } from '../shared/paths.ts';
+import { nineAxisSteps } from '../shared/nine-axis.ts';
 import { reportReferences } from '../shared/report-links.js';
 import { toTaskPath } from '../shared/task-paths.ts';
 import { artifactPath, reportPath } from '../shared/part/artifact-facts.ts';
@@ -69,7 +70,8 @@ async function sourceFile(root: string, path: string): Promise<string | undefine
 // (a symlinked runs root); those aliases map onto root.
 export async function exportFiles(root: string, run: TaskRun, aliases: readonly string[] = []): Promise<{ entries: Map<string, Entry>; warnings: string[] }> {
   const entries = new Map<string, Entry>(), files: string[] = [], steps = new Set<string>(), warnings: string[] = [];
-  const nineAxis = !!(await sourceFile(root, 'nine-axis/step12_head-roll/.completed') ?? await sourceFile(root, 'nine-axis/step11_head-angle-xy/.completed') ?? await sourceFile(root, 'nine-axis/step10_head-pitch/.completed') ?? await sourceFile(root, 'nine-axis/step09_head-accessories/.completed') ?? await sourceFile(root, 'nine-axis/step08_hair/.completed') ?? await sourceFile(root, 'nine-axis/step07_jaw-line/.completed') ?? await sourceFile(root, 'nine-axis/step04_jaw-line/.completed'));
+  const nineAxis = !!await sourceFile(root, 'nine-axis/step01_preparation/.completed')
+    && (await Promise.all(nineAxisSteps.slice(6).map(step => sourceFile(root, `nine-axis/${step}/.completed`)))).some(Boolean);
   const selectedSections = [...exportSectionIds, ...nineAxis ? ['nine-axis'] : []];
   const roots = [...new Set(aliases.map(path => resolve(path)))].filter(path => path !== root);
   // Same conversion as toTaskPath, also accepting the aliases; an outside path stays absolute.
@@ -80,6 +82,7 @@ export async function exportFiles(root: string, run: TaskRun, aliases: readonly 
   async function walk(path = '') {
     for (const item of await readdir(join(root, path), { withFileTypes: true })) {
       const child = slash(join(path, item.name));
+      if (path === 'nine-axis' && !(nineAxisSteps as readonly string[]).includes(item.name)) continue;
       if (item.name === '.completed' && item.isFile()) { files.push(child); steps.add(path); }
       else if (!excluded(child) && !item.isSymbolicLink()) {
         if (item.isDirectory() && (path || ['input', ...selectedSections].includes(item.name))) await walk(child);

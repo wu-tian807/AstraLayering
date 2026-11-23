@@ -7,7 +7,7 @@ import { nineAxisProgress } from '../nine-axis-progress.ts';
 import { inventory } from '../files.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps, stepArtifacts } from '../progress.js';
-import { nineAxisSteps, nineAxisGroupSteps as stagedGroupSteps, nineAxisPitchSteps, previousNineAxisGroupSteps as nineAxisGroupSteps, previousNineAxisArtifacts as nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
+import { nineAxisSteps, nineAxisGroupSteps, nineAxisPitchSteps, nineAxisArtifacts } from '../../.agents/skills/live2d-maker/shared/nine-axis.ts';
 import { evaluatePoints, validateHeadNineAxis, nineAxisCapabilities, keyformAt } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { saveNineAxis } from '../nine-axis-save.ts';
 import { lstat } from 'node:fs/promises';
@@ -41,8 +41,8 @@ test('web presents every current workflow step and keeps hair rounds inside one 
   const steps = sectionSteps[6]; assert.deepEqual(steps.map(step => step.id), nineAxisSteps);
   assert.equal(steps[3].childrenMode, 'parallel');
   assert.deepEqual(steps[3].children.map(step => step.id), ['step04_angles/model','step04_angles/video']);
-  assert.deepEqual(steps[3].children[0].children.map(step => step.id), stagedGroupSteps);
-  for (const id of stagedGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
+  assert.deepEqual(steps[3].children[0].children.map(step => step.id), nineAxisGroupSteps);
+  for (const id of nineAxisGroupSteps) assert.ok(stepArtifacts[6][id].some(item => item.path === `nine-axis/${id}/deformers.json`));
   assert.deepEqual(steps[7].children,[]);
   assert.deepEqual(steps[7].rounds?.map(round => [round.id, round.title]), hairRounds.map(round => [round, hairRoundLabel(round)]));
   assert.equal(steps[9].childrenMode,'parallel');assert.deepEqual(steps[9].children.map(step=>step.id),nineAxisPitchSteps);
@@ -117,16 +117,16 @@ test('the first active hair round is visible before the first progress file is s
   assert.deepEqual(f.errors, []);
 });
 
-test('viewing old three-round progress is read-only and leaves remaining hair pending', async t => {
+test('viewing an unsupported hair progress record leaves its files intact', async t => {
   const f = await fixture(t), progress = { version: 1, completed: ['front', 'side', 'back'], next: 'done' };
   await f.put('step08_hair/hair-progress.json', progress); await f.put('step08_hair/.completed');
   const value = await f.get();
   assert.equal(value.states.step08_hair, 'done', 'the snapshot does not replace completion markers');
-  assert.deepEqual(value.hair, { rounds: { front: 'done', side: 'done', back: 'done', remaining: 'pending' }, next: 'remaining', awaitingContinue: true });
+  assert.equal(value.hair, undefined);
   assert.deepEqual(JSON.parse(await readFile(join(f.root, 'nine-axis/step08_hair/hair-progress.json'), 'utf8')), progress);
   await readFile(join(f.root, 'nine-axis/step08_hair/.completed'));
   await assert.rejects(readFile(join(f.root, 'nine-axis/step08_hair/.running')), { code: 'ENOENT' });
-  assert.deepEqual(f.errors, []);
+  assert.match(f.errors[0], /version:2/);
 });
 
 test('round records and saved products never complete a step or its downstream accessories', async t => {
@@ -177,19 +177,19 @@ test('hair and accessories preview the KRA bound by their cumulative model inste
 
 test('independent waits and failures never mark running or completed siblings throttled', async t => {
   const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
-  await f.put('step02_angles/.running');
-  await f.put('step02_angles/left/.completed'); await f.put('step02_angles/left/deformers.json', '{}');
-  await f.complete('step02_angles/left');
+  await f.put('step04_angles/model/.running');
+  await f.put('step04_angles/model/left/.completed'); await f.put('step04_angles/model/left/deformers.json', '{}');
+  await f.complete('step04_angles/model/left');
   for (const group of ['up', 'down']) {
-    await f.put(`step02_angles/${group}/.running`);
+    await f.put(`step04_angles/model/${group}/.running`);
     await f.put(`agents/${group}/request.json`, { task: { step: 'nine_axis_head', name: `单轴 ${group}`,
-      outputDirectory: group === 'up' ? join(f.root, 'nine-axis/step02_angles/up') : 'nine-axis/step02_angles/down' } });
+      outputDirectory: group === 'up' ? join(f.root, 'nine-axis/step04_angles/model/up') : 'nine-axis/step04_angles/model/down' } });
   }
   await f.put('agents/up/retry-wait.json', { until: new Date(Date.now() + 60000).toISOString(), error: '429 up only' });
   let value = await f.get({ active: true, since });
   assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['done', 'throttled', 'running']);
-  assert.equal(value.states.step02_angles, 'throttled');
-  assert.equal(value.messages['step02_angles/up'], '429 up only'); assert.equal(value.messages['step02_angles/down'], undefined);
+  assert.equal(value.states['step04_angles/model'], 'throttled');
+  assert.equal(value.messages['step04_angles/model/up'], '429 up only'); assert.equal(value.messages['step04_angles/model/down'], undefined);
   await f.put('agents/down/result.json', { status: 'failed' });
   value = await f.get({ active: true, since });
   assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['done', 'throttled', 'failed']);
@@ -199,21 +199,21 @@ test('independent waits and failures never mark running or completed siblings th
 
 test('a running axis with saved output and no current call is shown as available', async t => {
   const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
-  await f.put('step02_angles/.running');
-  await f.put('step02_angles/left/.running');
-  await f.put('step02_angles/left/deformers.json', '{}');
-  await f.put('step02_angles/up/.running');
-  await f.put('step02_angles/up/deformers.json', '{}');
-  await f.put('agents/up/request.json', { task: { step: 'nine_axis_head', name: '单轴 up', outputDirectory: 'nine-axis/step02_angles/up' } });
+  await f.put('step04_angles/model/.running');
+  await f.put('step04_angles/model/left/.running');
+  await f.put('step04_angles/model/left/deformers.json', '{}');
+  await f.put('step04_angles/model/up/.running');
+  await f.put('step04_angles/model/up/deformers.json', '{}');
+  await f.put('agents/up/request.json', { task: { step: 'nine_axis_head', name: '单轴 up', outputDirectory: 'nine-axis/step04_angles/model/up' } });
   const value = await f.get({ active: true, since });
   assert.deepEqual(nineAxisGroupSteps.map(id => value.states[id]), ['available', 'running', 'pending']);
-  assert.equal(value.products['step02_angles/left'], true);
+  assert.equal(value.products['step04_angles/model/left'], true);
   assert.deepEqual(f.errors, []);
 });
 
 test('a model merge call remains active when a child only has saved output', async t => {
   const f = await fixture(t), since = new Date(Date.now() - 1000).toISOString();
-  const parent = 'step04_angles/model', child = stagedGroupSteps[0];
+  const parent = 'step04_angles/model', child = nineAxisGroupSteps[0];
   await f.put(`${parent}/.running`);
   await f.put(`${child}/.running`); await f.put(`${child}/deformers.json`, '{}');
   await f.put('agents/merge/request.json', { task: { name: '模型合并', outputDirectory: `nine-axis/${parent}` } });
@@ -229,83 +229,85 @@ test('a model merge call remains active when a child only has saved output', asy
 
 test('child retry marker layout keeps completed siblings; retained XY keeps its own completed result', async t => {
   const f = await fixture(t);
-  for (const id of [...nineAxisGroupSteps, 'step02_angles', 'step03_angle-xy']) {
+  for (const id of [...nineAxisGroupSteps, 'step04_angles/model', 'step06_angle-xy']) {
     await f.put(`${id}/.completed`); await f.put(`${id}/deformers.json`, '{}');
     await f.complete(id);
   }
-  assert.equal((await f.get()).mergeComplete, true);
+  assert.equal((await f.get()).states['step04_angles/model'], 'done');
   // This is the layout the workflow retry must leave, under its task lock.
-  await rm(join(f.root, 'nine-axis/step02_angles/up'), { recursive: true });
-  await rm(join(f.root, 'nine-axis/step02_angles/.completed'));
-  await f.put('step02_angles/.running');
-  const before = await readFile(join(f.root, 'nine-axis/step02_angles/down/deformers.json'));
+  await rm(join(f.root, 'nine-axis/step04_angles/model/up'), { recursive: true });
+  await rm(join(f.root, 'nine-axis/step04_angles/model/.completed'));
+  await f.put('step04_angles/model/.running');
+  const before = await readFile(join(f.root, 'nine-axis/step04_angles/model/down/deformers.json'));
   let value = await f.get();
-  assert.equal(value.mergeComplete, false); assert.equal(value.states['step02_angles/left'], 'done');
-  assert.equal(value.states['step02_angles/down'], 'done'); assert.equal(value.states['step02_angles/up'], 'pending');
-  assert.equal(value.states['step03_angle-xy'], 'done');
-  assert.equal(value.messages['step03_angle-xy'], undefined);
-  assert.deepEqual(await readFile(join(f.root, 'nine-axis/step02_angles/down/deformers.json')), before);
-  await f.put('step02_angles/up/.completed'); await f.put('step02_angles/up/deformers.json', '{}');
-  await f.complete('step02_angles/up');
-  assert.equal((await f.get()).mergeComplete, false, 'finished children still wait for the parent merge');
-  await rm(join(f.root, 'nine-axis/step02_angles/.running')); await f.put('step02_angles/.completed');
-  value = await f.get(); assert.equal(value.mergeComplete, true); assert.equal(value.states['step03_angle-xy'], 'done');
+  assert.equal(value.states['step04_angles/model'], 'interrupted'); assert.equal(value.states['step04_angles/model/left'], 'done');
+  assert.equal(value.states['step04_angles/model/down'], 'done'); assert.equal(value.states['step04_angles/model/up'], 'pending');
+  assert.equal(value.states['step06_angle-xy'], 'done');
+  assert.equal(value.messages['step06_angle-xy'], undefined);
+  assert.deepEqual(await readFile(join(f.root, 'nine-axis/step04_angles/model/down/deformers.json')), before);
+  await f.put('step04_angles/model/up/.completed'); await f.put('step04_angles/model/up/deformers.json', '{}');
+  await f.complete('step04_angles/model/up');
+  assert.equal((await f.get()).states['step04_angles/model'], 'interrupted', 'finished children still wait for the parent merge');
+  await rm(join(f.root, 'nine-axis/step04_angles/model/.running')); await f.put('step04_angles/model/.completed');
+  value = await f.get(); assert.equal(value.states['step04_angles/model'], 'done'); assert.equal(value.states['step06_angle-xy'], 'done');
 });
 
 test('completion markers remain authoritative when intermediate deliveries are missing', async t => {
   const f = await fixture(t);
-  for (const id of [...nineAxisGroupSteps, 'step02_angles']) await f.complete(id);
-  await rm(join(f.root, 'nine-axis/step02_angles/up/deformers.json'));
+  for (const id of [...nineAxisGroupSteps, 'step04_angles/model']) await f.complete(id);
+  await rm(join(f.root, 'nine-axis/step04_angles/model/up/deformers.json'));
   const value = await f.get();
-  assert.equal(value.states.step02_angles, 'done');
-  assert.equal(value.states['step02_angles/up'], 'done');
+  assert.equal(value.states['step04_angles/model'], 'done');
+  assert.equal(value.states['step04_angles/model/up'], 'done');
   assert.deepEqual(value.messages, {});
   const result = await snapshot(f.root, 'case', dirname(f.root));
-  assert.deepEqual(result.sections.find(section => section.id === 'nine-axis')!.steps.map(step => step.id), ['step02_angles', ...nineAxisGroupSteps]);
+  assert.deepEqual(result.sections.find(section => section.id === 'nine-axis')!.steps.map(step => step.id), ['step04_angles', 'step04_angles/model', ...nineAxisGroupSteps]);
 });
 
 test('native child continue preserves its thread, resume keeps authors, retry reopens only its parent merge', async t => {
   const f = await fixture(t), root = join(f.root, 'nine-axis');
-  await f.put('step02_angles/.completed'); await f.put('step02_angles/deformers.json', 'old merged');
+  await f.put('step04_angles/model/.completed'); await f.put('step04_angles/model/deformers.json', 'old merged');
   for (const group of ['left', 'up', 'down']) {
-    await f.put(`step02_angles/${group}/.${group === 'up' ? 'running' : 'completed'}`);
-    await f.put(`step02_angles/${group}/deformers.json`, `author ${group}`);
-    await writeStepSession(root, `step02_angles/${group}`, { threadId: `thread-${group}` });
+    await f.put(`step04_angles/model/${group}/.${group === 'up' ? 'running' : 'completed'}`);
+    await f.put(`step04_angles/model/${group}/deformers.json`, `author ${group}`);
+    await writeStepSession(root, `step04_angles/model/${group}`, { threadId: `thread-${group}` });
   }
-  const act = (action: string) => applyStepAction({ name: basename(f.root), dir: dirname(f.root), section: 'nine-axis', step: 'step02_angles/up', action });
+  const act = (action: string) => applyStepAction({ name: basename(f.root), dir: dirname(f.root), section: 'nine-axis', step: 'step04_angles/model/up', action });
   await act('continue');
-  assert.equal((await readStepSession(root, 'step02_angles/up'))!.threadId, 'thread-up');
-  assert.equal(await readFile(join(root, 'step02_angles/up/deformers.json'), 'utf8'), 'author up');
+  assert.equal((await readStepSession(root, 'step04_angles/model/up'))!.threadId, 'thread-up');
+  assert.equal(await readFile(join(root, 'step04_angles/model/up/deformers.json'), 'utf8'), 'author up');
   const progress = await f.get();
   assert.deepEqual(nineAxisGroupSteps.map(id => progress.steps.find(step => step.id === id)!.threadId), ['thread-left', 'thread-up', 'thread-down']);
   await act('resume');
-  assert.equal(await readStepSession(root, 'step02_angles/up'), undefined);
-  assert.equal(await readFile(join(root, 'step02_angles/up/deformers.json'), 'utf8'), 'author up');
-  await writeStepSession(root, 'step02_angles/up', { threadId: 'new-up-thread' });
+  assert.equal(await readStepSession(root, 'step04_angles/model/up'), undefined);
+  assert.equal(await readFile(join(root, 'step04_angles/model/up/deformers.json'), 'utf8'), 'author up');
+  await writeStepSession(root, 'step04_angles/model/up', { threadId: 'new-up-thread' });
   await act('retry');
-  await assert.rejects(readFile(join(root, 'step02_angles/up/deformers.json')), { code: 'ENOENT' });
-  assert.equal(await readStepSession(root, 'step02_angles/up'), undefined);
-  await assert.rejects(readFile(join(root, 'step02_angles/.completed')), { code: 'ENOENT' });
-  assert.equal(await readFile(join(root, 'step02_angles/.running'), 'utf8'), '');
+  await assert.rejects(readFile(join(root, 'step04_angles/model/up/deformers.json')), { code: 'ENOENT' });
+  assert.equal(await readStepSession(root, 'step04_angles/model/up'), undefined);
+  await assert.rejects(readFile(join(root, 'step04_angles/model/.completed')), { code: 'ENOENT' });
+  assert.equal(await readFile(join(root, 'step04_angles/model/.running'), 'utf8'), '');
   for (const group of ['left', 'down']) {
-    assert.equal(await readFile(join(root, `step02_angles/${group}/deformers.json`), 'utf8'), `author ${group}`);
-    assert.equal((await readStepSession(root, `step02_angles/${group}`))!.threadId, `thread-${group}`);
-    await readFile(join(root, `step02_angles/${group}/.completed`));
+    assert.equal(await readFile(join(root, `step04_angles/model/${group}/deformers.json`), 'utf8'), `author ${group}`);
+    assert.equal((await readStepSession(root, `step04_angles/model/${group}`))!.threadId, `thread-${group}`);
+    await readFile(join(root, `step04_angles/model/${group}/.completed`));
   }
 });
 
 test('taskwide retry of a nested group never deletes its parent subtree or completed siblings', async t => {
   const f = await fixture(t), root = join(f.root, 'nine-axis');
-  await f.put('step02_angles/.running');
-  for (const group of ['neutral', 'left', 'up', 'down']) {
-    await f.put(`step02_angles/${group}/.${group === 'up' ? 'running' : 'completed'}`);
-    await f.put(`step02_angles/${group}/deformers.json`, group);
-    if (group === 'left' || group === 'down') await f.complete(`step02_angles/${group}`);
+  await f.put('step04_angles/model/.running');
+  await f.put('step01_preparation/deformers.json', 'neutral');
+  for (const group of ['left', 'up', 'down']) {
+    await f.put(`step04_angles/model/${group}/.${group === 'up' ? 'running' : 'completed'}`);
+    await f.put(`step04_angles/model/${group}/deformers.json`, group);
+    if (group === 'left' || group === 'down') await f.complete(`step04_angles/model/${group}`);
   }
   await applyTaskAction({ name: basename(f.root), dir: dirname(f.root), action: 'retry' });
-  for (const group of ['neutral', 'left', 'down']) assert.equal(await readFile(join(root, `step02_angles/${group}/deformers.json`), 'utf8'), group);
-  await assert.rejects(readFile(join(root, 'step02_angles/up/deformers.json')), { code: 'ENOENT' });
-  await readFile(join(root, 'step02_angles/.running'));
+  assert.equal(await readFile(join(root, 'step01_preparation/deformers.json'), 'utf8'), 'neutral');
+  for (const group of ['left', 'down']) assert.equal(await readFile(join(root, `step04_angles/model/${group}/deformers.json`), 'utf8'), group);
+  await assert.rejects(readFile(join(root, 'step04_angles/model/up/deformers.json')), { code: 'ENOENT' });
+  await readFile(join(root, 'step04_angles/model/.running'));
 });
 
 const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
@@ -534,17 +536,17 @@ test('workbench loads the embedded source composition unchanged and reloads same
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], -15, 0)].slice(0, 2), [-1, 0]);
   assert.deepEqual([...evaluatePoints(panel.doc, panel.doc.parts[0], 0, 12.5)].slice(0, 2), [0, -1]);
   assert.equal(nineAxisCapabilities(panel.doc, installed[0].allowPlane).region, 'plane');
-  assert.equal(requested[1], 'nine-axis/step02_angles/layers/face.png');
+  assert.equal(requested[1], 'nine-axis/step04_angles/model/layers/face.png');
   await panel.load({ folder: '/fixture', nineAxis: { available: true, path: nineAxisArtifacts.angleUpDeformers, version: '1', stage: 'up' } });
   assert.equal(installed.length, 2, 'switching source paths reloads even if revisions match');
-  assert.equal(requested[3], 'nine-axis/step02_angles/up/layers/face.png');
+  assert.equal(requested[3], 'nine-axis/step04_angles/model/up/layers/face.png');
   await panel.load({ folder: '/fixture', nineAxis: { available: false, path: nineAxisArtifacts.angleUpDeformers, version: '1', stage: 'up' } });
   assert.equal(panel.doc, null, 'availability changes clear an unchanged cached document');
   assert.equal(requested.length, 4);
 });
 
 test('saving merged correction grids preserves every embedded source snapshot', async t => {
-  const f = await fixture(t), doc = composed(); await f.put('step02_angles/deformers.json', doc);
+  const f = await fixture(t), doc = composed(); await f.put('step04_angles/model/deformers.json', doc);
   const file = join(f.root, nineAxisArtifacts.headDeformers), info = await lstat(file), version = `${info.mtimeMs}:${info.size}`;
   const changed = structuredClone(doc); changed.axisSources[0].doc.parts[0].keyforms['-30'][0][0] -= 1;
   await assert.rejects(saveNineAxis(f.root, { path: nineAxisArtifacts.headDeformers, version, document: changed }), /不能替换图层、来源或层级/);
@@ -563,7 +565,6 @@ test('staged progress shows draft model and generated video before branches comp
   await f.put('step04_angles/video/.running');
   await f.put('step04_angles/video/left-up.mp4', 'generated video');
   let value = await f.get();
-  assert.equal(value.layout, 'staged');
   assert.equal(value.states['step04_angles/model/up'], 'interrupted');
   assert.equal(value.states['step04_angles/video'], 'interrupted');
   await f.complete('step04_angles/video');
@@ -706,7 +707,7 @@ test('dynamic studio preview preserves angles and defers refresh during user edi
 
 test('empty tasks use the current staged progress and a live section reports startup before the first model call', async t => {
   const f = await fixture(t);
-  const pending = await f.get(); assert.equal(pending.layout, 'staged'); assert.equal(pending.status, 'pending');
+  const pending = await f.get(); assert.equal(pending.status, 'pending');
   const active = await f.get({ active: true }); assert.equal(active.status, 'running');
 });
 

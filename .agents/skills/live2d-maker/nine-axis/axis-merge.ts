@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { copyFile, link, lstat, mkdir, readFile, realpath, rename, rm, writeFile } from 'node:fs/promises';
+import { copyFile, link, lstat, mkdir, readFile, readdir, realpath, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { isDeepStrictEqual } from 'node:util';
 import sharp from 'sharp';
@@ -165,10 +165,11 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
     await writeFile(join(staging, 'axis-sources.json'), JSON.stringify(manifest, null, 2) + '\n', { flag: 'wx' });
     if (!existing) await rename(staging, output);
     else {
-      // Reserve the new layers namespace exclusively; rename installs the
-      // verified textures. JSON hard links cannot replace a raced-in file.
-      if (textures.length) { const layers = join(output, 'layers'); await mkdir(layers); installed.push(layers);
-      await rename(join(staging, 'layers'), layers); }
+      if (textures.length) {
+        const layers = join(output, 'layers'), stagedLayers = join(staging, 'layers');
+        await mkdir(layers); installed.push(layers);
+        for (const name of await readdir(stagedLayers)) await link(join(stagedLayers, name), join(layers, name));
+      }
       for (const name of ['axis-sources.json', 'deformers.json']) {
         const path = join(output, name); await link(join(staging, name), path); installed.push(path);
       }

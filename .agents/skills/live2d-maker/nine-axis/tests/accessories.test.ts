@@ -116,7 +116,7 @@ test('preview includes completed face/hair and registered accessories, with no s
   const tool=createNineAxisViewTool('/task/nine-axis','/task/out',async()=>assert.fail('pose rejected before KRA load'),undefined,accessoryPreviewScope);
   await assert.rejects(tool.execute({x:0,y:5},new AbortController().signal),/只允许 Y=0/);
   const prompt = accessoriesPrompt('/task');
-  assert.ok(prompt.includes('/task/nine-axis/step09_head-accessories/character-nine-axis.kra'));
+  assert.ok(prompt.includes(join('/task','nine-axis','step09_head-accessories','character-nine-axis.kra')));
 });
 
 test('missing and empty accessory deliveries consume at most two repairs in one persistent step session',async t=>{
