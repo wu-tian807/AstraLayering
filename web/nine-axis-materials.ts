@@ -47,9 +47,9 @@ export class NineAxisMaterials {
       this.queue = operation; return operation;
     }); this.resolvers.set(root,exporter); }
     const built = await exporter.resolve(root, directory, { doc, textures: new Map() }, undefined, studio ? 'studio' : true);
-    if (await readFile(modelPath, 'utf8') !== text) throw Error('九轴模型在读取期间变化，请刷新');
+    if (await readFile(modelPath, 'utf8') !== text) throw Error('九轴模型在读取期间变化');
     const after = await stat(modelPath);
-    if (await modelVersion(root, doc, `${after.mtimeMs}:${after.size}`) !== version) throw Error('KRA 或模型在预览期间变化，请刷新');
+    if (await modelVersion(root, doc, `${after.mtimeMs}:${after.size}`) !== version) throw Error('KRA 或模型在预览期间变化');
     const key = createHash('sha256').update(JSON.stringify([root, path, text, built.sourceRevision, studio])).digest('hex');
     this.snapshots.set(key, { root, built });
     while (this.snapshots.size > 16) this.snapshots.delete(this.snapshots.keys().next().value!);
@@ -57,7 +57,7 @@ export class NineAxisMaterials {
   }
   texture(root: string, key: string, index: number) {
     const snapshot = this.snapshots.get(key);
-    if (!snapshot || snapshot.root !== root || !Number.isSafeInteger(index) || index < 0) throw Error('九轴预览版本已失效，请刷新');
+    if (!snapshot || snapshot.root !== root || !Number.isSafeInteger(index) || index < 0) throw Error('九轴预览版本已失效');
     const { doc, studioLayers } = snapshot.built;
     const part = index < doc.parts.length ? doc.parts[index] : studioLayers?.[index - doc.parts.length];
     if (!part) throw Error('九轴贴图索引无效');
