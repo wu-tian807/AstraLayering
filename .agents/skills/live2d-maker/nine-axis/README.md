@@ -88,7 +88,7 @@ KRA 是画稿依据，阶段 JSON 是累计变形与图层绑定。`step01_prepa
 
 若其余头发交付和 `next:"done"` 已保存，但进程在写 `.completed` 前中断，继续时只补全整个步骤的完成标记，不再派发 agent。已标记完成的步骤若轮次或交付不一致，会拒绝沿用。
 
-新轮次进度使用 `version:2`。旧 `version:1` 的已通过轮次保持不变；三轮已完成的工程通过程序迁移为 `next:"remaining"` 并接续本轮，保留 KRA、模型和会话，不重跑前三轮。continue／resume 的单步和任务级操作均支持迁移；迁移写进度前先切换旧完成标记，中断后可继续。retry 仍重做整个头发步骤。
+头发轮次进度使用 `version:2`，照已保存的轮次顺序继续。旧格式会报告不支持，原文件保留。
 
 头发全部轮次通过后，`step09_head-accessories` 使用独立的通用 step 会话和一份工作 KRA，从头发实际来源继承累计模型；不复用头发的制作 thread，也不新增模型配置项。agent 在 Krita 确认真实饰品、UUID、拆分与投影，再描边和显式注册，通过 edit 制作左右，不提供 fit。作者为 `accessories.json`；原生部件的 `partId` 属于 `head_accessories/`，level=accessory，节点 ID 可独立命名。已完成脸和头发的画稿、绑定、形变及相对顺序保护。预览包括已完成脸发和已注册饰品，未注册静态饰品不混入。
 

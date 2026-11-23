@@ -73,9 +73,9 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 
 九轴沿用其他阶段现有的容器、卡片尺寸和预览区样式。`flow-step-ui.js` 提供共用的阶段标题、状态、选中/折叠控件，以及读取同一份 `sectionSteps` 的九轴总览清单。步骤及已有子步骤在有产物之前即可见，不通过产物存在与否决定标题和折叠控件是否显示。
 
-`nine-axis-flow.js` 只负责九轴内容中的紧凑任务行，执行树保留真实步骤 ID。阶段报告按需打开，交互预览集中在唯一的九轴工作台入口；当前流程与旧四步目录使用同一展示方式。调整九轴时以其他阶段现有样式为准，保留任务行展开状态与画布滚动位置。
+`nine-axis-flow.js` 只负责九轴内容中的紧凑任务行，执行树保留真实步骤 ID。阶段报告按需打开，交互预览集中在唯一的九轴工作台入口。调整九轴时以其他阶段现有样式为准，保留任务行展开状态与画布滚动位置。
 
-头发四轮是 `step08_hair` 卡片内的展示行，不加入执行子树，也不建立独立恢复入口。`nine-axis-progress.ts` 只读共享的 `hair-progress.json` 契约，将已通过轮次与当前实际调用对应；正常停在两轮之间时，下一轮保持待执行并提示继续。旧版三轮记录只读映射为其余头发待执行，迁移留给制作程序。缺失或无效的轮次记录不推翻步骤标记，完整轮次记录也不代替 `.completed`。下颌、头发和饰品的画面均优先使用累计模型所引用的 KRA，轮次不重复展示同一累计画面。
+头发四轮是 `step08_hair` 卡片内的展示行。`nine-axis-progress.ts` 读取当前 `hair-progress.json`，把已通过轮次与实际调用对应。停在两轮之间时，下一轮保持待执行并提示继续。完成状态来自 `.completed`。下颌、头发和饰品的画面使用累计模型所引用的 KRA。
 
 缩略头与角色工作台共用 `shared/nine-axis-preview.js`：按显示组合及真实父 Warp／裁切依赖分别计算角度，不把静态 KRA 上下文当作已制作部件。水平续作只限制本轮制作，预览脸部时从保留的已制作 Y／XY 形中恢复其独立范围，不改写作者参数。新组合首次可用时自动切换；普通文件更新保留手动选择，当前组合消失时回落到已有组合。工作台链接的 `nineLevel=face|hair|accessory` 可指定首次显示的组合。
 
@@ -89,7 +89,7 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 
 ## 角色工作台
 
-`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 直接打开项目文件夹。`workspace=mask|lighting|physics|nine-axis` 指定打开的工作区。`nineStage=neutral|x|up|down|y|xy|jaw|hair|accessories|headPitch|headCorners|headRoll` 指定九轴模型阶段，省略时读取最新可用的累计模型。旧四步成果保留兼容读取。
+`?project=<name>` 打开运行目录中的任务，`?folder=<绝对路径>` 直接打开项目文件夹。`workspace=mask|lighting|physics|nine-axis` 指定打开的工作区。`nineStage=neutral|x|up|down|y|xy|jaw|hair|accessories|headPitch|headCorners|headRoll` 指定九轴模型阶段，省略时读取最新可用的累计模型。
 
 Krita 原生合成支持图层属性与已有蒙版。PSD 导入处理连续剪贴链、组不透明度和蒙版停用状态；高级效果、复合矢量蒙版及智能对象按 Krita 导入能力读取。无法完整映射结构时展示保存合成图，使用者可在 Krita 中另存 KRA 后打开。
 

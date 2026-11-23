@@ -139,13 +139,6 @@ export const sectionSteps = [
     step('step12_head-roll', '头部 Z 轴', 'pending', [], '根据已完成的头部模型生成有限幅度的歪头。')],
 ];
 
-export const previousNineAxisSectionSteps = [step('step01_video', '三向视频与参考帧', 'pending'),
-    { ...step('step02_angles', '独立单轴与合并', 'pending', ['left', 'up', 'down'].map(group =>
-      step(`step02_angles/${group}`, { left: '左右转头', up: '抬头', down: '低头' }[group], 'pending')),
-      '三个子项并发制作；全部完成后合并单轴结果。'), childrenMode: 'parallel' },
-    step('step03_angle-xy', '斜向四角', 'pending', [], '等待三个单轴和父合并全部完成。'),
-    step('step04_jaw-line', '下颌线与脖子', 'pending')];
-
 export function groupLayers(groups) {
   const layers = [];
   function visit(nodes, depth) {
@@ -205,16 +198,8 @@ stepArtifacts.push({
   'normal-depth': [],
   'normal-depth-maps': [image('shadow/step01_normal-depth/normal.png', '法线'), image('shadow/step01_normal-depth/depth.png', '深度'), file('shadow/step01_normal-depth/report.md', '贴图报告')],
 });
-stepArtifacts.push({
-  step01_video: [...['left', 'up', 'down'].flatMap(group => [image(`nine-axis/step01_video/${group}.png`, `${viewName(group)}参考帧`),
-    video(`nine-axis/step01_video/${group}.mp4`, `${viewName(group)}视频`)]), file('nine-axis/step01_video/views.json', '三向取帧记录')],
-  'step02_angles': [file('nine-axis/step02_angles/deformers.json', '合并单轴结果')],
-  ...Object.fromEntries(['left', 'up', 'down'].map(group => [`step02_angles/${group}`, [file(`nine-axis/step02_angles/${group}/deformers.json`, `${viewName(group)}模型`)]])),
-  'step03_angle-xy': [file('nine-axis/step03_angle-xy/deformers.json', '斜向九轴结果')],
-  'step04_jaw-line': [file('nine-axis/step04_jaw-line/deformers.json', '下颌线结果')],
-});
 const nineFrameArtifacts = (stepId, names) => [...names.flatMap(name => [image(`nine-axis/${stepId}/${name}.png`, `${viewName(name)}参考帧`)]), file(`nine-axis/${stepId}/selected-frames.json`, '选帧记录')];
-Object.assign(stepArtifacts[6], {
+stepArtifacts.push({
   step01_preparation: [image('nine-axis/step01_preparation/original-full-face.png', '正面参考'), file('nine-axis/step01_preparation/source.json', '工程来源'), file('nine-axis/step01_preparation/head_parts_manifest.json', '图层清单')],
   step02_video: ['left', 'up', 'down'].map(name => video(`nine-axis/step02_video/${name}.mp4`, `${viewName(name)}视频`)),
   step03_frames: nineFrameArtifacts('step03_frames', ['left', 'up', 'down']),

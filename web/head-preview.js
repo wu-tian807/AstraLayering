@@ -3,6 +3,14 @@ import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from './studio
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './studio/nine-axis-preview.js';
 import { constrainHeadPoint, headPreviewAngles, headPointerPosition } from './head-motion.js';
 
+async function previewRequest(url, signal, fallback) {
+  const response = await fetch(url, { signal });
+  if (response.ok) return response;
+  const body = await response.json().catch(() => null);
+  const reason = typeof body?.error === 'string' && body.error.trim();
+  throw Error(reason || fallback);
+}
+
 // One read-only thumbnail, using the same project selection and renderer as
 // Studio. The workflow's existing refresh supplies new intermediate products.
 export class HeadPreview {
@@ -31,22 +39,17 @@ export class HeadPreview {
     if (!element || this.loading) return;
     const epoch = this.epoch, controller = this.loading = new AbortController();
     try {
-      const response = await fetch('./api/studio/project?' + new URLSearchParams({ folder }), { signal: controller.signal });
-      if (!response.ok) throw Error('头部预览读取失败');
+      const response = await previewRequest('./api/studio/project?' + new URLSearchParams({ folder }), controller.signal, '无法读取任务信息，请刷新页面重试。');
       const project = await response.json(), entry = project.nineAxis;
       if (epoch !== this.epoch) return;
-      this.available = !!entry?.available;
-      if (!entry?.available) { element.dataset.model = 'pending'; this.selection = nextPreviewSelection(this.selection, []); this.modes = []; this.syncButtons(); this.label.textContent = '模型保存后显示预览'; return; }
-      element.dataset.model = 'available';
+      if (!entry?.available) { this.available = false; element.dataset.model = 'pending'; this.selection = nextPreviewSelection(this.selection, []); this.modes = []; this.syncButtons(); this.label.textContent = '等待素材准备生成九轴模型'; return; }
       const version = `${entry.path}:${entry.version}`;
-      if (this.version === version) { this.configureMode(); this.draw(); return; }
+      if (this.version === version) { this.available = true; element.dataset.model = 'available'; this.loadError = false; this.configureMode(); this.draw(); return; }
       this.label.textContent = '正在读取最新头部…';
-      const result = await fetch('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), { signal: controller.signal });
-      if (!result.ok) throw Error('九轴模型读取失败');
+      const result = await previewRequest('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), controller.signal, '无法读取九轴模型，请刷新页面重试。');
       const material = await result.json(), doc = validateHeadNineAxis(material.doc);
       const images = await Promise.all(doc.parts.map(async (part, index) => {
-        const texture = await fetch(material.textures[index], { signal: controller.signal });
-        if (!texture.ok) throw Error('九轴贴图读取失败：' + part.id);
+        const texture = await previewRequest(material.textures[index], controller.signal, `无法读取图层 ${part.id} 的贴图，请刷新页面重试。`);
         return createNineAxisBitmap(await texture.blob());
       }));
       if (epoch !== this.epoch) { images.forEach(image => image.close()); return; }
@@ -54,10 +57,18 @@ export class HeadPreview {
       this.renderer.clear(); this.images?.forEach(image => image.close()); this.images = images;
       this.renderer.install(doc, images); this.doc = doc; this.version = `${entry.path}:${material.version}`;
       const pitchUnlocked=entry.stage==='headPitch'&&this.stage!==entry.stage;
-      this.stage = entry.stage; this.configureMode();
+      this.available = true; element.dataset.model = 'available';
+      this.stage = entry.stage; this.loadError = false; this.configureMode();
       if(pitchUnlocked)this.selectLevel('accessory');
       this.draw();
-    } catch (error) { if (epoch === this.epoch && error.name !== 'AbortError') this.label.textContent = error.message; }
+    } catch (error) {
+      if (epoch !== this.epoch || error.name === 'AbortError') return;
+      this.loadError = true;
+      this.available = !!this.doc;
+      element.dataset.model = this.available ? 'available' : 'pending';
+      const message = this.doc ? '九轴预览暂时无法更新。' : '九轴预览暂时无法显示。';
+      this.label.textContent = message + error.message;
+    }
     finally { if (this.loading === controller) this.loading = null; }
   }
   configureMode() {
@@ -98,7 +109,7 @@ export class HeadPreview {
     if (link && this.level) { const url = new URL(link.href); url.searchParams.set('nineLevel', this.level); link.href = url.href; }
   }
   draw() {
-    if (!this.doc || !this.element?.isConnected || document.hidden) return;
+    if (!this.available || !this.doc || !this.element?.isConnected || document.hidden) return;
     const rect = this.canvas.getBoundingClientRect(); if (!rect.width || !rect.height) return;
     const renderer = this.renderer.renderer;
     const size = `${rect.width}:${rect.height}:${devicePixelRatio}`;
@@ -110,7 +121,7 @@ export class HeadPreview {
       width: rect.width * scale, height: rect.height * scale }, angles.x, angles.y, this.shown);
     this.element.dataset.angleX = angles.x; this.element.dataset.angleY = angles.y;
     this.element.dataset.motionX = this.current.x; this.element.dataset.motionY = this.current.y;
-    this.label.textContent = `${this.modes.find(mode => mode.id === this.level).title} · X ${angles.x.toFixed(1)} / Y ${angles.y.toFixed(1)}`;
+    if (!this.loadError) this.label.textContent = `${this.modes.find(mode => mode.id === this.level).title} · X ${angles.x.toFixed(1)} / Y ${angles.y.toFixed(1)}`;
   }
   animate() {
     if (this.frame || !this.doc || document.hidden) return;
@@ -131,6 +142,6 @@ export class HeadPreview {
     cancelAnimationFrame(this.frame); this.frame = null; this.observer?.disconnect();
     this.renderer?.clear(); this.renderer?.renderer.dispose(); this.renderer = null;
     this.images?.forEach(image => image.close()); this.images = null; this.doc = null; this.version = null; this.size = null; this.view = null;
-    this.available = false; this.modes = []; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
+    this.available = false; this.loadError = false; this.modes = []; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
   }
 }

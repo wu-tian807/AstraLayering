@@ -15,7 +15,7 @@ import { nodes } from '../shared/nine-axis-model.js';
 import sharp from 'sharp';
 import { completeHairRound, hairRoundLabel, type HairRound } from './hair-progress.ts';
 import { ownsNode, withinPart, partVisible } from './ownership.ts';
-export { hairRounds, hairRoundLabel, readHairProgress, completeHairRound, upgradeHairProgress, type HairRound, type HairProgress } from './hair-progress.ts';
+export { hairRounds, hairRoundLabel, readHairProgress, completeHairRound, type HairRound, type HairProgress } from './hair-progress.ts';
 
 export const isFrontHair = (partId: string) => withinPart(partId,'hair/bangs') || withinPart(partId,'hair/front_hair');
 export const isSideHair = (partId: string) => withinPart(partId,'hair/side_hair');
@@ -80,7 +80,7 @@ export async function prepareHair(directory: string, upstreamDirectory: string, 
     return;
   }
   const upstream = await readUpstream(upstreamDirectory);
-  const source = await modelDocument(root,upstreamDirectory,upstream.doc);
+  const source = modelDocument(root, upstream.doc);
   if (!source) throw Error('头发阶段缺少上游 KRA 来源');
   await mkdir(directory,{recursive:true});
   if(!await access(document).then(()=>true,()=>false))
@@ -88,7 +88,7 @@ export async function prepareHair(directory: string, upstreamDirectory: string, 
   signal?.throwIfAborted();
   // Only native bindings and inherited geometry are prepared. The maker
   // inspects the owned KRA and explicitly registers the parts it will edit.
-  const inherited=await bindKraDocument(root,upstreamDirectory,upstream.doc);
+  const inherited=await bindKraDocument(root, upstream.doc);
   const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,'hair',scale));
   validateHeadNineAxis(doc);
   await writeFile(join(directory,'character-nine-axis.png'),kraContents(await readFile(document)).merged);
