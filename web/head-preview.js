@@ -39,17 +39,17 @@ export class HeadPreview {
     if (!element || this.loading) return;
     const epoch = this.epoch, controller = this.loading = new AbortController();
     try {
-      const response = await previewRequest('./api/studio/project?' + new URLSearchParams({ folder }), controller.signal, '无法读取任务信息，请刷新页面重试。');
+      const response = await previewRequest('./api/studio/project?' + new URLSearchParams({ folder }), controller.signal, '无法读取任务信息');
       const project = await response.json(), entry = project.nineAxis;
       if (epoch !== this.epoch) return;
       if (!entry?.available) { this.available = false; element.dataset.model = 'pending'; this.selection = nextPreviewSelection(this.selection, []); this.modes = []; this.syncButtons(); this.label.textContent = '等待素材准备生成九轴模型'; return; }
       const version = `${entry.path}:${entry.version}`;
       if (this.version === version) { this.available = true; element.dataset.model = 'available'; this.loadError = false; this.configureMode(); this.draw(); return; }
       this.label.textContent = '正在读取最新头部…';
-      const result = await previewRequest('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), controller.signal, '无法读取九轴模型，请刷新页面重试。');
+      const result = await previewRequest('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), controller.signal, '无法读取九轴模型');
       const material = await result.json(), doc = validateHeadNineAxis(material.doc);
       const images = await Promise.all(doc.parts.map(async (part, index) => {
-        const texture = await previewRequest(material.textures[index], controller.signal, `无法读取图层 ${part.id} 的贴图，请刷新页面重试。`);
+        const texture = await previewRequest(material.textures[index], controller.signal, `无法读取图层 ${part.id} 的贴图`);
         return createNineAxisBitmap(await texture.blob());
       }));
       if (epoch !== this.epoch) { images.forEach(image => image.close()); return; }
