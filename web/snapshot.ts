@@ -6,8 +6,8 @@ import { shadowStep } from '../.agents/skills/live2d-maker/shared/step-paths.js'
 import { sectionIds } from '../.agents/skills/live2d-maker/shared/paths.ts';
 import { listSteps } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
 import { currentSession } from '../.agents/skills/live2d-maker/shared/agents/step-session.ts';
-import { readRun, taskStatus, type TaskRun } from '../.agents/skills/live2d-maker/workflow/state.ts';
-import { LayoutError, layoutState } from '../.agents/skills/live2d-maker/workflow/layout.ts';
+import { observeRun, readRun, type TaskRun } from '../.agents/skills/live2d-maker/workflow/state.ts';
+import { LayoutError } from '../.agents/skills/live2d-maker/workflow/layout.ts';
 import { steps as personSteps } from '../.agents/skills/live2d-maker/raster-layering/steps.ts';
 import { steps as clothingSteps } from '../.agents/skills/live2d-maker/clothing-raster-layering/steps.ts';
 import { steps as assemblySteps } from '../.agents/skills/live2d-maker/character-assembly/steps.ts';
@@ -56,22 +56,17 @@ function validateGroups(nodes: any[], depth = 0) {
     if (node.groups !== undefined) validateGroups(node.groups, depth + 1);
   }
 }
-export async function summary(directory: string, name: string, dir: string) {
+export async function summary(directory: string, name: string) {
   const displayName = await projectDisplayName(directory, name);
-  // A task in an old directory layout is shown with its conversion, not run.
-  const layout = await layoutState(directory).catch(error => { if (error instanceof LayoutError) return error; throw error; });
-  if (layout !== 'current') {
-    const message = layout === 'previous' ? '任务使用旧版目录布局，需要先转换目录（转换前会完整备份原目录）。' : layout.message;
-    return { name, displayName, status: 'layout', layout: layout === 'previous' ? layout : layout.layout, message, directory, run: undefined, runnerAlive: false, lockHeld: false };
-  }
-  const run = await readRun(directory);
+  const run = await readRun(directory).catch(error => { if (error instanceof LayoutError) return error; throw error; });
+  if (run instanceof LayoutError)
+    return { name, displayName, status: 'layout', message: run.message, directory, run: undefined, runnerAlive: false, lockHeld: false };
   if (!run) return { name, displayName, status: 'untracked', directory, run: undefined, runnerAlive: false, lockHeld: false };
-  const live = await taskStatus({ name, dir });
-  return { name, displayName, status: live.status, directory, run, runnerAlive: live.runnerAlive, lockHeld: live.lockHeld };
+  return { name, displayName, directory, run, ...await observeRun(directory, run) };
 }
 export async function snapshot(directory: string, name: string, dir: string) {
   const errors: string[] = [];
-  const record = await summary(directory, name, dir).catch(error => {
+  const record = await summary(directory, name).catch(error => {
     errors.push(String(error)); return { name, status: 'failed', directory, run: undefined as TaskRun | undefined, runnerAlive: false, lockHeld: false };
   });
   const fileVersions: Record<string, string> = {};

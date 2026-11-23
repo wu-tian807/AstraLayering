@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { directoryFor, taskStatus, type TaskOptions, type TaskRun } from './state.ts';
+import { directoryFor, observeRun, readRun, type TaskOptions, type TaskRun } from './state.ts';
 
 export const stopRequestPath = (directory: string) => join(directory, '.stop-request.json');
 async function optionalJSON(path: string) {
@@ -18,9 +18,11 @@ async function writeJSON(path: string, value: unknown) {
 export const canStopTask = (runner: TaskRun['runner'], alive: boolean, locked: boolean) => alive && locked && !!runner?.id;
 
 export async function requestTaskStop(options: Pick<TaskOptions, 'name' | 'dir'>) {
-  const directory = directoryFor(options), live = await taskStatus(options);
-  if (!canStopTask(live.runner, live.runnerAlive, live.lockHeld)) throw new Error('当前没有可停止的运行任务');
-  await writeJSON(stopRequestPath(directory), { runnerId: live.runner!.id });
+  const directory = directoryFor(options), run = await readRun(directory);
+  if (!run?.runner?.id) throw new Error('当前没有可停止的运行任务');
+  const { runnerAlive, lockHeld } = await observeRun(directory, run);
+  if (!canStopTask(run.runner, runnerAlive, lockHeld)) throw new Error('当前没有可停止的运行任务');
+  await writeJSON(stopRequestPath(directory), { runnerId: run.runner.id });
 }
 
 export function watchTaskStop(directory: string, runnerId: string, controller: AbortController, onError: (error: unknown) => void) {

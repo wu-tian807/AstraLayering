@@ -40,8 +40,6 @@ pnpm web --port 4387
 
 网页操作处理任务中需要继续或重试的步骤。指定单个步骤使用命令行；重试范围和命令见 [总流程](../.agents/skills/live2d-maker/workflow/README.md#恢复方式)。
 
-旧布局任务先停止，再点击“转换目录”。程序将原目录备份到运行根目录的 `.backups/` 后转换；完成的成果保留，中断步骤在新会话中继续。
-
 **独立 section 启动无状态。** 每次传入 `--dir`、`--knowledge` 和所需软件路径，见 [独立入口](../.agents/skills/live2d-maker/SKILL.md#单独运行一个-section)。
 
 ## 头部九轴
