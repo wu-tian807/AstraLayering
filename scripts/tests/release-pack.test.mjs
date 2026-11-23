@@ -24,6 +24,13 @@ function fixture(t, { excludePreviewer = true } = {}) {
     'demos/pink-doll/run.json': '{"archive":true}\n', 'demos/other/run.json': '{}\n',
     'demos/pink-doll/character-assembly/step01/composite.png': 'tagged preview bytes\n',
     'svg-previewer/part-preview.html': '<!doctype html>\n',
+    'web/tests/sample.test.ts': 'web test\n',
+    '.agents/skills/live2d-maker/shared/tests/sample.test.ts': 'workflow test\n',
+    'scripts/start-workbench.test.mjs': 'launcher test\n',
+    'scripts/tests/sample.test.mjs': 'release test\n',
+    'scripts/experiments/demo.mjs': 'experiment\n',
+    'scripts/start-workbench.mjs': 'launcher\n',
+    '.agents/skills/live2d-maker/workflow/run.ts': 'workflow entry\n',
     'archive/old.md': 'history\n', 'rigging/old.md': 'research\n',
     'tutorial/old.md': 'tutorial\n', 'sam_veirfy/old.md': 'experiment\n',
     'LICENSE': 'license\n', 'COPYING': 'copying\n',
@@ -33,7 +40,10 @@ function fixture(t, { excludePreviewer = true } = {}) {
   }
   const git = (...args) => execFileSync('git', ['-c', 'user.name=Release Test', '-c', 'user.email=release@example.invalid',
     '-c', 'commit.gpgsign=false', '-c', `core.hooksPath=${join(root, 'no-hooks')}`, ...args], { cwd: root, encoding: 'utf8' });
-  git('init', '-q'); git('add', '.'); git('update-index', '--chmod=+x', 'start-workbench.sh');
+  git('init', '-q');
+  git('config', 'core.autocrlf', 'false');
+  git('config', 'core.eol', 'lf');
+  git('add', '.'); git('update-index', '--chmod=+x', 'start-workbench.sh');
   git('commit', '-qm', 'release'); git('tag', 'v0.1.0');
   return root;
 }
@@ -53,6 +63,9 @@ test('the tagged release places Pink Doll in the default .run directory and excl
   assert.equal(readFileSync(join(root, 'demos/pink-doll/run.json'), 'utf8'), 'uncommitted example\n');
   assert.equal(Object.keys(files).some(name => name.startsWith(prefix + '.run/private/')), false);
   assert.ok(files[prefix + '.agents/skills/live2d-maker/SKILL.md']);
+  assert.ok(files[prefix + '.agents/skills/live2d-maker/workflow/run.ts']);
+  assert.ok(files[prefix + 'scripts/start-workbench.mjs']);
+  assert.equal(Object.keys(files).some(name => /(?:\/tests\/|\.test\.mjs$|\/scripts\/experiments\/)/.test(name)), false);
   assert.equal(Object.keys(files).some(name => /^AstraLayering-v0\.1\.0\/(svg-previewer|archive|rigging|tutorial|sam_veirfy)\//.test(name)), false);
   assert.equal(Object.keys(files).some(name => name.startsWith(prefix + 'demos/')), false);
   // Git archive retains the executable bit while moving only the example tree.

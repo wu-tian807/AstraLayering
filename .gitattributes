@@ -62,6 +62,11 @@ sam_veirfy/outputs/** -text whitespace=blank-at-eol,blank-at-eof,space-before-ta
 /tutorial export-ignore
 /prompt.txt export-ignore
 /demos export-ignore
+/web/tests export-ignore
+/.agents/skills/live2d-maker/**/tests export-ignore
+/scripts/tests export-ignore
+/scripts/start-workbench.test.mjs export-ignore
+/scripts/experiments export-ignore
 
 # Preserve the workflow export bytes recorded in the Black White Doll manifest.
 demos/black-white-doll/** -text
