@@ -10,7 +10,6 @@
     "start": "node workflow/run.ts",
     "section": "node workflow/section-cli.ts",
     "export": "node workflow/export-run.ts",
-    "convert-layout": "node workflow/convert-layout.ts",
     "part-layering": "node part-layering/run.ts",
     "raster-layering": "node raster-layering/run.ts",
     "clothing-part-layering": "node clothing-part-layering/run.ts",

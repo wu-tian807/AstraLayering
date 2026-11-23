@@ -22,7 +22,6 @@ Krita 和 FFmpeg 使用共享选择与扫描组件。扫描先检查 PATH 和常
 | --- | --- |
 | `POST /api/task-options` | `{name, ...修改字段}`，保存本任务执行参数 |
 | `POST /api/task-action` | `{name, dir, action, section?}`，继续、恢复或重试；省略 section 时处理任务范围 |
-| `POST /api/convert-layout` | `{name}`，备份后转换旧任务布局 |
 | `GET /api/export` | `dir`、`name`，下载完成任务的成果 ZIP |
 | `GET /api/config/environment` | 读取配置和 revision，敏感值隐藏 |
 | `POST /api/config/environment/preview` | `{revision, changes}`，预览生效配置 |

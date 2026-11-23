@@ -187,12 +187,17 @@ export async function configureRun(options: TaskOptions, directory: string): Pro
   for (const id of selected) run.sections[id] ??= { status: 'pending', updatedAt: now() };
   return run;
 }
+export async function observeRun(directory: string, run: TaskRun) {
+  const runnerAlive = !run.runner?.finishedAt && processAlive(run.runner?.pid);
+  const lockHeld = await lockfile.check(directory, { lockfilePath: join(directory, '.runner.lock'), stale: 30_000 });
+  return { status: run.status === 'running' && (!runnerAlive || !lockHeld) ? 'interrupted' as const : run.status,
+    runnerAlive: Boolean(runnerAlive), lockHeld };
+}
 export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
   const directory = directoryFor(options);
   const run = await readRun(directory);
   if (!run) throw new Error('缺少总控记录：' + join(directory, 'run.json') + '。先用总入口启动；已有上游产物可指定 --from。');
-  const runnerAlive = !run.runner?.finishedAt && processAlive(run.runner?.pid);
-  const lockHeld = await lockfile.check(directory, { lockfilePath: join(directory, '.runner.lock'), stale: 30_000 });
+  const activity = await observeRun(directory, run), { runnerAlive, lockHeld } = activity;
   const sections = await Promise.all(selectedSections(run.from, run.to).map(async id => {
     const path = join(directory, id);
     let threadId: string | null | undefined, steps: { name: string; status: string; threadId?: string }[] = [];
@@ -225,8 +230,7 @@ export async function taskStatus(options: Pick<TaskOptions, 'name' | 'dir'>) {
   }));
   const log = await readTaskLog(directory);
   return {
-    ...run, status: run.status === 'running' && (!runnerAlive || !lockHeld) ? 'interrupted' : run.status,
-    directory, runnerAlive: !!runnerAlive, lockHeld, sections,
+    ...run, ...activity, directory, sections,
     lastMessage: log.message, log: log.path, logUpdatedAt: log.updatedAt,
     monitor: join(directory, 'monitor.md'),
   };

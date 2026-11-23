@@ -11,8 +11,7 @@ import { sectionSize, sectionSizeForLongEdge } from '../.agents/skills/live2d-ma
 import { referencePath } from '../.agents/skills/live2d-maker/shadow/preparation.ts';
 import { encodePng } from '../.agents/skills/live2d-maker/shared/png.ts';
 import { runsDirectory, sectionIds, workflowsDirectory } from '../.agents/skills/live2d-maker/shared/paths.ts';
-import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, taskStatus, taskKrita, taskFFmpeg, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
-import { convertLayout } from '../.agents/skills/live2d-maker/workflow/layout.ts';
+import { acquireTaskLock, configureRun, directoryFor, readRun, saveRun, selectedSections, sectionId, observeRun, taskKrita, taskFFmpeg, type TaskOptions } from '../.agents/skills/live2d-maker/workflow/state.ts';
 import { applyTaskAction } from '../.agents/skills/live2d-maker/workflow/step-actions.ts';
 import { configAPI, configRaw, streamMediaFile } from './config.ts';
 import { createEnvironmentConfig, EnvironmentConflict } from './environment-config.ts';
@@ -152,7 +151,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
   const starts = new Set<string>();
   async function task(name: string, dir = settings.directory) {
     const path = directoryFor({ name, dir });
-    if (!(await lstat(path)).isDirectory() || (await lstat(path)).isSymbolicLink()) throw new Error('任务必须是运行目录下的普通文件夹');
+    if (!(await lstat(path)).isDirectory()) throw new Error('任务必须是运行目录下的普通文件夹');
     await safePath(dir, name);
     return path;
   }
@@ -230,7 +229,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const { directory } = await studioFolder(value.folder ?? '');
           json(await saveNineAxis(directory, value)); return;
         }
-        if (value.dir !== requestDir) { json({ error: '追踪目录已改变，请刷新页面后重试' }, 409); return; }
+        if (value.dir !== requestDir) { json({ error: '追踪目录已改变' }, 409); return; }
         if (path === '/api/config/environment' || path === '/api/config/environment/preview') {
           try { json(await (path.endsWith('/preview') ? environment.preview(value) : environment.save(value))); }
           catch (error) { if (error instanceof EnvironmentConflict) json({ error: error.message }, 409); else throw error; }
@@ -297,7 +296,6 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           return;
         }
         await task(opts.name, requestDir);
-        if (path === '/api/convert-layout') { json(await convertLayout(directory)); return; }
         if (['/api/start', '/api/task-action', '/api/task-options'].includes(path)
           && (value.standard !== undefined || value.size !== undefined || value.shadowMode !== undefined)) {
           json({ error: '标准化人物姿态、分辨率和阴影方式仅在新建任务时设置。' }, 409); return;
@@ -309,7 +307,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         if (path === '/api/task-options') {
           if (starts.has(directory)) { json({ error: '任务正在启动，停止后再调整执行参数' }, 409); return; }
           const previous = await readRun(directory);
-          const current = previous && await taskStatus({ name: opts.name, dir: requestDir });
+          const current = previous && await observeRun(directory, previous);
           if (current && (current.runnerAlive || current.lockHeld)) {
             json({ error: '任务正在执行，停止后再调整执行参数' }, 409); return;
           }
@@ -379,13 +377,13 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
         const entries = (await readdir(requestDir, { withFileTypes: true })).filter(entry => entry.isDirectory() && !entry.name.startsWith('.'));
         const tasks = [];
         for (const entry of entries) {
-          try { const directory = await task(entry.name, requestDir); tasks.push(await summary(directory, entry.name, requestDir)); }
+          try { const directory = await task(entry.name, requestDir); tasks.push(await summary(directory, entry.name)); }
           catch (error) { tasks.push({ name: entry.name, status: 'failed', error: String(error) }); }
         }
         json({ directory: requestDir, tasks, sections: sectionIds }); return;
       }
       if (path === '/api/task' || path === '/artifact' || path === '/api/export') {
-        if (url.searchParams.get('dir') !== requestDir) { json({ error: '追踪目录已改变，请刷新页面' }, 409); return; }
+        if (url.searchParams.get('dir') !== requestDir) { json({ error: '追踪目录已改变' }, 409); return; }
         const name = url.searchParams.get('name') ?? '', directory = await task(name, requestDir);
         if (path === '/api/task') { json(await snapshot(directory, name, requestDir)); return; }
         if (path === '/api/export') {
