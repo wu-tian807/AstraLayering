@@ -26,7 +26,7 @@ for (const target of ['left', 'up', 'down', 'left-up', 'left-down']) test(`${tar
   t.mock.method(globalThis, 'fetch', async (url: string, init?: RequestInit) => {
     if (init?.method === 'POST') {
       const body = JSON.parse(String(init.body));
-      const name = body.prompt === 'corner' ? 'left-' + Buffer.from(body.input_reference.split(',')[1], 'base64').toString().split('-')[0] : body.prompt;
+      const name = body.prompt;
       posts.set(name, (posts.get(name) ?? 0) + 1);
       return Response.json({ id: 'job-' + name, status: 'queued' });
     }
@@ -41,7 +41,7 @@ for (const target of ['left', 'up', 'down', 'left-up', 'left-down']) test(`${tar
   const names = target === 'left' ? ['left'] : target.startsWith('left-') ? ['left-up', 'left-down'] : ['up', 'down'];
   const run = () => target === 'left'
     ? produceLeftVideo(front, { color: colour, source: { id: 'shadow', directory: root }, parts: [face] }, generate, 'left', { model: api.model })
-    : target.startsWith('left-') ? produceCornerVideos(corners, front, generate, 'corner', { model: api.model })
+    : target.startsWith('left-') ? produceCornerVideos(corners, front, generate, { up: 'left-up', down: 'left-down' }, { model: api.model })
       : producePitchVideos(front, front, generate, { up: 'up', down: 'down' }, { model: api.model });
   await assert.rejects(run(), /fetch failed/);
   assert.equal(queries.get(target), 3, 'one query plus two network retries');

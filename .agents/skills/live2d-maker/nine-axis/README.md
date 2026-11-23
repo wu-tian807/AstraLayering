@@ -40,7 +40,7 @@ pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowled
 | `step01_preparation` | 整理 KRA 图层 UUID、几何范围与投影关系 |
 | `step02_video` | 生成左右转头、抬头和低头的参考视频 |
 | `step03_frames` | 选择单轴参考帧 |
-| `step04_angles` | 制作单轴模型，同时生成斜角视频 |
+| `step04_angles` | 制作单轴模型。左上、左下视频分别保持对应首帧的俯仰，匀速左转到侧面 |
 | `step05_frames` | 选择斜角参考帧 |
 | `step06_angle-xy` | 制作斜角模型 |
 | `step07_jaw-line` | 处理下颌与脖子的连接，交付 UUID 模型、KRA 和合成预览 |
