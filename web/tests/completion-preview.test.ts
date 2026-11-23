@@ -3,8 +3,8 @@ import { mkdir, mkdtemp, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { test } from 'node:test';
-import { chromium } from 'playwright';
-import { createWorkbench } from '../server.ts';
+import { openPage } from './browser-page.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { acquireTaskLock, configureRun, saveRun } from '../../.agents/skills/live2d-maker/workflow/state.ts';
 
 test('completion preview waits, follows the saved draft, and survives its publication', { timeout: 45_000 }, async t => {
@@ -25,23 +25,16 @@ test('completion preview waits, follows the saved draft, and survives its public
   await put(`${section}/groups.json`, JSON.stringify({ groups: [{ id: 'body', kind: 'part', groups: [] }] }));
   await put(`${section}/step11_completion/body/.running`, '');
   await put(`${section}/agents/completion/request.json`, JSON.stringify({ task: { name: '正面遮挡补全-body' } }));
-  const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-  const browser = await chromium.launch({ headless: true }).catch(error => {
-    if (!String(error).includes("Executable doesn't exist")) throw error;
-    t.skip('Install the Playwright Chromium browser to run preview checks.'); return null;
-  });
-  if (!browser) return;
-  t.after(() => browser.close());
-  const page = await browser.newPage({ viewport: { width: 1500, height: 1000 } });
+  const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+  const page = await openPage(t, { viewport: { width: 1500, height: 1000 } });
+  if (!page) return;
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
   let hold = false, releaseSnapshot = () => {};
   const barrier = new Promise<void>(resolve => { releaseSnapshot = resolve; });
   await page.route('**/api/task?*', async route => { if (hold) await barrier; await route.continue(); });
   t.after(() => releaseSnapshot());
-  await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview`);
+  await page.goto(`${origin}/?name=case&page=preview`);
   const group = page.locator('[data-cycle="0"]'); await group.waitFor();
   await group.locator('[data-group-toggle="0"]').first().evaluate(button => (button as HTMLButtonElement).click());
   const panel = page.locator('[data-svg-preview="0:completion"]');

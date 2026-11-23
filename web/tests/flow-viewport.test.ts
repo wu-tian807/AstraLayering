@@ -3,8 +3,8 @@ import { mkdir, mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { chromium } from 'playwright';
-import { createWorkbench } from '../server.ts';
+import { openPage } from './browser-page.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { sectionSteps, type ProgressStep } from '../progress.js';
 
 test('flow preview retains the right edge, manual zoom and a middle position across layout changes and polling',
@@ -14,21 +14,13 @@ test('flow preview retains the right edge, manual zoom and a middle position acr
     const workspace = join(root, 'case/nine-axis/step07_jaw-line/workspace');
     await mkdir(workspace, { recursive: true });
     await writeFile(join(workspace, '../.completed'), '');
-    const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
-    await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-    t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-    const browser = await chromium.launch({ headless: true }).catch(error => {
-      if (!String(error).includes("Executable doesn't exist")) throw error;
-      t.skip('Install the Playwright Chromium browser to run viewport checks.');
-      return null;
-    });
-    if (!browser) return;
-    t.after(() => browser.close());
-    const page = await browser.newPage({ viewport: { width: 1708, height: 1418 } });
+    const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+    const page = await openPage(t, { viewport: { width: 1708, height: 1418 } });
+    if (!page) return;
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
     await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
-    await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview`);
+    await page.goto(`${origin}/?name=case&page=preview`);
     const viewport = page.locator('.flow-scroll');
     await viewport.waitFor();
     const position = () => viewport.evaluate(element => ({ left: element.scrollLeft, max: element.scrollWidth - element.clientWidth }));
@@ -66,18 +58,11 @@ test('selecting a part and expanding its group details preserve the flow viewpor
   await writeFile(join(section, 'groups.json'), JSON.stringify({ groups: [{ id: 'face', groups: [
     { id: 'face/upper_lip', kind: 'part', groups: [] },
   ] }] }));
-  const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-  const browser = await chromium.launch({ headless: true }).catch(error => {
-    if (!String(error).includes("Executable doesn't exist")) throw error;
-    t.skip('Install the Playwright Chromium browser to run viewport checks.'); return null;
-  });
-  if (!browser) return;
-  t.after(() => browser.close());
-  const page = await browser.newPage({ viewport: { width: 1500, height: 950 } });
+  const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+  const page = await openPage(t, { viewport: { width: 1500, height: 950 } });
+  if (!page) return;
   await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
-  await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview`);
+  await page.goto(`${origin}/?name=case&page=preview`);
   const viewport = page.locator('.flow-scroll'), card = viewport.locator('[data-node="0:layers"]');
   const expandTree = card.locator('[data-tree-expand="face"]');
   await expandTree.waitFor({ timeout: 5000 });
@@ -117,20 +102,13 @@ test('nine-axis branches show flat task rows with one workbench entry and access
   await writeFile(join(hair, 'hair-progress.json'), JSON.stringify({ version: 2, completed: ['front'], next: 'side' }));
   await writeFile(join(accessories, 'deformers.json'), '{}');
   await writeFile(join(accessories, 'notes.md'), 'Stage notes');
-  const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-  const browser = await chromium.launch({ headless: true }).catch(error => {
-    if (!String(error).includes("Executable doesn't exist")) throw error;
-    t.skip('Install the Playwright Chromium browser to run viewport checks.'); return null;
-  });
-  if (!browser) return;
-  t.after(() => browser.close());
-  const page = await browser.newPage({ viewport: { width: 1000, height: 850 } });
+  const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+  const page = await openPage(t, { viewport: { width: 1000, height: 850 } });
+  if (!page) return;
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
   await page.route('**/api/studio/project?*', route => route.fulfill({ json: { nineAxis: { available: false } } }));
-  await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview&stage=6`);
+  await page.goto(`${origin}/?name=case&page=preview&stage=6`);
   const card = page.locator('[data-node="6:step04_angles"]'); await card.waitFor();
   const section = page.locator('[data-section="6"]');
   const plan = section.locator('.preview-step-plan');

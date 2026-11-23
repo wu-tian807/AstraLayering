@@ -6,7 +6,7 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { parseEnv } from 'node:util';
 import { createEnvironmentConfig, EnvironmentConflict, patchEnvironment, probeEnvironmentCli } from '../environment-config.ts';
-import { createWorkbench } from '../server.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { loadWorkflowEnvironment } from '../../.agents/skills/live2d-maker/shared/codex/environment.ts';
 import { imageSteps, imageModelKey, modelSlots, modelSlotKey } from '../../.agents/skills/live2d-maker/shared/agents/models.ts';
 import { videoModels } from '../../.agents/skills/live2d-maker/shared/video.ts';
@@ -137,9 +137,7 @@ test('refuses symlinked .env and keeps its external target untouched',async t=>{
 test('HTTP save is same-origin, revision-checked, and the next task start reads the saved configuration',async t=>{
  const f=await fixture(t,'preparation_agent_model=gpt-6.1-sol-low\n');
  let observed='';const runs=join(f.directory,'runs');
- const server=await createWorkbench({settingsPath:join(f.directory,'settings.json'),defaultDir:runs,environment:f.environment,preflight:async()=>{},start:async()=>{observed=loadWorkflowEnvironment({},f.directory).stepModels.part_standardize.effort;return 123;}});
- await new Promise<void>(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise<void>(resolve=>server.close(()=>resolve())));
- const url='http://127.0.0.1:'+(server.address() as any).port;
+ const { url } = await startWorkbench(t, {settingsPath:join(f.directory,'settings.json'),defaultDir:runs,environment:f.environment,preflight:async()=>{},start:async()=>{observed=loadWorkflowEnvironment({},f.directory).stepModels.part_standardize.effort;return 123;}});
  const post=(path:string,body:any,extra={})=>fetch(url+'/api/'+path,{method:'POST',headers:{'Content-Type':'application/json',...extra},body:JSON.stringify({dir:runs,...body})});
  const source=await (await fetch(url+'/api/config/environment')).json() as any;
  const edit={revision:source.revision,changes:{preparation_agent_model:'gpt-6.1-sol-high'}};

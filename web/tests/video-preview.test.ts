@@ -4,8 +4,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { chromium } from 'playwright';
-import { createWorkbench } from '../server.ts';
+import { openPage } from './browser-page.ts';
+import { startWorkbench } from './workbench-server.ts';
 
 // A 12-second, 96px H.264/yuv420p moving test pattern; no external codec or
 // video service is needed to exercise cover decoding and actual playback.
@@ -28,21 +28,14 @@ test('video covers decode real frames, and unscaled output playback survives zoo
     await copyFile(fixtureVideo, join(directory, name + '.mp4'));
     await writeFile(join(directory, '.completed'), '');
   }
-  const server = await createWorkbench({ defaultDir: root, settingsPath: join(root, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-  const browser = await chromium.launch({ headless: true }).catch(error => {
-    if (!String(error).includes("Executable doesn't exist")) throw error;
-    t.skip('Install Playwright Chromium to check video playback.'); return null;
-  });
-  if (!browser) return;
-  t.after(() => browser.close());
-  const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
+  const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+  const page = await openPage(t, { viewport: { width: 1400, height: 1000 } });
+  if (!page) return;
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
   await page.route('**/api/studio/project?*', route => route.fulfill({ json: { nineAxis: { available: false } } }));
-  await page.goto(`http://127.0.0.1:${(server.address() as any).port}/?name=case&page=preview&stage=6`);
+  await page.goto(`${origin}/?name=case&page=preview&stage=6`);
   await page.waitForFunction(() => {
     const images = [...document.querySelectorAll<HTMLImageElement>('[data-video-cover]')];
     return images.length === 3 && images.every(image => image.complete && image.naturalWidth > 0);

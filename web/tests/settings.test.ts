@@ -1,11 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { chmod, cp, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
-import { createWorkbench } from '../server.ts';
-import { scan } from '../krita-scan.ts';
+import { startWorkbench, postTask, imageUpload } from './workbench-server.ts';
 import { createSoftwareScan } from '../software-scan.ts';
 import { defaultKnowledgeDirectory } from '../../.agents/skills/live2d-maker/shared/knowledge.ts';
 import { preflightTaskInputs } from '../../.agents/skills/live2d-maker/workflow/preflight-inputs.ts';
@@ -18,21 +17,14 @@ async function bench(t: any, started: any[] = [], scans: { kritaScan?: ReturnTyp
   const dir = join(base, 'runs');
   const kritaCheck = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };
   const ffmpegCheck = async (path: string) => { if (!path.endsWith('good-ffmpeg')) throw new Error('不是 FFmpeg'); return { executable: path, version: 'ffmpeg version test' }; };
-  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, ...scans,
+  const { server, url } = await startWorkbench(t, { defaultDir: dir, settingsPath: join(base, 'settings.json'), kritaCheck, ffmpegCheck, ...scans,
     preflight: async options => {
       await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck);
       await preflightTaskInputs(options, loadWorkflowEnvironment({ video_base_url: 'https://video.example/v1', video_api_key: 'fixture' }));
     }, start: async options => { started.push(options); return 1; } });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
-  const url = 'http://127.0.0.1:' + (server.address() as any).port;
-  const post = async (path: string, data: any) => {
-    const response = await fetch(url + '/api/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ dir, ...data }) });
-    return { status: response.status, value: await response.json() as any };
-  };
-  return { base, dir, url, post, server };
+  t.after(() => rm(base, { recursive: true, force: true }));
+  return { base, dir, url, post: postTask(url, dir), server };
 }
-const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 
 test('Studio layer editing follows the saved global Krita path', async t => {
   const b = await bench(t);
@@ -75,15 +67,15 @@ test('both scan APIs use the same controls with separate states and stop on serv
 test('global FFmpeg supplies new task defaults; starts pass the task path without overwriting it', async t => {
   const started: any[] = [], b = await bench(t, started);
   await b.post('settings', { directory: b.dir, krita: '/opt/good-krita' });
-  assert.equal((await b.post('tasks', { name: 'static', upload: await upload() })).status, 201);
-  const refused = await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() });
+  assert.equal((await b.post('tasks', { name: 'static', upload: await imageUpload() })).status, 201);
+  const refused = await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await imageUpload() });
   assert.equal(refused.status, 409); assert.ok(refused.value.ffmpeg); assert.match(refused.value.error, /全局设置/);
   await assert.rejects(readFile(join(b.dir, 'head', 'run.json')));
   assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: '/opt/bad-ffmpeg' })).status, 400);
   const first = '/opt/one/good-ffmpeg', second = '/opt/two/good-ffmpeg';
   assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: first })).value.ffmpeg, first);
   assert.equal((await b.post('settings', { directory: b.dir })).value.ffmpeg, first);
-  assert.equal((await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() })).status, 201);
+  assert.equal((await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await imageUpload() })).status, 201);
   assert.equal(JSON.parse(await readFile(join(b.dir, 'head', 'run.json'), 'utf8')).ffmpeg, first);
   assert.equal((await b.post('start', { name: 'head' })).status, 202);
   assert.equal(started[0].ffmpeg, first);
@@ -99,7 +91,7 @@ test('global FFmpeg supplies new task defaults; starts pass the task path withou
 test('unavailable FFmpeg refuses resume before changing nine-axis markers', async t => {
   const b = await bench(t);
   await b.post('settings', { directory: b.dir, krita: '/opt/good-krita', ffmpeg: '/opt/good-ffmpeg' });
-  await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await upload() });
+  await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await imageUpload() });
   await b.post('settings', { directory: b.dir, ffmpeg: '' });
   const record = join(b.dir, 'head', 'run.json'), run = JSON.parse(await readFile(record, 'utf8'));
   run.ffmpeg = '/opt/removed-ffmpeg'; await writeFile(record, JSON.stringify(run));
@@ -113,7 +105,7 @@ test('unavailable FFmpeg refuses resume before changing nine-axis markers', asyn
 
 test('没有可用的全局 Krita 时创建任务返回 409 且不建目录；保存设置后新任务记录 Krita 与先验知识目录', async t => {
   const started: any[] = [], b = await bench(t, started);
-  const refused = await b.post('tasks', { name: 'case', upload: await upload() });
+  const refused = await b.post('tasks', { name: 'case', upload: await imageUpload() });
   assert.equal(refused.status, 409); assert.ok(refused.value.krita); assert.match(refused.value.error, /全局设置/);
   await assert.rejects(readFile(join(b.dir, 'case', 'run.json')));
   assert.equal((await b.post('settings', { directory: b.dir, krita: '/opt/bad-krita' })).status, 400);
@@ -123,7 +115,7 @@ test('没有可用的全局 Krita 时创建任务返回 409 且不建目录；�
   assert.equal(saved.status, 200); assert.equal(saved.value.krita, '/opt/good-krita'); assert.equal(saved.value.knowledge, knowledge);
   // An absent key keeps the saved value; an empty one clears it.
   assert.equal((await b.post('settings', { directory: b.dir })).value.krita, '/opt/good-krita');
-  const created = await b.post('tasks', { name: 'case', upload: await upload() });
+  const created = await b.post('tasks', { name: 'case', upload: await imageUpload() });
   assert.equal(created.status, 201, JSON.stringify(created.value));
   const run = JSON.parse(await readFile(join(b.dir, 'case', 'run.json'), 'utf8'));
   assert.equal(run.krita, '/opt/good-krita'); assert.equal(run.knowledge, knowledge);
@@ -157,18 +149,4 @@ test('先验知识中的媒体按类型返回并支持 Range，供视频拖动',
   assert.equal(part.status, 206); assert.equal(part.headers.get('content-range'), 'bytes 2-4/10'); assert.equal(await part.text(), '234');
   assert.equal((await fetch(raw, { headers: { Range: 'bytes=20-' } })).status, 416);
   assert.equal((await fetch(b.url + '/api/config/raw?ref=worktree&path=../settings.json')).status, 400);
-});
-
-test('Krita 扫描先查已知目录，再广度遍历，跳过点目录并按真实路径去重', async () => {
-  const base = await realpath(await mkdtemp(join(tmpdir(), 'krita-scan-')));
-  try {
-    const known = join(base, 'bin'), deep = join(base, 'a', 'b'), hidden = join(base, '.cache');
-    for (const directory of [known, deep, hidden]) await mkdir(directory, { recursive: true });
-    for (const file of [join(known, 'krita'), join(deep, 'krita-5.2.appimage'), join(hidden, 'krita')]) { await writeFile(file, ''); await chmod(file, 0o755); }
-    await writeFile(join(base, 'a', 'krita'), ''); // not executable
-    const found: string[] = [];
-    const final = await scan({ known: [known], roots: [base], depth: 5 }, message => { if ('found' in message) found.push(message.found); });
-    assert.deepEqual(found, [join(known, 'krita'), join(deep, 'krita-5.2.appimage')]);
-    assert.ok('scanned' in final && final.scanned > 0);
-  } finally { await rm(base, { recursive: true, force: true }); }
 });

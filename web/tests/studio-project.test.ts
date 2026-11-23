@@ -4,7 +4,7 @@ import { mkdir, mkdtemp, realpath, readFile, writeFile, symlink, rm } from "node
 import { join, basename } from "node:path";
 import { tmpdir } from "node:os";
 import { createHash } from 'node:crypto';
-import { createWorkbench } from "../server.ts";
+import { startWorkbench } from "./workbench-server.ts";
 import { studioArtifacts } from "../../.agents/skills/live2d-maker/shared/studio-artifacts.ts";
 import { steps } from "../../.agents/skills/live2d-maker/character-assembly/steps.ts";
 import { shadowArtifacts } from '../../.agents/skills/live2d-maker/shared/shadow.ts';
@@ -17,16 +17,11 @@ async function fixture(t: any) {
     name = "角色",
     project = join(dir, name);
   await mkdir(project, { recursive: true });
-  const server = await createWorkbench({
+  const { url: base } = await startWorkbench(t, {
     defaultDir: dir,
     settingsPath: join(root, "settings.json"),
   });
-  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
-  t.after(async () => {
-    await new Promise<void>((resolve) => server.close(() => resolve()));
-    await rm(root, { recursive: true, force: true });
-  });
-  const base = "http://127.0.0.1:" + (server.address() as any).port;
+  t.after(() => rm(root, { recursive: true, force: true }));
   const get = (override = {}) =>
     fetch(
       base +

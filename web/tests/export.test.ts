@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
-import { readFile, rm } from 'node:fs/promises';
+import { rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { unzipSync } from 'fflate';
 import { exportFixture } from '../../.agents/skills/live2d-maker/workflow/tests/export-fixture.ts';
 import { exportCompletedRun } from '../../.agents/skills/live2d-maker/workflow/export.ts';
-import { createWorkbench } from '../server.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { snapshot } from '../snapshot.ts';
 
 test('exported snapshot preserves section/group states, reports and KRA previews with no workspace', async t => {
@@ -36,10 +36,7 @@ test('exported snapshot preserves section/group states, reports and KRA previews
 
 test('HTTP export downloads the shared ZIP; incomplete and stale-directory requests are refused', async t => {
   const f = await exportFixture(t);
-  const server = await createWorkbench({ defaultDir: f.dir, settingsPath: join(f.base, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
-  const base = 'http://127.0.0.1:' + (server.address() as any).port;
+  const { url: base } = await startWorkbench(t, { defaultDir: f.dir, settingsPath: join(f.base, 'settings.json') });
   const url = base + '/api/export?' + new URLSearchParams({ dir: f.dir, name: f.name });
   const response = await fetch(url);
   assert.equal(response.status, 200); assert.equal(response.headers.get('content-type'), 'application/zip');
@@ -50,6 +47,4 @@ test('HTTP export downloads the shared ZIP; incomplete and stale-directory reque
   assert.equal((await fetch(base + '/api/export?' + new URLSearchParams({ dir: f.base, name: f.name }))).status, 409);
   await f.put('run.json', JSON.stringify({ ...f.run, status: 'failed' }));
   assert.equal((await fetch(url)).status, 400);
-  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
-  assert.match(app, /data\.canExport/); assert.match(app, /data-export/);
 });

@@ -7,7 +7,7 @@ import { runInNewContext } from 'node:vm';
 import { zipSync } from 'fflate';
 import sharp from 'sharp';
 import { KRAPreviews } from '../kra-preview.ts';
-import { createWorkbench } from '../server.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { snapshot } from '../snapshot.ts';
 import { sectionSteps } from '../progress.js';
 
@@ -66,10 +66,8 @@ test('最新 KRA 保存画面通过真实 HTTP 预览，不采用过期导出或
   const before = await readFile(draft), value = await snapshot(task, 'case', base);
   assert.equal(value.sections[1].previews.step02.path, 'raster-layering/step02/working.kra');
   assert.ok(value.fileVersions['raster-layering/step02/working.kra']);
-  const server = await createWorkbench({ defaultDir: base, settingsPath: join(base, 'settings.json') });
-  await new Promise<void>(done => server.listen(0, '127.0.0.1', done));
-  t.after(() => new Promise<void>(done => server.close(() => done())));
-  const url = `http://127.0.0.1:${(server.address() as any).port}/artifact?` + new URLSearchParams({ name: 'case', dir: base,
+  const { url: origin } = await startWorkbench(t, { defaultDir: base, settingsPath: join(base, 'settings.json') });
+  const url = `${origin}/artifact?` + new URLSearchParams({ name: 'case', dir: base,
     path: value.sections[1].previews.step02.path, preview: 'kra' });
   const first = await fetch(url);
   assert.equal(first.status, 200); assert.equal(first.headers.get('content-type'), 'image/png');

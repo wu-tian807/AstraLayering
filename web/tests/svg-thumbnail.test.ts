@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import sharp from 'sharp';
-import { createWorkbench } from '../server.ts';
+import { startWorkbench } from './workbench-server.ts';
 import { renderSVGThumbnail } from '../svg-thumbnail.ts';
 
 const svg = (paint: string, width = 1200, height = 1200) => Buffer.from(
@@ -72,10 +72,8 @@ test('thumbnail endpoint preserves source and path protections, refreshes rewrit
   const source = svg('<rect x="500" y="900" width="100" height="100" fill="red"/>');
   const file = join(task, 'legs.draft.svg');
   await writeFile(file, source);
-  const server = await createWorkbench({ defaultDir: dir, settingsPath: join(base, 'settings.json') });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
-  const origin = 'http://127.0.0.1:' + (server.address() as any).port;
+  const { url: origin } = await startWorkbench(t, { defaultDir: dir, settingsPath: join(base, 'settings.json') });
+  t.after(() => rm(base, { recursive: true, force: true }));
   const url = (path: string, preview = true) => origin + '/artifact?' + new URLSearchParams({ name: 'test', dir, path, v: 'unchanged-client-version', ...(preview ? { preview: 'content' } : {}) });
   const raw = await fetch(url('legs.draft.svg', false));
   assert.match(raw.headers.get('content-type')!, /image\/svg\+xml/);
