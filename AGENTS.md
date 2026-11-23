@@ -1,10 +1,19 @@
 # Repository development
 
-- The web workbench lives in `web/`. Production workflows, tools and prompts live in `.agents/skills/live2d-maker/`; read the applicable skill and pipeline documentation before changing those contracts.
-- Saved KRA documents are the artwork source of truth. Author models bind native layer UUIDs; PNG exports and texture caches are derived data. Preserve cumulative geometry and apply upstream deformation once.
-- Keep task goals in the workflow knowledge prompts and reusable tool contracts in tool documentation. Preserve the editable and preview scopes selected by the current step.
-- Step completion markers, intermediate round progress and persistent agent sessions represent different state. Changes to dispatch or recovery must preserve the documented continue/resume/retry semantics and be covered by targeted tests.
-- Design workflows for successful completion. Fix incorrect grouping, ranges, and other upstream assumptions at their source; preserve valid work and repair only affected dependencies. Do not turn recoverable internal constraint conflicts into final workflow failures or mark incomplete output as complete. Prefer the smallest evidence-backed correction; avoid blanket retries, extra review stages, and speculative fallback mechanisms that reduce efficiency.
-- Run checks relevant to the change. Skill type checking runs with `pnpm check` in the skill directory; web type checking runs with `pnpm check:web` from the repository root. Prefer existing fixture tests when checking dispatch and file contracts.
-- Tests check program behavior, not wording. Do not add assertions that only restate authored text, including but not limited to checking whether a prompt contains a given line or phrase. Prompt tests may check assembly (which files are included), injected inputs, tools and flow.
-- Keep commits scoped and inspect staged files. Preserve unrelated work; exclude credentials, generated caches and runtime task outputs from commits.
+## Code and prompts
+
+- The workbench lives in `web/`. Workflows, tools, and prompts live in `.agents/skills/live2d-maker/`. Read the relevant skill and pipeline docs before changing their contracts.
+- Put task goals in workflow knowledge prompts and reusable tool contracts in tool documentation. Respect the current step's editing and preview scopes.
+- Get the user's approval before adding a prompt template variable or adding a new prompt input to a step, even when reusing an existing variable name.
+
+## Artwork and workflow state
+
+- Saved KRA files are the source of truth. Author models bind native layer UUIDs. PNG exports and texture caches are derived from the artwork. Preserve cumulative geometry and apply upstream deformation once.
+- Track step completion, intermediate round progress, and persistent agent sessions independently. Preserve the documented behavior of continue, resume, and retry. Cover dispatch and recovery changes with targeted tests.
+- Fix incorrect grouping, ranges, and other upstream assumptions at their source. Preserve valid work and repair only affected dependencies. Resolve recoverable constraint conflicts within the workflow and mark completion only when the required output is valid. Prefer the smallest evidence-backed fix and avoid blanket retries, extra review stages, and speculative fallbacks.
+
+## Checks and commits
+
+- Run the checks relevant to the change. For skill code, run `pnpm check` in the skill directory. For workbench code, run `pnpm check:web` from the repository root. Prefer existing fixtures for dispatch and file contracts.
+- Test program behavior. For prompts, check file assembly, injected inputs, tools, and workflow behavior. Keep assertions about authored wording out of tests.
+- Keep commits focused, inspect staged files, and preserve unrelated work. Exclude credentials, generated caches, and runtime task outputs.
