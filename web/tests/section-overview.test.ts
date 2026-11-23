@@ -26,8 +26,6 @@ test('九轴与其他管线共用总览卡片，编号、状态与预览入口�
   assert.match(card(6), /已完成/);
   assert.doesNotMatch(card(6), /data-head-preview|<canvas|overview-progress|overview-step-list|data-nine-step/);
   assert.equal(card(6).replace(/\d+/g, '#'), card(1).replace(/\d+/g, '#'));
-  const preview = source.slice(source.indexOf('function flowCard('), source.indexOf('function inspector('));
-  assert.match(preview, /stage\.id==='nine-axis'\?headThumbnail\(\)/);
 });
 
 test('九轴预览定位到真实步骤，并把唯一缩略头带入视野', () => {

@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { createWorkbench } from '../server.ts';
+import { startWorkbench, postTask, imageUpload } from './workbench-server.ts';
 import { preflightKrita } from '../../.agents/skills/live2d-maker/workflow/krita.ts';
 import { snapshot } from '../snapshot.ts';
 import { launch, runWebTask } from '../worker.ts';
@@ -19,17 +20,10 @@ async function fixture(t: any, start?: WorkbenchOptions['start'], preflight: Wor
   const base = await realpath(await mkdtemp(join(tmpdir(), 'layering-web-')));
   const dir = join(base, 'runs'), settingsPath = join(base, 'settings.json');
   if (initialKrita) await writeFile(settingsPath, JSON.stringify({ directory: dir, krita: initialKrita }));
-  const server = await createWorkbench({ defaultDir: dir, settingsPath, start, preflight, upscale });
-  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
-  t.after(async () => { await new Promise<void>(resolve => server.close(() => resolve())); await rm(base, { recursive: true, force: true }); });
-  const port = (server.address() as any).port, url = 'http://127.0.0.1:' + port;
-  const post = async (path: string, data: any, headers: any = {}) => {
-    const response = await fetch(url + '/api/' + path, { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: JSON.stringify({ dir, ...data }) });
-    return { status: response.status, value: await response.json() as any };
-  };
-  return { base, dir, server, url, post, settingsPath };
+  const { server, url } = await startWorkbench(t, { defaultDir: dir, settingsPath, start, preflight, upscale });
+  t.after(() => rm(base, { recursive: true, force: true }));
+  return { base, dir, server, url, post: postTask(url, dir), settingsPath };
 }
-const upload = async () => (await sharp({ create: { width: 8, height: 8, channels: 3, background: '#cbbbaa' } }).png().toBuffer()).toString('base64');
 async function put(root: string, path: string, value = 'content') { const file = join(root, path); await mkdir(join(file, '..'), { recursive: true }); await writeFile(file, value); }
 
 test('已有任务保存参数不启动也不改产物，继续恢复重试读取保存值', async t => {
@@ -39,7 +33,7 @@ test('已有任务保存参数不启动也不改产物，继续恢复重试读�
     starts.push(await readRun(join(f.dir, options.name)));
     return 4242;
   }, async () => { preflights++; });
-  assert.equal((await f.post('tasks', { name: 'test', upload: await upload(), jobs: 2, size: '2K' })).status, 201);
+  assert.equal((await f.post('tasks', { name: 'test', upload: await imageUpload(), jobs: 2, size: '2K' })).status, 201);
   const task = join(f.dir, 'test');
   assert.equal((await readRun(task))!.size, '2K');
   await put(task, 'nine-axis/step01_preparation/author-note.txt', '保留已有作者内容');
@@ -88,7 +82,7 @@ test('超分环境检查不通过时拒绝高分辨率和跟随输入图，仍�
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), unavailable);
 
-  const original = await upload();
+  const original = await imageUpload();
   for (const size of ['2K', '3K', '4K', 'follow']) {
     assert.equal((await f.post('tasks', { name: 'blocked', upload: original, size })).status, 409);
   }
@@ -199,7 +193,7 @@ test('网页后台启动同样只使用 workflow.log，失败时等待日志完�
 
 test('upload retains original/config; same name never overwrites; selection persists; stale tabs cannot start in another root', async t => {
   const f = await fixture(t);
-  const bytes = await upload();
+  const bytes = await imageUpload();
   assert.equal((await f.post('tasks', { name: '角色-01', upload: bytes, from: 'part-layering', to: 'part-layering', standard: true })).status, 201);
   const task = join(f.dir, '角色-01');
   assert.equal((await readFile(join(task, 'input/original.png'))).toString('base64'), bytes);
@@ -223,7 +217,7 @@ test('upload retains original/config; same name never overwrites; selection pers
 test('web forwards shadow mode to the existing coordinator and shows artifacts of both modes', async t => {
   let received: any;
   const f = await fixture(t, async options => { received = await configureRun(options, join(f.dir, options.name)); return 123; });
-  assert.equal((await f.post('tasks', { name: 'shadow-case', upload: await upload(), shadowMode: 'normal-depth', from: 'shadow', to: 'shadow' })).status, 201);
+  assert.equal((await f.post('tasks', { name: 'shadow-case', upload: await imageUpload(), shadowMode: 'normal-depth', from: 'shadow', to: 'shadow' })).status, 201);
   assert.equal((await f.post('start', { name: 'shadow-case' })).status, 202);
   assert.equal(received.shadowMode, 'normal-depth'); assert.equal(received.from, 'shadow');
   assert.equal((await f.post('start', { name: 'shadow-case', shadowMode: '../mask' })).status, 400);
@@ -241,7 +235,7 @@ test('web forwards shadow mode to the existing coordinator and shows artifacts o
 
 test('task assets reject traversal and symlinks; SVG is served sandboxed; version browsing remains read only', async t => {
   const f = await fixture(t);
-  await f.post('tasks', { name: 'test', upload: await upload() });
+  await f.post('tasks', { name: 'test', upload: await imageUpload() });
   await put(f.dir, 'test/out.svg', '<svg xmlns="http://www.w3.org/2000/svg"/>');
   await put(f.base, 'private/private.json', '{"private":true}');
   await symlink(join(f.base, 'private'), join(f.dir, 'test/leak'), process.platform === 'win32' ? 'junction' : 'dir');
@@ -329,7 +323,7 @@ test('snapshots distinguish artifacts, real group states, missing outputs, revie
 
 test('real coordinator owns web execution: locking, failure diagnostics, resume, cancellation, thread preservation', async t => {
   const f = await fixture(t), task = join(f.dir, 'test');
-  await f.post('tasks', { name: 'test', upload: await upload(), from: 'part-layering', to: 'part-layering' });
+  await f.post('tasks', { name: 'test', upload: await imageUpload(), from: 'part-layering', to: 'part-layering' });
   await put(task, 'raster-layering/agents/steps/step01/session.json', JSON.stringify({ threadId: 'keep-me' }));
   const options = { name: 'test', dir: f.dir, from: 'part-layering', to: 'part-layering' } as const;
   await assert.rejects(runWebTask(options, { execute: async (_id, _run, context) => {
@@ -358,7 +352,7 @@ test('real coordinator owns web execution: locking, failure diagnostics, resume,
 
 test('终端总调度没有 web worker 记录仍可在网页停止；旧请求不停止新会话，产物保留且可续跑', async t => {
   const f = await fixture(t), task = join(f.dir, 'test');
-  await f.post('tasks', { name: 'test', upload: await upload(), from: 'part-layering', to: 'part-layering' });
+  await f.post('tasks', { name: 'test', upload: await imageUpload(), from: 'part-layering', to: 'part-layering' });
   await put(task, 'raster-layering/agents/steps/step01/session.json', JSON.stringify({ threadId: 'keep-cli-thread' }));
   await atomicJSON(stopRequestPath(task), { runnerId: 'previous-runner' });
   const ready = Promise.withResolvers<void>(), entered = Promise.withResolvers<AbortSignal>();
@@ -553,7 +547,7 @@ test('web creation records opt-in live and start forwards it without extending e
   const starts: any[] = [], f = await fixture(t, async options => { starts.push(options); return 456; });
   for (const live of [false, true]) {
     const name = live ? 'live-on' : 'live-off';
-    assert.equal((await f.post('tasks', { name, upload: await upload(), live })).status, 201);
+    assert.equal((await f.post('tasks', { name, upload: await imageUpload(), live })).status, 201);
     const run = await readRun(join(f.dir, name));
     assert.equal(run?.live, live); assert.equal(run?.to, live ? 'nine-axis' : 'shadow');
     assert.equal((await f.post('start', { name, live })).status, 202);

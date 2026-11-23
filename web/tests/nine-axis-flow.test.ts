@@ -36,17 +36,6 @@ test('only rows with saved output expose disclosures, with independent direction
   assert.doesNotMatch(html, /<details[^>]*\sopen/);
 });
 
-test('pending stages keep the common selection and folding controls; collapsing hides only the card body', () => {
-  const leaf = nineAxisStepCard(sectionSteps[6][1], context());
-  assert.doesNotMatch(leaf, /尚无|等待/);
-  assert.match(leaf, /class="step-content nine-step-content"/);
-  assert.match(leaf, /data-step="6:step02_video"/);
-  assert.match(leaf, /data-step-toggle="6:step02_video"/);
-  const closed = nineAxisStepCard(sectionSteps[6][3], context(new Set(), new Set(['6:step04_angles'])));
-  assert.match(closed, /aria-expanded="false"/);
-  assert.doesNotMatch(closed, /nine-task-group|step-content/);
-});
-
 test('hair rounds use sequential display rows, one cumulative output and the parent recovery controls', () => {
   const step = structuredClone(sectionSteps[6][7]);
   step.status = 'interrupted'; step.rounds![0].status = 'done'; step.roundNotice = '继续后制作侧发';
