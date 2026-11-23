@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { zipSync, strToU8 } from 'fflate';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
-import { angleXYPrompt, axisPrompt, viewFramesPrompt, cornerFramesPrompt, createFitHead, hairPrompt, headCornersPrompt, headPitchPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
+import { angleXYPrompt, axisPrompt, viewFramesPrompt, cornerFramesPrompt, cornerVideoPrompts, createFitHead, hairPrompt, headCornersPrompt, headPitchPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
 import { axisGroups, type AxisGroup } from '../axis-groups.ts';
@@ -247,6 +247,7 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
 
   const axis = stepKnowledge('nine-axis', 'step04_angles');
   const trace = stepKnowledge('nine-axis', 'step04_outline');
+  const video = stepKnowledge('nine-axis', 'step04_angles/video');
   for (const direction of ['left', 'up', 'down'] as const) {
     const output = `step04_angles/model/${direction}`;
     hasPaths(axisPrompt(root, direction), [
@@ -263,6 +264,7 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
     const prompt = outlinePrompt(root, corner);
     hasPaths(prompt, [`step05_frames/${corner}.png`, `step04_angles/video/${corner}.mp4`, `step06_angle-xy/outline/${corner}`]);
     assert.ok(trace.files('main', corner).includes(join(trace.directory, 'prompts/groups', corner, '帧与交付位置.md')));
+    assert.deepEqual(video.files('main', corner), [join(video.directory, 'prompts/groups', corner, '斜角视频.md')]);
   }
 
   for (const pitch of ['up', 'down'] as const) hasPaths(headPitchPrompt(root, pitch), [
@@ -413,8 +415,13 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
   const selected = JSON.parse(await readFile(join(cornerFrames, 'selected-frames.json'), 'utf8'));
   assert.deepEqual(['left-up', 'left-down'].map(c => selected.frames[c].frameIndex), [10, 30]);
   assert.deepEqual([recordCorners['left-up'].first, recordCorners['left-down'].first], ['../../step03_frames/up.png', '../../step03_frames/down.png']);
-  assert.deepEqual(firsts[3], await readFile(join(viewFrames, 'up.png')));
-  assert.deepEqual(firsts[4], await readFile(join(viewFrames, 'down.png')));
+  const cornerInputs = new Map(prompts.slice(3).map((prompt, i) => [prompt, firsts[i + 3]]));
+  const cornerPrompts = cornerVideoPrompts();
+  assert.equal(cornerInputs.size, 2);
+  for (const view of ['up', 'down'] as const) {
+    assert.deepEqual(cornerInputs.get(cornerPrompts[view]), await readFile(join(viewFrames, `${view}.png`)));
+    assert.equal(recordCorners[`left-${view}`].prompt, cornerPrompts[view]);
+  }
   for (const name of ['left-up', 'left-down', 'right']) await assert.rejects(access(join(videos, `${name}.png`)), { code: 'ENOENT' });
   for (const step of ['step02_angle-x', 'step03_video-y', 'step04_angle-up', 'step05_angle-down', 'step01_video', 'step02_angles', 'step03_angle-xy', 'step04_jaw-line']) await assert.rejects(access(join(nine, step)), { code: 'ENOENT' });
   for (const step of ['step01_preparation','step02_video','step03_frames','step04_angles','step05_frames','step06_angle-xy','step07_jaw-line']) assert.equal((await readStep(join(nine, step))).status, 'completed');
@@ -527,17 +534,19 @@ test('斜向以实际 MP4 为准，模型与提示词改变不触发自动重生
   await writeFile(join(pitch, 'up.png'), 'up-first'); await writeFile(join(pitch, 'down.png'), 'down-first');
   let generated = 0;
   const generate = async () => ({ id: `corner-${++generated}`, status: { status: 'completed' }, bytes: Buffer.from(`video-${generated}`) });
-  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
+  const prompts = { up: 'up-a', down: 'down-a' };
+  await produceCornerVideos(corner, pitch, generate, prompts, { model: 'fixture' });
   const initial = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
   const down = await readFile(join(corner, 'left-down.mp4'));
-  await produceCornerVideos(corner, pitch, generate, 'left-a', { model: 'fixture' });
+  await produceCornerVideos(corner, pitch, generate, prompts, { model: 'fixture' });
   assert.equal(generated, 2);
   const reused = JSON.parse(await readFile(join(corner, 'videos.json'), 'utf8'));
   assert.equal(reused['left-down'].videoId, initial['left-down'].videoId);
   assert.deepEqual(await readFile(join(corner, 'left-down.mp4')), down);
-  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'fixture' });
+  const changed = { ...prompts, up: 'up-b' };
+  await produceCornerVideos(corner, pitch, generate, changed, { model: 'fixture' });
   assert.equal(generated, 2, '暂不实现提示词变化触发重生成');
-  await produceCornerVideos(corner, pitch, generate, 'left-b', { model: 'changed-model' });
+  await produceCornerVideos(corner, pitch, generate, changed, { model: 'changed-model' });
   assert.equal(generated, 2, '暂不实现模型变化触发重生成');
 });
 

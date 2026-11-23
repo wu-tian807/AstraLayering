@@ -81,6 +81,10 @@ step12_head-roll：从完整头部四角生成 ±${HEAD_ROLL_LIMIT}° 的 Z 轴�
 // The turns use the step file; up and down replace it through their groups.
 export const videoPrompt = (view?: ViewY) => stepKnowledge('nine-axis', 'step02_video').render('main', {}, view ? { group: view } : {}).trim();
 export const videoPrompts = (): VideoPrompts => ({ turn: videoPrompt(), ...Object.fromEntries(viewsY.map(view => [view, videoPrompt(view)])) as Record<ViewY, string> });
+export function cornerVideoPrompts(): Record<ViewY, string> {
+  const step = stepKnowledge('nine-axis', 'step04_angles/video');
+  return Object.fromEntries(viewsY.map(view => [view, step.render('main', {}, { group: `left-${view}` }).trim()])) as Record<ViewY, string>;
+}
 const outputSchema = { type: 'object', properties: { error: { type: ['string', 'null'] } }, required: ['error'], additionalProperties: false };
 
 const stepPrompt = (step: string, taskRoot: string, { group, values = {} }: { group?: string; values?: KnowledgeValues } = {}) =>
@@ -468,14 +472,17 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
         };
         if (step.id === 'step04_angles') return async () => {
           const { head } = await getTurnInput();
-          if (options.dryRun) return preview([...(group ? [group] : axisGroups).flatMap(g => [outlinePrompt(task, g), axisPrompt(task, g)]), videoPrompt()].join('\n\n'));
           const selected = branch ? [branch as 'model' | 'video'] : [...nineAxisBranches];
+          if (options.dryRun) return preview([
+            ...(selected.includes('model') ? (group ? [group] : axisGroups).flatMap(g => [outlinePrompt(task, g), axisPrompt(task, g)]) : []),
+            ...(selected.includes('video') ? Object.values(cornerVideoPrompts()) : []),
+          ].join('\n\n'));
           async function runBranch(b: (typeof selected)[number]) {
             const output = join(angles, b), { status } = await readStep(output);
             await beginStep(output, status);
             if (b === 'video') {
               const { model, generate } = video();
-              await produceCornerVideos(output, frames, generate, videoPrompt(), { signal: options.signal, progress, model });
+              await produceCornerVideos(output, frames, generate, cornerVideoPrompts(), { signal: options.signal, progress, model });
             } else {
               const box = await crop();
               const finished = await runAxisGroups(output, {

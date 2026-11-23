@@ -329,7 +329,7 @@ export async function producePitchVideos(directory: string, front: string, gener
   await clearVideoJobs(directory, viewsY);
 }
 
-export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompt: string,
+export async function produceCornerVideos(directory: string, pitch: string, generate: GenerateVideo, prompts: Record<ViewY, string>,
   { signal, progress, model }: Run & { model: string }) {
   const started = Date.now();
   const cached = await videoRecords(directory);
@@ -340,7 +340,7 @@ export async function produceCornerVideos(directory: string, pitch: string, gene
       id: corner,
       async run() {
         const first = relative(directory, frame).split(sep).join('/');
-        const record = await takeVideo(directory, corner, prompt, await readFile(frame), first, generate, { signal, progress }, cached?.[corner]);
+        const record = await takeVideo(directory, corner, prompts[view], await readFile(frame), first, generate, { signal, progress }, cached?.[corner]);
         return [corner, record] as const;
       },
     };

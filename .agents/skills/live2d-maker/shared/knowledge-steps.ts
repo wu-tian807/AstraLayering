@@ -37,6 +37,7 @@ export const knowledgeSteps: readonly KnowledgeStep[] = [
   { section: 'nine-axis', step: 'step03_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step04_outline', required: ['preview_svg'] },
   { section: 'nine-axis', step: 'step04_angles', promptGroups: nineAxisGroups, required: ['preview_svg', 'fit_nine_axis'] },
+  { section: 'nine-axis', step: 'step04_angles/video', promptGroups: ['left-up', 'left-down'] },
   { section: 'nine-axis', step: 'step05_frames', required: ['extract_video_frame'] },
   { section: 'nine-axis', step: 'step06_angle-xy', required: ['preview_svg', 'fit_nine_axis'] },
   { section: 'nine-axis', step: 'step07_jaw-line', required: ['krita'] },

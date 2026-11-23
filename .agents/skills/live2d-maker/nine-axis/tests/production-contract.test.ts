@@ -94,7 +94,7 @@ for(const kind of ['pitch','corner'])test(`${kind}: videos run concurrently and 
     }
     return{id:view,status:{status:'completed'},bytes:Buffer.from(view)};
   };
-  const produce=()=>kind==='pitch'?producePitchVideos(output,input,generate,{up:'up',down:'down'},{model:'fixture'}):produceCornerVideos(output,input,async(_prompt,image)=>generate(image.toString().startsWith('up')?'up':'down'),'corner',{model:'fixture'});
+  const produce=()=>kind==='pitch'?producePitchVideos(output,input,generate,{up:'up',down:'down'},{model:'fixture'}):produceCornerVideos(output,input,generate,{up:'up',down:'down'},{model:'fixture'});
   await assert.rejects(produce(),/down failed/);
   const success=join(output,(kind==='pitch'?'up':'left-up')+'.mp4');assert.equal((await readFile(success)).toString(),'up');
   await assert.rejects(readFile(join(output,'videos.json')),{code:'ENOENT'});
