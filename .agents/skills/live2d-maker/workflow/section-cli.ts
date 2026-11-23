@@ -7,7 +7,6 @@ import { checkKrita } from '../shared/raster/krita.ts';
 import { acquireTaskLock, sectionId } from './state.ts';
 import { applyStepAction, applyTaskAction, validStepId } from './step-actions.ts';
 import { prepareSectionInvocation, sectionOptionsFrom, sections, type SectionDefinition } from './sections.ts';
-import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
 import { ensureUpscayl } from '../shared/upscayl.ts';
 import { probeUpscaleEnvironment, resolveUpscaleSize, type UpscaleEnvironmentCheck } from '../shared/upscale-environment.ts';
 import { createTaskLog } from './log.ts';
@@ -73,7 +72,6 @@ export async function runSectionCommand(
       try {
         if (sizeNotice) taskLog.write(sizeNotice);
         if (registry === sections) {
-          await cleanLegacyCodexCache({ progress: log });
           if (options.size !== '1K') {
             await ensureUpscayl({ signal: controller.signal, report: event => taskLog.preparation('standalone', event) });
           }
