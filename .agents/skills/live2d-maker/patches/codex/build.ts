@@ -87,18 +87,14 @@ async function companion(version: string): Promise<string> {
   return join(dirname(manifest), 'vendor', triple, 'bin', process.platform === 'win32' ? 'codex-code-mode-host.exe' : 'codex-code-mode-host');
 }
 
-async function removePreviousBuilds(directory: string, key: string): Promise<void> {
+async function removePreviousBuilds(directory: string, key: string, progress: (message: string) => void) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name === key || !/^[a-f0-9]{20}$/.test(entry.name)) continue;
     const previous = join(directory, entry.name);
-    try {
-      // Older installations locked each build separately.
-      const release = await lockfile.lock(previous, { realpath: false, stale: 30_000 });
-      try { await rm(previous, { recursive: true, force: true, maxRetries: 3 }); }
-      finally { await release(); }
-    } catch (error) {
-      throw new Error(`无法移除旧版 Codex 缓存（${previous}）：${(error as Error).message}`, { cause: error });
-    }
+    // Older installations lock each build separately.
+    const release = await lockfile.lock(previous, { realpath: false, stale: 30_000 }).catch(() => undefined);
+    if (release) await rm(previous, { recursive: true, force: true, maxRetries: 3 }).finally(release)
+      .catch(error => progress(`Codex 旧缓存暂未清理（${previous}）：${String(error)}`));
   }
 }
 
@@ -225,7 +221,7 @@ export async function ensurePatchedCodex(options: Options = {}, services: Servic
     await rm(work, { recursive: true, force: true, maxRetries: 3 }).catch(error => {
       progress(`清理 Codex 构建临时目录失败（${work}）：${String(error)}`);
     });
-    await removePreviousBuilds(directory, key);
+    await removePreviousBuilds(directory, key, progress).catch(error => progress(`无法列出 Codex 旧缓存：${String(error)}`));
     if (rebuilding || waiting) emit('completed', `Codex ${version} 补丁已准备`);
     return executable;
   } catch (error) {

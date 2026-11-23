@@ -54,7 +54,6 @@ node patches/shared/cli-visual-smoke.ts --harness claude
 
 启动时按 SDK 版本、源码提交和补丁内容选取 `data/codex/<平台-架构>/<构建指纹>/bin/`。版本和 SHA-256 匹配时复用，否则自动构建。进程锁防止并发构建，详情写入同目录的 `build.log`。失败时保留临时源码、Rust 工具链、Cargo 依赖和编译中间文件，续跑复用。补丁通过校验后清理临时目录和同平台旧成品。
 
-从旧缓存路径升级时，启动管线会清理安装目录下的 `.codex-build`，正在构建的目录留待下次启动清理。
 
 所有入口要求 `failed_error_event_version: 1`；生图要求 `image_provider_version: 2`，按图片数压缩要求 `image_compaction_version: 2`，请求体预算另外要求 `request_compaction_version: 1`。
 

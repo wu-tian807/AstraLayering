@@ -22,7 +22,6 @@ import { AgentSlotPool, agentSlotsVariable } from './agent-slots.ts';
 import { requireVideoApi } from '../shared/video.ts';
 import { prepareRunCatalog, sharedCatalogVariable, type SharedCatalog } from '../shared/codex/catalog.ts';
 import { appServerCommand } from '../shared/codex/tool-agent.ts';
-import { cleanLegacyCodexCache } from '../patches/codex/legacy-cache.ts';
 import { ensureUpscayl } from '../shared/upscayl.ts';
 import { sectionSize } from '../shared/section-size.ts';
 import { resolveUpscaleSize, type UpscaleEnvironmentCheck } from '../shared/upscale-environment.ts';
@@ -162,7 +161,6 @@ export async function runTask(options: TaskOptions, dependencies: {
       error => log.write('停止请求读取失败：' + formatAgentError(error)));
     const runId = run.runner.id;
     const report: ReportPreparation = event => log.preparation(runId, event);
-    if (!dependencies.execute) await cleanLegacyCodexCache({ progress, preparing: () => dependencies.preparing?.(run!) });
     if (run.size !== '1K' && (!dependencies.execute || dependencies.prepareUpscale)) {
       await (dependencies.prepareUpscale ?? ensureUpscayl)({ signal, report, preparing: () => dependencies.preparing?.(run!) });
     }

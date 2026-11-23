@@ -8,7 +8,6 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { execFileSync } from 'node:child_process';
 import lockfile from 'proper-lockfile';
 import { ensurePatchedCodex, codexCommit, pinnedGit, MissingToolchainError } from '../../patches/codex/build.ts';
-import { cleanLegacyCodexCache } from '../../patches/codex/legacy-cache.ts';
 import { withRust, rustVersion } from '../../patches/codex/rust.ts';
 import { runCommand, watchOutput, type Command } from '../../patches/codex/process.ts';
 import { formatAgentError } from '../codex/diagnostics.ts';
@@ -19,28 +18,6 @@ async function fixture(t: TestContext) {
 }
 const capabilities = {version: 1, image_provider_version: 2, image_compaction_version: 2, request_compaction_version: 1, failed_error_event_version: 1};
 const codexVersion = JSON.parse(await readFile(new URL('../../package.json', import.meta.url), 'utf8')).dependencies['@openai/codex-sdk'];
-test('启动只清理当前安装的旧版 Codex 缓存，跳过仍在构建的目录', async t => {
-  const skill = await fixture(t);
-  const previous = join(skill, '.codex-build'), build = join(previous, 'darwin-arm64', 'legacy-build');
-  const current = join(skill, 'data', 'codex');
-  let preparing = 0;
-  const options = { skill, preparing: () => preparing++ };
-  await cleanLegacyCodexCache(options);
-  assert.equal(preparing, 0);
-  await mkdir(build, { recursive: true });
-  await mkdir(current, { recursive: true });
-  await writeFile(join(current, 'ready.json'), 'current');
-  const release = await lockfile.lock(build, { stale: 30_000 });
-  try {
-    await cleanLegacyCodexCache(options);
-    assert.equal(preparing, 0);
-    await readdir(build);
-  } finally { await release(); }
-  await cleanLegacyCodexCache(options);
-  await assert.rejects(readdir(previous), { code: 'ENOENT' });
-  assert.equal(preparing, 1);
-  assert.equal(await readFile(join(current, 'ready.json'), 'utf8'), 'current');
-});
 test('并发自动构建只运行一次，校验缓存，损坏后重建，失败不写成功记录；构建或等待前通知调用方', async t => {
   const root = await fixture(t), sdkHost = join(root, 'sdk-host'); await writeFile(sdkHost, 'companion');
   let builds = 0, building = 0, fail = true;
@@ -102,7 +79,8 @@ test('并发自动构建只运行一次，校验缓存，损坏后重建，失�
   await mkdir(previous);
   const release = await lockfile.lock(previous, { stale: 30_000 });
   try {
-    await assert.rejects(ensurePatchedCodex(opts, services), /无法移除旧版 Codex 缓存/);
+    assert.equal(await ensurePatchedCodex(opts, services), results[0]);
+    assert.ok((await readdir(directory)).includes(previousKey));
   } finally { await release(); }
   assert.equal(await ensurePatchedCodex(opts, services), results[0]);
   assert.deepEqual(await readdir(directory), [key]);
