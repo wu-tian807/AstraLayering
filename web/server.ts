@@ -91,11 +91,11 @@ type Settings = { directory: string; krita?: string; ffmpeg?: string; knowledge?
 export async function createWorkbench({ settingsPath = join(root, '.web/settings.json'), defaultDir = runsDirectory,
   start = launch, environment = createEnvironmentConfig(), kritaCheck = workflowKrita, ffmpegCheck = checkFFmpeg,
   upscale = createUpscaleEnvironmentCheck(),
-  preflight = async (options: TaskOptions) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); await preflightTaskInputs(options); },
+  preflight = async (options: TaskOptions, video = true) => { await preflightKrita(options, kritaCheck); await preflightFFmpeg(options, ffmpegCheck); await preflightTaskInputs(options, undefined, { video }); },
   kritaScan = createSoftwareScan('krita'), ffmpegScan = createSoftwareScan('ffmpeg'),
   updates = createUpdateCheck({ cachePath: join(dirname(settingsPath), 'update-check.json') }) }: {
   settingsPath?: string; defaultDir?: string; start?: typeof launch; environment?: ReturnType<typeof createEnvironmentConfig>;
-  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions) => Promise<unknown>;
+  kritaCheck?: KritaCheck; ffmpegCheck?: FFmpegCheck; preflight?: (options: TaskOptions, video?: boolean) => Promise<unknown>;
   kritaScan?: ReturnType<typeof createSoftwareScan>; ffmpegScan?: ReturnType<typeof createSoftwareScan>;
   upscale?: UpscaleEnvironmentCheck;
   updates?: ReturnType<typeof createUpdateCheck> } = {}) {
@@ -349,7 +349,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           starts.add(directory);
           try {
             // Krita is checked before an action changes any step.
-            try { await preflight(opts); }
+            try { await preflight(opts, path === '/api/task-action' && value.action === 'retry'); }
             catch (error) {
               if (!(error instanceof KritaUnavailable) && !(error instanceof FFmpegUnavailable)) throw error;
               json(softwareRefused(error), 409); return;

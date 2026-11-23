@@ -230,7 +230,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   const cornerFrames = join(directory, 'step05_frames'), xyDirectory = join(directory, 'step06_angle-xy');
   const baseEnvironment = dependencies.environment ?? loadWorkflowEnvironment(), scale = angleScale();
   const artworkOnly = selectedIds.every(isArtworkOnly);
-  if (!options.dryRun && !dependencies.generate && !artworkOnly) requireVideoApi(baseEnvironment);
   const requestedFFmpeg = options.ffmpeg || baseEnvironment.codex.env?.ASTRA_STUDIO_FFMPEG;
   const ffmpeg = options.dryRun || artworkOnly ? undefined : await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
     ffmpeg: requestedFFmpeg ? resolveInput(options.name, requestedFFmpeg, root) : undefined }, dependencies.ffmpegCheck);
