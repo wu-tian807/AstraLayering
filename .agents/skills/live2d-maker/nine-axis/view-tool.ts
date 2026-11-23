@@ -7,7 +7,7 @@ import { toolDefinition } from '../shared/codex/tool-config.ts';
 import type { FunctionTool } from '../shared/codex/function-tools.ts';
 import { fromTaskPath, taskRootOf, toAgentPath } from '../shared/task-paths.ts';
 import sharp from 'sharp';
-import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants, type HeadDeformer } from '../shared/nine-axis-model.js';
+import { validateHeadNineAxis, keyformAt, evaluatePoints, nodes, descendants, type HeadDeformer, type HeadLevel } from '../shared/nine-axis-model.js';
 import type { Built } from './head.ts';
 import type { MaterialBuilt } from './kra-materials.ts';
 import { previewAvailability } from './ownership.ts';
@@ -63,7 +63,7 @@ export type PreviewScope = {
   allowsPose?: (x: number, y: number) => boolean;
   label?: string;
 };
-export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>, session?: Browser, scope?: PreviewScope): FunctionTool {
+export function createNineAxisViewTool(directory: string, observationDirectory: string, build: () => Promise<Built>, session?: Browser, scope?: PreviewScope, defaultLevel: HeadLevel = 'accessory'): FunctionTool {
   return {
     ...toolDefinition('view_nine_axis'),
     async execute(value, signal, context) {
@@ -84,7 +84,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         const results: any[] = [];
         const browser = session ?? await chromium.launch({ args: browserArgs });
         try {
-          const single = createNineAxisViewTool(directory, observationDirectory, async () => snapshot, browser, scope);
+          const single = createNineAxisViewTool(directory, observationDirectory, async () => snapshot, browser, scope, defaultLevel);
           for (const frame of frames) {
             signal.throwIfAborted();
             if (Object.keys(frame).some(key => !['x', 'y', 'reference'].includes(key))) throw Error('frame 只接受 x、y、reference');
@@ -122,7 +122,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         return n;
       };
       const x = angle(args.x, 'ParamAngleX', 'x'), y = angle(args.y, 'ParamAngleY', 'y');
-      const level = args.level ?? 'accessory', ids = doc.levels.map(l => l.id);
+      const level = args.level ?? defaultLevel, ids = doc.levels.map(l => l.id);
       if (typeof level !== 'string' || (args.level !== undefined && !ids.includes(level))) throw new Error(`level 须为 ${ids.join('、')} 之一`);
       const maskIds = new Set(doc.parts.filter(p => (p as { role?: string }).role === 'mask').map(p => p.id)), masks = args.masks ?? [];
       if (!Array.isArray(masks) || masks.some(m => !maskIds.has(m))) throw new Error(`masks 须为蒙版部件 id：${[...maskIds].join('、') || '本步没有蒙版'}`);

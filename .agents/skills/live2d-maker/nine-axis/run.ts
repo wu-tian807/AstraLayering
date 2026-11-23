@@ -281,8 +281,10 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const hairRound=stepId==='step08_hair'?(await readHairProgress(output)).next:undefined;
     if(hairRound==='done')throw Error('头发轮次已全部完成');
     const pitch=stepId.startsWith('step10_head-pitch/')?stepId.split('/')[1] as HeadPitchDirection:undefined;
+    const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
     const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
-      async () => materialize(output, await builds[stepId](), options.signal), undefined, stepId==='step11_head-angle-xy'?{includes:headCornerScope.includes!,label:headCornerScope.label}:pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined);
+      async () => materialize(output, await builds[stepId](), options.signal), undefined, stepId==='step11_head-angle-xy'?{includes:headCornerScope.includes!,label:headCornerScope.label}:pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined,
+      axis || stepId === 'step06_angle-xy' ? 'face' : undefined);
     if(pitch)return [bitmap,view,createContinuationEditTool(output,join(directory,'step09_head-accessories'),headPitchStage(pitch),scale,task,materialize,headPitchScope)];
     if (stepId === 'step11_head-angle-xy') {
       const box = await crop();
@@ -295,7 +297,6 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           return svg.execute(value, signal, context);
         } }];
     }
-    const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
     if (stepId === 'step08_hair') return [createKritaTool(await krita(),task),bitmap,view,
