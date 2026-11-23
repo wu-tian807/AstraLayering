@@ -114,8 +114,7 @@ export class AgentLog {
   static async create(root: string, name: string, request: unknown, taskRoot?: string): Promise<AgentLog> {
     await mkdir(root, { recursive: true });
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const safeName = name.replace(/[^\p{L}\p{N}_-]/gu, '_').slice(0, 48) || 'agent';
-    const log = new AgentLog(await mkdtemp(join(root, `${timestamp}-${safeName}-`)), name, root, taskRoot);
+    const log = new AgentLog(await mkdtemp(join(root, `${timestamp}-`)), name, root, taskRoot);
     if (taskRoot) request = toTaskPaths(taskRoot, request);
     await writeFile(join(log.directory, 'request.json'), JSON.stringify(request, null, 2) + '\n', 'utf8');
     if (request && typeof request === 'object' && 'prompt' in request && typeof request.prompt === 'string')

@@ -12,6 +12,7 @@ export const productionCodexConfig = {
   'skills.include_instructions': false,
   'skills.bundled.enabled': false,
   'features.apps': false,
+  'features.plugins': false,
   'features.hooks': false,
   'features.codex_hooks': false,
   'features.memories': false,
