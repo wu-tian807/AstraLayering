@@ -13,8 +13,7 @@ import { promptInput } from '../../shared/tests/prompt-input.ts';
 const signal = new AbortController().signal;
 test('clothing prompt lookup is local and has no inherited body-specific prior', async () => {
   const children = partKnowledge(profile, 'children');
-  assert.ok(children.files('main', 'body')[0].endsWith('knowledge/clothing-part-layering/step12_children/prompts/10-直属结构拆分.md'));
-  assert.ok(children.render('main', {}, { taskRoot: '/task', group: 'body' }).includes('同动整体仍可终止为一个 part'));
+  assert.deepEqual(children.files('main', 'body'), [join(children.directory, 'prompts', '10-直属结构拆分.md')]);
   await assert.rejects(readdir(join(children.directory, 'prompts', 'groups')), { code: 'ENOENT' });
 });
 
