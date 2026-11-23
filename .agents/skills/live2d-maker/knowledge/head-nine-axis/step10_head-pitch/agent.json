@@ -1,6 +1,6 @@
 {
   "main": {
-    "initial": ["prompts/上下制作.md", "head-nine-axis/prompts/耳朵验收.md"],
+    "initial": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/上下制作.md"],
     "tools": ["view_bitmap", "edit_nine_axis", "view_nine_axis"]
   }
 }

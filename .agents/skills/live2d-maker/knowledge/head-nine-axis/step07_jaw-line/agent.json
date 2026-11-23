@@ -1,6 +1,7 @@
 {
   "main": {
     "initial": [
+      "head-nine-axis/prompts/形变与遮挡.md",
       "prompts/下颌线与脖子.md"
     ],
     "tools": [

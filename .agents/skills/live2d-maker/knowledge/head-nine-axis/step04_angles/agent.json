@@ -1,11 +1,10 @@
 {
   "main": {
     "initial": [
+      "head-nine-axis/prompts/形变与遮挡.md",
       "prompts/单轴输入.md",
       "prompts/方向任务.md",
-      "head-nine-axis/prompts/耳朵验收.md",
       "head-nine-axis/prompts/face-contour.md",
-      "prompts/补全先验.md",
       "head-nine-axis/prompts/delivery-scope.md"
     ],
     "tools": [
