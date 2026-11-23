@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { AgentCallError, AgentRuntime, defaultAgentConcurrency, retryableAgentError } from '../../shared/agents/runtime.ts';
+import { AgentCallError, AgentRuntime, defaultAgentConcurrency, retryableAgentError } from '../agents/runtime.ts';
 
 test('独立运行层默认限制 3 个调用，失败也释放位置', async () => {
   assert.equal(defaultAgentConcurrency, 3);
