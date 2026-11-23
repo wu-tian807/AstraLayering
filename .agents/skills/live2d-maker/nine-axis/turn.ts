@@ -119,11 +119,8 @@ export type VideoGenerationOptions = { signal?: AbortSignal; progress?: (message
   poll?: number; timeout?: number; retryDelay?: number; checkpoint?: VideoJobStore };
 function checkVideoJob(value: unknown): VideoJob | undefined {
   const job = value as Partial<VideoJob> | undefined;
-  const id = job?.id;
-  if (id == null || (typeof id === 'string' && !id.trim())) return;
-  if (job?.version !== 1 || typeof id !== 'string' || !/^[a-f0-9]{64}$/.test(job.requestHash ?? ''))
-    throw new Error('生视频任务记录无效，不能自动重新提交');
-  return job as VideoJob;
+  if (job?.version === 1 && typeof job.id === 'string' && job.id.trim()
+    && /^[a-f0-9]{64}$/.test(job.requestHash ?? '')) return job as VideoJob;
 }
 // Business inputs are stable; provider adapters own the wire format.
 export async function generateVideo(api: VideoApi, prompt: string, image: Buffer,
@@ -144,14 +141,12 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
     .update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
   const body=requestBody(), requestHash=hashRequest(body);
   const job=checkVideoJob(await checkpoint?.read());
-  // Already-submitted jobs can still match the earlier request with a fixed ratio.
-  if(job && job.requestHash!==requestHash && (!(volc||router) || job.requestHash!==hashRequest(requestBody(true))))
-    throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
+  const reuse = job && (job.requestHash === requestHash || ((volc || router) && job.requestHash === hashRequest(requestBody(true))));
   const query=(id:string)=>retryVideoRead(async()=>
     (await call(api,'GET',`${path}/${encodeURIComponent(id)}`,signal)).json() as Promise<Record<string,unknown>>,
     '生视频查询',signal!,progress,retryDelay);
   let id: string, status: Record<string,unknown>;
-  if(job){
+  if(reuse){
     id=job.id;progress?.(`续接生视频 ${id}（${api.model}）`);status=await query(id);
   }else{
     status=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
@@ -248,7 +243,7 @@ async function takeVideo(directory: string, video: string, prompt: string, image
   const checkpoint: VideoJobStore = {
     read: async () => {
       try { return checkVideoJob(JSON.parse(await readFile(checkpointFile, 'utf8'))); }
-      catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
+      catch (error) { if (!(error instanceof SyntaxError) && (error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
     },
     write: job => atomic(checkpointFile, JSON.stringify(job, null, 2) + '\n'),
   };

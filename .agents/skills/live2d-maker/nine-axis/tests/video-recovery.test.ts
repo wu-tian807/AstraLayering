@@ -77,23 +77,30 @@ test('retryable query and download responses recover through the same bounded re
   assert.equal(posts, 1); assert.equal(queries, 2); assert.equal(downloads, 3);
 });
 
-test('authentication failures are not retried and changed requests cannot reuse another job', async t => {
+test('changed requests submit a new job and authentication failures are not retried', async t => {
   let saved: VideoJob | undefined, posts = 0, queries = 0;
   const checkpoint: VideoJobStore = { read: async () => saved, write: async job => { saved = job; } };
-  t.mock.method(globalThis, 'fetch', async (_url: string, init?: RequestInit) => {
-    if (init?.method === 'POST') { posts++; return Response.json({ id: 'job', status: 'queued' }); }
+  t.mock.method(globalThis, 'fetch', async (url: string, init?: RequestInit) => {
+    if (init?.method === 'POST') return Response.json({ id: 'job-' + ++posts, status: posts === 1 ? 'queued' : 'completed' });
+    if (url.endsWith('/content')) return new Response('mp4');
     queries++; return new Response('bad fixture-secret', { status: 401 });
   });
   await assert.rejects(generateVideo(api, 'turn', Buffer.from('png'), { ...options, checkpoint }), error =>
     error instanceof Error && error.message.includes('401') && !error.message.includes(api.apiKey));
   assert.equal(queries, 1);
+  const original = saved;
   for (const changed of [
     { api, prompt: 'changed', image: Buffer.from('png') },
     { api: { ...api, model: 'different' }, prompt: 'turn', image: Buffer.from('png') },
     { api: { ...api, baseUrl: 'https://other.test' }, prompt: 'turn', image: Buffer.from('png') },
     { api, prompt: 'turn', image: Buffer.from('other-image') },
-  ]) await assert.rejects(generateVideo(changed.api, changed.prompt, changed.image, { ...options, checkpoint }), /不一致/);
-  assert.equal(posts, 1); assert.equal(queries, 1);
+  ]) {
+    saved = original;
+    const result = await generateVideo(changed.api, changed.prompt, changed.image, { ...options, checkpoint });
+    assert.equal(result.id, 'job-' + posts);
+    assert.equal(saved?.id, result.id);
+  }
+  assert.equal(posts, 5); assert.equal(queries, 1);
 });
 
 test('an uncertain submission is attempted once, and cancellation stops read retries', async t => {
@@ -110,13 +117,16 @@ test('an uncertain submission is attempted once, and cancellation stops read ret
   assert.equal(requests, 2, 'abort never starts another query');
 });
 
-test('continue submits a fresh request when a saved video has no task ID', async t => {
+for (const [caseName, record] of [
+  ['missing ID', JSON.stringify({ version: 1, requestHash: '0'.repeat(64) })],
+  ['invalid JSON', '{'],
+]) test(`continue submits a fresh request for a video record with ${caseName}`, async t => {
   const root = await mkdtemp(join(tmpdir(), 'video-missing-id-'));
   t.after(() => rm(root, { recursive: true, force: true }));
   const pending = join(root, 'up.job.json');
   await writeFile(join(root, 'upper-body.png'), 'first frame');
   await writeFile(join(root, 'down.mp4'), 'finished sibling');
-  await writeFile(pending, JSON.stringify({ version: 1, requestHash: '0'.repeat(64), submittedAt: '2026-01-01T00:00:00Z' }));
+  await writeFile(pending, record);
   const calls: string[] = [];
   t.mock.method(globalThis, 'fetch', async (url: string, init?: RequestInit) => {
     calls.push(`${init?.method} ${new URL(url).pathname}`);

@@ -58,7 +58,6 @@ for (const provider of ['volcengine', 'openrouter'] as const) {
   const result = await generateVideo(api, prompt, image, { checkpoint });
   assert.equal(result.id, 'existing-video');
   assert.equal(result.bytes.toString(), 'mp4');
-  await assert.rejects(generateVideo(api, 'different prompt', image, { checkpoint }), /不一致/);
   assert.equal(calls.mock.callCount(), 2);
  });
 }
