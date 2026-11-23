@@ -48,5 +48,3 @@ export function replacementGroupDraft(path: string, section: string, groups: Art
 export const sectionSteps: ProgressStep[][];
 export const stepArtifacts: Record<string, Artifact[]>[];
 export function shadowInspectionArtifacts(files: string[]): Artifact[];
-
-export const previousNineAxisSectionSteps: ProgressStep[];

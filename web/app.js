@@ -1,5 +1,5 @@
 import { processFileList } from './process-files.js';
-import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts, previousNineAxisSectionSteps,
+import { sectionSteps as stepTemplates, groupLayers, groupPhases, stepArtifacts, groupArtifacts, shadowInspectionArtifacts,
  groupSummary, groupPreviewArtifacts, groupStagePreviewArtifacts, groupReviewSteps, groupStageNodes, reviewReportText, replacementGroupDraft,
  latestKraPreview, statusNames, displayStatus, statusLabel } from './progress.js';
 import { selectedTask, rememberTask } from './task-selection.js';
@@ -152,7 +152,6 @@ function applySnapshot(next) {
   }
  }
  sectionSteps=structuredClone(stepTemplates);
- if(data.sections[6]?.layout==='nested')sectionSteps[6]=structuredClone(previousNineAxisSectionSteps);
  if(state.stage===6&&!sectionSteps[6].some(step=>step.id===state.selectedStep||step.children.some(child=>child.id===state.selectedStep||child.children.some(group=>group.id===state.selectedStep))))state.selectedStep=defaultStep(6);
  for(const [index,stage] of stages.entries()) {
   stage.status=data.sections[index]?.status||'pending';

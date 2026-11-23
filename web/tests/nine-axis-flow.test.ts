@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { nineAxisStepCard } from '../nine-axis-flow.js';
-import { sectionSteps, previousNineAxisSectionSteps, statusLabel } from '../progress.js';
+import { sectionSteps, statusLabel } from '../progress.js';
 
 const context = (products = new Set<string>(), collapsed = new Set<string>()) => ({
   esc: (value: unknown) => String(value).replaceAll('<', '&lt;').replaceAll('"', '&quot;'),
@@ -10,8 +10,8 @@ const context = (products = new Set<string>(), collapsed = new Set<string>()) =>
   content: (step: { id: string }) => products.has(step.id) ? `<button>查看产物</button>` : '', collapsed,
 });
 
-test('new and previous nine-axis layouts retain real step IDs in flat rows with no nested cards or repeated preview links', () => {
-  for (const step of [sectionSteps[6][3], sectionSteps[6][9], previousNineAxisSectionSteps[1]]) {
+test('the nine-axis plan retains real step IDs in flat rows with no nested cards or repeated preview links', () => {
+  for (const step of [sectionSteps[6][3], sectionSteps[6][9]]) {
     const before = JSON.stringify(step), html = nineAxisStepCard(step, context());
     assert.equal((html.match(/class="step-node /g) || []).length, 1);
     const children = step.children.flatMap(child => [child, ...child.children]);

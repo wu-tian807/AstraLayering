@@ -185,5 +185,10 @@ test('nine-axis branches show flat task rows with one workbench entry and access
   assert.equal(await hairCard.locator('[data-hair-round="side"] .nine-task-status').textContent(), '已完成');
   assert.equal(await hairCard.locator('[data-hair-round="back"] .nine-task-status').textContent(), '待执行');
   assert.equal(await page.locator('[data-section="6"] a[href*="studio?"]').count(), 1);
+  const cause = '请先在全局设置中选择 Krita';
+  await page.route('**/api/studio/project?*', route => route.fulfill({ json: { nineAxis: { available: true, path: 'model.json', version: '1' } } }));
+  await page.route('**/api/studio/nine-axis/materials?*', route => route.fulfill({ status: 400, json: { error: cause } }));
+  await page.locator('[data-head-status]').filter({ hasText: cause }).waitFor({ timeout: 8000 });
+  assert.equal(await page.locator('[data-head-preview] canvas').isVisible(), false);
   assert.deepEqual(errors, []);
 });
