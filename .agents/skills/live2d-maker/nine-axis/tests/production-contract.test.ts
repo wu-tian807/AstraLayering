@@ -23,15 +23,6 @@ const videoEnvironment = () => loadWorkflowEnvironment({ video_base_url: 'https:
 const mockInput = async () => ({ color: '/unused/character.png', parts: [], source: { id: 'fixture', directory: '/unused' } });
 const mockFFmpeg = async (executable: string) => ({ executable, version: 'ffmpeg version fixture' });
 
-test('missing video configuration refuses preparation before reading inputs or creating outputs', async t => {
-  const root = await fixture(t);
-  await assert.rejects(runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step: 'step01_preparation' }, {
-    environment: loadWorkflowEnvironment({}), ffmpegCheck: mockFFmpeg,
-    resolveInput: async () => assert.fail('startup must refuse before preparing inputs'),
-  }), /生视频接口/);
-  await assert.rejects(readFile(join(root, 'case/nine-axis/step01_preparation/.completed')), { code: 'ENOENT' });
-});
-
 for (const step of ['step02_video', 'step03_frames', 'step07_jaw-line', 'step08_hair', 'step04_angles/video', 'step04_angles/model']) {
   test(`completed ${step} cannot hide missing deliveries`, async t => {
     const root = await fixture(t), folder = join(root, 'case/nine-axis', step);
@@ -44,14 +35,14 @@ for (const step of ['step02_video', 'step03_frames', 'step07_jaw-line', 'step08_
   });
 }
 
-test('actual MP4s satisfy video delivery without the optional summary; empty files do not', async t => {
+test('saved MP4s are reused without a video service or summary; empty files do not', async t => {
   const root = await fixture(t), nine = join(root, 'case/nine-axis'), folder = join(nine, 'step02_video');
   await mkdir(folder, { recursive: true });
   for (const file of ['upper-body.png', 'crop.json', 'left.mp4', 'up.mp4', 'down.mp4']) await writeFile(join(folder, file), 'fixture bytes');
   await writeFile(join(folder, '.completed'), '');
   assert.deepEqual(await missingDeliveries(nine, 'nine-axis', 'step02_video'), []);
   assert.match(await runWorkflow({ name: 'case', dir: root, ffmpeg: process.execPath, step: 'step02_video' }, {
-    environment: videoEnvironment(), ffmpegCheck: mockFFmpeg, resolveInput: mockInput,
+    environment: loadWorkflowEnvironment({}), ffmpegCheck: mockFFmpeg, resolveInput: mockInput,
   }), /沿用/);
   await writeFile(join(folder, 'up.mp4'), '');
   assert.deepEqual(await missingDeliveries(nine, 'nine-axis', 'step02_video'), [join(folder, 'up.mp4')]);

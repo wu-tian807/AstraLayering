@@ -161,7 +161,7 @@ export async function main(args = process.argv.slice(2)): Promise<void> {
     return;
   }
   if (parsed.action) {
-    await preflightTaskInputs(options);
+    await preflightTaskInputs(options, undefined, { video: parsed.action.action === 'retry' });
     // Complete startup checks before a recovery action changes any step.
     await preflightKrita(options);
     await preflightFFmpeg(options);

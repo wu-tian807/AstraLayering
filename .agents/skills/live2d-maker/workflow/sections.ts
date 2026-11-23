@@ -17,6 +17,7 @@ import { readStep } from '../shared/step-chain.ts';
 import { nineAxisSteps } from '../shared/nine-axis.ts';
 import type { SectionRun } from '../shared/step-section.ts';
 import { requireFFmpeg } from './ffmpeg.ts';
+import type { StepAction } from './step-actions.ts';
 import { preflightTaskInputs } from './preflight-inputs.ts';
 import { checkKrita } from '../shared/raster/krita.ts';
 import { loadWorkflowEnvironment } from '../shared/codex/environment.ts';
@@ -41,7 +42,7 @@ export type SectionDefinition = {
   help?: string;
   dryRun?: boolean;
   targetedSteps?: boolean;
-  checkRecovery?(options: SectionInvocation): Promise<void>;
+  checkRecovery?(options: SectionInvocation, action: StepAction): Promise<void>;
   run(options: SectionInvocation, events: SectionEvents): Promise<SectionResult>;
 };
 
@@ -106,12 +107,13 @@ export const sections = {
   }),
   'nine-axis': {
     help: nineAxisHelp, dryRun: true, targetedSteps: true,
-    async checkRecovery(options) {
+    async checkRecovery(options, action) {
       const artworkOnly = isArtworkOnly(options.step?.split('/')[0]);
       const environment = loadWorkflowEnvironment();
       if (!artworkOnly) await requireFFmpeg({ from: 'nine-axis', to: 'nine-axis',
         ffmpeg: options.ffmpeg ? resolveInput(options.name, options.ffmpeg, options.dir) : environment.codex.env?.ASTRA_STUDIO_FFMPEG });
-      await preflightTaskInputs({ ...options, from: 'nine-axis', to: 'nine-axis' }, environment, { video: !artworkOnly });
+      const retryVideo = action === 'retry' && (!options.step || ['step02_video', 'step04_angles', 'step04_angles/video'].includes(options.step));
+      await preflightTaskInputs({ ...options, from: 'nine-axis', to: 'nine-axis' }, environment, { video: retryVideo });
       if (options.krita) await checkKrita(resolveInput(options.name, options.krita, options.dir), environment.codex.env);
     },
     async run(options) {

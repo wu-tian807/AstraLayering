@@ -62,7 +62,7 @@ export async function runSectionCommand(
     let sizeNotice: string | undefined;
     options.size = await resolveUpscaleSize(options.size, upscaleEnvironment, message => { sizeNotice = message; });
     if (args.action) {
-      await section.checkRecovery!(options);
+      await section.checkRecovery!(options, args.action);
       const target = { name: options.name, dir: options.dir, section: sectionId(id), action: args.action };
       log(await (options.step ? applyStepAction({ ...target, step: options.step }) : applyTaskAction(target)));
     }
