@@ -109,3 +109,28 @@ test('an uncertain submission is attempted once, and cancellation stops read ret
   await assert.rejects(generateVideo(api, 'turn', Buffer.from('png'), { ...options, signal: controller.signal }));
   assert.equal(requests, 2, 'abort never starts another query');
 });
+
+test('continue submits a fresh request when a saved video has no task ID', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'video-missing-id-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const pending = join(root, 'up.job.json');
+  await writeFile(join(root, 'upper-body.png'), 'first frame');
+  await writeFile(join(root, 'down.mp4'), 'finished sibling');
+  await writeFile(pending, JSON.stringify({ version: 1, requestHash: '0'.repeat(64), submittedAt: '2026-01-01T00:00:00Z' }));
+  const calls: string[] = [];
+  t.mock.method(globalThis, 'fetch', async (url: string, init?: RequestInit) => {
+    calls.push(`${init?.method} ${new URL(url).pathname}`);
+    if (init?.method === 'POST') {
+      assert.equal(JSON.parse(String(init.body)).prompt, 'up');
+      return Response.json({ id: 'new-up', status: 'completed' });
+    }
+    return new Response('fresh video');
+  });
+  await producePitchVideos(root, root, (prompt, image, context) => generateVideo(api, prompt, image, { ...context, ...options }),
+    { up: 'up', down: 'down' }, { model: api.model });
+  assert.deepEqual(calls, ['POST /v1/videos', 'GET /v1/videos/new-up/content']);
+  assert.equal(await readFile(join(root, 'up.mp4'), 'utf8'), 'fresh video');
+  assert.equal(await readFile(join(root, 'down.mp4'), 'utf8'), 'finished sibling');
+  assert.equal(JSON.parse(await readFile(join(root, 'videos.json'), 'utf8')).up.videoId, 'new-up');
+  await assert.rejects(access(pending), { code: 'ENOENT' });
+});

@@ -117,9 +117,11 @@ export type VideoJob = { version: 1; id: string; requestHash: string };
 export type VideoJobStore = { read: () => Promise<VideoJob | undefined>; write: (job: VideoJob) => Promise<void> };
 export type VideoGenerationOptions = { signal?: AbortSignal; progress?: (message: string) => void;
   poll?: number; timeout?: number; retryDelay?: number; checkpoint?: VideoJobStore };
-function checkVideoJob(value: unknown): VideoJob {
+function checkVideoJob(value: unknown): VideoJob | undefined {
   const job = value as Partial<VideoJob> | undefined;
-  if (job?.version !== 1 || typeof job.id !== 'string' || !job.id.trim() || !/^[a-f0-9]{64}$/.test(job.requestHash ?? ''))
+  const id = job?.id;
+  if (id == null || (typeof id === 'string' && !id.trim())) return;
+  if (job?.version !== 1 || typeof id !== 'string' || !/^[a-f0-9]{64}$/.test(job.requestHash ?? ''))
     throw new Error('生视频任务记录无效，不能自动重新提交');
   return job as VideoJob;
 }
@@ -141,7 +143,7 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
   const hashRequest=(body:ReturnType<typeof requestBody>)=>createHash('sha256')
     .update(JSON.stringify({provider:api.provider??'openai',baseUrl:api.baseUrl.replace(/\/+$/,''),body})).digest('hex');
   const body=requestBody(), requestHash=hashRequest(body);
-  const saved=await checkpoint?.read(), job=saved===undefined?undefined:checkVideoJob(saved);
+  const job=checkVideoJob(await checkpoint?.read());
   // Already-submitted jobs can still match the earlier request with a fixed ratio.
   if(job && job.requestHash!==requestHash && (!(volc||router) || job.requestHash!==hashRequest(requestBody(true))))
     throw new Error('已有生视频任务与当前服务、模型或输入不一致；请明确重试本步后重新提交');
@@ -152,12 +154,11 @@ export async function generateVideo(api: VideoApi, prompt: string, image: Buffer
   if(job){
     id=job.id;progress?.(`续接生视频 ${id}（${api.model}）`);status=await query(id);
   }else{
-    // Submission is not retried: a lost response may still have created a paid job.
     status=await (await call(api,'POST',path,signal,body)).json() as Record<string,unknown>;
-    id=String(status.id??'');
+    id=String(status?.id??'').trim();
     if(!id)throw new Error(`生视频没有返回任务 id：${redact(JSON.stringify(status),api)}`);
-    progress?.(`已提交生视频 ${id}（${api.model}）`);
     await checkpoint?.write({version:1,id,requestHash});
+    progress?.(`已提交生视频 ${id}（${api.model}）`);
   }
   while(!terminal.has(String(status.status))) {
     await delay(poll,undefined,{signal});
