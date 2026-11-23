@@ -109,3 +109,44 @@ test('an uncertain submission is attempted once, and cancellation stops read ret
   await assert.rejects(generateVideo(api, 'turn', Buffer.from('png'), { ...options, signal: controller.signal }));
   assert.equal(requests, 2, 'abort never starts another query');
 });
+
+test('a lost submission response survives restart and the recovered ID is queried without another POST', async t => {
+  let saved: VideoJob | undefined;
+  const store = (): VideoJobStore => ({ read: async () => saved, write: async job => { saved = job; } });
+  const calls: string[] = [];
+  const lostResponse = new TypeError('terminated', { cause: { code: 'UND_ERR_SOCKET' } });
+  t.mock.method(globalThis, 'fetch', async (url: string, init?: RequestInit) => {
+    calls.push(`${init?.method} ${new URL(url).pathname}`);
+    if (init?.method === 'POST') {
+      assert.ok(saved?.submittedAt && saved.id === undefined);
+      return new Response(new ReadableStream({
+        start: controller => controller.error(lostResponse),
+      }));
+    }
+    return url.endsWith('/content') ? new Response('original mp4') : Response.json({ status: 'completed' });
+  });
+  const run = () => generateVideo(api, 'turn', Buffer.from('png'), { ...options, checkpoint: store() });
+  await assert.rejects(run(), error => error instanceof Error && error.cause === lostResponse);
+  assert.ok(saved?.submittedAt && saved.id === undefined);
+  const pending = saved;
+  saved = JSON.parse(JSON.stringify(pending));
+  await assert.rejects(run());
+  assert.deepEqual(calls, ['POST /v1/videos']);
+  assert.deepEqual(saved, pending);
+  saved = { ...pending, id: 'original' };
+  assert.equal((await run()).bytes.toString(), 'original mp4');
+  assert.deepEqual(calls, ['POST /v1/videos', 'GET /v1/videos/original', 'GET /v1/videos/original/content']);
+});
+
+test('a confirmed rejection clears the reservation and a remote job keeps its ID', async t => {
+  let saved: VideoJob | undefined, posts = 0;
+  const checkpoint: VideoJobStore = { read: async () => saved, write: async job => { saved = job; } };
+  t.mock.method(globalThis, 'fetch', async () => ++posts === 1
+    ? new Response('unauthorized', { status: 401 })
+    : Response.json({ id: 'remote-failure', status: 'failed' }));
+  const run = () => generateVideo(api, 'turn', Buffer.from('png'), { ...options, checkpoint });
+  await assert.rejects(run());
+  assert.equal(saved, undefined);
+  await assert.rejects(run());
+  assert.equal(saved?.id, 'remote-failure');
+});
