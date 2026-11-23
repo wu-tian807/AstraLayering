@@ -66,7 +66,7 @@ pnpm build:codex
 pnpm build:codex --source /绝对路径/codex-source --jobs 4
 ```
 
-构建进度和日志路径显示在 `workflow.log`。下载或编译失败时，按错误补齐软件、网络或代理配置，再点“继续”。构建细节见[补丁说明](../patches/README.md)。
+构建进度和日志路径显示在 `workflow.log`。失败时保留本次下载和构建文件，修复错误后点“继续”即可复用。构建细节见[补丁说明](../patches/README.md)。
 
 ## Krita 与显示环境
 
