@@ -1,11 +1,11 @@
 {
   "main": {
-    "initial": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/前发制作.md"],
+    "initial": ["prompts/前发制作.md"],
     "then": [
-      { "id": "side", "prompts": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/侧发制作.md"] },
-      { "id": "back", "prompts": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/后发制作.md"] },
-      { "id": "remaining", "prompts": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/其余头发制作.md"] }
+      { "id": "side", "prompts": ["prompts/侧发制作.md"] },
+      { "id": "back", "prompts": ["prompts/后发制作.md"] },
+      { "id": "remaining", "prompts": ["prompts/其余头发制作.md"] }
     ],
-    "tools": ["krita", "view_bitmap", "edit_nine_axis", "view_nine_axis"]
+    "tools": ["krita","view_bitmap","edit_nine_axis","view_nine_axis"]
   }
 }

@@ -1,6 +1,6 @@
 {
   "main": {
-    "initial": ["head-nine-axis/prompts/形变与遮挡.md", "prompts/斜角制作.md"],
-    "tools": ["view_bitmap", "preview_svg", "edit_nine_axis", "view_nine_axis"]
+    "initial": ["prompts/斜角制作.md"],
+    "tools": ["view_bitmap","preview_svg","edit_nine_axis","view_nine_axis"]
   }
 }

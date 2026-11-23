@@ -23,7 +23,7 @@ nine_axis_view_video_model=doubao-seedance-2-5-260628
 
 ## 独立运行
 
-本管线的先验位于 `knowledge/head-nine-axis/`，前端归为“头部九轴”。头部九轴内部共用提示词和专用工具说明分别在该目录的 `prompts/`、`tools/`；步骤工具说明可再覆盖。自定义 knowledge 也须使用此目录结构，旧 `knowledge/nine-axis/` 不作回退。
+本管线的先验位于 `knowledge/head-nine-axis/`，前端归为“头部九轴”。每个制作方向或轮次的输入、先验、制作流程与验收直接写在自己的步骤提示词中，一次加载一份完整正文。专用工具说明位于该目录的 `tools/`，步骤工具说明可再覆盖。自定义 knowledge 也须使用此目录结构，旧 `knowledge/nine-axis/` 不作回退。
 
 ```sh
 pnpm nine-axis --name my-character --dir /绝对路径/运行根目录 --knowledge /绝对路径/knowledge --krita /绝对路径/krita --ffmpeg /绝对路径/ffmpeg

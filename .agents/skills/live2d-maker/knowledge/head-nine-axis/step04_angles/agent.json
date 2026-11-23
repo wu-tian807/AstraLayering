@@ -1,11 +1,7 @@
 {
   "main": {
     "initial": [
-      "head-nine-axis/prompts/形变与遮挡.md",
-      "prompts/单轴输入.md",
-      "prompts/方向任务.md",
-      "head-nine-axis/prompts/face-contour.md",
-      "head-nine-axis/prompts/delivery-scope.md"
+      "prompts/方向任务.md"
     ],
     "tools": [
       "view_bitmap",

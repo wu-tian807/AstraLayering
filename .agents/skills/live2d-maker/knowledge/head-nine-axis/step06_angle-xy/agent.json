@@ -1,10 +1,7 @@
 {
   "main": {
     "initial": [
-      "head-nine-axis/prompts/形变与遮挡.md",
-      "prompts/脸部与双耳斜向.md",
-      "head-nine-axis/prompts/face-contour.md",
-      "head-nine-axis/prompts/delivery-scope.md"
+      "prompts/脸部与双耳斜向.md"
     ],
     "tools": [
       "view_bitmap",

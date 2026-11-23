@@ -254,7 +254,8 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
       'step01_preparation/deformers.json', `step03_frames/${direction}.png`,
       `step02_video/${direction}.mp4`, `${output}/outline`, `${output}/face-${direction}.json`,
     ]);
-    assert.ok(axis.files('main', direction).includes(join(axis.directory, 'prompts/groups', direction, '方向任务.md')));
+    assert.deepEqual(axis.files('main', direction), [join(axis.directory, 'prompts/groups', direction, '方向任务.md')]);
+    assert.deepEqual(trace.files('main', direction), [join(trace.directory, 'prompts/描边.md')]);
     hasPaths(outlinePrompt(root, direction), [
       `step03_frames/${direction}.png`, `step02_video/${direction}.mp4`, `${output}/outline`,
     ]);
@@ -263,7 +264,7 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
   for (const corner of ['left-up', 'left-down'] as const) {
     const prompt = outlinePrompt(root, corner);
     hasPaths(prompt, [`step05_frames/${corner}.png`, `step04_angles/video/${corner}.mp4`, `step06_angle-xy/outline/${corner}`]);
-    assert.ok(trace.files('main', corner).includes(join(trace.directory, 'prompts/groups', corner, '帧与交付位置.md')));
+    assert.deepEqual(trace.files('main', corner), [join(trace.directory, 'prompts/groups', corner, '描边.md')]);
     assert.deepEqual(video.files('main', corner), [join(video.directory, 'prompts/groups', corner, '斜角视频.md')]);
   }
 

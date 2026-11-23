@@ -141,7 +141,6 @@ async function fixtureRoundPrompts(f:Awaited<ReturnType<typeof fixture>>) {
   const knowledge=join(f.root,'knowledge'),head=join(knowledge,'head-nine-axis'),step=join(head,'step08_hair');
   await mkdir(join(step,'prompts'),{recursive:true});
   await symlink(join(defaultKnowledgeDirectory,'shared'),join(knowledge,'shared'),'junction');
-  await symlink(join(defaultKnowledgeDirectory,'head-nine-axis/prompts'),join(head,'prompts'),'junction');
   await symlink(join(defaultKnowledgeDirectory,'head-nine-axis/step02_video'),join(head,'step02_video'),'junction');
   await writeFile(join(step,'agent.json'),await readFile(join(defaultKnowledgeDirectory,'head-nine-axis/step08_hair/agent.json')));
   const markers=Object.fromEntries(hairRounds.map(round=>[round,`fixture-hair-round:${round}`])) as Record<HairRound,string>;

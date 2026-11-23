@@ -140,7 +140,15 @@ test('head-only documents are registered from their migrated owner, with no copi
     assert.ok((await readFile(path, 'utf8')).trim());
     await assert.rejects(readFile(join(defaultKnowledgeDirectory, 'shared/tools', name, 'description.md')), { code: 'ENOENT' });
   }
-  for (const name of ['face-contour', 'delivery-scope']) assert.ok((await readFile(join(defaultKnowledgeDirectory, 'head-nine-axis/prompts', name + '.md'), 'utf8')).trim());
+  for (const step of ['step06_angle-xy', 'step07_jaw-line', 'step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy']) {
+    const knowledge = stepKnowledge('nine-axis', step);
+    for (const round of knowledge.rounds('main')) {
+      const files = knowledge.files('main', undefined, round);
+      assert.equal(files.length, 1);
+      assert.equal(dirname(files[0]), join(knowledge.directory, 'prompts'));
+      assert.ok((await readFile(files[0], 'utf8')).trim());
+    }
+  }
 });
 
 test('tool registration reads current definitions instead of a process-wide catalog cache',async t=>{
