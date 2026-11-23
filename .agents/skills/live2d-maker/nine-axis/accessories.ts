@@ -31,12 +31,12 @@ export async function prepareAccessories(directory:string,upstreamDirectory:stri
   if(await access(author).then(()=>true,()=>false)) {
     await access(document).catch(error=>{throw Error('饰品作者文件已存在，但本步 KRA 缺失；不能覆盖已修改画稿',{cause:error});});return;
   }
-  const upstream=await readUpstream(upstreamDirectory),source=await modelDocument(root,upstreamDirectory,upstream.doc);
+  const upstream=await readUpstream(upstreamDirectory),source=modelDocument(root, upstream.doc);
   if(!source)throw Error('头部饰品阶段缺少上游 KRA 来源');
   await mkdir(directory,{recursive:true});
   if(!await access(document).then(()=>true,()=>false))await copyFile(source,document,constants.COPYFILE_EXCL).catch(error=>{if(error.code!=='EEXIST')throw error;});
   signal?.throwIfAborted();
-  const inherited=await bindKraDocument(root,upstreamDirectory,upstream.doc);
+  const inherited=await bindKraDocument(root, upstream.doc);
   const doc=kraReferences(startContinuation(withDocument(inherited,root,document) as AuthoredHead,'accessories',scale));
   validateHeadNineAxis(doc);
   await writeFile(join(directory,'character-nine-axis.png'),kraContents(await readFile(document)).merged);

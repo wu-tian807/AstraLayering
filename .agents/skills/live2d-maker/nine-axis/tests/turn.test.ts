@@ -358,8 +358,8 @@ test('完整脸部流程后只制作前发首轮，保留头发步骤等待同�
     const document = join(directory, 'character-nine-axis.kra');
     assert.deepEqual(await readFile(document), originalDocument);
     await writeFixtureKra(document, kraContents(originalDocument).merged, [...originalLayers, ...jawLayers]);
-    const upstream = await readUpstream(join(nine, 'step06_angle-xy'));
-    const doc = startContinuation(upstream.doc, 'jaw');
+    const doc = JSON.parse(await readFile(join(directory, 'jaw.json'), 'utf8')) as ReturnType<typeof startContinuation>;
+    assert.equal(doc.source?.document, 'nine-axis/step07_jaw-line/character-nine-axis.kra');
     const base = doc.parts.find(p => p.id === 'face/face_base')!;
     const fresh = (id: string, extra: object) => ({ ...structuredClone(base), id, uuid: layerUuid(id), group:'jaw', ...extra });
     doc.parts.push(fresh('face/jaw_mask', { role: 'mask' }), fresh('face/jaw_line', { clip: { by: ['face/jaw_mask'], invert: true } }));

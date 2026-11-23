@@ -65,7 +65,7 @@ export function checkHeadCorners(value: unknown, upstream: HeadNineAxis & { axis
 }
 
 export async function seedHeadCorners(directory: string, upstreamDirectory: string, root: string, scale = angleScale()) {
-  const { doc: upstream } = await readUpstream(upstreamDirectory), document = await modelDocument(root, upstreamDirectory, upstream);
+  const { doc: upstream } = await readUpstream(upstreamDirectory), document = modelDocument(root, upstream);
   if (!document) throw Error('完整头部斜角缺少最新 KRA 来源');
   const doc = initializeHeadCorners(upstream, scale);
   await mkdir(directory, { recursive: true });

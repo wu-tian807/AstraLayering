@@ -1,7 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
-import { fromTaskPath } from '../shared/task-paths.ts';
+import { join } from 'node:path';
 import sharp from 'sharp';
 import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { layerPartName } from '../shared/layer-names.ts';
@@ -29,54 +28,45 @@ const optional = async (path: string) => {
 };
 
 /** Resolve native layer identities without reading or exporting any pixels. */
-export async function bindKraDocument(root: string, directory: string, input: Built['doc']) {
-  const document = await modelDocument(root,directory,input);
+export async function bindKraDocument(root: string, input: Built['doc']) {
+  const document = modelDocument(root, input);
   if (!document) throw Error('九轴模型缺少 source.document');
   const bytes=await readFile(document),layers=kraLayers(kraContents(bytes).xml),selection=await headMaterialSelection(document,root);
-  const receipt=await optional(join(directory,'export-record.json')),doc=structuredClone(withDocument(input,root,document));
-  const bind=(value: Built['doc'], primary: boolean)=>{
-    for(const part of value.parts){
-      const legacy=primary&&!input.source?.geometryDocument&&receipt?.document?receipt.parts?.find((p:any)=>p.id===part.id):undefined;
-      let id=legacy?.uuid??part.uuid;
-      if(!id&&part.material!=='transparent'){
-        const candidates=selection.selections.filter(row=>row.id===part.id&&row.role!=='shadow');
-        if(candidates.length===1)id=candidates[0].uuid;
-        else{const candidates=[...layers].filter(([,layer])=>layerPartName(layer.name??'').name===part.id);if(candidates.length===1)id=candidates[0][0];}
-      }
-      if(part.material==='transparent'||!id&&part.texture==='layers/mirror-grid-transparent.png'){part.material='transparent';delete part.uuid;}
-      else{
-        if(!id||!layers.has(uuid(id)))throw Error(`${part.id}：没有有效的 KRA 图层 UUID；请绑定保存后的图层`);
-        part.uuid=uuid(id);
-        const native = selection.selections.find(row => row.uuid === part.uuid);
-        if (native) { part.partId = native.partId; part.level = native.scope; }
-        else if (part.level !== 'face' && !part.partId) throw Error(`${part.id}：新画层须指定原部件 partId`);
-        if (part.partId && !selection.selections.some(row => row.partId === part.partId))
-          throw Error(`${part.id}：partId 不属于当前 KRA 部件目录`);
-        if (!native && part.partId) part.level = selection.selections.find(row => row.partId === part.partId)!.scope;
-        if(part.shadow){const layer=layers.get(part.uuid)!,blendMode=layer.compositeop??'normal';
-          if(blendMode!=='normal'&&blendMode!=='multiply')throw Error(`${part.id}：暂不支持 ${blendMode} 混合模式`);
-          part.shadow={...part.shadow,blendMode,opacity:Number(layer.opacity??255)/255};}
-      }
+  const doc=structuredClone(withDocument(input,root,document));
+  for(const part of doc.parts){
+    let id=part.uuid;
+    if(!id&&part.material!=='transparent'){
+      const candidates=selection.selections.filter(row=>row.id===part.id&&row.role!=='shadow');
+      if(candidates.length===1)id=candidates[0].uuid;
+      else{const candidates=[...layers].filter(([,layer])=>layerPartName(layer.name??'').name===part.id);if(candidates.length===1)id=candidates[0][0];}
     }
-
-  };
-  bind(doc,true);
+    if(part.material==='transparent'){part.material='transparent';delete part.uuid;}
+    else{
+      if(!id||!layers.has(uuid(id)))throw Error(`${part.id}：没有有效的 KRA 图层 UUID；请绑定保存后的图层`);
+      part.uuid=uuid(id);
+      const native = selection.selections.find(row => row.uuid === part.uuid);
+      if (native) { part.partId = native.partId; part.level = native.scope; }
+      else if (part.level !== 'face' && !part.partId) throw Error(`${part.id}：新画层须指定原部件 partId`);
+      if (part.partId && !selection.selections.some(row => row.partId === part.partId))
+        throw Error(`${part.id}：partId 不属于当前 KRA 部件目录`);
+      if (!native && part.partId) part.level = selection.selections.find(row => row.partId === part.partId)!.scope;
+      if(part.shadow){const layer=layers.get(part.uuid)!,blendMode=layer.compositeop??'normal';
+        if(blendMode!=='normal'&&blendMode!=='multiply')throw Error(`${part.id}：暂不支持 ${blendMode} 混合模式`);
+        part.shadow={...part.shadow,blendMode,opacity:Number(layer.opacity??255)/255};}
+    }
+  }
   // Source trees supply geometry only. Their known UUIDs refer to historical
   // artwork and need not still exist in the edited document being rendered.
   for(const axis of doc.axisSources??[])if(axis.doc.parts.some(p=>!p.uuid&&p.material!=='transparent')){
-    const source=axis.doc.source?.document;
-    const path=source?fromTaskPath(root,source):undefined;
-    if(path&&await readFile(path).then(()=>true,error=>{if(error.code==='ENOENT')return false;throw error;}))
-      axis.doc=await bindKraDocument(root,dirname(path),axis.doc);
-    else bind(axis.doc,false); // Legacy bundles may keep only the final KRA.
+    axis.doc=await bindKraDocument(root, axis.doc);
   }
   return doc;
 }
 
 /** Saved document inventory; relations are candidates from upstream metadata,
  * never a selection or an implicit edit. Pixel inspection stays in Krita. */
-export async function kraCatalog(root: string,directory: string,doc: Built['doc']){
-  const document=await modelDocument(root,directory,doc);if(!document)throw Error('缺少 KRA 来源');
+export async function kraCatalog(root: string,doc: Built['doc']){
+  const document=modelDocument(root, doc);if(!document)throw Error('缺少 KRA 来源');
   const bytes=await readFile(document),layers=kraLayers(kraContents(bytes).xml),selection=await headMaterialSelection(document,root);
   return {document,revision:hash(bytes),layers:[...layers].map(([uuid,layer])=>({uuid,name:layer.name,type:layer.nodetype,parent:layer.parent??null,visible:layer.visible!=='0',opacity:Number(layer.opacity??255)/255,blendMode:layer.compositeop??'normal',partId:selection.selections.find(row=>row.uuid===uuid)?.partId,binding:doc.parts.filter(p=>p.uuid===uuid).map(p=>p.id)})),relations:selection.selections.filter(row=>row.role==='shadow')};
 }
@@ -196,12 +186,12 @@ export class KraMaterials {
   constructor(exportLayers: MaterialExport) { this.exportLayers = exportLayers; }
 
   async resolve(root: string, directory: string, built: Built, signal?: AbortSignal, context: boolean | 'shadows' | 'studio' = true): Promise<MaterialBuilt> {
-    const document = await modelDocument(root, directory, built.doc);
+    const document = modelDocument(root, built.doc);
     if (!document) throw Error('九轴模型缺少 source.document；请指定实际 KRA 来源');
     signal?.throwIfAborted();
     const bytes = await readFile(document), revision = hash(bytes), layers = kraLayers(kraContents(bytes).xml);
-    const selection = await headMaterialSelection(document, root), receipt = await optional(join(directory, 'export-record.json'));
-    const doc = await bindKraDocument(root,directory,built.doc);
+    const selection = await headMaterialSelection(document, root);
+    const doc = await bindKraDocument(root, built.doc);
     const bound = new Set<string>(), rows: MaterialRow[] = [], textureBindings = new Map<string,string>();
     for (const [index,part] of doc.parts.entries()) {
       part.texture ??= `layers/material-${index}.png`;

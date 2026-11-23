@@ -108,7 +108,6 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
       // Old jaw deliveries can acquire missing UUIDs/transparent driver tags
       // through their KRA export receipt; their geometry stays byte-for-byte.
       if (!('uuid' in before)) delete (current as any).uuid;
-      if ('texture' in before && before.texture === 'layers/mirror-grid-transparent.png' && !('material' in before)) delete (current as any).material;
       if (JSON.stringify(geometryOnly(current)) !== JSON.stringify(geometryOnly(before))) throw Error(`${id}：${label}阶段不能改动已完成的脸部、五官、下颌、脖子或其他上游节点`);
     }
     for (const node of nodes(doc)) if (!original.has(node.id) && !horizontalNode(stage,node,doc)) throw Error(`${node.id}：新增节点不属于当前${label}部件`);
@@ -143,9 +142,9 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
   const upstream = await readUpstream(upstreamDirectory);
   let author = value;
   if (stage === 'jaw' || horizontalStage(stage)) {
-    const root = taskRootOf(dirname(directory)), document = await modelDocument(root, directory, value);
+    const root = taskRootOf(dirname(directory)), document = modelDocument(root, value);
     if (document) author = withDocument(value, root, document) as AuthoredHead;
-    if (document && materialize) author = await bindKraDocument(root,directory,author) as AuthoredHead;
+    if (document && materialize) author = await bindKraDocument(root, author) as AuthoredHead;
   }
   const checked = checkContinuation(author, upstream.doc, stage, scale);
   const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) || isHeadPitchStage(stage) || stage === 'head-xy' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');

@@ -25,12 +25,12 @@ export class NineAxisMaterials {
     if (!nineAxisDeformerPaths.has(path)) throw Error('只能预览已知的九轴模型');
     const modelPath = await safePath(root, path), directory = dirname(modelPath);
     const text = await readFile(modelPath, 'utf8'), doc = validateHeadNineAxis(JSON.parse(text));
-    const document = await modelDocument(root, directory, doc);
+    const document = modelDocument(root, doc);
     if (!document) throw Error('九轴模型缺少 KRA 来源');
     const sourcePath = webFilePath(relative(root, document));
     if (!isStudioPath(sourcePath) || !sourcePath.endsWith('.kra')) throw Error('九轴来源必须是任务内已知的 KRA 工程');
     await safePath(root, sourcePath);
-    const info = await stat(modelPath), version = await modelVersion(root, directory, doc, `${info.mtimeMs}:${info.size}`);
+    const info = await stat(modelPath), version = await modelVersion(root, doc, `${info.mtimeMs}:${info.size}`);
     let exporter = this.resolvers.get(root);
     if (!exporter) { exporter = new KraMaterials(async (...args) => {
       // The material cache is checked before acquiring a Krita slot. Serialize
@@ -49,7 +49,7 @@ export class NineAxisMaterials {
     const built = await exporter.resolve(root, directory, { doc, textures: new Map() }, undefined, studio ? 'studio' : true);
     if (await readFile(modelPath, 'utf8') !== text) throw Error('九轴模型在读取期间变化，请刷新');
     const after = await stat(modelPath);
-    if (await modelVersion(root, directory, doc, `${after.mtimeMs}:${after.size}`) !== version) throw Error('KRA 或模型在预览期间变化，请刷新');
+    if (await modelVersion(root, doc, `${after.mtimeMs}:${after.size}`) !== version) throw Error('KRA 或模型在预览期间变化，请刷新');
     const key = createHash('sha256').update(JSON.stringify([root, path, text, built.sourceRevision, studio])).digest('hex');
     this.snapshots.set(key, { root, built });
     while (this.snapshots.size > 16) this.snapshots.delete(this.snapshots.keys().next().value!);

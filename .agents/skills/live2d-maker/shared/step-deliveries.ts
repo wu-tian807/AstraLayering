@@ -10,7 +10,7 @@ import { steps as personSteps } from '../raster-layering/steps.ts';
 import { steps as clothingSteps } from '../clothing-raster-layering/steps.ts';
 import { steps as assemblySteps } from '../character-assembly/steps.ts';
 import { maskSteps, mapSteps } from '../shadow/steps.ts';
-import { nineAxisGroups, previousNineAxisSteps as nineAxisSteps } from './nine-axis.ts';
+import { nineAxisGroups } from './nine-axis.ts';
 
 // The files a completed step must still hold. A run refuses to keep a completed
 // step that lost one; retry is how such a step is redone. Paths are absolute;
@@ -32,36 +32,6 @@ async function textureDeliveries(directory: string): Promise<string[]> {
   return [...new Set<string>((Array.isArray(document.parts) ? document.parts : [])
     .flatMap((part: { texture?: unknown; uuid?: unknown; material?: unknown }) => !part?.uuid && part?.material !== 'transparent' && typeof part?.texture === 'string' ? [join(directory, part.texture)] : []))];
 }
-async function previousNineAxisDeliveries(root: string, id: string): Promise<string[]> {
-  const [step, group] = id.split('/'), directory = join(root, id);
-  if (step === nineAxisSteps[0] && !group) return [
-    'upper-body.png', 'crop.json', 'videos.json', 'views.json',
-    ...nineAxisGroups.flatMap(view => [`${view}.mp4`, `${view}.png`, `frames/${view}.png`]),
-  ].map(file => join(directory, file));
-  if (step === nineAxisSteps[1]) {
-    if (group && (nineAxisGroups as readonly string[]).includes(group)) {
-      return [...axisFiles(group).map(file => join(directory, file)), ...await textureDeliveries(directory)];
-    }
-    if (group) return [];
-    const files = ['deformers.json', 'axis-sources.json', 'source.json',
-      'neutral/deformers.json', 'neutral/source.json', 'neutral/export-record.json', 'neutral/head_parts_manifest.json',
-      'merged/deformers.json', 'merged/axis-sources.json'].map(file => join(directory, file));
-    for (const view of nineAxisGroups) files.push(...await previousNineAxisDeliveries(root, `${step}/${view}`));
-    for (const output of [directory, join(directory, 'neutral'), join(directory, 'merged')]) files.push(...await textureDeliveries(output));
-    return [...new Set(files)];
-  }
-  if (step === nineAxisSteps[2] && !group) return [
-    ...['face-xy.json', 'linear.json', 'deformers.json', 'videos.json', 'selected-frames.json',
-      ...['left-up', 'left-down'].flatMap(corner => [`${corner}.mp4`, `${corner}.png`, `frames/${corner}.png`,
-        `${corner}-face-trace.json`, `${corner}-fit-report.json`])]
-      .map(file => join(directory, file)), ...await textureDeliveries(directory),
-  ];
-  if (step === nineAxisSteps[3] && !group) return [
-    join(directory, 'jaw.json'), join(directory, 'deformers.json'), ...await textureDeliveries(directory),
-  ];
-  return [];
-}
-
 async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   const directory = join(root, id), files = (names: string[]) => names.map(name => join(directory, name));
   if (id === 'step01_preparation') return [...files(['crop.json', 'deformers.json', 'source.json', 'export-record.json', 'head_parts_manifest.json']), ...await textureDeliveries(directory)];
@@ -87,7 +57,7 @@ async function nineAxisDeliveries(root: string, id: string): Promise<string[]> {
   if (id === 'step10_head-pitch') return [...files(['deformers.json', 'source.json', 'notes.md']), ...await nineAxisDeliveries(root, id + '/up'), ...await nineAxisDeliveries(root, id + '/down')];
   if (id === 'step12_head-roll') return [...files(['deformers.json']), ...await textureDeliveries(directory)];
   if (id === 'step11_head-angle-xy') return [...files(['head-xy.json', 'deformers.json', 'source.json', 'notes.md']), ...await textureDeliveries(directory)];
-  return previousNineAxisDeliveries(root, id);
+  return [];
 }
 
 export async function stepDeliveries(root: string, section: SectionId, id: string): Promise<string[]> {

@@ -26,8 +26,8 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; doc = startContinuation(upstream.doc, stage, scale); }
     if (args.revision !== undefined && args.revision !== sha256(text)) throw Error('九轴数据已变化，请读取最新 revision');
     if (args.bindings !== undefined && stage !== 'jaw' && stage !== 'hair' && stage !== 'accessories') throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
-    const catalog=materialize?await kraCatalog(taskRoot,directory,doc):undefined;
-    if (materialize) doc = kraReferences(await bindKraDocument(taskRoot,directory,doc)) as AuthoredHead;
+    const catalog=materialize?await kraCatalog(taskRoot, doc):undefined;
+    if (materialize) doc = kraReferences(await bindKraDocument(taskRoot, doc)) as AuthoredHead;
     const before = structuredClone(doc);
     const cornerControls = stage === 'head-xy' ? headCornerControlIds(upstream.doc, doc) : undefined;
     if (args.operations) {
@@ -65,7 +65,7 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       }
     }
     if (args.notes !== undefined) doc.notes = args.notes;
-    if(materialize)doc=kraReferences(await bindKraDocument(taskRoot,directory,doc)) as AuthoredHead;
+    if(materialize)doc=kraReferences(await bindKraDocument(taskRoot, doc)) as AuthoredHead;
     if(scope && (args.operations || args.bindings)) checkOwnedEdit(before,doc,scope);
     const built = await compileContinuation(directory, upstreamDirectory, doc, stage, scale, undefined, signal);
     doc.source = built.doc.source;
