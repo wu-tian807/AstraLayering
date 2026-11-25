@@ -485,10 +485,10 @@ export class HeadNineAxisPanel {
     const frame = this.stage.canvasFrame(), { width } = this.view.getBoundingClientRect();
     if (this.active && width) this.drawOverlay(frame.x0, frame.y0, frame.width / width);
     const reuseXY = this.reuseXY ?? true; this.reuseXY = undefined;
-    if (!(this.value || this.valueY || this.valueZ || this.layers.focus || (this.active && this.shownMasks.size))) return false;
+    if (!this.active && !(this.value || this.valueY || this.valueZ || this.layers.focus)) return false;
     const shown = new Set(this.doc.parts.filter(part => part.role === 'mask'
       ? this.active && (part.id === this.selected || this.shownMasks.has(part.id))
-      : this.layerVisible(part)).map(part => part.id));
+      : this.mode.scope.has(part.id) && this.layerVisible(part)).map(part => part.id));
     this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY,
       opacity: part => (this.nativeRows?.get(part.uuid)?.opacity ?? (part.shadow?.opacity ?? 1) * 255) / 255,
       deform: part => this.mode.scope.has(part.id) && authoredPreviewPart(part),

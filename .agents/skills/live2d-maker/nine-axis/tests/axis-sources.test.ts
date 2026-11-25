@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { evaluatePoints, inversePoint, keyformAt, lattice, nodes, parentPoint, reparent, validateHeadNineAxis, warpPoint,
+import { createPointDeformer, deformPoints, evaluatePoints, inversePoint, keyformAt, lattice, nodes, parentPoint, reparent, validateHeadNineAxis, warpPoint,
   type HeadNineAxis, type WarpGrid, type Point } from '../../shared/nine-axis-model.js';
 
 import { scale, pts, grid, baseline, independentAxes, joint } from './axis-fixtures.ts';
@@ -20,6 +20,56 @@ const sourcePoint = (doc: HeadNineAxis, id: string, x: number, y: number, p: Poi
   while (n.parent) { n = doc.deformers.find(g => g.id === n.parent)! as typeof n; q = warpPoint(n, keyformAt(n, x, y), ...q); }
   return q;
 };
+
+test('prepared pose sampling preserves linear and cubic edge extrapolation with a reusable output buffer', () => {
+  for (const interpolation of ['linear', 'smooth'] as const) {
+    const p: any = { id: 'leaf', level: 'face', bbox: [1.25, -2.75, 17.375, 9.125], cols: 1, rows: 3, interpolation, keyforms: {} };
+    const flat = lattice(p), rest = Array.from({ length: flat.length / 2 }, (_, i) => [flat[i * 2], flat[i * 2 + 1]]);
+    p.keyforms = { '-30': rest.map(([x, y], i) => [x + Math.sin(i + .3), y + Math.cos(i + .2)]), '0': rest,
+      '30': rest.map(([x, y], i) => [x + Math.cos(i + .4), y - Math.sin(i + .1)]) };
+    const doc: any = { deformers: [], parts: [p] };
+    const points = [[-8, -9], [1.25, -2.75], [17.375, -2.75], [17.375, 9.125], [1.25, 9.125], [24, 15], [9.2, 4.1]].flat();
+    for (const count of [1, 20]) for (const x of [-30, -17.25, 13.5, 30]) {
+      const samples = Float32Array.from(Array.from({ length: count }, () => points).flat());
+      const controls = keyformAt(p, x), expected = new Float32Array(samples.length);
+      for (let i = 0; i < samples.length; i += 2) expected.set(warpPoint(p, controls, samples[i], samples[i + 1]), i);
+      const out = new Float32Array(samples.length), frame = createPointDeformer(doc, x, 0);
+      assert.equal(frame(p, samples, out), out);
+      assert.deepEqual(out, expected);
+    }
+  }
+});
+
+test('bulk meshes preserve independent axis composition, edits and output ownership across arena growth', () => {
+  const doc = joint(), group = grid('bulk-parent');
+  group.keyforms['-30'] = pts(group, (x, y) => [x + Math.sin(y / 7), y - 2]);
+  doc.deformers.push(group); doc.parts[0].parent = group.id;
+  const part = doc.parts[0], pair = Float32Array.from([12.3, 24.8]), samples = new Float32Array(300000);
+  for (let i = 0; i < samples.length; i += 2) samples.set(pair, i);
+  for (const [x, y] of [[-19, 12], [0, -13], [-21, 0], [0, 0]]) {
+    const expected = deformPoints(doc, part, pair, x, y), out = new Float32Array(samples.length);
+    assert.equal(createPointDeformer(doc, x, y)(part, samples, out), out);
+    for (let i = 0; i < out.length; i += 2) { assert.equal(out[i], expected[0]); assert.equal(out[i + 1], expected[1]); }
+    createPointDeformer(doc, -7, -9)(part, samples);
+    assert.deepEqual(out.slice(0, 2), expected, 'later frames do not overwrite returned outputs');
+  }
+  const before = deformPoints(doc, part, samples, -19, 12);
+  group.keyforms['-30'] = pts(group, (x, y) => [x + 9, y]);
+  assert.notDeepEqual(createPointDeformer(doc, -19, 12)(part, samples).slice(0, 2), before.slice(0, 2));
+});
+
+test('one pose shares parent preparation without caching mutable author edits across frames', () => {
+  const doc = joint(), group = grid('shared-parent');
+  group.keyforms['-30'] = pts(group, (x, y) => [x + y * .03, y - 2]);
+  doc.deformers.push(group); doc.parts.slice(0, 2).forEach(p => p.parent = group.id);
+  const samples = Float32Array.from([12.3, 24.8, -4, 103, 50, 40]), frame = createPointDeformer(doc, -19, 12);
+  for (const part of doc.parts) assert.deepEqual(frame(part, samples), deformPoints(doc, part, samples, -19, 12));
+  const before = frame(doc.parts[0], samples);
+  group.keyforms['-30'] = pts(group, (x, y) => [x + 5, y + x * .02]);
+  const after = createPointDeformer(doc, -19, 12)(doc.parts[0], samples);
+  assert.notDeepEqual(after, before);
+  assert.deepEqual(after, deformPoints(doc, doc.parts[0], samples, -19, 12));
+});
 
 test('whole-feature corner translation and scale act on the rendered image after independent axis warps', () => {
   const imported = joint();

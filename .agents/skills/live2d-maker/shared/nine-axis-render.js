@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { deformPoints, evaluatePoints, rollEvaluatedPoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
+import { createPointDeformer, rollEvaluatedPoints, refine, lattice, meshIndices, levelParts } from './nine-axis-model.js';
 
 // The head nine-axis drawing, shared by the workbench panel and the agents'
 // view_nine_axis tool, so an agent sees exactly what the workbench shows.
@@ -129,7 +129,8 @@ export class HeadNineAxisRenderer {
       const m = paintMesh(grid ? grid.geometry : new THREE.PlaneGeometry(width, height), paintTexture(new THREE.Texture(image), false));
       if (!grid) m.position.set(x + width / 2, y + height / 2, 0);
       m.renderOrder = order;
-      Object.assign(m.userData, { id: '__studio__/' + layer.uuid, layer, caster, samples: grid?.samples });
+      Object.assign(m.userData, { id: '__studio__/' + layer.uuid, layer, caster, samples: grid?.samples,
+        xy: grid && new Float32Array(grid.samples.length) });
       this.meshes.set(m.userData.id, m);
       this.scene.add(m); return m;
     });
@@ -142,7 +143,7 @@ export class HeadNineAxisRenderer {
     }
   }
   install(doc, images) {
-    this.doc = doc; this.scene = new THREE.Scene();
+    this.doc = doc; this.xyPose = null; this.scene = new THREE.Scene();
     doc.parts.forEach((p, order) => {
       const [tx, ty, tw, th] = p.textureBounds, uvSource = refine(lattice(p), p.cols, p.rows, SUB), uv = new Float32Array(uvSource.length);
       for (let i = 0; i < uv.length; i += 2) { uv[i] = (uvSource[i] - tx) / tw; uv[i + 1] = (uvSource[i + 1] - ty) / th; }
@@ -151,7 +152,8 @@ export class HeadNineAxisRenderer {
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(p.cols * SUB, p.rows * SUB), 1));
       const t = paintTexture(new THREE.Texture(images[order]), false);
       const m = paintMesh(g, t);
-      m.renderOrder = order; m.userData.part = p; this.scene.add(m); this.meshes.set(p.id, m);
+      m.renderOrder = order; Object.assign(m.userData, { part: p, samples: uvSource, xy: new Float32Array(uvSource.length) });
+      this.scene.add(m); this.meshes.set(p.id, m);
     });
     this.paintPairs = doc.parts.slice(1).flatMap((overlay, i) => {
       const base = doc.parts[i], [x, y, w, h] = base.textureBounds;
@@ -167,7 +169,9 @@ export class HeadNineAxisRenderer {
   draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0,
     { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1, deform = () => true, layerState = layer => layer } = {}) {
     if (!this.doc) return;
-    if (!reuseXY || !this.xyPose || this.xyPose.x !== x || this.xyPose.y !== y) this.xyPose = { x, y, points: new Map() };
+    if (!reuseXY || !this.xyPose || this.xyPose.x !== x || this.xyPose.y !== y) this.xyPose = {
+      x, y, points: new Map(), deform: createPointDeformer(this.doc, x, y), neutral: createPointDeformer(this.doc, 0, 0),
+    };
     const { points } = this.xyPose;
     Object.assign(this.camera, { left: x0, right: x0 + width, top: y0, bottom: y0 + height }); this.camera.updateProjectionMatrix();
     const visible = new Set(shown);
@@ -182,22 +186,23 @@ export class HeadNineAxisRenderer {
     for (const m of this.staticLayers) {
       const { id, layer, caster, samples } = m.userData;
       if (!layer.projection || !visible.has(id)) continue;
+      if (caster && !visible.has(caster.id)) { visible.delete(id); continue; }
       const by = layer.projection.receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
       if (!by.length) { visible.delete(id); continue; }
       clips.set(id, { by });
       if (!caster) continue;
       if (!deform(caster)) { writePoints(m, samples); continue; }
       let base = points.get(id);
-      if (!base) { base = deformPoints(this.doc, caster, samples, x, y); points.set(id, base); }
+      if (!base) { base = this.xyPose.deform(caster, samples, m.userData.xy); points.set(id, base); }
       writePoints(m, rollEvaluatedPoints(this.doc, caster, base, z));
     }
     const needed = new Set([...visible, ...[...clips.values()].flatMap(clip => clip.by)]);
     for (const p of this.doc.parts) {
       if (!needed.has(p.id)) continue;
       const moves = deform(p);
-      let base = points.get(p.id);
-      if (!base) { base = evaluatePoints(this.doc, p, moves ? x : 0, moves ? y : 0, SUB); points.set(p.id, base); }
       const m = this.meshes.get(p.id);
+      let base = points.get(p.id);
+      if (!base) { base = (moves ? this.xyPose.deform : this.xyPose.neutral)(p, m.userData.samples, m.userData.xy); points.set(p.id, base); }
       writePoints(m, rollEvaluatedPoints(this.doc, p, base, moves ? z : 0));
       const u = m.material.uniforms, mask = p.role === 'mask';
       u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * dim(p);

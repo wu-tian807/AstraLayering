@@ -44,7 +44,7 @@ export class HeadPreview {
       if (epoch !== this.epoch) return;
       if (!entry?.available) { this.available = false; element.dataset.model = 'pending'; this.selection = nextPreviewSelection(this.selection, []); this.modes = []; this.syncButtons(); this.label.textContent = '等待素材准备生成九轴模型'; return; }
       const version = `${entry.path}:${entry.version}`;
-      if (this.version === version) { this.available = true; element.dataset.model = 'available'; this.loadError = false; this.configureMode(); this.draw(); return; }
+      if (this.version === version) { this.available = true; element.dataset.model = 'available'; this.loadError = false; this.syncButtons(); this.draw(); return; }
       this.label.textContent = '正在读取最新头部…';
       const result = await previewRequest('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), controller.signal, '无法读取九轴模型');
       const material = await result.json(), doc = validateHeadNineAxis(material.doc);

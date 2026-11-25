@@ -189,7 +189,7 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
           if (path === '/reference.png' && reference) return route.fulfill({ contentType: 'image/png', body: reference.bytes });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
-          if (path === '/nine-axis-render.js' || path === '/nine-axis-model.js') return route.fulfill({ contentType: js, body: await readFile(join(shared, path)) });
+          if (['/nine-axis-render.js', '/nine-axis-model.js', '/nine-axis-warp.js'].includes(path)) return route.fulfill({ contentType: js, body: await readFile(join(shared, path)) });
           return route.fulfill({ status: 404 });
         });
         await tab.goto(origin + '/');

@@ -1,3 +1,5 @@
+import { warpBatch } from './nine-axis-warp.js';
+
 // Head nine-axis v2: artist-owned warp hierarchy, independent of draw order.
 // All grids are expressed in the undeformed canvas coordinate system. A node's
 // local shape is evaluated first, then carried through its parent and ancestors.
@@ -277,18 +279,79 @@ function preparedWarp(node, points) {
     const k = (j * (node.cols + 1) + i) * 2;
     if (points[k] !== Math.fround(x0 + (x1 - x0) * i / node.cols) || points[k + 1] !== Math.fround(y0 + (y1 - y0) * j / node.rows)) { identity = false; break; }
   }
-  return [node, points, identity];
+  if (identity) return [node, points, true];
+  // Pose-dependent displacement, including the same linear edge handles as
+  // warpPoint. Prepare it once, rather than subtracting the rest lattice and
+  // allocating interpolation closures for every rendered vertex.
+  const { cols, rows } = node, stride = (cols + 1) * 2;
+  const delta = new Float64Array(points.length);
+  for (let j = 0; j <= rows; j++) for (let i = 0; i <= cols; i++) {
+    const k = j * stride + i * 2;
+    delta[k] = points[k] - (x0 + (x1 - x0) * i / cols);
+    delta[k + 1] = points[k + 1] - (y0 + (y1 - y0) * j / rows);
+  }
+  const padded = new Float64Array((cols + 3) * (rows + 3) * 2);
+  for (let j = -1; j <= rows + 1; j++) for (let i = -1; i <= cols + 1; i++) {
+    const a = Math.max(0, Math.min(cols, i)), b = Math.max(0, Math.min(rows, j)), source = b * stride + a * 2;
+    const target = ((j + 1) * (cols + 3) + i + 1) * 2;
+    for (let k = 0; k < 2; k++) {
+      let q = delta[source + k];
+      if (i !== a) q += (i - a) * (a === 0 ? delta[source + 2 + k] - q : q - delta[source - 2 + k]);
+      if (j !== b) q += (j - b) * (b === 0 ? delta[source + stride + k] - delta[source + k] : delta[source + k] - delta[source - stride + k]);
+      padded[target + k] = q;
+    }
+  }
+  let curves;
+  if (node.interpolation === 'smooth') {
+    curves = new Float64Array(cols * (rows + 3) * 8);
+    for (let j = 0; j < rows + 3; j++) for (let i = 0; i < cols; i++) for (let k = 0; k < 2; k++) {
+      const source = (j * (cols + 3) + i) * 2 + k, target = (j * cols + i) * 8 + k * 4;
+      const a = padded[source], b = padded[source + 2], c = padded[source + 4], d = padded[source + 6];
+      curves[target] = b; curves[target + 1] = c - a;
+      curves[target + 2] = 2 * a - 5 * b + 4 * c - d;
+      curves[target + 3] = 3 * (b - c) + d - a;
+    }
+  }
+  return [node, points, false, padded, curves];
 }
-function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), forms) {
+
+function carryWarp(warp, point) {
+  if (warp[2]) return;
+  const node = warp[0], data = warp[3], [x0, y0, x1, y1] = node.bbox, { cols, rows } = node;
+  const u = Math.max(0, Math.min(cols, (point[0] - x0) / (x1 - x0) * cols));
+  const v = Math.max(0, Math.min(rows, (point[1] - y0) / (y1 - y0) * rows));
+  const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v)), s = u - i, t = v - j;
+  const stride = (cols + 3) * 2;
+  if (node.interpolation === 'smooth') {
+    const curves = warp[4], start = (j * cols + i) * 8, step = cols * 8;
+    for (let k = 0; k < 2; k++) {
+      const a = start + k * 4, b = a + step, c = b + step, d = c + step;
+      point[k] += cubic(
+        curves[a] + .5 * s * (curves[a + 1] + s * (curves[a + 2] + s * curves[a + 3])),
+        curves[b] + .5 * s * (curves[b + 1] + s * (curves[b + 2] + s * curves[b + 3])),
+        curves[c] + .5 * s * (curves[c + 1] + s * (curves[c + 2] + s * curves[c + 3])),
+        curves[d] + .5 * s * (curves[d + 1] + s * (curves[d + 2] + s * curves[d + 3])), t);
+    }
+  } else {
+    const start = (j + 1) * stride + (i + 1) * 2;
+    for (let k = 0; k < 2; k++) {
+      const a = start + k, b = a + stride;
+      point[k] += (data[a] * (1 - s) + data[a + 2] * s) * (1 - t) + (data[b] * (1 - s) + data[b + 2] * s) * t;
+    }
+  }
+}
+const carryInto = (chain, point) => { for (let i = 0; i < chain.length; i++) carryWarp(chain[i], point); };
+function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), forms, prepare) {
   const chain = [];
   for (let id = node.parent; id; id = byId.get(id).parent) {
-    const p = byId.get(id); chain.push(preparedWarp(p, forms?.get(id) ?? keyformAt(p, x, y)));
+    const p = byId.get(id); chain.push(prepare ? prepare(p) : preparedWarp(p, forms?.get(id) ?? keyformAt(p, x, y)));
   }
   return chain;
 }
 const carry = (chain, px, py) => {
-  for (const [node, points, identity] of chain) if (!identity) [px, py] = warpPoint(node, points, px, py);
-  return [px, py];
+  const point = [px, py];
+  carryInto(chain, point);
+  return point;
 };
 
 // One angle entry per protected source doc, not one Map/chain per vertex.
@@ -302,7 +365,7 @@ function sourceMapping(doc, x, y) {
   sourceMappings.set(doc, { x, y, parts });
   return parts;
 }
-function axisMapping(doc, node, x, y) {
+function axisChains(doc, node, x, y) {
   // Each original leaf enters its independent axis mapping once, before the
   // current author groups. Those groups act on the resulting canvas image.
   const partId = node.id;
@@ -312,6 +375,12 @@ function axisMapping(doc, node, x, y) {
   // New root-only artwork (e.g. a later jaw mask) has no original source map.
   // It follows its authored root chain once; never borrow the face's source T.
   if (!X && !Y) return;
+  return [X, Y];
+}
+function axisMapping(doc, node, x, y) {
+  const axes = axisChains(doc, node, x, y);
+  if (!axes) return;
+  const [X, Y] = axes;
   if (!X) return (px, py) => carry(Y, px, py);
   if (!Y) return (px, py) => carry(X, px, py);
   return (px, py) => {
@@ -343,9 +412,44 @@ export function headRollLimit(doc) {
   return doc?.headRoll ? doc.parameters?.find(p => p.id === 'ParamAngleZ')?.max ?? 0 : 0;
 }
 
-export function deformPoints(doc, node, samples, x, y) {
-  const local = [preparedWarp(node, keyformAt(node, x, y))], out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
-  for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
+export function deformPoints(doc, node, samples, x, y, out = new Float32Array(samples.length)) {
+  const local = preparedWarp(node, keyformAt(node, x, y)), chain = parentChain(doc, node, x, y), axes = axisChains(doc, node, x, y);
+  return deformPrepared(local, chain, axes, samples, out);
+}
+// One synchronous pose snapshot. Callers making edits create a fresh evaluator;
+// only protected independent source mappings persist between frames.
+export function createPointDeformer(doc, x, y) {
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = new Map(), chains = new Map(), axes = new Map();
+  const prepare = node => {
+    if (!prepared.has(node)) prepared.set(node, preparedWarp(node, keyformAt(node, x, y)));
+    return prepared.get(node);
+  };
+  return (node, samples, out = new Float32Array(samples.length)) => {
+    if (!chains.has(node)) {
+      chains.set(node, parentChain(doc, node, x, y, byId, undefined, prepare));
+      axes.set(node, axisChains(doc, node, x, y));
+    }
+    return deformPrepared(prepare(node), chains.get(node), axes.get(node), samples, out);
+  };
+}
+function deformPrepared(local, chain, axes, samples, out) {
+  // Bulk meshes keep the same f64 operations in a tight native loop. Tiny
+  // control grids avoid copying through the bulk scratch arena.
+  if (samples.length >= 256) return warpBatch(local, chain, axes, samples, out);
+  const point = [0, 0], other = [0, 0], X = axes?.[0], Y = axes?.[1];
+  for (let i = 0; i < samples.length; i += 2) {
+    point[0] = samples[i]; point[1] = samples[i + 1];
+    carryWarp(local, point);
+    if (axes) {
+      if (X && Y) {
+        const px = point[0], py = point[1]; other[0] = px; other[1] = py;
+        carryInto(X, point); carryInto(Y, other);
+        point[0] = point[0] + other[0] - px; point[1] = point[1] + other[1] - py;
+      } else carryInto(X ?? Y, point);
+    }
+    carryInto(chain, point);
+    out[i] = point[0]; out[i + 1] = point[1];
+  }
   return out;
 }
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
