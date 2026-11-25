@@ -257,10 +257,12 @@ export class KraMaterials {
     const nativeOrder = new Map<string, number>();
     if (context === 'studio') {
       const orderByUuid = new Map(doc.parts.flatMap((part, index) => part.uuid && !part.role ? [[part.uuid, index] as const] : []));
-      let above = doc.parts.length, index = 0;
+      let foregroundLimit = doc.parts.length, index = 0;
       for (const [id] of layers) {
-        above = orderByUuid.get(id) ?? above;
-        nativeOrder.set(id, above - .25 - .5 * index++ / layers.size);
+        // KRA layers come in front-to-back order. An authored layer can move
+        // ahead of an earlier anchor, but static paint must stay behind both.
+        foregroundLimit = Math.min(foregroundLimit, orderByUuid.get(id) ?? foregroundLimit);
+        nativeOrder.set(id, foregroundLimit - .25 - .5 * index++ / layers.size);
       }
     }
     for (const row of exported) {

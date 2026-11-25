@@ -84,6 +84,39 @@ test('jaw owns the edited KRA and retains geometry provenance; missing UUID neve
   await assert.rejects(materials.resolve(root,directory,input),/没有有效的 KRA 图层 UUID/);
 });
 
+test('studio clothing stays behind authored foreground hair when the nearest KRA anchor is reordered', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-studio-foreground-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const directory = join(root, 'nine-axis/step08_hair');
+  const input = materialFixture(), kra = join(root, input.doc.source!.document);
+  const bodyUuid = '33333333-3333-3333-3333-333333333333';
+  const backUuid = '44444444-4444-4444-4444-444444444444';
+  const paint = (id: string, name: string) => `<layer uuid="{${id}}" name="${name}" nodetype="paintlayer" visible="1"/>`;
+  const front = paint(hairUuid, 'hair/front_long_hair'), face = paint(faceUuid, 'face/face_base');
+  const body = paint(bodyUuid, 'dress_bodice'), back = paint(backUuid, 'hair/back_hair');
+  const contents = `<DOC><IMAGE><layers>${front}${face}${body}${back}</layers></IMAGE></DOC>`;
+  await mkdir(directory, { recursive: true });
+  await mkdir(join(kra, '..'), { recursive: true });
+  await writeFile(kra, zipSync({
+    'maindoc.xml': strToU8(contents),
+    'mergedimage.png': kraContents(await kraFixture('#f00')).merged,
+  }));
+  const head = input.doc.parts[0];
+  input.doc.parts = [
+    { ...structuredClone(head), id: 'hair/back_hair', uuid: backUuid, texture: 'layers/back.png', level: 'hair' },
+    { ...structuredClone(head), id: 'hair/front_long_hair', uuid: hairUuid, texture: 'layers/front.png', level: 'hair' },
+    head,
+  ];
+  input.doc.levels.push({ id: 'hair', includes: ['face', 'hair'] });
+
+  const built = await new KraMaterials(fixtureExport).resolve(root, directory, input, undefined, 'studio');
+  const clothing = built.studioLayers!.find(layer => layer.uuid === bodyUuid);
+  assert.ok(clothing);
+  const index = (uuid: string) => built.doc.parts.findIndex(part => part.uuid === uuid);
+  assert.ok(index(backUuid) < clothing.order && clothing.order < index(hairUuid));
+  assert.deepEqual(built.doc.parts.map(part => part.id), input.doc.parts.map(part => part.id));
+});
+
 test('fixed face branches cannot rebind KRA layers while preserving stale PNGs', async t => {
   const { checkContinuation, startContinuation }=await import('../continuation.ts');
   const { angleScale }=await import('../angles.ts');
