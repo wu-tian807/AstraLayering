@@ -194,6 +194,8 @@ test('生视频提交、轮询并下载，错误中不含密钥', async t => {
       if (request.method === 'POST') {
         const json = JSON.parse(body);
         assert.equal(json.model, 'seedance-test'); assert.equal(json.seconds, '5'); assert.match(json.input_reference, /^data:image\/png;base64,/);
+        // Reproduce a gateway that breaks the job receipt when compression is allowed.
+        if (request.headers['accept-encoding'] !== 'identity') { response.destroy(); return; }
         response.end(JSON.stringify({ id: 'v1', status: 'queued' }));
       } else if (request.url === '/videos/v1') response.end(JSON.stringify({ id: 'v1', status: ++polls < 2 ? 'in_progress' : 'completed' }));
       else if (request.url === '/videos/v1/content') response.end('mp4');

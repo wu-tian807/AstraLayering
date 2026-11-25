@@ -106,7 +106,9 @@ async function retryVideoRead<T>(read: () => Promise<T>, label: string, signal: 
 }
 async function call(api: VideoApi, method: string, path: string, signal: AbortSignal | undefined, body?: unknown) {
   const response = await fetch(api.baseUrl.replace(/\/+$/, '') + path, { method, signal,
-    headers: { authorization: `Bearer ${api.apiKey}`, ...(body ? { 'content-type': 'application/json' } : {}) },
+    // Keep job receipts readable through gateways that truncate gzip bodies.
+    // A POST receipt must be read once so its job ID can be checkpointed.
+    headers: { authorization: `Bearer ${api.apiKey}`, 'accept-encoding': 'identity', ...(body ? { 'content-type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}) });
   if (!response.ok) throw new VideoHTTPError(`生视频 ${method} ${path} HTTP ${response.status}：${redact(await response.text(), api)}`, response.status);
   return response;
