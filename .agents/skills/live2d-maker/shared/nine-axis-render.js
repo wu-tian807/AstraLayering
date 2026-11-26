@@ -15,8 +15,47 @@ const vertexShader = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projection
 // offscreen target of the canvas size; a clipped part multiplies its alpha by
 // that coverage, or by 1 − coverage when inverted. In the mask pass a part writes
 // only its alpha, so overlapping sources add up to their union.
+const samplePaint = `
+vec4 cubicPaint(vec2 texel, vec2 size) {
+  vec2 f = fract(texel);
+  vec2 f2 = f * f, f3 = f2 * f;
+  vec2 a = -0.5 * f + f2 - 0.5 * f3;
+  vec2 b = 1.0 - 2.5 * f2 + 1.5 * f3;
+  vec2 c = 0.5 * f + 2.0 * f2 - 1.5 * f3;
+  vec2 d = -0.5 * f2 + 0.5 * f3;
+  vec2 mid = b + c;
+  // Hardware linear filtering combines the two middle Catmull–Rom taps.
+  vec2 i = floor(texel) + 0.5;
+  vec3 wx = vec3(a.x, mid.x, d.x), wy = vec3(a.y, mid.y, d.y);
+  vec3 x = (i.x + vec3(-1.0, c.x / mid.x, 2.0)) / size.x;
+  vec3 y = (i.y + vec3(-1.0, c.y / mid.y, 2.0)) / size.y;
+  vec4 paint = vec4(0.0);
+  for (int j = 0; j < 3; ++j) {
+    for (int k = 0; k < 3; ++k) {
+      paint += textureLod(map, vec2(x[k], y[j]), 0.0) * wx[k] * wy[j];
+    }
+  }
+  // The negative kernel lobes can overshoot the premultiplied colour range.
+  paint.a = clamp(paint.a, 0.0, 1.0);
+  paint.rgb = clamp(paint.rgb, vec3(0.0), vec3(paint.a));
+  return paint;
+}
+vec4 samplePaint(vec2 uv, vec2 dx, vec2 dy) {
+  vec2 size = vec2(textureSize(map, 0));
+  vec2 u = dx * size, v = dy * size;
+  vec2 footprint = sqrt(u * u + v * v);
+  // Near native size keep the original line art. At minification use the
+  // original gradients so anisotropic mipmaps can remove subpixel detail.
+  float reduce = smoothstep(1.0, 1.45, max(footprint.x, footprint.y));
+  if (reduce >= 1.0) return textureGrad(map, uv, dx, dy);
+  vec4 paint = cubicPaint(uv * size - 0.5, size);
+  if (reduce <= 0.0) return paint;
+  return mix(paint, textureGrad(map, uv, dx, dy), reduce);
+}
+`;
 const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform float dim;uniform float paintOpacity;uniform float clipMode;uniform float maskPass;uniform float tint;uniform vec2 res;varying vec2 vUv;'
-  + 'void main(){if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=texture2D(map,vUv);if(c.a<0.002)discard;'
+  + samplePaint
+  + 'void main(){vec2 dx=dFdx(vUv),dy=dFdy(vUv);if(any(lessThan(vUv,vec2(0.0)))||any(greaterThan(vUv,vec2(1.0))))discard;vec4 c=samplePaint(vUv,dx,dy);if(c.a<0.002)discard;'
   + 'if(maskPass>0.5){gl_FragColor=vec4(c.a*paintOpacity);return;}float opacity=dim*paintOpacity;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
   + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0)*c.a,tint)*opacity,c.a*opacity);}';
 const clipKey = clip => clip.by.join('|');
@@ -33,7 +72,7 @@ function paintMesh(geometry, texture) {
 const paintTexture = (texture, premultiplyAlpha) => {
   texture.flipY = false; texture.colorSpace = THREE.NoColorSpace; texture.premultiplyAlpha = premultiplyAlpha;
   texture.wrapS = texture.wrapT = THREE.ClampToEdgeWrapping;
-  texture.minFilter = THREE.LinearMipmapLinearFilter; texture.magFilter = THREE.LinearFilter; texture.needsUpdate = true;
+  texture.minFilter = THREE.LinearMipmapLinearFilter; texture.magFilter = THREE.LinearFilter; texture.anisotropy = 8; texture.needsUpdate = true;
   return texture;
 };
 function writePoints(mesh, points) {
@@ -178,11 +217,13 @@ export class HeadNineAxisRenderer {
       m.material.uniforms.paintOpacity.value = state.opacity / 255;
       if (state.visible) visible.add(m.userData.id);
     }
-    // Unauthored projections follow their caster and clip to the posed receivers.
+    // Saved alpha inheritance clips to lower layers in the same KRA group.
+    // Unauthored projections still follow their caster and clip to posed receivers.
     for (const m of this.staticLayers) {
       const { id, layer, caster, samples } = m.userData;
-      if (!layer.projection || !visible.has(id)) continue;
-      const by = layer.projection.receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
+      const receivers = layer.projection?.receivers ?? layer.inheritAlpha;
+      if (!receivers || !visible.has(id)) continue;
+      const by = receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
       if (!by.length) { visible.delete(id); continue; }
       clips.set(id, { by });
       if (!caster) continue;
@@ -220,13 +261,14 @@ export class HeadNineAxisRenderer {
     for (const [id, m] of this.meshes) {
       const { part, layer, state } = m.userData, u = m.material.uniforms, clip = clips.get(id);
       const blend = part ? part.shadow?.blendMode : state.blend;
-      const shadow = part ? !!part.shadow : !!layer.projection || blend === 'multiply';
+      const multiply = blend === 'multiply' || blend === 'mul', add = blend === 'add' || blend === 'linear_dodge';
+      const preserveAlpha = add || (part ? !!part.shadow : !!layer.projection || !!layer.inheritAlpha || multiply);
       m.visible = visible.has(id); u.maskPass.value = 0;
-      m.material.blendSrc = blend === 'multiply' ? THREE.DstColorFactor : THREE.OneFactor;
-      m.material.blendDst = THREE.OneMinusSrcAlphaFactor;
-      // A receiver-clipped shadow shades existing paint without changing its silhouette.
-      m.material.blendSrcAlpha = shadow ? THREE.ZeroFactor : THREE.OneFactor;
-      m.material.blendDstAlpha = shadow ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
+      m.material.blendSrc = multiply ? THREE.DstColorFactor : THREE.OneFactor;
+      m.material.blendDst = add ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
+      // Clipped corrections and shadows modify paint without changing coverage.
+      m.material.blendSrcAlpha = preserveAlpha ? THREE.ZeroFactor : THREE.OneFactor;
+      m.material.blendDstAlpha = preserveAlpha ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
       u.clipMode.value = clip ? (clip.invert ? 2 : 1) : 0;
       if (clip) { u.clip.value = this.targets.get(clipKey(clip)).texture; u.res.value.copy(size); }
     }

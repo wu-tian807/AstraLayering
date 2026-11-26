@@ -17,11 +17,32 @@ export type MaterialRow = { id: string; uuid?: string; partId?: string; bounds?:
 export type ShadowContextPart = HeadDeformer & { shadowSource?: MaterialSelection };
 type Exported = MaterialRow & { bounds: Bounds };
 export type MaterialExport = (document: string, directory: string, rows: MaterialRow[], shadows: string[], signal?: AbortSignal) => Promise<Exported[]>;
-export type StudioPaintLayer = { uuid: string; texture: string; bounds: Bounds; order: number; visible: boolean; opacity: number; blend: string; projection?: ProjectionBinding };
+export type StudioPaintLayer = { uuid: string; texture: string; bounds: Bounds; order: number; visible: boolean; opacity: number; blend: string; projection?: ProjectionBinding; inheritAlpha?: string[] };
 export type MaterialBuilt = Built & { sourceDocument?: string; sourceRevision?: string; studioLayers?: StudioPaintLayer[] };
 export type MaterialLoader = (directory: string, built: Built, signal?: AbortSignal, context?: boolean | 'shadows') => Promise<MaterialBuilt>;
 const hash = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
 const uuid = (value: string) => value.replace(/[{}]/g, '').toLowerCase();
+const inheritsAlpha = (layer: Record<string, string>) =>
+  layer.alphainherit === '1' || layer.colorspacename === 'RGBA' && layer.channelflags === '1110';
+
+function studioAlphaSources(layers: ReturnType<typeof kraLayers>, paint: Set<string>) {
+  const children = new Map<string, string[]>();
+  for (const [id, layer] of layers) {
+    const siblings = children.get(layer.parent) ?? [];
+    siblings.push(id);
+    children.set(layer.parent, siblings);
+  }
+  function paintSources(id: string): string[] {
+    const layer = layers.get(id)!;
+    if (inheritsAlpha(layer)) return [];
+    if (layer.nodetype === 'grouplayer') return (children.get(id) ?? []).flatMap(paintSources);
+    return paint.has(id) ? [id] : [];
+  }
+  return (id: string) => {
+    const siblings = children.get(layers.get(id)!.parent)!;
+    return siblings.slice(siblings.indexOf(id) + 1).flatMap(paintSources);
+  };
+}
 const optional = async (path: string) => {
   try { return JSON.parse(await readFile(path, 'utf8')); }
   catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; }
@@ -255,6 +276,9 @@ export class KraMaterials {
     try { exported = await request; } finally { if (this.pending.get(cache) === request) this.pending.delete(cache); }
     const textures = new Map<string, string>(), studioLayers: StudioPaintLayer[] = [];
     const nativeOrder = new Map<string, number>();
+    const alphaSources = context === 'studio'
+      ? studioAlphaSources(layers, new Set(exported.flatMap(row => row.uuid ? [row.uuid] : [])))
+      : undefined;
     if (context === 'studio') {
       const orderByUuid = new Map(doc.parts.flatMap((part, index) => part.uuid && !part.role ? [[part.uuid, index] as const] : []));
       let above = doc.parts.length, index = 0;
@@ -271,7 +295,7 @@ export class KraMaterials {
         const projection = selection.projectionBindings.get(row.uuid);
         studioLayers.push({ uuid: row.uuid, texture, bounds: row.bounds, order: nativeOrder.get(row.uuid)!,
           visible: savedLayerVisible(layers, row.uuid), opacity: Number(layer.opacity ?? 255), blend: layer.compositeop ?? 'normal',
-          ...(projection ? { projection } : {}) });
+          ...(projection ? { projection } : inheritsAlpha(layer) ? { inheritAlpha: alphaSources!(row.uuid) } : {}) });
         continue;
       }
       let part = doc.parts.find(part => part.id === row.id);
