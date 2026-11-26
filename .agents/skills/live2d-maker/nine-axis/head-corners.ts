@@ -14,8 +14,8 @@ import { modelDocument } from './source.ts';
 export const headCornerScope = { ...wholeHeadScope, label: '完整头部斜角' };
 export const headCornerPoses = (scale = angleScale()) => scale.x.flatMap(x => scale.y.map(y => [x, y] as const));
 
-export function initializeHeadCorners(upstream: HeadNineAxis & { axis: number }, scale = angleScale()): AuthoredHead {
-  const doc = prepareHeadControls(upstream, 'corners', '头部斜角修正') as AuthoredHead;
+export function initializeHeadCorners(upstream: HeadNineAxis & { axis: number }, scale = angleScale(), saved?: HeadNineAxis): AuthoredHead {
+  const doc = prepareHeadControls(upstream, 'corners', '头部斜角修正', saved) as AuthoredHead;
   doc.authoring = { stage: 'head-xy' };
   const original = new Set(nodes(upstream).map(node => node.id));
   for (const node of doc.deformers.filter(node => !original.has(node.id))) {
@@ -32,7 +32,7 @@ export const headCornerControlIds = (upstream: HeadNineAxis, doc: HeadNineAxis) 
 
 export function checkHeadCorners(value: unknown, upstream: HeadNineAxis & { axis: number }, scale = angleScale()): AuthoredHead {
   const doc = kraReferences(validateHeadNineAxis(value)) as AuthoredHead;
-  const baseline = kraReferences(initializeHeadCorners(upstream, scale));
+  const baseline = kraReferences(initializeHeadCorners(upstream, scale, doc));
   const same = (a: unknown, b: unknown, label: string) => { if (!isDeepStrictEqual(a, b)) throw Error(label); };
   same(doc.authoring?.stage, 'head-xy', '完整头部斜角作者阶段不匹配');
   for (const field of ['source', 'canvas', 'view', 'axis', 'axisSources', 'levels', 'parameters'] as const)

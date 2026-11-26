@@ -10,7 +10,7 @@ export const wholeHeadScope: OwnershipScope = {
 
 // Identity controls share each leaf's native parent, leaving fixed neck/body
 // leaves outside the editable head groups. No upstream pose is resampled.
-export function prepareHeadControls(document: HeadNineAxis, prefix: string, name: string): HeadNineAxis {
+export function prepareHeadControls(document: HeadNineAxis, prefix: string, name: string, saved?: HeadNineAxis): HeadNineAxis {
   let doc = structuredClone(document);
   const groups = new Map<string, string[]>(), byId = new Map(nodes(doc).map(node => [node.id, node]));
   for (const part of doc.parts.filter(part => !part.context && ownsNode(doc, part, wholeHeadScope))) {
@@ -23,8 +23,14 @@ export function prepareHeadControls(document: HeadNineAxis, prefix: string, name
     const parent = byId.get(parentId), parts = targets.map(target => doc.parts.find(part => part.id === target)!);
     const bbox = parent?.bbox ?? [Math.min(...parts.map(part => part.bbox[0])), Math.min(...parts.map(part => part.bbox[1])),
       Math.max(...parts.map(part => part.bbox[2])), Math.max(...parts.map(part => part.bbox[3]))];
+    const inheritedCols = parent?.cols ?? 4, inheritedRows = parent?.rows ?? 4;
+    const existing = saved?.deformers.find(node => node.id === id);
+    // Saved authors can still have the previous parent-sized lattice.
+    const legacy = existing?.cols === inheritedCols && existing.rows === inheritedRows;
     doc = editNineAxis(doc, [{ action: 'create_warp', id, name, level: parts[0].level, bbox,
-      cols: parent?.cols ?? 4, rows: parent?.rows ?? 4, parent: parentId || undefined, targets: [] }]);
+      cols: legacy ? inheritedCols : Math.max(2, Math.min(inheritedCols, 4)),
+      rows: legacy ? inheritedRows : Math.max(2, Math.min(inheritedRows, 4)),
+      parent: parentId || undefined, targets: [] }]);
     for (const part of doc.parts) if (targets.includes(part.id)) part.parent = id;
   }
   return doc;

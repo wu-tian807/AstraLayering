@@ -8,13 +8,18 @@ import { join } from 'node:path';
 import sharp from 'sharp';
 import {zipSync,strToU8} from 'fflate';
 import { fitWarpToTraces } from '../../shared/nine-axis-fit.js';
-import { lattice, keyformAt, warpPoint, parentPoint, evaluatePoints, nodes, type HeadNineAxis } from '../../shared/nine-axis-model.js';
+import { lattice, keyformAt, warpPoint, parentPoint, evaluatePoints, nodes, kraReferences, type HeadNineAxis } from '../../shared/nine-axis-model.js';
 import { createNineAxisFitTool } from '../fit-tool.ts';
 import { createHeadEditTool } from '../edit-tool.ts';
 import { finishHead } from '../head.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { finishAngleY } from '../angle-y.ts';
 import { buildAngleXY, finishAngleXY } from '../angle-xy.ts';
+import { startContinuation } from '../continuation.ts';
+import { hairPreviewScope } from '../hair.ts';
+import type { MaterialLoader } from '../kra-materials.ts';
+import { withDocument } from '../source.ts';
+import { baseline, grid, pts } from './axis-fixtures.ts';
 
 const sha256 = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
 const result = (value: any) => JSON.parse(value.contentItems[0].text);
@@ -76,6 +81,9 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   assert.deepEqual([...data.subarray((100 * 400 + 100) * 3, (100 * 400 + 100) * 3 + 3)], [255, 230, 215], 'complete source face occupies the first panel without centering over the target');
   assert.deepEqual([...data.subarray((100 * 400 + 300) * 3, (100 * 400 + 300) * 3 + 3)], [255, 230, 215], 'complete target face remains visible without reference hair');
   const validTrace = await readFile(trace, 'utf8');
+  const { completion: _completion, ...incomplete } = JSON.parse(validTrace);
+  await writeFile(trace, JSON.stringify(incomplete));
+  await assert.rejects(tool.execute({ action: 'inspect', trace }, signal), /先补全完整脸型/);
   await writeFile(trace, JSON.stringify({ ...JSON.parse(validTrace), curves: [{ id: 'hair-seam', part: complete.part, source: 'M10 10L10 90', target: 'M45 30L45 70', visibility: 'visible' }] }));
   const mismatch: any = await tool.execute({ action: 'inspect', trace }, signal);
   assert.equal(JSON.parse(mismatch.contentItems[0].text).completionMismatch[0].id, 'hair-seam');
@@ -88,6 +96,138 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   assert.equal(raw.deformers.length, 0); assert.deepEqual(raw.parts[0].keyforms['0'], JSON.parse(original).parts[0].keyforms['0']);
   assert.ok(Math.abs(raw.parts[0].keyforms['-30'][0][0] - 55) < 0.01, 'view coordinates add crop origin exactly once');
   await assert.rejects(tool.execute({ action: 'fit', trace, id: 'face/face_base', revision: inspectInfo.revision }, signal), /revision/);
+});
+
+async function hairFitFixture(t: TestContext) {
+  const taskRoot = await mkdtemp(join(tmpdir(), 'nine-hair-fit-'));
+  t.after(() => rm(taskRoot, { recursive: true, force: true }));
+  const upstreamDirectory = join(taskRoot, 'nine-axis/step07_jaw-line');
+  const directory = join(taskRoot, 'nine-axis/step08_hair'), referenceDirectory = join(taskRoot, 'nine-axis/step03_frames');
+  await Promise.all([upstreamDirectory, directory, referenceDirectory].map(path => mkdir(path, { recursive: true })));
+  const document = join(taskRoot, 'original.kra'), editable = join(directory, 'character-nine-axis.kra');
+  const color = join(taskRoot, 'original.png'), left = join(referenceDirectory, 'left.png'), right = join(referenceDirectory, 'right.png');
+  const makePng = (background: string) => sharp({ create: { width: 100, height: 100, channels: 4, background } }).png().toBuffer();
+  const names = ['face/face_base', 'hair/bangs', 'hair/front_hair/wisp', 'hair/side_hair/right'];
+  const uuid = (index: number) => `00000000-0000-0000-0000-${String(index + 1).padStart(12, '0')}`;
+  const saveKra = async (path: string, shade: string) => writeFile(path, zipSync({
+    'maindoc.xml': strToU8('<DOC><IMAGE><layers>' + names.map((name, i) =>
+      `<layer uuid="${uuid(i)}" name="${name}" nodetype="paintlayer" visible="1"/>`).join('') + '</layers></IMAGE></DOC>'),
+    'mergedimage.png': await makePng(shade),
+  }));
+  await saveKra(document, '#101020');
+  await saveKra(editable, '#236046');
+  await writeFile(color, await makePng('#101020'));
+  await writeFile(left, await makePng('#bb472c'));
+  const upstream = baseline() as HeadNineAxis & { axis: number };
+  upstream.parts = [{ ...upstream.parts[0], uuid: uuid(0), partId: 'character:' + names[0] }];
+  const scale = { x: [-28, 36] as [number, number], y: [-20, 24] as [number, number] };
+  upstream.parameters = [{ id: 'ParamAngleX', keys: [scale.x[0], 0, scale.x[1]] }, { id: 'ParamAngleY', keys: [0] }];
+  await writeFile(join(upstreamDirectory, 'deformers.json'), JSON.stringify(upstream));
+  const doc = kraReferences(startContinuation(withDocument(upstream, taskRoot, editable) as typeof upstream, 'hair', scale));
+  for (const [index, id] of names.entries()) {
+    if (!index) continue;
+    doc.parts.push({ ...grid(id, [12, 12, 80, 80]), level: 'hair', uuid: uuid(index), partId: 'character:' + id, textureBounds: [12, 12, 68, 68] });
+  }
+  const author = join(directory, 'hair.json'), trace = join(directory, 'hair-trace.json');
+  await writeFile(author, JSON.stringify(doc));
+  const calls: { directory: string; signal?: AbortSignal; context?: boolean | 'shadows' }[] = [];
+  const materialize: MaterialLoader = async (directory, built, signal, context) => {
+    calls.push({ directory, signal, context });
+    const loaded = structuredClone(built.doc);
+    const textures = new Map(loaded.parts.map((p, i) => [p.texture ??= `layers/${i}.png`, color]));
+    return { doc: loaded, textures };
+  };
+  const tool = createNineAxisFitTool(directory, { document, color, parts: [] }, { x: 0, y: 0, size: 100 }, scale,
+    { stage: 'hair', upstreamDirectory, ownership: hairPreviewScope('front'), materialize }, { taskRoot, referenceDirectory });
+  const signal = new AbortController().signal;
+  const inspect = (args: object = {}) => tool.execute({ action: 'inspect', trace, ...args }, signal);
+  const fit = (id = names[1], args: object = {}) => tool.execute({ action: 'fit', trace, id, ...args }, signal);
+  const contour = (part = names[1], dx = -3) => ({
+    id: 'edge', part, source: 'M15 15L75 15L75 75L15 75L15 15', target: `M${15+dx} 15L${75+dx} 15L${75+dx} 75L${15+dx} 75L${15+dx} 15`,
+  });
+  const saveTrace = (value: object) => writeFile(trace, JSON.stringify({ version: 1, space: 'view', ...value }));
+  return { names, author, trace, directory, upstreamDirectory, editable, saveKra, makePng, left, right, doc, calls, inspect, fit, contour, saveTrace, signal };
+}
+
+test('hair inspect reads the saved editable KRA and labels real right and front-crop references', async t => {
+  const f = await hairFitFixture(t), edge = f.contour(), original = await readFile(f.author, 'utf8');
+  await f.saveTrace({ curves: [edge] });
+  const inspect = await f.inspect(), left = result(inspect);
+  assert.deepEqual([left.side, left.x, left.y, left.reference, left.referenceSource], ['left', -28, 0, f.left, 'frame']);
+  assert.equal(inspect.contentItems.length, 2);
+  assert.equal(left.completionCheck, undefined);
+  assert.deepEqual(left.completionMismatch, []);
+  const pixel = (path: string, x: number) => sharp(path).extract({ left:x, top:2, width:1, height:1 }).removeAlpha().raw().toBuffer().then(bytes=>[...bytes]);
+  assert.equal((await sharp(left.traceCheck).metadata()).width, 400);
+  assert.deepEqual(await pixel(left.traceCheck, 2), [0x23, 0x60, 0x46]);
+  assert.deepEqual(await pixel(left.traceCheck, 202), [0xbb, 0x47, 0x2c]);
+
+  await f.saveKra(f.editable, '#4871ae');
+  const front = result(await f.inspect({ side: 'right' }));
+  assert.deepEqual([front.side, front.x, front.y, front.reference, front.referenceSource], ['right', 36, 0, f.editable, 'front-crop']);
+  assert.deepEqual(await pixel(front.traceCheck, 2), [0x48, 0x71, 0xae]);
+  assert.deepEqual(await pixel(front.traceCheck, 202), [0x48, 0x71, 0xae]);
+
+  await writeFile(f.right, await f.makePng('#aa44ee'));
+  const closed = { ...edge, source: edge.source + 'Z', target: edge.target + 'Z' };
+  await f.saveTrace({ curves: [closed], completion: closed });
+  const right = result(await f.inspect({ side: 'right' }));
+  assert.deepEqual([right.reference, right.referenceSource], [f.right, 'frame']);
+  assert.deepEqual(await pixel(right.traceCheck, 202), [0xaa, 0x44, 0xee]);
+  assert.equal((await sharp(right.traceCheck).metadata()).width, 600);
+  assert.ok(right.completionCheck);
+  assert.equal(await readFile(f.author, 'utf8'), original);
+  assert.deepEqual(f.calls, []);
+});
+
+test('hair fit seeds horizontal keys, preserves other nodes and directions, and saves separate reports', async t => {
+  const f = await hairFitFixture(t), [face, bangs, wisp] = f.names;
+  await f.saveTrace({ curves: [f.contour()] });
+  const left = result(await f.fit());
+  assert.equal(left.report.x, -28);
+  assert.equal(left.report.y, 0);
+  assert.ok(left.report.after[0].maxPixels < .01);
+  const leftAuthor = JSON.parse(await readFile(f.author, 'utf8'));
+  const leftReport = await readFile(left.reportPath, 'utf8');
+  assert.deepEqual(leftAuthor.parts.find((p: any) => p.id === face), f.doc.parts[0]);
+  assert.deepEqual(leftAuthor.parts.find((p: any) => p.id === bangs).keyforms['36'], f.doc.parts[1].keyforms['0']);
+  assert.deepEqual(leftAuthor.parts.slice(2), f.doc.parts.slice(2));
+
+  const landmarks = [[15, 15], [75, 15], [15, 75], [75, 75]].map(([x, y], i) => ({
+    id: 'mark-' + i, part: bangs, source: [x, y], target: [x + 4, y],
+  }));
+  await f.saveTrace({ landmarks });
+  const right = result(await f.fit(bangs, { side: 'right', revision: left.revision }));
+  assert.ok(right.report.after.every((entry: { maxPixels: number }) => entry.maxPixels < .01));
+  assert.deepEqual([right.report.side, right.report.x, right.report.y, right.referenceSource], ['right', 36, 0, 'front-crop']);
+  assert.notEqual(right.reportPath, left.reportPath);
+  const afterRight = JSON.parse(await readFile(f.author, 'utf8'));
+  assert.deepEqual(afterRight.parts[1].keyforms['-28'], leftAuthor.parts[1].keyforms['-28']);
+  assert.deepEqual(afterRight.parts[1].keyforms['0'], f.doc.parts[1].keyforms['0']);
+
+  await f.saveTrace({ curves: [f.contour(wisp)] });
+  const other = result(await f.fit(wisp));
+  assert.notEqual(other.reportPath, left.reportPath);
+  assert.equal(await readFile(left.reportPath, 'utf8'), leftReport);
+  assert.deepEqual(JSON.parse(await readFile(right.reportPath, 'utf8')), right.report);
+  const saved = JSON.parse(await readFile(f.author, 'utf8'));
+  assert.deepEqual(saved.parts[1], afterRight.parts[1]);
+  assert.deepEqual(JSON.parse(await readFile(join(f.directory, 'deformers.json'), 'utf8')), saved);
+  assert.deepEqual(f.calls.map(call => call.directory), [f.directory, f.upstreamDirectory, f.directory, f.upstreamDirectory, f.directory, f.upstreamDirectory]);
+  assert.ok(f.calls.every(call => call.signal === f.signal && call.context === false));
+});
+
+test('front-round fit rejects side hair, face, and a carrier shared with side hair', async t => {
+  const f = await hairFitFixture(t), [face, bangs, , side] = f.names;
+  const parent = { ...grid('mixed-carrier'), level: 'hair' as const };
+  f.doc.deformers.push(parent);
+  for (const part of f.doc.parts.filter(p => p.id === bangs || p.id === side)) part.parent = parent.id;
+  const original = JSON.stringify(f.doc);
+  await writeFile(f.author, original);
+  await f.saveTrace({ curves: [f.contour()] });
+  for (const id of [face, side, parent.id]) await assert.rejects(f.fit(id), /不能拟合范围外/);
+  assert.equal(await readFile(f.author, 'utf8'), original);
+  assert.deepEqual(f.calls, []);
 });
 
 test('up and down trace fitting saves independent Y endpoints and preserves completed up and X', async t => {

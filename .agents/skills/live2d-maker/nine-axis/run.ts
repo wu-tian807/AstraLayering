@@ -298,8 +298,14 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     }
     const stage = axis === 'up' || axis === 'down' ? axis : undefined;
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
-    if (stepId === 'step08_hair') return [createKritaTool(await krita(),task),bitmap,view,
-      createContinuationEditTool(output,join(directory,'step07_jaw-line'),'hair',scale,task,materialize,hairPreviewScope(hairRound!))];
+    if (stepId === 'step08_hair') {
+      const upstreamDirectory = join(directory, 'step07_jaw-line'), ownership = hairPreviewScope(hairRound!);
+      const { head } = await getTurnInput();
+      return [createKritaTool(await krita(), task), bitmap, view,
+        createContinuationEditTool(output, upstreamDirectory, 'hair', scale, task, materialize, ownership),
+        createNineAxisFitTool(output, head, await crop(), scale, { stage: 'hair', upstreamDirectory, ownership, materialize },
+          { taskRoot: task, referenceDirectory: frames })];
+    }
     if(stepId==='step09_head-accessories') {
       const upstream=join(directory,'step08_hair');
       return [createKritaTool(await krita(),task),bitmap,view,

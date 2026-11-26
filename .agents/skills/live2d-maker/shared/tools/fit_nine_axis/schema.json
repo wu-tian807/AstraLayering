@@ -5,6 +5,7 @@
   "properties": {
     "action": {"enum": ["inspect", "fit"]},
     "trace": {"type": "string"},
+    "side": {"enum": ["left", "right"], "default": "left", "description": "头发阶段的拟合方向，脸部阶段由当前步骤决定。"},
     "corner": {"enum": ["left-up", "left-down"], "description": "斜向步骤必填，使用本步同名 PNG 的已选视频帧；其他步骤省略。"},
     "id": {"type": "string"},
     "features": {"type": "array", "items": {"type": "string"}},
