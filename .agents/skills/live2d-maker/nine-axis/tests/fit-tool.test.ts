@@ -9,14 +9,17 @@ import sharp from 'sharp';
 import {zipSync,strToU8} from 'fflate';
 import { fitWarpToTraces } from '../../shared/nine-axis-fit.js';
 import { lattice, keyformAt, warpPoint, parentPoint, evaluatePoints, nodes, kraReferences, type HeadNineAxis } from '../../shared/nine-axis-model.js';
-import { createNineAxisFitTool } from '../fit-tool.ts';
+import { createNineAxisFitTool, type HeadFitStage } from '../fit-tool.ts';
 import { createHeadEditTool } from '../edit-tool.ts';
 import { finishHead } from '../head.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { finishAngleY } from '../angle-y.ts';
 import { buildAngleXY, finishAngleXY } from '../angle-xy.ts';
-import { startContinuation } from '../continuation.ts';
+import { authorFile, startContinuation } from '../continuation.ts';
 import { hairPreviewScope } from '../hair.ts';
+import { accessoryPreviewScope } from '../accessories.ts';
+import { headPitchScope } from '../head-pitch.ts';
+import { headCornerScope } from '../head-corners.ts';
 import type { MaterialLoader } from '../kra-materials.ts';
 import { withDocument } from '../source.ts';
 import { baseline, grid, pts } from './axis-fixtures.ts';
@@ -149,7 +152,7 @@ async function hairFitFixture(t: TestContext) {
   return { names, author, trace, directory, upstreamDirectory, editable, saveKra, makePng, left, right, doc, calls, inspect, fit, contour, saveTrace, signal };
 }
 
-test('hair inspect reads the saved editable KRA and labels real right and front-crop references', async t => {
+test('hair inspect reads the saved editable KRA and requires an explicit or bound reference', async t => {
   const f = await hairFitFixture(t), edge = f.contour(), original = await readFile(f.author, 'utf8');
   await f.saveTrace({ curves: [edge] });
   const inspect = await f.inspect(), left = result(inspect);
@@ -162,11 +165,14 @@ test('hair inspect reads the saved editable KRA and labels real right and front-
   assert.deepEqual(await pixel(left.traceCheck, 2), [0x23, 0x60, 0x46]);
   assert.deepEqual(await pixel(left.traceCheck, 202), [0xbb, 0x47, 0x2c]);
 
+  await assert.rejects(f.inspect({ side: 'right' }), /right\.png.*请传入真实的 reference PNG 路径/);
   await f.saveKra(f.editable, '#4871ae');
-  const front = result(await f.inspect({ side: 'right' }));
-  assert.deepEqual([front.side, front.x, front.y, front.reference, front.referenceSource], ['right', 36, 0, f.editable, 'front-crop']);
-  assert.deepEqual(await pixel(front.traceCheck, 2), [0x48, 0x71, 0xae]);
-  assert.deepEqual(await pixel(front.traceCheck, 202), [0x48, 0x71, 0xae]);
+  const prepared = join(f.directory, 'prepared-right.png');
+  await writeFile(prepared, await f.makePng('#4455cc'));
+  const explicit = result(await f.inspect({ side: 'right', reference: prepared }));
+  assert.deepEqual([explicit.side, explicit.x, explicit.y, explicit.reference, explicit.referenceSource], ['right', 36, 0, prepared, 'explicit']);
+  assert.deepEqual(await pixel(explicit.traceCheck, 2), [0x48, 0x71, 0xae]);
+  assert.deepEqual(await pixel(explicit.traceCheck, 202), [0x44, 0x55, 0xcc]);
 
   await writeFile(f.right, await f.makePng('#aa44ee'));
   const closed = { ...edge, source: edge.source + 'Z', target: edge.target + 'Z' };
@@ -199,7 +205,7 @@ test('hair fit seeds horizontal keys, preserves other nodes and directions, and 
   await f.saveTrace({ landmarks });
   const right = result(await f.fit(bangs, { side: 'right', revision: left.revision }));
   assert.ok(right.report.after.every((entry: { maxPixels: number }) => entry.maxPixels < .01));
-  assert.deepEqual([right.report.side, right.report.x, right.report.y, right.referenceSource], ['right', 36, 0, 'front-crop']);
+  assert.deepEqual([right.report.side, right.report.x, right.report.y, right.referenceSource], ['right', 36, 0, undefined]);
   assert.notEqual(right.reportPath, left.reportPath);
   const afterRight = JSON.parse(await readFile(f.author, 'utf8'));
   assert.deepEqual(afterRight.parts[1].keyforms['-28'], leftAuthor.parts[1].keyforms['-28']);
@@ -228,6 +234,86 @@ test('front-round fit rejects side hair, face, and a carrier shared with side ha
   for (const id of [face, side, parent.id]) await assert.rejects(f.fit(id), /不能拟合范围外/);
   assert.equal(await readFile(f.author, 'utf8'), original);
   assert.deepEqual(f.calls, []);
+});
+
+async function headFitFixture(t: TestContext, stage: HeadFitStage) {
+  const taskRoot = await mkdtemp(join(tmpdir(), 'head-fit-'));
+  t.after(() => rm(taskRoot, { recursive: true, force: true }));
+  const upstreamDirectory = join(taskRoot, 'nine-axis/upstream'), directory = join(taskRoot, 'nine-axis/fit');
+  const referenceDirectory = join(taskRoot, 'nine-axis/frames');
+  await Promise.all([upstreamDirectory, directory, referenceDirectory].map(d => mkdir(d, { recursive: true })));
+  const upstream = baseline() as HeadNineAxis & { axis: number };
+  upstream.axis = 54;
+  upstream.parts = [upstream.parts[0], upstream.parts.at(-1)!].map(p => ({ ...p, material: 'transparent' }));
+  upstream.parameters = [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [-25, 0, 25] }];
+  const doc = kraReferences(startContinuation(upstream, stage));
+  const part = stage === 'accessories' ? 'head_accessories/clip' : doc.parts[0].id;
+  if (stage === 'accessories') doc.parts.push({ ...grid(part, [10, 10, 80, 80]), level: 'accessory', partId: 'character:' + part,
+    material: 'transparent', textureBounds: [10, 10, 70, 70] });
+  const target = stage === 'accessories' ? part : doc.parts[0].parent!;
+  const author = join(directory, authorFile(stage)), trace = join(directory, 'trace.json');
+  await writeFile(join(upstreamDirectory, 'deformers.json'), JSON.stringify(kraReferences(upstream)));
+  await writeFile(author, JSON.stringify(doc));
+  await writeFile(trace, JSON.stringify({
+    version: 1, space: 'canvas', curves: [{ id: 'line', part, source: 'M15 15L75 15L75 75L15 75L15 15',
+      target: 'M17 14L77 14L77 74L17 74L17 14' }],
+  }));
+  const document = join(taskRoot, 'original.kra');
+  const tool = createNineAxisFitTool(directory, { document, color: join(taskRoot, 'unused.png'), parts: [] }, { x: 8, y: 4, size: 84 }, undefined,
+    { stage, upstreamDirectory, ownership: stage === 'accessories' ? accessoryPreviewScope : stage === 'head-xy' ? headCornerScope : headPitchScope },
+    { taskRoot, referenceDirectory });
+  const signal = new AbortController().signal;
+  const execute = (args: object) => tool.execute({ trace, id: target, ...args }, signal);
+  return { document, author, referenceDirectory, execute, part, target, doc };
+}
+
+for (const [stage, pose, expected, invalid] of [
+  ['accessories', { x: 17, y: 0 }, [17, 0], { y: 5 }],
+  ['head-up', { x: 0, y: 13 }, [0, 13], { y: -10 }],
+  ['head-down', {}, [0, -25], { x: 8 }],
+  ['head-xy', { corner: 'right-down' }, [30, -25], { x: 0, y: 25 }],
+] as const) {
+  test(`${stage} fits without PNGs and rejects edits outside its node and angle scope`, async t => {
+    const f = await headFitFixture(t, stage);
+    const original = await readFile(f.author, 'utf8');
+    await assert.rejects(f.execute({ action: 'fit', ...invalid }), /只拟合|拟合要求|需要非零/);
+    await assert.rejects(f.execute({ action: 'fit', ...pose, x: 80 }), /超出工程范围/);
+    const blocked = stage === 'head-xy' || stage === 'accessories' ? 'face/face_base' : 'neck';
+    await assert.rejects(f.execute({ action: 'fit', ...pose, id: blocked }), /范围外|斜角修正承载/);
+    assert.equal(await readFile(f.author, 'utf8'), original);
+
+    const reply = await f.execute({ action: 'fit', ...pose });
+    assert.equal(reply.contentItems.length, 1, 'fit does not load a reference or emit overlays');
+    const info = result(reply);
+    assert.deepEqual([info.x, info.y], expected);
+    assert.equal(info.reference, undefined);
+    assert.ok(info.report.after[0].maxPixels < .01);
+    assert.deepEqual(JSON.parse(await readFile(info.reportPath, 'utf8')), info.report);
+    const saved = JSON.parse(await readFile(f.author, 'utf8')) as HeadNineAxis;
+    const field = info.x && info.y ? 'keyformsXY' : info.y ? 'keyformsY' : 'keyforms';
+    const key = info.x && info.y ? `${info.x},${info.y}` : String(info.y || info.x);
+    assert.ok(nodes(saved).find(n => n.id === f.target)![field]?.[key]);
+    assert.deepEqual(saved.parts.find(p => p.id === 'neck'), f.doc.parts.find(p => p.id === 'neck'));
+  });
+}
+
+test('right-corner inspection requires its own PNG and leaves the supplied image in place', async t => {
+  const f = await headFitFixture(t, 'head-xy'), path = join(f.referenceDirectory, 'left-up.png');
+  const paint = (size: number, background: string) => sharp({ create: { width: size, height: size, channels: 3, background } });
+  await writeFile(f.document, zipSync({ 'maindoc.xml': strToU8('<DOC/>'), 'mergedimage.png': await paint(100, '#346').png().toBuffer() }));
+  await paint(84, '#000000').composite([{ input: await paint(6, '#ff0000').png().toBuffer(), left: 18, top: 0 }]).png().toFile(path);
+  await assert.rejects(f.execute({ action: 'inspect', corner: 'right-up' }), /right-up\.png.*请传入真实的 reference PNG 路径/);
+  const inspect = result(await f.execute({ action: 'inspect', corner: 'right-up', reference: path }));
+  assert.deepEqual([inspect.reference, inspect.referenceSource, inspect.x, inspect.y], [path, 'explicit', 30, 25]);
+  const top = await sharp(inspect.traceCheck).extract({ left: 168, top: 3, width: 168, height: 1 }).removeAlpha().raw().toBuffer();
+  assert.deepEqual([...top.subarray(42 * 3, 42 * 3 + 3)], [255, 0, 0]);
+  assert.deepEqual([...top.subarray(142 * 3, 142 * 3 + 3)], [0, 0, 0]);
+  await assert.rejects(f.execute({ action: 'inspect', corner: 'left-up', reference: 'missing.png' }), /missing\.png.*请传入真实的 reference PNG 路径/);
+  const fit = await f.execute({ action: 'fit', x: 12, y: 9, reference: path });
+  const info = result(fit);
+  assert.deepEqual([info.referenceSource, info.x, info.y], ['explicit', 12, 9]);
+  assert.equal(fit.contentItems.length, 2);
+  assert.ok(info.report.after[0].maxPixels < .01);
 });
 
 test('up and down trace fitting saves independent Y endpoints and preserves completed up and X', async t => {

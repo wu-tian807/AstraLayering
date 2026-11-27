@@ -32,7 +32,8 @@ import { HEAD_ROLL_LIMIT } from '../shared/nine-axis-model.js';
 import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
 import { createNineAxisViewTool } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
-import { createNineAxisFitTool } from './fit-tool.ts';
+import { createNineAxisFitTool, type HeadFitStage } from './fit-tool.ts';
+import type { OwnershipScope } from './ownership.ts';
 import { createContinuationEditTool } from './continuation-edit-tool.ts';
 import { readUpstream, startContinuation } from './continuation.ts';
 import { angleScale } from './angles.ts';
@@ -284,12 +285,23 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
       async () => materialize(output, await builds[stepId](), options.signal), undefined, stepId==='step11_head-angle-xy'?{includes:headCornerScope.includes!,label:headCornerScope.label}:pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined,
       axis || stepId === 'step06_angle-xy' ? 'face' : undefined);
-    if(pitch)return [bitmap,view,createContinuationEditTool(output,join(directory,'step09_head-accessories'),headPitchStage(pitch),scale,task,materialize,headPitchScope)];
+    const headFit = async (stage: HeadFitStage, upstreamDirectory: string, ownership: OwnershipScope) => {
+      const { head } = await getTurnInput();
+      return createNineAxisFitTool(output, head, await crop(), scale, { stage, upstreamDirectory, ownership,
+        ...(stage === 'hair' || stage === 'accessories' ? { materialize } : {}) },
+        { taskRoot: task, referenceDirectory: stage === 'head-xy' ? cornerFrames : frames });
+    };
+    if (pitch) {
+      const upstream = join(directory, 'step09_head-accessories'), stage = headPitchStage(pitch);
+      return [bitmap, view, createContinuationEditTool(output, upstream, stage, scale, task, materialize, headPitchScope),
+        await headFit(stage, upstream, headPitchScope)];
+    }
     if (stepId === 'step11_head-angle-xy') {
-      const box = await crop();
+      const box = await crop(), upstream = join(directory, 'step10_head-pitch');
       const svg = createSvgPreviewTool({ directory: output, reference: join(cornerFrames, 'left-up.png'),
         canvas: { width: box.size, height: box.size }, observationDirectory: observations, referenceAlignment: 'canvas', comparisonModes: ['edge'] });
-      return [bitmap, view, createContinuationEditTool(output, join(directory, 'step10_head-pitch'), 'head-xy', scale, task, materialize, headCornerScope),
+      return [bitmap, view, createContinuationEditTool(output, upstream, 'head-xy', scale, task, materialize, headCornerScope),
+        await headFit('head-xy', upstream, headCornerScope),
         { ...svg, async execute(value, signal, context) {
           const args = value as { mode?: string; reference?: string };
           if (args?.mode === 'edge' && !args.reference) throw Error('斜角 edge 比较须指定实际参考帧');
@@ -300,16 +312,15 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
     const upstream = axis ? preparation : stepId === 'step06_angle-xy' ? modelDirectory : xyDirectory;
     if (stepId === 'step08_hair') {
       const upstreamDirectory = join(directory, 'step07_jaw-line'), ownership = hairPreviewScope(hairRound!);
-      const { head } = await getTurnInput();
       return [createKritaTool(await krita(), task), bitmap, view,
         createContinuationEditTool(output, upstreamDirectory, 'hair', scale, task, materialize, ownership),
-        createNineAxisFitTool(output, head, await crop(), scale, { stage: 'hair', upstreamDirectory, ownership, materialize },
-          { taskRoot: task, referenceDirectory: frames })];
+        await headFit('hair', upstreamDirectory, ownership)];
     }
     if(stepId==='step09_head-accessories') {
       const upstream=join(directory,'step08_hair');
       return [createKritaTool(await krita(),task),bitmap,view,
-        createContinuationEditTool(output,upstream,'accessories',scale,task,materialize,accessoryPreviewScope)];
+        createContinuationEditTool(output,upstream,'accessories',scale,task,materialize,accessoryPreviewScope),
+        await headFit('accessories', upstream, accessoryPreviewScope)];
     }
     if (stepId === 'step07_jaw-line') return [createKritaTool(await krita(), task), bitmap, view, createContinuationEditTool(output, upstream, 'jaw', scale, task, materialize)];
     const { head } = await getTurnInput();

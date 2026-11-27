@@ -231,5 +231,6 @@ test('the normal edit tool restricts head-pitch to its signed Y half-axis', asyn
   const carrier = nodes(initializeHeadPitch(f.doc, 'head-up', scale)).find(n => n.id.startsWith('pitch/'))!.id;
   await edit.execute({ operations: [{ action: 'transform', id: carrier, y: 25, translate: [0, -1] }] }, signal);
   await assert.rejects(edit.execute({ operations: [{ action: 'transform', id: carrier, y: -25, translate: [0, -1] }] }, signal), /本方向/);
+  await assert.rejects(edit.execute({ operations: [{ action: 'mirror', targets: [carrier], x: 30, y: 25 }] }, signal), /本方向/);
   await assert.rejects(edit.execute({ operations: [{ action: 'create_warp', id: 'extra', targets: [] }] }, signal), /已准备头部承载/);
 });

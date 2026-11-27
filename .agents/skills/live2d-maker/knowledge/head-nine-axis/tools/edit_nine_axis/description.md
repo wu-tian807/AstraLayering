@@ -10,6 +10,7 @@ operations 接受一批操作，按顺序执行：
 - points：id、x、可选 y、points=[{row,col,to:[x,y]},…]。to 为 view_nine_axis 返回的画布坐标，工具处理父级反解。
 - interpolation：id、spatial=linear/smooth、x=linear/ellipse，分别设置网格内部插值和参数运动轨迹。ellipse 需要负值、0、正值三个 X 关键形；编辑新的中间形时转为 linear。
 - mirror_pair：targets=[节点A,节点B]，显式指定同类节点的镜像对应。是否发布镜像关键形由当前工程决定。
+- mirror：targets 指定要写入右向关键形的节点。按中轴把左向形变反射到右向，成对节点取其对侧，居中节点取自身；只写所选节点。可选 x 指定目标角度的绝对值；省略则用已有负 X 键。y 默认水平轴，传俯仰角则镜像对应的斜角。本步允许的节点和角度范围仍适用。
 - add_part：part，可选 before 或 after 指定绘制顺序参照部件，二者不能同时给出。
 - clip：id、by=[部件id]、可选 invert；by=null 解除裁切。裁切取来源当前 alpha 的并集。
 

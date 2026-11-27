@@ -129,7 +129,15 @@ test('seed and edit use the upstream KRA without copying it, preserve asymmetric
     { action: 'transform', id, x: -31, y: 25, translate: [1, 0] },
     { action: 'transform', id: 'corners/0', x: -30, y: 25, translate: [1, 0] },
     { action: 'create_warp', id: 'new', targets: [] },
+    { action: 'mirror', x: 30, targets: [id] },
+    { action: 'mirror', x: 30, y: 25, targets: ['face/face_base'] },
   ]) await assert.rejects(edit.execute({ operations: [operation] }, signal));
+  await edit.execute({ operations: [{ action: 'transform', id, x: -30, y: -25, translate: [-2, 1] },
+    { action: 'mirror', targets: [id], y: -25 }] }, signal);
+  const mirrored = (await buildHeadCorners(f.output, f.upstream, scale)).doc;
+  const carrier = mirrored.deformers.find(n => n.id === id)!;
+  assert.notDeepEqual(carrier.keyformsXY!['30,-25'], carrier.keyforms['0']);
+  assert.deepEqual(carrier.keyformsXY!['30,25'], authored.deformers.find((n: any) => n.id === id).keyformsXY['30,25']);
 });
 
 test('official corners run one ordinary step, preserve upstream and refuse incomplete head-pitch delivery', async t => {

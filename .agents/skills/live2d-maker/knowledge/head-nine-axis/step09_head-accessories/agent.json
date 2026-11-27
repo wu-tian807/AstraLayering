@@ -1,6 +1,6 @@
 {
   "main": {
     "initial": ["prompts/头部饰品制作.md"],
-    "tools": ["krita","view_bitmap","edit_nine_axis","view_nine_axis"]
+    "tools": ["krita","view_bitmap","edit_nine_axis","view_nine_axis","fit_nine_axis"]
   }
 }
