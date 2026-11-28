@@ -15,6 +15,7 @@ import { section as character } from '../../raster-layering/run.ts';
 import { section as clothing } from '../../clothing-raster-layering/run.ts';
 import { seedUpstream } from './upstream-fixture.ts';
 import { fakePatchedCodex } from './fake-codex.ts';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 import { appServerCommand } from '../codex/tool-agent.ts';
 
 async function fixture(t: { after(callback: () => Promise<unknown>): void }) {
@@ -77,6 +78,7 @@ test('本机 Krita 并发上限来自 .env，默认取 example.env，非正整�
 });
 
 test('Codex ignores executable environment fields and selects only the managed preparation result', async t => {
+  nodeExecutables(t);
   const root = await fixture(t), executable = await fakePatchedCodex(root);
   const settings = loadWorkflowEnvironment({ codex_path: '/must-not-run', layering_codex_path: '/also-must-not-run' }, root);
   assert.equal(settings.codex.codexPathOverride, undefined);
@@ -115,9 +117,10 @@ test('主模型与生图分别鉴权；只填生图模型不启用，按需准�
   assert.throws(() => loadWorkflowEnvironment({ medium_model: 'model-invalid-effort' }, root), /思考力度/);
 });
 
-test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检查', { skip: process.platform === 'win32' }, async t => {
+test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检查', async t => {
+  nodeExecutables(t);
   const root = await fixture(t);
-  const executable = join(root, 'codex-fixture');
+  const executable = join(root, 'codex-fixture.mjs');
   const capabilities = { version: 1, image_provider: true, image_provider_version: 2, image_compaction: true, failed_error_event_version: 1 };
   const install = async (value: object) => {
     await writeFile(executable, `#!${process.execPath}\nconsole.log(${JSON.stringify(JSON.stringify(value))});\n`);
@@ -133,8 +136,9 @@ test('图片压缩拒绝旧去图补丁，生图能力缓存不能绕过 v2 检�
   await checkCodexCapabilities(compact);
 });
 
-test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保护能力的旧补丁', { skip: process.platform === 'win32' }, async t => {
-  const root = await fixture(t), executable = join(root, 'codex-budget-fixture');
+test('独立字节预算保留 env 控制权，Codex 明确拒绝缺少字节保护能力的旧补丁', async t => {
+  nodeExecutables(t);
+  const root = await fixture(t), executable = join(root, 'codex-budget-fixture.mjs');
   await writeFile(join(root, '.env'), 'image_compact_threshold=49\nagv_request_compact_mib=80\nclaude_image_compact_threshold=90\n');
   const settings = withCodex(loadWorkflowEnvironment({ codex_request_compact_mib: '28' }, root), executable);
   assert.equal(settings.imageCompactThreshold, 49);

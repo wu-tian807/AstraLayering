@@ -1,9 +1,10 @@
+import { linkDirectory } from '../../shared/tests/link-fixture.ts';
 import {staticPromptPrefix} from '../../shared/tests/prompt-prefix.ts';
 import { seedUpstream } from '../../shared/tests/upstream-fixture.ts';
 import { sectionDirectory } from '../../shared/paths.ts';
 const runDirectory = (name: string) => sectionDirectory(name, 'raster-layering');
 import assert from 'node:assert/strict';
-import { mkdtemp, realpath, mkdir, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, realpath, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 // Prompt paths are relative to the task root.
@@ -338,7 +339,7 @@ test('入口不接受额外输入；符号链接步骤不被递归清理', async
   await mkdir(join(other, 'parts'), { recursive: true });
   assert.throws(() => parseRunArguments(['--name', 'test', '--input', other]), /Unknown option/);
   await rm(join(f.output, 'step01'), { recursive: true });
-  await symlink(other, join(f.output, 'step01'), 'dir');
+  await linkDirectory(other, join(f.output, 'step01'));
   await assert.rejects(runWorkflow(f.resume, { ...f.deps, agent: forbidden }), /步骤路径必须是普通目录/);
   assert.deepEqual(await readdir(other), ['parts']);
 });

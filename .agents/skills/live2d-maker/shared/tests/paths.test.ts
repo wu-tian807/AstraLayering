@@ -3,7 +3,7 @@ import { seedUpstream } from './upstream-fixture.ts';
 import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, realpath, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { test } from 'node:test';
 import { sectionDirectory, resolveInput, taskDirectory } from '../paths.ts';
 import { runWorkflow } from '../../raster-layering/run.ts';
@@ -11,7 +11,8 @@ import { steps } from '../../raster-layering/steps.ts';
 
 test('相对输入总是从任务根解析，不受管线或启动目录影响', () => {
   assert.equal(resolveInput('sample', 'part-layering/parts'), join(taskDirectory('sample'), 'part-layering/parts'));
-  assert.equal(resolveInput('sample', '/tmp/external'), '/tmp/external');
+  const external = resolve(tmpdir(), 'external');
+  assert.equal(resolveInput('sample', external), external);
   assert.equal(sectionDirectory('sample', 'raster-layering'), join(taskDirectory('sample'), 'raster-layering'));
 });
 

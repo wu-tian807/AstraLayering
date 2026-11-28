@@ -1,5 +1,6 @@
 import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 import { test, type TestContext } from 'node:test';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
@@ -37,7 +38,7 @@ async function solidImage(color: number[]) {
 test('background adaptation keeps original tasks, GPT alpha requests and explicit auto/opaque requests', async () => {
   const original = { prompt: '绿色绣线、蓝宝石与红色缎带保持原色，正常开口完全透明。最终只输出透明 PNG。', background: 'transparent' as const, size: '1024x1536' };
   const nano = await providerImageArguments('gemini-nano-banana-2.1', original);
-  assert.ok(nano.prompt.startsWith(original.prompt + '\n\n'));
+  assert.ok(nano.prompt.replaceAll('\r\n', '\n').startsWith(original.prompt.replaceAll('\r\n', '\n') + '\n\n'));
   assert.ok(!nano.prompt.includes('{background_hex}'));
   assert.equal(nano.background, 'opaque'); assert.equal(nano.size, original.size);
   assert.equal(original.background, 'transparent');
@@ -51,6 +52,7 @@ test('background adaptation keeps original tasks, GPT alpha requests and explici
 });
 
 test('both routes recover dual backgrounds over Gemini/OpenAI protocols without Krita, preserving first generated dimensions', async t => {
+  nodeExecutables(t);
   const { root, executable } = await fixture(t);
   const reference = join(root, 'reference.png');
   const input = await sharp({ create: { width: 8, height: 10, channels: 4, background: '#ffaabb80' } }).png().toBuffer();

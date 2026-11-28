@@ -1,5 +1,6 @@
 import { parseSectionArguments as parseRunArguments } from '../../shared/section-options.ts';
 import { withCodex } from '../../shared/tests/fake-codex.ts';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 // First, so a direct `node --test` of this file also keeps its own Krita slots and
 // ignores the local .env, as `pnpm test` does through --import.
 import '../../shared/tests/ignore-local-env.ts';
@@ -86,6 +87,7 @@ async function fixture(t: TestContext) {
   return { root, task, source, color, kra, options, deps, deliver, inspectNative };
 }
 test('默认蒙版；全局保存、透传并仅预检所选 step01', async t => {
+  nodeExecutables(t);
   assert.equal(parseRunArguments(['--name', 'case', '--knowledge', 'knowledge']).shadowMode, 'mask');
   assert.throws(() => parseRunArguments(['--name', 'case', '--knowledge', 'knowledge', '--shadow-mode', 'unknown']));
   const parsed = parseArguments(['--name', 'case', '--shadow-mode', 'normal-depth']);
@@ -112,7 +114,7 @@ test('dry-run 与缺上游不调用模型、不写文件，提示词包含精度
   for (const mode of ['mask', 'normal-depth'] as const) {
     const prompt = await runWorkflow({ ...f.options, shadowMode: mode, dryRun: true }, { ...f.deps,
       agent: async () => assert.fail('dry run must not call models') });
-    assert.ok(prompt.includes(f.source + '/'));
+    assert.ok(prompt.includes(join(f.source, 'character-assembled.kra')));
   }
   await assert.rejects(readFile(join(f.task, 'shadow/selection.json')), { code: 'ENOENT' });
   await rm(join(f.source, 'character-assembled.kra'));

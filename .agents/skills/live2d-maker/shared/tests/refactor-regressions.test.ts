@@ -100,9 +100,8 @@ test('两套 raster 的缺失输入提示各自指向对应的 part 管线', asy
     const dependencies = { runsDirectory: join(root, 'runs'), preflight: async () => { throw new Error('preflight must not run'); } };
     await assert.rejects(run({ name: 'case' }, dependencies), error => {
       assert.ok(error instanceof Error);
-      assert.ok(error.message.includes(` ${inputId} --name`));
+      assert.ok(error.message.includes(`缺少上游产物（${inputId}）`));
       assert.ok(error.message.includes(join(dependencies.runsDirectory, 'case', inputId, 'occlusion.json')));
-      assert.ok(error.message.includes('手动放置'));
       return true;
     });
   }

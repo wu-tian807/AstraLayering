@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { mkdir, readFile, rm } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { test } from 'node:test';
 import { artifactPath, draftPath, readJson, reportPath, reviewedArtifact, svgHash } from '../../shared/part/artifact-facts.ts';
 import { GroupStore, normalizeGroups, writeAtomic } from '../../shared/part/groups.ts';
@@ -91,8 +91,8 @@ test('去重修改组写到统一目录，未修改组字节一致；补形和�
   await runLayering({ ...f, groups: null, steps: { ...steps,
     async reduceOutlines(context) { const entry = context.entries.find(entry => entry.group.id === 'accessories')!;
       await writeAtomic(entry.outputPath, reduced); return { status: 'completed', output: { changed: [{ groupId: entry.group.id, path: entry.outputPath }] } }; },
-    async completeOcclusion(context) { assert.match(context.reviewed.path, /step10_reduce\/depth01\//); return steps.completeOcclusion(context); },
-    async checkCompletion(context) { assert.match(context.before.path, /step10_reduce\/depth01\//); return steps.checkCompletion(context); },
+    async completeOcclusion(context) { assert.ok(context.reviewed.path.startsWith(join(f.directory, 'step10_reduce/depth01') + sep)); return steps.completeOcclusion(context); },
+    async checkCompletion(context) { assert.ok(context.before.path.startsWith(join(f.directory, 'step10_reduce/depth01') + sep)); return steps.checkCompletion(context); },
   } });
   assert.equal(await readFile(artifactPath(f.directory, 'accessories', 'outline'), 'utf8'), shape('accessories'));
   assert.equal(await readFile(artifactPath(f.directory, 'accessories', 'reduction'), 'utf8'), reduced);
@@ -193,7 +193,7 @@ test('分析提交后中断，子组记录已完成；续跑直接进入下一�
   assert.ok(!events.includes('head:children'));
   assert.ok(events.includes('head/eye:outline'));
   assert.ok(await readFile(artifactPath(f.directory, 'head/eye', 'outline')));
-  assert.match(artifactPath(f.directory, 'head/eye', 'outline'), /step09_outline\/head\/children\/eye\/outline\.svg$/);
+  assert.equal(artifactPath(f.directory, 'head/eye', 'outline'), join(f.directory, 'step09_outline/head/children/eye/outline.svg'));
 });
 test('blocked 或 pending 阻止整层去重及下一层，其他已启动轮廓可收尾', async t => {
   const f = await fixture(t), events: string[] = [], steps = workingSteps(events, [{ id: 'a' }, { id: 'b' }]);

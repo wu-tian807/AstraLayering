@@ -42,7 +42,7 @@ test('独立 section 每次启动都须提供 --knowledge；目录缺失文件�
   } finally { await rm(empty, { recursive: true, force: true }); }
 });
 
-test('CLI 隔离模拟本机版本查询，模型调用及其他外部进程仍被拒绝', async () => {
+test('CLI 隔离模拟本机版本查询，模型调用及其他外部进程仍被拒绝', async t => {
   const source = `
     import assert from 'node:assert/strict';
     import { once } from 'node:events';
@@ -60,8 +60,11 @@ test('CLI 隔离模拟本机版本查询，模型调用及其他外部进程仍�
     for (const launch of [spawnSync, execFile, execFileSync, exec, execSync])
       assert.throws(() => launch(process.execPath, ['app-server']), forbidden);
   `;
-  await promisify(execFile)(process.execPath, ['--import', new URL('./forbid-model-processes.ts', import.meta.url).href,
-    '--input-type=module', '-e', source], { timeout: 10000 });
+  const directory = await mkdtemp(join(tmpdir(), 'part-offline-cli-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const script = join(directory, 'verify.mjs');
+  await writeFile(script, source);
+  await promisify(execFile)(process.execPath, ['--import', new URL('./forbid-model-processes.ts', import.meta.url).href, script], { timeout: 10000 });
 });
 
 test('--jobs / -j 只设置 agent 并发上限，默认 3，不产生组调度上限', () => {

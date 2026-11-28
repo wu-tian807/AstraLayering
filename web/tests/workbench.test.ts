@@ -204,7 +204,7 @@ test('upload retains original/config; same name never overwrites; selection pers
   assert.equal((await f.post('start', { name: '角色-01' }, { Origin: 'https://unrelated.example' })).status, 403);
   const next = join(f.base, 'next');
   const saved = await f.post('settings', { directory: next });
-  assert.equal(saved.status, 200); assert.match(saved.value.defaults.knowledge, /knowledge\/?$/);
+  assert.equal(saved.status, 200); assert.match(saved.value.defaults.knowledge, /knowledge[\\/]?$/);
   assert.equal((await f.post('settings', { dir: next, directory: next, knowledge: 'relative' })).status, 400);
   assert.equal((await f.post('settings', { dir: next, directory: next, knowledge: join(f.base, 'missing') })).status, 400);
   assert.equal((await f.post('settings', { dir: next, directory: next, krita: 'relative/krita' })).status, 400);
@@ -261,7 +261,7 @@ test('task assets reject traversal and symlinks; SVG is served sandboxed; versio
   const files = await (await fetch(f.url + '/api/config/files?ref=HEAD')).json() as any;
   assert.ok(files.paths.includes(prompt));
   const localFiles = await (await fetch(f.url + '/api/config/files?ref=worktree')).json() as any;
-  assert.ok(localFiles.paths.includes(prompt)); assert.match(localFiles.directory, /knowledge\/?$/);
+  assert.ok(localFiles.paths.includes(prompt)); assert.match(localFiles.directory, /knowledge[\\/]?$/);
   const content = await fetch(f.url + '/api/config/content?' + new URLSearchParams({ ref: 'worktree', path: prompt }));
   assert.equal(content.status, 200); assert.ok((await content.json() as any).text.length > 0);
   assert.equal((await fetch(f.url + '/api/config/content?ref=HEAD&path=../../.env')).status, 400);
@@ -471,20 +471,22 @@ test('开始、继续、恢复、重试先检查 Krita：不可用则 409 且不
   const started: any[] = [];
   const check = async (path: string) => { if (!path.endsWith('good-krita')) throw new Error('不存在或不可执行'); return { executable: path, version: 'test' }; };
   const f = await fixture(t, async options => { started.push(options); return 456; }, options => preflightKrita(options, check)), task = join(f.dir, 'case');
+  const oldKrita = join(f.base, 'old-krita'), newKrita = join(f.base, 'good-krita');
   await mkdir(task);
-  await saveRun(task, await configureRun({ name: 'case', dir: f.dir, krita: '/opt/old-krita' }, task));
+  await saveRun(task, await configureRun({ name: 'case', dir: f.dir, krita: oldKrita }, task));
   await put(task, 'part-layering/step11_completion/head/.running', JSON.stringify({ inputs: {} }));
   await put(task, 'part-layering/agents/steps/step11_completion/head/session.json', JSON.stringify({ threadId: 'thread-1' }));
   for (const [path, value] of [['start', {}], ['task-action', { action: 'retry' }], ['task-action', { action: 'resume' }]] as const) {
     const refused = await f.post(path, { name: 'case', ...value });
-    assert.equal(refused.status, 409, path); assert.deepEqual(refused.value.krita, { path: '/opt/old-krita' });
-    assert.match(refused.value.error, /(?:记录的|指定的) Krita 不可用：\/opt\/old-krita[\s\S]*全局设置/);
+    assert.equal(refused.status, 409, path); assert.deepEqual(refused.value.krita, { path: oldKrita });
+    assert.match(refused.value.error, /(?:记录的|指定的) Krita 不可用：[\s\S]*全局设置/);
+    assert.ok(refused.value.error.includes(oldKrita));
   }
   assert.equal(started.length, 0);
   assert.equal(JSON.parse(await readFile(join(task, 'part-layering/agents/steps/step11_completion/head/session.json'), 'utf8')).threadId, 'thread-1');
-  const resumed = await f.post('task-action', { name: 'case', action: 'resume', krita: '/opt/good-krita' });
+  const resumed = await f.post('task-action', { name: 'case', action: 'resume', krita: newKrita });
   assert.equal(resumed.status, 202); assert.match(resumed.value.message, /thread-1/);
-  assert.equal(started.length, 1); assert.equal(started[0].krita, '/opt/good-krita');
+  assert.equal(started.length, 1); assert.equal(started[0].krita, newKrita);
 });
 
 test('任务操作接口：恢复、重试人物与衣服分块的未完成步骤后按保存的路线重新运行，快照列出未完成步骤', async t => {
