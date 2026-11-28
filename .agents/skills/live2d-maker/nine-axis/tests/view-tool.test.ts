@@ -8,6 +8,7 @@ import sharp from 'sharp';
 import { createNineAxisViewTool } from '../view-tool.ts';
 import type { Built } from '../head.ts';
 import { frontPreviewScope } from '../hair.ts';
+import { createStageViewTool } from '../run.ts';
 
 const grid = (x0: number, y0: number, x1: number, y1: number, dx = 0) => [[x0 + dx, y0], [x1 + dx, y0], [x0 + dx, y1], [x1 + dx, y1]];
 
@@ -36,6 +37,49 @@ test('a multiply cast shadow keeps KRA opacity, moves with hair and clips agains
   const a=await render({x:30,mode:'edge',reference:{path:reference,bounds:[0,0,100,80]}}),b=await render({x:30,hidden:[shade.id],mode:'edge',reference:{path:reference,bounds:[0,0,100,80]}});
   const overlay=async(p:string)=>sharp(p).extract({left:200,top:28,width:100,height:80}).raw().toBuffer();
   assert.deepEqual(await overlay(a.info.comparison.savedPath),await overlay(b.info.comparison.savedPath),'cast shadows do not expand receiver silhouettes');
+});
+
+test('face and jaw stages materialize without static context and only show authored face parts', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'nine-face-scope-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const rows = [
+    ['face/face_base', 'face', '#00ff00'], ['neck', 'face', '#aabbcc'],
+    ['context/old', 'face', '#ffff00'], ['hair/bangs', 'hair', '#ff0000'],
+    ['head_accessories/bow', 'accessory', '#0000ff'],
+  ] as const;
+  const textures = new Map<string, string>();
+  const parts = await Promise.all(rows.map(async ([id, level, colour], i) => {
+    const x = i * 20, texture = `layers/p${i}.png`, file = join(directory, `p${i}.png`);
+    textures.set(texture, file);
+    await sharp({ create: { width: 20, height: 20, channels: 4, background: colour } }).png().toFile(file);
+    return { id, level, context: i === 2, texture, textureBounds: [x, 0, 20, 20], bbox: [x, 0, x + 20, 20],
+      cols: 1, rows: 1, keyforms: { '0': grid(x, 0, x + 20, 20) } };
+  }));
+  const doc: Built['doc'] = { version: 2, kind: 'head-nine-axis', canvas: [100, 20], deformers: [],
+    levels: [{ id: 'accessory', includes: ['face', 'hair', 'accessory'] }, { id: 'face', includes: ['face'] }], parts };
+  const signal = new AbortController().signal;
+  for (const step of ['step04_angles/model/left', 'step06_angle-xy', 'step07_jaw-line']) {
+    const tool = createStageViewTool(directory, step, async () => ({ doc, textures }), async (dir, built, _, context) => {
+      assert.equal(dir, join(directory, step));
+      assert.equal(context, false);
+      return built;
+    });
+    for (const level of [undefined, 'accessory']) {
+      const reply = await tool.execute({ level, crop: [0, 0, 100, 20] }, signal);
+      const item = reply.contentItems[0];
+      assert.ok(item.type === 'inputText');
+      const info = JSON.parse(item.text);
+      assert.equal(info.level, level ?? 'face');
+      const bytes = await sharp(info.savedPath).raw().toBuffer({ resolveWithObject: true });
+      const pixel = (x: number) => [...bytes.data.subarray((10 * 100 + x) * bytes.info.channels, (10 * 100 + x) * bytes.info.channels + 3)];
+      assert.deepEqual(pixel(10), [0, 255, 0]);
+      assert.deepEqual(pixel(30), [170, 187, 204]);
+      assert.notDeepEqual(pixel(50), [255, 255, 0]);
+      assert.notDeepEqual(pixel(70), [255, 0, 0]);
+      assert.notDeepEqual(pixel(90), [0, 0, 255]);
+    }
+    await assert.rejects(tool.execute({ only: ['hair/bangs'] }, signal), /尚未开放预览/);
+  }
 });
 
 test('front-stage previews retain the completed face and front hair but exclude unmade hair in every frame', async t => {

@@ -75,7 +75,7 @@ async function fixture(t: TestContext, withShadows = false, withRemaining = true
 async function selectFront(f: Awaited<ReturnType<typeof fixture>>, shadow=false){
   const part={id:'hair/bangs',uuid:uuid(f.doc.parts.length+1),level:'hair',bbox:[5,5,35,35],cols:6,rows:6};
   const operations:any[]=[{action:'add_part',part}];
-  if(shadow)operations.push({action:'add_part',after:'face/face_base',part:{...part,id:'hair/bangs/shadow',uuid:uuid(f.doc.parts.length+hairIds.length+1),shadow:{casters:['hair/bangs'],receivers:['face/face_base']},clip:{by:['face/face_base']}}});
+  if(shadow)operations.push({action:'add_part',part:{...part,id:'hair/bangs/shadow',uuid:uuid(f.doc.parts.length+hairIds.length+1),shadow:{casters:['hair/bangs'],receivers:['face/face_base']},clip:{by:['face/face_base']}}});
   await f.edit().execute({operations},new AbortController().signal);
 }
 async function selectSide(f: Awaited<ReturnType<typeof fixture>>){
@@ -120,7 +120,7 @@ test('front-to-side projection is registered when its receiver is made without e
   await assert.rejects(f.edit('side').execute({operations:[{action:'transform',id:'front-carrier',x:-30,translate:[1,0]}]},signal),/范围外/);
 });
 async function selectBack(f: Awaited<ReturnType<typeof fixture>>){
-  await f.edit('back').execute({operations:[{action:'add_part',before:'hair/bangs',part:{id:hairIds[2],uuid:uuid(f.doc.parts.length+3),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
+  await f.edit('back').execute({operations:[{action:'add_part',part:{id:hairIds[2],uuid:uuid(f.doc.parts.length+3),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
 }
 async function selectRemaining(f: Awaited<ReturnType<typeof fixture>>){
   await f.edit('remaining').execute({operations:[{action:'add_part',part:{id:hairIds[3],uuid:uuid(f.doc.parts.length+4),level:'hair',bbox:[5,5,35,35],cols:6,rows:6}}]},new AbortController().signal);
@@ -199,7 +199,7 @@ test('preparation retains UUID references only; maker explicitly selects a part 
   assert.equal(f.materialRequests.length,0,'preparation must not read pixels');
   await selectFront(f,true);
   const before=await f.build(),shadow=before.doc.parts.find(p=>p.shadow)!;
-  assert.deepEqual(shadow.shadow,{casters:['hair/bangs'],receivers:['face/face_base'],blendMode:'multiply',opacity:41/255});
+  assert.deepEqual(shadow.shadow,{casters:['hair/bangs'],receivers:['face/face_base']});
   assert.ok(f.materialRequests.some(row=>row.uuid===shadow.uuid&&row.raw===true));
   const tool=f.edit(),signal=new AbortController().signal;
   await tool.execute({operations:[{action:'create_warp',id:'hair/bangs/turn',targets:['hair/bangs']}]},signal);

@@ -9,7 +9,7 @@ import { kraContents } from '../shadow/delivery.ts';
 import { angleScale, type AngleScale } from './angles.ts';
 import { buildContinuation, isAccessoryNode, readUpstream, startContinuation, type AuthoredHead } from './continuation.ts';
 import { writeBuilt, type Built } from './head.ts';
-import { bindKraDocument, type MaterialLoader } from './kra-materials.ts';
+import { bindKraDocument, checkNativeProtection, type MaterialBuilt, type MaterialLoader } from './kra-materials.ts';
 import { editableKra, modelDocument, withDocument } from './source.ts';
 import { withinPart, ownsNode, partVisible } from './ownership.ts';
 import type { HeadNineAxis } from '../shared/nine-axis-model.js';
@@ -48,10 +48,11 @@ export async function prepareAccessories(directory:string,upstreamDirectory:stri
 export const buildAccessories=(directory:string,upstream:string,scale:AngleScale=angleScale(),materialize?:MaterialLoader):Promise<Built>=>
   buildContinuation(directory,upstream,'accessories',scale,materialize);
 
-export async function checkAccessories(before:Built,after:Built) {
+export async function checkAccessories(before:MaterialBuilt,after:MaterialBuilt) {
   for(const part of before.doc.parts.filter(p=>p.level==='accessory'&&p.context&&p.uuid))
     if(!after.doc.parts.some(p=>isAccessoryNode(p)&&!p.shadow&&p.uuid===part.uuid))throw Error(`尚未注册剩余 KRA 头部饰品 ${part.uuid}`);
   const editable=new Set(after.doc.parts.filter(p=>ownsNode(after.doc,p,accessoryPreviewScope)).map(p=>p.uuid));
+  checkNativeProtection(before, after, new Set([...editable].filter(uuid => uuid !== undefined)));
   const current=(n:any)=>ownsNode(before.doc,n,accessoryPreviewScope)||n.level==='accessory'&&n.context&&!!n.uuid&&editable.has(n.uuid);
   const find=(list:any[],n:any)=>list.find(p=>p.id===n.id)??(n.uuid?list.find(p=>p.uuid===n.uuid):undefined);
   for(const node of nodes(before.doc).filter(n=>!current(n))) {

@@ -51,7 +51,7 @@ test('交付检查：缺 face_base 或控制点数不对时报错', () => {
   // Hiding goes through occlusion, not fading.
   assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, opacity: { '-30': 0 } }] }, [200, 400], '-30'), /不透明度/);
   const ear = part('face/ear_right', [50, 70, 60, 90], (x, y) => [x, y]);
-  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [ear, base] }, [200, 400], '-30'), /ear_right.*之下/);
+  assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [ear, base] }, [200, 400], '-30').parts.length, 2);
   assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [base, ear] }, [200, 400], '-30').parts.length, 2);
   assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [base] }, [200, 400], '-30').parts.length, 1);
 });

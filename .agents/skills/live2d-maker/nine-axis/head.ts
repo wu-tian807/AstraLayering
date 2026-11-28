@@ -55,11 +55,7 @@ export function checkFaceLeft(value: unknown, canvas: [number, number], left: st
     // Nothing is hidden by fading: the far ear moves behind the head and the face covers it.
     if ('opacity' in p) throw new Error(`${p.id}：不用不透明度隐藏部件；远侧耳移到脑后，由脸遮挡`);
   }
-  // parts run top to bottom in draw order; ears sit under the face so it can cover them.
-  const base = face.parts.findIndex(p => partPath(p.partId ?? p.id) === 'face/face_base');
-  if (base < 0) throw new Error('face-left.json：缺少 face/face_base');
-  const above = face.parts.slice(0, base).find(p => isEar(partPath(p.partId ?? p.id)));
-  if (above) throw new Error(`${above.id}：耳朵须排在 face/face_base 之下，才能被脸遮挡`);
+  if (!face.parts.some(p => partPath(p.partId ?? p.id) === 'face/face_base')) throw new Error('face-left.json：缺少 face/face_base');
   validateHeadNineAxis({ version: 2, kind: 'head-nine-axis', levels: [faceLevel], deformers: face.deformers,
     parts: face.parts.map(p => ({ level: 'face', ...p })) });
   return face;
@@ -86,7 +82,6 @@ export function wrapSplitParts<T extends HeadNineAxis>(doc: T): T {
     ? [{ action: 'create_warp', id: partWarpId(partId), name: partPath(partId), targets: parts.map(part => part.id) }] : []);
   return operations.length ? editNineAxis(doc, operations) as T : doc;
 }
-const isEar = (id: string) => /(^|[/_])ear(?=$|[/_])/.test(id);
 
 // The other side's layer: left and right swapped as whole words of the id.
 export const pairId = (id: string) => id.replace(/(^|[/_.:-])(left|right)(?=$|[/_.:-])/g, (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
@@ -109,7 +104,8 @@ const round = (value: number) => Math.round(value * 100) / 100;
 
 // Mirror the composed left shape, then express it in the destination parent's
 // right space. Artists may use different hierarchies on the two sides.
-export function mirrorDocument<T extends HeadNineAxis>(document: T, axis: number, field: 'keyforms' | 'keyformsXY'): T {
+export function mirrorDocument<T extends HeadNineAxis>(document: T, axis: number, field: 'keyforms' | 'keyformsXY',
+  shouldMirror?: (node: WarpGrid, pair: WarpGrid) => boolean): T {
   const source = document, target = structuredClone(document), byId = new Map(nodes(source).map(p => [p.id, p]));
   const done = new Set<string>(), ordered: WarpGrid[] = [];
   const visit = (p: WarpGrid) => {
@@ -120,6 +116,7 @@ export function mirrorDocument<T extends HeadNineAxis>(document: T, axis: number
   for (const p of nodes(target)) visit(p);
   for (const p of ordered) {
     const pair = byId.get(p.mirror ?? pairId(p.id)) ?? byId.get(p.id)!;
+    if (shouldMirror && !shouldMirror(p, pair)) continue;
     for (const key of Object.keys(p[field] ?? {})) {
       const [x, y = 0] = key.split(',').map(Number); if (!(x < 0)) continue;
       const left = keyformAt(pair, x, y), right = field === 'keyforms' ? angleKey(-x) : `${angleKey(-x)},${angleKey(y)}`;
@@ -175,8 +172,7 @@ export async function compileHead(directory: string, input: HeadInput, box: Box,
   const face = checkFaceLeft(local, [width, height], left);
   for (const p of face.parts.filter(p => !p.uuid && p.material !== 'transparent')) await access(join(directory, p.texture!)).catch(error => { throw new Error(`${p.id}：缺少贴图 ${p.texture}`, { cause: error }); });
   const mirrored = mirrorHierarchy(face);
-  // face-left.json lists parts top to bottom (KRA order); deformers.json lists
-  // them in drawing order, bottom first, as the workbench renders them.
+  // Preserve the historical layout of the two JSON formats for saved authors.
   const parts = mirrored.parts.toReversed().map(p => ({ ...p, level: p.level ?? 'face' as HeadLevel }));
   const deformers = mirrored.deformers;
   const document = toTaskPath(task, input.document), color = toTaskPath(task, input.color);

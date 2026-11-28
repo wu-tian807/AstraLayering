@@ -446,6 +446,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '', url.searchParams.get('scene') === 'studio');
           json({ doc: built.doc, author: built.author, version: built.version, document: built.doc.source?.document, revision: built.sourceRevision,
             studioLayers: built.studioLayers,
+            paintStack: built.paintStack,
             textures: [...built.doc.parts, ...(built.studioLayers ?? [])].map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
           return;
         }

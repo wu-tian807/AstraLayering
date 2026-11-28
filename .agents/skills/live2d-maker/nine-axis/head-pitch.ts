@@ -42,12 +42,14 @@ export function checkHeadPitch(value: unknown, upstream: HeadNineAxis & { axis: 
   same(doc.authoring?.stage, stage, '头部上下作者阶段不匹配');
   for (const field of ['source', 'canvas', 'view', 'axis', 'axisSources', 'levels', 'parameters'] as const)
     same(doc[field], baseline[field], `头部上下不能替换 ${field}`);
-  same(doc.parts.map(p => p.id), baseline.parts.map(p => p.id), '头部上下保留已有图层和顺序');
+  same(doc.parts.map(p => p.id).sort(), baseline.parts.map(p => p.id).sort(), '头部上下保留已有图层');
   same(doc.deformers.map(p => p.id), baseline.deformers.map(p => p.id), '请使用程序已准备的头部上下承载');
+  const inherited = new Set(nodes(upstream).map(node => node.id));
   const authored = new Map(nodes(doc).map(n => [n.id, n]));
   for (const before of nodes(baseline)) {
     const after = authored.get(before.id)!;
     checkWarpGeometry(after);
+    if (before.mirror && after.mirror === undefined && !inherited.has(before.id)) after.mirror = before.mirror;
     const { keyformsY: _a, ...a } = after, { keyformsY: _b, ...b } = before;
     same(a, b, `${before.id}：本阶段仅编辑本方向 Y 关键形，保留原有结构、绑定和左右`);
     if (!ownsNode(baseline, before, headPitchScope)) {

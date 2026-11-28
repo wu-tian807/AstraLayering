@@ -2,7 +2,6 @@ import { validateHeadNineAxis, nineAxisCapabilities, headRollLimit, keyformAt, k
 import { HeadNineAxisRenderer, createNineAxisBitmap } from './nine-axis-render.js';
 import { authoredPreviewPart, nineAxisPreviewModes, nextPreviewSelection } from './nine-axis-preview.js';
 import { constrainHeadPoint, followHeadPointer, headPointerPosition, headPreviewAngles, headSideLimit } from '../head-motion.js';
-import { layerTree } from './layer-model.js';
 const $ = s => document.querySelector(s);
 const NS = 'http://www.w3.org/2000/svg';
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -103,7 +102,7 @@ export class HeadNineAxisPanel {
         return;
       }
       // Preview availability follows each composition's delivered axes.
-      this.install(doc, images, true, staticLayers);
+      this.install(doc, images, true, staticLayers, material.paintStack);
       if(pitchUnlocked&&!new URLSearchParams(location.search).has('nineLevel'))this.selectLevel('accessory');
       this.author = material.author; this.version = material.version;
     } catch (e) { if (epoch === this.epoch) { this.status(e.message); this.error(e.message); } }
@@ -114,7 +113,6 @@ export class HeadNineAxisPanel {
     this.resetPointerFollow();
     this.stopKeyboardRoll();
     this.exitFocus(false);
-    this.nativeRows = null;
     this.viewDrag?.();
     this.endPadDrag();
     this.view3?.clear(); this.doc = null; this.original = new Map(); this.dirty.clear(); this.selected = null; this.shownMasks.clear();
@@ -122,8 +120,8 @@ export class HeadNineAxisPanel {
     this.syncFocus(); this.draw();
   }
   status(text) { $('#nine-axis-status').textContent = text; }
-  install(doc, images, allowPlane = true, staticLayers = []) {
-    this.doc = doc; this.view3.install(doc, images);
+  install(doc, images, allowPlane = true, staticLayers = [], paintStack) {
+    this.doc = doc; this.view3.install(doc, images, paintStack);
     this.view3.setStaticLayers(staticLayers);
     this.projections = staticLayers.filter(layer => layer.projection);
     this.allowPlane = allowPlane;
@@ -404,10 +402,6 @@ export class HeadNineAxisPanel {
   updateLayers() {
     this.syncFocus();
     if (!this.inSharedPreview || !this.doc) return;
-    const rows = this.layers.previewLayers();
-    const owner = this.layers.owner?.project;
-    this.nativeRows = owner?.folder === this.project?.folder && owner?.files?.document?.path === this.doc.source?.document
-      ? new Map(layerTree(rows).map(row => [row.uuid || row.id, row])) : null;
     this.draw({ reuseXY: true });
   }
   get canFocus() { return this.active && !!this.doc && !!this.stage.source; }
@@ -490,17 +484,11 @@ export class HeadNineAxisPanel {
       ? this.active && (part.id === this.selected || this.shownMasks.has(part.id))
       : this.mode.scope.has(part.id) && this.layerVisible(part)).map(part => part.id));
     this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY,
-      opacity: part => (this.nativeRows?.get(part.uuid)?.opacity ?? (part.shadow?.opacity ?? 1) * 255) / 255,
-      deform: part => this.mode.scope.has(part.id) && authoredPreviewPart(part),
-      layerState: layer => {
-        const row = this.nativeRows?.get(layer.uuid);
-        return row ? { visible: row.visible && !row.inheritedHidden, opacity: row.opacity, blend: row.blend } : layer;
-      } });
+      deform: part => this.mode.scope.has(part.id) && authoredPreviewPart(part) });
     return true;
   }
   layerVisible(part) {
-    const row = this.nativeRows?.get(part.uuid);
-    return part.role === 'mask' || !row || (row.visible && !row.inheritedHidden);
+    return part.role === 'mask' || !this.view3.native || this.view3.nativeOpacity.has(part.id);
   }
   drawOverlay(x0, y0, s) {
     const p = this.part();

@@ -48,14 +48,19 @@ export class HeadPreview {
       this.label.textContent = '正在读取最新头部…';
       const result = await previewRequest('./api/studio/nine-axis/materials?' + new URLSearchParams({ folder, path: entry.path }), controller.signal, '无法读取九轴模型');
       const material = await result.json(), doc = validateHeadNineAxis(material.doc);
-      const images = await Promise.all(doc.parts.map(async (part, index) => {
-        const texture = await previewRequest(material.textures[index], controller.signal, `无法读取图层 ${part.id} 的贴图`);
+      const readImage = async (index, id) => {
+        const texture = await previewRequest(material.textures[index], controller.signal, `无法读取图层 ${id} 的贴图`);
         return createNineAxisBitmap(await texture.blob());
-      }));
-      if (epoch !== this.epoch) { images.forEach(image => image.close()); return; }
+      };
+      const [images, staticLayers] = await Promise.all([
+        Promise.all(doc.parts.map((part, index) => readImage(index, part.id))),
+        Promise.all((material.studioLayers ?? []).map(async (layer, index) => ({ ...layer, image: await readImage(doc.parts.length + index, layer.uuid) }))),
+      ]);
+      if (epoch !== this.epoch) { images.forEach(image => image.close()); staticLayers.forEach(layer => layer.image.close()); return; }
       this.renderer ??= new HeadNineAxisRenderer(this.canvas);
       this.renderer.clear(); this.images?.forEach(image => image.close()); this.images = images;
-      this.renderer.install(doc, images); this.doc = doc; this.version = `${entry.path}:${material.version}`;
+      this.renderer.install(doc, images, material.paintStack); this.renderer.setStaticLayers(staticLayers);
+      this.doc = doc; this.version = `${entry.path}:${material.version}`;
       const pitchUnlocked=entry.stage==='headPitch'&&this.stage!==entry.stage;
       this.available = true; element.dataset.model = 'available';
       this.stage = entry.stage; this.loadError = false; this.configureMode();

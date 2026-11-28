@@ -76,8 +76,7 @@ export function validateHeadNineAxis(doc) {
     if (p.role !== undefined && p.role !== 'mask') throw Error(p.id + '：未知角色 ' + p.role);
     if (p.shadow !== undefined) {
       const s = p.shadow;
-      if (!s || !['normal','multiply'].includes(s.blendMode) || !Number.isFinite(s.opacity) || s.opacity < 0 || s.opacity > 1)
-        throw Error(p.id + '：阴影需要 normal/multiply 混合模式与 0..1 不透明度');
+      if (!s) throw Error(p.id + '：阴影需要投射者和接收者');
       for (const key of ['casters','receivers']) if (!Array.isArray(s[key]) || !s[key].length || s[key].some(id => !partIds.has(id) || id === p.id))
         throw Error(p.id + '：阴影的投射者和接收者必须是已有贴图部件');
       if (s.casters.some(id => doc.parts.find(q => q.id === id).shadow)) throw Error(p.id + '：阴影不能作为另一阴影的投射者');
@@ -206,7 +205,13 @@ export const nodes = doc => [...doc.deformers, ...doc.parts];
 export function kraReferences(document) {
   const doc = structuredClone(document);
   const strip = value => {
-    for (const part of value.parts ?? []) if (part.uuid || part.material === 'transparent') delete part.texture;
+    for (const part of value.parts ?? []) if (part.uuid || part.material === 'transparent') {
+      delete part.texture;
+      delete part.opacity;
+      delete part.blendMode;
+      delete part.drawOrder;
+      if (part.shadow) part.shadow = { casters: part.shadow.casters, receivers: part.shadow.receivers };
+    }
     for (const axis of value.axisSources ?? []) strip(axis.doc);
   };
   strip(doc); return doc;

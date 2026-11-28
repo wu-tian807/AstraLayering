@@ -10,7 +10,7 @@ import { createHeadEditTool } from '../edit-tool.ts';
 import { buildHead, mirrorHierarchy, type FaceLeft } from '../head.ts';
 import { evaluatePoints } from '../../shared/nine-axis-model.js';
 import { editNineAxis } from '../../shared/nine-axis-edit.js';
-import { startContinuation } from '../continuation.ts';
+import { compileContinuation, startContinuation } from '../continuation.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { hairPreviewScope } from '../hair.ts';
 const points = (box: number[], dx = 0) => [[box[0],box[1]],[box[2],box[1]],[box[0],box[3]],[box[2],box[3]]].map(([x,y]) => [x+dx,y]);
@@ -144,4 +144,27 @@ test('edit tool imports source textures, persists artist groups, previews revisi
   const source=JSON.parse(await readFile(join(dir,'face-left.json'),'utf8'));
   assert.equal(source.parts.find((p:any)=>p.id==='face/face_base').parent,'my-form');assert.equal(source.deformers.length,1);
   await assert.rejects(tool.execute({revision:imported.revision,operations:[{action:'remove_warp',id:'my-form'}]},signal),/revision/);
+});
+
+test('jaw publishing mirrors new shapes and preserves the delivered right-side geometry', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-axis-jaw-mirror-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const upstream = join(root, 'step06_angle-xy');
+  await mkdir(upstream);
+  const bbox = [20, 20, 80, 80];
+  const base = { ...node('face/face_base', bbox, -2), material: 'transparent', textureBounds: [20, 20, 60, 60] };
+  base.keyforms['30'] = points(bbox, 13);
+  const doc = {
+    version: 2, kind: 'head-nine-axis', axis: 50, canvas: [100, 100],
+    source: { document: 'original.kra' }, levels: [{ id: 'face', includes: ['face'] }],
+    deformers: [], parts: [base],
+  } as Parameters<typeof startContinuation>[0];
+  await writeFile(join(upstream, 'deformers.json'), JSON.stringify(doc));
+  const author = startContinuation(doc, 'jaw');
+  author.parts.push({ ...node('face/jaw', bbox, -3), material: 'transparent', textureBounds: [20, 20, 60, 60] });
+
+  const { doc: published } = await compileContinuation(join(root, 'step07_jaw-line'), upstream, author, 'jaw');
+
+  assert.deepEqual(published.parts[0], base);
+  assert.deepEqual(published.parts[1].keyforms['30'], points(bbox, 3));
 });

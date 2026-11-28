@@ -207,12 +207,6 @@
           },
           "part": {
             "type": "object"
-          },
-          "before": {
-            "type": "string"
-          },
-          "after": {
-            "type": "string"
           }
         }
       }

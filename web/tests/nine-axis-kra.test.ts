@@ -31,9 +31,14 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
     await writeFile(join(directory,row.texture),kraContents(await readFile(document)).merged);
     return {...row,bounds:row.bounds ?? [0,0,12,12]};
   })));
-  const saveKra=async(colour:string)=>{
+  const saveKra=async(colour:string, order = [uuid, body, shadow])=>{
     const png=await sharp({create:{width:12,height:12,channels:4,background:colour}}).png().toBuffer();
-    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers><layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/><layer uuid="{${body}}" name="body" nodetype="paintlayer" visible="1"/><layer uuid="{${shadow}}" name="cast" nodetype="paintlayer" visible="1" compositeop="multiply"/></layers></IMAGE></DOC>`),'mergedimage.png':png}));
+    const layers: Record<string, string> = {
+      [uuid]: `<layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/>`,
+      [body]: `<layer uuid="{${body}}" name="body" nodetype="paintlayer" visible="1"/>`,
+      [shadow]: `<layer uuid="{${shadow}}" name="cast" nodetype="paintlayer" visible="1" compositeop="multiply"/>`,
+    };
+    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers>${order.map(id => layers[id]).join('')}</layers></IMAGE></DOC>`),'mergedimage.png':png}));
   };
   await saveKra('#f00');
   const { url: base } = await startWorkbench(t, {defaultDir:root,settingsPath:join(root,'settings.json')});
@@ -58,7 +63,13 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
   assert.deepEqual(studio.studioLayers.map((layer: any) => [layer.uuid, layer.projection]), [
     [body, undefined], [shadow, { casters: [uuid], receivers: [body] }],
   ]);
+  assert.deepEqual(studio.paintStack.map((layer: any) => layer.id), [shadow, body, uuid]);
   assert.deepEqual(await readTexture(studio.textures[1]),[255,0,0,255]);
+  await saveKra('#f00', [body, uuid, shadow]);
+  await materializer.resolve(project,stage,{doc,textures:new Map()},undefined,'studio');
+  const reordered = await (await get('/api/studio/nine-axis/materials',{path,scene:'studio'})).json() as any;
+  assert.deepEqual(reordered.paintStack.map((layer: any) => layer.id), [shadow, uuid, body]);
+  assert.deepEqual(reordered.doc.parts, studio.doc.parts);
   await saveKra('#0f0');
   await materializer.resolve(project,stage,{doc,textures:new Map()});
   const next=await(await get('/api/studio/project')).json() as any;

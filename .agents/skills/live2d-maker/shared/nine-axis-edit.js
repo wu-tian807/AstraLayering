@@ -90,11 +90,8 @@ export function editNineAxis(document, operations, checkMirror) {
       const p = op.part;
       if (!p || typeof p.id !== 'string' || !p.id || nodes(doc).some(n => n.id === p.id)) throw Error('新部件 id 无效或重复');
       const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), textureBounds: [p.bbox[0],p.bbox[1],p.bbox[2]-p.bbox[0],p.bbox[3]-p.bbox[1]], ...p, level: p.level ?? 'face' };
-      if (op.before !== undefined && op.after !== undefined) throw Error('before 与 after 只能指定一个');
-      const anchor = op.before ?? op.after;
-      const at = anchor === undefined ? doc.parts.length : doc.parts.findIndex(q => q.id === anchor);
-      if (at < 0) throw Error('绘制顺序参照部件不存在：' + anchor);
-      doc.parts.splice(at + (op.after === undefined ? 0 : 1), 0, n);
+      if (op.before !== undefined || op.after !== undefined) throw Error('绘制顺序由已保存的 KRA 决定，请在 Krita 调整图层');
+      doc.parts.push(n);
     } else if (op.action === 'create_warp') {
       if (typeof op.id !== 'string' || !op.id || nodes(doc).some(n => n.id === op.id)) throw Error('新变形器 id 无效或重复');
       const targets = op.targets ?? [];

@@ -30,7 +30,7 @@ import { headPitchDirections, headPitchStage, headPitchScope, headPitchPreviewSc
 import { finishHeadRoll } from './head-roll.ts';
 import { HEAD_ROLL_LIMIT } from '../shared/nine-axis-model.js';
 import { headCornerScope, seedHeadCorners, buildHeadCorners, finishHeadCorners } from './head-corners.ts';
-import { createNineAxisViewTool } from './view-tool.ts';
+import { createNineAxisViewTool, type PreviewScope } from './view-tool.ts';
 import { createHeadEditTool } from './edit-tool.ts';
 import { createNineAxisFitTool, type HeadFitStage } from './fit-tool.ts';
 import type { OwnershipScope } from './ownership.ts';
@@ -213,6 +213,17 @@ export type NineAxisDependencies = { environment?: WorkflowEnvironment; ffmpegCh
   resolveInput?: (name: string, root: string) => Promise<TurnInput> };
 export const isArtworkOnly = (step?: string) => ['step08_hair', 'step09_head-accessories', 'step10_head-pitch', 'step11_head-angle-xy', headRollStep].includes(step ?? '');
 
+const facePreviewScope: PreviewScope = { includes: part => part.level === 'face' && !part.context };
+
+export function createStageViewTool(directory: string, stepId: string, build: () => Promise<Built>,
+  materialize: MaterialLoader, signal?: AbortSignal, scope?: PreviewScope) {
+  const output = join(directory, stepId);
+  const faceOnly = stepId.startsWith('step04_angles/model/') || stepId === 'step06_angle-xy' || stepId === 'step07_jaw-line';
+  return createNineAxisViewTool(directory, join(output, 'observations'),
+    async () => materialize(output, await build(), signal, faceOnly ? false : undefined),
+    undefined, faceOnly ? facePreviewScope : scope, faceOnly ? 'face' : undefined);
+}
+
 export async function runWorkflow(options: NineAxisOptions, dependencies: NineAxisDependencies = {}): Promise<string> {
   if (options.step && options.step.split('/').length > 3) throw Error('--step 须为已定义的九轴步骤或分支');
   const [target, branch, part] = options.step?.split('/') ?? [];
@@ -275,16 +286,18 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
   };
   const builds: Record<string, () => Promise<Built>> = {};
   const materials = new KraMaterials(nativeMaterialExport(krita));
-  const materialize: MaterialLoader = dependencies.materialize ?? ((output, built, signal, context = true) => materials.resolve(task, output, built, signal ?? options.signal, context));
+  const materialize: MaterialLoader = dependencies.materialize ?? ((output, built, signal, context = true, protect) => materials.resolve(task, output, built, signal ?? options.signal, context, protect));
   const faceTools = async (stepId: string): Promise<FunctionTool[]> => {
     const output = join(directory, stepId), observations = join(output, 'observations');
     const hairRound=stepId==='step08_hair'?(await readHairProgress(output)).next:undefined;
     if(hairRound==='done')throw Error('头发轮次已全部完成');
     const pitch=stepId.startsWith('step10_head-pitch/')?stepId.split('/')[1] as HeadPitchDirection:undefined;
     const axis = stepId.startsWith('step04_angles/model/') ? stepId.split('/').at(-1) as AxisGroup : undefined;
-    const bitmap = createBitmapTool(directory, observations), view = createNineAxisViewTool(directory, observations,
-      async () => materialize(output, await builds[stepId](), options.signal), undefined, stepId==='step11_head-angle-xy'?{includes:headCornerScope.includes!,label:headCornerScope.label}:pitch?headPitchPreviewScope(pitch):hairRound ? hairPreviewScope(hairRound) : stepId==='step09_head-accessories'?accessoryPreviewScope:undefined,
-      axis || stepId === 'step06_angle-xy' ? 'face' : undefined);
+    const scope = stepId === 'step11_head-angle-xy' ? { includes: headCornerScope.includes!, label: headCornerScope.label }
+      : pitch ? headPitchPreviewScope(pitch) : hairRound ? hairPreviewScope(hairRound)
+        : stepId === 'step09_head-accessories' ? accessoryPreviewScope : undefined;
+    const bitmap = createBitmapTool(directory, observations);
+    const view = createStageViewTool(directory, stepId, () => builds[stepId](), materialize, options.signal, scope);
     const headFit = async (stage: HeadFitStage, upstreamDirectory: string, ownership: OwnershipScope) => {
       const { head } = await getTurnInput();
       return createNineAxisFitTool(output, head, await crop(), scale, { stage, upstreamDirectory, ownership,
@@ -581,11 +594,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           if (!saved?.plan) await saveHairPlan(step.directory, plan, completed);
           await (dependencies.prepareHair ?? prepareHair)(step.directory,upstream,task,materialize,scale,options.signal);
           builds[step.id]=()=>buildHair(step.directory,upstream,scale,materialize);
-          const before=await materialize(step.directory,await builds[step.id](),options.signal);
+          const before=await materialize(step.directory,await builds[step.id](),options.signal,true,true);
           const fit=dependencies.fitHair ?? (await preflight(),createHairHead(agents(),faceTools,options.signal,directory));
           let verified=false;
           const verify=async()=>{
-            await checkHairRound(before,await materialize(step.directory,await builds[step.id](),options.signal),round);
+            await checkHairRound(before,await materialize(step.directory,await builds[step.id](),options.signal,true,true),round);
             await writeFile(hair.color,kraContents(await readFile(hair.document)).merged);
             await finishHair(step.directory,upstream,scale,materialize);
             await checkDelivery(step.id);
@@ -611,11 +624,11 @@ export async function runWorkflow(options: NineAxisOptions, dependencies: NineAx
           await accessoriesUpstreamReady();
           await (dependencies.prepareAccessories??prepareAccessories)(step.directory,upstream,task,materialize,scale,options.signal);
           builds[step.id]=()=>buildAccessories(step.directory,upstream,scale,materialize);
-          const before=await materialize(step.directory,await builds[step.id](),options.signal);
+          const before=await materialize(step.directory,await builds[step.id](),options.signal,true,true);
           const fit=dependencies.fitAccessories??(await preflight(),createFitHead(agents(),faceTools,step.id,'头部饰品左右制作',options.signal,directory));
           let verified=false;
           const verify=async()=>{
-            const after=await materialize(step.directory,await builds[step.id](),options.signal);
+            const after=await materialize(step.directory,await builds[step.id](),options.signal,true,true);
             await checkAccessories(before,after);await checkAccessoryShadows(task,after.doc);
             await writeFile(accessories.color,kraContents(await readFile(accessories.document)).merged);
             await finishAccessories(step.directory,upstream,scale,materialize);await checkDelivery(step.id);verified=true;
