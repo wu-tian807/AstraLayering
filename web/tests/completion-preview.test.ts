@@ -28,12 +28,12 @@ test('completion preview waits, follows the saved draft, and survives its public
   const { url: origin } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
   const page = await openPage(t, { viewport: { width: 1500, height: 1000 } });
   if (!page) return;
+  page.setDefaultTimeout(12_000);
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.route('**/api/version', route => route.fulfill({ json: { label: 'test' } }));
-  let hold = false, releaseSnapshot = () => {};
-  const barrier = new Promise<void>(resolve => { releaseSnapshot = resolve; });
-  await page.route('**/api/task?*', async route => { if (hold) await barrier; await route.continue(); });
-  t.after(() => releaseSnapshot());
+  let hold = false;
+  const snapshot = Promise.withResolvers<void>();
+  await page.route('**/api/task?*', async route => { if (hold) await snapshot.promise; await route.continue(); });
   await page.goto(`${origin}/?name=case&page=preview`);
   const group = page.locator('[data-cycle="0"]'); await group.waitFor();
   await group.locator('[data-group-toggle="0"]').first().evaluate(button => (button as HTMLButtonElement).click());
@@ -54,17 +54,22 @@ test('completion preview waits, follows the saved draft, and survives its public
   // The browser has a snapshot containing the draft; the pipeline then moves it
   // before the next image request and before a new snapshot arrives.
   hold = true;
-  await mkdir(dirname(join(task, final)), { recursive: true });
-  await rename(join(task, draft), join(task, final));
-  for (const image of [panel.locator('img[data-svg-artifact]'), inspector.locator('img[data-svg-artifact]')]) {
-    await image.evaluate(element => {
-      const img = element as HTMLImageElement, url = new URL(img.src);
-      url.searchParams.set('race', 'publication'); img.loading = 'eager'; img.src = url.toString();
-    });
+  try {
+    await mkdir(dirname(join(task, final)), { recursive: true });
+    await rename(join(task, draft), join(task, final));
+    for (const [place, view] of [['panel', panel], ['inspector', inspector]] as const) {
+      await view.locator('img[data-svg-artifact]').evaluate((element, place) => {
+        const img = element as HTMLImageElement, url = new URL(img.src);
+        url.searchParams.set('race', place);
+        img.loading = 'eager';
+        img.src = url.toString();
+      }, place);
+      await view.locator('.svg-unavailable').waitFor();
+    }
+  } finally {
+    hold = false;
+    snapshot.resolve();
   }
-  await panel.locator('.svg-unavailable').waitFor();
-  await inspector.locator('.svg-unavailable').waitFor();
-  hold = false; releaseSnapshot();
   await waitForPath(final);
   await page.waitForFunction(path => document.querySelector('.output-inspector .artifact-source')?.textContent?.includes(path), final);
   await page.waitForFunction(() => [...document.querySelectorAll('[data-svg-preview="0:completion"] img, .output-inspector img[data-svg-artifact]')]

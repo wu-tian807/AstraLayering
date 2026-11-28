@@ -7,7 +7,10 @@ import { createWorkbench } from '../server.ts';
 export async function startWorkbench(t: TestContext, options: Parameters<typeof createWorkbench>[0]) {
   const server = await createWorkbench(options);
   await once(server.listen(0, '127.0.0.1'), 'listening');
-  t.after(() => new Promise<void>(resolve => server.close(() => resolve())));
+  t.after(() => new Promise<void>(resolve => {
+    server.close(() => resolve());
+    server.closeAllConnections();
+  }));
   return { server, url: 'http://127.0.0.1:' + (server.address() as AddressInfo).port };
 }
 
