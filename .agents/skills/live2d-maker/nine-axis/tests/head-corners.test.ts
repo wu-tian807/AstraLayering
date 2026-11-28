@@ -16,6 +16,7 @@ import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { defaultKnowledgeDirectory, useKnowledge } from '../../shared/knowledge.ts';
 import { applyStepAction } from '../../workflow/step-actions.ts';
 import { initializeHeadCorners, checkHeadCorners, headCornerControlIds, headCornerPoses, headCornerScope, seedHeadCorners, buildHeadCorners } from '../head-corners.ts';
+import { initializeHeadPitch } from '../head-pitch.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { runWorkflow, createFitHead } from '../run.ts';
 import type { MaterialLoader } from '../kra-materials.ts';
@@ -77,11 +78,12 @@ test('four independently authored corners and intermediate XY corrections leave 
   assert.deepEqual(doc.axisSources, base.axisSources);
 });
 
-test('corner validation rejects edits to original nodes, binding, order, axes, topology and incomplete poses', () => {
+test('corner validation protects original nodes and geometry independent of author array order', () => {
   const base = source(), doc = deform(initializeHeadCorners(base, scale), base), id = [...headCornerControlIds(base, doc)][0];
   const invalid = (change: (copy: typeof doc) => void) => { const copy = structuredClone(doc); change(copy); assert.throws(() => checkHeadCorners(copy, base, scale)); };
   invalid(copy => { copy.parts[0].uuid = copy.parts[1].uuid; });
-  invalid(copy => { copy.parts.reverse(); });
+  const reordered = structuredClone(doc); reordered.parts.reverse();
+  assert.doesNotThrow(() => checkHeadCorners(reordered, base, scale));
   invalid(copy => { copy.parts.find(p => p.id === 'neck')!.keyforms['0'][0][0] += 1; });
   invalid(copy => { copy.deformers.find(n => n.id === 'corners/0')!.keyforms['30'][0][0] += 1; });
   invalid(copy => { copy.deformers.find(n => n.id === id)!.keyforms['30'][0][0] += 1; });
@@ -138,6 +140,76 @@ test('seed and edit use the upstream KRA without copying it, preserve asymmetric
   const carrier = mirrored.deformers.find(n => n.id === id)!;
   assert.notDeepEqual(carrier.keyformsXY!['30,-25'], carrier.keyforms['0']);
   assert.deepEqual(carrier.keyformsXY!['30,25'], authored.deformers.find((n: any) => n.id === id).keyformsXY['30,25']);
+});
+
+test('pitch and corners inherit parent or leaf pairs, and a corner mirrors to the opposite carrier', async t => {
+  const f = await fixture(t), base = f.doc;
+  base.deformers.push({ ...grid('eye-a'), mirror: 'eye-b' }, { ...grid('eye-b'), mirror: 'eye-a' }, grid('lock-a'), grid('lock-b'));
+  base.parts.find(p => p.id === 'face/eye_left')!.parent = 'eye-a';
+  base.parts.find(p => p.id === 'face/eye_right')!.parent = 'eye-b';
+  for (const [side, parent, x] of [['left', 'lock-a', 10], ['right', 'lock-b', 70]] as const) {
+    const id = 'hair/side_hair/side_hair_' + side;
+    base.parts.push({ ...grid(id, [x, 10, x + 20, 85]), parent, level: 'hair', partId: id, material: 'transparent',
+      textureBounds: [x, 10, 20, 75] });
+  }
+  const carrier = (doc: HeadNineAxis, id: string) => doc.deformers.find(n => n.id === doc.parts.find(p => p.id === id)!.parent)!;
+  const leafLeft = 'hair/side_hair/side_hair_left', leafRight = 'hair/side_hair/side_hair_right';
+  const initial = initializeHeadCorners(base, scale);
+  for (const doc of [initial, initializeHeadPitch(base, 'head-up', scale)]) {
+    for (const [a,b] of [['face/eye_left','face/eye_right'], [leafLeft,leafRight]]) {
+      const [left,right] = [carrier(doc, a), carrier(doc, b)];
+      assert.equal(left.mirror, right.id);
+      assert.equal(right.mirror, left.id);
+    }
+  }
+  const left = carrier(initial, leafLeft).id, right = carrier(initial, leafRight).id;
+  const legacy = structuredClone(initial);
+  delete carrier(legacy, leafLeft).mirror;
+  delete carrier(legacy, leafRight).mirror;
+  await f.put(join(f.upstream, 'deformers.json'), base);
+  await f.put(join(f.output, 'head-xy.json'), legacy);
+  const edit = createContinuationEditTool(f.output, f.upstream, 'head-xy', scale, f.task, undefined, headCornerScope);
+  await edit.execute({ operations: [
+    { action: 'transform', id: left, x: -30, y: 25, translate: [-7, 2] },
+    { action: 'mirror', targets: [right], x: 30, y: 25 },
+  ] }, new AbortController().signal);
+  const { doc } = await buildHeadCorners(f.output, f.upstream, scale);
+  const mirrored = carrier(doc, leafRight);
+  const expected = pts(mirrored, (x, y) => [x + 7, y + 2]);
+  assert.ok(mirrored.keyformsXY!['30,25'].every(([x, y], i) => Math.abs(x - expected[i][0]) < .001 && Math.abs(y - expected[i][1]) < .001));
+  for (const [x,y] of [[0,25], [30,0], [30,-25]]) samePose(base, doc, x,y);
+});
+
+test('paired leaves sharing a root get separate mirrored controls without pulling in the rest of the root', () => {
+  const base = source(), left = 'face/ears/ear_left', right = 'face/ears/ear_right', nose = 'face/nose';
+  for (const [id, x] of [[left, 10], [right, 70], [nose, 40]] as const) {
+    base.parts.push({ ...grid(id, [x, 30, x + 20, 55]), level: 'face', textureBounds: [x, 30, 20, 25], material: 'transparent' });
+  }
+  const carrier = (doc: HeadNineAxis, id: string) => doc.deformers.find(n => n.id === doc.parts.find(p => p.id === id)!.parent)!;
+  const initial = initializeHeadCorners(base, scale);
+  for (const doc of [initial, initializeHeadPitch(base, 'head-up', scale)]) {
+    const a = carrier(doc, left), b = carrier(doc, right);
+    assert.notEqual(a.id, b.id);
+    assert.equal(a.mirror, b.id);
+    assert.equal(b.mirror, a.id);
+    assert.notEqual(carrier(doc, nose).id, a.id);
+    assert.notEqual(carrier(doc, nose).id, b.id);
+    for (const [x, y] of [[-30, 25], [0, 0], [30, 25]]) samePose(base, doc, x, y);
+  }
+  const doc = editNineAxis(initial, [
+    { action: 'transform', id: carrier(initial, left).id, x: -30, y: 25, translate: [-4, 2] },
+    { action: 'mirror', targets: [carrier(initial, right).id], x: 30, y: 25 },
+  ]);
+  checkHeadCorners(doc, base, scale);
+  const b = carrier(doc, right), expected = pts(b, (x, y) => [x + 4, y + 2]);
+  assert.ok(b.keyformsXY!['30,25'].every(([x,y], i) => Math.abs(x - expected[i][0]) < .001 && Math.abs(y - expected[i][1]) < .001));
+  assert.deepEqual(carrier(doc, nose), carrier(initial, nose));
+
+  const saved = structuredClone(base);
+  for (const part of saved.parts.filter(part => part.id === left || part.id === right)) part.parent = 'corners/legacy';
+  const legacy = initializeHeadCorners(base, scale, saved);
+  assert.equal(carrier(legacy, left).id, carrier(legacy, right).id);
+  checkHeadCorners(legacy, base, scale);
 });
 
 test('official corners run one ordinary step, preserve upstream and refuse incomplete head-pitch delivery', async t => {

@@ -6,6 +6,6 @@
 
 `inspect` 返回描线叠图及 revision。整头步骤的 `completion` 可选。叠图使用显式 `reference` PNG 或当前方向已绑定的参考帧。缺对应帧时，请准备好目标姿态的 PNG 并显式传 `reference`。`fit` 可直接用描线求解，显式传 `reference` 时附带叠图。
 
-脸部单轴与斜角继续沿用本步参考帧和闭合 `completion:{part,source,target}` 检查，脸部斜角仍指定 `left-up` 或 `left-down` 并将 revision 绑定到所选帧和描线。修改后重新 inspect。
+脸部步骤沿用本步参考帧。涉及 `face/face_base` 的描线，或拟合脸底及其承载 Warp 时，提供闭合 `completion:{part,source,target}` 核对脸缘。单独拟合五官与耳朵可直接提供曲线或对应点。脸部斜角指定 `left-up` 或 `left-down`，revision 绑定所选帧和描线。修改后重新 inspect。
 
-fit 校验网格后保存目标关键形及误差报告。整头报告按节点和角度保存，路径见 `reportPath`。用 `view_nine_axis` 检查实际形态，再用 `edit_nine_axis` 微调。
+fit 校验网格后保存目标关键形及误差报告，路径见 `reportPath`。五官与耳朵有独立报告。

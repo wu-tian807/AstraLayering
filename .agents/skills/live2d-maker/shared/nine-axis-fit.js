@@ -83,18 +83,38 @@ export function fitWarpToTraces(document, options) {
   return current.map((v, i) => v + delta[i % 2][Math.floor(i / 2)]);
   };
   if (!rows.some(row => !row.occluded)) throw Error('拟合至少需要一段可见轮廓，不能只靠遮挡补全');
+  const validCandidate = values => {
+    const testNode = { ...selected, [field]: { ...selected[field], [key]: Array.from({ length: count }, (_, i) => values.slice(i * 2, i * 2 + 2)) } };
+    try { checkWarpGeometry(testNode); return true; } catch { return false; }
+  };
   let fitted = solve(), occludedWeightScale = 1;
   if (rows.some(row => row.occluded)) {
-    const visibleOnly = solve(0);
-    const visibleShift = (values) => Math.max(...rows.filter(row => !row.occluded).map(row => {
-      const a = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
-      const b = parentPoint(doc, selected, x, y, ...warpPoint(selected, visibleOnly, ...row.source));
-      return Math.hypot(a[0] - b[0], a[1] - b[1]);
+    const visibleRows = rows.filter(row => !row.occluded);
+    const visibleError = values => Math.max(...visibleRows.map(row => {
+      const q = parentPoint(doc, selected, x, y, ...warpPoint(selected, values, ...row.source));
+      return Math.hypot(q[0] - row.target[0], q[1] - row.target[1]);
     }));
-    // Completion may fill unconstrained regions, but cannot move a fitted
-    // visible contour by more than a subpixel. Conflicting priors weaken.
-    while (visibleShift(fitted) > 0.1 && occludedWeightScale > 1e-8) { occludedWeightScale *= 0.1; fitted = solve(occludedWeightScale); }
-    if (visibleShift(fitted) > 0.1) { occludedWeightScale = 0; fitted = visibleOnly; }
+    const visibleOnly = solve(0), visibleOnlyValid = validCandidate(visibleOnly);
+    // Completion may fill unconstrained regions, but conflicting priors weaken
+    // when they noticeably degrade visible contours — without annealing a valid
+    // mesh into an unconstrained folded extrapolation.
+    if (visibleOnlyValid) {
+      const baselineError = visibleError(visibleOnly);
+      const maxVisibleError = baselineError + Math.max(0.1, baselineError * 0.25);
+      while (visibleError(fitted) > maxVisibleError && occludedWeightScale > 1e-8) {
+        const nextScale = occludedWeightScale * 0.1, next = solve(nextScale);
+        if (validCandidate(fitted) && !validCandidate(next)) break;
+        occludedWeightScale = nextScale; fitted = next;
+      }
+      if (visibleError(fitted) > maxVisibleError) { occludedWeightScale = 0; fitted = visibleOnly; }
+    } else {
+      while (visibleError(fitted) > 1.5 && occludedWeightScale > 1e-8) {
+        const nextScale = occludedWeightScale * 0.1, next = solve(nextScale);
+        if (validCandidate(fitted) && !validCandidate(next)) break;
+        if (validCandidate(fitted) && visibleError(next) >= visibleError(fitted) * 0.8) break;
+        occludedWeightScale = nextScale; fitted = next;
+      }
+    }
   }
   selected[field][key] = Array.from({ length: count }, (_, i) => fitted.slice(i * 2, i * 2 + 2));
   try { validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n); }

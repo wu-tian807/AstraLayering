@@ -52,6 +52,31 @@ test('trace fitting respects composed ancestors and descendants and preserves un
   const withCompletion = fitWarpToTraces(doc, { id: 'chosen', features: [{ id: 'outline', part: 'art', samples }, { id: 'conflicting-completion', part: 'art', visibility: 'occluded', weight: 100, samples: [{ from: [60, 60], to: [180, 180] }] }] });
   assert.ok(withCompletion.report.after[0].maxPixels < 0.11, 'hidden completion cannot pull visible points away');
   assert.ok(withCompletion.report.occludedWeightScale < 1);
+  // Consistent occluded completion in an unconstrained region must not be
+  // annealed into a folded visible-only extrapolation.
+  const scaleAtY = (y: number) => y === 20 ? 0.35 : y === 40 ? 0.35 : y === 60 ? 0.5 : y === 80 ? 0.9 : 1.3;
+  const tapered = (s: { from: [number, number]; to: [number, number] }) => {
+    const cx = position(doc, 'art', [60, s.from[1]])[0] - 8;
+    return { from: s.from, to: [cx + (s.to[0] - cx) * scaleAtY(s.from[1]), s.to[1]] as [number, number] };
+  };
+  const foldedLowerVisible = samples.filter(s => s.from[1] >= 60).map(tapered);
+  const upperOccluded = samples.filter(s => s.from[1] <= 40).map(tapered);
+  assert.throws(() => fitWarpToTraces(doc, {
+    id: 'chosen',
+    smoothness: 0.02,
+    features: [{ id: 'lower-visible', part: 'art', visibility: 'visible', samples: foldedLowerVisible }],
+  }), /拟合未保存/);
+  const consistent = fitWarpToTraces(doc, {
+    id: 'chosen',
+    smoothness: 0.02,
+    features: [
+      { id: 'lower-visible', part: 'art', visibility: 'visible', samples: foldedLowerVisible },
+      { id: 'upper-occluded', part: 'art', visibility: 'occluded', weight: 0.5, samples: upperOccluded },
+    ],
+  });
+  assert.ok(consistent.report.occludedWeightScale > 0, JSON.stringify(consistent.report));
+  assert.ok(consistent.report.after[0].maxPixels < 2.5, JSON.stringify(consistent.report));
+  assert.ok(consistent.report.after[1].maxPixels < 4, JSON.stringify(consistent.report));
   assert.deepEqual(doc, before, 'input document never mutates');
   assert.deepEqual(result.doc.deformers[0], before.deformers[0]);
   assert.deepEqual(result.doc.parts, before.parts);
@@ -78,7 +103,7 @@ test('trace inspection is read-only; SVG fitting persists real left geometry and
   const inspected: any = await tool.execute({ action: 'inspect', trace }, signal);
   assert.equal(await readFile(author, 'utf8'), original);
   const inspectInfo = JSON.parse(inspected.contentItems[0].text), imageInfo = await sharp(inspectInfo.traceCheck).metadata(); assert.equal(imageInfo.width, 600);
-  assert.equal(inspectInfo.revision, sha256(original), 'left revision remains the author hash');
+  assert.equal(inspectInfo.kraRevision, sha256(await readFile(document)));
   const { data, info: completedInfo } = await sharp(inspectInfo.completionCheck).removeAlpha().raw().toBuffer({ resolveWithObject: true });
   assert.equal(completedInfo.width, 400);
   assert.deepEqual([...data.subarray((100 * 400 + 100) * 3, (100 * 400 + 100) * 3 + 3)], [255, 230, 215], 'complete source face occupies the first panel without centering over the target');
@@ -167,6 +192,7 @@ test('hair inspect reads the saved editable KRA and requires an explicit or boun
 
   await assert.rejects(f.inspect({ side: 'right' }), /right\.png.*请传入真实的 reference PNG 路径/);
   await f.saveKra(f.editable, '#4871ae');
+  await assert.rejects(f.fit(undefined, { revision: left.revision }), /KRA 已变化.*revision/);
   const prepared = join(f.directory, 'prepared-right.png');
   await writeFile(prepared, await f.makePng('#4455cc'));
   const explicit = result(await f.inspect({ side: 'right', reference: prepared }));
@@ -338,7 +364,7 @@ test('up and down trace fitting saves independent Y endpoints and preserves comp
     const tool = createNineAxisFitTool(directory, input, box, undefined, { stage, upstreamDirectory });
     const inspected: any = await tool.execute({ action: 'inspect', trace }, signal); const info = JSON.parse(inspected.contentItems[0].text);
     assert.equal(info.y, stage === 'up' ? 25 : -25); assert.equal(info.x, 0); assert.match(info.reference, new RegExp(`${stage}\\.png$`));
-    assert.equal(info.revision, sha256(await readFile(author, 'utf8')), 'single-axis revision remains the author hash');
+    assert.equal(info.kraRevision, sha256(await readFile(document)));
     const fitted: any = await tool.execute({ action: 'fit', trace, id: 'face/face_base', revision: info.revision }, signal);
     const report = JSON.parse(fitted.contentItems[0].text).report; assert.ok(report.after[0].maxPixels < .01);
     assert.deepEqual(JSON.parse(await readFile(join(directory, 'fit-report.json'), 'utf8')), report, 'single-axis report retains its filename');
@@ -481,6 +507,36 @@ test('XY revisions bind corner, the selected reference, trace and author indepen
   assert.equal((await inspect()).revision, initial.revision);
   assert.equal(await readFile(f.author, 'utf8'), originalAuthor, 'failed requests never save a fit');
   for (const corner of ['left-up', 'left-down']) await assert.rejects(readFile(join(f.directory, `${corner}-fit-report.json`)), { code: 'ENOENT' });
+});
+
+test('XY fits a facial feature without completion and preserves the corner face fit report', async t => {
+  const f = await xyFixture(t), corner = 'left-up', trace = f.traces.get(corner)!;
+  const run = (action: 'fit' | 'inspect', id: string, path: string, revision?: string) =>
+    f.tool.execute({ action, corner, trace: path, id, revision }, f.signal).then(result);
+  await run('fit', 'chosen', trace);
+  const faceReport = join(f.directory, 'left-up-fit-report.json'), savedReport = await readFile(faceReport, 'utf8');
+  const before = JSON.parse(await readFile(f.author, 'utf8')) as HeadNineAxis;
+  const eye = before.parts.find(p => p.id === 'face/other')!;
+  delete eye.keyformsXY;
+  await writeFile(f.author, JSON.stringify(before) + '\n');
+  const featureTrace = join(f.directory, 'left-up-eye-trace.json');
+  const landmarks = ([[30, 30], [70, 30], [30, 50], [70, 50]] as const)
+    .map(([x, y], i) => ({ id: `eye-${i}`, part: eye.id, source: [x, y], target: [x + 3, y - 2] }));
+  await writeFile(featureTrace, JSON.stringify({ version: 1, space: 'view', landmarks }));
+  await assert.rejects(run('inspect', 'face/face_base', featureTrace), /completion/);
+  await assert.rejects(run('fit', 'chosen', featureTrace), /completion/);
+  const inspected = await run('inspect', eye.id, featureTrace);
+  assert.equal(inspected.completionCheck, undefined);
+  assert.ok(inspected.traceCheck);
+  const fitted = await run('fit', eye.id, featureTrace, inspected.revision);
+  assert.ok(fitted.report.after.every((entry: { maxPixels: number }) => entry.maxPixels < .01));
+  assert.match(fitted.reportPath, /left-up-[a-f0-9]{12}-fit-report\.json$/);
+  assert.deepEqual(JSON.parse(await readFile(fitted.reportPath, 'utf8')), fitted.report);
+  assert.equal(await readFile(faceReport, 'utf8'), savedReport);
+  const after = JSON.parse(await readFile(f.author, 'utf8')) as HeadNineAxis;
+  assert.ok(after.parts.find(p => p.id === eye.id)!.keyformsXY?.['-40,35']);
+  assert.deepEqual(after.parts.filter(p => p.id !== eye.id), before.parts.filter(p => p.id !== eye.id));
+  assert.deepEqual(after.deformers, before.deformers);
 });
 
 test('XY rejects folded corner transitions even when the fitted endpoint has positive-area local cells', async t => {

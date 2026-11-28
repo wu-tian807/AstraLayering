@@ -4,7 +4,10 @@
     "video": { "type": "string", "enum": ["left", "up", "down", "left-up", "left-down"] },
     "output": { "type": "string" },
     "frameIndex": { "type": "integer", "minimum": 0 },
-    "timeSeconds": { "type": "number", "minimum": 0 }
+    "timeSeconds": { "type": "number", "minimum": 0 },
+    "offsetX": { "type": "integer", "default": 0 },
+    "offsetY": { "type": "integer", "default": 0 },
+    "overlay": { "type": "string" }
   },
   "required": ["video", "output"],
   "oneOf": [
