@@ -32,7 +32,7 @@ export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: numbe
 export function parentPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number, inverse?: boolean): Point;
 export function checkWarpGeometry(node: WarpGrid): void;
 export function reparent(doc: HeadNineAxis, ids: string[], parent?: string): void;
-export function refine(points: ArrayLike<number>, cols: number, rows: number, n: number, out?: Float32Array): Float32Array;
+export function refine(points: ArrayLike<number>, cols: number, rows: number, n: number, out?: Float32Array, vertical?: number): Float32Array;
 export function meshIndices(cols: number, rows: number): Uint32Array;
 export function levelParts(doc: HeadNineAxis, levelId: string): HeadDeformer[];
 export function dragKeyform(start: number[][], index: number, dx: number, dy: number, radius: number): number[][];

@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { zipSync, strToU8 } from 'fflate';
 import sharp from 'sharp';
+import { chromium } from 'playwright';
 import { startWorkbench } from './workbench-server.ts';
 import { KraMaterials } from '../../.agents/skills/live2d-maker/nine-axis/kra-materials.ts';
 import { kraContents } from '../../.agents/skills/live2d-maker/shadow/delivery.ts';
@@ -80,4 +81,93 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
   assert.deepEqual(await readTexture(initial.textures[0]),[255,0,0,255],'a batch keeps its original immutable KRA snapshot');
   assert.equal((await get('/api/studio/nine-axis/materials',{path:'../../outside.json'})).status,400);
   assert.equal((await get('/api/studio/nine-axis/texture',{key:initial.revision,index:'0'})).status,400);
+});
+
+test('studio adds native correction RGB only over the visible lower paint in its own group', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'web-nine-add-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const path = nineAxisArtifacts.neutralDeformers, stage = join(root, dirname(path));
+  const source = 'shadow/step01_mask/character-shadowed.kra';
+  const doc = { version: 2, kind: 'head-nine-axis', canvas: [20, 12], source: { document: source },
+    levels: [{ id: 'face', includes: ['face'] }], deformers: [], parts: [
+      { id: 'right', uuid: 'right', level: 'face', bbox: [8, 0, 12, 12], textureBounds: [8, 0, 4, 12],
+        cols: 1, rows: 1, keyforms: { '0': [[8, 0], [12, 0], [8, 12], [12, 12]] } },
+    ] } as any;
+  const paint = (id: string, extra = '') => `<layer uuid="${id}" name="${id}" nodetype="paintlayer" ${extra}/>`;
+  const group = (id: string, children: string) => `<layer uuid="${id}" nodetype="grouplayer" passthrough="0"><layers>${children}</layers></layer>`;
+  const xml = '<DOC><IMAGE><layers>' + group('clipping',
+    paint('upper') + paint('correction', 'compositeop="add" colorspacename="RGBA" channelflags="1110" opacity="128"') +
+    paint('other-correction', 'alphainherit="1" visible="0"') + group('base', paint('left') + paint('right'))) +
+    paint('unrelated') + '</layers></IMAGE></DOC>';
+  await mkdir(stage, { recursive: true });
+  await mkdir(join(root, dirname(source)), { recursive: true });
+  await writeFile(join(root, 'run.json'), JSON.stringify({ version: 1, name: 'fixture', sections: {}, jobs: 1, status: 'ready' }));
+  await writeFile(join(root, path), JSON.stringify(doc));
+  const pixelPng = (rgba: number[], width: number, height: number) => sharp(
+    Buffer.from(Array.from({ length: width * height }, () => rgba).flat()), { raw: { width, height, channels: 4 } }).png().toBuffer();
+  await writeFile(join(root, source), zipSync({ 'maindoc.xml': strToU8(xml), 'mergedimage.png': await pixelPng([0, 0, 0, 0], 20, 12) }));
+  const pixels: Record<string, { bounds: [number, number, number, number]; rgba: number[] }> = {
+    upper: { bounds: [16, 0, 4, 12], rgba: [40, 100, 50, 128] },
+    correction: { bounds: [0, 0, 20, 12], rgba: [40, 72, 24, 128] },
+    'other-correction': { bounds: [0, 0, 20, 12], rgba: [0, 0, 0, 0] },
+    left: { bounds: [0, 0, 4, 12], rgba: [80, 100, 120, 255] },
+    right: { bounds: [8, 0, 4, 12], rgba: [80, 100, 120, 128] },
+    unrelated: { bounds: [4, 0, 4, 12], rgba: [80, 100, 120, 255] },
+  };
+  const materials = new KraMaterials(async (_document, directory, rows) => Promise.all(rows.map(async row => {
+    const { bounds, rgba } = pixels[row.uuid!];
+    await writeFile(join(directory, row.texture), await pixelPng(rgba, bounds[2], bounds[3]));
+    return { ...row, bounds };
+  })));
+  await materials.resolve(root, stage, { doc, textures: new Map() }, undefined, 'studio');
+  const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  t.after(() => browser.close());
+  const { url } = await startWorkbench(t, { defaultDir: root, settingsPath: join(root, 'settings.json') });
+  const query = '/api/studio/nine-axis/materials?' + new URLSearchParams({ folder: root, path, scene: 'studio' });
+  const response = await fetch(url + query);
+  assert.equal(response.status, 200);
+  const { paintStack } = await response.json() as { paintStack: any[] };
+  const findLayer = (stack: any[], id: string): any => {
+    for (const layer of stack) {
+      if (layer.id === id) return layer;
+      if (layer.children) { const hit = findLayer(layer.children, id); if (hit) return hit; }
+    }
+  };
+  assert.equal(findLayer(paintStack, 'correction')?.inheritAlpha, true);
+  assert.equal(findLayer(paintStack, 'other-correction')?.inheritAlpha, true);
+
+  const page = await browser.newPage();
+  await page.route(url + '/fixture-render', route => route.fulfill({ contentType: 'text/html', body:
+    '<script type="importmap">{"imports":{"three":"/vendor/three.module.js"}}</script>' }));
+  await page.goto(url + '/fixture-render');
+  const images = await page.evaluate(async query => {
+    const shared = '/studio/nine-axis-render.js';
+    const { HeadNineAxisRenderer, createNineAxisBitmap } = await import(shared);
+    const { doc, studioLayers, paintStack, textures } = await (await fetch(query)).json();
+    const view = new HeadNineAxisRenderer(document.createElement('canvas'));
+    view.renderer.setSize(20, 12, false);
+    const blobs = await Promise.all(textures.map(async (url: string) => (await fetch(url)).blob()));
+    const toggle = (stack: any[], hide: Set<string>): any[] => stack.map(layer => ({
+      ...layer, visible: layer.visible && !hide.has(layer.id),
+      ...(layer.children ? { children: toggle(layer.children, hide) } : {}),
+    }));
+    const frame = { x0: 0, y0: 0, width: 20, height: 12 };
+    const out = [];
+    for (const hide of [new Set(['correction']), new Set<string>(), new Set(['left'])]) {
+      const images = await Promise.all(blobs.map(blob => createNineAxisBitmap(blob)));
+      view.clear();
+      view.install(doc, images.slice(0, 1), toggle(paintStack, hide));
+      view.setStaticLayers(studioLayers.map((layer: any, i: number) => ({ ...layer, image: images[i + 1] })));
+      view.draw(frame, 0, 0, new Set(['right']));
+      out.push(view.renderer.domElement.toDataURL().split(',')[1]);
+    }
+    return out;
+  }, query);
+  const [base, corrected, hiddenBase] = await Promise.all(images.map(image => sharp(Buffer.from(image, 'base64')).ensureAlpha().raw().toBuffer()));
+  const at = (data: Buffer, x: number) => [...data.subarray((20 * 5 + x) * 4, (20 * 5 + x) * 4 + 4)];
+  at(corrected, 2).forEach((value, k) => assert.ok(Math.abs(value - [90, 118, 126, 255][k]) <= 1));
+  at(corrected, 10).forEach((value, k) => assert.ok(Math.abs(value - [90, 118, 126, 128][k]) <= 3));
+  for (const x of [6, 14, 18]) assert.deepEqual(at(corrected, x), at(base, x));
+  assert.deepEqual(at(hiddenBase, 2), [0, 0, 0, 0]);
+  assert.deepEqual(at(hiddenBase, 10), at(corrected, 10));
 });

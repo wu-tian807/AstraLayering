@@ -30,7 +30,8 @@ export class HeadPreview {
       this.clear(); this.element = element; this.folder = folder;
       if (!element) return;
       this.canvas = element.querySelector('canvas'); this.label = element.querySelector('[data-head-status]');
-      this.observer = new ResizeObserver(() => this.draw()); this.observer.observe(this.canvas);
+      this.observer = new ResizeObserver(() => this.resize());
+      this.observer.observe(this.canvas);
       element.onclick = event => {
         const button = event.target.closest('[data-head-level]');
         if (button && !button.disabled) this.selectLevel(button.dataset.headLevel);
@@ -113,9 +114,13 @@ export class HeadPreview {
     const link = this.element?.querySelector('a[href*="studio?"]');
     if (link && this.level) { const url = new URL(link.href); url.searchParams.set('nineLevel', this.level); link.href = url.href; }
   }
+  resize() {
+    if (!this.canvas?.isConnected) return;
+    this.canvasSize = this.canvas.getBoundingClientRect(); this.draw();
+  }
   draw() {
     if (!this.available || !this.doc || !this.element?.isConnected || document.hidden) return;
-    const rect = this.canvas.getBoundingClientRect(); if (!rect.width || !rect.height) return;
+    const rect = this.canvasSize; if (!rect?.width || !rect.height) return;
     const renderer = this.renderer.renderer;
     const size = `${rect.width}:${rect.height}:${devicePixelRatio}`;
     if (size !== this.size) { renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(rect.width, rect.height, false); this.size = size; }
@@ -123,7 +128,7 @@ export class HeadPreview {
     const scale = Math.max(view.width, view.height) * 1.12 / Math.min(rect.width, rect.height);
     const angles = headPreviewAngles(this.current, this.axes);
     this.renderer.draw({ x0: view.x + view.width / 2 - rect.width * scale / 2, y0: view.y + view.height / 2 - rect.height * scale / 2,
-      width: rect.width * scale, height: rect.height * scale }, angles.x, angles.y, this.shown);
+      width: rect.width * scale, height: rect.height * scale }, angles.x, angles.y, this.shown, undefined, 0, { reuseXY: true });
     this.element.dataset.angleX = angles.x; this.element.dataset.angleY = angles.y;
     this.element.dataset.motionX = this.current.x; this.element.dataset.motionY = this.current.y;
     if (!this.loadError) this.label.textContent = `${this.modes.find(mode => mode.id === this.level).title} · X ${angles.x.toFixed(1)} / Y ${angles.y.toFixed(1)}`;
@@ -146,7 +151,7 @@ export class HeadPreview {
     this.epoch++; this.loading?.abort(); this.loading = null;
     cancelAnimationFrame(this.frame); this.frame = null; this.observer?.disconnect();
     this.renderer?.clear(); this.renderer?.renderer.dispose(); this.renderer = null;
-    this.images?.forEach(image => image.close()); this.images = null; this.doc = null; this.version = null; this.size = null; this.view = null;
+    this.images?.forEach(image => image.close()); this.images = null; this.doc = null; this.version = null; this.canvasSize = this.size = this.view = null;
     this.available = false; this.loadError = false; this.modes = []; this.current = { x: 0, y: 0 }; this.target = { x: 0, y: 0 };
   }
 }

@@ -180,7 +180,7 @@ function span(keys, value) {
 // corner not made yet, the X and Y offsets from the rest form added up.
 function gridForm(part, x, y) {
   if (!y) return part.keyforms[String(x)];
-  const Y = axisForms(part, 'y')[String(y)];
+  const Y = part.keyformsY[String(y)];
   if (!x) return Y;
   const corner = part.keyformsXY?.[`${x},${y}`];
   if (corner) return corner;
@@ -194,7 +194,8 @@ export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1)
   if (part.parameterInterpolation?.x === 'ellipse') {
     const keys = keyValues(part), value = Math.max(-1, Math.min(1, x / (x < 0 ? -keys[0] : keys[2]))), theta = value * Math.PI / 2;
     const rows = [y0, y1].map(Y => keys.map(X => gridForm(part, X, Y)));
-    const ellipse = (forms, i, k) => { const [L, M, R] = forms, c = (L[i][k] + R[i][k]) / 2; return c + (M[i][k] - c) * Math.cos(theta) + (R[i][k] - L[i][k]) / 2 * Math.sin(theta); };
+    const cos = Math.cos(theta), sin = Math.sin(theta);
+    const ellipse = (forms, i, k) => { const [L, M, R] = forms, c = (L[i][k] + R[i][k]) / 2; return c + (M[i][k] - c) * cos + (R[i][k] - L[i][k]) / 2 * sin; };
     for (let i = 0; i < A.length; i++) for (const k of [0, 1]) out[i * 2 + k] = ellipse(rows[0], i, k) * (1 - t) + ellipse(rows[1], i, k) * t;
   } else for (let i = 0; i < A.length; i++) for (const k of [0, 1])
       out[i * 2 + k] = (A[i][k] * (1 - s) + B[i][k] * s) * (1 - t) + (C[i][k] * (1 - s) + D[i][k] * s) * t;
@@ -319,7 +320,6 @@ function preparedWarp(node, points) {
   }
   return [node, points, false, padded, curves];
 }
-
 function carryWarp(warp, point) {
   if (warp[2]) return;
   const node = warp[0], data = warp[3], [x0, y0, x1, y1] = node.bbox, { cols, rows } = node;
@@ -346,10 +346,18 @@ function carryWarp(warp, point) {
   }
 }
 const carryInto = (chain, point) => { for (let i = 0; i < chain.length; i++) carryWarp(chain[i], point); };
-function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), forms, prepare) {
+function prepareNodes(x, y) {
+  const cache = new Map();
+  return node => {
+    let warp = cache.get(node);
+    if (!warp) { warp = preparedWarp(node, keyformAt(node, x, y)); cache.set(node, warp); }
+    return warp;
+  };
+}
+function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), prepared) {
   const chain = [];
   for (let id = node.parent; id; id = byId.get(id).parent) {
-    const p = byId.get(id); chain.push(prepare ? prepare(p) : preparedWarp(p, forms?.get(id) ?? keyformAt(p, x, y)));
+    const p = byId.get(id); chain.push(prepared ? prepared(p) : preparedWarp(p, keyformAt(p, x, y)));
   }
   return chain;
 }
@@ -365,8 +373,8 @@ const sourceMappings = new WeakMap();
 function sourceMapping(doc, x, y) {
   const old = sourceMappings.get(doc);
   if (old?.x === x && old?.y === y) return old.parts;
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), forms = new Map(nodes(doc).map(n => [n.id, keyformAt(n, x, y)]));
-  const parts = new Map(doc.parts.map(p => [p.id, [preparedWarp(p, forms.get(p.id)), ...parentChain(doc, p, x, y, byId, forms)]]));
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y);
+  const parts = new Map(doc.parts.map(p => [p.id, [prepared(p), ...parentChain(doc, p, x, y, byId, prepared)]]));
   sourceMappings.set(doc, { x, y, parts });
   return parts;
 }
@@ -424,17 +432,17 @@ export function deformPoints(doc, node, samples, x, y, out = new Float32Array(sa
 // One synchronous pose snapshot. Callers making edits create a fresh evaluator;
 // only protected independent source mappings persist between frames.
 export function createPointDeformer(doc, x, y) {
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = new Map(), chains = new Map(), axes = new Map();
-  const prepare = node => {
-    if (!prepared.has(node)) prepared.set(node, preparedWarp(node, keyformAt(node, x, y)));
-    return prepared.get(node);
-  };
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y), chains = new Map();
+  const sources = doc.axisSources && new Map(doc.axisSources.map(s => [s.axis, s.doc]));
+  const X = x && sources ? sourceMapping(sources.get('x'), x, 0) : null;
+  const Y = y && sources ? sourceMapping(sources.get(y > 0 ? 'up' : 'down'), 0, y) : null;
+  const parts = sources ? new Set(doc.parts.map(p => p.id)) : null;
   return (node, samples, out = new Float32Array(samples.length)) => {
-    if (!chains.has(node)) {
-      chains.set(node, parentChain(doc, node, x, y, byId, undefined, prepare));
-      axes.set(node, axisChains(doc, node, x, y));
-    }
-    return deformPrepared(prepare(node), chains.get(node), axes.get(node), samples, out);
+    let chain = chains.get(node);
+    if (!chain) { chain = parentChain(doc, node, x, y, byId, prepared); chains.set(node, chain); }
+    const sourcePart = parts?.has(node.id);
+    const ax = sourcePart ? X?.get(node.id) : undefined, ay = sourcePart ? Y?.get(node.id) : undefined;
+    return deformPrepared(prepared(node), chain, ax || ay ? [ax, ay] : undefined, samples, out);
   };
 }
 function deformPrepared(local, chain, axes, samples, out) {
@@ -518,10 +526,11 @@ export function lattice(part) {
 
 // Bilinear refinement of a control lattice: the art mesh follows the warp
 // inside each cell, as a Cubism warp deformer does.
-export function refine(points, cols, rows, n, out = new Float32Array((cols * n + 1) * (rows * n + 1) * 2)) {
-  const C = cols * n;
-  for (let J = 0; J <= rows * n; J++) for (let I = 0; I <= C; I++) {
-    const i = Math.min(cols - 1, Math.floor(I / n)), j = Math.min(rows - 1, Math.floor(J / n)), u = I / n - i, v = J / n - j;
+export function refine(points, cols, rows, n, out, vertical = n) {
+  const C = cols * n, R = rows * vertical;
+  out ??= new Float32Array((C + 1) * (R + 1) * 2);
+  for (let J = 0; J <= R; J++) for (let I = 0; I <= C; I++) {
+    const i = Math.min(cols - 1, Math.floor(I / n)), j = Math.min(rows - 1, Math.floor(J / vertical)), u = I / n - i, v = J / vertical - j;
     const p = (q, c) => points[(q) * 2 + c], a = j * (cols + 1) + i, b = a + 1, c = a + cols + 1, d = c + 1, k = (J * (C + 1) + I) * 2;
     for (const axis of [0, 1]) out[k + axis] = (p(a, axis) * (1 - u) + p(b, axis) * u) * (1 - v) + (p(c, axis) * (1 - u) + p(d, axis) * u) * v;
   }

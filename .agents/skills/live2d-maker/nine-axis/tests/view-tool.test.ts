@@ -132,6 +132,34 @@ test('transparent texel colour cannot stain filtered edges or darken translucent
   centre.forEach((value, channel) => assert.ok(Math.abs(value - expected[channel]) <= 1, `translucent paint channel ${channel}: ${value}`));
 });
 
+test('a deformed paint line keeps native Catmull–Rom detail and averages away when strongly reduced', async t => {
+  const directory = await mkdtemp(join(tmpdir(), 'nine-view-sampling-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  const texture = join(directory, 'line.png');
+  const data = Buffer.from(Array.from({ length: 256 }, (_, i) => {
+    const shade = i % 16 === 8 ? 224 : 32;
+    return [shade, shade, shade, 255];
+  }).flat());
+  await sharp(data, { raw: { width: 16, height: 16, channels: 4 } }).png().toFile(texture);
+  const doc: Built['doc'] = { version: 2, kind: 'head-nine-axis', canvas: [16, 16], deformers: [],
+    parameters: [{ id: 'ParamAngleX', min: -30, max: 30, keys: [-30, 0, 30] }],
+    levels: [{ id: 'face', includes: ['face'] }],
+    parts: [{ id: 'line', level: 'face', texture: 'layers/line.png', textureBounds: [0, 0, 16, 16],
+      bbox: [0, 0, 16, 16], cols: 1, rows: 1, keyforms: { '-30': grid(0, 0, 16, 16),
+        '0': grid(0, 0, 16, 16), '30': grid(0, 0, 12, 16) } }] };
+  const tool = createNineAxisViewTool(directory, join(directory, 'observations'), async () => ({ doc, textures: new Map([['layers/line.png', texture]]) }));
+  const render = async (scale: number, x: number) => {
+    const result = await tool.execute({ crop: [0, 0, 16, 16], x, scale }, new AbortController().signal);
+    const { savedPath } = JSON.parse((result.contentItems[0] as { text: string }).text);
+    return sharp(savedPath).removeAlpha().raw().toBuffer();
+  };
+  const magnified = await render(2, 30), f = 5 / 6;
+  const expected = 32 + (224 - 32) * (0.5 * f + 2 * f * f - 1.5 * f ** 3);
+  assert.ok(Math.abs(magnified[(16 * 32 + 12) * 3] - expected) <= 2, 'fractional line sample matches the cubic kernel');
+  const reduced = await render(.25, 0);
+  assert.ok(reduced[(2 * 4 + 2) * 3] >= 48 && reduced[(2 * 4 + 2) * 3] <= 80, 'mipmap averages the line with its neighbours');
+});
+
 test('view_nine_axis 用工作台渲染器在工作台底色上画出本步交付', async t => {
   const directory = await mkdtemp(join(tmpdir(), 'nine-view-')); t.after(() => rm(directory, { recursive: true, force: true }));
   const texture = join(directory, 'red.png');

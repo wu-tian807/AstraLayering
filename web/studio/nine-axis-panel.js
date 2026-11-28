@@ -35,7 +35,7 @@ export class HeadNineAxisPanel {
     stage.layerPreview = () => this.present();
     $('#nine-axis-angle-number').onchange = e => this.setValue(e.target.valueAsNumber, this.valueY, 'x');
     $('#nine-axis-angle-y-number').onchange = e => this.setValue(this.value, e.target.valueAsNumber, 'y');
-    $('#nine-axis-angle-z').oninput = e => this.setRoll(e.target.valueAsNumber);
+    $('#nine-axis-angle-z').oninput = e => { if (this.changeRoll(e.target.valueAsNumber)) this.queuePose(); };
     $('#nine-axis-follow').onchange = e => {
       this.following = e.target.checked;
       this.resetPointerFollow();
@@ -195,11 +195,11 @@ export class HeadNineAxisPanel {
     this.valueZ = next;
     return true;
   }
-  setValue(x, y = this.valueY, preferredAxis) {
+  setValue(x, y = this.valueY, preferredAxis, deferred = false) {
     if (!this.doc) return;
     const point = projectNineAxisAngles(this.axes, x, y, preferredAxis);
     if (point) { this.value = point.x; this.valueY = point.y; }
-    this.sync();
+    if (deferred) this.queuePose(); else this.syncPose();
   }
   trackPointer(e) {
     if (!this.following || !this.active || !this.doc || e.pointerType === 'touch' || e.buttons || this.viewDrag) return;
@@ -210,6 +210,9 @@ export class HeadNineAxisPanel {
     const { x, y } = headPreviewAngles(target, this.axes);
     if (x === this.value && y === this.valueY) return;
     this.value = x; this.valueY = y;
+    this.queuePose();
+  }
+  queuePose() {
     this.pointerChanged = true;
     this.schedulePoseFrame();
   }
@@ -310,14 +313,14 @@ export class HeadNineAxisPanel {
       const point = followHeadPointer(pointer, normalizedAngles(this.axes, this.value, this.valueY), drag.previous);
       drag.previous = pointer;
       const angles = headPreviewAngles(point, this.axes);
-      this.setValue(angles.x, angles.y);
+      this.setValue(angles.x, angles.y, undefined, true);
       return;
     }
     if (!this.axes.plane && !drag.axis) {
       const point = projectNineAxisAngles(this.axes, p.x, p.y);
       if (point.x || point.y) drag.axis = point.y ? 'y' : 'x';
     }
-    this.setValue(drag.axis === 'y' ? 0 : p.x, drag.axis === 'x' ? 0 : p.y, drag.axis);
+    this.setValue(drag.axis === 'y' ? 0 : p.x, drag.axis === 'x' ? 0 : p.y, drag.axis, true);
   }
   endPadDrag() {
     const drag = this.padDrag; this.padDrag = null;
@@ -471,19 +474,21 @@ export class HeadNineAxisPanel {
   }
   draw({ reuseXY = false } = {}) {
     if (!this.inSharedPreview) return;
-    this.reuseXY = reuseXY;
+    if (!reuseXY) this.view3.invalidatePose();
     this.stage.render();
   }
   present() {
     if (!this.inSharedPreview || !this.doc) return false;
-    const frame = this.stage.canvasFrame(), { width } = this.view.getBoundingClientRect();
-    if (this.active && width) this.drawOverlay(frame.x0, frame.y0, frame.width / width);
-    const reuseXY = this.reuseXY ?? true; this.reuseXY = undefined;
+    const frame = this.stage.canvasFrame();
+    if (this.active && (this.selected || this.overlay?.firstChild)) {
+      const { width } = this.view.getBoundingClientRect();
+      if (width) this.drawOverlay(frame.x0, frame.y0, frame.width / width);
+    }
     if (!this.active && !(this.value || this.valueY || this.valueZ || this.layers.focus)) return false;
     const shown = new Set(this.doc.parts.filter(part => part.role === 'mask'
       ? this.active && (part.id === this.selected || this.shownMasks.has(part.id))
       : this.mode.scope.has(part.id) && this.layerVisible(part)).map(part => part.id));
-    this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY,
+    this.view3.draw(frame, this.value, this.valueY, shown, undefined, this.valueZ, { reuseXY: true,
       deform: part => this.mode.scope.has(part.id) && authoredPreviewPart(part) });
     return true;
   }
