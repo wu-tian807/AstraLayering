@@ -15,6 +15,7 @@ import { createCodexImageRoute, usesPatchedImageTool } from '../agents/codex-ima
 import { loadWorkflowEnvironment } from '../codex/environment.ts';
 import { AgentDispatcher } from '../agents/dispatcher.ts';
 import { fakeAppServer } from '../../part-layering/tests/fake-app-server.ts';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 
 async function setImages(directory: string, enabled: boolean, step = 'raster-layering/step02') {
   const path = join(directory, step, 'agent.json');
@@ -80,6 +81,7 @@ for (const model of ['codex-native', 'gpt-image-2.5-flare', 'gemini-nano-banana-
   test(`Codex ${model}: agent.json controls start/resume and closes custom image routes`, async t => {
     const knowledge = await temporaryKnowledge(t);
     await setImages(knowledge, true);
+    nodeExecutables(t);
     const server = await fakeAppServer(knowledge, [], 'completed', [], { finalText: 'done' });
     const settings = withCodex(loadWorkflowEnvironment({
       raster_step02_image_model: model,

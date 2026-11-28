@@ -120,7 +120,6 @@ for await (const line of createInterface({ input: process.stdin })) {
 `, 'utf8');
   await chmod(executable, 0o755);
   const session = new AgentDispatcher({ codexPathOverride: executable, cwd: f.directory }).createSession();
-  t.after(() => session.close());
   const threads: (string | null | undefined)[] = [];
   const drawing = { async run(task: AgentTask) {
     const result = await session.run(task);
@@ -130,8 +129,10 @@ for await (const line of createInterface({ input: process.stdin })) {
     await tool(task, 'preview_svg').execute({ path: inputs(task).outputSvg, mode: 'blend' }, signal);
     return result;
   } };
-  await drawGroupOutline(f, drawing);
-  await drawGroupOutline(f, drawing, { candidate: f.outline.path, round: 1 });
+  try {
+    await drawGroupOutline(f, drawing);
+    await drawGroupOutline(f, drawing, { candidate: f.outline.path, round: 1 });
+  } finally { await session.close(); }
   assert.deepEqual(threads, ['drawing-thread', 'drawing-thread']);
   assert.equal(findGroup((await GroupStore.open(f.directory)).snapshot(), 'band').note, '修正说明');
   const messages = (await readFile(requests, 'utf8')).trim().split('\n').map(line => JSON.parse(line));

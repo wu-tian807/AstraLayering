@@ -135,7 +135,7 @@ test('new clothing generation requires the base reference before calling an agen
   await assert.rejects(prepareReferences({ runName: f.runName }, f.steps), error => {
     assert.ok(error instanceof Error);
     assert.ok(error.message.includes(f.base));
-    assert.match(error.message, /part-layering --name/);
+    assert.match(error.message, /缺少上游产物（part-layering）/);
     return true;
   });
   assert.equal(f.calls.length, 0);

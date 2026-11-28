@@ -91,8 +91,9 @@ test('thumbnail endpoint preserves source and path protections, refreshes rewrit
   const broken = '<svg><path';
   await writeFile(file, broken);
   assert.equal(await (await fetch(url('legs.draft.svg'))).text(), broken);
-  await writeFile(join(base, 'private.svg'), source);
-  await symlink(join(base, 'private.svg'), join(task, 'leak.svg'));
-  assert.equal((await fetch(url('leak.svg'))).status, 400);
-  assert.equal((await fetch(url('../private.svg'))).status, 400);
+  await mkdir(join(base, 'private'));
+  await writeFile(join(base, 'private', 'image.svg'), source);
+  await symlink(join(base, 'private'), join(task, 'leak'), process.platform === 'win32' ? 'junction' : 'dir');
+  assert.equal((await fetch(url('leak/image.svg'))).status, 400);
+  assert.equal((await fetch(url('../private/image.svg'))).status, 400);
 });
