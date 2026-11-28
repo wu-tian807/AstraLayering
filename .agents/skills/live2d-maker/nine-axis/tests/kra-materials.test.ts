@@ -168,7 +168,7 @@ test('exports never reuse a cache from the old ancestor-projection contract', as
   assert.equal(calls, 2);
 });
 
-test('native KRA leaves and masks composite like Krita mergedimage', async t => {
+test('native KRA leaves and masks composite like Krita mergedimage', { timeout: 240_000 }, async t => {
   const executable = process.env.ASTRA_TEST_KRITA;
   if (!executable) { t.skip('set ASTRA_TEST_KRITA to run the native exporter'); return; }
   const root = await mkdtemp(join(tmpdir(), 'nine-native-composition-'));
@@ -186,7 +186,14 @@ test('native KRA leaves and masks composite like Krita mergedimage', async t => 
   input.doc.levels.push({ id: 'hair', includes: ['face', 'hair'] });
   input.doc.parts = [part('face/face_base', 'face/face_base', 1, 6), part('hair/bangs-b', 'hair/bangs', 12, 5),
     part('face/cheek', 'face/cheek', 4, 3), part('hair/bangs-a', 'hair/bangs', 8, 6)];
-  const krita = new SectionKrita({ section: join(root, 'native'), krita: executable });
+  // Real Krita tests run in separate workers; serialize them on a dedicated test slot
+  // so two cold Krita startups do not starve each other on 4-vCPU Windows CI runners.
+  const krita = new SectionKrita({
+    section: join(root, 'native'),
+    krita: executable,
+    env: { ...process.env, krita_max_instances: '1' },
+    slotsDirectory: join(tmpdir(), 'astra-test-krita-slots'),
+  });
   await krita.reserve();
   try {
     const materials = new KraMaterials(nativeMaterialExport(async () => krita));

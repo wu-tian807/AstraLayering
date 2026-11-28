@@ -10,9 +10,16 @@ import { submitJob } from '../krita/bridge/client.mjs';
 // Opt in with the native executable: this exercises real Qt timers and nested
 // event loops, including the guard's delayed cancellation, without artwork.
 test('native Krita: wait for progress, reject interactive dialogs, and quit with an unsaved document',
-  { skip: !process.env.ASTRA_TEST_KRITA, timeout: 180_000 }, async t => {
+  { skip: !process.env.ASTRA_TEST_KRITA, timeout: 240_000 }, async t => {
     const root = await mkdtemp(join(tmpdir(), 'krita-dialog-test-'));
-    const section = new SectionKrita({ section: root, krita: process.env.ASTRA_TEST_KRITA! });
+    // Share a dedicated 1-slot lock with other native Krita tests so separate test
+    // workers do not contend on cold Krita startup and shared Windows kritarc.
+    const section = new SectionKrita({
+      section: root,
+      krita: process.env.ASTRA_TEST_KRITA!,
+      env: { ...process.env, krita_max_instances: '1' },
+      slotsDirectory: join(tmpdir(), 'astra-test-krita-slots'),
+    });
     t.after(async () => { await section.release(); await rm(root, { recursive: true, force: true }); });
     await section.reserve(); await section.start();
     const run = async (name: string, source: string) => {
