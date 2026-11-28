@@ -8,7 +8,9 @@ const command = JSON.parse(readFileSync(join(cwd, 'package.json'), 'utf8')).scri
 if (typeof command !== 'string' || !command.startsWith('node --')) {
   throw new Error('Expected a Node test script in ' + join(cwd, 'package.json'));
 }
-const args = ['--test-force-exit', '--test-timeout=120000', ...command.slice(5).split(/\s+/)];
+const args = ['--test-timeout=120000', ...command.slice(5).split(/\s+/)];
+// Keep Linux workflow cleanup. Node 24 can hit a libuv assertion when forced to exit on Windows.
+if (process.platform === 'linux' && script === 'test') args.unshift('--test-force-exit');
 const child = spawn(process.execPath, args, { cwd, stdio: 'inherit' });
 child.on('error', error => { console.error(error); process.exitCode = 1; });
 child.on('exit', (code, signal) => { process.exitCode = signal ? 1 : (code ?? 1); });
