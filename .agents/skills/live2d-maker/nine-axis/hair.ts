@@ -8,7 +8,7 @@ import { angleScale, type AngleScale } from './angles.ts';
 import { buildContinuation, isHairNode, readUpstream, startContinuation, type AuthoredHead } from './continuation.ts';
 import { writeBuilt, type Built } from './head.ts';
 import { headMaterialSelection } from './materials.ts';
-import { bindKraDocument, type MaterialLoader } from './kra-materials.ts';
+import { bindKraDocument, checkNativeProtection, type MaterialBuilt, type MaterialLoader } from './kra-materials.ts';
 import { editableKra, modelDocument, withDocument } from './source.ts';
 import { kraContents, kraLayers } from '../shadow/delivery.ts';
 import { nodes } from '../shared/nine-axis-model.js';
@@ -39,7 +39,7 @@ export const completeFrontRound = (directory: string) => completeHairRound(direc
 
 /** Front/side preserve earlier rounds. Back coordinates the three head-hair
  * regions; remaining may coordinate all hair while protecting non-hair nodes. */
-export async function checkHairRound(before: Built, after: Built, round: HairRound) {
+export async function checkHairRound(before: MaterialBuilt, after: MaterialBuilt, round: HairRound) {
   const allowsPart=hairRoundAllows(round),label=hairRoundLabel(round)+'轮次';
   const allows=(node: Parameters<typeof ownsNode>[1],doc:Built['doc'])=>ownsNode(doc,node,hairPreviewScope(round));
   const current=round==='back'?isBackHair:allowsPart;
@@ -50,6 +50,7 @@ export async function checkHairRound(before: Built, after: Built, round: HairRou
       if(!after.doc.parts.some(p=>!p.context&&p.partId&&isHairId(p.partId)&&!p.shadow&&p.uuid===part.uuid))throw Error(`${label}尚未注册剩余 KRA 发片 ${part.uuid}`);
   } else if(!after.doc.parts.some(part=>!part.context&&!!part.partId&&current(part.partId)&&!part.shadow))throw Error(`${label}尚未注册制作发片`);
   const editableUuids=new Set(after.doc.parts.filter(part=>!part.context&&allows(part,after.doc)).map(part=>part.uuid));
+  checkNativeProtection(before, after, new Set([...editableUuids].filter(uuid => uuid !== undefined)));
   const isCurrent=(node: any)=>!node.context&&allows(node,before.doc)||node.context&&node.level==='hair'&&!!node.uuid&&editableUuids.has(node.uuid);
   // A single KRA layer can supply several independently cropped model parts.
   // Preserve each exact node identity before falling back to a layer binding.

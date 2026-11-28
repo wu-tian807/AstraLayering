@@ -446,6 +446,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
           const built = await nineMaterials.get(directory, url.searchParams.get('path') ?? '', url.searchParams.get('scene') === 'studio');
           json({ doc: built.doc, author: built.author, version: built.version, document: built.doc.source?.document, revision: built.sourceRevision,
             studioLayers: built.studioLayers,
+            paintStack: built.paintStack,
             textures: [...built.doc.parts, ...(built.studioLayers ?? [])].map((_, index) => './api/studio/nine-axis/texture?' + new URLSearchParams({ folder: directory, key: built.key, index: String(index) })) });
           return;
         }
@@ -507,7 +508,7 @@ export async function createWorkbench({ settingsPath = join(root, '.web/settings
       staticFiles['/flow-step-ui.js'] = 'flow-step-ui.js';
       staticFiles['/video-preview.js'] = 'video-preview.js';
       staticFiles['/step-paths.js'] = '../.agents/skills/live2d-maker/shared/step-paths.js';
-      for (const name of ['nine-axis-model.js', 'nine-axis-render.js', 'nine-axis-preview.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
+      for (const name of ['nine-axis-model.js', 'nine-axis-render.js', 'nine-axis-preview.js', 'nine-axis-warp.js']) staticFiles['/studio/' + name] = '../.agents/skills/live2d-maker/shared/' + name;
       for (const name of ['document-loader.js', 'document-worker.js', 'layer-panel.js', 'layer-model.js', 'surface-preview.js', 'surface-worker.js', 'surface-coverage.js', 'part-maps.js', 'harmonic-fill.js', 'projection-model.js', 'projection-panel.js', 'physics-model.js', 'physics-panel.js', 'physics-recipe.js', 'physics-renderer.js', 'physics-cases.js', 'nine-axis-panel.js']) staticFiles['/studio/' + name] = 'studio/' + name;
       if (!staticFiles[path]) { json({ error: 'Not found' }, 404); return; }
       const type = path.endsWith('.js') ? 'text/javascript' : path.endsWith('.css') ? 'text/css' : 'text/html';

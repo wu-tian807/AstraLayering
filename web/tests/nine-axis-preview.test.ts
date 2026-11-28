@@ -1,7 +1,28 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { readFile } from 'node:fs/promises';
 import { evaluatePoints, nineAxisCapabilities } from '../../.agents/skills/live2d-maker/shared/nine-axis-model.js';
 import { nextPreviewSelection, nineAxisPreviewModes } from '../../.agents/skills/live2d-maker/shared/nine-axis-preview.js';
+
+test('an unchanged workflow preview refresh redraws without refitting all endpoint poses', async t => {
+  let source = await readFile(new URL('../head-preview.js', import.meta.url), 'utf8');
+  for (const [from, to] of [
+    ['./studio/nine-axis-model.js', '../../.agents/skills/live2d-maker/shared/nine-axis-model.js'],
+    ['./studio/nine-axis-render.js', '../../.agents/skills/live2d-maker/shared/nine-axis-render.js'],
+    ['./studio/nine-axis-preview.js', '../../.agents/skills/live2d-maker/shared/nine-axis-preview.js'],
+    ['./head-motion.js', '../head-motion.js'],
+  ]) source = source.replace("'" + from + "'", JSON.stringify(new URL(to, import.meta.url).href));
+  const { HeadPreview } = await import('data:text/javascript,' + encodeURIComponent(source));
+  const preview = Object.create(HeadPreview.prototype), element = { dataset: {} as Record<string, string>, querySelectorAll: () => [], querySelector: () => null };
+  Object.assign(preview, { element, folder: 'fixture', epoch: 1, version: 'model:1', loadError: true });
+  let draws = 0;
+  preview.draw = () => draws++;
+  preview.configureMode = () => { throw Error('unexpected endpoint refit'); };
+  t.mock.method(globalThis, 'fetch', async () => new Response(JSON.stringify({ nineAxis: { available: true, path: 'model', version: 1 } })));
+  await preview.update(element, 'fixture');
+  assert.equal(draws, 1); assert.equal(preview.available, true); assert.equal(preview.loadError, false);
+  assert.equal(element.dataset.model, 'available'); assert.equal(preview.loading, null);
+});
 
 const rest = [[0, 0], [10, 0], [0, 10], [10, 10]];
 function fixture(): any {

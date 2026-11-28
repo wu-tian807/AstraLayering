@@ -14,7 +14,9 @@ import { ownsNode, withinPart, partVisible, type OwnershipScope } from './owners
 import { isHeadPitchStage, initializeHeadPitch, checkHeadPitch } from './head-pitch.ts';
 import { initializeHeadCorners, checkHeadCorners } from './head-corners.ts';
 
-const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>['texture','uuid','material','partId'].includes(key)?undefined:value));
+const geometryOnly=(value: any): any=>JSON.parse(JSON.stringify(value??null,(key,value)=>
+  ['texture','uuid','material','partId','opacity','blendMode','drawOrder'].includes(key) ? undefined
+    : key === 'parts' && Array.isArray(value) ? value.toSorted((a, b) => a.id.localeCompare(b.id)) : value));
 const hasKeys = (node: any, field: string) => Object.keys(node?.[field] ?? {}).some(key => key !== '0');
 
 export type PitchStage = 'up' | 'down';
@@ -111,8 +113,6 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
       if (JSON.stringify(geometryOnly(current)) !== JSON.stringify(geometryOnly(before))) throw Error(`${id}：${label}阶段不能改动已完成的脸部、五官、下颌、脖子或其他上游节点`);
     }
     for (const node of nodes(doc)) if (!original.has(node.id) && !horizontalNode(stage,node,doc)) throw Error(`${node.id}：新增节点不属于当前${label}部件`);
-    const inheritedOrder = upstream.parts.filter(part => !horizontalNode(stage,part,upstream)).map(part => part.id);
-    if (JSON.stringify(doc.parts.filter(part => inheritedOrder.includes(part.id)).map(part => part.id)) !== JSON.stringify(inheritedOrder)) throw Error(`${label}阶段不能改动已有脸部图层及其他上游节点的相对绘制顺序`);
   }
   for (const n of nodes(doc)) {
     const horizontalHair = horizontalStage(stage) && horizontalNode(stage,n,doc);
@@ -138,6 +138,15 @@ export function checkContinuation(value: unknown, upstream: HeadNineAxis & { axi
   return doc;
 }
 
+// Upstream already supplies its right-side geometry, including native asymmetry.
+// Mirror the jaw edits without republishing any unchanged upstream keyforms.
+function jawMirrorFor(upstream: HeadNineAxis, author: HeadNineAxis) {
+  const inherited = new Map(nodes(upstream).map(node => [node.id, node]));
+  const changed = new Set(nodes(author).filter(node =>
+    JSON.stringify(geometryOnly(node)) !== JSON.stringify(geometryOnly(inherited.get(node.id)))).map(node => node.id));
+  return (node: { id: string }, pair: { id: string }) => changed.has(node.id) || changed.has(pair.id);
+}
+
 export async function compileContinuation(directory: string, upstreamDirectory: string, value: AuthoredHead, stage: Stage, scale: AngleScale = angleScale(), materialize?: MaterialLoader, signal?: AbortSignal): Promise<Built> {
   const upstream = await readUpstream(upstreamDirectory);
   let author = value;
@@ -147,8 +156,10 @@ export async function compileContinuation(directory: string, upstreamDirectory: 
     if (document && materialize) author = await bindKraDocument(root, author) as AuthoredHead;
   }
   const checked = checkContinuation(author, upstream.doc, stage, scale);
-  const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) || isHeadPitchStage(stage) || stage === 'head-xy' ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY');
-  const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms') : mirrored;
+  const jawMirror = stage === 'jaw' ? jawMirrorFor(upstream.doc, checked) : undefined;
+  const mirrored = stage === 'up' || stage === 'down' || horizontalStage(stage) || isHeadPitchStage(stage) || stage === 'head-xy'
+    ? structuredClone(checked) : mirrorDocument(checked, checked.axis, 'keyformsXY', jawMirror);
+  const doc = stage === 'jaw' ? mirrorDocument(mirrored, checked.axis, 'keyforms', jawMirror) : mirrored;
   validateHeadNineAxis(doc); for (const n of nodes(doc)) checkWarpGeometry(n);
   if (materialize) {
     const built = await materialize(directory, { doc, textures: new Map() }, signal, false);

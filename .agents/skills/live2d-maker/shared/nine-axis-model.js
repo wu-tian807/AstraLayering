@@ -1,3 +1,5 @@
+import { warpBatch } from './nine-axis-warp.js';
+
 // Head nine-axis v2: artist-owned warp hierarchy, independent of draw order.
 // All grids are expressed in the undeformed canvas coordinate system. A node's
 // local shape is evaluated first, then carried through its parent and ancestors.
@@ -74,8 +76,7 @@ export function validateHeadNineAxis(doc) {
     if (p.role !== undefined && p.role !== 'mask') throw Error(p.id + '：未知角色 ' + p.role);
     if (p.shadow !== undefined) {
       const s = p.shadow;
-      if (!s || !['normal','multiply'].includes(s.blendMode) || !Number.isFinite(s.opacity) || s.opacity < 0 || s.opacity > 1)
-        throw Error(p.id + '：阴影需要 normal/multiply 混合模式与 0..1 不透明度');
+      if (!s) throw Error(p.id + '：阴影需要投射者和接收者');
       for (const key of ['casters','receivers']) if (!Array.isArray(s[key]) || !s[key].length || s[key].some(id => !partIds.has(id) || id === p.id))
         throw Error(p.id + '：阴影的投射者和接收者必须是已有贴图部件');
       if (s.casters.some(id => doc.parts.find(q => q.id === id).shadow)) throw Error(p.id + '：阴影不能作为另一阴影的投射者');
@@ -205,7 +206,13 @@ export const nodes = doc => [...doc.deformers, ...doc.parts];
 export function kraReferences(document) {
   const doc = structuredClone(document);
   const strip = value => {
-    for (const part of value.parts ?? []) if (part.uuid || part.material === 'transparent') delete part.texture;
+    for (const part of value.parts ?? []) if (part.uuid || part.material === 'transparent') {
+      delete part.texture;
+      delete part.opacity;
+      delete part.blendMode;
+      delete part.drawOrder;
+      if (part.shadow) part.shadow = { casters: part.shadow.casters, receivers: part.shadow.receivers };
+    }
     for (const axis of value.axisSources ?? []) strip(axis.doc);
   };
   strip(doc); return doc;
@@ -278,8 +285,67 @@ function preparedWarp(node, points) {
     const k = (j * (node.cols + 1) + i) * 2;
     if (points[k] !== Math.fround(x0 + (x1 - x0) * i / node.cols) || points[k + 1] !== Math.fround(y0 + (y1 - y0) * j / node.rows)) { identity = false; break; }
   }
-  return [node, points, identity];
+  if (identity) return [node, points, true];
+  // Pose-dependent displacement, including the same linear edge handles as
+  // warpPoint. Prepare it once, rather than subtracting the rest lattice and
+  // allocating interpolation closures for every rendered vertex.
+  const { cols, rows } = node, stride = (cols + 1) * 2;
+  const delta = new Float64Array(points.length);
+  for (let j = 0; j <= rows; j++) for (let i = 0; i <= cols; i++) {
+    const k = j * stride + i * 2;
+    delta[k] = points[k] - (x0 + (x1 - x0) * i / cols);
+    delta[k + 1] = points[k + 1] - (y0 + (y1 - y0) * j / rows);
+  }
+  const padded = new Float64Array((cols + 3) * (rows + 3) * 2);
+  for (let j = -1; j <= rows + 1; j++) for (let i = -1; i <= cols + 1; i++) {
+    const a = Math.max(0, Math.min(cols, i)), b = Math.max(0, Math.min(rows, j)), source = b * stride + a * 2;
+    const target = ((j + 1) * (cols + 3) + i + 1) * 2;
+    for (let k = 0; k < 2; k++) {
+      let q = delta[source + k];
+      if (i !== a) q += (i - a) * (a === 0 ? delta[source + 2 + k] - q : q - delta[source - 2 + k]);
+      if (j !== b) q += (j - b) * (b === 0 ? delta[source + stride + k] - delta[source + k] : delta[source + k] - delta[source - stride + k]);
+      padded[target + k] = q;
+    }
+  }
+  let curves;
+  if (node.interpolation === 'smooth') {
+    curves = new Float64Array(cols * (rows + 3) * 8);
+    for (let j = 0; j < rows + 3; j++) for (let i = 0; i < cols; i++) for (let k = 0; k < 2; k++) {
+      const source = (j * (cols + 3) + i) * 2 + k, target = (j * cols + i) * 8 + k * 4;
+      const a = padded[source], b = padded[source + 2], c = padded[source + 4], d = padded[source + 6];
+      curves[target] = b; curves[target + 1] = c - a;
+      curves[target + 2] = 2 * a - 5 * b + 4 * c - d;
+      curves[target + 3] = 3 * (b - c) + d - a;
+    }
+  }
+  return [node, points, false, padded, curves];
 }
+function carryWarp(warp, point) {
+  if (warp[2]) return;
+  const node = warp[0], data = warp[3], [x0, y0, x1, y1] = node.bbox, { cols, rows } = node;
+  const u = Math.max(0, Math.min(cols, (point[0] - x0) / (x1 - x0) * cols));
+  const v = Math.max(0, Math.min(rows, (point[1] - y0) / (y1 - y0) * rows));
+  const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v)), s = u - i, t = v - j;
+  const stride = (cols + 3) * 2;
+  if (node.interpolation === 'smooth') {
+    const curves = warp[4], start = (j * cols + i) * 8, step = cols * 8;
+    for (let k = 0; k < 2; k++) {
+      const a = start + k * 4, b = a + step, c = b + step, d = c + step;
+      point[k] += cubic(
+        curves[a] + .5 * s * (curves[a + 1] + s * (curves[a + 2] + s * curves[a + 3])),
+        curves[b] + .5 * s * (curves[b + 1] + s * (curves[b + 2] + s * curves[b + 3])),
+        curves[c] + .5 * s * (curves[c + 1] + s * (curves[c + 2] + s * curves[c + 3])),
+        curves[d] + .5 * s * (curves[d + 1] + s * (curves[d + 2] + s * curves[d + 3])), t);
+    }
+  } else {
+    const start = (j + 1) * stride + (i + 1) * 2;
+    for (let k = 0; k < 2; k++) {
+      const a = start + k, b = a + stride;
+      point[k] += (data[a] * (1 - s) + data[a + 2] * s) * (1 - t) + (data[b] * (1 - s) + data[b + 2] * s) * t;
+    }
+  }
+}
+const carryInto = (chain, point) => { for (let i = 0; i < chain.length; i++) carryWarp(chain[i], point); };
 function prepareNodes(x, y) {
   const cache = new Map();
   return node => {
@@ -296,8 +362,9 @@ function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.i
   return chain;
 }
 const carry = (chain, px, py) => {
-  for (const [node, points, identity] of chain) if (!identity) [px, py] = warpPoint(node, points, px, py);
-  return [px, py];
+  const point = [px, py];
+  carryInto(chain, point);
+  return point;
 };
 
 // One angle entry per protected source doc, not one Map/chain per vertex.
@@ -311,7 +378,7 @@ function sourceMapping(doc, x, y) {
   sourceMappings.set(doc, { x, y, parts });
   return parts;
 }
-function axisMapping(doc, node, x, y) {
+function axisChains(doc, node, x, y) {
   // Each original leaf enters its independent axis mapping once, before the
   // current author groups. Those groups act on the resulting canvas image.
   const partId = node.id;
@@ -321,6 +388,12 @@ function axisMapping(doc, node, x, y) {
   // New root-only artwork (e.g. a later jaw mask) has no original source map.
   // It follows its authored root chain once; never borrow the face's source T.
   if (!X && !Y) return;
+  return [X, Y];
+}
+function axisMapping(doc, node, x, y) {
+  const axes = axisChains(doc, node, x, y);
+  if (!axes) return;
+  const [X, Y] = axes;
   if (!X) return (px, py) => carry(Y, px, py);
   if (!Y) return (px, py) => carry(X, px, py);
   return (px, py) => {
@@ -352,90 +425,45 @@ export function headRollLimit(doc) {
   return doc?.headRoll ? doc.parameters?.find(p => p.id === 'ParamAngleZ')?.max ?? 0 : 0;
 }
 
-// The padded displacement lattice uses the same edge extrapolation as warpPoint.
-// Prepare it once per pose and share it between every part carried by this Warp.
-function displacementGrid(node, points) {
-  const { cols, rows } = node, [x0, y0, x1, y1] = node.bbox;
-  const stride = (cols + 3) * 2, data = new Float64Array(stride * (rows + 3));
-  const value = (i, j, k) => points[(j * (cols + 1) + i) * 2 + k] -
-    (k ? y0 + (y1 - y0) * j / rows : x0 + (x1 - x0) * i / cols);
-  for (let j = -1; j <= rows + 1; j++) for (let i = -1; i <= cols + 1; i++) {
-    const a = Math.max(0, Math.min(cols, i)), b = Math.max(0, Math.min(rows, j));
-    const index = (j + 1) * stride + (i + 1) * 2;
-    for (let k = 0; k < 2; k++) {
-      const center = value(a, b, k);
-      const dx = i < 0 ? center - value(1, b, k) : i > cols ? center - value(cols - 1, b, k) : 0;
-      const dy = j < 0 ? center - value(a, 1, k) : j > rows ? center - value(a, rows - 1, k) : 0;
-      data[index + k] = center + dx + dy;
-    }
-  }
-  return data;
+export function deformPoints(doc, node, samples, x, y, out = new Float32Array(samples.length)) {
+  const local = preparedWarp(node, keyformAt(node, x, y)), chain = parentChain(doc, node, x, y), axes = axisChains(doc, node, x, y);
+  return deformPrepared(local, chain, axes, samples, out);
 }
-function cubicRow(data, i, t) {
-  return cubic(data[i - 2], data[i], data[i + 2], data[i + 4], t);
-}
-function warpBatch(warp, points) {
-  const [node, form, identity] = warp;
-  if (identity) return;
-  const data = warp[3] ??= displacementGrid(node, form);
-  const [x0, y0, x1, y1] = node.bbox, { cols, rows } = node, stride = (cols + 3) * 2;
-  const smooth = node.interpolation === 'smooth';
-  for (let p = 0; p < points.length; p += 2) {
-    const u = Math.max(0, Math.min(cols, (points[p] - x0) / (x1 - x0) * cols));
-    const v = Math.max(0, Math.min(rows, (points[p + 1] - y0) / (y1 - y0) * rows));
-    const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v));
-    const s = u - i, t = v - j, start = (j + 1) * stride + (i + 1) * 2;
-    if (smooth) {
-      for (let k = 0; k < 2; k++) {
-        const o = start + k;
-        points[p + k] += cubic(cubicRow(data, o - stride, s), cubicRow(data, o, s),
-          cubicRow(data, o + stride, s), cubicRow(data, o + 2 * stride, s), t);
-      }
-    } else {
-      for (let k = 0; k < 2; k++) {
-        const o = start + k;
-        points[p + k] += (data[o] * (1 - s) + data[o + 2] * s) * (1 - t) +
-          (data[o + stride] * (1 - s) + data[o + stride + 2] * s) * t;
-      }
-    }
-  }
-}
-
-// A pose evaluator owns its prepared maps and scratch space. Recreate it after
-// editing the document; source snapshots are invalidated by validation.
+// One synchronous pose snapshot. Callers making edits create a fresh evaluator;
+// only protected independent source mappings persist between frames.
 export function createPointDeformer(doc, x, y) {
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y);
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y), chains = new Map();
   const sources = doc.axisSources && new Map(doc.axisSources.map(s => [s.axis, s.doc]));
   const X = x && sources ? sourceMapping(sources.get('x'), x, 0) : null;
   const Y = y && sources ? sourceMapping(sources.get(y > 0 ? 'up' : 'down'), 0, y) : null;
   const parts = sources ? new Set(doc.parts.map(p => p.id)) : null;
-  const chains = new Map();
-  let buffer = new Float64Array(0), sourceX = new Float64Array(0), sourceY = new Float64Array(0);
-  return (node, samples) => {
+  return (node, samples, out = new Float32Array(samples.length)) => {
     let chain = chains.get(node);
     if (!chain) { chain = parentChain(doc, node, x, y, byId, prepared); chains.set(node, chain); }
     const sourcePart = parts?.has(node.id);
-    const ax = sourcePart ? X?.get(node.id) : null, ay = sourcePart ? Y?.get(node.id) : null;
-    if (buffer.length < samples.length) buffer = new Float64Array(samples.length);
-    const points = buffer.subarray(0, samples.length); points.set(samples);
-    warpBatch(prepared(node), points);
-    if (ax && ay) {
-      if (sourceX.length < samples.length) {
-        sourceX = new Float64Array(samples.length); sourceY = new Float64Array(samples.length);
-      }
-      const a = sourceX.subarray(0, samples.length), b = sourceY.subarray(0, samples.length);
-      a.set(points); b.set(points);
-      for (const warp of ax) warpBatch(warp, a);
-      for (const warp of ay) warpBatch(warp, b);
-      for (let i = 0; i < points.length; i++) points[i] = a[i] + b[i] - points[i];
-    } else for (const warp of ax ?? ay ?? []) warpBatch(warp, points);
-    for (const warp of chain) warpBatch(warp, points);
-    return new Float32Array(points);
+    const ax = sourcePart ? X?.get(node.id) : undefined, ay = sourcePart ? Y?.get(node.id) : undefined;
+    return deformPrepared(prepared(node), chain, ax || ay ? [ax, ay] : undefined, samples, out);
   };
 }
-
-export function deformPoints(doc, node, samples, x, y) {
-  return createPointDeformer(doc, x, y)(node, samples);
+function deformPrepared(local, chain, axes, samples, out) {
+  // Bulk meshes keep the same f64 operations in a tight native loop. Tiny
+  // control grids avoid copying through the bulk scratch arena.
+  if (samples.length >= 256) return warpBatch(local, chain, axes, samples, out);
+  const point = [0, 0], other = [0, 0], X = axes?.[0], Y = axes?.[1];
+  for (let i = 0; i < samples.length; i += 2) {
+    point[0] = samples[i]; point[1] = samples[i + 1];
+    carryWarp(local, point);
+    if (axes) {
+      if (X && Y) {
+        const px = point[0], py = point[1]; other[0] = px; other[1] = py;
+        carryInto(X, point); carryInto(Y, other);
+        point[0] = point[0] + other[0] - px; point[1] = point[1] + other[1] - py;
+      } else carryInto(X ?? Y, point);
+    }
+    carryInto(chain, point);
+    out[i] = point[0]; out[i + 1] = point[1];
+  }
+  return out;
 }
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
   const samples = refine(lattice(node), node.cols, node.rows, subdivision);

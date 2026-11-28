@@ -26,28 +26,30 @@ export const headPitchPreviewScope = (direction: HeadPitchDirection) => ({
 
 /** Both authors get the same topology. Identity carriers follow native parents,
  * separating editable head leaves from fixed neck/body leaves when necessary. */
-export function initializeHeadPitch(upstream: HeadNineAxis & { axis: number }, stage: HeadPitchStage, scale = angleScale()): AuthoredHead {
+export function initializeHeadPitch(upstream: HeadNineAxis & { axis: number }, stage: HeadPitchStage, scale = angleScale(), saved?: HeadNineAxis): AuthoredHead {
   const doc = structuredClone(upstream) as AuthoredHead;
   doc.authoring = { stage };
   const range: [number, number] = stage === 'head-up' ? [0, scale.y[1]] : [scale.y[0], 0];
   doc.parameters = doc.parameters!.map(p => p.id === 'ParamAngleY' ? { ...angleParameter('ParamAngleY', '角度 Y', range), keys: [...new Set([range[0], 0, range[1]])] } : p);
-  return prepareHeadControls(doc, 'pitch', '头部上下承载') as AuthoredHead;
+  return prepareHeadControls(doc, 'pitch', '头部上下承载', saved) as AuthoredHead;
 }
 
 /** Direction authors change only their Y half-axis on the prepared graph.
  * This lets the program merge exact keyforms without resampling or double motion. */
 export function checkHeadPitch(value: unknown, upstream: HeadNineAxis & { axis: number }, stage: HeadPitchStage, scale = angleScale()): AuthoredHead {
-  const doc = kraReferences(validateHeadNineAxis(value)) as AuthoredHead, baseline = kraReferences(initializeHeadPitch(upstream, stage, scale));
+  const doc = kraReferences(validateHeadNineAxis(value)) as AuthoredHead, baseline = kraReferences(initializeHeadPitch(upstream, stage, scale, doc));
   const same = (a: unknown, b: unknown, label: string) => { if (!isDeepStrictEqual(a, b)) throw Error(label); };
   same(doc.authoring?.stage, stage, '头部上下作者阶段不匹配');
   for (const field of ['source', 'canvas', 'view', 'axis', 'axisSources', 'levels', 'parameters'] as const)
     same(doc[field], baseline[field], `头部上下不能替换 ${field}`);
-  same(doc.parts.map(p => p.id), baseline.parts.map(p => p.id), '头部上下保留已有图层和顺序');
+  same(doc.parts.map(p => p.id).sort(), baseline.parts.map(p => p.id).sort(), '头部上下保留已有图层');
   same(doc.deformers.map(p => p.id), baseline.deformers.map(p => p.id), '请使用程序已准备的头部上下承载');
+  const inherited = new Set(nodes(upstream).map(node => node.id));
   const authored = new Map(nodes(doc).map(n => [n.id, n]));
   for (const before of nodes(baseline)) {
     const after = authored.get(before.id)!;
     checkWarpGeometry(after);
+    if (before.mirror && after.mirror === undefined && !inherited.has(before.id)) after.mirror = before.mirror;
     const { keyformsY: _a, ...a } = after, { keyformsY: _b, ...b } = before;
     same(a, b, `${before.id}：本阶段仅编辑本方向 Y 关键形，保留原有结构、绑定和左右`);
     if (!ownsNode(baseline, before, headPitchScope)) {
@@ -77,7 +79,11 @@ export function checkHeadPitchDelivery(doc: HeadNineAxis, direction: HeadPitchDi
 export async function seedHeadPitch(directory: string, upstreamDirectory: string, root: string, direction: HeadPitchDirection, scale = angleScale()) {
   const { doc } = await readUpstream(upstreamDirectory), document = modelDocument(root, doc);
   if (!document) throw Error('头部上下缺少上游 KRA');
-  const initial = initializeHeadPitch(doc, headPitchStage(direction), scale);
+  const sibling = direction === 'up' ? 'down' : 'up';
+  const saved = await readUpstream(join(dirname(directory), sibling)).catch(error => {
+    if (error.code !== 'ENOENT') throw error;
+  });
+  const initial = initializeHeadPitch(doc, headPitchStage(direction), scale, saved?.doc);
   await mkdir(directory, { recursive: true });
   await writeFile(join(directory, authorFile(headPitchStage(direction))), JSON.stringify(kraReferences(initial)) + '\n', { flag: 'wx' });
   await writeFile(join(directory, 'source.json'), JSON.stringify({ version: 1, sourceDocument: toTaskPath(root, document), upstreamModel: toTaskPath(root, join(upstreamDirectory, 'deformers.json')) }) + '\n');
@@ -94,7 +100,7 @@ export async function mergeHeadPitch(directory: string, upstreamDirectory: strin
     checkHeadPitch(doc, upstream, headPitchStage(direction), scale); checkHeadPitchDelivery(doc, direction, scale);
     return doc;
   }));
-  const merged = initializeHeadPitch(upstream, 'head-up', scale);
+  const merged = initializeHeadPitch(upstream, 'head-up', scale, authors[0]);
   merged.authoring = { stage: 'head-pitch' };
   merged.parameters = merged.parameters!.map(p => p.id === 'ParamAngleY' ? angleParameter('ParamAngleY', '角度 Y', scale.y) : p);
   const indexes = authors.map(doc => new Map(nodes(doc).map(n => [n.id, n])));

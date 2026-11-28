@@ -4,10 +4,13 @@ import assert from 'node:assert/strict';
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { createHash } from 'node:crypto';
 import { zipSync, strToU8 } from 'fflate';
 import sharp from 'sharp';
-import { bindKraDocument, KraMaterials, type MaterialExport } from '../kra-materials.ts';
-import { kraContents } from '../../shadow/delivery.ts';
+import { bindKraDocument, checkNativeProtection, KraMaterials, KRA_MATERIAL_CACHE_VERSION, nativeMaterialExport, type MaterialExport, type PaintStack } from '../kra-materials.ts';
+import { kraContents, kraLayers } from '../../shadow/delivery.ts';
+import { SectionKrita } from '../../shared/krita/section-krita.ts';
+import { createNineAxisViewTool } from '../view-tool.ts';
 import { modelVersion } from '../source.ts';
 import type { Built } from '../head.ts';
 
@@ -82,6 +85,138 @@ test('jaw owns the edited KRA and retains geometry provenance; missing UUID neve
   assert.equal(result.doc.parts.length,1,'delivery exports do not persist static preview context');
   input.doc.parts[0].uuid='missing';
   await assert.rejects(materials.resolve(root,directory,input),Error);
+});
+
+test('saved KRA order reaches the shared stack without rewriting arrays, including same-UUID slices', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-studio-foreground-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const directory = join(root, 'nine-axis/step08_hair');
+  const input = materialFixture(), kra = join(root, input.doc.source!.document);
+  const bodyUuid = '33333333-3333-3333-3333-333333333333';
+  const backUuid = '44444444-4444-4444-4444-444444444444';
+  const paint = (id: string, name: string) => `<layer uuid="{${id}}" name="${name}" nodetype="paintlayer" visible="1"/>`;
+  const front = paint(hairUuid, 'hair/front_long_hair'), face = paint(faceUuid, 'face/face_base');
+  const body = paint(bodyUuid, 'dress_bodice'), back = paint(backUuid, 'hair/back_hair');
+  await mkdir(directory, { recursive: true });
+  await mkdir(join(kra, '..'), { recursive: true });
+  const merged = kraContents(await kraFixture('#f00')).merged;
+  const saveOrder = (content: string) => writeFile(kra, zipSync({
+    'maindoc.xml': strToU8(`<DOC><IMAGE><layers>${content}</layers></IMAGE></DOC>`), 'mergedimage.png': merged }));
+  await saveOrder(front + face + body + back);
+  const head = input.doc.parts[0];
+  input.doc.parts = [
+    { ...structuredClone(head), id: 'hair/back_hair', uuid: backUuid, texture: 'layers/back.png', level: 'hair' },
+    { ...structuredClone(head), id: 'hair/front_long_hair', uuid: hairUuid, texture: 'layers/front.png', level: 'hair' },
+    { ...structuredClone(head), id: 'hair/front_long_hair/a', uuid: hairUuid, texture: 'layers/front.png', level: 'hair' },
+    { ...structuredClone(head), id: 'neck', uuid: undefined, material: 'transparent', texture: undefined },
+    head,
+  ];
+  input.doc.levels.push({ id: 'hair', includes: ['face', 'hair'] });
+
+  const materials = new KraMaterials(fixtureExport);
+  const built = await materials.resolve(root, directory, input, undefined, 'studio');
+  assert.deepEqual(built.paintStack!.map(layer => layer.id), [backUuid, bodyUuid, faceUuid, hairUuid]);
+  const frontSlot = built.paintStack!.at(-1)!;
+  assert.ok('parts' in frontSlot);
+  assert.deepEqual(frontSlot.parts, ['hair/front_long_hair', 'hair/front_long_hair/a']);
+  assert.ok(built.doc.parts.some(part => part.id === 'neck'));
+  assert.ok(built.paintStack!.every(layer => !('parts' in layer) || !layer.parts.includes('neck')));
+  assert.deepEqual(built.doc.parts.map(part => part.id), input.doc.parts.map(part => part.id));
+  await saveOrder(body + back + front + face);
+  const next = await materials.resolve(root, directory, input, undefined, 'studio');
+  const preview = await materials.resolve(root, directory, input);
+  assert.notEqual(next.sourceRevision, built.sourceRevision);
+  assert.deepEqual(next.paintStack!.map(layer => layer.id), [faceUuid, hairUuid, backUuid, bodyUuid]);
+  assert.deepEqual(preview.paintStack!.map(layer => layer.id), [faceUuid, hairUuid, backUuid]);
+  await saveOrder(body + back + front.replace('visible="1"', 'visible="0"') + face);
+  const hidden = await materials.resolve(root, directory, input);
+  assert.equal(hidden.paintStack!.find(layer => layer.id === hairUuid)?.visible, false);
+  assert.ok(hidden.doc.parts.some(part => part.uuid === hairUuid), 'a hidden KRA layer still binds its geometry');
+});
+
+test('KRA protection allows an owned layer to move across fixed layers, preserving fixed paint and order', () => {
+  const built = materialFixture(), digests = { face: 'f', hair: 'h', body: 'b' };
+  const before = { ...built, nativeProtection: { order: ['face', 'hair', 'body'], digests } };
+  const after = (order: string[], paints = digests) => ({ ...built, nativeProtection: { order, digests: paints } });
+  const editable = new Set(['hair']);
+  assert.doesNotThrow(() => checkNativeProtection(before, after(['hair', 'face', 'body'], { ...digests, hair: 'new' }), editable));
+  assert.throws(() => checkNativeProtection(before, after(['body', 'face', 'hair']), editable), /相对顺序/);
+  assert.throws(() => checkNativeProtection(before, after(['face', 'hair', 'body'], { ...digests, body: 'new' }), editable), /原始像素/);
+});
+
+test('exports never reuse a cache from the old ancestor-projection contract', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-cache-revision-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const input = materialFixture(), kra = join(root, input.doc.source!.document);
+  const bytes = Buffer.from(await kraFixture('#f00'));
+  await mkdir(join(kra, '..'), { recursive: true });
+  await writeFile(kra, bytes);
+  const sha = (value: string | Buffer) => createHash('sha256').update(value).digest('hex');
+  const cacheRoot = join(root, '.cache/nine-axis-materials');
+  let calls = 0;
+  const materials = new KraMaterials(async (document, dir, rows, shadows) => {
+    calls++;
+    const previous = join(cacheRoot, sha(JSON.stringify({ version: KRA_MATERIAL_CACHE_VERSION - 1, revision: sha(bytes), rows, shadows })));
+    await mkdir(previous, { recursive: true });
+    const stale = await fixtureExport(document, previous, rows, shadows);
+    await writeFile(join(previous, 'materials.json'), JSON.stringify(stale));
+    return fixtureExport(document, dir, rows, shadows);
+  });
+  const first = await materials.resolve(root, root, input, undefined, false);
+  await rm(join(first.textures.get('layers/face.png')!, '..'), { recursive: true, force: true });
+  await materials.resolve(root, root, input, undefined, false);
+  assert.equal(calls, 2);
+});
+
+test('native KRA leaves and masks composite like Krita mergedimage', { timeout: 240_000 }, async t => {
+  const executable = process.env.ASTRA_TEST_KRITA;
+  if (!executable) { t.skip('set ASTRA_TEST_KRITA to run the native exporter'); return; }
+  const root = await mkdtemp(join(tmpdir(), 'nine-native-composition-'));
+  t.after(() => rm(root, { recursive: true, force: true, maxRetries: 3 }));
+  const file = join(root, 'fixture.kra'), bytes = await readFile(new URL('./fixtures/paint-stack.kra', import.meta.url));
+  await writeFile(file, bytes);
+  const reference = kraContents(bytes), layers = kraLayers(reference.xml);
+  const byName = new Map([...layers].map(([id, layer]) => [layer.name, id]));
+  const part = (id: string, name: string, x: number, w: number) => ({
+    ...structuredClone(materialFixture().doc.parts[0]), id, uuid: byName.get(name), texture: undefined,
+    textureBounds: [x, 2, w, 12], bbox: [x, 2, x + w, 14], keyforms: { '0': [[x, 2], [x + w, 2], [x, 14], [x + w, 14]] },
+  });
+  const input = materialFixture();
+  input.doc.canvas = [32, 16]; input.doc.source = { document: 'fixture.kra' };
+  input.doc.levels.push({ id: 'hair', includes: ['face', 'hair'] });
+  input.doc.parts = [part('face/face_base', 'face/face_base', 1, 6), part('hair/bangs-b', 'hair/bangs', 12, 5),
+    part('face/cheek', 'face/cheek', 4, 3), part('hair/bangs-a', 'hair/bangs', 8, 6)];
+  // Real Krita tests run in separate workers; serialize them on a dedicated test slot
+  // so two cold Krita startups do not starve each other on 4-vCPU Windows CI runners.
+  const krita = new SectionKrita({
+    section: join(root, 'native'),
+    krita: executable,
+    env: { ...process.env, krita_max_instances: '1' },
+    slotsDirectory: join(tmpdir(), 'astra-test-krita-slots'),
+  });
+  await krita.reserve();
+  try {
+    const materials = new KraMaterials(nativeMaterialExport(async () => krita));
+    const built = await materials.resolve(root, root, input, undefined, 'studio', true);
+    const signal = new AbortController().signal, options = { crop: [0, 0, 32, 16], level: 'hair' };
+    const view = async (paintStack: PaintStack) => {
+      const tool = createNineAxisViewTool(root, join(root, 'observations'), async () => ({ ...built, paintStack }));
+      const result = await tool.execute(options, signal);
+      const item = result.contentItems[0];
+      assert.ok(item.type === 'inputText');
+      return sharp(JSON.parse(item.text).savedPath).removeAlpha().raw().toBuffer();
+    };
+    const [actual, checker, expected] = await Promise.all([
+      view(built.paintStack!), view([]), sharp(reference.merged).ensureAlpha().raw().toBuffer(),
+    ]);
+    for (const x of [2, 5, 9, 12, 13, 16, 21, 24, 28, 30]) {
+      const i = 8 * 32 + x, alpha = expected[i * 4 + 3] / 255;
+      for (let c = 0; c < 3; c++) {
+        const rendered = actual[i * 3 + c], native = expected[i * 4 + c] * alpha + checker[i * 3 + c] * (1 - alpha);
+        assert.ok(Math.abs(rendered - native) <= 2, `x=${x} channel=${c}: ${rendered} vs Krita ${native}`);
+      }
+    }
+  } finally { await krita.release(); }
 });
 
 test('fixed face branches cannot rebind KRA layers while preserving stale PNGs', async t => {

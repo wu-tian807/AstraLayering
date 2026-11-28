@@ -12,7 +12,7 @@ import { checkAxisSource } from './axis-groups.ts';
 import { bindKraDocument, kraCatalog, type MaterialLoader } from './kra-materials.ts';
 import { checkOwnedEdit, nodeOwners, ownsNode, previewAvailability, type OwnershipScope } from './ownership.ts';
 import { isHeadPitchStage } from './head-pitch.ts';
-import { headCornerControlIds, headCornerPoses } from './head-corners.ts';
+import { checkHeadCorners, headCornerControlIds, headCornerPoses } from './head-corners.ts';
 
 export type EditScope = OwnershipScope;
 export function createContinuationEditTool(directory: string, upstreamDirectory: string, stage: Stage, scale: AngleScale = angleScale(), taskRoot = dirname(dirname(directory)), materialize?: MaterialLoader, scope?: EditScope): FunctionTool {
@@ -24,18 +24,21 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     let text = '', doc: AuthoredHead;
     try { text = await readFile(path, 'utf8'); doc = JSON.parse(text); }
     catch (error) { if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error; doc = startContinuation(upstream.doc, stage, scale); }
-    if (args.revision !== undefined && args.revision !== sha256(text)) throw Error('九轴数据已变化，请读取最新 revision');
     if (args.bindings !== undefined && stage !== 'jaw' && stage !== 'hair' && stage !== 'accessories') throw Error('本阶段使用固定 KRA 导出素材，不能更换图层绑定');
     const catalog=materialize?await kraCatalog(taskRoot, doc):undefined;
+    const revisionFor = (author: string) => sha256(catalog ? JSON.stringify([author, catalog.revision]) : author);
+    if (args.revision !== undefined && args.revision !== revisionFor(text)) throw Error('九轴数据或 KRA 已变化，请读取最新 revision');
     if (materialize) doc = kraReferences(await bindKraDocument(taskRoot, doc)) as AuthoredHead;
+    if (stage === 'head-xy') doc = checkHeadCorners(doc, upstream.doc, scale);
     const before = structuredClone(doc);
     const cornerControls = stage === 'head-xy' ? headCornerControlIds(upstream.doc, doc) : undefined;
+    const pointActions = ['points', 'drag', 'transform'];
     if (args.operations) {
       const operations = structuredClone(args.operations);
       if (Array.isArray(operations)) for (const op of operations) {
-        if (isHeadPitchStage(stage) && !['points', 'drag', 'transform'].includes(op?.action)) throw Error('本阶段已准备头部承载，请编辑节点的本方向关键形');
-        if (cornerControls && (!['points', 'drag', 'transform'].includes(op?.action) || !cornerControls.has(op?.id))) throw Error('请编辑程序准备的斜角修正承载');
-        if (['points','drag','transform'].includes(op?.action)) {
+        if (isHeadPitchStage(stage) && !pointActions.includes(op?.action)) throw Error('本阶段已准备头部承载，请编辑节点的本方向关键形');
+        if (cornerControls && op?.action !== 'mirror' && (!pointActions.includes(op?.action) || !cornerControls.has(op?.id))) throw Error('请编辑程序准备的斜角修正承载');
+        if (pointActions.includes(op?.action)) {
           const x = op.x ?? 0, y = op.y ?? 0;
           if (isHeadPitchStage(stage) && (x !== 0 || !Number.isFinite(y) || (stage === 'head-up' ? y <= 0 || y > scale.y[1] : y >= 0 || y < scale.y[0]))) throw Error('头部上下只编辑 X=0 的本方向 Y 关键形及中间姿态');
           if (cornerControls && (!Number.isFinite(x) || !Number.isFinite(y) || !x || !y || x < scale.x[0] || x > scale.x[1] || y < scale.y[0] || y > scale.y[1])) throw Error('完整头部斜角只编辑四角及中间组合，保留单轴');
@@ -46,14 +49,16 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
         }
         if (op?.action === 'add_part' && op.part) {
           if(op.part.texture&&!op.part.uuid&&op.part.material!=='transparent')op.part.texture=stepTexture(directory,taskRoot,op.part.id,op.part.texture);
-          if(op.part.shadow&&catalog){
-            const layer=catalog.layers.find(layer=>layer.uuid===op.part.uuid?.replace(/[{}]/g,'').toLowerCase());
-            if(!layer)throw Error('绑定的 KRA 图层不存在');
-            op.part.shadow={...op.part.shadow,blendMode:layer.blendMode,opacity:layer.opacity};
-          }
         }
       }
-      doc = editNineAxis(doc, operations) as AuthoredHead;
+      doc = editNineAxis(doc, operations, (current, target, source, x, y) => {
+        if (!cornerControls && stage !== 'hair' && stage !== 'accessories') throw Error('当前步骤由既有流程处理左右形变');
+        if (x > scale.x[1] || -x < scale.x[0] ||
+            (cornerControls ? !y || y < scale.y[0] || y > scale.y[1] : y !== 0)) throw Error('mirror 超出本阶段可编辑角度');
+        if (cornerControls && [target, source].some(node => !cornerControls.has(node.id))) throw Error('请镜像程序准备的斜角修正承载');
+        if (scope && [target, source].some(node => !ownsNode(current, node, scope)))
+          throw Error(`${scope.label}：不能镜像范围外的节点`);
+      }) as AuthoredHead;
     }
     if (args.bindings !== undefined) {
       if (!Array.isArray(args.bindings)) throw Error('bindings 须为图层绑定数组');
@@ -77,6 +82,8 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
     }
     if (stage === 'up' || stage === 'down') await checkAxisSource(upstreamDirectory, built);
     signal.throwIfAborted();
+    if (catalog && (args.operations || args.bindings || args.notes !== undefined) &&
+        (await kraCatalog(taskRoot, doc)).revision !== catalog.revision) throw Error('KRA 在编辑期间变化，请重试');
     if (!text || args.operations || args.bindings || args.notes !== undefined || JSON.stringify(JSON.parse(text).source) !== JSON.stringify(doc.source)) {
       const current = await readFile(path, 'utf8').catch(error => { if (error.code === 'ENOENT') return ''; throw error; });
       if (current !== text) throw Error('九轴数据在编辑期间变化，请重试');
@@ -84,12 +91,12 @@ export function createContinuationEditTool(directory: string, upstreamDirectory:
       text = JSON.stringify(kraReferences(doc)) + '\n'; await writeFile(temporary, text); await rename(temporary, path);
     }
     await writeBuilt(directory, built);
-    return textResult({ revision: sha256(text), source: path, document: built.doc.source?.document, stage,
+    return textResult({ revision: revisionFor(text), source: path, document: built.doc.source?.document, stage,
       ...(isHeadPitchStage(stage)?{operations:['points','drag','transform'],editableAxis:'Y',editableRange:stage==='head-up'?[0,scale.y[1]]:[scale.y[0],0]}:{}),
-      ...(cornerControls?{operations:['points','drag','transform'],editableAxis:'XY',corners:headCornerPoses(scale)}:{}),
+      ...(cornerControls?{operations:[...pointActions,'mirror'],editableAxis:'XY',corners:headCornerPoses(scale)}:{}),
       ...(catalog&&!args.operations&&!args.bindings?{materials:catalog}:{}), nodes: nodes(built.doc as unknown as HeadNineAxis).map(n => ({
       id:n.id, kind:doc.deformers.some(p=>p.id===n.id)?'warp':'part', parent:n.parent??null, mirror:n.mirror??null,
-      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:cornerControls?cornerControls.has(n.id):ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds,drawOrder:built.doc.parts.findIndex(p=>p.id===n.id)}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
+      bbox:n.bbox, cols:n.cols, rows:n.rows, ...(scope?{owners:[...nodeOwners(built.doc,n)],editable:cornerControls?cornerControls.has(n.id):ownsNode(built.doc,n,scope),...(scope.includes?{preview:previewAvailability(built.doc,n,scope.includes)}:{})}:{}), ...('textureBounds' in n?{textureBounds:n.textureBounds}:{}), keys:Object.keys(n.keyforms), keysY:Object.keys(n.keyformsY??{}), keysXY:Object.keys(n.keyformsXY??{}),
       ...built.doc.parts.filter(p => p.id === n.id).map(p => ({ uuid: p.uuid, partId: p.partId, material: p.material, ...(p.shadow?{shadow:p.shadow}:{}) }))[0],
     })) });
   } };

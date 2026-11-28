@@ -1,4 +1,4 @@
-import { nodes, lattice, keyformAt, evaluatePoints, parentPoint, reparent, validateHeadNineAxis, checkWarpGeometry, dragKeyform } from './nine-axis-model.js';
+import { nodes, lattice, keyformAt, evaluatePoints, parentPoint, warpPoint, reparent, validateHeadNineAxis, checkWarpGeometry, dragKeyform } from './nine-axis-model.js';
 
 const pairs = a => Array.from({ length: a.length / 2 }, (_, i) => [a[i * 2], a[i * 2 + 1]]);
 const number = (v, name) => { if (typeof v !== 'number' || !Number.isFinite(v)) throw Error(name + ' 须为有限数字'); return v; };
@@ -27,7 +27,7 @@ export function initializeKeyforms(node, poses) {
 
 // Registration and parenting do not author poses. Seed an interpolation range
 // only when an operation actually edits that axis on this node.
-function ensureKey(doc, n, x = 0, y = 0) {
+export function initializeEditKeyform(doc, n, x = 0, y = 0) {
   number(x, 'x'); number(y, 'y');
   const ends = (parameter, value) => {
     if (!value) return [];
@@ -42,9 +42,46 @@ function ensureKey(doc, n, x = 0, y = 0) {
   return formKey(x,y);
 }
 
+function mirror(doc, op, get, check) {
+  if (!Array.isArray(op.targets) || !op.targets.length) throw Error('mirror 需要 targets');
+  const axis = number(doc.axis, '中轴'), y = number(op.y ?? 0, 'y');
+  const angle = op.x === undefined ? undefined : Math.abs(number(op.x, 'x'));
+  if (angle === 0) throw Error('mirror 需要非零 x');
+  const source = structuredClone(doc), byId = new Map(nodes(source).map(n => [n.id, n]));
+  const depth = node => {
+    const seen = new Set();
+    for (let parent = node.parent; parent; parent = get(parent).parent) {
+      if (seen.has(parent)) throw Error('变形器父子关系存在循环');
+      seen.add(parent);
+    }
+    return seen.size;
+  };
+  const targets = [...new Set(op.targets)].map(get).sort((a, b) => depth(a) - depth(b));
+  for (const n of targets) {
+    const paired = n.mirror ?? n.id.replace(/(^|[/_.:-])(left|right)(?=$|[/_.:-])/g,
+      (_, lead, side) => lead + (side === 'left' ? 'right' : 'left'));
+    const pair = byId.get(paired) ?? byId.get(n.id);
+    const leftKeys = angle === undefined ? Object.keys((y ? pair.keyformsXY : pair.keyforms) ?? {})
+      .map(key => key.split(',').map(Number)).filter(([x, keyY = 0]) => x < 0 && keyY === y).map(([x]) => x) : [-angle];
+    if (!leftKeys.length) throw Error(n.id + '：没有对应的左向关键形，请指定 x');
+    for (const x of leftKeys) {
+      check?.(doc, n, pair, -x, y);
+      const left = keyformAt(pair, x, y), [field, key] = formKey(-x, y);
+      // New intermediate intersections must be reachable on both axes.
+      initializeKeyforms(n, y ? [[-x, 0], [0, y], [-x, y]] : [[-x, 0]]);
+      if (n.parameterInterpolation?.x === 'ellipse' && Object.keys(n.keyforms).length !== 3) n.parameterInterpolation.x = 'linear';
+      n[field][key] = n.keyforms['0'].map(([px, py]) => {
+        const local = warpPoint(pair, left, 2 * axis - px, py);
+        const [mx, my] = parentPoint(source, pair, x, y, ...local);
+        return parentPoint(doc, n, -x, y, 2 * axis - mx, my, true);
+      });
+    }
+  }
+}
+
 // The author chooses all targets and hierarchy. No anatomical group is inferred.
 // A batch is applied to a clone and validated before the caller writes anything.
-export function editNineAxis(document, operations) {
+export function editNineAxis(document, operations, checkMirror) {
   if (!Array.isArray(operations) || !operations.length) throw Error('operations 须为非空数组');
   const doc = structuredClone(document), get = id => { const n = nodes(doc).find(q => q.id === id); if (!n) throw Error('部件或变形器不存在：' + id); return n; };
   for (const op of operations) {
@@ -53,11 +90,8 @@ export function editNineAxis(document, operations) {
       const p = op.part;
       if (!p || typeof p.id !== 'string' || !p.id || nodes(doc).some(n => n.id === p.id)) throw Error('新部件 id 无效或重复');
       const n = { ...grid(p.id, p.bbox, p.cols ?? 4, p.rows ?? 4), textureBounds: [p.bbox[0],p.bbox[1],p.bbox[2]-p.bbox[0],p.bbox[3]-p.bbox[1]], ...p, level: p.level ?? 'face' };
-      if (op.before !== undefined && op.after !== undefined) throw Error('before 与 after 只能指定一个');
-      const anchor = op.before ?? op.after;
-      const at = anchor === undefined ? doc.parts.length : doc.parts.findIndex(q => q.id === anchor);
-      if (at < 0) throw Error('绘制顺序参照部件不存在：' + anchor);
-      doc.parts.splice(at + (op.after === undefined ? 0 : 1), 0, n);
+      if (op.before !== undefined || op.after !== undefined) throw Error('绘制顺序由已保存的 KRA 决定，请在 Krita 调整图层');
+      doc.parts.push(n);
     } else if (op.action === 'create_warp') {
       if (typeof op.id !== 'string' || !op.id || nodes(doc).some(n => n.id === op.id)) throw Error('新变形器 id 无效或重复');
       const targets = op.targets ?? [];
@@ -83,6 +117,8 @@ export function editNineAxis(document, operations) {
       const [a,b]=op.targets.map(get);
       for (const n of [a,b]) if(n.mirror && get(n.mirror).mirror===n.id) delete get(n.mirror).mirror;
       a.mirror=b.id;b.mirror=a.id;
+    } else if (op.action === 'mirror') {
+      mirror(doc, op, get, checkMirror);
     } else if (op.action === 'interpolation') {
       const n = get(op.id); if (op.spatial !== undefined) n.interpolation = op.spatial;
       if (op.x !== undefined) n.parameterInterpolation = { ...n.parameterInterpolation, x: op.x };
@@ -90,7 +126,7 @@ export function editNineAxis(document, operations) {
       const n = doc.parts.find(p => p.id === op.id); if (!n) throw Error('裁切对象须为贴图部件');
       if (op.by === null) delete n.clip; else n.clip = { by: op.by, ...(op.invert ? { invert: true } : {}) };
     } else if (['points', 'drag', 'transform'].includes(op.action)) {
-      const n = get(op.id), x = op.x ?? 0, y = op.y ?? 0, [field, key] = ensureKey(doc, n, x, y);
+      const n = get(op.id), x = op.x ?? 0, y = op.y ?? 0, [field, key] = initializeEditKeyform(doc, n, x, y);
       let points = pairs(evaluatePoints(doc, n, x, y));
       if (op.action === 'points') {
         if (!Array.isArray(op.points) || !op.points.length) throw Error('points 须为非空的 {row,col,to} 数组');

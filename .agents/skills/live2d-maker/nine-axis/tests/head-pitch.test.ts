@@ -11,6 +11,7 @@ import { editNineAxis } from '../../shared/nine-axis-edit.js';
 import { initializeHeadPitch, checkHeadPitch, checkHeadPitchDelivery, headPitchDirections, headPitchStage, headPitchAngle, seedHeadPitch, mergeHeadPitch, headPitchScope, type HeadPitchDirection } from '../head-pitch.ts';
 import { createContinuationEditTool } from '../continuation-edit-tool.ts';
 import { runWorkflow, createFitHead } from '../run.ts';
+import { checkHeadCorners, initializeHeadCorners } from '../head-corners.ts';
 import { loadWorkflowEnvironment } from '../../shared/codex/environment.ts';
 import { useKnowledge, defaultKnowledgeDirectory } from '../../shared/knowledge.ts';
 import { stepDeliveries } from '../../shared/step-deliveries.ts';
@@ -59,6 +60,31 @@ test('whole-head direction authors keep identical prepared topology and protect 
   assert.throws(() => checkHeadPitch(wrongNeck, base, 'head-up', scale), Error);
 });
 
+test('pitch and corner controls cap dense parents at 4×4 without altering upstream poses', () => {
+  const upstream = source();
+  for (const [cols, rows] of [[4, 20], [12, 32], [2, 3]]) {
+    const parent = { ...grid(`parent-${cols}-${rows}`), level: 'hair' as const, cols, rows };
+    parent.keyforms = Object.fromEntries([-30, 0, 30].map(x => [x, pts(parent, (px, py) => [px + x * py / 1000, py])]));
+    parent.keyformsY = { '25': pts(parent, (px, py) => [px, py - px / 50]), '-25': pts(parent, (px, py) => [px, py + px / 50]) };
+    upstream.deformers.push(parent);
+    upstream.parts.push({ ...grid(`hair/lock-${cols}-${rows}`), level: 'hair', material: 'transparent', parent: parent.id,
+      textureBounds: [0, 0, 100, 100] });
+  }
+  const original = structuredClone(upstream);
+  for (const doc of [initializeHeadPitch(upstream, 'head-up', scale), initializeHeadCorners(upstream, scale)]) {
+    assert.deepEqual(doc.deformers.slice(0, upstream.deformers.length), upstream.deformers);
+    for (const [cols, rows] of [[4, 20], [12, 32], [2, 3]]) {
+      const original = upstream.parts.find(p => p.id === `hair/lock-${cols}-${rows}`)!;
+      const current = doc.parts.find(p => p.id === original.id)!;
+      const control = doc.deformers.find(n => n.id === current.parent)!;
+      assert.deepEqual([control.cols, control.rows, control.parent], [Math.min(cols, 4), Math.min(rows, 4), original.parent]);
+      for (const [x, y] of [[0, 0], [-30, 0], [-15, 0], [15, 0], [30, 0], [0, -25], [0, 12.5], [0, 25]])
+        assert.deepEqual(evaluatePoints(doc, current, x, y, 2), evaluatePoints(upstream, original, x, y, 2));
+    }
+  }
+  assert.deepEqual(upstream, original);
+});
+
 async function fixture(t: TestContext) {
   const root = await mkdtemp(join(tmpdir(), 'head-pitch-')), task = join(root, 'case'), nine = join(task, 'nine-axis'), upstream = join(nine, 'step09_head-accessories'), output = join(nine, 'step10_head-pitch');
   t.after(() => rm(root, { recursive: true, force: true }));
@@ -100,6 +126,49 @@ test('up/down reuse the KRA and merge exact half-axis functions without changing
     const author = JSON.parse(await readFile(join(f.output, direction, `head-${direction}.json`), 'utf8'));
     for (const factor of [.2, .5, .75, 1]) for (const part of merged.doc.parts)
       assert.deepEqual(evaluatePoints(merged.doc, part, 0, factor * headPitchAngle(direction, scale), 2), evaluatePoints(author, author.parts.find((p: any) => p.id === part.id), 0, factor * headPitchAngle(direction, scale), 2));
+  }
+});
+
+test('saved parent-sized controls remain editable and a new pitch sibling merges without resampling', async t => {
+  const f = await fixture(t);
+  const upstream = f.doc, parent = upstream.deformers.find(n => n.id === 'shared-braid-tie')!;
+  parent.rows = 20;
+  parent.keyforms = Object.fromEntries([-30, 0, 30].map(x => [x, pts(parent, (px, py) => [px + x / 15, py])]));
+  await f.put(join(f.upstream, 'deformers.json'), upstream);
+  const upFolder = join(f.output, 'up'), downFolder = join(f.output, 'down');
+  const hair = 'hair/braid';
+  const controlFor = (doc: HeadNineAxis) => doc.deformers.find(n => n.id === doc.parts.find(p => p.id === hair)!.parent)!;
+  const withLegacyRows = (doc: HeadNineAxis) => {
+    const control = controlFor(doc);
+    control.rows = parent.rows;
+    for (const forms of [control.keyforms, control.keyformsY, control.keyformsXY])
+      for (const key of Object.keys(forms ?? {})) forms![key] = pts(control);
+  };
+  const corner = initializeHeadCorners(upstream, scale);
+  withLegacyRows(corner);
+  checkHeadCorners(corner, upstream, scale);
+  const up = initializeHeadPitch(upstream, 'head-up', scale);
+  withLegacyRows(up);
+  const savedUp = deform(up, 'up');
+  await f.put(join(upFolder, 'head-up.json'), savedUp);
+  await f.put(join(upFolder, 'deformers.json'), savedUp);
+  await seedHeadPitch(downFolder, f.upstream, f.task, 'down', scale);
+  const down = JSON.parse(await readFile(join(downFolder, 'head-down.json'), 'utf8'));
+  assert.equal(controlFor(down).rows, 20);
+  await f.paint('down', downFolder);
+  for (const [direction, folder] of [['up', upFolder], ['down', downFolder]] as const) {
+    const author = JSON.parse(await readFile(join(folder, `head-${direction}.json`), 'utf8'));
+    checkHeadPitch(author, upstream, headPitchStage(direction), scale);
+    await f.put(join(folder, 'deformers.json'), author);
+    await f.put(join(folder, 'notes.md'), direction);
+  }
+  const { doc } = await mergeHeadPitch(f.output, f.upstream, scale);
+  assert.equal(controlFor(doc).rows, 20);
+  for (const [direction, folder] of [['up', upFolder], ['down', downFolder]] as const) {
+    const author = JSON.parse(await readFile(join(folder, 'deformers.json'), 'utf8')) as HeadNineAxis;
+    const y = headPitchAngle(direction, scale);
+    assert.deepEqual(evaluatePoints(doc, doc.parts.find(p => p.id === hair)!, 0, y, 2),
+      evaluatePoints(author, author.parts.find(p => p.id === hair)!, 0, y, 2));
   }
 });
 
@@ -162,5 +231,6 @@ test('the normal edit tool restricts head-pitch to its signed Y half-axis', asyn
   const carrier = nodes(initializeHeadPitch(f.doc, 'head-up', scale)).find(n => n.id.startsWith('pitch/'))!.id;
   await edit.execute({ operations: [{ action: 'transform', id: carrier, y: 25, translate: [0, -1] }] }, signal);
   await assert.rejects(edit.execute({ operations: [{ action: 'transform', id: carrier, y: -25, translate: [0, -1] }] }, signal), Error);
+  await assert.rejects(edit.execute({ operations: [{ action: 'mirror', targets: [carrier], x: 30, y: 25 }] }, signal), Error);
   await assert.rejects(edit.execute({ operations: [{ action: 'create_warp', id: 'extra', targets: [] }] }, signal), Error);
 });

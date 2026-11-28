@@ -14,8 +14,8 @@ import { modelDocument } from './source.ts';
 export const headCornerScope = { ...wholeHeadScope, label: '完整头部斜角' };
 export const headCornerPoses = (scale = angleScale()) => scale.x.flatMap(x => scale.y.map(y => [x, y] as const));
 
-export function initializeHeadCorners(upstream: HeadNineAxis & { axis: number }, scale = angleScale()): AuthoredHead {
-  const doc = prepareHeadControls(upstream, 'corners', '头部斜角修正') as AuthoredHead;
+export function initializeHeadCorners(upstream: HeadNineAxis & { axis: number }, scale = angleScale(), saved?: HeadNineAxis): AuthoredHead {
+  const doc = prepareHeadControls(upstream, 'corners', '头部斜角修正', saved) as AuthoredHead;
   doc.authoring = { stage: 'head-xy' };
   const original = new Set(nodes(upstream).map(node => node.id));
   for (const node of doc.deformers.filter(node => !original.has(node.id))) {
@@ -32,12 +32,12 @@ export const headCornerControlIds = (upstream: HeadNineAxis, doc: HeadNineAxis) 
 
 export function checkHeadCorners(value: unknown, upstream: HeadNineAxis & { axis: number }, scale = angleScale()): AuthoredHead {
   const doc = kraReferences(validateHeadNineAxis(value)) as AuthoredHead;
-  const baseline = kraReferences(initializeHeadCorners(upstream, scale));
+  const baseline = kraReferences(initializeHeadCorners(upstream, scale, doc));
   const same = (a: unknown, b: unknown, label: string) => { if (!isDeepStrictEqual(a, b)) throw Error(label); };
   same(doc.authoring?.stage, 'head-xy', '完整头部斜角作者阶段不匹配');
   for (const field of ['source', 'canvas', 'view', 'axis', 'axisSources', 'levels', 'parameters'] as const)
     same(doc[field], baseline[field], `完整头部斜角不能替换 ${field}`);
-  same(doc.parts, baseline.parts, '完整头部斜角保留原有部件、画稿绑定和顺序');
+  same(doc.parts.map(p => p.id).sort(), baseline.parts.map(p => p.id).sort(), '完整头部斜角保留原有部件');
   same(doc.deformers.map(node => node.id), baseline.deformers.map(node => node.id), '请使用程序准备的斜角修正承载');
   const controls = headCornerControlIds(upstream, baseline);
   const authored = new Map(nodes(doc).map(node => [node.id, node]));
@@ -45,6 +45,7 @@ export function checkHeadCorners(value: unknown, upstream: HeadNineAxis & { axis
     const after = authored.get(before.id)!;
     checkWarpGeometry(after);
     if (!controls.has(before.id)) { same(after, before, `${before.id}：保留上游头部、脖子和身体数据`); continue; }
+    if (before.mirror && after.mirror === undefined) after.mirror = before.mirror;
     const { keyforms: _x, keyformsY: _y, keyformsXY: _xy, ...properties } = after;
     const { keyforms: _bx, keyformsY: _by, keyformsXY: _bxy, ...beforeProperties } = before;
     same(properties, beforeProperties, `${before.id}：不能更换修正承载的结构`);

@@ -28,11 +28,14 @@ const page = (width: number, height: number, overlay: string) => `<!doctype html
 <script type="importmap">{"imports":{"three":"/three.module.js"}}</script></head><body><div id="view"><img id="reference"/><canvas></canvas>${overlay}</div><script type="module">
 import { HeadNineAxisRenderer, shownParts, createNineAxisBitmap } from '/nine-axis-render.js';
 try {
-  const { doc, x, y, level, masks, only, hidden, allowed, frame, mode } = await (await fetch('/args.json')).json();
-  const images = await Promise.all(doc.parts.map(async (p, i) => createNineAxisBitmap(await (await fetch('/texture/' + i)).blob())));
+  const { doc, paintStack, studioLayers, x, y, level, masks, only, hidden, allowed, frame, mode } = await (await fetch('/args.json')).json();
+  const image = async i => createNineAxisBitmap(await (await fetch('/texture/' + i)).blob());
+  const images = await Promise.all(doc.parts.map((_, i) => image(i)));
   const view = new HeadNineAxisRenderer(document.querySelector('canvas'));
   view.renderer.setPixelRatio(1); view.renderer.setSize(${width}, ${height}, false);
-  view.install(doc, images); const shown = new Set([...shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) })].filter(id => allowed.includes(id)));
+  view.install(doc, images, paintStack);
+  view.setStaticLayers(await Promise.all(studioLayers.map(async (layer, i) => ({ ...layer, image: await image(doc.parts.length + i) }))));
+  const shown = new Set([...shownParts(doc, level, { masks: new Set(masks), hidden: new Set(hidden) })].filter(id => allowed.includes(id)));
   view.draw(frame, x, y, only.length ? new Set([...shown].filter(id => only.includes(id))) : shown);
   if (mode === 'edge') window.modelPng = document.querySelector('canvas').toDataURL('image/png');
   await new Promise(requestAnimationFrame); window.rendered = 'ok';
@@ -174,7 +177,8 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         for (let i = 0; i <= cols; i++) { d += 'M'; for (let j = 0; j <= rows * 5; j++) d += at(j * c + i * 5) + ' '; }
         return `<path class="nine-grid" d="${d}"/><g class="nine-points">${points.map(([px, py]) => `<circle cx="${sx(px)}" cy="${sy(py)}" r="3"/>`).join('')}</g>`;
       }).join('')}</svg>` : '';
-      const textures = doc.parts.map(p => built.textures.get(p.texture!)!);
+      const { paintStack, studioLayers = [] } = built as MaterialBuilt;
+      const textures = [...doc.parts, ...studioLayers].map(p => built.textures.get(p.texture!)!);
       signal.throwIfAborted();
       const browser = session ?? await chromium.launch({ args: browserArgs });
       let tab: Page | undefined;
@@ -185,11 +189,11 @@ export function createNineAxisViewTool(directory: string, observationDirectory: 
         await tab.route(origin + '/**', async route => {
           const path = new URL(route.request().url()).pathname, js = 'text/javascript';
           if (path === '/') return route.fulfill({ contentType: 'text/html', body: page(width, height, overlay) });
-          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, x, y, level, masks, only, hidden, allowed, mode, frame: { x0, y0, width: cw, height: ch } }) });
+          if (path === '/args.json') return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ doc, paintStack, studioLayers, x, y, level, masks, only, hidden, allowed, mode, frame: { x0, y0, width: cw, height: ch } }) });
           if (path === '/reference.png' && reference) return route.fulfill({ contentType: 'image/png', body: reference.bytes });
           if (path.startsWith('/texture/')) return route.fulfill({ contentType: 'image/png', body: await readFile(textures[Number(path.slice(9))]) });
           if (path === '/three.module.js' || path === '/three.core.js') return route.fulfill({ contentType: js, body: await readFile(join(three, path)) });
-          if (path === '/nine-axis-render.js' || path === '/nine-axis-model.js') return route.fulfill({ contentType: js, body: await readFile(join(shared, path)) });
+          if (['/nine-axis-render.js', '/nine-axis-model.js', '/nine-axis-warp.js'].includes(path)) return route.fulfill({ contentType: js, body: await readFile(join(shared, path)) });
           return route.fulfill({ status: 404 });
         });
         await tab.goto(origin + '/');

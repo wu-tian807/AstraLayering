@@ -67,6 +67,51 @@ const fragmentShader = 'uniform sampler2D map;uniform sampler2D clip;uniform flo
   + 'float opacity=dim*paintOpacity;if(clipMode>0.5){float m=texture2D(clip,gl_FragCoord.xy/res).a;opacity*=clipMode>1.5?1.0-m:m;}'
   + 'gl_FragColor=vec4(mix(c.rgb,vec3(0.25,0.85,1.0)*c.a,tint)*opacity,c.a*opacity);}';
 const clipKey = clip => clip.by.join('|');
+const blendModes = { normal: 0, multiply: 1, add: 2 };
+const compositeFragment = `
+  varying vec2 vScreen;
+  uniform sampler2D src, dst, mask;
+  uniform float opacity, blend, inheritAlpha, useMask;
+  void main() {
+    vec4 s = texture2D(src, vScreen) * opacity;
+    if (useMask > 0.5) s *= texture2D(mask, vScreen).a;
+    vec4 d = texture2D(dst, vScreen);
+    vec3 cs = s.a > 0.0 ? s.rgb / s.a : vec3(0.0);
+    vec3 cd = d.a > 0.0 ? d.rgb / d.a : vec3(0.0);
+    vec3 mixed = blend < 0.5 ? cs : blend < 1.5 ? cs * cd : min(cs + cd, vec3(1.0));
+    if (inheritAlpha > 0.5) gl_FragColor = vec4(mix(d.rgb, mixed * d.a, s.a), d.a);
+    else gl_FragColor = vec4(d.rgb * (1.0 - s.a) + s.rgb * (1.0 - d.a) + mixed * s.a * d.a,
+      s.a + d.a * (1.0 - s.a));
+  }`;
+const screenVertex = 'varying vec2 vScreen;void main(){vScreen=uv;gl_Position=vec4(position.xy,0.0,1.0);}';
+
+function nativeStack(stack, opacity = 1, inheritAlpha = false) {
+  return stack.flatMap(layer => {
+    if (!layer.visible || !layer.opacity) return [];
+    const mergedOpacity = Math.round(layer.opacity * opacity * 255) / 255;
+    const mergedInheritAlpha = inheritAlpha || layer.inheritAlpha;
+    if (layer.children && layer.passThrough) {
+      // Krita projects pass-through children directly and drops group masks.
+      return nativeStack(layer.children, mergedOpacity, mergedInheritAlpha);
+    }
+    if (!Object.hasOwn(blendModes, layer.blend)) throw Error(`${layer.name}：九轴暂不支持 KRA 混合模式 ${layer.blend}`);
+    return [{ ...layer, opacity: mergedOpacity, inheritAlpha: mergedInheritAlpha,
+      ...(layer.children ? { children: nativeStack(layer.children) } : {}) }];
+  });
+}
+
+// Flatten only groups whose normal child composition is independent of the
+// backdrop. Blend modes and alpha inheritance need the actual sibling buffer.
+function drawStack(stack, shadows) {
+  return stack.flatMap(layer => {
+    if (!layer.children) return [{ ...layer, direct: layer.parts.length === 1 &&
+      layer.blend === 'normal' && !layer.inheritAlpha && !shadows.has(layer.parts[0]) }];
+    const children = drawStack(layer.children, shadows);
+    return layer.opacity === 1 && layer.blend === 'normal' && !layer.inheritAlpha &&
+      !layer.masks.length && children.every(child => child.direct) ? children : [{ ...layer, children }];
+  });
+}
+
 function paintMesh(geometry, texture) {
   const uniforms = { map: { value: texture }, dim: { value: 1 }, paintOpacity: { value: 1 }, clip: { value: null },
     clipMode: { value: 0 }, maskPass: { value: 0 }, tint: { value: 0 }, res: { value: new THREE.Vector2(1, 1) } };
@@ -99,6 +144,22 @@ function savedProjectionGeometry([x, y, width, height], caster) {
   geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(samples.length / 2 * 3), 3));
   geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
   geometry.setIndex(new THREE.BufferAttribute(meshIndices(cols, rows), 1));
+  return { geometry, samples };
+}
+
+function groupMaskGeometry([x, y, width, height], anchor) {
+  // The mask can cover the entire canvas. Include the anchor's grid inside
+  // its texture so a small eye or mouth Warp is still sampled at normal density.
+  const coordinates = (start, end, from, to, count) => [start,
+    ...Array.from({ length: count + 1 }, (_, i) => from + (to - from) * i / count).filter(v => start < v && v < end), end];
+  const X = coordinates(x, x + width, anchor.bbox[0], anchor.bbox[2], anchor.cols * SUB);
+  const Y = coordinates(y, y + height, anchor.bbox[1], anchor.bbox[3], anchor.rows * SUB);
+  const samples = new Float32Array(Y.flatMap(py => X.flatMap(px => [px, py])));
+  const uv = samples.map((v, i) => i % 2 ? (v - y) / height : (v - x) / width);
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(samples.length / 2 * 3), 3));
+  geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+  geometry.setIndex(new THREE.BufferAttribute(meshIndices(X.length - 1, Y.length - 1), 1));
   return { geometry, samples };
 }
 
@@ -151,12 +212,19 @@ export class HeadNineAxisRenderer {
   constructor(canvas, renderer) {
     this.renderer = renderer ?? new THREE.WebGLRenderer({ canvas, alpha: true, premultipliedAlpha: true, antialias: true });
     if (!renderer) this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1); this.meshes = new Map(); this.targets = new Map(); this.paintPairs = []; this.scene = null; this.doc = null;
+    this.camera = new THREE.OrthographicCamera(0, 1, 0, 1, -1, 1); this.meshes = new Map(); this.targets = new Map(); this.compositionTargets = new Map(); this.paintPairs = []; this.scene = null; this.doc = null;
   }
   clear() {
     this.setStaticLayers([]);
     this.invalidatePose();
     for (const m of this.meshes.values()) { m.geometry.dispose(); m.material.uniforms.map.value.dispose(); m.material.dispose(); }
+    for (const target of this.compositionTargets.values()) target.dispose();
+    this.compositionTargets.clear();
+    if (this.screen) {
+      this.screen.quad.geometry.dispose();
+      this.screen.composite.dispose(); this.screen.copy.dispose();
+      this.screen = undefined;
+    }
     for (const pair of this.paintPairs) pair.texture?.dispose();
     this.paintPairs = [];
     this.meshes = new Map(); this.scene = null; this.doc = null; this.renderer.clear();
@@ -171,28 +239,38 @@ export class HeadNineAxisRenderer {
       m.geometry.dispose(); texture.dispose(); m.material.dispose();
     }
     const parts = this.doc?.parts ?? [];
+    const maskAnchors = new Map();
+    const groups = stack => { for (const layer of stack) if (layer.children) {
+      for (const mask of layer.masks) maskAnchors.set(mask, layer.maskAnchor);
+      groups(layer.children);
+    } };
+    if (this.native) groups(this.native);
     this.staticLayers = layers.map(layer => {
       const { image, order, bounds: [x, y, width, height], projection } = layer;
+      const id = '__studio__/' + layer.uuid;
       const casters = parts.filter(part => !part.role && projection?.casters.includes(part.uuid));
-      const caster = projection?.casters.length === 1 && casters.length === 1 ? casters[0] : null;
-      const grid = caster && savedProjectionGeometry(layer.bounds, caster);
+      const caster = layer.groupMask ? parts.find(part => part.id === maskAnchors.get(id))
+        : projection?.casters.length === 1 && casters.length === 1 ? casters[0] : null;
+      const grid = caster && (layer.groupMask ? groupMaskGeometry(layer.bounds, caster) : savedProjectionGeometry(layer.bounds, caster));
       const m = paintMesh(grid ? grid.geometry : new THREE.PlaneGeometry(width, height), paintTexture(new THREE.Texture(image), false));
       if (!grid) m.position.set(x + width / 2, y + height / 2, 0);
-      m.renderOrder = order;
-      Object.assign(m.userData, { id: '__studio__/' + layer.uuid, layer, caster, samples: grid?.samples });
+      Object.assign(m.userData, { id, layer, caster, samples: grid?.samples,
+        xy: grid && new Float32Array(grid.samples.length) });
+      m.renderOrder = this.nativeOrder?.get(m.userData.id) ?? order ?? 0;
       this.meshes.set(m.userData.id, m);
       this.scene.add(m); return m;
     });
     this.meshesByUuid = new Map();
     for (const [id, mesh] of this.meshes) {
       const uuid = mesh.userData.part?.uuid ?? mesh.userData.layer?.uuid;
-      if (!uuid || mesh.userData.part?.role === 'mask') continue;
+      if (!uuid || mesh.userData.part?.role === 'mask' || mesh.userData.layer?.groupMask) continue;
       if (!this.meshesByUuid.has(uuid)) this.meshesByUuid.set(uuid, []);
       this.meshesByUuid.get(uuid).push(id);
     }
   }
-  install(doc, images) {
-    this.doc = doc; this.scene = new THREE.Scene();
+  install(doc, images, paintStack) {
+    this.doc = doc; this.invalidatePose(); this.scene = new THREE.Scene();
+    this.native = paintStack === undefined ? undefined : nativeStack(paintStack);
     doc.parts.forEach((p, order) => {
       const [tx, ty, tw, th] = p.textureBounds, grid = renderMeshSamples(p), uvSource = grid.points, uv = new Float32Array(uvSource.length);
       for (let i = 0; i < uv.length; i += 2) { uv[i] = (uvSource[i] - tx) / tw; uv[i + 1] = (uvSource[i + 1] - ty) / th; }
@@ -201,16 +279,131 @@ export class HeadNineAxisRenderer {
       g.setAttribute('uv', new THREE.BufferAttribute(uv, 2)); g.setIndex(new THREE.BufferAttribute(meshIndices(grid.cols, grid.rows), 1));
       const t = paintTexture(new THREE.Texture(images[order]), false);
       const m = paintMesh(g, t);
-      m.renderOrder = order; Object.assign(m.userData, { part: p, grid }); this.scene.add(m); this.meshes.set(p.id, m);
+      m.renderOrder = order; Object.assign(m.userData, { part: p, grid });
+      this.scene.add(m); this.meshes.set(p.id, m);
     });
     this.fixed = new Set(doc.parts.filter(p => /^neck(?:\/|$)/.test(p.id) || p.material === 'transparent' && !p.role).map(p => p.id));
-    this.paintPairs = doc.parts.slice(1).flatMap((overlay, i) => {
-      const base = doc.parts[i], [x, y, w, h] = base.textureBounds;
-      if (!rasterPaint(base, images[i]) || !rasterPaint(overlay, images[i + 1]) || base.parent !== overlay.parent ||
+    const byId = new Map(doc.parts.map((part, i) => [part.id, { part, image: images[i] }]));
+    const pair = (baseId, overlayId) => {
+      const a = byId.get(baseId), b = byId.get(overlayId);
+      if (!a || !b) return [];
+      const base = a.part, overlay = b.part, [x, y, w, h] = base.textureBounds;
+      if (!rasterPaint(base, a.image) || !rasterPaint(overlay, b.image) || base.parent !== overlay.parent ||
           !inside(overlay.textureBounds, [x, y, x + w, y + h]) ||
           !inside(overlay.textureBounds, base.bbox) || !inside(overlay.textureBounds, overlay.bbox)) return [];
       return [{ base, overlay, texture: null }];
+    };
+    const opaque = layer => layer?.parts?.length === 1 && layer.blend === 'normal' && layer.opacity === 1 &&
+      !layer.inheritAlpha && !layer.masked;
+    const pairs = stack => stack.flatMap((layer, i) => {
+      if (layer.children) return layer.masks.length ? [] : pairs(layer.children);
+      const next = stack[i + 1];
+      return opaque(layer) && opaque(next) && layer.parent === next.parent ? pair(layer.parts[0], next.parts[0]) : [];
     });
+    this.paintPairs = this.native ? pairs(this.native) : doc.parts.slice(1).flatMap((overlay, i) => pair(doc.parts[i].id, overlay.id));
+    this.nativeOpacity = new Map(); this.nativeOrder = new Map();
+    const order = stack => { for (const layer of stack) {
+      if (layer.children) { order(layer.children); continue; }
+      for (const id of layer.parts) {
+        this.nativeOpacity.set(id, layer.opacity);
+        this.nativeOrder.set(id, this.nativeOrder.size);
+        const mesh = this.meshes.get(id);
+        if (mesh) mesh.renderOrder = this.nativeOrder.get(id);
+      }
+    } };
+    if (this.native) order(this.native);
+  }
+
+  compositionTarget(key, size) {
+    let target = this.compositionTargets.get(key);
+    if (!target) {
+      target = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false });
+      this.compositionTargets.set(key, target);
+    } else if (target.width !== size.x || target.height !== size.y) target.setSize(size.x, size.y);
+    return target;
+  }
+
+  composeNative(stack, shadows, visible, size) {
+    const renderer = this.renderer, savedAutoClear = renderer.autoClear;
+    const clearColor = renderer.getClearColor(new THREE.Color()), clearAlpha = renderer.getClearAlpha();
+    renderer.autoClear = false;
+    renderer.setClearColor(0, 0);
+
+    const clear = target => { renderer.setRenderTarget(target); renderer.clear(); };
+    const paint = (ids, target, replace = false) => {
+      if (!ids.length) return;
+      const selected = new Set(ids);
+      for (const [id, mesh] of this.meshes) {
+        mesh.visible = selected.has(id);
+        if (!mesh.visible) continue;
+        const mat = mesh.material;
+        mat.blendSrc = mat.blendSrcAlpha = THREE.OneFactor;
+        mat.blendDst = mat.blendDstAlpha = replace ? THREE.ZeroFactor : THREE.OneMinusSrcAlphaFactor;
+      }
+      renderer.setRenderTarget(target); renderer.render(this.scene, this.camera);
+    };
+    if (!this.screen) {
+      const uniforms = Object.fromEntries(['src', 'dst', 'mask', 'opacity', 'blend', 'inheritAlpha', 'useMask'].map(key => [key, { value: null }]));
+      const composite = new THREE.ShaderMaterial({ vertexShader: screenVertex, fragmentShader: compositeFragment,
+        uniforms, depthTest: false, depthWrite: false, blending: THREE.NoBlending });
+      const copy = new THREE.ShaderMaterial({ vertexShader: screenVertex, fragmentShader:
+        'varying vec2 vScreen;uniform sampler2D src;void main(){gl_FragColor=texture2D(src,vScreen);}',
+        uniforms: { src: { value: null } }, depthTest: false, depthWrite: false, blending: THREE.NoBlending });
+      const scene = new THREE.Scene(), quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), composite);
+      quad.frustumCulled = false; scene.add(quad);
+      this.screen = { scene, quad, composite, copy, camera: new THREE.Camera() };
+    }
+    const { scene, quad, composite, copy, camera } = this.screen;
+    const target = key => this.compositionTarget(key, size);
+    const apply = (out, dst, src, opacity, blend, inheritAlpha, mask) => {
+      const values = { dst: dst.texture, src: src.texture, opacity, blend, inheritAlpha: +inheritAlpha,
+        mask: mask?.texture ?? src.texture, useMask: +!!mask };
+      for (const [key, value] of Object.entries(values)) composite.uniforms[key].value = value;
+      quad.material = composite; renderer.setRenderTarget(out); renderer.render(scene, camera);
+    };
+    const compose = (entries, depth) => {
+      let dst = target(depth + ':a'), out = target(depth + ':b');
+      clear(dst);
+      let direct = [];
+      for (const layer of entries) {
+        if (layer.direct) {
+          if (visible.has(layer.parts[0])) direct.push(layer.parts[0]);
+          continue;
+        }
+        const ids = layer.parts?.filter(id => visible.has(id));
+        if (ids && !ids.length) continue;
+        paint(direct, dst); direct = [];
+        let source;
+        if (layer.children) source = compose(layer.children, depth + 1);
+        else {
+          source = target(depth + ':source'); clear(source);
+          for (const id of ids) this.meshes.get(id).material.uniforms.paintOpacity.value = 1;
+          // Slices share a native layer. At overlap the later stable id owns
+          // the sample, so layer opacity and the blending operation run once.
+          paint(ids, source, ids.length > 1);
+        }
+        let mask;
+        for (const id of layer.masks ?? []) {
+          if (mask) {
+            const empty = target(depth + ':empty'), masked = target(depth + ':masked' + +(source === target(depth + ':masked0')));
+            clear(empty); apply(masked, empty, source, 1, 0, false, mask); source = masked;
+          }
+          mask = target(depth + ':mask'); clear(mask); paint([id], mask);
+        }
+        apply(out, dst, source, layer.opacity, blendModes[layer.blend],
+          layer.inheritAlpha || !!ids?.some(id => shadows.has(id)), mask);
+        [dst, out] = [out, dst];
+      }
+      paint(direct, dst);
+      return dst;
+    };
+    try {
+      copy.uniforms.src.value = compose(stack, 0).texture;
+      quad.material = copy; renderer.setRenderTarget(null); renderer.render(scene, camera);
+    } finally {
+      renderer.setRenderTarget(null); renderer.autoClear = savedAutoClear;
+      renderer.setClearColor(clearColor, clearAlpha);
+    }
   }
   createMask(ids, size) {
     const target = new THREE.WebGLRenderTarget(size.x, size.y, { depthBuffer: false });
@@ -243,7 +436,7 @@ export class HeadNineAxisRenderer {
   // shown: the part ids drawn; dim(part) scales a drawn part's alpha.
   // A pose-only preview can reuse the grid. Authoring draws always re-evaluate it.
   draw({ x0, y0, width, height }, x, y, shown, dim = () => 1, z = 0,
-    { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1, deform = () => true, layerState = layer => layer } = {}) {
+    { reuseXY = false, opacity = p => p.shadow?.opacity ?? 1, deform = () => true } = {}) {
     if (!this.doc) return;
     if (!reuseXY) this.invalidatePose();
     const pose = (x, y) => ({ x, y, points: new Map(), deform: createPointDeformer(this.doc, x, y) });
@@ -260,21 +453,28 @@ export class HeadNineAxisRenderer {
       }
     };
     Object.assign(this.camera, { left: x0, right: x0 + width, top: y0, bottom: y0 + height }); this.camera.updateProjectionMatrix();
-    const visible = new Set(shown);
-    const clips = new Map(this.doc.parts.filter(p => p.role !== 'mask' && p.clip && shown.has(p.id)).map(p => [p.id, p.clip]));
+    const visible = new Set([...shown].filter(id => !this.native || this.nativeOpacity.has(id)));
+    const clips = new Map(this.doc.parts.filter(p => p.role !== 'mask' && p.clip && visible.has(p.id)).map(p => [p.id, p.clip]));
     for (const m of this.staticLayers) {
-      const state = layerState(m.userData.layer);
+      const { id, layer, caster, samples } = m.userData;
+      if (layer.groupMask) {
+        if (caster) {
+          if (!deform(caster)) { m.userData.base = null; writePoints(m, samples); }
+          else pointsAt(m, caster, samples, true);
+        }
+        continue;
+      }
+      const state = this.native ? { visible: this.nativeOpacity.has(id), opacity: (this.nativeOpacity.get(id) ?? 0) * 255 } : layer;
       m.userData.state = state;
       m.material.uniforms.paintOpacity.value = state.opacity / 255;
       if (state.visible) visible.add(m.userData.id);
     }
-    // Saved alpha inheritance clips to lower layers in the same KRA group.
-    // Unauthored projections still follow their caster and clip to posed receivers.
+    // Unauthored projections follow their caster and clip to posed receivers.
     for (const m of this.staticLayers) {
       const { id, layer, caster, samples } = m.userData;
-      const receivers = layer.projection?.receivers ?? layer.inheritAlpha;
-      if (!receivers || !visible.has(id)) continue;
-      const by = receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
+      if (!layer.projection || !visible.has(id)) continue;
+      if (caster && !visible.has(caster.id)) { visible.delete(id); continue; }
+      const by = layer.projection.receivers.flatMap(uuid => this.meshesByUuid.get(uuid) ?? []).filter(id => visible.has(id));
       if (!by.length) { visible.delete(id); continue; }
       clips.set(id, { by });
       if (!caster) continue;
@@ -288,7 +488,7 @@ export class HeadNineAxisRenderer {
       pointsAt(m, p, m.userData.grid.points, !this.fixed.has(p.id) && deform(p));
       const u = m.material.uniforms, mask = p.role === 'mask';
       u.tint.value = mask ? 1 : 0; u.dim.value = (mask ? .55 : 1) * dim(p);
-      u.paintOpacity.value = opacity(p);
+      u.paintOpacity.value = this.native ? (this.nativeOpacity.get(p.id) ?? (mask ? 1 : 0)) : opacity(p);
     }
     const size = this.renderer.getDrawingBufferSize(new THREE.Vector2()), keys = new Map([...clips.values()].map(clip => [clipKey(clip), clip.by]));
     const frame = [x0, y0, width, height, size.x, size.y];
@@ -315,9 +515,9 @@ export class HeadNineAxisRenderer {
     this.renderer.setRenderTarget(null);
     for (const [id, m] of this.meshes) {
       const { part, layer, state } = m.userData, u = m.material.uniforms, clip = clips.get(id);
-      const blend = part ? part.shadow?.blendMode : state.blend;
+      const blend = this.native ? undefined : part ? part.shadow?.blendMode : state?.blend;
       const multiply = blend === 'multiply' || blend === 'mul', add = blend === 'add' || blend === 'linear_dodge';
-      const preserveAlpha = add || (part ? !!part.shadow : !!layer.projection || !!layer.inheritAlpha || multiply);
+      const preserveAlpha = add || (part ? !!part.shadow : !!layer?.projection || !this.native && multiply);
       m.visible = visible.has(id); u.maskPass.value = 0;
       m.material.blendSrc = multiply ? THREE.DstColorFactor : THREE.OneFactor;
       m.material.blendDst = add ? THREE.OneFactor : THREE.OneMinusSrcAlphaFactor;
@@ -341,7 +541,13 @@ export class HeadNineAxisRenderer {
       combined.push({ uniform: au.map, original, overlay: b });
     }
     try {
-      this.renderer.render(this.scene, this.camera);
+      if (!this.native) this.renderer.render(this.scene, this.camera);
+      else {
+        const shadows = new Set([...this.meshes].filter(([, mesh]) => mesh.userData.part?.shadow || mesh.userData.layer?.projection).map(([id]) => id));
+        const stack = drawStack(this.native, shadows);
+        if (stack.every(layer => layer.direct)) this.renderer.render(this.scene, this.camera);
+        else this.composeNative(stack, shadows, new Set([...this.meshes].filter(([, mesh]) => mesh.visible).map(([id]) => id)), size);
+      }
     } finally {
       for (const { uniform, original, overlay } of combined) { uniform.value = original; overlay.visible = true; }
     }

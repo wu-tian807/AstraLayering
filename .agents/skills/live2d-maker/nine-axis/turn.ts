@@ -9,7 +9,7 @@ import { requireUpstream } from '../shared/upstream.ts';
 import { readStep, type ChainStep } from '../shared/step-chain.ts';
 import { runStepBatch } from '../shared/step-dispatch.ts';
 import { taskDirectory } from '../shared/paths.ts';
-import { toTaskPath } from '../shared/task-paths.ts';
+import { fromTaskPath, toTaskPath } from '../shared/task-paths.ts';
 import type { VideoApi } from '../shared/codex/environment.ts';
 
 // Video production and frame selection have separate step directories. Left crops
@@ -106,7 +106,9 @@ async function retryVideoRead<T>(read: () => Promise<T>, label: string, signal: 
 }
 async function call(api: VideoApi, method: string, path: string, signal: AbortSignal | undefined, body?: unknown) {
   const response = await fetch(api.baseUrl.replace(/\/+$/, '') + path, { method, signal,
-    headers: { authorization: `Bearer ${api.apiKey}`, ...(body ? { 'content-type': 'application/json' } : {}) },
+    // Keep job receipts readable through gateways that truncate gzip bodies.
+    // A POST receipt must be read once so its job ID can be checkpointed.
+    headers: { authorization: `Bearer ${api.apiKey}`, 'accept-encoding': 'identity', ...(body ? { 'content-type': 'application/json' } : {}) },
     ...(body ? { body: JSON.stringify(body) } : {}) });
   if (!response.ok) throw new VideoHTTPError(`生视频 ${method} ${path} HTTP ${response.status}：${redact(await response.text(), api)}`, response.status);
   return response;
@@ -233,6 +235,43 @@ export async function normalizeView(path: string, size: number): Promise<Buffer>
   const grey = { r: background, g: background, b: background };
   return sharp(await sharp(await readFile(path)).flatten({ background: grey }).png().toBuffer())
     .resize(size, size, { fit: 'contain', background: grey }).removeAlpha().png().toBuffer();
+}
+
+export async function translateFrame(frame: Buffer, x: number, y: number): Promise<Buffer> {
+  if (!x && !y) return frame;
+  const { data, info: { width, height } } = await sharp(frame).toColourspace('srgb').removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const shifted = Buffer.alloc(data.length, background), row = width * 3;
+  const copyWidth = width - Math.abs(x), copyHeight = height - Math.abs(y);
+  if (copyWidth > 0 && copyHeight > 0) {
+    const fromX = Math.max(0, -x) * 3, toX = Math.max(0, x) * 3;
+    for (let j = 0; j < copyHeight; j++) {
+      const start = (j + Math.max(0, -y)) * row + fromX;
+      data.copy(shifted, (j + Math.max(0, y)) * row + toX, start, start + copyWidth * 3);
+    }
+  }
+  return sharp(shifted, { raw: { width, height, channels: 3 } }).png().toBuffer();
+}
+
+export async function frameOverlay(frame: Buffer, task: string, size: number): Promise<Buffer> {
+  const video = join(task, 'nine-axis/step02_video');
+  const [cropText, neutralText, front] = await Promise.all([
+    readFile(join(video, 'crop.json'), 'utf8'), readFile(join(task, 'nine-axis/step01_preparation/deformers.json'), 'utf8'),
+    readFile(join(video, 'upper-body.png')),
+  ]);
+  const { box } = JSON.parse(cropText) as { box: Box }, { axis } = JSON.parse(neutralText) as { axis: number };
+  const axisX = Math.round(axis - box.x);
+  if (!Number.isFinite(axisX) || axisX < 0 || axisX >= size) throw Error('正面模型须提供裁框内的固定中轴');
+  const pixels = (png: Buffer) => sharp(png).toColourspace('srgb').removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const [base, candidate] = await Promise.all([pixels(front), pixels(frame)]);
+  if ([base, candidate].some(({info}) => info.width !== size || info.height !== size)) throw Error('正面和候选帧须使用同一裁框尺寸');
+  const blend = base.data;
+  for (let i = 0; i < blend.length; i++) blend[i] = Math.round((blend[i] + candidate.data[i]) / 2);
+  // A dashed fixed guide keeps shoulders and facial landmarks visible in the blend.
+  for (let y = 0; y < size; y++) if (y % 8 < 5) {
+    const i = (y * size + axisX) * 3;
+    blend.set([0, 220, 255], i);
+  }
+  return sharp(blend, { raw: { width: size, height: size, channels: 3 } }).png().toBuffer();
 }
 
 // One video saved as <video>.mp4 in the step directory; the record's paths are
@@ -366,15 +405,16 @@ export async function checkSelectedFrames(directory: string, names: readonly str
   if (!selected || selected.version !== 1 || !selected.frames || typeof selected.frames !== 'object' || Array.isArray(selected.frames)) throw Error('selected-frames.json 需要 version:1 和 frames 对象');
   for (const name of names) {
     const frame = selected.frames[name];
-    const sameFile = (value: unknown, file: string) => typeof value === 'string' && resolve(directory, value) === resolve(directory, file);
+    const sameFile = (value: unknown, file: string) => typeof value === 'string' && relative(resolve(directory, value), resolve(directory, file)) === '';
     if (!frame || !sameFile(frame.video, join(videoDirectory, `${name}.mp4`)) || !sameFile(frame.path, `${name}.png`) || typeof frame.reason !== 'string' || !frame.reason.trim()) throw Error(`${name}：缺少本步选帧路径或选择依据`);
     if (!(Number.isSafeInteger(frame.frameIndex) && frame.frameIndex >= 0) && !(Number.isFinite(frame.timeSeconds) && frame.timeSeconds >= 0)) throw Error(`${name}：记录实际 frameIndex 或 timeSeconds，不以估算角度代替`);
+    for (const key of ['offsetX', 'offsetY']) if (frame[key] !== undefined && !Number.isSafeInteger(frame[key])) throw Error(`${name}：${key} 须为整数像素`);
     const raw = await sharp(join(directory, 'frames', `${name}.png`)).metadata();
     if (raw.format !== 'png' || !raw.width || !raw.height) throw Error(`${name}：原帧须为非空 PNG`);
     const meta = await sharp(resolve(directory, frame.path)).metadata();
     if (meta.format !== 'png' || !meta.width || meta.width !== meta.height || (size !== undefined && meta.width !== size)) throw Error(`${name}：参考帧必须保留裁框并规范化为 ${size === undefined ? '正方形' : `${size}×${size}`} PNG`);
   }
-  return selected.frames as Record<string, { frameIndex?: number; timeSeconds?: number; reason: string }>;
+  return selected.frames as Record<string, { frameIndex?: number; timeSeconds?: number; offsetX?: number; offsetY?: number; overlay?: string; reason: string }>;
 }
 
 export async function finishViews(directory: string, angles: Record<TurnView, number>, videoDirectory = directory) {
@@ -382,6 +422,10 @@ export async function finishViews(directory: string, angles: Record<TurnView, nu
   const { width = 0 } = await sharp(upperBody).metadata();
   const frames = await checkSelectedFrames(directory, turnViews, width, videoDirectory);
   await atomic(join(directory, 'views.json'), JSON.stringify({ version: 1, input: { path: toTaskPath(task, upperBody) },
-    ...Object.fromEntries(turnViews.map(view => { const { frameIndex, timeSeconds, reason } = frames[view]; return [view, { path: `${view}.png`, angle: angles[view],
-      frame: { frameIndex, timeSeconds }, reason, video: { path: toTaskPath(task, join(videoDirectory, `${view}.mp4`)) } }]; })) }, null, 2) + '\n');
+    ...Object.fromEntries(turnViews.map(view => {
+      const { frameIndex, timeSeconds, offsetX, offsetY, overlay, reason } = frames[view];
+      return [view, { path: `${view}.png`, angle: angles[view], frame: { frameIndex, timeSeconds, offsetX, offsetY },
+        ...(overlay ? { overlay: toTaskPath(task, resolve(directory, overlay)) } : {}), reason,
+        video: { path: toTaskPath(task, join(videoDirectory, `${view}.mp4`)) } }];
+    })) }, null, 2) + '\n');
 }

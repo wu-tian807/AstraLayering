@@ -6,6 +6,6 @@
       { "id": "back", "prompts": ["prompts/后发制作.md"] },
       { "id": "remaining", "prompts": ["prompts/其余头发制作.md"] }
     ],
-    "tools": ["krita", "view_bitmap", "edit_nine_axis", "view_nine_axis"]
+    "tools": ["krita","view_bitmap","edit_nine_axis","view_nine_axis","fit_nine_axis"]
   }
 }

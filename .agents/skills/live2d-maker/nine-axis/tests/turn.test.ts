@@ -9,6 +9,7 @@ import { tmpdir } from 'node:os';
 import sharp from 'sharp';
 import { zipSync, strToU8 } from 'fflate';
 import { cropUpperBody, extractTurnFrame, ffmpegPath, generateVideo, produceCornerVideos, producePitchVideos, resolveTurnInput, takeFrame, upperBodyBox, type Box } from '../turn.ts';
+import { createFrameTool } from '../frame-tool.ts';
 import { angleXYPrompt, axisPrompt, viewFramesPrompt, cornerFramesPrompt, cornerVideoPrompts, createFitHead, hairPrompt, headCornersPrompt, headPitchPrompt, jawLinePrompt, outlinePrompt, runWorkflow, videoPrompt } from '../run.ts';
 import { writeFaceLeft } from './head.test.ts';
 import { buildHead, writeBuilt, type FaceLeft, type HeadInput } from '../head.ts';
@@ -194,6 +195,8 @@ test('生视频提交、轮询并下载，错误中不含密钥', async t => {
       if (request.method === 'POST') {
         const json = JSON.parse(body);
         assert.equal(json.model, 'seedance-test'); assert.equal(json.seconds, '5'); assert.match(json.input_reference, /^data:image\/png;base64,/);
+        // Reproduce a gateway that breaks the job receipt when compression is allowed.
+        if (request.headers['accept-encoding'] !== 'identity') { response.destroy(); return; }
         response.end(JSON.stringify({ id: 'v1', status: 'queued' }));
       } else if (request.url === '/videos/v1') response.end(JSON.stringify({ id: 'v1', status: ++polls < 2 ? 'in_progress' : 'completed' }));
       else if (request.url === '/videos/v1/content') response.end('mp4');
@@ -238,6 +241,63 @@ test('按帧序取出转到 30° 的帧（整段匀速转到 90°）', async t =
   assert.equal((await sharp(join(root, 'frame.png')).metadata()).width, 32);
 });
 
+test('frame tool applies only explicit offsets, preserves raw video pixels and generates the registered overlay', async t => {
+  const ffmpeg = await ffmpegPath().catch(() => undefined);
+  if (!ffmpeg) { t.skip('没有 ffmpeg'); return; }
+  const task = await mkdtemp(join(tmpdir(), 'astra-register-frame-'));
+  t.after(() => rm(task, { recursive: true, force: true }));
+  const front = join(task, 'nine-axis/step02_video'), videos = join(task, 'nine-axis/step04_angles/video');
+  const preparation = join(task, 'nine-axis/step01_preparation'), directory = join(task, 'nine-axis/step05_frames');
+  const size = 16, grey = 128, axis = 7;
+  for (const path of [front, videos, preparation]) await mkdir(path, { recursive: true });
+  await writeFile(join(front, 'crop.json'), JSON.stringify({ box: { x: 12, y: 10, size } }));
+  await writeFile(join(preparation, 'deformers.json'), JSON.stringify({ axis: axis + 12 }));
+  const original = Buffer.from(Array.from({ length: size * size * 3 }, (_, i) => i % 239));
+  const base = Buffer.alloc(original.length, 96);
+  const png = (data: Buffer) => sharp(data, { raw: { width: size, height: size, channels: 3 } }).png();
+  const input = join(task, 'frame.png'), video = join(videos, 'left-up.mp4');
+  await png(original).toFile(input);
+  await png(base).toFile(join(front, 'upper-body.png'));
+  const encoded = spawnSync(ffmpeg, ['-v', 'error', '-y', '-i', input, '-c:v', 'png', '-f', 'mov', video]);
+  assert.equal(encoded.status, 0, encoded.stderr?.toString());
+
+  const tool = createFrameTool({ ffmpeg, taskRoot: task, directory, videos, names: ['left-up'], size });
+  const signal = new AbortController().signal, output = join(directory, 'left-up.png'), overlay = join(directory, 'overlays/left-up.png');
+  for (const [offsetX, offsetY] of [[0, 0], [3, -4], [-5, 2], [size + 1, 0]]) {
+    const args = { video: 'left-up', frameIndex: 0, output, overlay, ...(offsetX || offsetY ? { offsetX, offsetY } : {}) };
+    const item = (await tool.execute(args, signal)).contentItems[0];
+    assert.ok(item.type === 'inputText');
+    const rawFrame = join(directory, 'frames/left-up.png');
+    assert.deepEqual(JSON.parse(item.text), { video, path: output, rawFrame, frameIndex: 0, size, offsetX, offsetY, overlay });
+    assert.deepEqual(await sharp(rawFrame).raw().toBuffer(), original);
+    const expected = Buffer.alloc(original.length, grey);
+    for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+      const sx = x - offsetX, sy = y - offsetY;
+      if (sx >= 0 && sx < size && sy >= 0 && sy < size) {
+        const src = (sy * size + sx) * 3;
+        original.copy(expected, (y * size + x) * 3, src, src + 3);
+      }
+    }
+    assert.deepEqual(await sharp(output).raw().toBuffer(), expected);
+    const blended = expected.map((value, index) => Math.round((value + base[index]) / 2));
+    for (let y = 0; y < size; y++) if (y % 8 < 5) blended.set([0, 220, 255], (y * size + axis) * 3);
+    assert.deepEqual(await sharp(overlay).raw().toBuffer(), blended);
+  }
+});
+
+test('frame tool validates offsets and keeps normalized frames and overlays in separate step paths', async () => {
+  const root = join(tmpdir(), 'frame-invalid-args'), directory = join(root, 'step05_frames');
+  const tool = createFrameTool({ ffmpeg: 'unused', taskRoot: root, directory, videos: root, names: ['left-up'], size: 16 });
+  const valid = { video: 'left-up', frameIndex: 0, output: 'step05_frames/left-up.png' };
+  const signal = new AbortController().signal;
+  for (const [args, error] of [
+    [{ offsetX: 1.2 }, /offsetX/], [{ offsetY: '5' }, /offsetY/], [{ offsetY: Infinity }, /offsetY/],
+    [{ output: 'elsewhere/frame.png' }, /output/], [{ overlay: 'elsewhere/frame.png' }, /overlay/],
+    [{ overlay: valid.output }, /overlay/], [{ overlay: 'step05_frames/frames/frame.png' }, /frames/],
+    [{ overlay: 'step05_frames/overlay.jpg' }, /overlay/], [{ timeSeconds: 0 }, /两者只选一个/],
+  ] as const) await assert.rejects(tool.execute({ ...valid, ...args }, signal), error);
+});
+
 test('九轴提示词按方向装配，并从任务根解析参考与交付路径', () => {
   const root = '/task';
   const hasPaths = (prompt: string, paths: string[]) => {
@@ -254,7 +314,8 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
       'step01_preparation/deformers.json', `step03_frames/${direction}.png`,
       `step02_video/${direction}.mp4`, `${output}/outline`, `${output}/face-${direction}.json`,
     ]);
-    assert.ok(axis.files('main', direction).includes(join(axis.directory, 'prompts/groups', direction, '方向任务.md')));
+    assert.deepEqual(axis.files('main', direction), [join(axis.directory, 'prompts/groups', direction, '方向任务.md')]);
+    assert.deepEqual(trace.files('main', direction), [join(trace.directory, 'prompts/描边.md')]);
     hasPaths(outlinePrompt(root, direction), [
       `step03_frames/${direction}.png`, `step02_video/${direction}.mp4`, `${output}/outline`,
     ]);
@@ -263,7 +324,7 @@ test('九轴提示词按方向装配，并从任务根解析参考与交付路�
   for (const corner of ['left-up', 'left-down'] as const) {
     const prompt = outlinePrompt(root, corner);
     hasPaths(prompt, [`step05_frames/${corner}.png`, `step04_angles/video/${corner}.mp4`, `step06_angle-xy/outline/${corner}`]);
-    assert.ok(trace.files('main', corner).includes(join(trace.directory, 'prompts/groups', corner, '帧与交付位置.md')));
+    assert.deepEqual(trace.files('main', corner), [join(trace.directory, 'prompts/groups', corner, '描边.md')]);
     assert.deepEqual(video.files('main', corner), [join(video.directory, 'prompts/groups', corner, '斜角视频.md')]);
   }
 

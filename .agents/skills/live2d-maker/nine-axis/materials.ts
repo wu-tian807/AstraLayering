@@ -25,7 +25,7 @@ const scopeOf = (id: string): Scope | undefined => {
 // Shadow production already identifies the real source and receiver layers.
 // Prefer those UUIDs to a receiver container's name. Name matching remains a
 // fallback for artwork that has not gone through shadow production.
-export function selectHeadMaterials(layers: Map<string, Record<string, string>>, partIds: string[], shadows: any[]): MaterialSelection[] {
+export function selectHeadMaterials(layers: Map<string, Record<string, string>>, partIds: string[], shadows: any[], includeHidden = false): MaterialSelection[] {
   const selected = new Map<string, MaterialSelection>(), shadowIds = new Set(shadows.map(s => uuid(s.shadowLayerUuid ?? '')));
   for (const shadow of shadows) {
     for (const [ids, parts] of [[shadow.casterLayerUuids, [shadow.casterPartId]], [shadow.receiverLayerUuids, shadow.receiverPartIds]] as const) {
@@ -36,7 +36,7 @@ export function selectHeadMaterials(layers: Map<string, Record<string, string>>,
     }
   }
   for (const [layerId, layer] of layers) {
-    if (selected.has(layerId) || shadowIds.has(layerId) || layer.nodetype.endsWith('mask') || !savedLayerVisible(layers, layerId)) continue;
+    if (selected.has(layerId) || shadowIds.has(layerId) || layer.nodetype.endsWith('mask') || !includeHidden && !savedLayerVisible(layers, layerId)) continue;
     const name = layerPartName(layer.name ?? '').name, partId = matchLayerPart(layer.name ?? '', partIds);
     const scope = partId ? scopeOf(partId) : undefined;
     if (partId && scope) selected.set(layerId, { uuid: layerId, id: name, partId, scope });
@@ -65,8 +65,9 @@ export function selectHeadMaterials(layers: Map<string, Record<string, string>>,
   return values;
 }
 
-export async function headMaterialSelection(document: string, taskRoot: string) {
-  const layers = kraLayers(kraContents(await readFile(document)).xml), partIds: string[] = [];
+export async function headMaterialSelection(document: string, taskRoot: string,
+  options: { layers?: ReturnType<typeof kraLayers>; includeHidden?: boolean } = {}) {
+  const layers = options.layers ?? kraLayers(kraContents(await readFile(document)).xml), partIds: string[] = [];
   const walk = (groups: any[]) => { for (const group of groups) { partIds.push('character:' + group.id); walk(group.groups ?? []); } };
   const optional = async (path: string) => {
     try { return JSON.parse(await readFile(path, 'utf8')); }
@@ -79,7 +80,7 @@ export async function headMaterialSelection(document: string, taskRoot: string) 
     if (scopeOf(name)) partIds.push('character:' + name);
   }
   const shadows = (await optional(join(taskRoot, 'shadow/step01_mask/shadows.json')))?.shadows ?? [];
-  const selected = new Map(selectHeadMaterials(layers, [...new Set(partIds)], shadows).map(row=>[row.uuid,row]));
+  const selected = new Map(selectHeadMaterials(layers, [...new Set(partIds)], shadows, options.includeHidden).map(row=>[row.uuid,row]));
   // Preparation already resolved semantic parts to native UUIDs. That binding
   // survives later display-name changes and regrouping in editable KRA files.
   const manifest = await optional(join(taskRoot,'nine-axis/step01_preparation/head_parts_manifest.json'));

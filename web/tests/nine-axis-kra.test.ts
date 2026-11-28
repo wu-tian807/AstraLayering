@@ -32,9 +32,14 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
     await writeFile(join(directory,row.texture),kraContents(await readFile(document)).merged);
     return {...row,bounds:row.bounds ?? [0,0,12,12]};
   })));
-  const saveKra=async(colour:string)=>{
+  const saveKra=async(colour:string, order = [uuid, body, shadow])=>{
     const png=await sharp({create:{width:12,height:12,channels:4,background:colour}}).png().toBuffer();
-    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers><layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/><layer uuid="{${body}}" name="body" nodetype="paintlayer" visible="1"/><layer uuid="{${shadow}}" name="cast" nodetype="paintlayer" visible="1" compositeop="multiply"/></layers></IMAGE></DOC>`),'mergedimage.png':png}));
+    const layers: Record<string, string> = {
+      [uuid]: `<layer uuid="{${uuid}}" name="face/face_base" nodetype="paintlayer" visible="1"/>`,
+      [body]: `<layer uuid="{${body}}" name="body" nodetype="paintlayer" visible="1"/>`,
+      [shadow]: `<layer uuid="{${shadow}}" name="cast" nodetype="paintlayer" visible="1" compositeop="multiply"/>`,
+    };
+    await writeFile(kra,zipSync({'maindoc.xml':strToU8(`<DOC><IMAGE><layers>${order.map(id => layers[id]).join('')}</layers></IMAGE></DOC>`),'mergedimage.png':png}));
   };
   await saveKra('#f00');
   const { url: base } = await startWorkbench(t, {defaultDir:root,settingsPath:join(root,'settings.json')});
@@ -58,7 +63,13 @@ test('workbench follows KRA without a composite PNG, serves KRA exports, and ref
   assert.deepEqual(studio.studioLayers.map((layer: any) => [layer.uuid, layer.projection]), [
     [body, undefined], [shadow, { casters: [uuid], receivers: [body] }],
   ]);
+  assert.deepEqual(studio.paintStack.map((layer: any) => layer.id), [shadow, body, uuid]);
   assert.deepEqual(await readTexture(studio.textures[1]),[255,0,0,255]);
+  await saveKra('#f00', [body, uuid, shadow]);
+  await materializer.resolve(project,stage,{doc,textures:new Map()},undefined,'studio');
+  const reordered = await (await get('/api/studio/nine-axis/materials',{path,scene:'studio'})).json() as any;
+  assert.deepEqual(reordered.paintStack.map((layer: any) => layer.id), [shadow, uuid, body]);
+  assert.deepEqual(reordered.doc.parts, studio.doc.parts);
   await saveKra('#0f0');
   await materializer.resolve(project,stage,{doc,textures:new Map()});
   const next=await(await get('/api/studio/project')).json() as any;
@@ -114,9 +125,15 @@ test('studio adds native correction RGB only over the visible lower paint in its
   const query = '/api/studio/nine-axis/materials?' + new URLSearchParams({ folder: root, path, scene: 'studio' });
   const response = await fetch(url + query);
   assert.equal(response.status, 200);
-  const { studioLayers } = await response.json() as { studioLayers: { uuid: string; inheritAlpha?: string[] }[] };
-  assert.deepEqual(studioLayers.find(layer => layer.uuid === 'correction')?.inheritAlpha, ['left', 'right']);
-  assert.deepEqual(studioLayers.find(layer => layer.uuid === 'other-correction')?.inheritAlpha, ['left', 'right']);
+  const { paintStack } = await response.json() as { paintStack: any[] };
+  const findLayer = (stack: any[], id: string): any => {
+    for (const layer of stack) {
+      if (layer.id === id) return layer;
+      if (layer.children) { const hit = findLayer(layer.children, id); if (hit) return hit; }
+    }
+  };
+  assert.equal(findLayer(paintStack, 'correction')?.inheritAlpha, true);
+  assert.equal(findLayer(paintStack, 'other-correction')?.inheritAlpha, true);
 
   const page = await browser.newPage();
   await page.route(url + '/fixture-render', route => route.fulfill({ contentType: 'text/html', body:
@@ -125,19 +142,25 @@ test('studio adds native correction RGB only over the visible lower paint in its
   const images = await page.evaluate(async query => {
     const shared = '/studio/nine-axis-render.js';
     const { HeadNineAxisRenderer, createNineAxisBitmap } = await import(shared);
-    const { doc, studioLayers, textures } = await (await fetch(query)).json();
+    const { doc, studioLayers, paintStack, textures } = await (await fetch(query)).json();
     const view = new HeadNineAxisRenderer(document.createElement('canvas'));
     view.renderer.setSize(20, 12, false);
-    const images = await Promise.all(textures.map(async (url: string) => createNineAxisBitmap(await (await fetch(url)).blob())));
-    view.install(doc, images.slice(0, 1));
-    view.setStaticLayers(studioLayers.map((layer: any, i: number) => ({ ...layer, image: images[i + 1] })));
+    const blobs = await Promise.all(textures.map(async (url: string) => (await fetch(url)).blob()));
+    const toggle = (stack: any[], hide: Set<string>): any[] => stack.map(layer => ({
+      ...layer, visible: layer.visible && !hide.has(layer.id),
+      ...(layer.children ? { children: toggle(layer.children, hide) } : {}),
+    }));
     const frame = { x0: 0, y0: 0, width: 20, height: 12 };
-    return [false, true, true].map((enabled, i) => {
-      view.draw(frame, 0, 0, new Set(['right']), undefined, 0, { layerState: (layer: any) => ({
-        ...layer, visible: layer.visible && (layer.uuid !== 'correction' || enabled) && (layer.uuid !== 'left' || i !== 2),
-      }) });
-      return view.renderer.domElement.toDataURL().split(',')[1];
-    });
+    const out = [];
+    for (const hide of [new Set(['correction']), new Set<string>(), new Set(['left'])]) {
+      const images = await Promise.all(blobs.map(blob => createNineAxisBitmap(blob)));
+      view.clear();
+      view.install(doc, images.slice(0, 1), toggle(paintStack, hide));
+      view.setStaticLayers(studioLayers.map((layer: any, i: number) => ({ ...layer, image: images[i + 1] })));
+      view.draw(frame, 0, 0, new Set(['right']));
+      out.push(view.renderer.domElement.toDataURL().split(',')[1]);
+    }
+    return out;
   }, query);
   const [base, corrected, hiddenBase] = await Promise.all(images.map(image => sharp(Buffer.from(image, 'base64')).ensureAlpha().raw().toBuffer()));
   const at = (data: Buffer, x: number) => [...data.subarray((20 * 5 + x) * 4, (20 * 5 + x) * 4 + 4)];

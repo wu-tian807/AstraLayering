@@ -58,6 +58,7 @@
               "remove_warp",
               "interpolation",
               "mirror_pair",
+              "mirror",
               "clip",
               "points",
               "drag",
@@ -206,12 +207,6 @@
           },
           "part": {
             "type": "object"
-          },
-          "before": {
-            "type": "string"
-          },
-          "after": {
-            "type": "string"
           }
         }
       }

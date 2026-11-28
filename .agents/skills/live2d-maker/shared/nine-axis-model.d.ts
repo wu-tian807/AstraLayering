@@ -1,7 +1,7 @@
 export type Point = [number, number];
 export type HeadLevel = 'face' | 'hair' | 'accessory';
 export interface WarpGrid { id: string; name?: string; level: HeadLevel; parent?: string; mirror?: string; bbox: number[]; cols: number; rows: number; keyforms: Record<string, Point[] | number[][]>; keyformsY?: Record<string, Point[] | number[][]>; keyformsXY?: Record<string, Point[] | number[][]>; interpolation?: 'linear' | 'smooth'; parameterInterpolation?: { x?: 'linear' | 'ellipse' }; status?: string }
-export type CastShadow = { casters: string[]; receivers: string[]; blendMode: 'normal' | 'multiply'; opacity: number };
+export type CastShadow = { casters: string[]; receivers: string[]; blendMode?: 'normal' | 'multiply'; opacity?: number };
 export interface HeadDeformer extends WarpGrid { group?: string; texture?: string; textureBounds: number[]; uuid?: string; /** Semantic source part resolved from the native UUID, independently of node ID. */ partId?: string; context?: boolean; material?: 'transparent'; role?: 'mask'; clip?: { by: string[]; invert?: boolean }; shadow?: CastShadow }
 export type IndependentAxis = 'x' | 'up' | 'down';
 export interface AxisSource { axis: IndependentAxis; doc: HeadNineAxis }
@@ -23,8 +23,9 @@ export function kraReferences<T>(doc: T): T;
 export const HEAD_ROLL_LIMIT: number;
 export function headRollLimit(doc?: HeadNineAxis): number;
 export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number, z?: number): Float32Array;
-export function createPointDeformer(doc: HeadNineAxis, x: number, y: number): (node: WarpGrid, samples: Float32Array) => Float32Array;
-export function deformPoints(doc: HeadNineAxis, node: WarpGrid, samples: Float32Array, x: number, y: number): Float32Array;
+export function deformPoints(doc: HeadNineAxis, node: WarpGrid, samples: Float32Array, x: number, y: number, out?: Float32Array): Float32Array;
+/** A single pose snapshot shared across parts. Create again after editing the model. */
+export function createPointDeformer(doc: HeadNineAxis, x: number, y: number): (node: WarpGrid, samples: Float32Array, out?: Float32Array) => Float32Array;
 export function rollEvaluatedPoints(doc: HeadNineAxis, node: WarpGrid, points: Float32Array, z: number): Float32Array;
 /** Independent source pose of one leaf, before current canvas Warp parents. */
 export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number): Point;

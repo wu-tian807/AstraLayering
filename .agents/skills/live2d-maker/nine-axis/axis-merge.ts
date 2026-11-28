@@ -102,7 +102,7 @@ export async function mergeAxes(directory: string, baselineDirectory: string, ax
   }
   for (const [i, s] of sources.entries()) {
     for (const k of ['source', 'canvas', 'axis', 'view', 'levels'] as const) same(s.doc[k], baseline.doc[k], axes[i] + '/' + k);
-    same(s.doc.parts.map(p => p.id), baseline.doc.parts.map(p => p.id), axes[i] + '：原图层顺序');
+    same(s.doc.parts.map(p => p.id).sort(), baseline.doc.parts.map(p => p.id).sort(), axes[i] + '：原图层集合');
     checkDirection(s.doc, axes[i], scale);
     for (const p of s.doc.parts) {
       const base = baseline.doc.parts.find(n => n.id === p.id)!;

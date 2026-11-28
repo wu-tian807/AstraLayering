@@ -54,7 +54,7 @@ async function fixture(t:TestContext,withAccessory=true){
   const select=async(shadow=true)=>{
     const part={id:'head_accessories/object',uuid:uuid(6),level:'accessory',bbox:[10,10,40,40],cols:4,rows:4};
     const operations:any[]=[{action:'add_part',part}];
-    if(shadow)operations.push({action:'add_part',after:'hair/bangs',part:{...part,id:'head_accessories/object/shadow',uuid:uuid(7),shadow:{casters:[part.id],receivers:['hair/bangs']},clip:{by:['hair/bangs']}}});
+    if(shadow)operations.push({action:'add_part',part:{...part,id:'head_accessories/object/shadow',uuid:uuid(7),shadow:{casters:[part.id],receivers:['hair/bangs']},clip:{by:['hair/bangs']}}});
     await edit().execute({operations},new AbortController().signal);
   };
   const options={name:'case',dir:root,step:'step09_head-accessories'};
@@ -69,7 +69,7 @@ test('accessories bind only UUIDs, preserve the owned KRA on continue, and inher
   await f.edit().execute({operations:[{action:'reparent',targets:['head_accessories/object'],parent:'hair/turn'}]},new AbortController().signal);
   await checkAccessories(before,await f.build());
   const built=await f.build(),shadow=built.doc.parts.find(p=>p.shadow)!;
-  assert.equal(shadow.shadow!.blendMode,'multiply');assert.equal(shadow.shadow!.opacity,100/255);
+  assert.deepEqual(shadow.shadow,{casters:['head_accessories/object'],receivers:['hair/bangs']});
   assert.deepEqual(shadow.shadow!.receivers,['hair/bangs']);
   const author=JSON.parse(await readFile(join(f.output,'accessories.json'),'utf8'));
   assert.ok(author.parts.every((p:any)=>p.uuid&&!p.texture));

@@ -682,6 +682,30 @@ test('a saved projection follows its posed caster and clips to the posed receive
   passLayers.length = 0;
   renderer.draw(frame, 0, 0, new Set([caster.id]), undefined, 15);
   assert.deepEqual(passLayers, [[caster.id]]);
+
+  passLayers.length = 0;
+  renderer.draw(frame, 0, 0, new Set([receiver.id]), undefined, 0);
+  assert.deepEqual(passLayers, [[receiver.id]], 'a composition without the caster also hides its saved shadow');
+});
+
+test('studio uses the chosen head composition at neutral and posed angles, matching the workflow preview', async () => {
+  const { HeadNineAxisPanel } = await panelModule(), panel = Object.create(HeadNineAxisPanel.prototype);
+  const doc = composed(), hair = { ...structuredClone(doc.parts[0]), id: 'hair', level: 'hair' }, accessory = { ...structuredClone(doc.parts[0]), id: 'accessory', level: 'accessory' };
+  doc.parts.push(hair, accessory);
+  const draws: { shown: Set<string>; x: number; y: number }[] = [];
+  Object.assign(panel, { doc, active: true, inSharedPreview: true, value: 0, valueY: 0, valueZ: 0,
+    selected: null, shownMasks: new Set(), mode: { scope: new Set(['face', 'hair']) },
+    stage: { canvasFrame: () => ({ x0: 0, y0: 0, width: 100, height: 100 }) },
+    view: { getBoundingClientRect: () => ({ width: 100 }) }, drawOverlay() {}, layers: {},
+    view3: { draw(_frame: any, x: number, y: number, shown: Set<string>) { draws.push({ shown, x, y }); } } });
+  assert.equal(panel.present(), true, 'neutral uses the authored model rather than switching to the KRA composite');
+  assert.deepEqual([...draws.at(-1)!.shown], ['face', 'hair']);
+  panel.value = -30; panel.valueY = 25; panel.present();
+  assert.deepEqual([...draws.at(-1)!.shown], ['face', 'hair']);
+  panel.mode.scope.add('accessory'); panel.present();
+  assert.deepEqual([...draws.at(-1)!.shown], ['face', 'hair', 'accessory']);
+  panel.value = panel.valueY = 0; panel.active = false;
+  assert.equal(panel.present(), false, 'other neutral workspaces keep their original paint view');
 });
 
 test('dynamic studio preview preserves angles and defers refresh during user edits or parameter dragging', async t => {

@@ -10,6 +10,9 @@ import { createHeadEditTool } from '../edit-tool.ts';
 import { buildHead, mirrorHierarchy, type FaceLeft } from '../head.ts';
 import { evaluatePoints } from '../../shared/nine-axis-model.js';
 import { editNineAxis } from '../../shared/nine-axis-edit.js';
+import { compileContinuation, startContinuation } from '../continuation.ts';
+import { createContinuationEditTool } from '../continuation-edit-tool.ts';
+import { hairPreviewScope } from '../hair.ts';
 const points = (box: number[], dx = 0) => [[box[0],box[1]],[box[2],box[1]],[box[0],box[3]],[box[2],box[3]]].map(([x,y]) => [x+dx,y]);
 const node = (id: string, bbox: number[], dx: number): any => ({id, level:'face',bbox,cols:1,rows:1,keyforms:{'0':points(bbox),'-30':points(bbox,dx)}});
 test('registration stays static; editing lazily creates only the target axes and children inherit the carrier',()=>{
@@ -55,6 +58,70 @@ test('mirror uses the complete source hierarchy even when only one eye has a par
   assert.deepEqual([...evaluatePoints(doc,mirrored.parts[1],30)], [46,20,66,20,46,40,66,40]);
   assert.deepEqual([...evaluatePoints(doc,mirrored.parts[0],30)], [122,20,142,20,122,40,142,40]);
 });
+
+test('explicit mirror preserves other nodes and reflects paired and central poses through their parents', () => {
+  const leftParent = node('left-parent', [0, 0, 200, 100], 11);
+  const rightParent = node('right-parent', [0, 0, 200, 100], 2);
+  rightParent.keyforms['30'] = points(rightParent.bbox, 9);
+  const layer = (id: string, bbox: number[], dx: number, parent?: string) => ({
+    ...node(id, bbox, dx), parent, material: 'transparent', textureBounds: [0, 0, 20, 20],
+  });
+  const left = layer('hair/side_left', [115, 20, 135, 40], 3, leftParent.id);
+  const right = layer('hair/side_right', [45, 20, 65, 40], -2, rightParent.id);
+  left.keyforms['-12'] = points(left.bbox, 1);
+  const center = layer('hair/bangs', [70, 25, 110, 45], 4);
+  const asymmetric = layer('head_accessories/one-clip', [43, 10, 54, 16], 7);
+  const doc: any = { version: 2, kind: 'head-nine-axis', axis: 90, levels: [{ id: 'face', includes: ['face'] }],
+    deformers: [leftParent, rightParent], parts: [left, right, center, asymmetric] };
+  const mirrored = editNineAxis(doc, [{ action: 'mirror', targets: [right.id, center.id] }]);
+  assert.deepEqual([...evaluatePoints(mirrored, mirrored.parts[1], 30)], [31, 20, 51, 20, 31, 40, 51, 40]);
+  assert.ok(mirrored.parts[1].keyforms['12']);
+  assert.deepEqual([...evaluatePoints(mirrored, mirrored.parts[2], 30)], [66, 25, 106, 25, 66, 45, 106, 45]);
+  assert.deepEqual(mirrored.parts[0], left);
+  assert.deepEqual(mirrored.parts[3], asymmetric);
+  assert.deepEqual(mirrored.deformers, doc.deformers);
+  assert.equal(right.keyforms['30'], undefined);
+});
+
+test('mirror honors explicit pairs and writes only the matching positive-X corner', () => {
+  const left = { ...node('part-A', [60, 20, 90, 40], 0), mirror: 'part-B', material: 'transparent', textureBounds: [60, 20, 30, 20] };
+  const right = { ...node('part-B', [10, 20, 40, 40], 0), mirror: 'part-A', material: 'transparent', textureBounds: [10, 20, 30, 20] };
+  const doc: any = { version: 2, kind: 'head-nine-axis', axis: 50, levels: [{ id: 'face', includes: ['face'] }],
+    parameters: [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [-25, 0, 25] }],
+    deformers: [], parts: [left, right] };
+  const before = editNineAxis(doc, [
+    { action: 'transform', id: left.id, x: -30, y: -25, translate: [-3, 2] },
+    { action: 'transform', id: right.id, x: 30, y: 25, translate: [2, -1] },
+  ]);
+  const after = editNineAxis(before, [{ action: 'mirror', targets: [right.id], x: -30, y: -25 }]);
+  assert.deepEqual([...evaluatePoints(after, after.parts[1], 30, -25)], [13, 22, 43, 22, 13, 42, 43, 42]);
+  assert.deepEqual(after.parts[0], before.parts[0]);
+  assert.deepEqual(after.parts[1].keyforms, before.parts[1].keyforms);
+  assert.deepEqual(after.parts[1].keyformsY, before.parts[1].keyformsY);
+  assert.deepEqual(after.parts[1].keyformsXY!['30,25'], before.parts[1].keyformsXY!['30,25']);
+});
+
+test('hair mirror cannot write or borrow a counterpart outside the active round', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-mirror-scope-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const upstreamDirectory = join(root, 'nine-axis/step07_jaw-line'), directory = join(root, 'nine-axis/step08_hair');
+  await Promise.all([upstreamDirectory, directory].map(d => mkdir(d, { recursive: true })));
+  const face = { ...node('face/face_base', [10, 10, 90, 90], 0), material: 'transparent', textureBounds: [10, 10, 80, 80] };
+  const upstream: any = { version: 2, kind: 'head-nine-axis', canvas: [100, 100], axis: 50, levels: [{ id: 'face', includes: ['face'] }],
+    parameters: [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [0] }], deformers: [], parts: [face] };
+  const doc = startContinuation(upstream, 'hair');
+  const front = 'hair/bangs', side = 'hair/side_hair/right';
+  for (const [id, mirror] of [[front, side], [side, front]]) doc.parts.push({
+    ...node(id, [10, 10, 90, 90], 2), mirror, partId: 'character:' + id, level: 'hair', material: 'transparent', textureBounds: [10, 10, 80, 80],
+  });
+  const author = join(directory, 'hair.json'), original = JSON.stringify(doc);
+  await writeFile(join(upstreamDirectory, 'deformers.json'), JSON.stringify(upstream));
+  await writeFile(author, original);
+  const tool = createContinuationEditTool(directory, upstreamDirectory, 'hair', undefined, root, undefined, hairPreviewScope('side'));
+  for (const id of [front, side]) await assert.rejects(tool.execute({ operations: [{ action: 'mirror', targets: [id] }] },
+    new AbortController().signal), /不能镜像范围外/);
+  assert.equal(await readFile(author, 'utf8'), original);
+});
 test('edit tool imports source textures, persists artist groups, previews revision, and rejects stale writes',async t=>{
   const root = await mkdtemp(join(tmpdir(),'astra-edit-tool-'));t.after(()=>rm(root,{recursive:true,force:true}));
   const dir=join(root,'nine-axis/step04_angles');await mkdir(join(dir,'layers'),{recursive:true});
@@ -77,4 +144,27 @@ test('edit tool imports source textures, persists artist groups, previews revisi
   const source=JSON.parse(await readFile(join(dir,'face-left.json'),'utf8'));
   assert.equal(source.parts.find((p:any)=>p.id==='face/face_base').parent,'my-form');assert.equal(source.deformers.length,1);
   await assert.rejects(tool.execute({revision:imported.revision,operations:[{action:'remove_warp',id:'my-form'}]},signal),Error);
+});
+
+test('jaw publishing mirrors new shapes and preserves the delivered right-side geometry', async t => {
+  const root = await mkdtemp(join(tmpdir(), 'nine-axis-jaw-mirror-'));
+  t.after(() => rm(root, { recursive: true, force: true }));
+  const upstream = join(root, 'step06_angle-xy');
+  await mkdir(upstream);
+  const bbox = [20, 20, 80, 80];
+  const base = { ...node('face/face_base', bbox, -2), material: 'transparent', textureBounds: [20, 20, 60, 60] };
+  base.keyforms['30'] = points(bbox, 13);
+  const doc = {
+    version: 2, kind: 'head-nine-axis', axis: 50, canvas: [100, 100],
+    source: { document: 'original.kra' }, levels: [{ id: 'face', includes: ['face'] }],
+    deformers: [], parts: [base],
+  } as Parameters<typeof startContinuation>[0];
+  await writeFile(join(upstream, 'deformers.json'), JSON.stringify(doc));
+  const author = startContinuation(doc, 'jaw');
+  author.parts.push({ ...node('face/jaw', bbox, -3), material: 'transparent', textureBounds: [20, 20, 60, 60] });
+
+  const { doc: published } = await compileContinuation(join(root, 'step07_jaw-line'), upstream, author, 'jaw');
+
+  assert.deepEqual(published.parts[0], base);
+  assert.deepEqual(published.parts[1].keyforms['30'], points(bbox, 3));
 });

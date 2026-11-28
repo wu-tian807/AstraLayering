@@ -5,7 +5,11 @@
   "properties": {
     "action": {"enum": ["inspect", "fit"]},
     "trace": {"type": "string"},
-    "corner": {"enum": ["left-up", "left-down"], "description": "斜向步骤必填，使用本步同名 PNG 的已选视频帧；其他步骤省略。"},
+    "side": {"enum": ["left", "right"], "default": "left", "description": "头发和头饰的左右端点快捷选项。"},
+    "corner": {"enum": ["left-up", "left-down", "right-up", "right-down"], "description": "整头斜角端点快捷选项。脸部斜向仍使用 left-up 或 left-down。"},
+    "x": {"type": "number", "description": "目标水平角。"},
+    "y": {"type": "number", "description": "目标俯仰角。"},
+    "reference": {"type": "string", "description": "整头步骤的参考 PNG 路径，使用当前视框坐标。inspect 在没有对应已绑定帧时必填；fit 仅在传入时附带叠图。"},
     "id": {"type": "string"},
     "features": {"type": "array", "items": {"type": "string"}},
     "revision": {"type": "string"},
