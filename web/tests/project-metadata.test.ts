@@ -42,7 +42,7 @@ test('Chinese project names persist across views and restarts without changing a
   for (const invalid of ['a'.repeat(81), 'bad\nname', 42]) assert.equal((await label(invalid)).status, 400);
   assert.equal((await label('越界', '../outside')).status, 400);
   assert.equal((await label('越界', name, root)).status, 409);
-  await symlink(root, join(dir, 'alias'), process.platform === 'win32' ? 'junction' : 'dir');
+  await symlink(root, join(dir, 'alias'));
   assert.equal((await label('越界', 'alias')).status, 400);
   await new Promise<void>(resolve => server.close(() => resolve())); await open();
   assert.equal((await tasks()).tasks.find((task: any) => task.name === name).displayName, '粉色人偶');

@@ -54,9 +54,10 @@ test('每个缺失上游明确给出具体文件和对应管线，不启动 agen
       agent: async () => assert.fail('missing input must not call agent'),
     }), error => {
       assert.ok(error instanceof Error);
-      assert.ok(error.message.includes(`缺少上游产物（${upstream}）`));
+      assert.ok(error.message.includes(` ${upstream} --name`));
       assert.ok(error.message.includes(key === 'simplifiedCharacter'
         ? join(dirname(f.inputs[key]), 'simplified-subject.png') : f.inputs[key]));
+      assert.ok(error.message.includes('手动放置'));
       return true;
     });
     await assert.rejects(stat(f.output), { code: 'ENOENT' });

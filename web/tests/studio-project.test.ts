@@ -35,15 +35,6 @@ async function fixture(t: any) {
   };
   return { root, dir, name, project, base, get, put };
 }
-async function linkOutput(target: string, link: string) {
-  if (process.platform === 'win32') {
-    await mkdir(target, { recursive: true });
-    await symlink(target, link, 'junction');
-  } else {
-    await writeFile(target, 'private');
-    await symlink(target, link);
-  }
-}
 test('the unfinished front round previews its own KRA and cumulative model while jaw remains selectable', async t => {
   const f = await fixture(t), paths = nineAxisArtifacts;
   await f.put(paths.neutralDeformers, '{}');
@@ -160,14 +151,15 @@ test("Project preview reads only the fixed assembly and lighting outputs; absent
 test("Project preview rejects relative and symlinked folders, non-tasks outside the run directory and symlinked outputs", async (t) => {
   const f = await fixture(t);
   assert.equal((await f.get({ folder: "runs/角色" })).status, 400);
-  await symlink(f.project, join(f.root, "alias"), process.platform === 'win32' ? 'junction' : 'dir');
+  await symlink(f.project, join(f.root, "alias"));
   assert.equal((await f.get({ folder: join(f.root, "alias") })).status, 400);
   const plain = join(f.root, "elsewhere", "plain");
   await mkdir(plain, { recursive: true });
   assert.match(((await (await f.get({ folder: plain })).json()) as any).error, /run\.json/);
   await mkdir(join(f.project, "lighting"));
   const outside = join(f.root, "private.png");
-  await linkOutput(outside, join(f.project, studioArtifacts.normal));
+  await writeFile(outside, "private");
+  await symlink(outside, join(f.project, studioArtifacts.normal));
   assert.equal((await f.get()).status, 400);
 });
 test('Two shadow routes coexist: last complete selection chooses its document and pauses stale maps', async t => {
@@ -403,7 +395,8 @@ test('Current nine-axis artifact whitelist rejects extra nesting, foreign groups
     'nine-axis/step04_angles/model/up/layers/../deformers.json', 'nine-axis/step04_angles/model/left/../up/deformers.json']) {
     assert.equal((await read(path)).status, 400, path);
   }
-  await linkOutput(join(f.project, 'private.png'), join(f.project, 'nine-axis/step04_angles/model/up/layers/link.png'));
+  await f.put('private.png', 'private');
+  await symlink(join(f.project, 'private.png'), join(f.project, 'nine-axis/step04_angles/model/up/layers/link.png'));
   assert.equal((await read('nine-axis/step04_angles/model/up/layers/link.png')).status, 400);
   for (const path of [nineAxisArtifacts.turnLeftVideo, nineAxisArtifacts.turnUpVideo, nineAxisArtifacts.turnDownVideo,
     nineAxisArtifacts.turnLeft, nineAxisArtifacts.turnUp, nineAxisArtifacts.turnDown, nineAxisArtifacts.turnRecord]) {

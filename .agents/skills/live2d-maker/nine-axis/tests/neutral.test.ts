@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { access, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { test, type TestContext } from 'node:test';
@@ -157,9 +157,7 @@ print(json.dumps(reply))
         if (!startup && options.exportReply) Object.assign(reply, options.exportReply);
         calls.events = reply.events ?? [];
         replies.push({ ...reply, startup });
-        const result = join(jobs, name.replace(/\.py$/, '.json'));
-        await writeFile(result + '.tmp', JSON.stringify(reply));
-        await rename(result + '.tmp', result);
+        await writeFile(join(jobs, name.replace(/\.py$/, '.json')), JSON.stringify(reply));
       }
     })().finally(() => { running = false; });
   }, 10);

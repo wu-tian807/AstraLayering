@@ -5,8 +5,6 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { SectionKrita, kritaLimit, kritaSlotsInUse, readKritaRecord } from '../krita/section-krita.ts';
 import { createKritaTool } from '../krita/tool.ts';
-import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
-import type { TestContext } from 'node:test';
 
 // Speaks the bridge protocol without Krita: a job whose source is "crash"
 // kills the process; any other job returns its source as the result.
@@ -28,23 +26,14 @@ setInterval(() => {
 }, 20);
 `;
 
-async function fixtureKrita(t: TestContext, root: string) {
-  nodeExecutables(t);
-  const windows = process.platform === 'win32';
-  const executable = join(root, windows ? 'bin/krita.cjs' : 'krita');
-  if (windows) await Promise.all(['bin', 'lib', 'share/krita'].map(path => mkdir(join(root, path), { recursive: true })));
-  await writeFile(executable, fakeKrita);
-  await chmod(executable, 0o755);
-  return executable;
-}
-
 const exists = (path: string) => stat(path).then(() => true, () => false);
 const parse = (result: { contentItems: { type: string; text?: string }[] }) => JSON.parse(result.contentItems[0]!.text!);
 
 test('section Krita: lazy start through the tool, crash and restart, release on section end', async t => {
   const root = await mkdtemp(join(tmpdir(), 'section-krita-test-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const krita = await fixtureKrita(t, root);
+  const krita = join(root, 'krita');
+  await writeFile(krita, fakeKrita); await chmod(krita, 0o755);
   const record = join(root, 'krita.json');
   const section = new SectionKrita({ section: root, krita, record, env: { ...process.env, DISPLAY: ':fixture' }, slotsDirectory: join(root, 'slots') });
   t.after(() => section.release());
@@ -99,7 +88,8 @@ test('section Krita: lazy start through the tool, crash and restart, release on 
 test('section Krita: machine-wide cap queues sections until a slot is free', async t => {
   const root = await mkdtemp(join(tmpdir(), 'section-krita-test-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const krita = await fixtureKrita(t, root), slots = join(root, 'slots');
+  const krita = join(root, 'krita'), slots = join(root, 'slots');
+  await writeFile(krita, fakeKrita); await chmod(krita, 0o755);
   // A slot left by a process that died is reclaimed.
   await mkdir(slots);
   await writeFile(join(slots, '0.lock'), '999999999');

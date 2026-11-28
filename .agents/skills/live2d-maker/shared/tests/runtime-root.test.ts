@@ -24,15 +24,13 @@ test('默认 root 是仓库 .run，独立 skill 使用上一级 .run；--dir 必
   const repository = resolve(workflowsDirectory, '../../..');
   assert.equal(runsDirectory, existsSync(join(repository, 'web/server.ts')) && existsSync(join(repository, 'pnpm-workspace.yaml'))
     ? join(repository, '.run') : resolve(workflowsDirectory, '../.run'));
-  const installed = resolve(tmpdir(), 'installed');
-  assert.equal(defaultRunsDirectory(join(installed, 'live2d-maker')), join(installed, '.run'));
+  assert.equal(defaultRunsDirectory('/tmp/installed/live2d-maker'), '/tmp/installed/.run');
   assert.equal(taskDirectory('sample'), join(runsDirectory, 'sample'));
-  const custom = join(tmpdir(), 'custom');
-  assert.equal(parseSectionArguments(['--name', 'sample', '--dir', custom, '--knowledge', 'knowledge']).dir, custom);
+  assert.equal(parseSectionArguments(['--name', 'sample', '--dir', '/tmp/custom', '--knowledge', 'knowledge']).dir, '/tmp/custom');
   assert.throws(() => parseSectionArguments(['--name', 'sample', '--dir', 'relative', '--knowledge', 'knowledge']), /绝对路径/);
   assert.throws(() => taskDirectory('live2d-maker', resolve(workflowsDirectory, '..')), /skill 之外/);
   assert.throws(() => taskDirectory('sample', workflowsDirectory), /skill 之外/);
-  assert.equal(resolveInput('sample', 'source.png', custom), join(custom, 'sample/source.png'));
+  assert.equal(resolveInput('sample', 'source.png', '/tmp/custom'), '/tmp/custom/sample/source.png');
 });
 
 test('同名任务可在不同 root 独立准备、读取上游、按 name 续跑并检查步骤范围前置', async t => {
@@ -100,7 +98,7 @@ test('两套 raster 的 --dir 定位上游与续跑 thread，覆盖测试注入 
     await run({ name: 'case', dir, krita: 'krita' }, { ...deps, agent: async request => {
       if (!isRasterReview(request)) assert.equal(request.threadId, 'kept-thread');
       // The upstream located under --dir is shown to the agent as an absolute path.
-      if (!isRasterReview(request)) assert.ok(request.prompt.includes(join(sectionDirectory('case', input, dir), 'parts')));
+      if (!isRasterReview(request)) assert.ok(request.prompt.includes(`${sectionDirectory("case", input, dir)}/parts/`));
       return deliverRasterStep(request, definitions[0], 'kept-thread');
     } });
     await stat(join(output, 'step01/.completed'));

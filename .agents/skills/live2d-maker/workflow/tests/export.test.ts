@@ -1,6 +1,5 @@
-import { linkDirectory, linkFile } from '../../shared/tests/link-fixture.ts';
 import assert from 'node:assert/strict';
-import { readFile, readdir, rm } from 'node:fs/promises';
+import { readFile, readdir, rm, symlink } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { unzipSync } from 'fflate';
@@ -48,7 +47,7 @@ test('directory/ZIP exports retain artwork, completion facts and cited workspace
 
 test('records naming the task through a symlinked runs root still export task-relative', async t => {
   const f = await exportFixture(t), link = join(f.base, 'linked-runs'), destination = join(f.base, 'result');
-  await linkDirectory(f.dir, link);
+  await symlink(f.dir, link);
   const lexical = join(link, f.name), cited = 'raster-layering/step01/workspace/inspect/cited.png';
   const review = reportPath('part-layering', 'front', 'review');
   const value = JSON.parse(await readFile(join(f.root, review), 'utf8'));
@@ -112,14 +111,13 @@ test('incomplete, active, missing-delivery and missing-marker exports fail witho
   assert.equal((await readdir(f.base)).some(path => path.startsWith('.live2d-export')), false);
 });
 
-test('export leaves report evidence alone and refuses destinations inside the source', async t => {
+test('export refuses symlink evidence, existing output and destinations inside the source', async t => {
   const f = await exportFixture(t), output = join(f.base, 'out');
-  await t.test('report evidence through a file link stays out of the export', async t => {
-    await f.put('raster-layering/step01/report.md', '![private](workspace/inspect/link.png)');
-    if (!await linkFile(t, join(f.root, 'input/original.png'), join(f.root, 'raster-layering/step01/workspace/inspect/link.png'))) return;
-    await exportCompletedRun({ name: f.name, dir: f.dir, output });
-    await rm(output, { recursive: true, force: true });
-  });
+  await f.put('raster-layering/step01/report.md', '![private](workspace/inspect/link.png)');
+  await symlink(join(f.root, 'input/original.png'), join(f.root, 'raster-layering/step01/workspace/inspect/link.png'));
+  // Report images are no longer read or exported, so a symlinked image is not refused.
+  await exportCompletedRun({ name: f.name, dir: f.dir, output });
+  await rm(output, { recursive: true, force: true });
   // Prose is kept as text: paths in it are not resolved, so they cannot warn.
   await f.put('raster-layering/step01/report.md', `\`${'很长的说明'.repeat(60)}.png\` 与 \`input/original.png/zoom.png\``);
   const exported = await exportCompletedRun({ name: f.name, dir: f.dir, output });

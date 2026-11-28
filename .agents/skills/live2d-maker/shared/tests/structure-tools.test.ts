@@ -1,6 +1,5 @@
-import { linkFile } from './link-fixture.ts';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, realpath, rm, symlink, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { test, type TestContext } from 'node:test';
@@ -145,14 +144,12 @@ test('取消保留结构文件；SVG 支持指向外部文件的符号链接', a
   const canceled = AbortSignal.abort(new Error('用户取消'));
   await assert.rejects(f.tool('edit_occlusion').execute({ layers: [row('fixture', 0)] }, canceled), /用户取消/);
   assert.deepEqual(await f.snapshot(), before);
-  await t.test('允许引用外部 SVG 文件符号链接', async t => {
-    await writeFile(join(f.root, 'outside.svg'), 'other task');
-    await rm(join(f.input.parts, 'fixture.svg'));
-    if (!await linkFile(t, join(f.root, 'outside.svg'), join(f.input.parts, 'fixture.svg'))) return;
-    await f.tool('edit_occlusion').execute({ layers: [row('fixture', 0)] }, signal);
-    assert.deepEqual((await f.snapshot())[0], before[0]);
-    assert.deepEqual((await f.json('occlusion.json')).layers, [row('fixture', 0)]);
-  });
+  await writeFile(join(f.root, 'outside.svg'), 'other task');
+  await rm(join(f.input.parts, 'fixture.svg'));
+  await symlink(join(f.root, 'outside.svg'), join(f.input.parts, 'fixture.svg'));
+  await f.tool('edit_occlusion').execute({ layers: [row('fixture', 0)] }, signal);
+  assert.deepEqual((await f.snapshot())[0], before[0]);
+  assert.deepEqual((await f.json('occlusion.json')).layers, [row('fixture', 0)]);
 });
 
 test('两套 step01 结束时结构诊断仅记日志，保留完成状态并推进下一步', async t => {

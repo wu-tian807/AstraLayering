@@ -47,7 +47,7 @@ export async function publishReportText(text: string, workspace: string, output:
   for (const ref of reportReferences(text).reverse()) {
     let target: string;
     try { target = decodeURIComponent(ref.target); } catch { continue; }
-    if (!isAbsolute(target) && /^[a-z][a-z\d+.-]*:/i.test(target)) continue;
+    if (/^[a-z][a-z\d+.-]*:/i.test(target)) continue;
     const candidates = isAbsolute(target) ? [target] : [resolve(base, target), resolve(root, target)];
     let source: string | undefined;
     for (const candidate of candidates) {

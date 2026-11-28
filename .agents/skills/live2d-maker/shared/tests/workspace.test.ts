@@ -1,8 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
-import { join, sep } from 'node:path';
-import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
+import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { executionPaths, prepareWorkspace, workspacePrompt } from '../agents/workspace.ts';
 import { prepareFileInputs, referencesDirectory } from '../agents/inputs.ts';
@@ -28,13 +27,12 @@ test('input preparation only materializes requested files in references and leav
   assert.equal(await readFile(inputs['guide.md'], 'utf8'), 'input guide');
   assert.deepEqual(await readFile(inputs['derived/crop.png']), bytes);
   assert.deepEqual(await readFile(source), bytes);
-  assert.ok(Object.values(inputs).every(path => path.startsWith(referencesDirectory(output) + sep)));
+  assert.ok(Object.values(inputs).every(path => path.startsWith(referencesDirectory(output) + '/')));
   await assert.rejects(prepareFileInputs(output, [{ name: '../escape.png', source }]));
   await assert.rejects(prepareFileInputs(output, [{ name: 'same', content: '' }, { name: 'same', content: '' }]));
 });
 
 test('native Codex executes and resumes in the step workspace; tools keep their schema and logical path base', async t => {
-  nodeExecutables(t);
   const root = await fixture(t), output = join(root, 'step01');
   const server = await fakeAppServer(root, [{ tool: 'probe', arguments: {} }]);
   const paths = await prepareWorkspace({ cwd: root, outputDirectory: output }, root);
@@ -49,9 +47,9 @@ test('native Codex executes and resumes in the step workspace; tools keep their 
     logDirectory: join(root, 'agents'), codexPathOverride: server.executable });
   const task = { name: 'probe', prompt: 'draw', cwd: root, outputDirectory: output, tools: [tool] };
   const session = agents.createSession();
-  const first = await session.run(task).finally(() => session.close());
+  const first = await session.run(task); await session.close();
   const resumed = agents.createSession(first.threadId!);
-  const second = await resumed.run(task).finally(() => resumed.close());
+  const second = await resumed.run(task); await resumed.close();
   assert.equal(second.threadId, first.threadId);
   const protocol = (await readFile(server.capture, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   for (const call of protocol.filter(item => ['thread/start', 'thread/resume'].includes(item.method))) {
@@ -109,7 +107,6 @@ test('report publication rewrites the link target even when the label repeats it
 });
 
 test('Codex changes tools by reconnecting to the same thread and keeps formal write access', async t => {
-  nodeExecutables(t);
   const root = await fixture(t), server = await fakeAppServer(root, [{ tool: 'deliver', arguments: {} }]);
   const agents = new AgentDispatcher({ environment: loadWorkflowEnvironment({}, root), cwd: root,
     logDirectory: join(root, 'agents'), codexPathOverride: server.executable });
