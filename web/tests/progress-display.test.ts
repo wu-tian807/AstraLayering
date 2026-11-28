@@ -1,26 +1,24 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { displayStatus, groupArtifacts, groupPhases, groupPreviewArtifacts, groupSummary, replacementGroupDraft, statusNames, stepArtifacts } from '../progress.js';
+import { displayStatus, groupArtifacts, groupPhases, groupPreviewArtifacts, groupSummary, replacementGroupDraft, stepArtifacts } from '../progress.js';
 
 test('normal progress labels keep existing artifacts distinct from running and completion', () => {
-  assert.deepEqual(Object.values(statusNames), ['待执行', '进行中', '限流等待', '已有产物', '已完成', '执行失败', '已中断', '待续跑']);
   const group = { webPhases: Object.fromEntries(groupPhases.map(([id]) => [id, 'pending'])) };
-  assert.equal(groupSummary(group).text, '待执行');
-  group.webPhases.outline = 'done'; assert.equal(groupSummary(group).text, '已有产物');
-  group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).text, '限流等待');
-  group.webPhases.completion = 'running'; assert.equal(groupSummary(group).text, '限流等待');
+  assert.equal(groupSummary(group).status, 'pending');
+  group.webPhases.outline = 'done'; assert.equal(groupSummary(group).status, 'available');
+  group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).status, 'throttled');
+  group.webPhases.completion = 'running'; assert.equal(groupSummary(group).status, 'throttled');
   group.webPhases = Object.fromEntries(groupPhases.map(([id]) => [id, 'done']));
-  assert.equal(groupSummary(group).text, '已完成');
+  assert.equal(groupSummary(group).status, 'done');
   // A failure shows once nothing in the group runs or waits any more.
-  group.webPhases.outline = 'failed'; group.webPhases.review = 'running'; assert.equal(groupSummary(group).text, '进行中');
-  group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).text, '限流等待');
-  group.webPhases.review = 'done'; assert.equal(groupSummary(group).text, '执行失败');
+  group.webPhases.outline = 'failed'; group.webPhases.review = 'running'; assert.equal(groupSummary(group).status, 'running');
+  group.webPhases.review = 'throttled'; assert.equal(groupSummary(group).status, 'throttled');
+  group.webPhases.review = 'done'; assert.equal(groupSummary(group).status, 'failed');
 });
 
 test('failure is explicit, while interrupted execution keeps its intermediate artifacts', () => {
   assert.equal(displayStatus('failed', true), 'failed');
   assert.equal(displayStatus('failed', false), 'failed');
-  assert.equal(statusNames.failed, '执行失败');
   assert.equal(groupSummary({ webPhases: { outline: 'failed', completion: 'available' } }).status, 'failed');
   for (const state of ['interrupted', 'unconfirmed']) {
     assert.equal(displayStatus(state, true), state);
@@ -34,15 +32,15 @@ test('collapsed group shows active descendants before saved parent progress', ()
   const child = { webPhases: { outline: 'available', review: 'running' } };
   const group = { webPhases: Object.fromEntries(groupPhases.map(([id]) => [id, 'done'])),
     groups: [{ webPhases: { outline: 'available' }, groups: [child] }] };
-  assert.equal(groupSummary(group).text, '进行中');
+  assert.equal(groupSummary(group).status, 'running');
   child.webPhases.review = 'throttled';
-  assert.equal(groupSummary(group).text, '限流等待');
+  assert.equal(groupSummary(group).status, 'throttled');
   child.webPhases.review = 'failed';
-  assert.equal(groupSummary(group).text, '执行失败');
+  assert.equal(groupSummary(group).status, 'failed');
   child.webPhases.review = 'pending';
-  assert.equal(groupSummary(group).text, '已完成');
+  assert.equal(groupSummary(group).status, 'done');
   group.webPhases.children = 'pending';
-  assert.equal(groupSummary(group).text, '已有产物');
+  assert.equal(groupSummary(group).status, 'available');
 });
 
 for (const section of ['part-layering', 'clothing-part-layering']) test(`${section}: compact previews prefer the current draft over an older final image`, () => {

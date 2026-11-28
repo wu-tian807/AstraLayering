@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
-import { access, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { access, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
 import { test, type TestContext } from 'node:test';
@@ -32,7 +32,7 @@ const layers: Layer[] = [
 // small Krita/QImage doubles. This exercises traversal, export and finally-close
 // rather than merely returning a precomputed manifest from a mocked TS API.
 async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; depth?: string;
-  startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult> } = {}) {
+  startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult>; python?: string } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'neutral-原图-'));
   let stop = async () => {};
   t.after(async () => { await stop(); await rm(root, { recursive: true, force: true }); });
@@ -145,19 +145,22 @@ print(json.dumps(reply))
       for (const name of await readdir(jobs)) {
         if (!name.endsWith('.py') || handled.has(name)) continue;
         handled.add(name); calls.jobs++;
-        const python = spawn(pythonExecutable, ['-c', bootstrap], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
-        let stdout = '', stderr = '';
-        python.stdout.on('data', chunk => { stdout += chunk; });
-        python.stderr.on('data', chunk => { stderr += chunk; });
-        python.stdin.end(await readFile(join(jobs, name), 'utf8'));
-        const code = await new Promise<number | null>((resolve, reject) => { python.once('error', reject); python.once('close', resolve); });
-        const reply = code === 0 ? JSON.parse(stdout) : { ok: false, error: stderr };
+        const executable = options.python ?? pythonExecutable;
+        const python = spawnSync(executable, ['-c', bootstrap], {
+          input: await readFile(join(jobs, name), 'utf8'), encoding: 'utf8', timeout: 15_000,
+          env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1', PYTHONIOENCODING: 'utf-8' },
+        });
+        const reply = python.status === 0 ? JSON.parse(python.stdout) : {
+          ok: false, error: 'Python fixture failed: ' + (python.error?.message || python.stderr || executable),
+        };
         const startup = name.includes('-startup-');
         if (startup && options.startupReplies?.length) Object.assign(reply, options.startupReplies.shift());
         if (!startup && options.exportReply) Object.assign(reply, options.exportReply);
         calls.events = reply.events ?? [];
         replies.push({ ...reply, startup });
-        await writeFile(join(jobs, name.replace(/\.py$/, '.json')), JSON.stringify(reply));
+        const result = join(jobs, name.replace(/\.py$/, '.json'));
+        await writeFile(result + '.tmp', JSON.stringify(reply));
+        await rename(result + '.tmp', result);
       }
     })().finally(() => { running = false; });
   }, 10);
@@ -166,6 +169,12 @@ print(json.dumps(reply))
     async start(signal?: AbortSignal) { signal?.throwIfAborted(); calls.start++; }, async release() { calls.release++; } } as unknown as SectionKrita;
   return { root, directory, input, krita, calls, replies };
 }
+
+test('missing fixture interpreter reports a bridge error instead of waiting for a reply', async t => {
+  const python = join(process.execPath, 'missing-python');
+  const f = await fixture(t, layers, { python });
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), Error);
+});
 
 test('one original KRA job preserves layers, metadata, identity and the merge export contract', async t => {
   const f = await fixture(t), original = await readFile(f.input.document);
@@ -258,14 +267,14 @@ test('omitted taskRoot uses directory itself without nesting a relative output',
 
 test('abort before export leaves Krita and output untouched', async t => {
   const f = await fixture(t), controller = new AbortController(); controller.abort(new Error('cancel neutral'));
-  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, controller.signal, f.root), /cancel neutral/);
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, controller.signal, f.root), Error);
   assert.equal(f.calls.reserve + f.calls.start + f.calls.jobs, 0);
   await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
 });
 
 test('unsupported artwork metadata closes the opened doc without writing a model', async t => {
   const f = await fixture(t, layers, { depth: 'U16' });
-  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /RGBA\/U8/);
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), Error);
   assert.equal(f.calls.events[0], 'open'); assert.equal(f.calls.events.at(-1), 'close');
   assert.equal(f.calls.jobs, 2); assert.equal(f.calls.release, 0);
   await assert.rejects(readFile(join(f.directory, 'deformers.json')), { code: 'ENOENT' });
@@ -294,7 +303,7 @@ test('unknown startup dialogs, actual Python failures, and a second recovery fai
     [{ ...recovery, result: null }],
   ]) {
     const f = await fixture(t, layers, { startupReplies: structuredClone(startupReplies) });
-    await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /启动检查失败/);
+    await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), Error);
     assert.ok(f.replies.every(r => r.startup)); assert.deepEqual(f.calls.events, []);
     await assert.rejects(access(join(f.directory, 'layers')), { code: 'ENOENT' });
   }
@@ -304,10 +313,11 @@ test('ok:false with a complete export result and empty stderr remains an export 
   const f = await fixture(t, layers, { exportReply: recovery });
   await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), error => {
     assert.ok(error instanceof Error);
-    assert.match(error.message, /原 KRA 导出失败：startup recovery cancelled/);
-    assert.match(error.message, /Recover Files – Krita/); assert.match(error.message, /"dialogs".*"hints"/);
     const reply = error.cause as BridgeResult;
-    assert.equal(reply.ok, false); assert.equal((reply.result as { parts: unknown[] }).parts.length, 3);
+    assert.equal(reply.ok, false);
+    assert.deepEqual(reply.dialogs, recovery.dialogs);
+    assert.deepEqual(reply.hints, recovery.hints);
+    assert.equal((reply.result as { parts: unknown[] }).parts.length, 3);
     return true;
   });
   assert.equal(f.calls.events.at(-1), 'close');

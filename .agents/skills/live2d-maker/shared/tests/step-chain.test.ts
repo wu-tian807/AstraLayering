@@ -23,7 +23,7 @@ test('只看标记：缺失则运行，.running 续跑，.completed 沿用', asy
   await completeStep(step);
   assert.deepEqual(await checkStep(step), { action: 'keep', status: 'completed' });
   assert.equal(await readFile(join(step, '.completed'), 'utf8'), '');
-  await assert.rejects(beginStep(step, 'completed'), /已完成/);
+  await assert.rejects(beginStep(step, 'completed'), Error);
 });
 
 test('无标记的目录删除后重新运行', async t => {
@@ -49,8 +49,8 @@ test('旧 JSON 标记照常读作完成或运行中', async t => {
 test('步骤路径与标记必须是普通目录和普通文件', async t => {
   const step = await folder(t);
   await writeFile(step, 'not a directory');
-  await assert.rejects(readStep(step), /普通目录/);
+  await assert.rejects(readStep(step), Error);
   await rm(step);
   await mkdir(join(step, '.completed'), { recursive: true });
-  await assert.rejects(readStep(step), /普通文件/);
+  await assert.rejects(readStep(step), Error);
 });

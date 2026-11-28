@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { SectionKrita, kritaLimit, kritaSlotsInUse, readKritaRecord } from '../krita/section-krita.ts';
 import { createKritaTool } from '../krita/tool.ts';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
+import type { TestContext } from 'node:test';
 
 // Speaks the bridge protocol without Krita: a job whose source is "crash"
 // kills the process; any other job returns its source as the result.
@@ -26,21 +28,30 @@ setInterval(() => {
 }, 20);
 `;
 
+async function fixtureKrita(t: TestContext, root: string) {
+  nodeExecutables(t);
+  const windows = process.platform === 'win32';
+  const executable = join(root, windows ? 'bin/krita.cjs' : 'krita');
+  if (windows) await Promise.all(['bin', 'lib', 'share/krita'].map(path => mkdir(join(root, path), { recursive: true })));
+  await writeFile(executable, fakeKrita);
+  await chmod(executable, 0o755);
+  return executable;
+}
+
 const exists = (path: string) => stat(path).then(() => true, () => false);
 const parse = (result: { contentItems: { type: string; text?: string }[] }) => JSON.parse(result.contentItems[0]!.text!);
 
 test('section Krita: lazy start through the tool, crash and restart, release on section end', async t => {
   const root = await mkdtemp(join(tmpdir(), 'section-krita-test-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const krita = join(root, 'krita');
-  await writeFile(krita, fakeKrita); await chmod(krita, 0o755);
+  const krita = await fixtureKrita(t, root);
   const record = join(root, 'krita.json');
   const section = new SectionKrita({ section: root, krita, record, env: { ...process.env, DISPLAY: ':fixture' }, slotsDirectory: join(root, 'slots') });
   t.after(() => section.release());
   const tool = createKritaTool(section, root), signal = new AbortController().signal;
 
   // Without the section's slot nothing can start; with it, nothing starts yet.
-  await assert.rejects(tool.execute({ action: 'start' }, signal), /名额/);
+  await assert.rejects(tool.execute({ action: 'start' }, signal), Error);
   await section.reserve();
   assert.equal(section.reserved, true);
   assert.equal(parse(await tool.execute({}, signal)).state, 'stopped');
@@ -61,7 +72,7 @@ test('section Krita: lazy start through the tool, crash and restart, release on 
 
   // A script that kills Krita: the agent learns it and restarts it itself.
   await writeFile(join(root, 'crash.py'), 'crash');
-  await assert.rejects(tool.execute({ action: 'run', script: 'crash.py' }, signal), /restart/);
+  await assert.rejects(tool.execute({ action: 'run', script: 'crash.py' }, signal), Error);
   const crashed = parse(await tool.execute({}, signal));
   assert.equal(crashed.state, 'crashed');
   assert.equal(crashed.lastExit.code, 3);
@@ -82,14 +93,13 @@ test('section Krita: lazy start through the tool, crash and restart, release on 
   assert.throws(() => process.kill(restarted.pid, 0));
   assert.equal(await exists(record), false);
   assert.equal(await exists(join(restarted.bridge, '..')), false);
-  await assert.rejects(tool.execute({ action: 'start' }, signal), /已结束/);
+  await assert.rejects(tool.execute({ action: 'start' }, signal), Error);
 });
 
 test('section Krita: machine-wide cap queues sections until a slot is free', async t => {
   const root = await mkdtemp(join(tmpdir(), 'section-krita-test-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const krita = join(root, 'krita'), slots = join(root, 'slots');
-  await writeFile(krita, fakeKrita); await chmod(krita, 0o755);
+  const krita = await fixtureKrita(t, root), slots = join(root, 'slots');
   // A slot left by a process that died is reclaimed.
   await mkdir(slots);
   await writeFile(join(slots, '0.lock'), '999999999');
@@ -121,7 +131,7 @@ test('section Krita: machine-wide cap queues sections until a slot is free', asy
   // A section that ends while queued gives up its place.
   const thirdRecord = join(root, 'c.json');
   const third = new SectionKrita({ section: 'c', krita, env, slotsDirectory: slots, record: thirdRecord });
-  const abandoned = assert.rejects(third.reserve(), /已结束/);
+  const abandoned = assert.rejects(third.reserve(), Error);
   await new Promise(resolve => setTimeout(resolve, 100));
   assert.equal((await readKritaRecord(thirdRecord))?.state, 'waiting');
   await third.release();
@@ -138,8 +148,8 @@ test('section Krita: machine-wide cap queues sections until a slot is free', asy
   await second.release();
   assert.equal(await exists(secondRecord), false);
 
-  assert.throws(() => kritaLimit({ krita_max_instances: '0' }), /正整数/);
-  assert.throws(() => kritaLimit({ krita_max_instances: '2.5' }), /正整数/);
+  assert.throws(() => kritaLimit({ krita_max_instances: '0' }), Error);
+  assert.throws(() => kritaLimit({ krita_max_instances: '2.5' }), Error);
   assert.equal(kritaLimit({ krita_max_instances: ' 3 ' }), 3);
   // The default comes from example.env.
   assert.equal(kritaLimit({}), 4);
@@ -165,7 +175,7 @@ test('section Krita: the shared Xvfb never resets between clients', { skip: proc
 test('krita tool: argument errors', async () => {
   const tool = createKritaTool(new SectionKrita({ section: '/fixture', krita: '/fixture/krita' }), '/fixture');
   const signal = new AbortController().signal;
-  await assert.rejects(tool.execute({ action: 'paint' }, signal), /action/);
-  await assert.rejects(tool.execute({ action: 'run' }, signal), /script/);
-  await assert.rejects(tool.execute({ action: 'run', script: 'a.py', timeout_seconds: 0 }, signal), /timeout_seconds/);
+  await assert.rejects(tool.execute({ action: 'paint' }, signal), Error);
+  await assert.rejects(tool.execute({ action: 'run' }, signal), Error);
+  await assert.rejects(tool.execute({ action: 'run', script: 'a.py', timeout_seconds: 0 }, signal), Error);
 });

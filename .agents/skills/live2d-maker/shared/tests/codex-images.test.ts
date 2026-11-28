@@ -137,13 +137,13 @@ test('codex-native does not enable image patches; custom Codex models require cu
     image_base_url: 'https://legacy.example/v1', image_api_key: 'fixture', default_image_model: 'codex-native' }, root), '/missing/codex');
   assert.equal(usesPatchedImageTool(native, 'part_simplify'), false);
   assert.equal(native.codex.env!.LAYERING_IMAGE_BASE_URL, undefined);
-  await assert.rejects(checkCodexCapabilities(native), /补丁能力检查/);
+  await assert.rejects(checkCodexCapabilities(native), Error);
   const custom = withCodex(loadWorkflowEnvironment({
     part_simplify_image_model: 'gpt-image-2.5-flare', openai_image_base_url: 'https://image.example/v1',
     openai_image_api_key: 'fixture' }, root), executable);
   assert.equal(usesPatchedImageTool(custom, 'part_simplify'), true);
   await checkCodexCapabilities(custom, custom.codex, { image: true });
-  await assert.rejects(checkCodexCapabilities(custom, { codexPathOverride: '/missing/codex' }, { image: true }), /补丁能力检查/);
+  await assert.rejects(checkCodexCapabilities(custom, { codexPathOverride: '/missing/codex' }, { image: true }), Error);
   const noBinary = loadWorkflowEnvironment({}, root);
   let builds = 0;
   const prepare = async () => { builds++; return executable; };

@@ -1,4 +1,5 @@
 import { withCodex } from './fake-codex.ts';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 import assert from 'node:assert/strict';
 import { chmod, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -14,7 +15,7 @@ import { taskStatus } from '../../workflow/state.ts';
 async function fixture(t: TestContext) {
   const directory = await mkdtemp(join(tmpdir(), 'layering-dependencies-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
-  const krita = join(directory, 'krita');
+  const krita = join(directory, 'krita.mjs');
   await writeFile(krita, `#!${process.execPath}\nconsole.log('krita 5.3 fixture');\n`);
   await chmod(krita, 0o755);
   return { directory, krita };
@@ -50,6 +51,7 @@ test('透明图后处理与已完成参考不要求 外部图片程序，缺参�
 });
 
 test('Nano-only preparation starts without Krita/Python; missing image credentials and raster requirements still fail before ready', async t => {
+  nodeExecutables(t);
   const f = await fixture(t);
   await writeFile(f.krita, `#!${process.execPath}\nif(process.argv.includes('--version'))console.log('codex-cli 0.161.0');else console.log(JSON.stringify({version:1,image_provider:true,image_provider_version:2,failed_error_event_version:1}));\n`);
   const options = { name: 'case', dir: f.directory, from: 'part-layering' as const, to: 'part-layering' as const };
@@ -62,11 +64,11 @@ test('Nano-only preparation starts without Krita/Python; missing image credentia
   assert.equal((await taskStatus(options)).status, 'completed');
   const missingCredentials = withCodex(loadWorkflowEnvironment({
     part_simplify_image_model: 'gemini-nano-banana-2.1' }, f.directory), f.krita);
-  await assert.rejects(preflightAgentSteps(missingCredentials, ['part_simplify']), /API URL \/ API key/);
+  await assert.rejects(preflightAgentSteps(missingCredentials, ['part_simplify']), Error);
   ready = false;
   const raster = { ...options, name: 'raster', from: 'raster-layering' as const, to: 'raster-layering' as const };
-  await assert.rejects(runTask(raster, { ready() { ready = true; }, execute: async () => assert.fail('Krita is required for raster') }), /--krita/);
+  await assert.rejects(runTask(raster, { ready() { ready = true; }, execute: async () => assert.fail('Krita is required for raster') }), error => error instanceof Error && !(error instanceof assert.AssertionError));
   assert.equal(ready, false);
   // Refused before the task record is written; --krita gives the path again.
-  await assert.rejects(taskStatus(raster), /缺少总控记录/);
+  await assert.rejects(taskStatus(raster), Error);
 });

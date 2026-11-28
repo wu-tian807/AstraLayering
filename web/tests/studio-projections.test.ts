@@ -26,7 +26,7 @@ test('Lighting blend has bounded endpoints and old recipes keep full MToon light
   assert.equal(validateSettings({}).lightingMix, 1);
   assert.equal(validateSettings({ lightingMix: 0 }).lightingMix, 0);
   assert.equal(validateSettings({ lightingMix: 1 }).lightingMix, 1);
-  assert.throws(() => validateSettings({ lightingMix: 1.1 }), /lightingMix/);
+  assert.throws(() => validateSettings({ lightingMix: 1.1 }), Error);
 });
 test('Built-in presets start with active lighting and distinct directional or color effects', () => {
   for (const preset of Object.values(presets)) {

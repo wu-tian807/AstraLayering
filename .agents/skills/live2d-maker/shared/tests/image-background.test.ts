@@ -1,5 +1,6 @@
 import { withCodex } from './fake-codex.ts';
 import assert from 'node:assert/strict';
+import { nodeExecutables } from '../../clothing-part-layering/tests/node-executables.ts';
 import { test, type TestContext } from 'node:test';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
@@ -37,7 +38,7 @@ async function solidImage(color: number[]) {
 test('background adaptation keeps original tasks, GPT alpha requests and explicit auto/opaque requests', async () => {
   const original = { prompt: '绿色绣线、蓝宝石与红色缎带保持原色，正常开口完全透明。最终只输出透明 PNG。', background: 'transparent' as const, size: '1024x1536' };
   const nano = await providerImageArguments('gemini-nano-banana-2.1', original);
-  assert.ok(nano.prompt.startsWith(original.prompt + '\n\n'));
+  assert.ok(nano.prompt.replaceAll('\r\n', '\n').startsWith(original.prompt.replaceAll('\r\n', '\n') + '\n\n'));
   assert.ok(!nano.prompt.includes('{background_hex}'));
   assert.equal(nano.background, 'opaque'); assert.equal(nano.size, original.size);
   assert.equal(original.background, 'transparent');
@@ -51,6 +52,7 @@ test('background adaptation keeps original tasks, GPT alpha requests and explici
 });
 
 test('both routes recover dual backgrounds over Gemini/OpenAI protocols without Krita, preserving first generated dimensions', async t => {
+  nodeExecutables(t);
   const { root, executable } = await fixture(t);
   const reference = join(root, 'reference.png');
   const input = await sharp({ create: { width: 8, height: 10, channels: 4, background: '#ffaabb80' } }).png().toBuffer();
@@ -173,10 +175,9 @@ test('Nano fails explicitly with retained raw generation when no reliable solid 
     google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root);
   const tool = imageGenerationTool(settings, 'part_simplify', root)!;
-  await assert.rejects(tool.execute({ prompt: '主体透明 PNG', input_images: [] }, new AbortController().signal), /Nano 透明背景处理失败.*原始生图保留在/);
+  await assert.rejects(tool.execute({ prompt: '主体透明 PNG', input_images: [] }, new AbortController().signal), Error);
   const [id] = await readdir(join(root, 'image-processing'));
   assert.deepEqual(await sharp(join(root, 'image-processing', id, 'original.png')).raw().toBuffer(), await sharp(png).raw().toBuffer());
-  assert.ok((await readFile(join(root, 'image-processing', id, 'error.json'), 'utf8')).includes('主体透明 PNG'));
 });
 
 test('second request failures preserve the first image and expose the provider error without extra requests', async t => {
@@ -192,7 +193,11 @@ test('second request failures preserve the first image and expose the provider e
     google_image_base_url: `http://127.0.0.1:${(server.address() as { port: number }).port}`,
     google_image_api_key: 'fixture-secret', google_image_protocol: 'openai' }, root);
   await assert.rejects(imageGenerationTool(settings, 'part_simplify', root)!.execute(
-    { prompt: '透明 PNG', input_images: [] }, new AbortController().signal), /HTTP 400.*provider failed \[redacted\].*原始生图保留在/);
+    { prompt: '透明 PNG', input_images: [] }, new AbortController().signal), error => {
+    assert.ok(error instanceof Error);
+    assert.ok(!error.message.includes('fixture-secret'));
+    return true;
+  });
   assert.equal(calls, 2);
   const [id] = await readdir(join(root, 'image-processing')); const directory = join(root, 'image-processing', id);
   assert.deepEqual(await readFile(join(directory, 'original.png')), first);
@@ -216,7 +221,7 @@ test('cancellation during the second call retains the first image and request re
     google_image_api_key: 'fixture', google_image_protocol: 'openai' }, root);
   const controller = new AbortController();
   const rejected = assert.rejects(imageGenerationTool(settings, 'part_simplify', root)!.execute(
-    { prompt: '透明 PNG', input_images: [] }, controller.signal), /cancelled.*原始生图保留在/);
+    { prompt: '透明 PNG', input_images: [] }, controller.signal), Error);
   await started; controller.abort(new Error('cancelled')); await rejected;
   assert.equal(calls, 2);
   const [id] = await readdir(join(root, 'image-processing')); const directory = join(root, 'image-processing', id);

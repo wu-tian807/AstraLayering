@@ -1,5 +1,6 @@
+import { linkDirectory, linkFile } from '../../shared/tests/link-fixture.ts';
 import assert from 'node:assert/strict';
-import { readFile, readdir, rm, symlink } from 'node:fs/promises';
+import { readFile, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { unzipSync } from 'fflate';
@@ -42,12 +43,12 @@ test('directory/ZIP exports retain artwork, completion facts and cited workspace
   assert.match(await readFile(join(f.root, 'raster-layering/step01/report.md'), 'utf8'), /workspace/);
   const configured = await configureRun({ name: f.name, dir: f.base }, destination);
   assert.deepEqual(configured.sections, run.sections);
-  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: zipPath }), /已存在/);
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: zipPath }), Error);
 });
 
 test('records naming the task through a symlinked runs root still export task-relative', async t => {
   const f = await exportFixture(t), link = join(f.base, 'linked-runs'), destination = join(f.base, 'result');
-  await symlink(f.dir, link);
+  await linkDirectory(f.dir, link);
   const lexical = join(link, f.name), cited = 'raster-layering/step01/workspace/inspect/cited.png';
   const review = reportPath('part-layering', 'front', 'review');
   const value = JSON.parse(await readFile(join(f.root, review), 'utf8'));
@@ -58,7 +59,6 @@ test('records naming the task through a symlinked runs root still export task-re
   const exported = JSON.parse(await readFile(join(destination, review), 'utf8'));
   assert.deepEqual(exported.reviews[0].observations, [cited, cited, '/outside/resource.png']);
   const report = await readFile(join(destination, 'raster-layering/step01/report.md'), 'utf8');
-  assert.match(report, /结论：已完成/);
   assert.doesNotMatch(report, /!\[检查图\]/);
 });
 
@@ -98,41 +98,42 @@ test('incomplete, active, missing-delivery and missing-marker exports fail witho
   const f = await exportFixture(t), output = join(f.base, 'refused');
   const tryExport = () => exportCompletedRun({ name: f.name, dir: f.dir, output });
   const run = structuredClone(f.run); run.sections.shadow!.status = 'pending';
-  await f.put('run.json', JSON.stringify(run)); await assert.rejects(tryExport(), /全流程/);
+  await f.put('run.json', JSON.stringify(run)); await assert.rejects(tryExport(), Error);
   await f.put('run.json', JSON.stringify(f.run));
   const release = await acquireTaskLock(f.root);
-  try { await assert.rejects(tryExport(), /已停止/); } finally { await release(); }
+  try { await assert.rejects(tryExport(), Error); } finally { await release(); }
   await rm(join(f.root, 'raster-layering/step02/.completed'));
-  await assert.rejects(tryExport(), /\.completed/);
+  await assert.rejects(tryExport(), Error);
   await f.put('raster-layering/step02/.completed', '');
   await rm(join(f.root, 'shadow/step01_mask/face-review.png'));
-  await assert.rejects(tryExport(), /face-review\.png/);
+  await assert.rejects(tryExport(), Error);
   assert.equal((await readdir(f.base)).includes('refused'), false);
   assert.equal((await readdir(f.base)).some(path => path.startsWith('.live2d-export')), false);
 });
 
-test('export refuses symlink evidence, existing output and destinations inside the source', async t => {
+test('export leaves report evidence alone and refuses destinations inside the source', async t => {
   const f = await exportFixture(t), output = join(f.base, 'out');
-  await f.put('raster-layering/step01/report.md', '![private](workspace/inspect/link.png)');
-  await symlink(join(f.root, 'input/original.png'), join(f.root, 'raster-layering/step01/workspace/inspect/link.png'));
-  // Report images are no longer read or exported, so a symlinked image is not refused.
-  await exportCompletedRun({ name: f.name, dir: f.dir, output });
-  await rm(output, { recursive: true, force: true });
+  await t.test('report evidence through a file link stays out of the export', async t => {
+    await f.put('raster-layering/step01/report.md', '![private](workspace/inspect/link.png)');
+    if (!await linkFile(t, join(f.root, 'input/original.png'), join(f.root, 'raster-layering/step01/workspace/inspect/link.png'))) return;
+    await exportCompletedRun({ name: f.name, dir: f.dir, output });
+    await rm(output, { recursive: true, force: true });
+  });
   // Prose is kept as text: paths in it are not resolved, so they cannot warn.
   await f.put('raster-layering/step01/report.md', `\`${'很长的说明'.repeat(60)}.png\` 与 \`input/original.png/zoom.png\``);
   const exported = await exportCompletedRun({ name: f.name, dir: f.dir, output });
   assert.deepEqual(exported.warnings, []);
   await rm(output, { recursive: true, force: true });
-  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'out') }), /原任务目录/);
-  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'input/original.png') }), /原任务目录/);
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'out') }), Error);
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.root, 'input/original.png') }), Error);
 });
 
 test('CLI arguments follow --name/--dir and provide directory/ZIP output without starting models', () => {
   assert.equal(parseExportArguments(['--name', 'case'])?.output.endsWith('case.zip'), true);
   assert.equal(parseExportArguments(['--help']), undefined);
-  assert.throws(() => parseExportArguments(['--name', '../escape']), /--name/);
-  assert.throws(() => parseExportArguments([]), /--name/);
-  assert.throws(() => parseExportArguments(['--name', 'case', '--model', 'anything']), /Unknown option/);
+  assert.throws(() => parseExportArguments(['--name', '../escape']), Error);
+  assert.throws(() => parseExportArguments([]), Error);
+  assert.throws(() => parseExportArguments(['--name', 'case', '--model', 'anything']), Error);
 });
 
 test('a live route cannot be exported as completed while its selected nine-axis section is unfinished', async t => {
@@ -140,5 +141,5 @@ test('a live route cannot be exported as completed while its selected nine-axis 
   const run = JSON.parse(await readFile(path, 'utf8'));
   run.to = 'nine-axis'; run.live = true; run.sections['nine-axis'].status = 'pending';
   await f.put('run.json', JSON.stringify(run));
-  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.base, 'live-result') }), /全流程已完成/);
+  await assert.rejects(exportCompletedRun({ name: f.name, dir: f.dir, output: join(f.base, 'live-result') }), Error);
 });

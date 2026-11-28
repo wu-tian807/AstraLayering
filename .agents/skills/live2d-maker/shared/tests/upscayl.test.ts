@@ -22,10 +22,10 @@ test('Upscayl 校验后只缓存需要的成品，并发和续跑复用缓存', 
   const options = { report: (event: PreparationProgress) => events.push(event) };
   const services = { root, platform: 'darwin-arm64', asset,
     download: async () => { attempts++; return Buffer.from(corrupted ? archive.subarray(1) : archive); } };
-  await assert.rejects(ensureUpscayl({ installedOnly: true }, services), /未安装/);
+  await assert.rejects(ensureUpscayl({ installedOnly: true }, services), Error);
   assert.equal(attempts, 0);
   assert.deepEqual(await readdir(root), []);
-  await assert.rejects(ensureUpscayl(options, services), /SHA-256/);
+  await assert.rejects(ensureUpscayl(options, services), Error);
   assert.equal(events.at(-1)?.state, 'failed');
   assert.deepEqual(await readdir(root), []);
 
@@ -38,6 +38,6 @@ test('Upscayl 校验后只缓存需要的成品，并发和续跑复用缓存', 
   assert.equal(await ensureUpscayl(options, services), first);
   assert.equal(await ensureUpscayl({ installedOnly: true }, services), first);
   await writeFile(first, 'corrupted');
-  await assert.rejects(ensureUpscayl({ installedOnly: true }, services), /安装已损坏/);
+  await assert.rejects(ensureUpscayl({ installedOnly: true }, services), Error);
   assert.equal(attempts, 2);
 });

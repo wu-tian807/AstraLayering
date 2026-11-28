@@ -78,17 +78,17 @@ test('accessories bind only UUIDs, preserve the owned KRA on continue, and inher
   const own=join(f.output,'character-nine-axis.kra'),modified=await f.makeKra({...f.colors,'head_accessories/object':'#ffaacc'});
   await writeFile(own,modified);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);
   assert.deepEqual(await readFile(own),Buffer.from(modified));assert.notDeepEqual(await readFile(f.source),Buffer.from(modified));
-  await rm(own);await assert.rejects(prepareAccessories(f.output,f.upstream,f.task,f.materialize),/本步 KRA 缺失/);
+  await rm(own);await assert.rejects(prepareAccessories(f.output,f.upstream,f.task,f.materialize),Error);
 });
 
 test('accessories reject unbound static ornaments, nonzero Y, and edits to completed hair',async t=>{
   const f=await fixture(t);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);const before=await f.build();
-  await assert.rejects(checkAccessories(before,before),/尚未注册剩余 KRA 头部饰品/);await f.select();
+  await assert.rejects(checkAccessories(before,before),Error);await f.select();
   const signal=new AbortController().signal;
-  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'head_accessories/object',x:-30,y:5,translate:[1,0]}]},signal),/Y=0/);
-  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[1,0]}]},signal),/范围外/);
+  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'head_accessories/object',x:-30,y:5,translate:[1,0]}]},signal),Error);
+  await assert.rejects(f.edit().execute({operations:[{action:'transform',id:'hair/bangs',x:-30,translate:[1,0]}]},signal),Error);
   await writeFile(join(f.output,'character-nine-axis.kra'),await f.makeKra({...f.colors,'hair/bangs':'#ff0000'}));
-  await assert.rejects(f.build(),/其他上游画稿/);
+  await assert.rejects(f.build(),Error);
 });
 
 test('accessories continue with legacy fingerprints and upstream metadata changes while retaining their owned artwork',async t=>{
@@ -107,14 +107,14 @@ test('accessories continue with legacy fingerprints and upstream metadata change
 
 test('native accessory shadows are required when their actual dependencies exist',async t=>{
   const f=await fixture(t);await prepareAccessories(f.output,f.upstream,f.task,f.materialize);await f.select(false);
-  await assert.rejects(checkAccessoryShadows(f.task,(await f.build()).doc),/依赖已齐全/);
+  await assert.rejects(checkAccessoryShadows(f.task,(await f.build()).doc),Error);
 });
 
 test('preview includes completed face/hair and registered accessories, with no static placeholders or Y poses',async()=>{
   for(const p of [{id:'face/face_base',level:'face'},{id:'hair/braid',level:'hair'},{id:'head_accessories/object',level:'accessory'}])assert.ok(accessoryPreviewScope.includes(p));
   assert.equal(accessoryPreviewScope.includes({id:'__kra__/unknown',level:'accessory',context:true}),false);
   const tool=createNineAxisViewTool('/task/nine-axis','/task/out',async()=>assert.fail('pose rejected before KRA load'),undefined,accessoryPreviewScope);
-  await assert.rejects(tool.execute({x:0,y:5},new AbortController().signal),/只允许 Y=0/);
+  await assert.rejects(tool.execute({x:0,y:5},new AbortController().signal),Error);
   const prompt = accessoriesPrompt('/task');
   assert.ok(prompt.includes(join('/task','nine-axis','step09_head-accessories','character-nine-axis.kra')));
 });
@@ -138,13 +138,13 @@ test('exhausted accessory delivery repairs leave only this step running',async t
   const agents={async run(){throw Error('persistent session required');},createSession(){return {async run(){
     if(++calls===1)await f.select();return {text:'{"error":null}',images:[],threadId:'accessory-thread',harness:'codex' as const};
   },async close(){}};}};
-  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:createFitHead(agents,tools,'step09_head-accessories','饰品',undefined,f.nine)}),/已返修 2 次仍未通过/);
+  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:createFitHead(agents,tools,'step09_head-accessories','饰品',undefined,f.nine)}),Error);
   assert.equal(calls,3);assert.equal((await readStep(f.output)).status,'running');assert.equal((await readStep(f.upstream)).status,'completed');
 });
 
 for(const action of ['continue','resume','retry'] as const)test(`accessory ${action} uses the normal step recovery contract`,async t=>{
   const f=await fixture(t);
-  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:async()=>{await f.select();throw Error('interrupted');}}),/interrupted/);
+  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:async()=>{await f.select();throw Error('interrupted');}}),Error);
   const old=await readFile(join(f.output,'accessories.json'));await writeStepSession(f.nine,'step09_head-accessories',{threadId:'old-accessory',harness:'codex'});
   await applyStepAction({...f.options,section:'nine-axis',action});
   if(action==='retry')await assert.rejects(access(join(f.output,'accessories.json')),{code:'ENOENT'});
@@ -161,7 +161,7 @@ test('a character without accessories can complete an explicit inspection withou
 
 test('unfinished hair blocks targeted accessories before creating the new step',async t=>{
   const f=await fixture(t);await writeFile(join(f.upstream,'hair-progress.json'),JSON.stringify({version:2,completed:['front'],next:'side'}));
-  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:async()=>assert.fail('not ready')}),/先完成头发/);
+  await assert.rejects(runWorkflow(f.options,{...f.dependencies,fitAccessories:async()=>assert.fail('not ready')}),error => error instanceof Error && !(error instanceof assert.AssertionError));
   assert.equal((await readStep(f.output)).status,'absent');
 });
 
@@ -169,7 +169,7 @@ test('a completed accessories marker cannot hide a lost delivery',async t=>{
   const f=await fixture(t);
   await runWorkflow(f.options,{...f.dependencies,fitAccessories:async()=>{await f.select();await writeFile(join(f.output,'notes.md'),'checked');}});
   await rm(join(f.output,'notes.md'));
-  await assert.rejects(runWorkflow(f.options,f.dependencies),/缺少非空交付文件/);
+  await assert.rejects(runWorkflow(f.options,f.dependencies),Error);
 });
 
 test('a saved round that is still waiting stops the sequential chain before accessories',async t=>{

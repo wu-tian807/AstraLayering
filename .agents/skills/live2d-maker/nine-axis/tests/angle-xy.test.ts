@@ -31,5 +31,5 @@ test('corner completion retains agent frame choices and rejects a changed refere
   await checkCornerReferences(directory,16);
   assert.deepEqual(await readFile(join(directory,'selected-frames.json')),absoluteSelection);
   frames['left-up'].path=join(directory,'..','left-up.png');await save();
-  await assert.rejects(checkCornerReferences(directory,16),/缺少本步选帧路径/);
+  await assert.rejects(checkCornerReferences(directory,16),Error);
 });

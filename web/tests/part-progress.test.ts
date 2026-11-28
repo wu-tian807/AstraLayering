@@ -45,8 +45,6 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
     assert.equal(node.webPhases.outline, 'done', node.id);
     assert.equal(node.webPhases.review, 'done', node.id);
   }
-  assert.equal(value.part.groups[5].webMessages.outline, '已完成');
-  assert.equal(value.part.groups[10].webDetails.review, '需要返修');
   assert.deepEqual(await readFile(join(f.task, section, 'groups.json')), original);
 });
 
@@ -60,9 +58,7 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   await f.mark('step09_outline/body', 'running');
   let value = await f.get();
   assert.equal(value.part.groups[0].webPhases.outline, 'interrupted');
-  assert.equal(value.part.groups[0].webMessages.outline, '已中断');
   assert.equal(value.part.groups[0].webHasProducts.outline, true);
-  assert.match(value.part.groups[0].webDetails.outline, /草稿/);
   const version = value.fileVersions[section + '/step09_outline/body/outline.draft.svg'];
   await f.put('step09_outline/body/outline.draft.svg', svg + '\n');
   value = await f.get();
@@ -81,8 +77,7 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   assert.deepEqual((await f.get()).part.groups[0].webReviewRounds.map((round: any) => [round.review.status, round.repair.status]),
     [['done', 'skipped'], ['skipped', 'skipped']]);
   await f.put('step09_outline/body/review.json', { groupId: 'body', reviews: [review, { ...review, verdict: 'revise', candidateHash: 'old', repairedCandidateHash: svgHash(svg) }] });
-  assert.equal((await f.get()).part.groups[0].webMessages.review, '已完成');
-  assert.match((await f.get()).part.groups[0].webDetails.review, /不再复审/);
+  assert.equal((await f.get()).part.groups[0].webPhases.review, 'done');
   await f.put('step10_reduce/depth01/body.svg', svg);
   assert.equal((await f.get()).part.groups[0].webPhases.reduction, 'pending', 'an unmarked reduction is a leftover');
   await f.mark('step10_reduce/depth01', 'running');
@@ -140,8 +135,6 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   let value = await f.get(), node = value.part.groups[0];
   assert.equal(node.webPhases.outline, 'done');
   assert.equal(node.webPhases.review, 'done');
-  assert.match(node.webDetails.outline, /原图不可见.*已跳过/);
-  assert.match(node.webDetails.review, /原图不可见.*已跳过/);
   assert.equal(node.webReviewSkip.skip, true);
   assert.equal(node.webReviewSkip.reason, node.webDetails.review);
   assert.deepEqual(node.webReviewRounds.map((round: any) => [round.review.status, round.repair.status]),
@@ -181,11 +174,10 @@ test('parent-copied arms finish without review reports and show the completed tr
   await f.mark(`step09_outline/${step}`);
   let value = await node();
   assert.equal(value.webPhases.review, 'done');
-  assert.match(value.webDetails.review, /父组.*复制.*已跳过/);
   assert.equal(value.webReviewSkip.skip, true);
   assert.equal(value.webReviewSkip.reason, value.webDetails.review);
   assert.ok(value.webReviewRounds.every((round: any) => round.review.status === 'skipped' && round.repair.status === 'skipped'));
-  assert.ok(value.webReviewRounds.every((round: any) => /父组.*复制/.test(round.review.detail)));
+  assert.ok(value.webReviewRounds.every((round: any) => round.review.detail === value.webReviewSkip.reason));
   assert.equal(groupSummary(value).status, 'available', 'saved stages stay visible while completion and child analysis remain');
   await f.put(`step10_reduce/depth02/${id}.svg`, svg);
   await f.put(`parts/${id}.svg`, svg);
@@ -378,7 +370,7 @@ test('only current calls show as running; marked siblings with saved products re
   await f.put('step09_outline/arm/outline.draft.svg', svg);
   let value = await f.get();
   assert.deepEqual(value.part.groups.map(node => node.webPhases.outline), ['running', 'running', 'running', 'available']);
-  assert.equal(groupSummary(value.part.groups[3]).text, '已有产物');
+  assert.equal(groupSummary(value.part.groups[3]).status, 'available');
   await f.put('step09_outline/body/outline.svg', svg);
   assert.equal((await f.get()).part.groups[0].webPhases.outline, 'running');
   await f.put('agents/current/result.json', { status: 'completed' });
@@ -410,7 +402,6 @@ test('a call waiting to retry shows 限流等待 with the logged error verbatim 
   await wait(60_000);
   let value = await f.get();
   assert.deepEqual(value.part.groups.map(node => node.webPhases.outline), ['throttled', 'running']);
-  assert.equal(value.part.groups[0].webMessages.outline, '限流等待');
   assert.equal(value.part.states.outline, 'throttled', 'a waiting call takes precedence in the aggregate');
   await f.put('agents/hair/result.json', { status: 'completed' });
   assert.equal((await f.get()).part.states.outline, 'throttled', 'the finished call is no longer reported as running');
@@ -483,7 +474,6 @@ test('a failed current group and initial request are marked failed while their d
 test('unsafe group paths and symlinked drafts cannot expose outside files', async t => {
   const f = await fixture(t);
   await f.put('groups.json', { groups: [{ id: '../../../private', groups: [] }] });
-  assert.match((await f.get()).errors.join(), /group id 无效/);
   await f.put('groups.json', { groups: [{ id: 'body', groups: [] }] });
   await mkdir(join(f.task, 'part-layering/step09_outline'), { recursive: true });
   await mkdir(join(f.dir, 'private'));

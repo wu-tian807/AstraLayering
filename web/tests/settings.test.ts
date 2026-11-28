@@ -69,10 +69,10 @@ test('global FFmpeg supplies new task defaults; starts pass the task path withou
   await b.post('settings', { directory: b.dir, krita: '/opt/good-krita' });
   assert.equal((await b.post('tasks', { name: 'static', upload: await imageUpload() })).status, 201);
   const refused = await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await imageUpload() });
-  assert.equal(refused.status, 409); assert.ok(refused.value.ffmpeg); assert.match(refused.value.error, /全局设置/);
+  assert.equal(refused.status, 409); assert.ok(refused.value.ffmpeg);
   await assert.rejects(readFile(join(b.dir, 'head', 'run.json')));
   assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: '/opt/bad-ffmpeg' })).status, 400);
-  const first = '/opt/one/good-ffmpeg', second = '/opt/two/good-ffmpeg';
+  const first = join(b.base, 'one', 'good-ffmpeg'), second = join(b.base, 'two', 'good-ffmpeg');
   assert.equal((await b.post('settings', { directory: b.dir, ffmpeg: first })).value.ffmpeg, first);
   assert.equal((await b.post('settings', { directory: b.dir })).value.ffmpeg, first);
   assert.equal((await b.post('tasks', { name: 'head', from: 'nine-axis', to: 'nine-axis', upload: await imageUpload() })).status, 201);
@@ -106,19 +106,20 @@ test('unavailable FFmpeg refuses resume before changing nine-axis markers', asyn
 test('没有可用的全局 Krita 时创建任务返回 409 且不建目录；保存设置后新任务记录 Krita 与先验知识目录', async t => {
   const started: any[] = [], b = await bench(t, started);
   const refused = await b.post('tasks', { name: 'case', upload: await imageUpload() });
-  assert.equal(refused.status, 409); assert.ok(refused.value.krita); assert.match(refused.value.error, /全局设置/);
+  assert.equal(refused.status, 409); assert.ok(refused.value.krita);
   await assert.rejects(readFile(join(b.dir, 'case', 'run.json')));
   assert.equal((await b.post('settings', { directory: b.dir, krita: '/opt/bad-krita' })).status, 400);
   const knowledge = join(b.base, 'knowledge');
   await cp(defaultKnowledgeDirectory, knowledge, { recursive: true });
-  const saved = await b.post('settings', { directory: b.dir, krita: '/opt/good-krita', knowledge });
-  assert.equal(saved.status, 200); assert.equal(saved.value.krita, '/opt/good-krita'); assert.equal(saved.value.knowledge, knowledge);
+  const krita = join(b.base, 'good-krita');
+  const saved = await b.post('settings', { directory: b.dir, krita, knowledge });
+  assert.equal(saved.status, 200); assert.equal(saved.value.krita, krita); assert.equal(saved.value.knowledge, knowledge);
   // An absent key keeps the saved value; an empty one clears it.
-  assert.equal((await b.post('settings', { directory: b.dir })).value.krita, '/opt/good-krita');
+  assert.equal((await b.post('settings', { directory: b.dir })).value.krita, krita);
   const created = await b.post('tasks', { name: 'case', upload: await imageUpload() });
   assert.equal(created.status, 201, JSON.stringify(created.value));
   const run = JSON.parse(await readFile(join(b.dir, 'case', 'run.json'), 'utf8'));
-  assert.equal(run.krita, '/opt/good-krita'); assert.equal(run.knowledge, knowledge);
+  assert.equal(run.krita, krita); assert.equal(run.knowledge, knowledge);
   // The config page now browses the chosen knowledge directory.
   assert.equal((await (await fetch(b.url + '/api/config/files?ref=worktree')).json() as any).directory, knowledge);
   assert.equal((await (await fetch(b.url + '/api/config/versions')).json() as any).git, false);

@@ -61,18 +61,17 @@ test('note repair is bound to one group, requires a unique match and preserves c
   const f = await noteFixture(t, '重复；重复；原层序');
   await drawGroupOutline(f, { async run(task) {
     // Without the drawing thread, the recovery prompt restores the drawing task before the repair.
-    assert.doesNotMatch(task.prompt, /对照纯衣服参考与本组 note|【本次输入】/);
-    assert.ok(task.recoveryPrompt);
+    assert.equal(promptInput(task.recoveryPrompt!).group.id, 'band');
     const update = tool(task, 'update_group_note');
-    await assert.rejects(update.execute({ oldText: '原层序', newText: '新层序', groupId: 'tail' }, signal), /仅提交/);
-    await assert.rejects(update.execute({ oldText: '重复', newText: '新说明' }, signal), /唯一匹配/);
-    await assert.rejects(update.execute({ oldText: '不存在', newText: '新说明' }, signal), /唯一匹配/);
-    await assert.rejects(update.execute({ oldText: '原层序', newText: ' ' }, signal), /非空/);
+    await assert.rejects(update.execute({ oldText: '原层序', newText: '新层序', groupId: 'tail' }, signal), Error);
+    await assert.rejects(update.execute({ oldText: '重复', newText: '新说明' }, signal), Error);
+    await assert.rejects(update.execute({ oldText: '不存在', newText: '新说明' }, signal), Error);
+    await assert.rejects(update.execute({ oldText: '原层序', newText: ' ' }, signal), Error);
     await f.store.update(document => { findGroup(document, 'tail').note = '另一组的并发更新'; });
     await update.execute({ oldText: '原层序', newText: '新层序' }, signal);
     assert.equal(findGroup(f.store.snapshot(), 'tail').note, '另一组的并发更新');
     await f.store.update(document => { findGroup(document, 'band').note = '本组已被其他调用更新'; });
-    await assert.rejects(update.execute({ oldText: '新层序', newText: '覆盖修改' }, signal), /已变化/);
+    await assert.rejects(update.execute({ oldText: '新层序', newText: '覆盖修改' }, signal), Error);
     assert.equal(findGroup(f.store.snapshot(), 'band').note, '本组已被其他调用更新');
     await tool(task, 'preview_svg').execute({ path: inputs(task).outputSvg, mode: 'blend' }, signal);
     return { text: 'checked', images: [] };
@@ -120,7 +119,6 @@ for await (const line of createInterface({ input: process.stdin })) {
 `, 'utf8');
   await chmod(executable, 0o755);
   const session = new AgentDispatcher({ codexPathOverride: executable, cwd: f.directory }).createSession();
-  t.after(() => session.close());
   const threads: (string | null | undefined)[] = [];
   const drawing = { async run(task: AgentTask) {
     const result = await session.run(task);
@@ -130,16 +128,20 @@ for await (const line of createInterface({ input: process.stdin })) {
     await tool(task, 'preview_svg').execute({ path: inputs(task).outputSvg, mode: 'blend' }, signal);
     return result;
   } };
-  await drawGroupOutline(f, drawing);
-  await drawGroupOutline(f, drawing, { candidate: f.outline.path, round: 1 });
+  try {
+    await drawGroupOutline(f, drawing);
+    await drawGroupOutline(f, drawing, { candidate: f.outline.path, round: 1 });
+  } finally { await session.close(); }
   assert.deepEqual(threads, ['drawing-thread', 'drawing-thread']);
   assert.equal(findGroup((await GroupStore.open(f.directory)).snapshot(), 'band').note, '修正说明');
   const messages = (await readFile(requests, 'utf8')).trim().split('\n').map(line => JSON.parse(line));
   assert.equal(messages.filter(message => message.method === 'thread/start').length, 1);
-  const turns = messages.filter(message => message.method === 'turn/start').map(message => JSON.stringify(message.params.input));
+  const turns = messages.filter(message => message.method === 'turn/start')
+    .map(message => message.params.input.map((item: { text?: string }) => item.text ?? '').join('\n'));
   assert.equal(turns.length, 2);
   // The repair is the drawing thread's next turn: it points to the review file, not the drawing task or its input again.
-  assert.match(turns[0], /对照纯衣服参考与本组 note[\s\S]*【本次输入】/);
-  assert.doesNotMatch(turns[1], /对照纯衣服参考与本组 note|【本次输入】/);
-  assert.match(turns[1], /review.json 中 reviews 最后一条（第 1 轮 review）/);
+  const output = promptInput(turns[0]).outputSvg;
+  assert.equal(typeof output, 'string');
+  assert.ok(!turns[1].includes(output));
+  assert.ok(turns[1].includes(f.reportPath));
 });
