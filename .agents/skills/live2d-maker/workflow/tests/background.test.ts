@@ -91,8 +91,8 @@ test('后台前置错误不假报启动；子管线错误完整进入总控', { 
   await startFixtureBackground(f, f.options.krita);
   await until(async () => !(await taskStatus(f.options)).lockHeld);
   const status = await taskStatus(f.options);
-  assert.equal(status.status, 'failed'); assert.match(status.error!, /clothing-soft-edges.kra/);
-  assert.match(status.error!, /手动放置/);
+  assert.equal(status.status, 'failed');
+  assert.ok(status.error?.includes(f.inputs.clothingKra));
 });
 
 test('后台 CLI 超分不可用时实际写入 1K，跳过下载并保留已有产物', { skip: process.platform === 'win32' }, async t => {

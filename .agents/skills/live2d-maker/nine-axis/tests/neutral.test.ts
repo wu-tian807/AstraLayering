@@ -148,7 +148,7 @@ print(json.dumps(reply))
         const executable = options.python ?? pythonExecutable;
         const python = spawnSync(executable, ['-c', bootstrap], {
           input: await readFile(join(jobs, name), 'utf8'), encoding: 'utf8', timeout: 15_000,
-          env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
+          env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1', PYTHONIOENCODING: 'utf-8' },
         });
         const reply = python.status === 0 ? JSON.parse(python.stdout) : {
           ok: false, error: 'Python fixture failed: ' + (python.error?.message || python.stderr || executable),

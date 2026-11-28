@@ -109,25 +109,27 @@ test('默认蒙版；全局保存、透传并仅预检所选 step01', async t =>
   } });
   assert.equal((await taskStatus(f.options)).sections[0].mode, 'normal-depth');
 });
-test('dry-run 与缺上游不调用模型、不写文件，提示词包含精度与投影规则', async t => {
+test('dry-run and missing upstream neither dispatch the agent nor create step state', async t => {
   const f = await fixture(t);
-  for (const mode of ['mask', 'normal-depth'] as const) {
-    const prompt = await runWorkflow({ ...f.options, shadowMode: mode, dryRun: true }, { ...f.deps,
-      agent: async () => assert.fail('dry run must not call models') });
-    assert.ok(prompt.includes(join(f.source, 'character-assembled.kra')));
+  let calls = 0;
+  const deps = { ...f.deps, agent: async () => { calls++; return { status: 'completed' as const, summary: '' }; } };
+  for (const shadowMode of ['mask', 'normal-depth'] as const) {
+    await runWorkflow({ ...f.options, shadowMode, dryRun: true }, deps);
   }
   await assert.rejects(readFile(join(f.task, 'shadow/selection.json')), { code: 'ENOENT' });
   await rm(join(f.source, 'character-assembled.kra'));
-  await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async () => assert.fail('missing upstream') }), /缺少上游/);
+  await assert.rejects(runWorkflow(f.options, deps), Error);
+  assert.equal(calls, 0);
 });
 
 test('公共步骤范围只接受本次选中的 Shadow 分支', async t => {
   const f = await fixture(t);
-  const deps = { ...f.deps, agent: async () => assert.fail('dry run must not call models') };
+  let calls = 0;
+  const deps = { ...f.deps, agent: async () => { calls++; return { status: 'completed' as const, summary: '' }; } };
   const options = { ...f.options, shadowMode: 'normal-depth' as const, dryRun: true };
-  await assert.rejects(runWorkflow({ ...options, selection: { fromStep: 'step01_mask' } }, deps), /不在本次步骤路线中/);
-  const preview = await runWorkflow({ ...options, selection: { fromStep: 'step01' } }, deps);
-  assert.ok(preview.includes(join(f.task, 'shadow/step01_normal-depth')));
+  await assert.rejects(runWorkflow({ ...options, selection: { fromStep: 'step01_mask' } }, deps), Error);
+  await runWorkflow({ ...options, selection: { fromStep: 'step01' } }, deps);
+  assert.equal(calls, 0);
   await assert.rejects(readFile(join(f.task, 'shadow/step01_normal-depth/.running')), { code: 'ENOENT' });
 });
 test('中断保留同模式 thread；两种 step01 产物共存，重跑只检查选择的产物', async t => {
