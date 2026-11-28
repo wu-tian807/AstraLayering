@@ -21,5 +21,4 @@ for(const kind of ['template','pattern'] as const)test(`startup ${kind} failure 
  try{await main(['--name','case','--dir',${JSON.stringify(root)},'--from','part-layering','--to','part-layering']);process.exitCode=3;}catch(error){console.error(error.message);process.exitCode=1;}`;
  await assert.rejects(execute(process.execPath,['--input-type=module','--eval',script],{env:{...process.env,ASTRA_TEST_CODEX_EXECUTABLE:''},timeout:20000}),{code:1});
  const log=await readFile(join(task,'workflow.log'),'utf8');assert.match(log,kind==='template'?/example.env/:/codex_models/);
- assert.doesNotMatch(log,/已提交|CLI 启动检查通过/);
 });

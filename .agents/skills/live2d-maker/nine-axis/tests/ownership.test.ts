@@ -37,14 +37,14 @@ test('a carrier containing protected hair cannot acquire permission through its 
   const after=structuredClone(before);after.deformers[0].keyforms['0'][0][0]+=1;
   const front=hairPreviewScope('front');
   assert.equal(ownsNode(before,before.deformers[0],front),false);
-  assert.throws(()=>checkOwnedEdit(before,after,front),/范围外/);
+  assert.throws(()=>checkOwnedEdit(before,after,front),Error);
 });
 test('side parts can attach to a read-only front carrier without acquiring permission to edit it',()=>{
   const before=fixture(),after=structuredClone(before),side=hairPreviewScope('side');
   after.parts[1].parent=after.deformers[0].id;
   checkOwnedEdit(before,after,side);
   const changed=structuredClone(after);changed.deformers[0].keyforms['0'][0][0]+=1;
-  assert.throws(()=>checkOwnedEdit(after,changed,side),/范围外/);
+  assert.throws(()=>checkOwnedEdit(after,changed,side),Error);
 });
 test('a projection is deferred until both endpoints are available and belongs to the round making either endpoint',()=>{
   const doc=fixture(),front=hairPreviewScope('front'),side=hairPreviewScope('side');

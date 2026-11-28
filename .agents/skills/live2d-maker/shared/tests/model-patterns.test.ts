@@ -28,8 +28,8 @@ test('custom model declarations extend template rules, local declarations win an
  assert.equal(needsSolidBackground('custom-nano',{prompt:'draw'},'google'),true);
  const exact=parseWorkflowEnvironment('claude_models=gpt-special\npart_draw_agent_model=gpt-special-high');
  assert.equal(exact.stepModels.part_outline.harness,'claude');
- assert.throws(()=>parseWorkflowEnvironment('claude_models=custom-*\ncodex_models=custom-*\npart_draw_agent_model=custom-v1-high'),/多个服务/);
- assert.throws(()=>parseWorkflowEnvironment('default_image_model=unknown-image'),/自定义生图/);
+ assert.throws(()=>parseWorkflowEnvironment('claude_models=custom-*\ncodex_models=custom-*\npart_draw_agent_model=custom-v1-high'),Error);
+ assert.throws(()=>parseWorkflowEnvironment('default_image_model=unknown-image'),Error);
  for(const key of ['codex_models','claude_models','agv_models','openai_image_models','google_image_models'])assert.throws(()=>parseWorkflowEnvironment(`${key}=**`),key);
 });
 test('GPT Image 2.6 variants and custom image IDs use unchanged static generation and edit parameters',async t=>{

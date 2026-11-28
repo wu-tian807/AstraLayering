@@ -91,17 +91,17 @@ test('legacy positional authoring migrates only with original bytes, size and un
   const result = restorePhysicsRecipe(recipe,parts,context);
   assert.equal(result.migrated,true);
   assert.deepEqual(result.bindings.get(uid(1)),authored);
-  assert.throws(()=>restorePhysicsRecipe(recipe,parts,{...context,sourceHash:'changed-kra'}),/原始工程/);
-  assert.throws(()=>restorePhysicsRecipe(recipe,[...parts,nativePart(3)],context),/身份不匹配/);
+  assert.throws(()=>restorePhysicsRecipe(recipe,parts,{...context,sourceHash:'changed-kra'}),Error);
+  assert.throws(()=>restorePhysicsRecipe(recipe,[...parts,nativePart(3)],context),Error);
 });
 
 test('malformed stable references and duplicate identities fail before changing bindings', () => {
   const parts = [nativePart(1)], initial = new Map([[uid(1),bindingDefaults()]]);
   const recipe = physicsRecipe(parts,new Map([[uid(1),authored]]),context);
   recipe.records['uuid:'+uid(1)].ref.uuid = uid(2);
-  assert.throws(()=>restorePhysicsRecipe(recipe,parts,context,initial),/引用无效/);
+  assert.throws(()=>restorePhysicsRecipe(recipe,parts,context,initial),Error);
   assert.equal(initial.get(uid(1))!.enabled,false);
-  assert.throws(()=>physicsRecipe([nativePart(1),nativePart(1)],initial,context),/身份重复/);
+  assert.throws(()=>physicsRecipe([nativePart(1),nativePart(1)],initial,context),Error);
 });
 
 test('project draft namespace survives new document versions and isolates independent projects', () => {

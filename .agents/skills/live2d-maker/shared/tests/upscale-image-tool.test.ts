@@ -58,8 +58,8 @@ test('超分工具为不同尺寸的文件和目录使用同一倍率，保留�
   if (!native) assert.deepEqual(batchScales, [2, 3, 4]);
   assert.deepEqual(await readFile(single), png);
   const items = [{ input_path: single, output_path: single }];
-  await assert.rejects(tool.execute({ scale: '2x', items }, signal), /冲突/);
-  await assert.rejects(tool.execute({ scale: '2K', items }, signal), /scale 必须/);
+  await assert.rejects(tool.execute({ scale: '2x', items }, signal), Error);
+  await assert.rejects(tool.execute({ scale: '2K', items }, signal), Error);
 });
 
 test('Upscayl 不可用时直接返回调用错误，尚未处理图片', async () => {

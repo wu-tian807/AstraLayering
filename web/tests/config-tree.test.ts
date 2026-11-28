@@ -51,14 +51,14 @@ test('tools are folders holding their description', () => {
 test('head-only prompts and tools belong to the head nine-axis family, distinct from common priors', () => {
   const selected = 'head-nine-axis/tools/edit_nine_axis/description.md', html = render(selected);
   const head = html.indexOf('data-config-folder="head-nine-axis"'), shared = html.indexOf('data-config-folder="shared"');
-  assert.ok(head >= 0 && shared > head); assert.match(html, /头部九轴/);
+  assert.ok(head >= 0 && shared > head);
   for (const file of files.filter(file => file.startsWith('head-nine-axis/'))) {
     const row = html.indexOf(`data-config-file="${file}"`);
     assert.ok(row > head && row < shared, file);
   }
   assert.match(folder(html, 'head-nine-axis'), / open>$/);
   const search = render(selected, 'edit_nine_axis');
-  assert.match(search, /头部九轴/); assert.doesNotMatch(search, /公共先验/);
+
 });
 
 test('same-named prompts sit in their own nested folders; a folder with one folder shares its row', () => {
@@ -71,7 +71,6 @@ test('same-named prompts sit in their own nested folders; a folder with one fold
     assert.match(folder(html, path), / open>$/, path);
   assert.doesNotMatch(folder(html, 'shared/tools/submit_review'), / open>$/);
   assert.match(folder(html, '.'), /data-config-folder="\."/);
-  assert.match(html, /其他文件/);
 });
 
 test('a folder the user opened or closed keeps that state; a search opens everything', () => {

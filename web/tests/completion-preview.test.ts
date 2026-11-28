@@ -38,8 +38,8 @@ test('completion preview waits, follows the saved draft, and survives its public
   const group = page.locator('[data-cycle="0"]'); await group.waitFor();
   await group.locator('[data-group-toggle="0"]').first().evaluate(button => (button as HTMLButtonElement).click());
   const panel = page.locator('[data-svg-preview="0:completion"]');
-  await panel.getByText('等待首次保存 SVG').waitFor();
-  assert.equal(await group.locator('[data-phase="0:completion"] .phase-state').textContent(), '进行中');
+  await panel.locator('.archive-gap').waitFor();
+  assert.match((await group.locator('[data-phase="0:completion"] .phase-state').getAttribute('class')) ?? '', /\brunning\b/);
   const waitForPath = (path: string) => page.waitForFunction(([selector, value]) =>
     document.querySelector(selector)?.getAttribute('title') === value,
   ['[data-svg-preview="0:completion"] button.artifact-image', path]);
@@ -62,8 +62,8 @@ test('completion preview waits, follows the saved draft, and survives its public
       url.searchParams.set('race', 'publication'); img.loading = 'eager'; img.src = url.toString();
     });
   }
-  await panel.getByText('画面暂不可用，等待刷新').waitFor();
-  await inspector.getByText('画面暂不可用，等待刷新').waitFor();
+  await panel.locator('.svg-unavailable').waitFor();
+  await inspector.locator('.svg-unavailable').waitFor();
   hold = false; releaseSnapshot();
   await waitForPath(final);
   await page.waitForFunction(path => document.querySelector('.output-inspector .artifact-source')?.textContent?.includes(path), final);

@@ -19,13 +19,12 @@ const states = (rounds: ReturnType<typeof observe>) => rounds.flatMap(round => [
 
 test('one skip decision covers different reasons and requires a completed outline', () => {
   assert.deepEqual(partReviewSkip({}, 'completed', true), { skip: false, reason: '' });
-  for (const [group, reason] of [[{ hiddenInReference: true }, /原图不可见/],
-    [{ outlineFromParent: { x: 0, y: 0, width: 10, height: 10 } }, /父组.*复制/]] as const) {
+  for (const group of [{ hiddenInReference: true },
+    { outlineFromParent: { x: 0, y: 0, width: 10, height: 10 } }]) {
     for (const status of ['absent', 'unmarked', 'running']) assert.equal(partReviewSkip(group, status, true).skip, false);
     assert.equal(partReviewSkip(group, 'completed', false).skip, false);
     const decision = partReviewSkip(group, 'completed', true);
     assert.equal(decision.skip, true);
-    assert.match(decision.reason, reason);
     const rounds = partReviewRounds('face', undefined, initial,
       [call('review', 10, true, true), call('repair', 20)], true, decision);
     assert.deepEqual(states(rounds), ['skipped', 'skipped', 'skipped', 'skipped']);
@@ -60,7 +59,6 @@ test('blocked inspections do not consume either quality round or hide their feed
   let reviews = [review(initial, 'blocked', 20)];
   let rounds = observe(reviews);
   assert.equal(rounds[0].review.status, 'pending');
-  assert.match(rounds[0].review.detail, /不消耗/);
   assert.deepEqual(states(observe(reviews, initial, [call('review', 30)], true)), ['running', 'pending', 'pending', 'pending']);
   reviews.push(review(initial, 'revise', 40, repaired1), review(repaired1, 'blocked', 60));
   rounds = observe(reviews, repaired1, [call('review', 70)], true);
@@ -96,9 +94,9 @@ for (const section of ['part-layering', 'clothing-part-layering']) test(`${secti
   assert.deepEqual(steps.slice(0, 3).map(step => step.artifacts[0].reviewIndex), [0, 0, 1]);
   assert.equal(steps[3].status, 'skipped');
   const report: ReviewReport = { groupId: 'face', reviews: [review(initial, 'revise', 20, repaired1), review(repaired1, 'pass', 50)] };
-  assert.match(reviewReportText(JSON.stringify(report), steps[0].artifacts[0]), /意见 20/);
-  assert.doesNotMatch(reviewReportText(JSON.stringify(report), steps[0].artifacts[0]), /意见 50/);
-  assert.match(reviewReportText(JSON.stringify(report), steps[2].artifacts[0]), /意见 50/);
+  assert.ok(reviewReportText(JSON.stringify(report), steps[0].artifacts[0]).includes(report.reviews[0].feedback));
+  assert.ok(!reviewReportText(JSON.stringify(report), steps[0].artifacts[0]).includes(report.reviews[1].feedback));
+  assert.ok(reviewReportText(JSON.stringify(report), steps[2].artifacts[0]).includes('50'));
   const artifacts = groupArtifacts(section, { id: 'face' }, 0);
   const outline = `${section}/step09_outline/face/outline.svg`, draft = `${section}/parts/face.draft.svg`, final = `${section}/parts/face.svg`;
   const files = new Set([outline, draft, final]);

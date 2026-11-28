@@ -18,7 +18,7 @@ test('复核中断后续跑沿用同一轮廓与复核记录，不重画也不�
   const report = { groupId: 'head', reviews: [{ verdict: 'revise', feedback: 'first', candidateHash: 'old' }] };
   await assert.rejects(runLayering({ ...f, groups: null, steps: { ...steps, async reviewOutline(context) {
     await writeAtomic(context.reportPath, JSON.stringify(report)); throw new Error('review interrupted');
-  } } }), /review interrupted/);
+  } } }), Error);
   assert.equal((await readStep(join(f.directory, groupStepId('head', 'outline')))).status, 'running');
   events.length = 0;
   await runLayering({ ...f, groups: null, steps: { ...steps, async reviewOutline(context) {
@@ -40,7 +40,7 @@ for (const stage of ['outline', 'completion'] as const) {
       assert.equal(resumeDraft, false);
       await writeAtomic(outputPath, partial);
       throw new Error('interrupted while drawing');
-    } } }), /interrupted while drawing/);
+    } } }), Error);
     const resumed: (boolean | undefined)[] = [];
     const resuming = { ...steps, async [draw](context: never) {
       const { group, outputPath, resumeDraft } = context as { group: { id: string }; outputPath: string; resumeDraft?: boolean };

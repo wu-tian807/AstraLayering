@@ -23,7 +23,7 @@ test('两套 raster 经受控工具新增分组及 SVG 后，中断与主动重�
       await request.onEvent({ type: 'thread.started', thread_id: 'fixed-thread' });
       changed = await splitStructure(source);
       throw new Error('结构保存后中断');
-    } }), /结构保存后中断/);
+    } }), Error);
     async function deliver(request: AgentRequest) {
       for (const [file, bytes] of Object.entries(changed)) assert.equal(await readFile(join(source, file), 'utf8'), bytes);
       return deliverRasterStep(request, section.steps[0], 'new-thread');

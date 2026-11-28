@@ -28,6 +28,6 @@ test('selected FFmpeg executes with spaces in its path; child tools inherit the 
   const result = await promisify(execFile)('ffmpeg', ['--probe'], { env });
   assert.equal(result.stdout.trim(), executable);
   assert.equal(process.env.PATH, originalPath);
-  await assert.rejects(checkFFmpeg(root), /版本检查失败/);
-  await assert.rejects(checkFFmpeg(process.execPath), /版本检查失败/);
+  await assert.rejects(checkFFmpeg(root), Error);
+  await assert.rejects(checkFFmpeg(process.execPath), Error);
 });

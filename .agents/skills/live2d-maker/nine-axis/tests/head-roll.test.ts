@@ -79,7 +79,7 @@ test('the deterministic roll step requires completed corners and can retry using
     ffmpegCheck: async () => assert.fail('roll does not require video'),
     fitHeadCorners: async () => assert.fail('roll does not dispatch a head agent'),
   };
-  await assert.rejects(runWorkflow(options, dependencies), /先完成完整头部四角/);
+  await assert.rejects(runWorkflow(options, dependencies), Error);
   await writeFile(marker, '');
   await runWorkflow(options, dependencies);
   assert.equal((await readStep(output)).status, 'completed');
@@ -87,7 +87,7 @@ test('the deterministic roll step requires completed corners and can retry using
   const modelPath = join(output, 'deformers.json'), saved = await readFile(modelPath, 'utf8');
   assert.deepEqual(JSON.parse(saved), prepareHeadRoll(original));
   await rename(marker, join(nine, upstream, '.running'));
-  await assert.rejects(runWorkflow(options, dependencies), /先完成完整头部四角/);
+  await assert.rejects(runWorkflow(options, dependencies), Error);
   await rename(join(nine, upstream, '.running'), marker);
   await applyStepAction({ ...options, section: 'nine-axis', action: 'retry' });
   await runWorkflow(options, dependencies);

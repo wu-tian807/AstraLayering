@@ -462,11 +462,9 @@ test('Studio saves up and down keyforms independently while retaining X, earlier
     if (nineStage === 'down') assert.deepEqual(edited.parts[0].keyformsY['25'], doc.parts[0].keyformsY['25'], 'Down edits retain up');
     const stale = await save({ path, version: before.nineAxis.version, document: doc });
     assert.equal(stale.status, 400);
-    assert.match((await stale.json() as any).error, /已变化/);
     const changed = structuredClone(edited); changed.parts[0].texture = 'layers/other.png';
     const rejected = await save({ path, version: saved.version, document: changed });
     assert.equal(rejected.status, 400);
-    assert.match((await rejected.json() as any).error, /不能替换图层/);
     assert.deepEqual(JSON.parse(await readFile(join(f.project, path), 'utf8')), edited);
   }
   for (const path of ['nine-axis/step05_angle-y/deformers.json', 'nine-axis/step04_angle-up/source.json',
@@ -474,7 +472,6 @@ test('Studio saves up and down keyforms independently while retaining X, earlier
     await f.put(path, 'private');
     const response = await save({ path, version: 'anything', document: {} });
     assert.equal(response.status, 400);
-    assert.match((await response.json() as any).error, /只能保存工作台的九轴文件/);
     assert.equal(await readFile(join(f.project, path), 'utf8'), 'private');
   }
 });

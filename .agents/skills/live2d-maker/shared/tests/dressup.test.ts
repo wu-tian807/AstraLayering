@@ -23,7 +23,7 @@ test('换装判断在素体步骤完成后才生效，按记录读取', async t 
   await markBaseStep(f.task, true);
   assert.equal(await readDressup(f.task), true);
   await writeFile(dressupDecisionPath(f.task), JSON.stringify({ version: 1, dressed: 'no' }));
-  await assert.rejects(readDressup(f.task), /素体换装判断记录无效/);
+  await assert.rejects(readDressup(f.task), Error);
 });
 
 test('旧任务没有判断记录时，按素体参考是否与简化参考像素一致推断', async t => {

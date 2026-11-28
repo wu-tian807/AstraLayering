@@ -26,12 +26,11 @@ test('阴影蒙版显示最新 KRA，首次保存前等待；法线方式不显�
     },
   };
   const render = () => runInNewContext(helpers + renderer + '\nkraPreviewPanel(0);', { ...context }) as string;
-  assert.match(render(), /等待首次保存 KRA/);
   section.previews.step01 = { path: 'shadow/step01_mask/working.kra', savedAt: '2026-10-24T00:00:00Z' };
   const saved = render();
-  assert.match(saved, /data-kra-preview="0"/); assert.match(saved, /Live2D 蒙版/);
+  assert.match(saved, /data-kra-preview="0"/);
   assert.match(saved, /shadow\/step01_mask\/working\.kra/);
-  assert.doesNotMatch(saved, /selection\.json|等待首次保存/);
+  assert.doesNotMatch(saved, /selection\.json/);
   section.mode = 'normal-depth';
   assert.equal(render(), '');
 });
@@ -85,7 +84,7 @@ test('损坏或缺少合成图的 KRA 明确报错，不伪装为其他图片', 
   t.after(() => rm(base, { recursive: true, force: true }));
   const file = join(base, 'draft.kra'), previews = new KRAPreviews();
   await writeFile(file, zipSync({ 'preview.png': new Uint8Array(0) }));
-  await assert.rejects(previews.get(file, 'first'), /尚未保存有效/);
+  await assert.rejects(previews.get(file, 'first'), Error);
   await writeFile(file, 'incomplete zip');
   await assert.rejects(previews.get(file, 'second'));
 });

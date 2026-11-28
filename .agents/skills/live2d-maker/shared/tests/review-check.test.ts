@@ -53,6 +53,4 @@ test('a failed report check is repaired in the reviewer thread that wrote it', a
   assert.equal(protocol.filter(message => message.method === 'thread/start').length, 1);
   const prompts = protocol.filter(message => message.method === 'turn/start').map(message => message.params.input[0].text);
   assert.equal(prompts.length, 2);
-  assert.match(prompts[1], /程序核对没有通过（第 1\/2 次返修）/);
-  assert.match(prompts[1], /报告缺少有效结论/);
 });

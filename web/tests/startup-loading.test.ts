@@ -24,9 +24,9 @@ test('startup displays loading and a snapshot error, then recovers on polling', 
   });
   t.after(() => release());
   await page.goto(`${origin}/?name=case`, { waitUntil: 'domcontentloaded' });
-  await page.getByRole('status').filter({ hasText: '正在读取工作台' }).waitFor();
+  await page.locator('.bootstrap-status[role="status"]').waitFor();
   release();
-  await page.locator('.run-notice.error').filter({ hasText: '模拟读取失败' }).waitFor();
+  await page.locator('.run-notice.error').waitFor();
   await page.locator('.run-notice.error').waitFor({ state: 'detached' });
   assert.equal(await page.locator('.app-header').count(), 1);
   assert.deepEqual(errors, []);

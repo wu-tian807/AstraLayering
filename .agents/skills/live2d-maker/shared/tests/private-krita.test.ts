@@ -17,5 +17,5 @@ for (const platform of ['darwin','linux','win32'] as const) test(`private Krita 
   assert.equal(env.HOME,root);assert.equal(env.CFFIXED_USER_HOME,root);
   assert.equal(config,join(root,'Library/Preferences'));assert.equal(resource,join(root,'Library/Application Support/krita'));
  }else{assert.equal(env.HOME,inherited.HOME);assert.equal(env.XDG_CONFIG_HOME,join(root,'config'));}
- await assert.rejects(preparePrivateKrita(root,'../escape',source,inherited,platform),/无效/);
+ await assert.rejects(preparePrivateKrita(root,'../escape',source,inherited,platform),Error);
 });

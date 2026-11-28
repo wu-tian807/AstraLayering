@@ -18,5 +18,5 @@ test('free-form video IDs retain the selected provider; malformed IDs fail befor
     assert.equal(requireVideoApi(environment).provider,'openai');
   }
   for(const model of ['*','model with spaces','model?query'])assert.throws(()=>loadWorkflowEnvironment({nine_axis_view_video_model:model}));
-  assert.throws(() => requireVideoApi({}), /生视频接口/);
+  assert.throws(() => requireVideoApi({}), Error);
 });

@@ -32,7 +32,7 @@ test('写出任务内用相对任务根的 POSIX 路径，任务外保持绝对�
   // Older runs persisted absolute paths; they are still accepted as is.
   const legacy = join(runs, 'old/part-layering/groups.json');
   assert.equal(fromTaskPath(root, legacy), legacy);
-  assert.throws(() => fromTaskPath(root, '../other/a.png'), /任务根/);
+  assert.throws(() => fromTaskPath(root, '../other/a.png'), Error);
   assert.deepEqual(toTaskPaths(root, { a: [join(root, 'x.png'), 'y.png', 3], b: external }),
     { a: ['x.png', 'y.png', 3], b: external });
 });

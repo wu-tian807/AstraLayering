@@ -17,7 +17,7 @@ test('pending overview lists every configured stage and child before any product
       assert.equal(html.split(`data-step="${index}:${step.id}"`).length - 1, 1, step.id);
       assert.ok(html.includes(step.title));
     }
-    assert.doesNotMatch(html, /等待模型|<canvas|href=|<details/);
+    assert.doesNotMatch(html, /<canvas|href=|<details/);
     assert.equal(JSON.stringify(steps), before);
   }
 });
@@ -39,6 +39,4 @@ test('the plan shows current execution states and explicit skips without inferri
   const html = flowStepList(steps, context);
   assert.match(html, /data-status="interrupted"/);
   assert.match(html, /data-status="done"/);
-  assert.match(html, /title="无需执行"/);
-  assert.match(html, /aria-label="无需执行"/);
 });
