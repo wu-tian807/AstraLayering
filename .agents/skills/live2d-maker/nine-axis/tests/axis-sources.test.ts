@@ -1,7 +1,7 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { evaluatePoints, inversePoint, keyformAt, lattice, nodes, parentPoint, reparent, validateHeadNineAxis, warpPoint,
+import { createPointDeformer, evaluatePoints, inversePoint, keyformAt, lattice, nodes, parentPoint, reparent, validateHeadNineAxis, warpPoint,
   type HeadNineAxis, type WarpGrid, type Point } from '../../shared/nine-axis-model.js';
 
 import { scale, pts, grid, baseline, independentAxes, joint } from './axis-fixtures.ts';
@@ -212,5 +212,25 @@ test('fitWarpToTraces selected canvas group receives each descendant source pose
     const error = Math.max(...f.samples.map(s => { const q = position(occluded.doc, f.part, s.from); return Math.hypot(q[0] - s.to[0], q[1] - s.to[1]); }));
     assert.ok(error < .11, 'conflicting hidden points do not displace the visible face');
     assert.ok(Math.abs(error - occluded.report.after[i].maxPixels) < .001);
+  }
+});
+
+test('pose evaluator matches scalar warps across inherited axes and shares one prepared parent between parts', () => {
+  const source = joint();
+  source.parameters = [{ id: 'ParamAngleX', keys: [-30, 0, 30] }, { id: 'ParamAngleY', keys: [-25, 0, 25] }];
+  const targets = source.parts.slice(0, 2).map(part => part.id);
+  const doc = editNineAxis(source, [
+    { action: 'create_warp', id: 'shared', targets, cols: 3, rows: 3 },
+    { action: 'transform', id: 'shared', x: -30, y: 25, translate: [3, 2] },
+  ]);
+  const samples = Float32Array.of(-13, -4, 6, 18, 40.7, 52.3, 119, 115);
+  for (const [x, y] of [[-30, 25], [18, -12.5], [0, 14], [0, 0]]) {
+    const deform = createPointDeformer(doc, x, y);
+    for (const part of doc.parts.slice(0, 2)) {
+      const native = keyformAt(part, x, y), expected = [];
+      for (let i = 0; i < samples.length; i += 2)
+        expected.push(...parentPoint(doc, part, x, y, ...warpPoint(part, native, samples[i], samples[i + 1])));
+      close(deform(part, samples), Float32Array.from(expected), .0001);
+    }
   }
 });
