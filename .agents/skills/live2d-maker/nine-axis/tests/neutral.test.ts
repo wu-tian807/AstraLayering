@@ -1,6 +1,6 @@
 import '../../shared/tests/ignore-local-env.ts';
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { access, mkdir, mkdtemp, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, relative } from 'node:path';
@@ -32,7 +32,7 @@ const layers: Layer[] = [
 // small Krita/QImage doubles. This exercises traversal, export and finally-close
 // rather than merely returning a precomputed manifest from a mocked TS API.
 async function fixture(t: TestContext, nodes = layers, options: { failExport?: boolean; depth?: string;
-  startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult> } = {}) {
+  startupReplies?: Partial<BridgeResult>[]; exportReply?: Partial<BridgeResult>; python?: string } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'neutral-原图-'));
   let stop = async () => {};
   t.after(async () => { await stop(); await rm(root, { recursive: true, force: true }); });
@@ -145,13 +145,14 @@ print(json.dumps(reply))
       for (const name of await readdir(jobs)) {
         if (!name.endsWith('.py') || handled.has(name)) continue;
         handled.add(name); calls.jobs++;
-        const python = spawn(pythonExecutable, ['-c', bootstrap], { stdio: ['pipe', 'pipe', 'pipe'], env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
-        let stdout = '', stderr = '';
-        python.stdout.on('data', chunk => { stdout += chunk; });
-        python.stderr.on('data', chunk => { stderr += chunk; });
-        python.stdin.end(await readFile(join(jobs, name), 'utf8'));
-        const code = await new Promise<number | null>((resolve, reject) => { python.once('error', reject); python.once('close', resolve); });
-        const reply = code === 0 ? JSON.parse(stdout) : { ok: false, error: stderr };
+        const executable = options.python ?? pythonExecutable;
+        const python = spawnSync(executable, ['-c', bootstrap], {
+          input: await readFile(join(jobs, name), 'utf8'), encoding: 'utf8', timeout: 15_000,
+          env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
+        });
+        const reply = python.status === 0 ? JSON.parse(python.stdout) : {
+          ok: false, error: 'Python fixture failed: ' + (python.error?.message || python.stderr || executable),
+        };
         const startup = name.includes('-startup-');
         if (startup && options.startupReplies?.length) Object.assign(reply, options.startupReplies.shift());
         if (!startup && options.exportReply) Object.assign(reply, options.exportReply);
@@ -168,6 +169,12 @@ print(json.dumps(reply))
     async start(signal?: AbortSignal) { signal?.throwIfAborted(); calls.start++; }, async release() { calls.release++; } } as unknown as SectionKrita;
   return { root, directory, input, krita, calls, replies };
 }
+
+test('missing fixture interpreter reports a bridge error instead of waiting for a reply', async t => {
+  const python = join(process.execPath, 'missing-python');
+  const f = await fixture(t, layers, { python });
+  await assert.rejects(prepareNeutral(f.directory, f.input, f.krita, box, scale, undefined, f.root), /Python fixture failed/);
+});
 
 test('one original KRA job preserves layers, metadata, identity and the merge export contract', async t => {
   const f = await fixture(t), original = await readFile(f.input.document);
