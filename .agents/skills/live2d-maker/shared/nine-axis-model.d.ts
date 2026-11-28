@@ -23,6 +23,7 @@ export function kraReferences<T>(doc: T): T;
 export const HEAD_ROLL_LIMIT: number;
 export function headRollLimit(doc?: HeadNineAxis): number;
 export function evaluatePoints(doc: HeadNineAxis, node: WarpGrid, x: number, y?: number, subdivision?: number, z?: number): Float32Array;
+export function createPointDeformer(doc: HeadNineAxis, x: number, y: number): (node: WarpGrid, samples: Float32Array) => Float32Array;
 export function deformPoints(doc: HeadNineAxis, node: WarpGrid, samples: Float32Array, x: number, y: number): Float32Array;
 export function rollEvaluatedPoints(doc: HeadNineAxis, node: WarpGrid, points: Float32Array, z: number): Float32Array;
 /** Independent source pose of one leaf, before current canvas Warp parents. */
@@ -30,7 +31,7 @@ export function axisPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: numbe
 export function parentPoint(doc: HeadNineAxis, node: WarpGrid, x: number, y: number, px: number, py: number, inverse?: boolean): Point;
 export function checkWarpGeometry(node: WarpGrid): void;
 export function reparent(doc: HeadNineAxis, ids: string[], parent?: string): void;
-export function refine(points: ArrayLike<number>, cols: number, rows: number, n: number, out?: Float32Array): Float32Array;
+export function refine(points: ArrayLike<number>, cols: number, rows: number, n: number, out?: Float32Array, vertical?: number): Float32Array;
 export function meshIndices(cols: number, rows: number): Uint32Array;
 export function levelParts(doc: HeadNineAxis, levelId: string): HeadDeformer[];
 export function dragKeyform(start: number[][], index: number, dx: number, dy: number, radius: number): number[][];

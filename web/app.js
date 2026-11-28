@@ -544,7 +544,10 @@ function connectFlow() {
  if(!laneAnimation)state.mergeShift=laneMetrics.tops[state.lane];
  if(merge)merge.style.marginTop=`${state.mergeShift}px`;
  if(state.autoHeight||state.zoom===null)state.zoom=Math.min(1,Math.max(.05,(viewport.clientHeight-8)/Math.max(...laneMetrics.heights)));
- world.style.transform=`scale(${state.zoom})`;
+ const transform=`scale(${state.zoom})`;
+ const zoomChanged=world.style.transform!==transform;
+ world.style.transform=transform;
+ if(zoomChanged)headPreview.resize();
  const size=document.querySelector('.flow-size');
  // The last lane can always scroll to the top of the viewport.
  size.style.width=`${world.offsetWidth*state.zoom}px`;size.style.height=`${Math.max(world.offsetHeight*state.zoom,laneScrollTop(laneCount()-1)+viewport.clientHeight)}px`;

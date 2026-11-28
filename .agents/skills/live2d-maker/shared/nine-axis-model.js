@@ -179,7 +179,7 @@ function span(keys, value) {
 // corner not made yet, the X and Y offsets from the rest form added up.
 function gridForm(part, x, y) {
   if (!y) return part.keyforms[String(x)];
-  const Y = axisForms(part, 'y')[String(y)];
+  const Y = part.keyformsY[String(y)];
   if (!x) return Y;
   const corner = part.keyformsXY?.[`${x},${y}`];
   if (corner) return corner;
@@ -193,7 +193,8 @@ export function keyformAt(part, x, y = 0, out = new Float32Array((part.cols + 1)
   if (part.parameterInterpolation?.x === 'ellipse') {
     const keys = keyValues(part), value = Math.max(-1, Math.min(1, x / (x < 0 ? -keys[0] : keys[2]))), theta = value * Math.PI / 2;
     const rows = [y0, y1].map(Y => keys.map(X => gridForm(part, X, Y)));
-    const ellipse = (forms, i, k) => { const [L, M, R] = forms, c = (L[i][k] + R[i][k]) / 2; return c + (M[i][k] - c) * Math.cos(theta) + (R[i][k] - L[i][k]) / 2 * Math.sin(theta); };
+    const cos = Math.cos(theta), sin = Math.sin(theta);
+    const ellipse = (forms, i, k) => { const [L, M, R] = forms, c = (L[i][k] + R[i][k]) / 2; return c + (M[i][k] - c) * cos + (R[i][k] - L[i][k]) / 2 * sin; };
     for (let i = 0; i < A.length; i++) for (const k of [0, 1]) out[i * 2 + k] = ellipse(rows[0], i, k) * (1 - t) + ellipse(rows[1], i, k) * t;
   } else for (let i = 0; i < A.length; i++) for (const k of [0, 1])
       out[i * 2 + k] = (A[i][k] * (1 - s) + B[i][k] * s) * (1 - t) + (C[i][k] * (1 - s) + D[i][k] * s) * t;
@@ -279,10 +280,18 @@ function preparedWarp(node, points) {
   }
   return [node, points, identity];
 }
-function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), forms) {
+function prepareNodes(x, y) {
+  const cache = new Map();
+  return node => {
+    let warp = cache.get(node);
+    if (!warp) { warp = preparedWarp(node, keyformAt(node, x, y)); cache.set(node, warp); }
+    return warp;
+  };
+}
+function parentChain(doc, node, x, y, byId = new Map(doc.deformers.map(n => [n.id, n])), prepared) {
   const chain = [];
   for (let id = node.parent; id; id = byId.get(id).parent) {
-    const p = byId.get(id); chain.push(preparedWarp(p, forms?.get(id) ?? keyformAt(p, x, y)));
+    const p = byId.get(id); chain.push(prepared ? prepared(p) : preparedWarp(p, keyformAt(p, x, y)));
   }
   return chain;
 }
@@ -297,8 +306,8 @@ const sourceMappings = new WeakMap();
 function sourceMapping(doc, x, y) {
   const old = sourceMappings.get(doc);
   if (old?.x === x && old?.y === y) return old.parts;
-  const byId = new Map(doc.deformers.map(n => [n.id, n])), forms = new Map(nodes(doc).map(n => [n.id, keyformAt(n, x, y)]));
-  const parts = new Map(doc.parts.map(p => [p.id, [preparedWarp(p, forms.get(p.id)), ...parentChain(doc, p, x, y, byId, forms)]]));
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y);
+  const parts = new Map(doc.parts.map(p => [p.id, [prepared(p), ...parentChain(doc, p, x, y, byId, prepared)]]));
   sourceMappings.set(doc, { x, y, parts });
   return parts;
 }
@@ -343,10 +352,90 @@ export function headRollLimit(doc) {
   return doc?.headRoll ? doc.parameters?.find(p => p.id === 'ParamAngleZ')?.max ?? 0 : 0;
 }
 
+// The padded displacement lattice uses the same edge extrapolation as warpPoint.
+// Prepare it once per pose and share it between every part carried by this Warp.
+function displacementGrid(node, points) {
+  const { cols, rows } = node, [x0, y0, x1, y1] = node.bbox;
+  const stride = (cols + 3) * 2, data = new Float64Array(stride * (rows + 3));
+  const value = (i, j, k) => points[(j * (cols + 1) + i) * 2 + k] -
+    (k ? y0 + (y1 - y0) * j / rows : x0 + (x1 - x0) * i / cols);
+  for (let j = -1; j <= rows + 1; j++) for (let i = -1; i <= cols + 1; i++) {
+    const a = Math.max(0, Math.min(cols, i)), b = Math.max(0, Math.min(rows, j));
+    const index = (j + 1) * stride + (i + 1) * 2;
+    for (let k = 0; k < 2; k++) {
+      const center = value(a, b, k);
+      const dx = i < 0 ? center - value(1, b, k) : i > cols ? center - value(cols - 1, b, k) : 0;
+      const dy = j < 0 ? center - value(a, 1, k) : j > rows ? center - value(a, rows - 1, k) : 0;
+      data[index + k] = center + dx + dy;
+    }
+  }
+  return data;
+}
+function cubicRow(data, i, t) {
+  return cubic(data[i - 2], data[i], data[i + 2], data[i + 4], t);
+}
+function warpBatch(warp, points) {
+  const [node, form, identity] = warp;
+  if (identity) return;
+  const data = warp[3] ??= displacementGrid(node, form);
+  const [x0, y0, x1, y1] = node.bbox, { cols, rows } = node, stride = (cols + 3) * 2;
+  const smooth = node.interpolation === 'smooth';
+  for (let p = 0; p < points.length; p += 2) {
+    const u = Math.max(0, Math.min(cols, (points[p] - x0) / (x1 - x0) * cols));
+    const v = Math.max(0, Math.min(rows, (points[p + 1] - y0) / (y1 - y0) * rows));
+    const i = Math.min(cols - 1, Math.floor(u)), j = Math.min(rows - 1, Math.floor(v));
+    const s = u - i, t = v - j, start = (j + 1) * stride + (i + 1) * 2;
+    if (smooth) {
+      for (let k = 0; k < 2; k++) {
+        const o = start + k;
+        points[p + k] += cubic(cubicRow(data, o - stride, s), cubicRow(data, o, s),
+          cubicRow(data, o + stride, s), cubicRow(data, o + 2 * stride, s), t);
+      }
+    } else {
+      for (let k = 0; k < 2; k++) {
+        const o = start + k;
+        points[p + k] += (data[o] * (1 - s) + data[o + 2] * s) * (1 - t) +
+          (data[o + stride] * (1 - s) + data[o + stride + 2] * s) * t;
+      }
+    }
+  }
+}
+
+// A pose evaluator owns its prepared maps and scratch space. Recreate it after
+// editing the document; source snapshots are invalidated by validation.
+export function createPointDeformer(doc, x, y) {
+  const byId = new Map(doc.deformers.map(n => [n.id, n])), prepared = prepareNodes(x, y);
+  const sources = doc.axisSources && new Map(doc.axisSources.map(s => [s.axis, s.doc]));
+  const X = x && sources ? sourceMapping(sources.get('x'), x, 0) : null;
+  const Y = y && sources ? sourceMapping(sources.get(y > 0 ? 'up' : 'down'), 0, y) : null;
+  const parts = sources ? new Set(doc.parts.map(p => p.id)) : null;
+  const chains = new Map();
+  let buffer = new Float64Array(0), sourceX = new Float64Array(0), sourceY = new Float64Array(0);
+  return (node, samples) => {
+    let chain = chains.get(node);
+    if (!chain) { chain = parentChain(doc, node, x, y, byId, prepared); chains.set(node, chain); }
+    const sourcePart = parts?.has(node.id);
+    const ax = sourcePart ? X?.get(node.id) : null, ay = sourcePart ? Y?.get(node.id) : null;
+    if (buffer.length < samples.length) buffer = new Float64Array(samples.length);
+    const points = buffer.subarray(0, samples.length); points.set(samples);
+    warpBatch(prepared(node), points);
+    if (ax && ay) {
+      if (sourceX.length < samples.length) {
+        sourceX = new Float64Array(samples.length); sourceY = new Float64Array(samples.length);
+      }
+      const a = sourceX.subarray(0, samples.length), b = sourceY.subarray(0, samples.length);
+      a.set(points); b.set(points);
+      for (const warp of ax) warpBatch(warp, a);
+      for (const warp of ay) warpBatch(warp, b);
+      for (let i = 0; i < points.length; i++) points[i] = a[i] + b[i] - points[i];
+    } else for (const warp of ax ?? ay ?? []) warpBatch(warp, points);
+    for (const warp of chain) warpBatch(warp, points);
+    return new Float32Array(points);
+  };
+}
+
 export function deformPoints(doc, node, samples, x, y) {
-  const local = [preparedWarp(node, keyformAt(node, x, y))], out = new Float32Array(samples.length), transform = parentTransform(doc, node, x, y);
-  for (let i = 0; i < samples.length; i += 2) out.set(transform(...carry(local, samples[i], samples[i + 1])), i);
-  return out;
+  return createPointDeformer(doc, x, y)(node, samples);
 }
 export function evaluatePoints(doc, node, x, y = 0, subdivision = 1, z = 0) {
   const samples = refine(lattice(node), node.cols, node.rows, subdivision);
@@ -409,10 +498,11 @@ export function lattice(part) {
 
 // Bilinear refinement of a control lattice: the art mesh follows the warp
 // inside each cell, as a Cubism warp deformer does.
-export function refine(points, cols, rows, n, out = new Float32Array((cols * n + 1) * (rows * n + 1) * 2)) {
-  const C = cols * n;
-  for (let J = 0; J <= rows * n; J++) for (let I = 0; I <= C; I++) {
-    const i = Math.min(cols - 1, Math.floor(I / n)), j = Math.min(rows - 1, Math.floor(J / n)), u = I / n - i, v = J / n - j;
+export function refine(points, cols, rows, n, out, vertical = n) {
+  const C = cols * n, R = rows * vertical;
+  out ??= new Float32Array((C + 1) * (R + 1) * 2);
+  for (let J = 0; J <= R; J++) for (let I = 0; I <= C; I++) {
+    const i = Math.min(cols - 1, Math.floor(I / n)), j = Math.min(rows - 1, Math.floor(J / vertical)), u = I / n - i, v = J / vertical - j;
     const p = (q, c) => points[(q) * 2 + c], a = j * (cols + 1) + i, b = a + 1, c = a + cols + 1, d = c + 1, k = (J * (C + 1) + I) * 2;
     for (const axis of [0, 1]) out[k + axis] = (p(a, axis) * (1 - u) + p(b, axis) * u) * (1 - v) + (p(c, axis) * (1 - u) + p(d, axis) * u) * v;
   }

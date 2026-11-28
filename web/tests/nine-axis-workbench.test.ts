@@ -484,7 +484,7 @@ test('workbench dragging inside excluded lobes follows the boundary tangent in a
   for (const side of [-1, 1]) for (const pitch of [-1, 1]) {
     const panel = Object.create(HeadNineAxisPanel.prototype), doc = composed(), before = JSON.stringify(doc);
     Object.assign(panel, { doc, axes: nineAxisCapabilities(doc), value: 0, valueY: 0, padDrag: { id: 1, axis: null },
-      padCoordinates(event: any) { return { x: event.x, y: event.y }; }, sync() {} });
+      padCoordinates(event: any) { return { x: event.x, y: event.y }; }, schedulePoseFrame() {} });
     const move = (x: number, y: number) => panel.padPointerMove({ pointerId: 1, x, y });
     const onBoundary = () => assert.ok(Math.abs(Math.abs(panel.value / 30) - headSideLimit(panel.valueY / 25)) < 1e-12);
     move(side * 27, pitch * 5);
@@ -663,7 +663,8 @@ test('a saved projection follows its posed caster and clips to the posed receive
   renderer.setStaticLayers([{ uuid: 'cast', visible: true, blend: 'multiply', opacity: 100, bounds: [3, 4, 1, 1], order: 2, image: texture,
     projection: { casters: [caster.uuid], receivers: [receiver.uuid] } }]);
   const frame = { x0: 0, y0: 0, width: 100, height: 100 };
-  renderer.draw(frame, 30, 25, new Set([caster.id, receiver.id]), undefined, 15);
+  const shown = new Set([caster.id, receiver.id]);
+  renderer.draw(frame, 30, 25, shown, undefined, 15, { reuseXY: true });
   assert.deepEqual(passLayers, [[receiver.id], [caster.id, receiver.id, '__studio__/cast']]);
   const mesh = renderer.meshes.get('__studio__/cast');
   assert.equal(mesh.material.uniforms.clipMode.value, 1);
@@ -672,6 +673,14 @@ test('a saved projection follows its posed caster and clips to the posed receive
   // shapes, then rolls about the same pivot. The receiver has different X/Y.
   assert.ok(Math.abs(x - (5 * Math.cos(angle) - 2 * Math.sin(angle))) < 1e-5);
   assert.ok(Math.abs(y - (5 * Math.sin(angle) + 2 * Math.cos(angle))) < 1e-5);
+  const poseVersion = mesh.geometry.attributes.position.version;
+  passLayers.length = 0;
+  renderer.draw(frame, 30, 25, shown, undefined, 15, { reuseXY: true });
+  assert.deepEqual(passLayers, [[caster.id, receiver.id, "__studio__/cast"]]);
+  assert.equal(mesh.geometry.attributes.position.version, poseVersion);
+  passLayers.length = 0;
+  renderer.draw(frame, 30, 25, shown, undefined, 15, { reuseXY: true, opacity: (part: {id: string}) => part.id === receiver.id ? .5 : 1 });
+  assert.deepEqual(passLayers, [[receiver.id], [caster.id, receiver.id, "__studio__/cast"]]);
   passLayers.length = 0;
   renderer.draw(frame, 0, 0, new Set([caster.id]), undefined, 15);
   assert.deepEqual(passLayers, [[caster.id]]);
@@ -737,4 +746,42 @@ test('nine-axis shows actual Krita queue/reservation/use and discards a dead own
   await f.put('krita.json', { ...base, state: 'running', pid: 2147483647 });
   assert.equal((await get()).krita?.state, 'reserved', 'a crashed application still holds the worker reservation');
   await rm(join(f.root, 'nine-axis/krita.json')); assert.equal((await get()).krita, null);
+});
+
+test('renderer preserves coarse tessellation and reduces dense meshes per axis', async () => {
+  const path = new URL('../../.agents/skills/live2d-maker/shared/nine-axis-render.js', import.meta.url);
+  const { renderMeshSamples, SUB } = await import(path.href);
+  const bbox = [10, 20, 118, 220];
+  const coarse = renderMeshSamples({ bbox, cols: 4, rows: 4 });
+  assert.deepEqual([coarse.cols, coarse.rows], [4 * SUB, 4 * SUB]);
+  const dense = renderMeshSamples({ bbox, cols: 25, rows: 32 });
+  assert.ok(dense.points.length < (25 * SUB + 1) * (32 * SUB + 1));
+  assert.deepEqual([...dense.points.slice(0, 2), ...dense.points.slice(-2)], bbox);
+  const mixed = renderMeshSamples({ bbox, cols: 4, rows: 32 });
+  assert.equal(mixed.cols, coarse.cols);
+  assert.equal(mixed.rows, dense.rows);
+});
+
+test('pad input coalesces multiple moves into a single lightweight pose update', async t => {
+  const { HeadNineAxisPanel } = await panelModule();
+  const original = globalThis.requestAnimationFrame;
+  let callback: FrameRequestCallback | undefined;
+  globalThis.requestAnimationFrame = next => {
+    assert.equal(callback, undefined); callback = next; return 1;
+  };
+  t.after(() => { globalThis.requestAnimationFrame = original; });
+  const doc = composed(), frames: number[][] = [];
+  const panel = Object.assign(Object.create(HeadNineAxisPanel.prototype), {
+    doc, axes: nineAxisCapabilities(doc), value: 0, valueY: 0, valueZ: 0,
+    padDrag: { id: 1, axis: null }, rollKeys: new Set(),
+    padCoordinates(event: { clientX: number; clientY: number }) { return { x: event.clientX, y: event.clientY }; },
+    sync() { assert.fail('pose input should not rebuild the tree'); },
+    syncPose() { frames.push([this.value, this.valueY]); },
+  });
+  for (const clientX of [4, 7, 10]) panel.padPointerMove({ pointerId: 1, clientX, clientY: 5 });
+  assert.equal(frames.length, 0);
+  assert.ok(callback);
+  callback(16);
+  assert.deepEqual(frames, [[panel.value, panel.valueY]]);
+  assert.notEqual(frames[0][0], 0);
 });
