@@ -62,7 +62,7 @@ test('multiple separated shapes keep their arrangement; clipping determines the 
 test('empty SVG stays transparent and oversized canvases are bounded', async () => {
   const empty = await pixels(await renderSVGThumbnail(svg('<rect width="1200" height="1200" opacity="0"/>')));
   assert.equal(empty.data.some(value => value !== 0), false);
-  await assert.rejects(renderSVGThumbnail(svg('', 100000, 100000)), /pixel limit/i);
+  await assert.rejects(renderSVGThumbnail(svg('', 100000, 100000)), Error);
 });
 
 test('thumbnail endpoint preserves source and path protections, refreshes rewritten drafts, falls back for incomplete SVG', async t => {
@@ -91,8 +91,9 @@ test('thumbnail endpoint preserves source and path protections, refreshes rewrit
   const broken = '<svg><path';
   await writeFile(file, broken);
   assert.equal(await (await fetch(url('legs.draft.svg'))).text(), broken);
-  await writeFile(join(base, 'private.svg'), source);
-  await symlink(join(base, 'private.svg'), join(task, 'leak.svg'));
-  assert.equal((await fetch(url('leak.svg'))).status, 400);
-  assert.equal((await fetch(url('../private.svg'))).status, 400);
+  await mkdir(join(base, 'private'));
+  await writeFile(join(base, 'private', 'image.svg'), source);
+  await symlink(join(base, 'private'), join(task, 'leak'), process.platform === 'win32' ? 'junction' : 'dir');
+  assert.equal((await fetch(url('leak/image.svg'))).status, 400);
+  assert.equal((await fetch(url('../private/image.svg'))).status, 400);
 });

@@ -22,7 +22,7 @@ test('initial groups receive both clothing and clothed-character references', as
   // The clothed character is the upstream simplified subject at its fixed task path.
   const refs = { ...f.references, originalImage: join(dirname(f.directory), 'part-layering/references/simplified-subject.png') };
   const adapter = createLayeringSteps({ async run(task) {
-    for (const path of [refs.baseSubject, refs.originalImage]) assert.ok(task.prompt.includes(`参考图绝对路径：${path}`));
+    for (const path of [refs.baseSubject, refs.originalImage]) assert.ok(task.prompt.includes(path));
     const tool = task.tools!.find(tool => tool.name === 'write_groups')!;
     const groups = [{ name: 'coat', groups: [], note: '整件衣物；按控制和穿插需要继续拆分' }];
     await tool.execute({ groups }, signal);

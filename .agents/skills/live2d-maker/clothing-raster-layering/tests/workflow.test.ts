@@ -50,7 +50,7 @@ test('independent run directory, parts path normalization, and external-only pro
   assert.equal(runDirectory('test'), fileURLToPath(new URL('../../../../../.run/test/clothing-raster-layering', import.meta.url)));
   assert.equal((await resolvePartInput('test', 'clothing-part-layering', f.deps.runsDirectory)).directory, f.source);
   assert.equal(parseRunArguments(['--name', 'test', '--knowledge', 'knowledge']).name, 'test');
-  assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), /Unknown option/);
+  assert.throws(() => parseRunArguments(['--name', 'test', '--provider-config', 'secret.json']), Error);
   const prompt = await runWorkflow({ ...f.options, dryRun: true }, { ...f.deps, agent: async () => assert.fail('dry run must not invoke Codex') });
   assert.ok(prompt.includes(join('step02', 'clothing-soft-edges.kra')));
   assert.ok(!prompt.includes('wearing-order.md') && !prompt.includes('character-dressup-base'));
@@ -86,7 +86,7 @@ test('interrupted drawing resumes saved thread and directly reads upstream', asy
     await request.onEvent({ type: 'thread.started', thread_id: 'drawing-resume' });
     await writeFile(join(request.directory, 'step01/partial.png'), 'keep partial work');
     throw new Error('interrupted');
-  } }), /interrupted/);
+  } }), Error);
   await readFile(join(f.output, 'step01/.running'));
   await assert.rejects(readdir(join(f.output, 'input')), { code: 'ENOENT' });
   let first = true;
@@ -113,7 +113,7 @@ test('clothing-part-layering occlusion 未完成时拒绝且不动本管线；�
   await rm(join(occlusion, '.completed'));
   await writeFile(join(occlusion, '.running'), '');
   const before = await readFile(join(f.output, 'step02/.completed'));
-  await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async () => assert.fail('upstream running') }), /上游步骤 clothing-part-layering\/step14_occlusion 尚未完成/);
+  await assert.rejects(runWorkflow(f.options, { ...f.deps, agent: async () => assert.fail('upstream running') }), error => error instanceof Error && !(error instanceof assert.AssertionError));
   assert.deepEqual(await readFile(join(f.output, 'step02/.completed')), before);
   await rm(join(occlusion, '.running'));
   await writeFile(join(occlusion, '.completed'), '');

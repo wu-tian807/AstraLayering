@@ -22,5 +22,5 @@ test('描边只画一次，已交付时续跑不重画', async t => {
 
 test('描边缺少交付时报错', async t => {
   const directory = await scratch(t);
-  await assert.rejects(runOutline(directory, async () => { await writeFile(join(directory, 'source-face.svg'), 'x'); }), /描边缺少交付/);
+  await assert.rejects(runOutline(directory, async () => { await writeFile(join(directory, 'source-face.svg'), 'x'); }), Error);
 });

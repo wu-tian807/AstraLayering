@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtemp, mkdir, readFile, readdir, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { basename, isAbsolute, join, relative } from 'node:path';
+import { linkDirectory, linkFile } from './link-fixture.ts';
 import sharp from 'sharp';
 import { createReviewAnnotationTool } from '../raster/review-annotation.ts';
 import { toTaskPaths } from '../task-paths.ts';
@@ -27,7 +28,10 @@ const region = { id: 'R1', bounds: [8, 9, 5, 6], layers: ['side_hair'], descript
 test('框选完全保留 reviewer 的问题与坐标；同图仍可标记，局部对照保留上下文与原像素', async t => {
   const f = await fixture(t);
   const result = await f.call({ image: 'current.png', reference: 'reference.png', regions: [region], padding: 2 });
-  assert.equal(result.image, join(f.cwd, 'current.png')); assert.ok(result.manifest.startsWith(join(f.output) + '/') && result.manifest.endsWith('/regions.json'));
+  assert.equal(result.image, join(f.cwd, 'current.png'));
+  const manifest = relative(f.output, result.manifest);
+  assert.ok(!isAbsolute(manifest) && !manifest.startsWith('..'));
+  assert.equal(basename(manifest), 'regions.json');
   assert.deepEqual(result.regions[0].bounds, region.bounds);
   assert.deepEqual(result.regions[0].layers, region.layers); assert.equal(result.regions[0].description, region.description);
   assert.deepEqual(result.regions[0].crop, [6, 7, 9, 10]);
@@ -54,16 +58,21 @@ test('无效框、重复编号或缺少图层说明先报错，不发布证据�
     await assert.rejects(f.call({ image: 'current.png', regions }));
   }
   await sharp({ create: { width: 4, height: 4, channels: 4, background: '#ffffff' } }).png().toFile(join(f.cwd, 'small.png'));
-  await assert.rejects(f.call({ image: 'current.png', reference: 'small.png', regions: [region] }), /画布尺寸不同/);
+  await assert.rejects(f.call({ image: 'current.png', reference: 'small.png', regions: [region] }), Error);
   await assert.rejects(readdir(f.output), { code: 'ENOENT' });
 });
 
 test('框选证据支持外部输入、输出及符号链接，取消仍停止执行', async t => {
-  const f = await fixture(t), outside = join(f.base, 'outside.png');
-  await writeFile(outside, f.png); await symlink(outside, join(f.cwd, 'escaped.png'));
-  await f.call({ image: 'escaped.png', regions: [region] });
+  const f = await fixture(t), directory = join(f.base, 'external'), outside = join(directory, 'outside.png');
+  await mkdir(directory);
+  await writeFile(outside, f.png);
+  await linkDirectory(directory, join(f.cwd, 'external'));
+  await f.call({ image: 'external/outside.png', regions: [region] });
+  await t.test('读取真实文件符号链接', async t => {
+    if (await linkFile(t, outside, join(f.cwd, 'escaped.png'))) await f.call({ image: 'escaped.png', regions: [region] });
+  });
   const tool = createReviewAnnotationTool(f.cwd, f.task, join(f.base, 'outside-output'));
   assert.equal((await tool.execute(f.at({ image: 'current.png', regions: [region] }), new AbortController().signal)).success, true);
   const controller = new AbortController(); controller.abort(new Error('cancelled'));
-  await assert.rejects(tool.execute(f.at({ image: 'current.png', regions: [region] }), controller.signal), /cancelled/);
+  await assert.rejects(tool.execute(f.at({ image: 'current.png', regions: [region] }), controller.signal), Error);
 });

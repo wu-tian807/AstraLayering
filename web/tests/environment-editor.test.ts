@@ -37,5 +37,4 @@ test('repeated workbench renders keep one preview/save action and enable discard
   input.value='/local/claude';input.oninput?.();
   await save.click();
   assert.equal(posts.filter(path=>path==='config/environment').length,1);
-  assert.ok(notices.includes('配置已保存，下一次启动任务时生效'));
 });

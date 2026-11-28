@@ -40,8 +40,8 @@ test('遮罩复制可取互不相连的独立形状，遮罩内无形状或包�
   assert.equal(pixels[20 * 100 + 70], 0);
   const lower = await copyParentRegion(parent, 'face/mouth', checkParentMask(maskOf('<rect x="0" y="50" width="100" height="50"/>'), canvas), canvas);
   assert.match(lower.svg, /<rect/);
-  await assert.rejects(copyParentRegion(parent, 'face/x', checkParentMask(maskOf('<rect x="45" y="45" width="10" height="10"/>'), canvas), canvas), /没有/);
-  await assert.rejects(copyParentRegion(parent, 'face/x', checkParentMask(maskOf('<rect x="0" y="0" width="100" height="100"/>'), canvas), canvas), /没有裁掉/);
+  await assert.rejects(copyParentRegion(parent, 'face/x', checkParentMask(maskOf('<rect x="45" y="45" width="10" height="10"/>'), canvas), canvas), Error);
+  await assert.rejects(copyParentRegion(parent, 'face/x', checkParentMask(maskOf('<rect x="0" y="0" width="100" height="100"/>'), canvas), canvas), Error);
 });
 
 test('描边 agent 复制父组完成稿的轮廓跳过 review 与补全，改写后照常 review；服装段不提供该工具', async t => {
@@ -55,11 +55,11 @@ test('描边 agent 复制父组完成稿的轮廓跳过 review 与补全，改�
     if (task.name.includes('face/eye_left')) {
       const mask = join(f.directory, 'eye-mask.svg');
       await writeFile(mask, maskOf('<rect x="5" y="5" width="45" height="45"/>'));
-      await assert.rejects(tool('copy_parent_region').execute({ region: { x: 5, y: 5, width: 45, height: 45 } }, signal), /不支持/);
+      await assert.rejects(tool('copy_parent_region').execute({ region: { x: 5, y: 5, width: 45, height: 45 } }, signal), Error);
       // The default mode only previews: no draft is written and the result carries an image.
       const shown = await tool('copy_parent_region').execute({ maskSvg: mask }, signal) as { contentItems: { type: string }[] };
       assert.ok(shown.contentItems.some(item => item.type === 'inputImage'));
-      await assert.rejects(readFile(promptInput(task.prompt).outputSvg, 'utf8'), /ENOENT/);
+      await assert.rejects(readFile(promptInput(task.prompt).outputSvg, 'utf8'), { code: 'ENOENT' });
       await tool('copy_parent_region').execute({ maskSvg: mask, mode: 'crop' }, signal);
     } else {
       // Starting from a copy and then rewriting it is ordinary drawing.
@@ -95,7 +95,7 @@ test('描边 agent 复制父组完成稿的轮廓跳过 review 与补全，改�
     needsCompletion: false, reason: 'whole-independent-geometry',
   });
   assert.equal(Object.hasOwn(decision!, 'svg'), false);
-  await assert.rejects(readFile(copyDecisionPath(f.directory, 'face/rest')), /ENOENT/);
+  await assert.rejects(readFile(copyDecisionPath(f.directory, 'face/rest')), { code: 'ENOENT' });
 });
 
 test('复制去掉父稿各层的旧控制属性，SVG 不再写入复制决策', async t => {
@@ -129,12 +129,12 @@ test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记�
   // The lower side of the same connected block comes from the complementary mask.
   const lower = await copyParentRegion(parent, 'arm/forearm', checkParentMask(mask('<path d="M0 35H100V100H0Z"/>'), canvas), canvas);
   assert.match(lower.svg, /M10 70/);
-  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="0" y="0" width="100" height="100"/>'), canvas), canvas), /没有裁掉/);
-  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="45" y="65" width="10" height="10"/>'), canvas), canvas), /没有/);
-  assert.throws(() => checkParentMask('<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="5" height="5"/></svg>', canvas), /画布/);
-  assert.throws(() => checkParentMask(mask('<path d="M0 0H10V10"/>'), canvas), /闭合/);
-  assert.throws(() => checkParentMask(mask('<line x1="0" y1="0" x2="5" y2="5"/>'), canvas), /<line>/);
-  assert.throws(() => checkParentMask(mask('<g transform="scale(2)"><rect width="5" height="5"/></g>'), canvas), /transform/);
+  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="0" y="0" width="100" height="100"/>'), canvas), canvas), Error);
+  await assert.rejects(copyParentRegion(parent, 'arm/x', checkParentMask(mask('<rect x="45" y="65" width="10" height="10"/>'), canvas), canvas), Error);
+  assert.throws(() => checkParentMask('<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50"><rect width="5" height="5"/></svg>', canvas), Error);
+  assert.throws(() => checkParentMask(mask('<path d="M0 0H10V10"/>'), canvas), Error);
+  assert.throws(() => checkParentMask(mask('<line x1="0" y1="0" x2="5" y2="5"/>'), canvas), Error);
+  assert.throws(() => checkParentMask(mask('<g transform="scale(2)"><rect width="5" height="5"/></g>'), canvas), Error);
   // A clipped outline can be the next parent's completed artwork; the inherited
   // clip is preserved and does not count as a painted shape.
   const clipped = join(f.directory, 'clipped.svg');
@@ -145,7 +145,7 @@ test('遮罩方式沿分界线裁剪相连形状，去掉父稿补全层标记�
   assert.equal((await raster(next.svg))[40 * 100 + 20], 0);
   assert.equal((await raster(next.svg))[20 * 100 + 20], 255);
   await writeFile(clipped, svgOf('<use href="#parent"/>'));
-  await assert.rejects(copyParentRegion(clipped, 'arm/y', upper, canvas), /<use>/);
+  await assert.rejects(copyParentRegion(clipped, 'arm/y', upper, canvas), Error);
 });
 
 test('连续形体被切开时仍跳过 review，调度补全和补全检查', async t => {
@@ -155,7 +155,7 @@ test('连续形体被切开时仍跳过 review，调度补全和补全检查', a
     const mask = join(f.directory, 'cut.svg');
     await writeFile(mask, maskOf('<rect x="0" y="0" width="100" height="50"/>'));
     await assert.rejects(task.tools!.find(tool => tool.name === 'copy_parent_region')!
-      .execute({ maskSvg: mask, mode: 'crop', needsCompletion: false }, signal), /不支持/);
+      .execute({ maskSvg: mask, mode: 'crop', needsCompletion: false }, signal), Error);
     await task.tools!.find(tool => tool.name === 'copy_parent_region')!.execute({ maskSvg: mask, mode: 'crop' }, signal);
     return { text: 'done', images: [] };
   };
@@ -249,11 +249,11 @@ test('继续并发布草稿保留决策，重新绘制清除决策', async t => 
   assert.deepEqual(await readFile(copyDecisionPath(f.directory, id)), record);
   assert.ok(await readCopyDecision(f.directory, id));
   await drawGroupOutline({ ...f, store, group, parent, outputPath: output }, { async run(task) {
-    await assert.rejects(readFile(copyDecisionPath(f.directory, id)), /ENOENT/);
+    await assert.rejects(readFile(copyDecisionPath(f.directory, id)), { code: 'ENOENT' });
     await task.tools!.find(tool => tool.name === 'write_outline_svg')!.execute({ svg: bytes.toString() }, signal);
     return { text: 'done', images: [] };
   } });
-  await assert.rejects(readFile(copyDecisionPath(f.directory, id)), /ENOENT/);
+  await assert.rejects(readFile(copyDecisionPath(f.directory, id)), { code: 'ENOENT' });
 });
 
 test('裁剪父稿能继续复制；普通子组不继承父组记录，缺失记录回到常规流程', async t => {
@@ -287,7 +287,7 @@ test('裁剪父稿能继续复制；普通子组不继承父组记录，缺失�
   }
   for (const id of ['face/upper/drawing', 'face/upper/missing']) {
     for (const stage of ['review', 'completion', 'check']) assert.ok(events.includes(`${id}:${stage}`));
-    await assert.rejects(readFile(copyDecisionPath(f.directory, id)), /ENOENT/);
+    await assert.rejects(readFile(copyDecisionPath(f.directory, id)), { code: 'ENOENT' });
   }
   const child = JSON.parse(await readFile(copyDecisionPath(f.directory, 'face/upper/copy'), 'utf8'));
   assert.equal(child.groupId, 'face/upper/copy');

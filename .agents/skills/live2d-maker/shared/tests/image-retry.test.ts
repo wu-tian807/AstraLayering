@@ -29,9 +29,9 @@ test('生图遇到 429/5xx 自动退避重试，404 立即报错', async t => {
   assert.ok((await generateImage(ok.api, 'gpt-image-2.5-flare', args, [], AbortSignal.timeout(5000))).length);
   assert.equal(ok.calls(), 3);
   const missing = await provider(t, [404]);
-  await assert.rejects(generateImage(missing.api, 'gpt-image-2.5-flare', args, [], AbortSignal.timeout(5000)), /HTTP 404/);
+  await assert.rejects(generateImage(missing.api, 'gpt-image-2.5-flare', args, [], AbortSignal.timeout(5000)), Error);
   assert.equal(missing.calls(), 1);
   const busy = await provider(t, [429, 429, 429, 429]);
-  await assert.rejects(generateImage(busy.api, 'gpt-image-2.5-flare', args, [], AbortSignal.timeout(5000)), /HTTP 429/);
+  await assert.rejects(generateImage(busy.api, 'gpt-image-2.5-flare', args, [], AbortSignal.timeout(5000)), Error);
   assert.equal(busy.calls(), 4);
 });

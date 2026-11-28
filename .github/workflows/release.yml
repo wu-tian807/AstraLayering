@@ -1,20 +1,10 @@
-name: Verify and publish release
+name: Cross-platform CI and release
 
 on:
   pull_request:
     branches: [main]
-    paths:
-      - package.json
-      - CHANGELOG.md
-      - .github/workflows/release.yml
-      - .github/release-rebuild.json
   push:
     branches: [main]
-    paths:
-      - package.json
-      - CHANGELOG.md
-      - .github/workflows/release.yml
-      - .github/release-rebuild.json
   workflow_dispatch:
     inputs:
       rebuild_existing:
@@ -26,13 +16,23 @@ permissions:
   contents: read
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   verify:
-    runs-on: ubuntu-24.04
+    name: Verify (${{ matrix.platform }})
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { platform: Linux, os: ubuntu-24.04 }
+          - { platform: Windows, os: windows-2025 }
+          - { platform: macOS, os: macos-15 }
+    env:
+      ASTRA_TEST_REQUIRE_FILE_SYMLINK: '1'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -40,16 +40,84 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24.16.0
+      - name: Verify Windows file symlink support
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          # Enable unprivileged symlinks only on this disposable CI machine.
+          $key = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock'
+          New-Item -Path $key -Force | Out-Null
+          New-ItemProperty -Path $key -Name AllowDevelopmentWithoutDevLicense -PropertyType DWord -Value 1 -Force | Out-Null
+          @'
+          import { lstatSync, mkdtempSync, readFileSync, symlinkSync, writeFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          const directory = mkdtempSync(join(process.env.RUNNER_TEMP, 'file-link-'));
+          const source = join(directory, 'source'), link = join(directory, 'link');
+          writeFileSync(source, 'native');
+          symlinkSync(source, link, 'file');
+          if (!lstatSync(link).isSymbolicLink() || readFileSync(link, 'utf8') !== 'native') throw Error('Windows file symlink probe failed');
+          '@ | node --input-type=module
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Install dependencies
         run: |
           npm install --global pnpm@10.33.0
           pnpm install --frozen-lockfile
+      - name: Install Chromium and Linux browser libraries
+        if: runner.os == 'Linux'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Install Chromium
+        if: runner.os != 'Linux'
+        run: pnpm exec playwright install chromium
+      - name: Install Linux test tools
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y ffmpeg krita python3-pyqt5 xauth xvfb
+          echo "ASTRA_TEST_KRITA=$(command -v krita)" >> "$GITHUB_ENV"
+      - name: Install macOS test tools
+        if: runner.os == 'macOS'
+        run: |
+          brew install ffmpeg
+          brew install --cask krita
+          test -x /Applications/Krita.app/Contents/MacOS/krita
+          echo 'ASTRA_TEST_KRITA=/Applications/Krita.app/Contents/MacOS/krita' >> "$GITHUB_ENV"
+      - name: Check Unix test tools
+        if: runner.os != 'Windows'
+        run: |
+          ffmpeg=$(command -v ffmpeg)
+          python=$(command -v python3)
+          "$ffmpeg" -version
+          "$python" -c 'import sys; print(sys.executable)'
+          echo "ASTRA_STUDIO_FFMPEG=$ffmpeg" >> "$GITHUB_ENV"
+          echo "ASTRA_TEST_PYTHON=$python" >> "$GITHUB_ENV"
+      - name: Install Windows test tools
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install ffmpeg --version=8.0.1 --no-progress --yes
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          choco install krita --version=5.3.1 --no-progress --yes
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $bin = Join-Path $env:ChocolateyInstall 'bin'
+          $ffmpeg = Join-Path $bin 'ffmpeg.exe'
+          $krita = Join-Path $env:ProgramFiles 'Krita (x64)\bin\krita.exe'
+          $python = (Get-Command python.exe -CommandType Application | Select-Object -First 1).Source
+          foreach ($path in @($ffmpeg, $krita, $python)) {
+            if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { throw "Missing native test tool: $path" }
+          }
+          "ASTRA_STUDIO_FFMPEG=$ffmpeg" >> $env:GITHUB_ENV
+          "ASTRA_TEST_KRITA=$krita" >> $env:GITHUB_ENV
+          & $python -c 'import sys; print(sys.executable)'
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          "ASTRA_TEST_PYTHON=$python" >> $env:GITHUB_ENV
+          $bin >> $env:GITHUB_PATH
       - name: Check publication shell syntax
+        if: runner.os == 'Linux'
         run: |
           node --input-type=module <<'NODE'
           import { readFileSync } from 'node:fs';
           import { spawnSync } from 'node:child_process';
-          const lines = readFileSync('.github/workflows/release.yml', 'utf8').split('\n');
+          const lines = readFileSync('.github/workflows/release.yml', 'utf8').split('\n  publish:\n')[1].split('\n');
           let checked = 0;
           for (let i = 0; i < lines.length; i++) {
             if (lines[i] !== '        run: |') continue;
@@ -63,34 +131,70 @@ jobs:
           if (checked < 5) throw new Error('Publication scripts were not found');
           console.log('Publication shell scripts checked:', checked);
           NODE
-      - name: Install browser test dependencies
-        run: pnpm exec playwright install --with-deps chromium
       - name: Check workflow types
         run: pnpm --dir .agents/skills/live2d-maker check
       - name: Check workbench types
         run: pnpm check:web
       - name: Test workflows
         timeout-minutes: 10
-        run: |
-          node --input-type=module <<'NODE'
-          import { readFileSync } from 'node:fs';
-          import { spawn } from 'node:child_process';
-          const cwd = '.agents/skills/live2d-maker';
-          const script = JSON.parse(readFileSync(cwd + '/package.json', 'utf8')).scripts.test;
-          if (!script.startsWith('node ')) throw new Error('Expected a Node test script');
-          const args = ['--test-force-exit', '--test-timeout=120000', ...script.slice(5).split(/\s+/)];
-          const child = spawn(process.execPath, args, { cwd, stdio: 'inherit' });
-          child.on('error', error => { console.error(error); process.exitCode = 1; });
-          child.on('exit', (code, signal) => { process.exitCode = signal ? 1 : (code ?? 1); });
-          NODE
+        run: node .github/ci-tests.mjs .agents/skills/live2d-maker test
       - name: Test workbench
-        run: pnpm test:web
+        timeout-minutes: 10
+        run: node .github/ci-tests.mjs . test:web
       - name: Test release packaging
         run: pnpm test:release
+      - name: Test workbench launcher
+        run: node --test scripts/start-workbench.test.mjs
+
+  release-intent:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      publish: ${{ steps.changes.outputs.publish }}
+      rebuild: ${{ steps.changes.outputs.rebuild }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        if: github.event_name == 'push'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          sparse-checkout: |
+            /package.json
+            /CHANGELOG.md
+            /.github/workflows/release.yml
+            /.github/release-rebuild.json
+          sparse-checkout-cone-mode: false
+      - name: Detect release inputs
+        id: changes
+        shell: bash
+        env:
+          BEFORE: ${{ github.event.before }}
+          MANUAL_REBUILD: ${{ inputs.rebuild_existing || false }}
+        run: |
+          set -euo pipefail
+          if [[ "$GITHUB_EVENT_NAME" == workflow_dispatch ]]; then
+            echo 'publish=true' >> "$GITHUB_OUTPUT"
+            echo "rebuild=$MANUAL_REBUILD" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          before="$BEFORE"
+          if [[ "$before" == 0000000000000000000000000000000000000000 ]]; then
+            before=$(git hash-object -w -t tree /dev/null)
+          fi
+          paths=$(git diff --name-only "$before" "$GITHUB_SHA" -- \
+            package.json CHANGELOG.md .github/workflows/release.yml .github/release-rebuild.json)
+          if [[ -n "$paths" ]]; then echo 'publish=true' >> "$GITHUB_OUTPUT"; fi
+          if grep -Fxq '.github/release-rebuild.json' <<< "$paths"; then
+            echo 'rebuild=true' >> "$GITHUB_OUTPUT"
+          fi
 
   publish:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: verify
+    if: needs.release-intent.outputs.publish == 'true'
+    needs: [verify, release-intent]
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -109,12 +213,12 @@ jobs:
       - name: Read explicit release rebuild request
         id: rebuild
         env:
-          MANUAL_REBUILD: ${{ inputs.rebuild_existing || false }}
+          REBUILD_REQUESTED: ${{ needs.release-intent.outputs.rebuild }}
         shell: bash
         run: |
           set -euo pipefail
           request=.github/release-rebuild.json
-          if [[ "$MANUAL_REBUILD" != true ]] && ! git diff --name-only HEAD^ HEAD | grep -Fxq "$request"; then
+          if [[ "$REBUILD_REQUESTED" != true ]]; then
             echo "requested=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi

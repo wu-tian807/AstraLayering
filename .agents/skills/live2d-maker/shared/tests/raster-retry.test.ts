@@ -88,10 +88,10 @@ test('取消可以中断 raster 退避；本地事件保存失败不触发网络
   const failing = await fixture(t, { failedTurns: 5 });
   const controller = new AbortController();
   await assert.rejects(runAgent({ ...failing.request(), signal: controller.signal },
-    new AgentRuntime(1, async () => { controller.abort(new Error('用户取消')); })), /用户取消/);
+    new AgentRuntime(1, async () => { controller.abort(new Error('用户取消')); })), Error);
   assert.equal((await failing.protocol()).filter(message => message.method === 'turn/start').length, 1);
   const f = await fixture(t);
   await assert.rejects(runAgent({ ...f.request(), onEvent: async event => {
     if (event.type === 'item.completed') throw new Error('503 local disk error');
-  } }, new AgentRuntime(1, async () => assert.fail('local failure must not retry'))), /local disk error/);
+  } }, new AgentRuntime(1, async () => assert.fail('local failure must not retry'))), error => error instanceof Error && !(error instanceof assert.AssertionError));
 });

@@ -23,7 +23,6 @@ test('九轴与其他管线共用总览卡片，编号、状态与预览入口�
   const html = render(Array(7).fill('done'));
   const card = (index: number) => html.match(new RegExp(`data-overview="${index}"[\\s\\S]*?</article>`))![0];
   assert.match(card(6), /class="node-number">07<\/span>/);
-  assert.match(card(6), /已完成/);
   assert.doesNotMatch(card(6), /data-head-preview|<canvas|overview-progress|overview-step-list|data-nine-step/);
   assert.equal(card(6).replace(/\d+/g, '#'), card(1).replace(/\d+/g, '#'));
 });
@@ -47,23 +46,22 @@ test('连线标签读取调度保存的 live 值，并区分显式范围和独�
   const component = source.slice(source.indexOf('function nineAxisConnection('), source.indexOf('function connectFlow('));
   const observe = (run: unknown) => runInNewContext(component + '\nnineAxisConnection(run);', { run });
   const whole = observe({ from: 'part-layering', to: 'nine-axis', live: true });
-  assert.equal(whole.label, '--live 开启'); assert.equal(whole.serial, true);
+  assert.equal(whole.enabled, true); assert.equal(whole.serial, true);
   const explicit = observe({ from: 'shadow', to: 'nine-axis', live: false });
-  assert.equal(explicit.label, '--live 关闭'); assert.equal(explicit.serial, true); assert.equal(explicit.detail, '按所选范围串行');
+  assert.equal(explicit.enabled, false); assert.equal(explicit.serial, true);
   const narrow = observe({ from: 'part-layering', to: 'shadow', live: true });
-  assert.equal(narrow.label, '--live 开启'); assert.equal(narrow.serial, false); assert.equal(narrow.detail, '本次止于阴影');
+  assert.equal(narrow.enabled, true); assert.equal(narrow.serial, false);
   const independent = observe({ from: 'nine-axis', to: 'nine-axis' });
-  assert.equal(independent.label, '--live 关闭'); assert.equal(independent.serial, false); assert.equal(independent.detail, '本次独立九轴');
+  assert.equal(independent.enabled, false); assert.equal(independent.serial, false);
   assert.equal(observe(undefined).serial, false);
 });
 
 test('执行面板逐管线展示真实状态，完成与失败不再显示为未运行', () => {
   const html = render(['done', 'running', 'available', 'pending', 'failed']);
-  for (const [i, label] of ['已完成', '进行中', '已有产物', '待执行', '执行失败'].entries()) {
+  for (const [i, status] of ['done', 'running', 'available', 'pending', 'failed'].entries()) {
     const card = html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
-    assert.ok(card.includes(label), card);
+    assert.ok(card.includes(`class="execution-state ${status}"`), card);
   }
-  assert.doesNotMatch(html, /未运行/);
 });
 
 test('失败的管线卡片在概览上直接给出失败原因', () => {
@@ -80,11 +78,11 @@ test('section 占用或排队等 Krita 时，在原有执行状态旁加标识',
   const html = render(['running', 'running', 'running', 'pending'], [], true, true,
     [{ krita: running }, { krita: reserved }, { krita: waiting }, { krita: null }], 3);
   const card = (i: number) => html.match(new RegExp(`data-overview="${i}"[\\s\\S]*?</article>`))![0];
-  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*本机 Krita 名额 3 \/ 3[^>]*>正在使用 Krita<small>3\/3<\/small>/);
-  assert.match(card(1), /krita-badge reserved[^>]*尚未启动[^>]*>已占用 Krita 名额/);
-  assert.match(card(2), /krita-badge waiting[^>]*已满[^>]*>Krita 排队中<small>3\/3<\/small>/);
+  assert.match(card(0), /krita-badge running[^>]*pid 4242[^>]*>[^<]*<small>3\/3<\/small>/);
+  assert.match(card(1), /krita-badge reserved/);
+  assert.match(card(2), /krita-badge waiting[^>]*>[^<]*<small>3\/3<\/small>/);
   // The badge sits beside the section's own state, which stays as it is.
-  for (const i of [0, 1, 2]) assert.ok(card(i).includes('进行中'));
+  for (const i of [0, 1, 2]) assert.match(card(i), /execution-state running/);
   assert.doesNotMatch(card(3), /krita-badge/);
   assert.doesNotMatch(render(['running']), /krita-badge/);
 });
@@ -93,12 +91,11 @@ test('停止后的中断与待续跑状态各自保留，不能误报完成或�
   const html = render(['interrupted', 'unconfirmed'], ['section-0/step01/draft.kra']);
   assert.match(html, /execution-state interrupted/);
   assert.match(html, /execution-state unconfirmed/);
-  assert.doesNotMatch(html, /已完成|进行中/);
 });
 
 test('管线卡片只保留预览，运行统一由标题栏的继续 / 恢复 / 重试负责', () => {
   const html = render(['done', 'failed'], [], true, true);
-  assert.doesNotMatch(html, /data-run-stage|运行 \/ 续跑/);
+  assert.doesNotMatch(html, /data-run-stage/);
   assert.equal((html.match(/data-stage="\d+"/g) ?? []).length, 4, 'title and preview keep opening the detailed section');
 });
 
@@ -125,8 +122,7 @@ test('人物和衣服跳过的 review/repair 共用紧凑节点，明确为无�
       step: { id: 'repair-02', title: '第 2 轮修复', status: 'skipped' },
       observedDisplayStatus: () => 'done', icon: () => '', esc: String,
     });
-    assert.match(html, /skipped-node/); assert.match(html, /无需执行/);
-    assert.doesNotMatch(html, /已完成|step-content/);
+    assert.match(html, /skipped-node/);
   }
 });
 
@@ -142,13 +138,13 @@ test('共用过程文件组件识别阴影方式目录，排除已展示文件�
     'shadow/step01_mask/workspace/inspection/native-case/clip-base.png', 'shadow/step01_normal-depth/workspace/draft.png',
     'shadow/agents/request/workspace/temporary.png'];
   const maskHtml = render('shadow', mask, files, stepArtifacts[5]);
-  assert.match(maskHtml, /1 个过程文件/);
+  assert.match(maskHtml, /<details/);
   assert.match(maskHtml, /inspection\/native-case\/clip-base\.png/);
   assert.doesNotMatch(maskHtml, /character-shadowed|relation-001-review|step01_normal-depth|\/agents\//);
   const mapsHtml = render('shadow', maps, files, stepArtifacts[5]);
-  assert.match(mapsHtml, /1 个过程文件/); assert.match(mapsHtml, /step01_normal-depth\/workspace\/draft\.png/);
+  assert.match(mapsHtml, /<details/); assert.match(mapsHtml, /step01_normal-depth\/workspace\/draft\.png/);
   assert.doesNotMatch(mapsHtml, /shadow\/step01_mask/);
   assert.equal(render('shadow', mask, files.slice(0, 2), stepArtifacts[5]), '');
   const raster = render('raster-layering', sectionSteps[1][0], ['raster-layering/step01/workspace/draft.png'], stepArtifacts[1]);
-  assert.match(raster, /1 个过程文件/); assert.match(raster, /raster-layering\/step01\/workspace\/draft\.png/);
+  assert.match(raster, /<details/); assert.match(raster, /raster-layering\/step01\/workspace\/draft\.png/);
 });

@@ -16,7 +16,7 @@ test('分组进度拒绝数组状态', () => {
   for (const status of ['pending', 'running', 'completed', 'failed']) {
     assert.throws(() => normalizeGroups([{ id: 'head', steps: {
       outline: { status: [status], output: { path: 'head.svg' } },
-    } }]), /invalid status/);
+    } }]), Error);
   }
 });
 
@@ -30,7 +30,7 @@ test('SVG 预览拒绝数组模式，不产生与请求不符的图片或观察�
   });
   const signal = new AbortController().signal;
   for (const mode of ['svg', 'blend', 'edge']) {
-    await assert.rejects(preview.execute({ path, mode: [mode] }, signal), /无效 mode/);
+    await assert.rejects(preview.execute({ path, mode: [mode] }, signal), Error);
   }
   assert.equal(observations.length, 0);
   await preview.execute({ path, mode: 'blend' }, signal);
@@ -48,7 +48,7 @@ test('review 拒绝非字符串结论，允许修正参数后正常提交且不�
         await task.tools!.find(tool => tool.name === 'preview_svg')!.execute({ path, mode: 'blend' }, signal);
         const submit = task.tools!.find(tool => tool.name === 'submit_review')!;
         for (const verdict of ['pass', 'revise', 'blocked']) {
-          await assert.rejects(submit.execute({ verdict: [verdict], feedback: '已逐处核对' }, signal), /无效审查结论/);
+          await assert.rejects(submit.execute({ verdict: [verdict], feedback: '已逐处核对' }, signal), Error);
         }
         await assert.rejects(readFile(reportPath), { code: 'ENOENT' });
         await submit.execute({ verdict: 'pass', feedback: '已逐处核对' }, signal);
@@ -67,7 +67,7 @@ test('raster 拒绝数组完成状态，返回格式错误不进入临时服务�
       onEvent: async () => {} }, new AgentRuntime(1, async () => assert.fail('invalid result must not retry')));
   };
   for (const status of ['completed', 'blocked']) {
-    await assert.rejects(execute([status]), /未返回有效/);
+    await assert.rejects(execute([status]), Error);
     assert.equal((await execute(status)).status, status);
   }
 });

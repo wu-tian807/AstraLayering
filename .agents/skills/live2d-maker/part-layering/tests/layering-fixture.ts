@@ -1,5 +1,6 @@
 import { profile } from '../profile.ts';
-import { mkdir, mkdtemp, readFile, realpath, rm, symlink } from 'node:fs/promises';
+import { mkdir, mkdtemp, readFile, realpath, rm } from 'node:fs/promises';
+import { linkDirectory } from '../../shared/tests/link-fixture.ts';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import type { TestContext } from 'node:test';
@@ -30,7 +31,7 @@ export async function fixture(t: TestContext) {
 export async function linkedFixture(t: TestContext, f: Awaited<ReturnType<typeof fixture>>) {
   const parent = await mkdtemp(join(tmpdir(), 'part-layering-link-')), directory = join(parent, 'part-layering');
   t.after(() => rm(parent, { recursive: true, force: true }));
-  await symlink(f.directory, directory);
+  await linkDirectory(f.directory, directory);
   const at = (path: string) => join(directory, path.slice(f.directory.length + 1));
   return { ...f, directory, references: { directory: at(f.references.directory),
     simplifiedSubject: at(f.references.simplifiedSubject), baseSubject: at(f.references.baseSubject) } };

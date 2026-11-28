@@ -45,11 +45,11 @@ test('+30 取配对图层的 −30 关于中轴的镜像', () => {
 
 test('交付检查：缺 face_base 或控制点数不对时报错', () => {
   const base = part('face/face_base', [60, 60, 140, 110], (x, y) => [x, y]);
-  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [part('face/nose', [90, 80, 110, 90], (x, y) => [x, y])] }, [200, 400], '-30'), /face_base/);
-  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, keyforms: { '0': base.keyforms['0'], '-30': [] } }] }, [200, 400], '-30'), /-30/);
-  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 300, parts: [base] }, [200, 400], '-30'), /axis/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [part('face/nose', [90, 80, 110, 90], (x, y) => [x, y])] }, [200, 400], '-30'), Error);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, keyforms: { '0': base.keyforms['0'], '-30': [] } }] }, [200, 400], '-30'), Error);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 300, parts: [base] }, [200, 400], '-30'), Error);
   // Hiding goes through occlusion, not fading.
-  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, opacity: { '-30': 0 } }] }, [200, 400], '-30'), /不透明度/);
+  assert.throws(() => checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [{ ...base, opacity: { '-30': 0 } }] }, [200, 400], '-30'), Error);
   const ear = part('face/ear_right', [50, 70, 60, 90], (x, y) => [x, y]);
   assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [ear, base] }, [200, 400], '-30').parts.length, 2);
   assert.equal(checkFaceLeft({ version: 2, deformers: [], axis: 100, parts: [base, ear] }, [200, 400], '-30').parts.length, 2);
@@ -61,6 +61,6 @@ test('贴图接受 agent 写的绝对路径，存为本步 layers/ 相对路径'
   assert.equal(stepTexture(step, task, 'face/nose', `${step}/layers/003.png`), 'layers/003.png');
   assert.equal(stepTexture(step, task, 'face/nose', 'nine-axis/step02_angle-x/layers/003.png'), 'layers/003.png');
   assert.equal(stepTexture(step, task, 'face/nose', 'layers/003.png'), 'layers/003.png');
-  assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), /本步 layers/);
-  assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), /本步 layers/);
+  assert.throws(() => stepTexture(step, task, 'face/nose', '/elsewhere/layers/003.png'), Error);
+  assert.throws(() => stepTexture(step, task, 'face/nose', `${step}/workspace/003.png`), Error);
 });

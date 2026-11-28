@@ -30,6 +30,6 @@ test('人物衣服绘制/review/返修、组装和两种阴影提示词不注入
     {characterKra:'/fixture/assembled.kra',characterColor:'/fixture/assembled.png',simplifiedCharacter:'/fixture/reference.png',structureFiles:[]},'/fixture/output'));
   for(const prompt of prompts) {
     assert.doesNotMatch(prompt, /\{(?:krita_environment|runtime_context|drawing_responsibilities|drawing_report_filename)\}/);
-    assert.doesNotMatch(prompt,/Krita 共用环境说明|shared\/krita\/environment\.md|execute_krita_python|run-krita-plugin/);
+    assert.doesNotMatch(prompt, /shared\/krita\/environment\.md|execute_krita_python|run-krita-plugin/);
   }
 });

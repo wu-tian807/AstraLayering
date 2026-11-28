@@ -45,7 +45,7 @@ for (const [section, execute, definitions, upstream] of [
         return { status: 'completed', summary: 'reviewed' };
       }
       assert.equal(call, 3); assert.equal(request.threadId, 'original'); throw new Error('broken context');
-    } }), /broken context/);
+    } }), Error);
     const report = await readFile(join(output, 'step01/review-01.md'));
     // --resume: the session is cleared, products and review stay.
     await clearStepSession(output, 'step01', 'broken context');

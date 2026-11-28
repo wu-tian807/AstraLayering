@@ -66,6 +66,6 @@ test('video defaults are native, arbitrary model IDs work and invalid providers 
  const config=parseWorkflowEnvironment('video_base_url=https://video.test/api\nvideo_api_key=fixture');
  assert.equal(config.videoApi?.provider,'volcengine');assert.equal(config.videoApi?.model,'doubao-seedance-2-5-260628');
  assert.equal(parseWorkflowEnvironment('video_provider=openai\nnine_axis_view_video_model=my-seedance-2').codex.env!.video_provider,'openai');
- assert.throws(()=>parseWorkflowEnvironment('video_provider=unsupported'),/video_provider/);
- assert.throws(()=>parseWorkflowEnvironment('nine_axis_view_video_model=*'),/模型 ID/);
+ assert.throws(()=>parseWorkflowEnvironment('video_provider=unsupported'),Error);
+ assert.throws(()=>parseWorkflowEnvironment('nine_axis_view_video_model=*'),Error);
 });

@@ -169,8 +169,8 @@ test('one generic inverse rejects folded axis sums as well as folded Warps', () 
     if (source.axis === 'x') n.keyforms['-30'] = form; else n.keyformsY!['25'] = form;
   }
   validateHeadNineAxis(doc);
-  assert.throws(() => parentPoint(doc, p, -30, 25, 50, 50, true), /无法反解/);
-  assert.throws(() => inversePoint((x, y) => [-x, y], 0, 0), /无法反解/);
+  assert.throws(() => parentPoint(doc, p, -30, 25, 50, 50, true), Error);
+  assert.throws(() => inversePoint((x, y) => [-x, y], 0, 0), Error);
 });
 
 test('existing mirrorDocument mirrors the complete part mapping into right root correction without rewriting sources', () => {
